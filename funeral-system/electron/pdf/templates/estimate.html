@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<title>御見積書 {{estimate_no}}</title>
+<style>
+  @page { size: A4; margin: 12mm; }
+  * { box-sizing: border-box; }
+  body {
+    font-family: "Yu Mincho", "游明朝", "Hiragino Mincho ProN", "MS Mincho", serif;
+    color: #111;
+    font-size: 10pt;
+    margin: 0;
+  }
+  .doc-title {
+    text-align: center;
+    font-size: 24pt;
+    letter-spacing: 0.6em;
+    padding-left: 0.6em;
+    margin: 0 0 8mm 0;
+    border-bottom: 2px solid #111;
+    padding-bottom: 4mm;
+  }
+  .header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 6mm;
+  }
+  .header .left { width: 55%; }
+  .header .right { width: 42%; text-align: right; }
+  .customer-name {
+    font-size: 14pt;
+    border-bottom: 1px solid #111;
+    padding-bottom: 1mm;
+    margin-bottom: 2mm;
+  }
+  .meta { font-size: 9pt; line-height: 1.6; }
+  .company-block {
+    font-size: 9pt;
+    line-height: 1.6;
+    text-align: left;
+    display: inline-block;
+  }
+  .company-name { font-size: 12pt; font-weight: 600; margin-bottom: 1mm; }
+  .total-box {
+    margin: 6mm 0 4mm 0;
+    border: 2px solid #111;
+    padding: 3mm 4mm;
+    display: inline-block;
+  }
+  .total-box .label { font-size: 11pt; margin-right: 6mm; letter-spacing: 0.4em; }
+  .total-box .amount { font-size: 18pt; font-weight: 700; }
+  table.items {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 3mm;
+  }
+  table.items th, table.items td {
+    border: 0.5pt solid #444;
+    padding: 1.5mm 2mm;
+    font-size: 9.5pt;
+  }
+  table.items th {
+    background: #efeae1;
+    font-weight: 600;
+    text-align: center;
+  }
+  table.items td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  table.items td.center { text-align: center; }
+  table.items tfoot td {
+    background: #fafafa;
+    font-weight: 600;
+  }
+  .summary {
+    margin-top: 4mm;
+    width: 80mm;
+    margin-left: auto;
+    border-collapse: collapse;
+  }
+  .summary td {
+    border: 0.5pt solid #444;
+    padding: 1.5mm 2mm;
+    font-size: 9.5pt;
+  }
+  .summary td.label { background: #efeae1; width: 38mm; }
+  .summary td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  .note-block {
+    margin-top: 6mm;
+    padding: 3mm;
+    border: 0.5pt solid #888;
+    font-size: 9pt;
+    min-height: 22mm;
+    white-space: pre-wrap;
+  }
+  .note-block .title { font-weight: 600; margin-bottom: 1mm; }
+  .footer {
+    margin-top: 6mm;
+    font-size: 8.5pt;
+    color: #555;
+    line-height: 1.6;
+  }
+  .footer .invoice-no { color: #111; }
+</style>
+</head>
+<body>
+  <h1 class="doc-title">御見積書</h1>
+
+  <div class="header">
+    <div class="left">
+      <div class="customer-name">{{customer_name}} 様</div>
+      <div class="meta">
+        {{#if title}}件名: {{title}}<br/>{{/if}}
+        {{#if deceased_name}}故人: {{deceased_name}} 様<br/>{{/if}}
+        下記の通り御見積申し上げます。
+      </div>
+    </div>
+    <div class="right">
+      <div class="meta">
+        見積番号: <strong>{{estimate_no}}</strong><br/>
+        発行日: {{jpdate issued_date}}<br/>
+        {{#if valid_until}}有効期限: {{jpdate valid_until}}<br/>{{/if}}
+      </div>
+      <div class="company-block">
+        <div class="company-name">{{company.name}}</div>
+        {{#if company.postal_code}}〒{{company.postal_code}}<br/>{{/if}}
+        {{company.address1}}{{#if company.address2}} {{company.address2}}{{/if}}<br/>
+        {{#if company.tel}}TEL: {{company.tel}}<br/>{{/if}}
+        {{#if company.invoice_no}}<span class="invoice-no">登録番号: {{company.invoice_no}}</span>{{/if}}
+      </div>
+    </div>
+  </div>
+
+  <div class="total-box">
+    <span class="label">合計金額</span>
+    <span class="amount">{{yen total}}</span>
+    <span style="font-size:9pt; margin-left:4mm;">(税込)</span>
+  </div>
+
+  <table class="items">
+    <thead>
+      <tr>
+        <th style="width:8mm">No</th>
+        <th>品名 / 摘要</th>
+        <th style="width:14mm">数量</th>
+        <th style="width:12mm">単位</th>
+        <th style="width:22mm">単価</th>
+        <th style="width:24mm">金額</th>
+        <th style="width:10mm">税</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each items}}
+      <tr>
+        <td class="center">{{add @index 1}}</td>
+        <td>{{this.name}}{{#if this.note}}<br/><small style="color:#666">{{this.note}}</small>{{/if}}</td>
+        <td class="num">{{this.quantity}}</td>
+        <td class="center">{{this.unit}}</td>
+        <td class="num">{{yen this.unit_price}}</td>
+        <td class="num">{{yen this.amount}}</td>
+        <td class="center">{{#if this.is_taxable}}{{this.tax_rate}}%{{else}}非{{/if}}</td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+
+  <table class="summary">
+    <tr><td class="label">小計</td><td class="num">{{yen subtotal}}</td></tr>
+    {{#if tax_10}}<tr><td class="label">消費税(10%)</td><td class="num">{{yen tax_10}}</td></tr>{{/if}}
+    {{#if tax_8}}<tr><td class="label">消費税(8%)</td><td class="num">{{yen tax_8}}</td></tr>{{/if}}
+    {{#if tax_exempt}}<tr><td class="label">非課税</td><td class="num">{{yen tax_exempt}}</td></tr>{{/if}}
+    <tr><td class="label" style="background:#dcd1b8">合計(税込)</td><td class="num"><strong>{{yen total}}</strong></td></tr>
+  </table>
+
+  <div class="note-block">
+    <div class="title">備考</div>
+    {{note}}
+  </div>
+
+  {{#if company.bank_name}}
+  <div class="footer">
+    <strong>お振込先:</strong>
+    {{company.bank_name}} {{company.bank_branch}}支店 / {{company.bank_account_type}} {{company.bank_account_no}} / {{company.bank_account_holder}}
+  </div>
+  {{/if}}
+
+<script>
+  // Handlebars の {{add}} ヘルパが無い環境用に index+1 を補正(printToPDFはJS実行後)
+  document.querySelectorAll('table.items tbody tr').forEach(function(tr, i){
+    var first = tr.querySelector('td');
+    if (first && /^\s*$/.test(first.textContent)) first.textContent = String(i+1);
+  });
+</script>
+</body>
+</html>
