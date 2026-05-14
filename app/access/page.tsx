@@ -1,0 +1,336 @@
+import type { Metadata } from "next";
+import { PageHero } from "@/components/common/PageHero";
+import { company, getLocalBusinessJsonLd } from "@/lib/company";
+
+export const metadata: Metadata = {
+  title: "アクセス | 川口典礼",
+  description:
+    "川口典礼・川口メモリアルホール(埼玉県川口市西新井宿440-1)へのアクセスをご案内します。お車・電車・タクシーでのアクセス、駐車場、川口市めぐりの森との位置関係も。事前相談・ホール見学は24時間365日受付。",
+  alternates: { canonical: "/access/" },
+};
+
+const transportModes = [
+  {
+    icon: "🚗",
+    label: "お車で",
+    description:
+      "外環道「川口中央IC」より約○分(要確認)。首都高速川口線「新井宿出入口」より約○分(要確認)。敷地内に駐車スペースをご用意しています。",
+  },
+  {
+    icon: "🚆",
+    label: "電車で",
+    description:
+      "JR京浜東北線「川口」駅よりタクシー約○分(要確認)。または埼玉高速鉄道「新井宿」駅より徒歩約○分(要確認)。",
+  },
+  {
+    icon: "🚕",
+    label: "タクシー",
+    description:
+      "「川口典礼」または「川口市西新井宿440-1」とお伝えください。最寄駅からのご利用も可能です。",
+  },
+];
+
+const nearby = [
+  {
+    label: "川口市めぐりの森",
+    description: "車で約○分(要確認)。火葬・式場利用に対応",
+    href: "/saijo/megurinomori/",
+  },
+  {
+    label: "戸田葬祭場",
+    description: "車で約○分(要確認)。火葬利用に対応",
+    href: "/saijo/toda-sousaijo/",
+  },
+  {
+    label: "谷塚斎場",
+    description: "車で約○分(要確認)。火葬・式場利用に対応",
+    href: "/saijo/yatsuka-saijo/",
+  },
+];
+
+const mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+  company.mapEmbedQuery
+)}`;
+
+export default function AccessPage() {
+  const jsonLd = getLocalBusinessJsonLd();
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        // LocalBusiness 構造化データ
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
+      <PageHero
+        eyebrow="Access"
+        subLabel="アクセス"
+        title={
+          <>
+            川口典礼・
+            <br className="md:hidden" />
+            川口メモリアルホール。
+          </>
+        }
+        description={
+          <p>
+            埼玉県川口市西新井宿の自社ホールへのアクセスをご案内します。事前のホール見学、ご相談など、お気軽にお越しください。
+          </p>
+        }
+        breadcrumbs={[
+          { label: "ホーム", href: "/" },
+          { label: "アクセス" },
+        ]}
+      />
+
+      <section className="bg-white py-16 md:py-24">
+        <div className="mx-auto max-w-6xl px-5 md:px-8">
+          <div className="grid gap-6 md:grid-cols-[1fr_1fr] md:items-stretch">
+            <div className="rounded-lg border border-line bg-paper p-6 shadow-sm md:p-8">
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-ink-soft">
+                所在地
+              </p>
+              <p className="font-serif-jp mt-3 text-xl font-medium leading-relaxed text-ink-deep md:text-2xl">
+                〒{company.postal}
+                <br />
+                {company.address}
+              </p>
+
+              <dl className="mt-6 grid grid-cols-[auto_1fr] gap-x-5 gap-y-3 text-base">
+                <dt className="font-semibold text-ink-soft">会社名</dt>
+                <dd className="text-ink-deep">{company.name}</dd>
+                <dt className="font-semibold text-ink-soft">ホール</dt>
+                <dd className="text-ink-deep">{company.hallName}</dd>
+                <dt className="font-semibold text-ink-soft">受付</dt>
+                <dd className="text-ink-deep">{company.hours}</dd>
+                <dt className="font-semibold text-ink-soft">電話</dt>
+                <dd>
+                  <a
+                    href={company.phoneTelLink}
+                    className="font-serif-jp text-xl font-medium text-emergency hover:underline"
+                  >
+                    {company.phone}
+                  </a>
+                </dd>
+              </dl>
+
+              <div className="mt-7 grid gap-3 sm:grid-cols-2">
+                <a
+                  href={mapUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-lg bg-brand px-5 py-4 text-center text-base font-bold text-white shadow-sm transition hover:bg-brand-deep"
+                >
+                  Googleマップで見る
+                </a>
+                <a
+                  href={company.phoneTelLink}
+                  className="rounded-lg bg-emergency px-5 py-4 text-center text-base font-bold text-white shadow-sm transition hover:bg-emergency-deep"
+                >
+                  電話で確認する
+                </a>
+              </div>
+            </div>
+
+            <div
+              className="relative aspect-[4/3] overflow-hidden rounded-lg border border-line bg-white shadow-sm md:aspect-auto md:min-h-[420px]"
+              aria-label="地図プレースホルダー"
+            >
+              <div
+                aria-hidden
+                className="absolute inset-0 bg-[repeating-linear-gradient(0deg,transparent_0_24px,#e2eae3_24px,#e2eae3_25px),repeating-linear-gradient(90deg,transparent_0_24px,#e2eae3_24px,#e2eae3_25px),#faf8f3]"
+              />
+              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-4xl">
+                📍
+              </div>
+              <div className="absolute bottom-3 right-3 rounded-md bg-white px-3 py-1.5 text-xs font-bold text-ink-mid shadow">
+                [Googleマップ埋め込み枠]
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-paper py-16 md:py-24">
+        <div className="mx-auto max-w-6xl px-5 md:px-8">
+          <div className="max-w-3xl">
+            <p className="text-sm font-semibold tracking-[0.18em] text-brand uppercase">
+              Transport
+            </p>
+            <p className="mt-2 text-sm font-semibold text-ink-mid">
+              交通アクセス
+            </p>
+            <h2 className="font-serif-jp mt-4 text-3xl font-medium leading-[1.4] text-ink-deep md:text-[2.2rem]">
+              お越しいただく方法。
+            </h2>
+            <p className="mt-5 text-base leading-9 text-ink-mid md:text-lg">
+              お車・電車・タクシーいずれの方法でもお越しいただけます。具体的な所要時間は事前のご相談時にもご案内します。
+            </p>
+          </div>
+
+          <ul className="mt-10 grid gap-4 md:grid-cols-3">
+            {transportModes.map((mode) => (
+              <li
+                key={mode.label}
+                className="rounded-lg border border-line bg-white p-6 shadow-sm"
+              >
+                <p aria-hidden className="text-3xl">
+                  {mode.icon}
+                </p>
+                <p className="font-serif-jp mt-3 text-lg font-medium text-ink-deep md:text-xl">
+                  {mode.label}
+                </p>
+                <p className="mt-3 text-sm leading-7 text-ink-mid md:text-base md:leading-8">
+                  {mode.description}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section className="bg-cool py-16 md:py-24">
+        <div className="mx-auto max-w-6xl px-5 md:px-8">
+          <div className="grid gap-10 md:grid-cols-2 md:items-start">
+            <div>
+              <p className="text-sm font-semibold tracking-[0.18em] text-brand uppercase">
+                Parking
+              </p>
+              <p className="mt-2 text-sm font-semibold text-ink-mid">
+                駐車場のご案内
+              </p>
+              <h2 className="font-serif-jp mt-4 text-3xl font-medium leading-[1.4] text-ink-deep md:text-[2.2rem]">
+                駐車場のご案内。
+              </h2>
+              <p className="mt-5 text-base leading-9 text-ink-mid md:text-lg">
+                敷地内に○台分(要確認)の駐車スペースをご用意しています。参列人数が多い場合は、近隣駐車場へのご案内も可能です。事前のご相談時にお伝えください。
+              </p>
+            </div>
+
+            <div className="rounded-lg border border-line bg-white p-6 shadow-sm md:p-7">
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-ink-soft">
+                駐車場の概要
+              </p>
+              <dl className="mt-4 space-y-3 text-base">
+                <div className="flex items-baseline justify-between gap-4 border-b border-line-soft pb-3">
+                  <dt className="font-semibold text-ink-soft">駐車台数</dt>
+                  <dd className="font-bold text-ink-deep">○台(要確認)</dd>
+                </div>
+                <div className="flex items-baseline justify-between gap-4 border-b border-line-soft pb-3">
+                  <dt className="font-semibold text-ink-soft">場所</dt>
+                  <dd className="font-bold text-ink-deep">敷地内</dd>
+                </div>
+                <div className="flex items-baseline justify-between gap-4 border-b border-line-soft pb-3">
+                  <dt className="font-semibold text-ink-soft">利用料</dt>
+                  <dd className="font-bold text-ink-deep">無料</dd>
+                </div>
+                <div>
+                  <dt className="font-semibold text-ink-soft">混雑時</dt>
+                  <dd className="mt-2 text-sm leading-7 text-ink-mid">
+                    近隣の駐車場をご案内します。事前にご相談ください。
+                  </dd>
+                </div>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-white py-16 md:py-24">
+        <div className="mx-auto max-w-6xl px-5 md:px-8">
+          <div className="max-w-3xl">
+            <p className="text-sm font-semibold tracking-[0.18em] text-brand uppercase">
+              Nearby
+            </p>
+            <p className="mt-2 text-sm font-semibold text-ink-mid">
+              近隣の斎場・火葬場
+            </p>
+            <h2 className="font-serif-jp mt-4 text-3xl font-medium leading-[1.4] text-ink-deep md:text-[2.2rem]">
+              周辺施設との位置関係。
+            </h2>
+            <p className="mt-5 text-base leading-9 text-ink-mid md:text-lg">
+              当社ホールから、川口市めぐりの森ほか近隣の斎場・火葬場へのアクセスもご案内します。式場と火葬場を組み合わせたご葬儀にも対応可能です。
+            </p>
+          </div>
+
+          <ul className="mt-10 grid gap-4 md:grid-cols-3">
+            {nearby.map((item) => (
+              <li key={item.label}>
+                <a
+                  href={item.href}
+                  className="group flex h-full flex-col gap-3 rounded-lg border border-line bg-paper p-6 shadow-sm transition hover:border-brand"
+                >
+                  <p className="font-serif-jp text-lg font-medium text-ink-deep group-hover:text-brand md:text-xl">
+                    {item.label}
+                  </p>
+                  <p className="text-sm leading-7 text-ink-mid">
+                    {item.description}
+                  </p>
+                  <p className="mt-auto inline-flex items-center gap-1 text-sm font-bold text-brand">
+                    詳しく見る
+                    <span aria-hidden>→</span>
+                  </p>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section
+        id="consultation"
+        className="scroll-mt-24 bg-deep py-16 text-white md:py-24"
+      >
+        <div className="mx-auto max-w-4xl px-5 text-center md:px-8">
+          <p className="text-sm font-semibold tracking-[0.18em] text-brand-tint uppercase">
+            Contact
+          </p>
+          <p className="mt-2 text-sm font-semibold text-white/80">
+            見学・ご相談
+          </p>
+          <h2 className="font-serif-jp mt-4 text-3xl font-medium leading-[1.4] md:text-[2.4rem]">
+            ホール見学・事前相談を
+            <br className="md:hidden" />
+            承ります。
+          </h2>
+          <p className="mt-5 text-base leading-9 text-white/80 md:text-lg">
+            実際にホールにお越しいただいて、雰囲気や設備をご確認いただけます。事前相談・お見積りは無料です。
+          </p>
+
+          <div className="mt-9 grid gap-3 md:grid-cols-[1.2fr_1fr_1fr]">
+            <a
+              href={company.phoneTelLink}
+              className="flex items-center justify-center gap-3 rounded-lg bg-emergency px-5 py-5 text-white shadow-sm transition hover:bg-emergency-deep"
+            >
+              <span aria-hidden className="text-2xl">
+                ☎
+              </span>
+              <span className="text-left">
+                <span className="block text-lg font-bold leading-tight">
+                  電話で相談する
+                </span>
+                <span className="mt-1 block text-xs font-semibold text-white/90">
+                  24時間365日 受付
+                </span>
+              </span>
+            </a>
+            <a
+              href="/contact/"
+              className="rounded-lg border border-white/60 bg-transparent px-5 py-5 text-center text-base font-bold text-white shadow-sm transition hover:bg-white/10"
+            >
+              見学予約フォーム
+            </a>
+            <a
+              href="/estimate/"
+              className="rounded-lg bg-white px-5 py-5 text-center text-base font-bold text-brand-deep shadow-sm transition hover:bg-paper"
+            >
+              費用の概算
+            </a>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
