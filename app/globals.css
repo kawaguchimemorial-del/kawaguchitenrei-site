@@ -1,26 +1,91 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Surfaces — 2段のベージュ＋深緑＋クール */
+  --bg-paper: #faf8f3;
+  --bg-warm: #f1ede2;
+  --bg-cool: #e9efe9;
+  --bg-deep: #1c352c;
+
+  /* Ink — 墨系3階調 */
+  --ink-deep: #131c18;
+  --ink: #1f2d27;
+  --ink-mid: #4a5b54;
+  --ink-soft: #7a8a82;
+
+  /* Brand — 緑3段＋淡い面色 */
+  --brand-deep: #1c3a30;
+  --brand: #2a5145;
+  --brand-soft: #58806f;
+  --brand-tint: #d6e1d8;
+
+  /* Gold — 控えめなアクセント */
+  --gold: #a6864a;
+  --gold-soft: #f1e8d0;
+
+  /* Emergency — 電話CTA */
+  --emergency: #b42318;
+  --emergency-deep: #841910;
+
+  /* Lines */
+  --line: #d3d9d0;
+  --line-soft: #e6ebe3;
+
+  /* Backwards compat（旧トークン） */
+  --background: var(--bg-paper);
+  --foreground: var(--ink);
 }
 
 @theme inline {
+  --color-paper: var(--bg-paper);
+  --color-warm: var(--bg-warm);
+  --color-cool: var(--bg-cool);
+  --color-deep: var(--bg-deep);
+  --color-ink-deep: var(--ink-deep);
+  --color-ink: var(--ink);
+  --color-ink-mid: var(--ink-mid);
+  --color-ink-soft: var(--ink-soft);
+  --color-brand-deep: var(--brand-deep);
+  --color-brand: var(--brand);
+  --color-brand-soft: var(--brand-soft);
+  --color-brand-tint: var(--brand-tint);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-emergency: var(--emergency);
+  --color-emergency-deep: var(--emergency-deep);
+  --color-line: var(--line);
+  --color-line-soft: var(--line-soft);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg-paper);
+  color: var(--ink);
+  font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic",
+    "YuGothic", "Meiryo", sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 見出し向け明朝。葬儀ジャンルにおける「静謐さ」の表現に使用 */
+.font-serif-jp {
+  font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN",
+    "Hiragino Mincho Pro", "Noto Serif JP", "MS PMincho", serif;
+  font-feature-settings: "palt" 1;
+  letter-spacing: 0.01em;
+}
+
+a {
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.18em;
+}
+
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 3px;
+  border-radius: 4px;
 }
