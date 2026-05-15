@@ -44,6 +44,10 @@ export function MeguriSection() {
               川口市めぐりの森の葬儀を見る
               <span aria-hidden>→</span>
             </a>
+
+            <p className="mt-5 text-sm leading-7 text-ink-mid md:text-base md:leading-8">
+              他にも、谷塚斎場・戸田葬祭場・町屋斎場・寺院会館でのご葬儀にも対応します。
+            </p>
           </div>
 
           <div className="rounded-lg border border-line bg-paper p-5 shadow-sm md:p-7">

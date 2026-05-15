@@ -1,120 +1,181 @@
+import Image from "next/image";
+
+type PlanPricing =
+  | { type: "member-regular"; member: number; regular: number }
+  | { type: "citizen"; citizen: number };
+
 type Plan = {
-  name: string;
-  summary: string;
-  forWhom: string;
-  people: string;
-  days: string;
-  price: string;
-  featured?: boolean;
   slug: string;
+  detailHref: string;
+  ctaLabel: string;
+  name: string;
+  subtitle?: string;
+  description: string;
+  image: { src: string; alt: string };
+  pricing: PlanPricing;
+  highlights: string[];
 };
 
 const plans: Plan[] = [
   {
-    name: "家族葬",
-    summary: "ご家族や親しい方を中心に、落ち着いてお見送りする葬儀です。",
-    forWhom: "身近な方だけで丁寧に見送りたい方",
-    people: "10〜50名",
-    days: "2日",
-    price: "税込○○万円〜",
-    featured: true,
-    slug: "family-funeral",
-  },
-  {
-    name: "一日葬",
-    summary: "お通夜を行わず、告別式と火葬を一日で執り行う形式です。",
-    forWhom: "負担を抑えつつ式を行いたい方",
-    people: "5〜30名",
-    days: "1日",
-    price: "税込○○万円〜",
-    slug: "oneday-funeral",
-  },
-  {
-    name: "火葬式",
-    summary: "通夜・告別式を行わず、火葬を中心にお見送りする形式です。",
-    forWhom: "できるだけシンプルに見送りたい方",
-    people: "少人数",
-    days: "1日",
-    price: "税込○○万円〜",
-    slug: "cremation",
-  },
-  {
-    name: "直葬",
-    summary: "宗教儀礼を簡略にし、必要な手配と火葬を中心に整えます。",
-    forWhom: "費用を抑え、簡素に見送りたい方",
-    people: "ごく少人数",
-    days: "1日",
-    price: "税込○○万円〜",
     slug: "direct-funeral",
+    detailHref: "/plan/direct-funeral/",
+    ctaLabel: "詳しく見る",
+    name: "直葬プラン",
+    description: "ご火葬を中心に、シンプルにお見送り。",
+    image: {
+      src: "/images/home/plans/plan-chokuso.png",
+      alt: "直葬プランのイメージ",
+    },
+    pricing: { type: "member-regular", member: 139000, regular: 189000 },
+    highlights: ["通夜・告別式なし", "1日", "ごく少人数"],
   },
   {
-    name: "川口市民葬",
-    summary: "川口市の制度を利用した葬儀にも対応します。条件は事前にご確認ください。",
-    forWhom: "川口市の制度を活用したい方",
-    people: "要相談",
-    days: "要相談",
-    price: "内容により変動",
+    slug: "hanaire-owakare",
+    detailHref: "/contact/",
+    ctaLabel: "詳しくは相談する",
+    name: "花入れお別れプラン",
+    subtitle: "お別れ会",
+    description: "火葬前に、花入れのお別れ時間を。",
+    image: {
+      src: "/images/home/plans/plan-hanairere-owakare.png",
+      alt: "花入れお別れプランのイメージ",
+    },
+    pricing: { type: "member-regular", member: 229000, regular: 279000 },
+    highlights: ["お別れ時間あり", "1日", "少人数"],
+  },
+  {
+    slug: "oneday-funeral",
+    detailHref: "/plan/oneday-funeral/",
+    ctaLabel: "詳しく見る",
+    name: "一日葬プラン",
+    description: "お通夜を行わず、一日でお見送り。",
+    image: {
+      src: "/images/home/plans/plan-ichinichiso-kazokuso.png",
+      alt: "一日葬プランのイメージ",
+    },
+    pricing: { type: "member-regular", member: 396000, regular: 496000 },
+    highlights: ["1日", "5〜30名", "通夜なし"],
+  },
+  {
+    slug: "family-funeral",
+    detailHref: "/plan/family-funeral/",
+    ctaLabel: "詳しく見る",
+    name: "家族葬プラン",
+    description: "親しい方だけで、ゆっくりお見送り。",
+    image: {
+      src: "/images/home/plans/plan-ichinichiso-kazokuso.png",
+      alt: "家族葬プランのイメージ",
+    },
+    pricing: { type: "member-regular", member: 528000, regular: 628000 },
+    highlights: ["2日", "10〜50名", "通夜・告別式"],
+  },
+  {
     slug: "kawaguchi-shimin",
+    detailHref: "/plan/kawaguchi-shimin/",
+    ctaLabel: "詳しく見る",
+    name: "市民葬プラン",
+    subtitle: "川口市民の方向け",
+    description: "川口市民の方のための安心プラン。",
+    image: {
+      src: "/images/home/plans/plan-shiminso.png",
+      alt: "市民葬プランのイメージ",
+    },
+    pricing: { type: "citizen", citizen: 231000 },
+    highlights: ["川口市民対象", "要相談"],
   },
 ];
 
-function PlanCard({ plan }: { plan: Plan }) {
-  const isFeatured = plan.featured;
-  return (
-    <article
-      className={`relative flex h-full flex-col rounded-lg border bg-white p-6 shadow-sm transition hover:shadow-md md:p-7 ${
-        isFeatured ? "border-brand" : "border-line"
-      }`}
-    >
-      {isFeatured && (
-        <span className="absolute -top-3 left-6 inline-flex items-center gap-1 rounded-full bg-brand px-3 py-1 text-xs font-bold tracking-wide text-white shadow-sm">
-          最も選ばれている形式
-        </span>
-      )}
-      <div className="flex items-baseline justify-between gap-4">
-        <h3 className="font-serif-jp text-2xl font-medium text-ink-deep md:text-[1.6rem]">
-          {plan.name}
-        </h3>
-        <p className="text-right text-sm font-bold text-brand">{plan.price}</p>
+function formatPrice(value: number): string {
+  return `¥${value.toLocaleString("ja-JP")}（税込）`;
+}
+
+function PriceBlock({ pricing }: { pricing: PlanPricing }) {
+  if (pricing.type === "citizen") {
+    return (
+      <div>
+        <p className="text-[10px] font-semibold tracking-[0.04em] text-ink-soft md:text-xs">
+          川口市民 葬祭事業価格
+        </p>
+        <p className="font-serif-jp mt-0.5 text-[1.45rem] font-medium leading-none text-ink-deep md:text-2xl">
+          {formatPrice(pricing.citizen)}
+        </p>
       </div>
-      <p className="mt-4 text-sm leading-7 text-ink-mid md:text-base md:leading-8">
-        {plan.summary}
+    );
+  }
+
+  return (
+    <div>
+      <p className="text-[10px] font-semibold tracking-[0.04em] text-brand md:text-xs">
+        事前相談会員価格
       </p>
+      <p className="font-serif-jp mt-0.5 text-[1.45rem] font-medium leading-none text-ink-deep md:text-2xl">
+        {formatPrice(pricing.member)}
+      </p>
+      <p className="mt-1 text-[10px] leading-4 text-ink-soft md:text-xs">
+        通常 {formatPrice(pricing.regular)}
+      </p>
+    </div>
+  );
+}
 
-      <dl className="mt-5 grid grid-cols-3 gap-2 border-t border-line-soft pt-4 text-sm">
-        <div>
-          <dt className="text-xs font-semibold text-ink-soft">日数</dt>
-          <dd className="mt-1 font-bold text-ink-deep">{plan.days}</dd>
+function PlanCard({ plan }: { plan: Plan }) {
+  return (
+    <article className="overflow-hidden rounded-lg border border-line bg-white shadow-sm transition hover:shadow-md">
+      <div className="flex">
+        <div className="relative w-28 flex-shrink-0 self-stretch bg-warm md:w-36">
+          <Image
+            src={plan.image.src}
+            alt={plan.image.alt}
+            fill
+            sizes="(max-width: 768px) 112px, 144px"
+            className="object-cover object-center"
+          />
         </div>
-        <div>
-          <dt className="text-xs font-semibold text-ink-soft">参列</dt>
-          <dd className="mt-1 font-bold text-ink-deep">{plan.people}</dd>
-        </div>
-        <div>
-          <dt className="text-xs font-semibold text-ink-soft">向いている方</dt>
-          <dd className="mt-1 text-xs leading-5 text-ink-mid md:text-sm">
-            {plan.forWhom}
-          </dd>
-        </div>
-      </dl>
 
-      <a
-        href={`/plan/${plan.slug}/`}
-        className={`mt-6 inline-flex items-center justify-center gap-1 rounded-lg px-5 py-3 text-base font-bold transition ${
-          isFeatured
-            ? "bg-brand text-white hover:bg-brand-deep"
-            : "border border-ink-deep bg-white text-ink-deep hover:bg-cool"
-        }`}
-      >
-        {plan.name}の詳細を見る
-        <span aria-hidden>→</span>
-      </a>
+        <div className="min-w-0 flex-1 p-4 md:p-5">
+          {plan.subtitle && (
+            <p className="text-[10px] font-semibold tracking-[0.18em] text-brand md:text-xs">
+              {plan.subtitle}
+            </p>
+          )}
+          <h3 className="font-serif-jp mt-0.5 text-lg font-medium leading-tight text-ink-deep md:text-xl">
+            {plan.name}
+          </h3>
+          <p className="mt-1 text-xs leading-5 text-ink-mid md:text-sm md:leading-6">
+            {plan.description}
+          </p>
+
+          <div className="mt-3 md:mt-4">
+            <PriceBlock pricing={plan.pricing} />
+          </div>
+        </div>
+      </div>
+
+      <div className="flex items-center justify-between gap-3 border-t border-line-soft px-4 py-3 md:px-5">
+        <ul className="flex min-w-0 flex-wrap gap-1.5">
+          {plan.highlights.map((tag) => (
+            <li
+              key={tag}
+              className="whitespace-nowrap rounded-full border border-line-soft bg-paper px-2.5 py-0.5 text-[10px] font-semibold text-ink-mid md:text-xs"
+            >
+              {tag}
+            </li>
+          ))}
+        </ul>
+        <a
+          href={plan.detailHref}
+          className="inline-flex shrink-0 items-center gap-1 text-xs font-bold text-brand transition hover:text-brand-deep md:text-sm"
+        >
+          {plan.ctaLabel}
+          <span aria-hidden>→</span>
+        </a>
+      </div>
     </article>
   );
 }
 
 export function PlanSection() {
-  const [featured, ...rest] = plans;
   return (
     <section id="plans" className="bg-paper py-16 md:py-24">
       <div className="mx-auto max-w-6xl px-5 md:px-8">
@@ -128,20 +189,21 @@ export function PlanSection() {
             5つの葬儀形式。
           </h2>
           <p className="mt-5 text-base leading-9 text-ink-mid md:text-lg">
-            ご家族の状況やご希望に合わせて、葬儀の形式をお選びいただけます。費用や追加項目もあわせてご確認いただけます。
+            川口市で、直葬・花入れお別れ・一日葬・家族葬・市民葬まで、ご家族の状況やご希望に合わせて葬儀の形式をお選びいただけます。費用や追加項目もあわせてご確認いただけます。
           </p>
         </div>
 
-        <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          <div className="md:col-span-2 lg:col-span-1">
-            <PlanCard plan={featured} />
-          </div>
-          {rest.map((plan) => (
+        <div className="mt-10 grid gap-4 md:grid-cols-2 md:gap-6">
+          {plans.map((plan) => (
             <PlanCard key={plan.slug} plan={plan} />
           ))}
         </div>
 
-        <div className="mt-10 flex flex-col gap-3 rounded-lg border border-line-soft bg-cool px-6 py-5 text-sm leading-7 text-ink-mid md:flex-row md:items-center md:justify-between md:text-base">
+        <p className="mt-6 text-xs leading-6 text-ink-soft md:text-sm">
+          ※「事前相談会員価格」は、事前相談にお申込みいただいた方の会員価格です。
+        </p>
+
+        <div className="mt-8 flex flex-col gap-3 rounded-lg border border-line-soft bg-cool px-6 py-5 text-sm leading-7 text-ink-mid md:flex-row md:items-center md:justify-between md:text-base">
           <p>
             プランの違いや追加費用が発生しやすい項目について、より詳しい料金ページもご用意しています。
           </p>

@@ -3,6 +3,7 @@ const hallFeatures = [
   "敷地内駐車場70台完備",
   "家族葬〜200名規模の一般葬まで対応",
   "控室・相談スペース・バリアフリー対応",
+  "他斎場・寺院会館での葬儀にも対応",
 ];
 
 const hallGallery = [
@@ -27,7 +28,7 @@ export function HallSection() {
             川口メモリアルホール。
           </h2>
           <p className="mt-5 text-base leading-9 text-ink-mid md:text-lg">
-            川口市めぐりの森まで車で約5分、敷地内駐車場70台。家族葬から最大200名規模の一般葬まで、ご家族の希望に合わせて対応します。事前相談・ホール見学はお気軽にお越しください。
+            川口市めぐりの森まで車で約5分、敷地内駐車場70台。家族葬から最大200名規模の一般葬まで、ご家族の希望に合わせて対応します。自社ホール以外にも、谷塚斎場・戸田葬祭場・町屋斎場・寺院会館でのご葬儀に対応します。事前相談・ホール見学はお気軽にお越しください。
           </p>
         </div>
 
@@ -70,6 +71,16 @@ export function HallSection() {
                 ホールの詳細を見る
                 <span aria-hidden>→</span>
               </a>
+              <p className="mt-4 text-sm leading-7 text-ink-mid">
+                川口市めぐりの森での葬儀をお考えの方は、
+                <a
+                  href="/saijo/megurinomori/"
+                  className="font-bold text-brand hover:underline"
+                >
+                  川口市めぐりの森の葬儀案内
+                </a>
+                もご覧ください。
+              </p>
             </div>
           </div>
         </div>

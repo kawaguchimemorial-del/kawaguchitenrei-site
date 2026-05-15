@@ -1,7 +1,10 @@
-const areas = [
+const kawaguchiAreas = [
   { name: "川口市", href: "/area/kawaguchi/" },
   { name: "新井宿", href: "/area/nishiaraiyado/" },
   { name: "鳩ヶ谷", href: "/area/hatogaya/" },
+];
+
+const nearbyAreas = [
   { name: "戸田市", href: "/area/toda/" },
   { name: "蕨市", href: "/area/warabi/" },
   { name: "草加市", href: "/area/soka/" },
@@ -29,7 +32,7 @@ export function AreasSection() {
             近隣エリアの葬儀に対応。
           </h2>
           <p className="mt-5 text-base leading-9 text-ink-mid md:text-lg">
-            川口市・新井宿・鳩ヶ谷を中心に、戸田市・蕨市・草加市など近隣エリアのご葬儀もご相談いただけます。
+            川口市の直葬・火葬式・一日葬・家族葬・市民葬を中心に、新井宿・鳩ヶ谷、また戸田市・蕨市・草加市など近隣エリアのご葬儀もご相談いただけます。
           </p>
         </div>
 
@@ -38,8 +41,27 @@ export function AreasSection() {
             <p className="text-xs font-bold uppercase tracking-[0.18em] text-ink-soft">
               対応エリア
             </p>
-            <ul className="mt-4 flex flex-wrap gap-3">
-              {areas.map((area) => (
+
+            <p className="mt-4 text-sm font-bold text-ink-mid">
+              川口市内エリア
+            </p>
+            <ul className="mt-3 flex flex-wrap gap-3">
+              {kawaguchiAreas.map((area) => (
+                <li key={area.name}>
+                  <a
+                    href={area.href}
+                    className="inline-flex items-center gap-1 rounded-full border border-line bg-paper px-4 py-2 text-base font-bold text-ink-deep transition hover:border-brand hover:text-brand"
+                  >
+                    {area.name}の葬儀
+                    <span aria-hidden>›</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+
+            <p className="mt-6 text-sm font-bold text-ink-mid">近隣エリア</p>
+            <ul className="mt-3 flex flex-wrap gap-3">
+              {nearbyAreas.map((area) => (
                 <li key={area.name}>
                   <a
                     href={area.href}
