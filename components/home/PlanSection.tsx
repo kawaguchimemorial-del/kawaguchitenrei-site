@@ -87,17 +87,17 @@ const plans: Plan[] = [
 ];
 
 function formatPrice(value: number): string {
-  return `¥${value.toLocaleString("ja-JP")}（税込）`;
+  return `${value.toLocaleString("ja-JP")}円（税込）`;
 }
 
 function PriceBlock({ pricing }: { pricing: PlanPricing }) {
   if (pricing.type === "citizen") {
     return (
       <div>
-        <p className="text-[10px] font-semibold tracking-[0.04em] text-ink-soft md:text-xs">
+        <p className="text-xs font-bold tracking-[0.04em] text-ink-mid md:text-sm">
           川口市民 葬祭事業価格
         </p>
-        <p className="font-serif-jp mt-0.5 text-[1.45rem] font-medium leading-none text-ink-deep md:text-2xl">
+        <p className="font-serif-jp mt-1 text-[1.65rem] font-bold leading-none text-ink-deep md:text-[1.85rem]">
           {formatPrice(pricing.citizen)}
         </p>
       </div>
@@ -106,13 +106,13 @@ function PriceBlock({ pricing }: { pricing: PlanPricing }) {
 
   return (
     <div>
-      <p className="text-[10px] font-semibold tracking-[0.04em] text-brand md:text-xs">
+      <p className="text-xs font-bold tracking-[0.04em] text-brand md:text-sm">
         事前相談会員価格
       </p>
-      <p className="font-serif-jp mt-0.5 text-[1.45rem] font-medium leading-none text-ink-deep md:text-2xl">
+      <p className="font-serif-jp mt-1 text-[1.65rem] font-bold leading-none text-ink-deep md:text-[1.85rem]">
         {formatPrice(pricing.member)}
       </p>
-      <p className="mt-1 text-[10px] leading-4 text-ink-soft md:text-xs">
+      <p className="mt-1.5 text-[11px] leading-5 text-ink-mid md:text-xs">
         通常 {formatPrice(pricing.regular)}
       </p>
     </div>
@@ -157,7 +157,7 @@ function PlanCard({ plan }: { plan: Plan }) {
           {plan.highlights.map((tag) => (
             <li
               key={tag}
-              className="whitespace-nowrap rounded-full border border-line-soft bg-paper px-2.5 py-0.5 text-[10px] font-semibold text-ink-mid md:text-xs"
+              className="whitespace-nowrap rounded-full border border-line-soft bg-paper px-2.5 py-1 text-[11px] font-bold text-ink md:text-xs"
             >
               {tag}
             </li>

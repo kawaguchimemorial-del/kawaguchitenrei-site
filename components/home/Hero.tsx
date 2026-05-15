@@ -73,7 +73,7 @@ export function Hero() {
           ))}
         </ul>
 
-        <div className="mt-7 md:col-start-1 md:row-start-5 md:mt-7">
+        <div className="hidden md:col-start-1 md:row-start-5 md:mt-7 md:block">
           <a
             href="tel:0120-963-765"
             className="group flex w-full items-center justify-between gap-4 rounded-lg bg-emergency px-5 py-3.5 text-white transition hover:bg-emergency-deep md:max-w-md md:px-6 md:py-4"
