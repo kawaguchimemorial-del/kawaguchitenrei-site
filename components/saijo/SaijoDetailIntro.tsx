@@ -24,9 +24,20 @@ export function SaijoDetailIntro({ saijo }: { saijo: Saijo }) {
               {saijo.type}
             </p>
             <h1 className="font-serif-jp mt-4 text-[2.3rem] font-medium leading-[1.3] text-ink-deep md:text-[2.9rem]">
-              {saijo.name}での
-              <br />
-              葬儀をお手伝いします。
+              {saijo.h1 ? (
+                saijo.h1.split("\n").map((line, i, arr) => (
+                  <span key={i}>
+                    {line}
+                    {i < arr.length - 1 ? <br /> : null}
+                  </span>
+                ))
+              ) : (
+                <>
+                  {saijo.name}での
+                  <br />
+                  葬儀をお手伝いします。
+                </>
+              )}
             </h1>
             <p className="mt-5 text-base font-semibold text-brand md:text-lg">
               {saijo.intro}
@@ -63,7 +74,7 @@ export function SaijoDetailIntro({ saijo }: { saijo: Saijo }) {
               <div className="flex items-baseline justify-between gap-4 border-b border-line-soft pb-4">
                 <dt className="text-sm font-semibold text-ink-soft">施設種別</dt>
                 <dd className="text-base font-bold text-ink-deep">
-                  火葬場・斎場
+                  {saijo.type}
                 </dd>
               </div>
               <div className="flex items-baseline justify-between gap-4 border-b border-line-soft pb-4">

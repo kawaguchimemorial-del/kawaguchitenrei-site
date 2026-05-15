@@ -1,6 +1,95 @@
 import type { Saijo } from "@/lib/saijo";
 import { plans } from "@/lib/plans";
 
+export function SaijoImportantNotice({ saijo }: { saijo: Saijo }) {
+  if (!saijo.importantNotice) return null;
+
+  return (
+    <section className="bg-paper py-12 md:py-16">
+      <div className="mx-auto max-w-4xl px-5 md:px-8">
+        <div className="rounded-lg border border-line bg-white p-6 shadow-sm md:p-8">
+          <p className="text-xs font-bold uppercase tracking-[0.18em] text-brand">
+            Important
+          </p>
+          <h2 className="font-serif-jp mt-3 text-xl font-medium leading-[1.5] text-ink-deep md:text-2xl">
+            {saijo.importantNotice.heading}
+          </h2>
+          <p className="mt-4 text-base leading-9 text-ink-mid md:text-lg md:leading-10">
+            {saijo.importantNotice.body}
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function SaijoCremationFees({ saijo }: { saijo: Saijo }) {
+  if (!saijo.cremationFees) return null;
+  const fees = saijo.cremationFees;
+
+  return (
+    <section className="bg-white py-16 md:py-24">
+      <div className="mx-auto max-w-5xl px-5 md:px-8">
+        <div className="max-w-3xl">
+          <p className="text-sm font-semibold tracking-[0.18em] text-brand uppercase">
+            Cremation Fees
+          </p>
+          <p className="mt-2 text-sm font-semibold text-ink-mid">火葬料金</p>
+          <h2 className="font-serif-jp mt-4 text-3xl font-medium leading-[1.4] text-ink-deep md:text-[2.2rem]">
+            {fees.heading}
+          </h2>
+          <p className="mt-5 text-base leading-9 text-ink-mid md:text-lg">
+            {fees.lead}
+          </p>
+        </div>
+
+        <div className="mt-8 overflow-x-auto rounded-lg border border-line bg-white shadow-sm">
+          <table className="w-full min-w-[480px] border-collapse">
+            <thead>
+              <tr className="bg-paper">
+                <th className="px-4 py-3 text-left text-sm font-bold text-ink-deep md:px-5 md:py-4 md:text-base">
+                  区分
+                </th>
+                <th className="px-4 py-3 text-right text-sm font-bold text-ink-deep md:px-5 md:py-4 md:text-base">
+                  市内料金
+                </th>
+                <th className="px-4 py-3 text-right text-sm font-bold text-ink-deep md:px-5 md:py-4 md:text-base">
+                  市外料金
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {fees.rows.map((row) => (
+                <tr
+                  key={row.category}
+                  className="border-t border-line-soft"
+                >
+                  <td className="px-4 py-4 text-sm leading-6 text-ink md:px-5 md:py-5 md:text-base">
+                    {row.category}
+                  </td>
+                  <td className="font-serif-jp px-4 py-4 text-right text-base font-bold text-ink-deep md:px-5 md:py-5 md:text-lg">
+                    {row.resident}
+                  </td>
+                  <td className="font-serif-jp px-4 py-4 text-right text-base font-bold text-ink-deep md:px-5 md:py-5 md:text-lg">
+                    {row.nonResident}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <p className="mt-6 text-sm leading-7 text-ink-mid md:text-base md:leading-8">
+          {fees.footnote}
+        </p>
+        <p className="mt-3 text-xs leading-6 text-ink-soft md:text-sm">
+          ※ {fees.changeNotice}
+        </p>
+      </div>
+    </section>
+  );
+}
+
 export function SaijoFeatures({ saijo }: { saijo: Saijo }) {
   return (
     <section className="bg-white py-16 md:py-24">
