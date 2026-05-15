@@ -1,10 +1,10 @@
 const navItems = [
-  { label: "葬儀プラン", href: "#plans" },
-  { label: "ホール", href: "#hall" },
-  { label: "施行事例", href: "#cases" },
-  { label: "お客様の声", href: "#voices" },
-  { label: "よくある質問", href: "#faq" },
-  { label: "アクセス", href: "#access" },
+  { label: "葬儀プラン", href: "/#plans" },
+  { label: "ホール", href: "/#hall" },
+  { label: "施行事例", href: "/#cases" },
+  { label: "お客様の声", href: "/#voices" },
+  { label: "よくある質問", href: "/#faq" },
+  { label: "アクセス", href: "/#access" },
 ];
 
 export function Header() {
