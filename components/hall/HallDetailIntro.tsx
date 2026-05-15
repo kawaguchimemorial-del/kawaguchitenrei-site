@@ -33,7 +33,7 @@ export function HallDetailIntro({ hall }: { hall: Hall }) {
               {hall.description}
             </p>
 
-            <div className="mt-7 grid gap-3 sm:grid-cols-[1.2fr_1fr_1fr]">
+            <div className="mt-7 hidden gap-3 sm:grid-cols-[1.2fr_1fr] md:grid">
               <a
                 href="tel:0120-963-765"
                 className="inline-flex items-center justify-center gap-3 rounded-lg bg-emergency px-5 py-4 text-base font-bold text-white shadow-sm transition hover:bg-emergency-deep"
@@ -42,17 +42,11 @@ export function HallDetailIntro({ hall }: { hall: Hall }) {
                 電話で相談する
               </a>
               <a
-                href="#consultation"
+                href="/contact/"
                 className="inline-flex items-center justify-center gap-2 rounded-lg bg-brand px-5 py-4 text-base font-bold text-white shadow-sm transition hover:bg-brand-deep"
               >
                 見学を予約する
                 <span aria-hidden>→</span>
-              </a>
-              <a
-                href="/estimate/"
-                className="inline-flex items-center justify-center gap-2 rounded-lg border border-ink-deep bg-white px-5 py-4 text-base font-bold text-ink-deep transition hover:bg-cool"
-              >
-                費用の概算
               </a>
             </div>
           </div>

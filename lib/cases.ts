@@ -13,7 +13,7 @@ export type CaseRecord = {
   people: string;
   total: string;
   religion: string;
-  galleryCount: number;
+  altarCount: number; // 祭壇写真の枚数
   requirements: string;
   implementation: string;
   staffComment?: string;
@@ -40,13 +40,13 @@ export const cases: CaseRecord[] = [
     people: "20名",
     total: "税込○○万円",
     religion: "仏式",
-    galleryCount: 5,
+    altarCount: 2,
     requirements:
       "高齢のご親族が多く、通夜・告別式の二日間は身体的負担が大きいというご相談でした。ご家族中心で、落ち着いて見送る時間を確保したい、というご希望でした。",
     implementation:
       "通夜を行わず告別式と火葬を一日で執り行う一日葬をご案内しました。川口メモリアルホールにご安置のうえ、当日朝にご家族で対面の時間をお取りし、告別式・火葬・収骨までご案内しました。式場ではご親族の写真を映写し、お別れの時間をゆっくりお過ごしいただきました。",
     staffComment:
-      "ご親族の体力面のご不安を伺っていたため、移動と待ち時間を最小限に組み立てました。式場と火葬場が近いめぐりの森を選んだことで、ご家族の負担を抑えることができたとお声をいただきました。",
+      "ご親族の体力面のご不安を伺っていたため、移動と待ち時間を最小限に組み立てました。川口メモリアルホールから川口市めぐりの森までは車で約5分のため、式場と火葬場の移動でご家族の負担を抑えることができたとお声をいただきました。",
     includedItems: [
       "ご搬送(病院→ご安置)",
       "ご安置(1日)",
@@ -62,7 +62,7 @@ export const cases: CaseRecord[] = [
       "返礼品",
     ],
     relatedPlanSlugs: ["oneday-funeral", "family-funeral"],
-    relatedAreaSlugs: ["kawaguchi", "nishiaraiyado"],
+    relatedAreaSlugs: ["kawaguchi", "araijuku"],
     metaDescription:
       "川口メモリアルホールで20名の一日葬を執り行った事例。仏式・税込○○万円。川口典礼の一日葬は通夜を行わず告別式と火葬を一日で。費用と内容をご紹介します。",
   },
@@ -81,7 +81,7 @@ export const cases: CaseRecord[] = [
     people: "5名",
     total: "税込○○万円",
     religion: "無宗教",
-    galleryCount: 3,
+    altarCount: 1,
     requirements:
       "ご親族が遠方のため少人数で見送りたい、宗教儀礼は希望しない、というご相談でした。費用面のご不安もあり、できるだけシンプルに整えたい、とのことでした。",
     implementation:
@@ -120,13 +120,13 @@ export const cases: CaseRecord[] = [
     people: "30名",
     total: "税込○○万円",
     religion: "仏式",
-    galleryCount: 6,
+    altarCount: 3,
     requirements:
       "ご家族と親しい方を含めた30名規模で、丁寧にお別れの時間を取りたい、というご相談でした。お料理や返礼品も含めて、参列の方へきちんとおもてなしをしたい、とのことでした。",
     implementation:
       "通夜・告別式の二日構成の家族葬をご案内しました。川口メモリアルホールで通夜を執り行い、ご家族・ご親族の対面の時間を充分にお取りしました。翌日の告別式は宗教者のお勤め後、川口市めぐりの森で火葬・収骨までお手伝いしました。",
     staffComment:
-      "参列いただく方の年齢層が幅広く、座席や動線、控室の使い方をきめ細かく調整しました。お料理と返礼品もご家族のご希望を伺ってご手配しています。",
+      "参列いただく方の年齢層が幅広く、座席や動線、控室の使い方をきめ細かく調整しました。駐車場70台ある自社ホールのため、お車でお越しの方も困らずにご案内できました。お料理と返礼品もご家族のご希望を伺ってご手配しています。",
     includedItems: [
       "ご搬送",
       "ご安置(2日)",
@@ -144,7 +144,7 @@ export const cases: CaseRecord[] = [
       "祭壇生花のグレードアップ",
     ],
     relatedPlanSlugs: ["family-funeral", "oneday-funeral"],
-    relatedAreaSlugs: ["kawaguchi", "nishiaraiyado"],
+    relatedAreaSlugs: ["kawaguchi", "araijuku"],
     metaDescription:
       "川口メモリアルホールで30名の家族葬を執り行った事例。仏式・税込○○万円。通夜・告別式の二日構成。川口典礼の家族葬の費用と流れをご紹介。",
   },
@@ -163,7 +163,7 @@ export const cases: CaseRecord[] = [
     people: "8名",
     total: "税込○○万円",
     religion: "無宗教",
-    galleryCount: 3,
+    altarCount: 1,
     requirements:
       "ご自宅で過ごしていた故人様を、最後までご自宅で見守りたい、というご家族のご希望でした。費用も抑え、儀式は行わずシンプルに執り行いたい、というご相談でした。",
     implementation:
@@ -182,7 +182,7 @@ export const cases: CaseRecord[] = [
       "火葬料金(公営)",
     ],
     relatedPlanSlugs: ["direct-funeral", "cremation"],
-    relatedAreaSlugs: ["kawaguchi", "nishiaraiyado"],
+    relatedAreaSlugs: ["kawaguchi", "araijuku"],
     metaDescription:
       "ご自宅安置から始まる8名の直葬の事例。無宗教・税込○○万円。川口典礼ならご自宅でのお別れの時間にも丁寧に対応します。",
   },

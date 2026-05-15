@@ -34,7 +34,7 @@ export function MeguriSection() {
               火葬・葬儀にも対応。
             </h2>
             <p className="mt-5 text-base leading-9 text-ink-mid md:text-lg">
-              川口典礼は、川口市めぐりの森に近い葬儀社です。ご希望の形式に合わせて、斎場や火葬場の利用についてもご案内します。
+              当ホール(川口メモリアルホール)から川口市めぐりの森まで車で約5分。火葬場までの移動が短く、ご親族のご負担を抑えてお見送りができます。当ホールでの通夜+翌日めぐりの森での火葬という組み合わせもスムーズです。
             </p>
 
             <a
@@ -59,7 +59,7 @@ export function MeguriSection() {
                 川口市めぐりの森
               </div>
               <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/90 px-3 py-1 text-[11px] font-semibold text-ink-soft shadow">
-                車で約◯分
+                車で約5分
               </div>
             </div>
 

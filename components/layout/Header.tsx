@@ -39,8 +39,8 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-2">
-          <div className="hidden flex-col items-end leading-tight md:flex">
+        <div className="hidden items-center gap-2 md:flex">
+          <div className="flex flex-col items-end leading-tight">
             <span className="text-[10px] font-semibold tracking-widest text-ink-soft uppercase">
               24h365日 受付
             </span>

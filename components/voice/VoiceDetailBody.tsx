@@ -131,7 +131,7 @@ export function VoiceRelated({ voice }: { voice: Voice }) {
               className="group mt-4 grid gap-6 rounded-lg border border-line bg-white shadow-sm transition hover:shadow-md md:grid-cols-[0.55fr_1.45fr]"
             >
               <div className="flex aspect-[4/3] items-center justify-center rounded-t-lg bg-[repeating-linear-gradient(135deg,#eef3ee_0_8px,transparent_8px_16px)] text-sm font-semibold text-ink-soft md:rounded-l-lg md:rounded-tr-none">
-                [事例写真]
+                [祭壇のお写真]
               </div>
               <div className="p-6 md:py-7 md:pr-7">
                 <p className="text-xs font-bold uppercase tracking-[0.18em] text-brand">
@@ -254,7 +254,7 @@ export function VoiceCta({ voice }: { voice: Voice }) {
           {voice.format}・{voice.hall}での葬儀をご検討中の方、または同じようなご相談がある方は、お気軽にお問い合わせください。
         </p>
 
-        <div className="mt-9 grid gap-3 md:grid-cols-[1.2fr_1fr_1fr]">
+        <div className="mt-9 hidden gap-3 md:grid md:grid-cols-[1.2fr_1fr]">
           <a
             href="tel:0120-963-765"
             className="flex items-center justify-center gap-3 rounded-lg bg-emergency px-5 py-5 text-white shadow-sm transition hover:bg-emergency-deep"
@@ -270,12 +270,6 @@ export function VoiceCta({ voice }: { voice: Voice }) {
                 24時間365日 受付
               </span>
             </span>
-          </a>
-          <a
-            href="/estimate/"
-            className="rounded-lg border border-white/60 bg-transparent px-5 py-5 text-center text-base font-bold text-white shadow-sm transition hover:bg-white/10"
-          >
-            費用の概算
           </a>
           <a
             href="/contact/"

@@ -17,7 +17,7 @@ export function FinalCtaSection() {
           急なご葬儀、費用の不安、斎場選び、家族葬の進め方など、わからないことがあれば川口典礼へご相談ください。無理なご案内はいたしません。
         </p>
 
-        <div className="mt-9 grid gap-3 md:grid-cols-[1.2fr_1fr_1fr]">
+        <div className="mt-9 hidden gap-3 md:grid md:grid-cols-[1.2fr_1fr]">
           <a
             href="tel:0120-963-765"
             className="group flex items-center justify-center gap-3 rounded-lg bg-emergency px-5 py-5 text-white shadow-sm transition hover:bg-emergency-deep"
@@ -35,13 +35,7 @@ export function FinalCtaSection() {
             </span>
           </a>
           <a
-            href="/estimate/"
-            className="rounded-lg border border-white/60 bg-transparent px-5 py-5 text-center text-base font-bold text-white shadow-sm transition hover:bg-white/10"
-          >
-            葬儀費用の概算
-          </a>
-          <a
-            href="#consultation"
+            href="/contact/"
             className="rounded-lg bg-white px-5 py-5 text-center text-base font-bold text-brand-deep shadow-sm transition hover:bg-paper"
           >
             事前相談する

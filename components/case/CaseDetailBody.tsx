@@ -4,35 +4,38 @@ import { cases } from "@/lib/cases";
 import { getVoiceByCaseSlug } from "@/lib/voices";
 
 export function CaseGallery({ caseItem }: { caseItem: CaseRecord }) {
-  if (caseItem.galleryCount <= 0) return null;
+  if (caseItem.altarCount <= 0) return null;
 
   return (
     <section className="bg-white py-16 md:py-24">
       <div className="mx-auto max-w-6xl px-5 md:px-8">
         <div className="max-w-3xl">
           <p className="text-sm font-semibold tracking-[0.18em] text-brand uppercase">
-            Gallery
+            Altar
           </p>
           <p className="mt-2 text-sm font-semibold text-ink-mid">
-            式場・祭壇の様子
+            祭壇のお写真
           </p>
           <h2 className="font-serif-jp mt-4 text-3xl font-medium leading-[1.4] text-ink-deep md:text-[2.2rem]">
-            当日の様子。
+            お見送りの祭壇。
           </h2>
+          <p className="mt-5 text-base leading-9 text-ink-mid md:text-lg">
+            この事例でご用意した祭壇の写真です。ご家族のご希望や宗教形式に合わせてしつらえました。
+          </p>
         </div>
 
         <ul className="mt-9 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {Array.from({ length: caseItem.galleryCount }, (_, i) => (
+          {Array.from({ length: caseItem.altarCount }, (_, i) => (
             <li key={i}>
               <div className="flex aspect-[4/3] items-center justify-center rounded-lg border border-line bg-[repeating-linear-gradient(135deg,#eef3ee_0_8px,transparent_8px_16px)] text-sm font-semibold text-ink-soft">
-                [当日の写真 {i + 1}]
+                [祭壇のお写真 {i + 1}]
               </div>
             </li>
           ))}
         </ul>
 
         <p className="mt-6 text-xs leading-6 text-ink-soft">
-          ※ 写真はご家族の許可をいただいたうえで掲載しています。お顔やお名前は伏せています。
+          ※ 祭壇のお写真は、ご家族の許可をいただいたうえで掲載しています。お顔やお名前など個人を特定する情報は伏せています。
         </p>
       </div>
     </section>
@@ -159,7 +162,7 @@ export function CaseCostBreakdown({ caseItem }: { caseItem: CaseRecord }) {
         </div>
 
         <p className="mt-6 text-xs leading-6 text-ink-soft">
-          ※ 別途項目はご家族のご希望や使用施設により発生します。同様の構成での総額は概算見積りでご確認いただけます。
+          ※ 別途項目はご家族のご希望や使用施設により発生します。同様の構成での総額は、お電話または事前相談でご案内します。
         </p>
       </div>
     </section>
@@ -260,7 +263,7 @@ export function CaseRelated({ caseItem }: { caseItem: CaseRecord }) {
                     className="group block h-full rounded-lg border border-line bg-paper shadow-sm transition hover:shadow-md"
                   >
                     <div className="flex aspect-[4/3] items-center justify-center rounded-t-lg bg-[repeating-linear-gradient(135deg,#eef3ee_0_8px,transparent_8px_16px)] text-sm font-semibold text-ink-soft">
-                      [写真]
+                      [祭壇のお写真]
                     </div>
                     <div className="p-5">
                       <p className="font-serif-jp text-base font-medium text-ink-deep group-hover:text-brand md:text-lg">
@@ -317,7 +320,7 @@ export function CaseCta({ caseItem }: { caseItem: CaseRecord }) {
           {caseItem.format}・{caseItem.hall}での葬儀をご検討の方は、お気軽にご相談ください。概算金額のご案内、事前のホール見学も承ります。
         </p>
 
-        <div className="mt-9 grid gap-3 md:grid-cols-[1.2fr_1fr_1fr]">
+        <div className="mt-9 hidden gap-3 md:grid md:grid-cols-[1.2fr_1fr]">
           <a
             href="tel:0120-963-765"
             className="flex items-center justify-center gap-3 rounded-lg bg-emergency px-5 py-5 text-white shadow-sm transition hover:bg-emergency-deep"
@@ -333,12 +336,6 @@ export function CaseCta({ caseItem }: { caseItem: CaseRecord }) {
                 24時間365日 受付
               </span>
             </span>
-          </a>
-          <a
-            href="/estimate/"
-            className="rounded-lg border border-white/60 bg-transparent px-5 py-5 text-center text-base font-bold text-white shadow-sm transition hover:bg-white/10"
-          >
-            費用の概算
           </a>
           <a
             href="/contact/"

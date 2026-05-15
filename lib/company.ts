@@ -13,6 +13,9 @@ export type CompanyInfo = {
   hours: string;
   representative: string;
   founded: string;
+  foundedYear: number;
+  yearsInBusiness: number;
+  annualCases: string;
   capital: string;
   business: string[];
   affiliations: string[];
@@ -20,13 +23,16 @@ export type CompanyInfo = {
   hallName: string;
   serviceAreas: string[];
   mapEmbedQuery: string;
+  parkingCapacity: string;
+  distanceToMegurinomori: string;
+  maxFuneralScale: string;
 };
 
 export const company: CompanyInfo = {
   name: "川口典礼",
   legalName: "(要確認)株式会社川口典礼",
   shortDescription:
-    "川口市・新井宿の地域密着葬儀社。川口メモリアルホールを拠点に、家族葬・一日葬・火葬式・直葬・川口市民葬まで対応します。",
+    "川口市・新井宿の地域密着葬儀社。川口メモリアルホール(駐車場70台・川口市めぐりの森まで車5分)を拠点に、家族葬から200名規模の一般葬まで対応します。創業20年、年間約260件の施行実績。",
   postal: "333-0833",
   address: "埼玉県川口市西新井宿440-1",
   addressRegion: "埼玉県",
@@ -37,21 +43,37 @@ export const company: CompanyInfo = {
   email: "kawaguchi.memorial@gmail.com",
   hours: "24時間365日 受付",
   representative: "(要確認)",
-  founded: "(要確認)",
+  founded: "2006年(創業20年)",
+  foundedYear: 2006,
+  yearsInBusiness: 20,
+  annualCases: "年間約260件",
   capital: "(要確認)",
   business: [
-    "葬儀・告別式の請負",
+    "葬儀・告別式の請負(家族葬・一日葬・火葬式・直葬・一般葬)",
     "事前相談・葬儀プランのご案内",
-    "斎場・式場の運営(川口メモリアルホール)",
+    "斎場・式場の運営(川口メモリアルホール・駐車場70台)",
     "搬送・ご安置のサポート",
-    "宗教者の手配",
+    "宗教者の手配(仏式・神式・キリスト教式・無宗教葬)",
     "法要・アフターサポート",
+    "川口市民葬制度の活用ご案内",
   ],
   affiliations: ["(要確認)加盟団体・認可情報"],
   hallSlug: "kawaguchi-memorial-hall",
   hallName: "川口メモリアルホール",
-  serviceAreas: ["川口市", "戸田市", "蕨市", "草加市", "鳩ヶ谷"],
+  serviceAreas: [
+    "川口市",
+    "戸田市",
+    "蕨市",
+    "草加市",
+    "鳩ヶ谷",
+    "足立区",
+    "板橋区",
+    "北区",
+  ],
   mapEmbedQuery: "埼玉県川口市西新井宿440-1",
+  parkingCapacity: "70台",
+  distanceToMegurinomori: "車で約5分",
+  maxFuneralScale: "最大200名規模の一般葬まで対応",
 };
 
 // LocalBusiness (FuneralHome) 構造化データ
@@ -63,6 +85,7 @@ export function getLocalBusinessJsonLd() {
     "@type": "FuneralHome",
     name: company.name,
     description: company.shortDescription,
+    foundingDate: String(company.foundedYear),
     address: {
       "@type": "PostalAddress",
       postalCode: company.postal,
@@ -90,5 +113,22 @@ export function getLocalBusinessJsonLd() {
       "@type": "City",
       name: area,
     })),
+    amenityFeature: [
+      {
+        "@type": "LocationFeatureSpecification",
+        name: "駐車場",
+        value: "70台(敷地内・無料)",
+      },
+      {
+        "@type": "LocationFeatureSpecification",
+        name: "対応規模",
+        value: "家族葬から最大200名規模の一般葬まで",
+      },
+      {
+        "@type": "LocationFeatureSpecification",
+        name: "近隣火葬場",
+        value: "川口市めぐりの森まで車で約5分",
+      },
+    ],
   };
 }

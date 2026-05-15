@@ -7,7 +7,6 @@ const footerColumns = [
       { label: "一日葬", href: "/plan/oneday-funeral/" },
       { label: "火葬式", href: "/plan/cremation/" },
       { label: "直葬", href: "/plan/direct-funeral/" },
-      { label: "費用の概算", href: "/estimate/" },
       { label: "よくある質問", href: "/faq/" },
     ],
   },

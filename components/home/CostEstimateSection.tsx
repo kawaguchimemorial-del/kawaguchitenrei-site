@@ -22,19 +22,13 @@ export function CostEstimateSection() {
           <p className="mt-5 text-base leading-9 text-ink-mid md:text-lg">
             ご希望の送り方や人数を伺い、必要な費用を整理してご案内します。追加費用が分かりにくい項目も、後で確認しやすい形でまとめます。
           </p>
-          <div className="mt-7 flex flex-wrap gap-3">
-            <a
-              href="/estimate/"
-              className="inline-flex items-center gap-2 rounded-lg bg-brand px-6 py-4 text-base font-bold text-white shadow-sm transition hover:bg-brand-deep"
-            >
-              葬儀費用の概算を相談する
-              <span aria-hidden>→</span>
-            </a>
+          <div className="mt-7">
             <a
               href="/plan/"
-              className="inline-flex items-center gap-2 rounded-lg border border-ink-deep bg-white px-6 py-4 text-base font-bold text-ink-deep transition hover:bg-paper"
+              className="inline-flex items-center gap-2 rounded-lg bg-brand px-6 py-4 text-base font-bold text-white shadow-sm transition hover:bg-brand-deep"
             >
               料金プランを見る
+              <span aria-hidden>→</span>
             </a>
           </div>
         </div>

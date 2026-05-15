@@ -43,20 +43,13 @@ export function CaseDetailIntro({ caseItem }: { caseItem: CaseRecord }) {
               <span>{caseItem.area}</span>
             </div>
 
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <div className="mt-8 hidden flex-col gap-3 sm:flex-row sm:flex-wrap md:flex">
               <a
                 href="tel:0120-963-765"
                 className="inline-flex items-center justify-center gap-3 rounded-lg bg-emergency px-6 py-4 text-base font-bold text-white shadow-sm transition hover:bg-emergency-deep"
               >
                 <span aria-hidden>☎</span>
                 電話で相談する
-              </a>
-              <a
-                href="/estimate/"
-                className="inline-flex items-center justify-center gap-2 rounded-lg bg-brand px-6 py-4 text-base font-bold text-white shadow-sm transition hover:bg-brand-deep"
-              >
-                同様の概算を相談する
-                <span aria-hidden>→</span>
               </a>
               <a
                 href="/contact/"
@@ -98,7 +91,7 @@ export function CaseDetailIntro({ caseItem }: { caseItem: CaseRecord }) {
             </dl>
 
             <p className="mt-5 text-xs leading-6 text-ink-soft">
-              ※ 総額は事例当時のもので、内容により変動します。同様の構成での概算金額はお電話または概算フォームでご確認いただけます。
+              ※ 総額は事例当時のもので、内容により変動します。同様の構成での概算金額は、お電話または事前相談でご確認いただけます。
             </p>
           </aside>
         </div>
@@ -110,7 +103,7 @@ export function CaseDetailIntro({ caseItem }: { caseItem: CaseRecord }) {
               className="absolute inset-0 bg-[repeating-linear-gradient(135deg,#e8e1d2_0_10px,transparent_10px_22px)]"
             />
             <div className="relative z-10 text-sm font-semibold text-ink-soft">
-              [メイン写真：祭壇／式場の様子]
+              [メイン祭壇のお写真]
             </div>
           </div>
         </figure>

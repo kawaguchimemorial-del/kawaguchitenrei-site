@@ -1,8 +1,8 @@
 const hallFeatures = [
-  "川口市西新井宿の自社ホール",
-  "家族葬・一日葬に適した規模",
-  "ご相談・事前見学にも対応",
-  "川口市めぐりの森へ移動しやすい立地",
+  "川口市めぐりの森まで車で約5分",
+  "敷地内駐車場70台完備",
+  "家族葬〜200名規模の一般葬まで対応",
+  "控室・相談スペース・バリアフリー対応",
 ];
 
 const hallGallery = [
@@ -27,7 +27,7 @@ export function HallSection() {
             川口メモリアルホール。
           </h2>
           <p className="mt-5 text-base leading-9 text-ink-mid md:text-lg">
-            少人数の家族葬・一日葬に適した、落ち着いた雰囲気のホールです。ご相談や事前見学も承ります。
+            川口市めぐりの森まで車で約5分、敷地内駐車場70台。家族葬から最大200名規模の一般葬まで、ご家族の希望に合わせて対応します。事前相談・ホール見学はお気軽にお越しください。
           </p>
         </div>
 
@@ -62,18 +62,13 @@ export function HallSection() {
               ))}
             </ul>
 
-            <div className="mt-7 grid gap-3 sm:grid-cols-2">
+            <div className="mt-7">
               <a
                 href="/hall/kawaguchi-memorial-hall/"
-                className="rounded-lg bg-brand px-5 py-4 text-center text-base font-bold text-white shadow-sm transition hover:bg-brand-deep"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-brand px-5 py-4 text-center text-base font-bold text-white shadow-sm transition hover:bg-brand-deep sm:w-auto"
               >
                 ホールの詳細を見る
-              </a>
-              <a
-                href="#consultation"
-                className="rounded-lg border border-ink-deep bg-white px-5 py-4 text-center text-base font-bold text-ink-deep transition hover:bg-paper"
-              >
-                見学を相談する
+                <span aria-hidden>→</span>
               </a>
             </div>
           </div>

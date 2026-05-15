@@ -9,12 +9,14 @@ import { HallSection } from "@/components/home/HallSection";
 import { Hero } from "@/components/home/Hero";
 import { MeguriSection } from "@/components/home/MeguriSection";
 import { PlanSection } from "@/components/home/PlanSection";
+import { ThreeStrengthsSection } from "@/components/home/ThreeStrengthsSection";
 import { VoicesSection } from "@/components/home/VoicesSection";
 
 export default function Home() {
   return (
     <>
       <Hero />
+      <ThreeStrengthsSection />
       <EmergencySection />
       <CostEstimateSection />
       <PlanSection />

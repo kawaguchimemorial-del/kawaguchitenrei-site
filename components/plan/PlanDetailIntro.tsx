@@ -30,7 +30,7 @@ export function PlanDetailIntro({ plan }: { plan: Plan }) {
               {plan.long}
             </p>
 
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <div className="mt-8 hidden flex-col gap-3 sm:flex-row sm:flex-wrap md:flex">
               <a
                 href="tel:0120-963-765"
                 className="inline-flex items-center justify-center gap-3 rounded-lg bg-emergency px-6 py-4 text-base font-bold text-white shadow-sm transition hover:bg-emergency-deep"
@@ -39,14 +39,7 @@ export function PlanDetailIntro({ plan }: { plan: Plan }) {
                 電話で相談する
               </a>
               <a
-                href="/estimate/"
-                className="inline-flex items-center justify-center gap-2 rounded-lg bg-brand px-6 py-4 text-base font-bold text-white shadow-sm transition hover:bg-brand-deep"
-              >
-                費用の概算を見る
-                <span aria-hidden>→</span>
-              </a>
-              <a
-                href="#consultation"
+                href="/contact/"
                 className="inline-flex items-center justify-center gap-2 rounded-lg border border-ink-deep bg-white px-6 py-4 text-base font-bold text-ink-deep transition hover:bg-cool"
               >
                 事前相談する

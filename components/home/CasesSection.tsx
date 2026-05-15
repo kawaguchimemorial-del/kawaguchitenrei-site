@@ -37,7 +37,7 @@ export function CasesSection() {
                 className="group block h-full rounded-lg border border-line bg-white shadow-sm transition hover:shadow-md"
               >
                 <div className="flex aspect-[4/3] items-center justify-center rounded-t-lg bg-[repeating-linear-gradient(135deg,#eef3ee_0_8px,transparent_8px_16px)] text-sm font-semibold text-ink-soft">
-                  [祭壇／式場の写真]
+                  [祭壇のお写真]
                 </div>
                 <div className="p-6">
                   <h3 className="font-serif-jp text-lg font-medium leading-7 text-ink-deep group-hover:text-brand md:text-xl">

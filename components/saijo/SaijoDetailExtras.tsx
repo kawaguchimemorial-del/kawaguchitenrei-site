@@ -176,7 +176,7 @@ export function SaijoCta({ saijo }: { saijo: Saijo }) {
           {saijo.shortName}でのご葬儀の手配・お見送りを、24時間365日承っています。事前のご相談・お見積りは無料です。
         </p>
 
-        <div className="mt-9 grid gap-3 md:grid-cols-[1.2fr_1fr_1fr]">
+        <div className="mt-9 hidden gap-3 md:grid md:grid-cols-[1.2fr_1fr]">
           <a
             href="tel:0120-963-765"
             className="flex items-center justify-center gap-3 rounded-lg bg-emergency px-5 py-5 text-white shadow-sm transition hover:bg-emergency-deep"
@@ -192,12 +192,6 @@ export function SaijoCta({ saijo }: { saijo: Saijo }) {
                 24時間365日 受付
               </span>
             </span>
-          </a>
-          <a
-            href="/estimate/"
-            className="rounded-lg border border-white/60 bg-transparent px-5 py-5 text-center text-base font-bold text-white shadow-sm transition hover:bg-white/10"
-          >
-            費用の概算
           </a>
           <a
             href="/contact/"

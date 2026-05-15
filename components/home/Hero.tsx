@@ -1,8 +1,8 @@
 const trustPoints = [
   "24時間365日",
-  "自社ホール完備",
-  "川口市めぐりの森近く",
-  "家族葬・一日葬・火葬式",
+  "めぐりの森まで車5分",
+  "駐車場70台",
+  "家族葬〜200名一般葬",
 ];
 
 export function Hero() {
@@ -22,7 +22,7 @@ export function Hero() {
             川口の葬儀社。
           </h1>
           <p className="mt-7 max-w-xl text-base leading-9 text-ink-mid md:text-lg md:leading-10">
-            川口メモリアルホールを拠点に、家族葬・一日葬・火葬式まで、ご家族の希望に合わせて落ち着いてご相談いただけます。
+            川口市めぐりの森まで車5分・駐車場70台の川口メモリアルホールを拠点に、家族葬から最大200名規模の一般葬まで、ご家族の希望に合わせて落ち着いてご相談いただけます。創業20年・年間約260件の施行実績。
           </p>
 
           <ul className="mt-7 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm font-semibold text-ink md:text-[0.95rem]">
@@ -42,7 +42,7 @@ export function Hero() {
             ))}
           </ul>
 
-          <div className="mt-9">
+          <div className="mt-9 hidden md:block">
             <a
               href="tel:0120-963-765"
               className="group flex w-full items-center justify-between gap-4 rounded-lg bg-emergency px-6 py-5 text-white shadow-sm transition hover:bg-emergency-deep md:max-w-md"
@@ -71,16 +71,10 @@ export function Hero() {
               </span>
             </a>
 
-            <div className="mt-3 grid gap-3 sm:grid-cols-2 md:max-w-md">
+            <div className="mt-3 max-w-md">
               <a
-                href="#cost"
-                className="rounded-lg border border-line bg-white px-5 py-3.5 text-center text-base font-bold text-ink-deep transition hover:border-brand hover:text-brand"
-              >
-                費用の概算を見る
-              </a>
-              <a
-                href="#consultation"
-                className="rounded-lg border border-line bg-white px-5 py-3.5 text-center text-base font-bold text-ink-deep transition hover:border-brand hover:text-brand"
+                href="/contact/"
+                className="block rounded-lg border border-line bg-white px-5 py-3.5 text-center text-base font-bold text-ink-deep transition hover:border-brand hover:text-brand"
               >
                 事前相談する
               </a>

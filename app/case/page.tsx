@@ -66,7 +66,7 @@ export default function CaseIndexPage() {
                   className="group flex h-full flex-col rounded-lg border border-line bg-white shadow-sm transition hover:shadow-md"
                 >
                   <div className="flex aspect-[4/3] items-center justify-center rounded-t-lg bg-[repeating-linear-gradient(135deg,#eef3ee_0_8px,transparent_8px_16px)] text-sm font-semibold text-ink-soft">
-                    [メイン写真]
+                    [祭壇のお写真]
                   </div>
                   <div className="flex flex-1 flex-col p-6">
                     <div className="flex flex-wrap items-center gap-2 text-xs">
@@ -154,7 +154,7 @@ export default function CaseIndexPage() {
             参考になりそうな事例を見つけたら、お気軽にお電話または事前相談フォームでご連絡ください。
           </p>
 
-          <div className="mt-9 grid gap-3 md:grid-cols-[1.2fr_1fr_1fr]">
+          <div className="mt-9 hidden gap-3 md:grid md:grid-cols-[1.2fr_1fr]">
             <a
               href="tel:0120-963-765"
               className="flex items-center justify-center gap-3 rounded-lg bg-emergency px-5 py-5 text-white shadow-sm transition hover:bg-emergency-deep"
@@ -170,12 +170,6 @@ export default function CaseIndexPage() {
                   24時間365日 受付
                 </span>
               </span>
-            </a>
-            <a
-              href="/estimate/"
-              className="rounded-lg border border-white/60 bg-transparent px-5 py-5 text-center text-base font-bold text-white shadow-sm transition hover:bg-white/10"
-            >
-              費用の概算
             </a>
             <a
               href="/contact/"

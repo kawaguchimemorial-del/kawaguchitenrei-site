@@ -299,7 +299,7 @@ export default function AccessPage() {
             実際にホールにお越しいただいて、雰囲気や設備をご確認いただけます。事前相談・お見積りは無料です。
           </p>
 
-          <div className="mt-9 grid gap-3 md:grid-cols-[1.2fr_1fr_1fr]">
+          <div className="mt-9 hidden gap-3 md:grid md:grid-cols-[1.2fr_1fr]">
             <a
               href={company.phoneTelLink}
               className="flex items-center justify-center gap-3 rounded-lg bg-emergency px-5 py-5 text-white shadow-sm transition hover:bg-emergency-deep"
@@ -318,15 +318,9 @@ export default function AccessPage() {
             </a>
             <a
               href="/contact/"
-              className="rounded-lg border border-white/60 bg-transparent px-5 py-5 text-center text-base font-bold text-white shadow-sm transition hover:bg-white/10"
-            >
-              見学予約フォーム
-            </a>
-            <a
-              href="/estimate/"
               className="rounded-lg bg-white px-5 py-5 text-center text-base font-bold text-brand-deep shadow-sm transition hover:bg-paper"
             >
-              費用の概算
+              見学予約フォーム
             </a>
           </div>
         </div>
