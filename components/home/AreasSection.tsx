@@ -1,20 +1,22 @@
-const kawaguchiAreas = [
+type AreaLink = { name: string; href?: string };
+
+const kawaguchiAreas: AreaLink[] = [
   { name: "川口市", href: "/area/kawaguchi/" },
-  { name: "新井宿", href: "/area/nishiaraiyado/" },
-  { name: "鳩ヶ谷", href: "/area/hatogaya/" },
+  { name: "新井宿" },
+  { name: "鳩ヶ谷" },
 ];
 
-const nearbyAreas = [
-  { name: "戸田市", href: "/area/toda/" },
-  { name: "蕨市", href: "/area/warabi/" },
-  { name: "草加市", href: "/area/soka/" },
+const nearbyAreas: AreaLink[] = [
+  { name: "戸田市" },
+  { name: "蕨市" },
+  { name: "草加市" },
 ];
 
-const halls = [
+const halls: AreaLink[] = [
   { name: "川口市めぐりの森", href: "/saijo/megurinomori/" },
   { name: "川口メモリアルホール", href: "/hall/kawaguchi-memorial-hall/" },
-  { name: "戸田葬祭場", href: "/saijo/toda-sousaijo/" },
-  { name: "谷塚斎場", href: "/saijo/yatsuka-saijo/" },
+  { name: "戸田葬祭場" },
+  { name: "谷塚斎場" },
 ];
 
 export function AreasSection() {
@@ -48,13 +50,19 @@ export function AreasSection() {
             <ul className="mt-3 flex flex-wrap gap-3">
               {kawaguchiAreas.map((area) => (
                 <li key={area.name}>
-                  <a
-                    href={area.href}
-                    className="inline-flex items-center gap-1 rounded-full border border-line bg-paper px-4 py-2 text-base font-bold text-ink-deep transition hover:border-brand hover:text-brand"
-                  >
-                    {area.name}の葬儀
-                    <span aria-hidden>›</span>
-                  </a>
+                  {area.href ? (
+                    <a
+                      href={area.href}
+                      className="inline-flex items-center gap-1 rounded-full border border-line bg-paper px-4 py-2 text-base font-bold text-ink-deep transition hover:border-brand hover:text-brand"
+                    >
+                      {area.name}の葬儀
+                      <span aria-hidden>›</span>
+                    </a>
+                  ) : (
+                    <span className="inline-flex items-center rounded-full border border-line-soft bg-paper px-4 py-2 text-base font-semibold text-ink-mid">
+                      {area.name}の葬儀
+                    </span>
+                  )}
                 </li>
               ))}
             </ul>
@@ -63,13 +71,19 @@ export function AreasSection() {
             <ul className="mt-3 flex flex-wrap gap-3">
               {nearbyAreas.map((area) => (
                 <li key={area.name}>
-                  <a
-                    href={area.href}
-                    className="inline-flex items-center gap-1 rounded-full border border-line bg-paper px-4 py-2 text-base font-bold text-ink-deep transition hover:border-brand hover:text-brand"
-                  >
-                    {area.name}の葬儀
-                    <span aria-hidden>›</span>
-                  </a>
+                  {area.href ? (
+                    <a
+                      href={area.href}
+                      className="inline-flex items-center gap-1 rounded-full border border-line bg-paper px-4 py-2 text-base font-bold text-ink-deep transition hover:border-brand hover:text-brand"
+                    >
+                      {area.name}の葬儀
+                      <span aria-hidden>›</span>
+                    </a>
+                  ) : (
+                    <span className="inline-flex items-center rounded-full border border-line-soft bg-paper px-4 py-2 text-base font-semibold text-ink-mid">
+                      {area.name}の葬儀
+                    </span>
+                  )}
                 </li>
               ))}
             </ul>
@@ -82,13 +96,19 @@ export function AreasSection() {
             <ul className="mt-4 flex flex-wrap gap-3">
               {halls.map((hall) => (
                 <li key={hall.name}>
-                  <a
-                    href={hall.href}
-                    className="inline-flex items-center gap-1 rounded-full border border-line bg-white px-4 py-2 text-base font-bold text-ink-deep transition hover:border-brand hover:text-brand"
-                  >
-                    {hall.name}
-                    <span aria-hidden>›</span>
-                  </a>
+                  {hall.href ? (
+                    <a
+                      href={hall.href}
+                      className="inline-flex items-center gap-1 rounded-full border border-line bg-white px-4 py-2 text-base font-bold text-ink-deep transition hover:border-brand hover:text-brand"
+                    >
+                      {hall.name}
+                      <span aria-hidden>›</span>
+                    </a>
+                  ) : (
+                    <span className="inline-flex items-center rounded-full border border-line-soft bg-white px-4 py-2 text-base font-semibold text-ink-mid">
+                      {hall.name}
+                    </span>
+                  )}
                 </li>
               ))}
             </ul>

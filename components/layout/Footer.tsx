@@ -15,8 +15,6 @@ const footerColumns = [
     items: [
       { label: "川口メモリアルホール", href: "/hall/kawaguchi-memorial-hall/" },
       { label: "川口市めぐりの森", href: "/saijo/megurinomori/" },
-      { label: "戸田葬祭場", href: "/saijo/toda-sousaijo/" },
-      { label: "谷塚斎場", href: "/saijo/yatsuka-saijo/" },
       { label: "施行事例", href: "/case/" },
       { label: "お客様の声", href: "/voice/" },
     ],
@@ -25,11 +23,6 @@ const footerColumns = [
     title: "対応エリア",
     items: [
       { label: "川口市", href: "/area/kawaguchi/" },
-      { label: "新井宿", href: "/area/nishiaraiyado/" },
-      { label: "鳩ヶ谷", href: "/area/hatogaya/" },
-      { label: "戸田市", href: "/area/toda/" },
-      { label: "蕨市", href: "/area/warabi/" },
-      { label: "草加市", href: "/area/soka/" },
     ],
   },
 ];
