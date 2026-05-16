@@ -2,13 +2,17 @@ export type PlanPricing =
   | { type: "member-regular"; member: number; regular: number }
   | { type: "citizen"; citizen: number };
 
+export type PlanImage = { src: string; alt: string };
+
 export type Plan = {
   slug: string;
   name: string;
+  subtitle?: string;
   short: string;
   long: string;
   price: string;
   pricing?: PlanPricing;
+  image?: PlanImage;
   people: string;
   days: string;
   forWhom: string;
@@ -37,11 +41,16 @@ const compatibleHallsCremation = [
 export const plans: Plan[] = [
   {
     slug: "family-funeral",
-    name: "家族葬",
-    short: "ご家族や親しい方を中心に、落ち着いてお見送りする葬儀です。",
+    name: "家族葬プラン",
+    short: "親しい方だけで、ゆっくりお見送り。",
     long: "家族葬は、ご家族や親しい方を中心に、ゆっくりとお別れの時間を取ることができる葬儀形式です。一般的な葬儀と同じく通夜・告別式を行いながら、限られた参列者で式を進めるため、ご家族の心情に寄り添ったお見送りができます。",
-    price: "税込○○万円〜",
-    people: "10〜50名",
+    price: "528,000円（税込）〜",
+    pricing: { type: "member-regular", member: 528000, regular: 628000 },
+    image: {
+      src: "/images/home/plans/plan-ichinichiso-kazokuso.png",
+      alt: "家族葬プランのイメージ",
+    },
+    people: "10〜30名",
     days: "2日",
     forWhom: "ご家族や親しい方を中心に、落ち着いてお見送りしたい方",
     featured: true,
@@ -94,10 +103,15 @@ export const plans: Plan[] = [
   },
   {
     slug: "oneday-funeral",
-    name: "一日葬",
-    short: "お通夜を行わず、告別式と火葬を一日で執り行う形式です。",
+    name: "一日葬プラン",
+    short: "お通夜を行わず、一日でお見送り。",
     long: "一日葬は、お通夜を行わず、告別式と火葬を1日で執り行う葬儀形式です。ご高齢のご親族や遠方からの参列者の負担を抑えつつ、きちんとお別れの儀式を行いたい方に選ばれています。",
-    price: "税込○○万円〜",
+    price: "396,000円（税込）〜",
+    pricing: { type: "member-regular", member: 396000, regular: 496000 },
+    image: {
+      src: "/images/home/plans/plan-ichinichiso-kazokuso.png",
+      alt: "一日葬プランのイメージ",
+    },
     people: "5〜30名",
     days: "1日",
     forWhom: "負担を抑えつつ、きちんと式を行いたい方",
@@ -198,11 +212,16 @@ export const plans: Plan[] = [
   },
   {
     slug: "direct-funeral",
-    name: "直葬",
-    short: "宗教儀礼を簡略にし、必要な手配と火葬を中心に整えます。",
+    name: "直葬プラン",
+    short: "ご火葬を中心に、シンプルにお見送り。",
     long: "直葬は、宗教的な儀式を行わず、必要な手配と火葬のみで完結するもっともシンプルな葬儀形式です。費用を抑え、ご家族のみで静かにお見送りしたい方に選ばれています。",
-    price: "税込○○万円〜",
-    people: "ごく少人数",
+    price: "139,000円（税込）〜",
+    pricing: { type: "member-regular", member: 139000, regular: 189000 },
+    image: {
+      src: "/images/home/plans/plan-chokuso.png",
+      alt: "直葬プランのイメージ",
+    },
+    people: "～5名",
     days: "1日",
     forWhom: "費用を抑え、簡素にお見送りしたい方",
     inclusions: [
@@ -246,10 +265,16 @@ export const plans: Plan[] = [
   },
   {
     slug: "kawaguchi-shimin",
-    name: "川口市民葬",
-    short: "川口市の制度を活用した葬儀にも対応します。",
+    name: "市民葬プラン",
+    subtitle: "川口市民の方向け",
+    short: "川口市民の方のための安心プラン。",
     long: "川口市民葬は、川口市が定める制度に基づき、市民の方が一定の条件で利用できる葬儀プランです。利用条件や費用については、ご家族の状況・ご希望に合わせて事前にご確認のうえご案内します。",
-    price: "内容により変動",
+    price: "231,000円（税込）",
+    pricing: { type: "citizen", citizen: 231000 },
+    image: {
+      src: "/images/home/plans/plan-shiminso.png",
+      alt: "市民葬プランのイメージ",
+    },
     people: "要相談",
     days: "要相談",
     forWhom: "川口市の制度を活用したい方",
@@ -297,10 +322,15 @@ export const plans: Plan[] = [
   {
     slug: "hanaire-owakare",
     name: "花入れお別れプラン",
+    subtitle: "お別れ会",
     short: "火葬前に、花入れのお別れ時間を。",
     long: "花入れお別れプランは、通夜・告別式は行わず、火葬前にお花を手向けるお別れの時間を設けるプランです。直葬プランよりも少し丁寧に、ご家族で静かにお見送りいただけます。お別れの時間は川口メモリアルホールで、ご火葬は川口市めぐりの森などの火葬場で執り行います。費用やご家族の負担を抑えながら、お別れの時間を大切にしたい方に向いています。",
     price: "229,000円（税込）〜",
     pricing: { type: "member-regular", member: 229000, regular: 279000 },
+    image: {
+      src: "/images/home/plans/plan-hanairere-owakare.png",
+      alt: "花入れお別れプランのイメージ",
+    },
     people: "～10名",
     days: "1日",
     forWhom: "火葬前に、お別れの時間をきちんと取りたい方",

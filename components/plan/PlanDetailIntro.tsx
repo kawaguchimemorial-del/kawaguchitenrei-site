@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Breadcrumbs } from "@/components/common/Breadcrumbs";
 import type { Plan } from "@/lib/plans";
 
@@ -15,13 +16,28 @@ export function PlanDetailIntro({ plan }: { plan: Plan }) {
           />
         </div>
 
+        {plan.image && (
+          <div className="mb-10 overflow-hidden rounded-lg border border-line bg-warm shadow-sm md:mb-12">
+            <div className="relative aspect-[16/9] w-full md:aspect-[21/9]">
+              <Image
+                src={plan.image.src}
+                alt={plan.image.alt}
+                fill
+                sizes="(max-width: 768px) 100vw, 1024px"
+                className="object-cover object-center"
+                preload
+              />
+            </div>
+          </div>
+        )}
+
         <div className="grid gap-10 md:grid-cols-[1.1fr_0.9fr] md:items-start">
           <div>
             <p className="text-sm font-semibold tracking-[0.18em] text-brand uppercase">
               Plan
             </p>
             <p className="mt-2 text-sm font-semibold text-ink-mid">
-              葬儀プラン
+              {plan.subtitle ?? "葬儀プラン"}
             </p>
             <h1 className="font-serif-jp mt-4 text-[2.4rem] font-medium leading-[1.3] text-ink-deep md:text-[3rem]">
               {plan.name}
