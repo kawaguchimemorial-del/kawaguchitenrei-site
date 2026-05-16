@@ -4,6 +4,32 @@ export type PlanPricing =
 
 export type PlanImage = { src: string; alt: string };
 
+export type CitizenFuneralSpec = {
+  id: string;
+  scope: string;
+  price: string;
+  subsidy: string;
+  coverage: string;
+};
+
+export type CitizenFuneralCategory = {
+  number: string;
+  title: string;
+  items: string[];
+};
+
+export type CitizenFuneralInfo = {
+  notice: { heading: string; body: string };
+  specs: CitizenFuneralSpec[];
+  paymentNotice: string;
+  eligibility: string[];
+  ineligibilityNote: string;
+  categories: CitizenFuneralCategory[];
+  separateFees: string[];
+  supportPoints: string[];
+  faqs: { q: string; a: string }[];
+};
+
 export type Plan = {
   slug: string;
   name: string;
@@ -23,6 +49,7 @@ export type Plan = {
   compatibleHalls: string[];
   faqs: { q: string; a: string }[];
   metaDescription: string;
+  citizenFuneralInfo?: CitizenFuneralInfo;
 };
 
 const compatibleHallsAll = [
@@ -268,7 +295,7 @@ export const plans: Plan[] = [
     name: "市民葬プラン",
     subtitle: "川口市民の方向け",
     short: "川口市民の方のための安心プラン。",
-    long: "川口市民葬は、川口市が定める制度に基づき、市民の方が一定の条件で利用できる葬儀プランです。利用条件や費用については、ご家族の状況・ご希望に合わせて事前にご確認のうえご案内します。",
+    long: "川口市の葬祭事業を利用し、できるだけ費用を抑えて葬儀を行いたい方のための制度型プランです。川口典礼では、川口市の葬祭事業登録業者として、申請手続きから葬儀の準備、川口市めぐりの森での火葬までお手伝いします。",
     price: "231,000円（税込）",
     pricing: { type: "citizen", citizen: 231000 },
     image: {
@@ -318,6 +345,111 @@ export const plans: Plan[] = [
     ],
     metaDescription:
       "川口典礼の川口市民葬は、川口市の制度を活用した葬儀プランです。利用条件・内容は事前にご確認のうえご案内します。川口市・新井宿で24時間365日対応。",
+    citizenFuneralInfo: {
+      notice: {
+        heading: "市民葬は、川口市の葬祭事業に基づく制度です",
+        body: "市民葬プランは、川口市の葬祭事業を利用する葬儀です。申請者または死亡者が川口市民で、川口市めぐりの森で火葬を行う場合に利用できます。市の補助は利用者へ現金で支給されるものではなく、市から葬儀を実施した葬祭業者へ支払われます。",
+      },
+      specs: [
+        {
+          id: "spec1",
+          scope: "通夜・告別式等を行う方",
+          price: "231,000円（税込）",
+          subsidy: "市が40,000円を葬祭業者へ補助",
+          coverage: "「葬儀の内容」(1)〜(5)をすべて利用",
+        },
+        {
+          id: "spec2",
+          scope: "火葬のみを行う方",
+          price: "143,000円（税込）",
+          subsidy: "市が20,000円を葬祭業者へ補助",
+          coverage: "「葬儀の内容」のうち(2)〜(5)を利用",
+        },
+      ],
+      paymentNotice:
+        "利用者へ現金が給付される制度ではありません。市の補助額は、市から葬儀を実施した葬祭業者へ支払われます。利用者は、葬儀を実施した葬祭業者へ費用を直接お支払いいただきます。",
+      eligibility: [
+        "申請者または死亡者が川口市民の方",
+        "川口市めぐりの森で火葬を行う方",
+      ],
+      ineligibilityNote:
+        "生活保護法に基づく葬祭扶助を受けて行う葬儀では、ご利用いただけません。",
+      categories: [
+        {
+          number: "(1)",
+          title: "祭壇及び通夜、告別式等に必要な用具の提供",
+          items: [
+            "白木祭壇または生花祭壇",
+            "祭壇用供物",
+            "焼香用具",
+            "会葬帳、香典帳、供花帳、筆記用具",
+            "後飾",
+          ],
+        },
+        {
+          number: "(2)",
+          title: "遺体安置及び棺の提供",
+          items: ["遺体安置 2日", "棺", "棺付属品"],
+        },
+        {
+          number: "(3)",
+          title: "霊きゅう自動車または寝台車による遺体の搬送",
+          items: [
+            "通夜、告別式等の会場または遺体安置場所から火葬場まで",
+            "川口市めぐりの森に乗り入れ可能な車種",
+          ],
+        },
+        {
+          number: "(4)",
+          title: "火葬に必要な用具の提供",
+          items: ["骨箱及び骨つぼ"],
+        },
+        {
+          number: "(5)",
+          title: "その他付属品の提供",
+          items: ["白木仮位牌", "枕飾り", "線香", "ろうそく"],
+        },
+      ],
+      separateFees: [
+        "式場使用料",
+        "供花",
+        "飲食代",
+        "マイクロバス借上料",
+        "遺影写真",
+        "病院等からの遺体搬送料",
+        "火葬料（川口市めぐりの森使用料）",
+        "寺院等への読経料、戒名料",
+      ],
+      supportPoints: [
+        "川口市の葬祭事業に対応",
+        "川口市めぐりの森での火葬に対応",
+        "川口メモリアルホールを利用した葬儀にも対応",
+        "申請手続きや市との連絡調整をサポート",
+        "総額見積もりを事前にご確認いただけます",
+      ],
+      faqs: [
+        {
+          q: "市民葬は誰でも利用できますか？",
+          a: "申請者または死亡者が川口市民の方で、川口市めぐりの森で火葬を行う方がご利用いただけます。なお、生活保護法に基づく葬祭扶助を受ける葬儀ではご利用いただけません。",
+        },
+        {
+          q: "仕様1と仕様2の違いは何ですか？",
+          a: "仕様1は通夜・告別式等を行う方が対象で、費用231,000円（税込）、市が40,000円を葬祭業者へ補助します。仕様2は火葬のみを行う方が対象で、費用143,000円（税込）、市が20,000円を葬祭業者へ補助します。",
+        },
+        {
+          q: "231,000円以外に費用はかかりますか？",
+          a: "式場使用料、供花、飲食代、マイクロバス、遺影写真、病院等からの搬送料、川口市めぐりの森の火葬料、宗教者費用などが別途必要になる場合があります。総額の目安は事前のご相談時にご案内します。",
+        },
+        {
+          q: "市から現金がもらえる制度ですか？",
+          a: "いいえ、利用者へ現金が給付される制度ではありません。市の補助額は、市から葬儀を実施した葬祭業者へ直接支払われます。",
+        },
+        {
+          q: "川口典礼で市民葬の相談はできますか？",
+          a: "はい。川口典礼は川口市の葬祭事業登録業者です。申請手続き、葬儀の準備、川口市めぐりの森での火葬まで一貫してお手伝いします。24時間365日ご相談を受け付けています。",
+        },
+      ],
+    },
   },
   {
     slug: "hanaire-owakare",

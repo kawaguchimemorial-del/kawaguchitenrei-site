@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { PlanDetailIntro } from "@/components/plan/PlanDetailIntro";
 import {
   PlanAdditional,
+  PlanCitizenFuneralBody,
   PlanCompatibleHalls,
   PlanCta,
   PlanFaq,
@@ -52,11 +53,17 @@ export default async function PlanDetailPage({ params }: Props) {
   return (
     <>
       <PlanDetailIntro plan={plan} />
-      <PlanInclusions plan={plan} />
-      <PlanFlow plan={plan} />
-      <PlanAdditional plan={plan} />
-      <PlanCompatibleHalls plan={plan} />
-      <PlanFaq plan={plan} />
+      {plan.citizenFuneralInfo ? (
+        <PlanCitizenFuneralBody plan={plan} />
+      ) : (
+        <>
+          <PlanInclusions plan={plan} />
+          <PlanFlow plan={plan} />
+          <PlanAdditional plan={plan} />
+          <PlanCompatibleHalls plan={plan} />
+          <PlanFaq plan={plan} />
+        </>
+      )}
       <PlanCta plan={plan} />
     </>
   );
