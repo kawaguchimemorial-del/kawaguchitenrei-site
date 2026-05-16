@@ -57,8 +57,35 @@ export function PlanDetailIntro({ plan }: { plan: Plan }) {
             <dl className="mt-5 space-y-4">
               <div className="flex items-baseline justify-between gap-4 border-b border-line-soft pb-4">
                 <dt className="text-sm font-semibold text-ink-soft">費用</dt>
-                <dd className="font-serif-jp text-2xl font-medium text-brand">
-                  {plan.price}
+                <dd className="text-right">
+                  {plan.pricing ? (
+                    plan.pricing.type === "citizen" ? (
+                      <>
+                        <p className="text-[10px] font-semibold text-ink-soft">
+                          川口市民 葬祭事業価格
+                        </p>
+                        <p className="font-serif-jp mt-1 text-2xl font-medium text-brand">
+                          {plan.pricing.citizen.toLocaleString("ja-JP")}円（税込）
+                        </p>
+                      </>
+                    ) : (
+                      <>
+                        <p className="text-[10px] font-semibold text-brand">
+                          事前相談会員価格
+                        </p>
+                        <p className="font-serif-jp mt-1 text-2xl font-medium text-brand">
+                          {plan.pricing.member.toLocaleString("ja-JP")}円（税込）
+                        </p>
+                        <p className="mt-1 text-xs text-ink-mid">
+                          通常 {plan.pricing.regular.toLocaleString("ja-JP")}円（税込）
+                        </p>
+                      </>
+                    )
+                  ) : (
+                    <span className="font-serif-jp text-2xl font-medium text-brand">
+                      {plan.price}
+                    </span>
+                  )}
                 </dd>
               </div>
               <div className="flex items-baseline justify-between gap-4 border-b border-line-soft pb-4">

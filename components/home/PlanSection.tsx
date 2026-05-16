@@ -32,8 +32,8 @@ const plans: Plan[] = [
   },
   {
     slug: "hanaire-owakare",
-    detailHref: "/contact/",
-    ctaLabel: "詳しくは相談する",
+    detailHref: "/plan/hanaire-owakare/",
+    ctaLabel: "詳しく見る",
     name: "花入れお別れプラン",
     subtitle: "お別れ会",
     description: "火葬前に、花入れのお別れ時間を。",
