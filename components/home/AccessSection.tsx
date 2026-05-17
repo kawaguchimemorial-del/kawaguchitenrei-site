@@ -1,3 +1,5 @@
+const MAP_QUERY = "川口メモリアルホール 埼玉県川口市西新井宿440-1";
+
 const accessMeta = [
   { label: "所在地", value: "埼玉県川口市西新井宿440-1" },
   { label: "対応", value: "事前相談・葬儀相談・ホール見学" },
@@ -45,7 +47,7 @@ export function AccessSection() {
 
             <div className="mt-7 grid gap-3 sm:grid-cols-2">
               <a
-                href="https://www.google.com/maps/search/?api=1&query=%E5%9F%BC%E7%8E%89%E7%9C%8C%E5%B7%9D%E5%8F%A3%E5%B8%82%E8%A5%BF%E6%96%B0%E4%BA%95%E5%AE%BF440-1"
+                href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(MAP_QUERY)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="rounded-lg bg-brand px-5 py-4 text-center text-base font-bold text-white shadow-sm transition hover:bg-brand-deep"
@@ -61,20 +63,15 @@ export function AccessSection() {
             </div>
           </div>
 
-          <div
-            className="relative aspect-[4/3] overflow-hidden rounded-lg border border-line bg-white shadow-sm md:aspect-auto md:min-h-[360px]"
-            aria-label="地図プレースホルダー"
-          >
-            <div
-              aria-hidden
-              className="absolute inset-0 bg-[repeating-linear-gradient(0deg,transparent_0_24px,#e2eae3_24px,#e2eae3_25px),repeating-linear-gradient(90deg,transparent_0_24px,#e2eae3_24px,#e2eae3_25px),#faf8f3]"
+          <div className="relative aspect-[4/3] overflow-hidden rounded-lg border border-line bg-white shadow-sm md:aspect-auto md:min-h-[360px]">
+            <iframe
+              title="川口メモリアルホールの地図"
+              src={`https://www.google.com/maps?q=${encodeURIComponent(MAP_QUERY)}&output=embed`}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              allowFullScreen
+              className="absolute inset-0 h-full w-full border-0"
             />
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-3xl">
-              📍
-            </div>
-            <div className="absolute bottom-3 right-3 rounded-md bg-white px-3 py-1.5 text-xs font-bold text-ink-mid shadow">
-              [Googleマップ埋め込み枠]
-            </div>
           </div>
         </div>
       </div>
