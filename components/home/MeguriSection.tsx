@@ -1,8 +1,8 @@
 const meguriPlans = [
   {
-    name: "火葬式",
-    description: "火葬を中心にシンプルにお見送りしたい方へ",
-    href: "/plan/cremation/",
+    name: "直葬プラン",
+    description: "ご火葬を中心に、シンプルにお見送りしたい方へ",
+    href: "/plan/direct-funeral/",
   },
   {
     name: "一日葬",

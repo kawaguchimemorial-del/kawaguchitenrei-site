@@ -68,7 +68,7 @@ const plans: Plan[] = [
       alt: "家族葬プランのイメージ",
     },
     pricing: { type: "member-regular", member: 528000, regular: 628000 },
-    highlights: ["2日", "10〜50名", "通夜・告別式"],
+    highlights: ["2日", "10〜30名", "通夜・告別式"],
   },
   {
     slug: "kawaguchi-shimin",
