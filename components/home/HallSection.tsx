@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 const hallFeatures = [
   "川口市めぐりの森まで車で約5分",
   "敷地内駐車場70台完備",
@@ -7,10 +9,30 @@ const hallFeatures = [
 ];
 
 const hallGallery = [
-  { label: "外観", aspect: "aspect-[4/3]" },
-  { label: "式場", aspect: "aspect-[4/3]" },
-  { label: "控室", aspect: "aspect-[4/3]" },
-  { label: "相談スペース", aspect: "aspect-[4/3]" },
+  {
+    label: "外観",
+    src: "/images/home/hall/hall-exterior.jpg",
+    alt: "川口メモリアルホールの外観",
+    aspect: "aspect-[4/3]",
+  },
+  {
+    label: "式場",
+    src: "/images/home/hall/hall-ceremony-room.jpg",
+    alt: "川口メモリアルホールの式場",
+    aspect: "aspect-[4/3]",
+  },
+  {
+    label: "控室",
+    src: "/images/home/hall/hall-family-waiting-room.jpg",
+    alt: "川口メモリアルホールの親族控室",
+    aspect: "aspect-[4/3]",
+  },
+  {
+    label: "エントランス",
+    src: "/images/home/hall/hall-interior.jpg",
+    alt: "川口メモリアルホールのエントランス",
+    aspect: "aspect-[4/3]",
+  },
 ];
 
 export function HallSection() {
@@ -37,9 +59,15 @@ export function HallSection() {
             {hallGallery.map((item) => (
               <div
                 key={item.label}
-                className={`${item.aspect} flex items-center justify-center rounded-lg border border-line bg-[repeating-linear-gradient(135deg,#e8e1d2_0_10px,transparent_10px_22px)] text-sm font-semibold text-ink-soft`}
+                className={`${item.aspect} relative overflow-hidden rounded-lg border border-line bg-warm`}
               >
-                [{item.label}]
+                <Image
+                  src={item.src}
+                  alt={item.alt}
+                  fill
+                  sizes="(max-width: 768px) 50vw, 320px"
+                  className="object-cover object-center"
+                />
               </div>
             ))}
           </div>
