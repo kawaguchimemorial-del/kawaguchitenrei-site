@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { Hall } from "@/lib/halls";
 import { plans } from "@/lib/plans";
 
@@ -61,12 +62,18 @@ export function HallGallery({ hall }: { hall: Hall }) {
           </p>
         </div>
 
-        <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="mt-10 grid gap-4 sm:grid-cols-2">
           {hall.gallery.map((item) => (
             <li key={item.label}>
               <figure className="overflow-hidden rounded-lg border border-line bg-white shadow-sm">
-                <div className="flex aspect-[4/3] items-center justify-center bg-[repeating-linear-gradient(135deg,#e8e1d2_0_10px,transparent_10px_22px)] text-sm font-semibold text-ink-soft">
-                  [{item.label}]
+                <div className="relative aspect-[4/3] bg-warm">
+                  <Image
+                    src={item.src}
+                    alt={item.alt}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 480px"
+                    className="object-cover object-center"
+                  />
                 </div>
                 <figcaption className="border-t border-line-soft px-5 py-4">
                   <p className="font-serif-jp text-base font-medium text-ink-deep md:text-lg">

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Breadcrumbs } from "@/components/common/Breadcrumbs";
 import type { Hall } from "@/lib/halls";
 
@@ -53,9 +54,13 @@ export function HallDetailIntro({ hall }: { hall: Hall }) {
 
           <figure className="relative">
             <div className="relative aspect-[4/5] overflow-hidden rounded-lg border border-line bg-warm shadow-[0_24px_70px_rgba(26,42,35,0.12)] md:aspect-[5/6]">
-              <div
-                aria-hidden
-                className="absolute inset-0 bg-[repeating-linear-gradient(135deg,#e8e1d2_0_10px,transparent_10px_22px)]"
+              <Image
+                src="/images/home/hall/hall-exterior.jpg"
+                alt="川口メモリアルホールの外観"
+                fill
+                sizes="(max-width: 768px) 100vw, 500px"
+                className="object-cover object-center"
+                priority
               />
               <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 bg-gradient-to-t from-ink-deep/55 via-ink-deep/0 p-5 text-white md:p-6">
                 <div>
@@ -69,9 +74,6 @@ export function HallDetailIntro({ hall }: { hall: Hall }) {
                 <span className="rounded-full bg-white/95 px-3 py-1 text-[11px] font-bold text-ink-deep">
                   西新井宿
                 </span>
-              </div>
-              <div className="absolute left-1/2 top-1/2 w-32 -translate-x-1/2 -translate-y-1/2 text-center text-xs font-semibold text-ink-mid/70">
-                [ホール外観の写真]
               </div>
             </div>
             <figcaption className="mt-4 flex items-center justify-between gap-4 text-sm text-ink-mid">

@@ -7,7 +7,7 @@ export type Hall = {
   intro: string;
   description: string;
   features: string[];
-  gallery: { label: string; description: string }[];
+  gallery: { label: string; description: string; src: string; alt: string }[];
   equipment: { label: string; value: string }[];
   supportedPlans: string[];
   access: {
@@ -40,12 +40,30 @@ export const hallKawaguchi: Hall = {
     "落ち着いた雰囲気の式場でご家族中心のお見送りに",
   ],
   gallery: [
-    { label: "外観", description: "落ち着いた佇まいの自社ホール" },
-    { label: "式場", description: "家族葬から一般葬まで規模を調整可能" },
-    { label: "控室", description: "ご家族でゆっくりお過ごしいただけます" },
-    { label: "相談スペース", description: "事前相談・打合せに" },
-    { label: "エントランス", description: "段差の少ない動線" },
-    { label: "駐車場", description: "敷地内に70台分の駐車スペース" },
+    {
+      label: "外観",
+      description: "落ち着いた佇まいの自社ホール",
+      src: "/images/home/hall/hall-exterior.jpg",
+      alt: "川口メモリアルホールの外観",
+    },
+    {
+      label: "式場",
+      description: "家族葬から一般葬まで規模を調整可能",
+      src: "/images/home/hall/hall-ceremony-room.jpg",
+      alt: "川口メモリアルホールの式場",
+    },
+    {
+      label: "控室",
+      description: "ご家族でゆっくりお過ごしいただけます",
+      src: "/images/home/hall/hall-family-waiting-room.jpg",
+      alt: "川口メモリアルホールの親族控室",
+    },
+    {
+      label: "エントランス",
+      description: "段差の少ない動線",
+      src: "/images/home/hall/hall-interior.jpg",
+      alt: "川口メモリアルホールのエントランス",
+    },
   ],
   equipment: [
     { label: "対応規模", value: "家族葬〜最大200名規模の一般葬まで" },
