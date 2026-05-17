@@ -75,10 +75,10 @@ export const hallKawaguchi: Hall = {
     { label: "近隣火葬場", value: "川口市めぐりの森まで車で約5分" },
   ],
   supportedPlans: [
-    "family-funeral",
-    "oneday-funeral",
-    "cremation",
     "direct-funeral",
+    "hanaire-owakare",
+    "oneday-funeral",
+    "family-funeral",
     "kawaguchi-shimin",
   ],
   access: {

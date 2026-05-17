@@ -149,7 +149,7 @@ export function HallSupportedPlans({ hall }: { hall: Hall }) {
             {hall.shortName}で対応できる葬儀プラン。
           </h2>
           <p className="mt-5 text-base leading-9 text-ink-mid md:text-lg">
-            ご家族のご希望に合わせて、家族葬・一日葬・火葬式・直葬・川口市民葬まで幅広く対応します。
+            ご家族のご希望に合わせて、直葬・花入れお別れ・一日葬・家族葬・市民葬まで幅広く対応します。
           </p>
         </div>
 
@@ -158,21 +158,34 @@ export function HallSupportedPlans({ hall }: { hall: Hall }) {
             <li key={plan.slug}>
               <a
                 href={`/plan/${plan.slug}/`}
-                className="group block h-full rounded-lg border border-line bg-paper p-6 shadow-sm transition hover:border-brand hover:shadow-md"
+                className="group block h-full overflow-hidden rounded-lg border border-line bg-paper shadow-sm transition hover:border-brand hover:shadow-md"
               >
-                <div className="flex items-baseline justify-between gap-4">
-                  <h3 className="font-serif-jp text-xl font-medium text-ink-deep md:text-2xl">
-                    {plan.name}
-                  </h3>
-                  <p className="text-sm font-bold text-brand">{plan.price}</p>
+                {plan.image && (
+                  <div className="relative aspect-[4/3] w-full bg-warm">
+                    <Image
+                      src={plan.image.src}
+                      alt={plan.image.alt}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 360px"
+                      className="object-cover object-center"
+                    />
+                  </div>
+                )}
+                <div className="p-6">
+                  <div className="flex items-baseline justify-between gap-4">
+                    <h3 className="font-serif-jp text-xl font-medium text-ink-deep md:text-2xl">
+                      {plan.name}
+                    </h3>
+                    <p className="text-sm font-bold text-brand">{plan.price}</p>
+                  </div>
+                  <p className="mt-3 text-sm leading-7 text-ink-mid md:text-base md:leading-8">
+                    {plan.short}
+                  </p>
+                  <p className="mt-5 inline-flex items-center gap-1 text-sm font-bold text-brand group-hover:underline">
+                    {plan.name}の詳細を見る
+                    <span aria-hidden>→</span>
+                  </p>
                 </div>
-                <p className="mt-3 text-sm leading-7 text-ink-mid md:text-base md:leading-8">
-                  {plan.short}
-                </p>
-                <p className="mt-5 inline-flex items-center gap-1 text-sm font-bold text-brand group-hover:underline">
-                  {plan.name}の詳細を見る
-                  <span aria-hidden>→</span>
-                </p>
               </a>
             </li>
           ))}
