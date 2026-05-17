@@ -81,20 +81,15 @@ export function HallAccess({ hall }: { hall: Hall }) {
             </div>
           </div>
 
-          <div
-            className="relative aspect-[4/3] overflow-hidden rounded-lg border border-line bg-white shadow-sm md:aspect-auto md:min-h-[420px]"
-            aria-label="地図プレースホルダー"
-          >
-            <div
-              aria-hidden
-              className="absolute inset-0 bg-[repeating-linear-gradient(0deg,transparent_0_24px,#e2eae3_24px,#e2eae3_25px),repeating-linear-gradient(90deg,transparent_0_24px,#e2eae3_24px,#e2eae3_25px),#faf8f3]"
+          <div className="relative aspect-[4/3] overflow-hidden rounded-lg border border-line bg-white shadow-sm md:aspect-auto md:min-h-[420px]">
+            <iframe
+              title="川口メモリアルホールの地図"
+              src={`https://www.google.com/maps?q=${encodeURIComponent(hall.mapEmbedQuery)}&output=embed`}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              allowFullScreen
+              className="absolute inset-0 h-full w-full border-0"
             />
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-3xl">
-              📍
-            </div>
-            <div className="absolute bottom-3 right-3 rounded-md bg-white px-3 py-1.5 text-xs font-bold text-ink-mid shadow">
-              [Googleマップ埋め込み枠]
-            </div>
           </div>
         </div>
       </div>
