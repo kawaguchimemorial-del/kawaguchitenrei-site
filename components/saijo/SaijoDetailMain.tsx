@@ -184,13 +184,13 @@ export function SaijoAvailablePlans({ saijo }: { saijo: Saijo }) {
             Plans
           </p>
           <p className="mt-2 text-sm font-semibold text-ink-mid">
-            利用できる葬儀プラン
+            めぐりの森での火葬を含む葬儀プラン
           </p>
           <h2 className="font-serif-jp mt-4 text-3xl font-medium leading-[1.4] text-ink-deep md:text-[2.2rem]">
-            {saijo.shortName}で行える葬儀プラン。
+            めぐりの森での火葬を含む葬儀プラン。
           </h2>
           <p className="mt-5 text-base leading-9 text-ink-mid md:text-lg">
-            火葬式・直葬から、一日葬・家族葬まで対応可能です。ご家族の人数やご希望に合わせてお選びいただけます。
+            川口典礼では、川口メモリアルホールなどでのお別れ・葬儀式から、川口市めぐりの森での火葬まで、ご家族のご希望に合わせて一貫してお手伝いします。直葬プラン、花入れお別れプラン、一日葬プラン、家族葬プラン、市民葬プランなど、内容に応じてご相談いただけます。
           </p>
         </div>
 

@@ -27,6 +27,7 @@ export function SaijoAccess({ saijo }: { saijo: Saijo }) {
               所在地
             </p>
             <p className="font-serif-jp mt-3 text-xl font-medium leading-relaxed text-ink-deep md:text-2xl">
+              {saijo.postal && <>〒{saijo.postal}　</>}
               {saijo.address}
             </p>
 
