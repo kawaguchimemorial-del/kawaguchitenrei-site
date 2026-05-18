@@ -14,13 +14,13 @@ const transportModes = [
     icon: "🚗",
     label: "お車で",
     description:
-      "外環道「川口中央IC」より約○分(要確認)。首都高速川口線「新井宿出入口」より約○分(要確認)。敷地内に駐車スペースをご用意しています。",
+      "首都高速川口線「新井宿出入口」より約5分。敷地内に駐車場70台ございますので、参列の方もお車でお越しいただけます。",
   },
   {
     icon: "🚆",
     label: "電車で",
     description:
-      "JR京浜東北線「川口」駅よりタクシー約○分(要確認)。または埼玉高速鉄道「新井宿」駅より徒歩約○分(要確認)。",
+      "埼玉高速鉄道「新井宿」駅より徒歩約10分。",
   },
   {
     icon: "🚕",
@@ -30,21 +30,28 @@ const transportModes = [
   },
 ];
 
-const nearby = [
+type Nearby = {
+  label: string;
+  description: string;
+  href?: string;
+};
+
+const nearby: Nearby[] = [
   {
     label: "川口市めぐりの森",
-    description: "車で約○分(要確認)。火葬・式場利用に対応",
+    description:
+      "車で約5分。火葬場としてご利用いただけます（式場は併設されていません）。",
     href: "/saijo/megurinomori/",
   },
   {
     label: "戸田葬祭場",
-    description: "車で約○分(要確認)。火葬利用に対応",
-    href: "/saijo/toda-sousaijo/",
+    description:
+      "火葬・式場をご利用いただけます。詳細は事前相談時にご案内します。",
   },
   {
     label: "谷塚斎場",
-    description: "車で約○分(要確認)。火葬・式場利用に対応",
-    href: "/saijo/yatsuka-saijo/",
+    description:
+      "火葬・式場をご利用いただけます。詳細は事前相談時にご案内します。",
   },
 ];
 
@@ -134,20 +141,15 @@ export default function AccessPage() {
               </div>
             </div>
 
-            <div
-              className="relative aspect-[4/3] overflow-hidden rounded-lg border border-line bg-white shadow-sm md:aspect-auto md:min-h-[420px]"
-              aria-label="地図プレースホルダー"
-            >
-              <div
-                aria-hidden
-                className="absolute inset-0 bg-[repeating-linear-gradient(0deg,transparent_0_24px,#e2eae3_24px,#e2eae3_25px),repeating-linear-gradient(90deg,transparent_0_24px,#e2eae3_24px,#e2eae3_25px),#faf8f3]"
+            <div className="relative aspect-[4/3] overflow-hidden rounded-lg border border-line bg-warm shadow-sm md:aspect-auto md:min-h-[420px]">
+              <iframe
+                title="川口メモリアルホールの地図"
+                src={`https://www.google.com/maps?q=${encodeURIComponent(company.mapEmbedQuery)}&output=embed`}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+                className="absolute inset-0 h-full w-full border-0"
               />
-              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-4xl">
-                📍
-              </div>
-              <div className="absolute bottom-3 right-3 rounded-md bg-white px-3 py-1.5 text-xs font-bold text-ink-mid shadow">
-                [Googleマップ埋め込み枠]
-              </div>
             </div>
           </div>
         </div>
@@ -205,7 +207,7 @@ export default function AccessPage() {
                 駐車場のご案内。
               </h2>
               <p className="mt-5 text-base leading-9 text-ink-mid md:text-lg">
-                敷地内に○台分(要確認)の駐車スペースをご用意しています。参列人数が多い場合は、近隣駐車場へのご案内も可能です。事前のご相談時にお伝えください。
+                敷地内に70台の駐車スペースをご用意しています。参列人数が多い場合は、近隣駐車場へのご案内も可能です。事前のご相談時にお伝えください。
               </p>
             </div>
 
@@ -216,7 +218,7 @@ export default function AccessPage() {
               <dl className="mt-4 space-y-3 text-base">
                 <div className="flex items-baseline justify-between gap-4 border-b border-line-soft pb-3">
                   <dt className="font-semibold text-ink-soft">駐車台数</dt>
-                  <dd className="font-bold text-ink-deep">○台(要確認)</dd>
+                  <dd className="font-bold text-ink-deep">70台</dd>
                 </div>
                 <div className="flex items-baseline justify-between gap-4 border-b border-line-soft pb-3">
                   <dt className="font-semibold text-ink-soft">場所</dt>
@@ -256,25 +258,38 @@ export default function AccessPage() {
           </div>
 
           <ul className="mt-10 grid gap-4 md:grid-cols-3">
-            {nearby.map((item) => (
-              <li key={item.label}>
-                <a
-                  href={item.href}
-                  className="group flex h-full flex-col gap-3 rounded-lg border border-line bg-paper p-6 shadow-sm transition hover:border-brand"
-                >
-                  <p className="font-serif-jp text-lg font-medium text-ink-deep group-hover:text-brand md:text-xl">
-                    {item.label}
-                  </p>
-                  <p className="text-sm leading-7 text-ink-mid">
-                    {item.description}
-                  </p>
-                  <p className="mt-auto inline-flex items-center gap-1 text-sm font-bold text-brand">
-                    詳しく見る
-                    <span aria-hidden>→</span>
-                  </p>
-                </a>
-              </li>
-            ))}
+            {nearby.map((item) =>
+              item.href ? (
+                <li key={item.label}>
+                  <a
+                    href={item.href}
+                    className="group flex h-full flex-col gap-3 rounded-lg border border-line bg-paper p-6 shadow-sm transition hover:border-brand"
+                  >
+                    <p className="font-serif-jp text-lg font-medium text-ink-deep group-hover:text-brand md:text-xl">
+                      {item.label}
+                    </p>
+                    <p className="text-sm leading-7 text-ink-mid">
+                      {item.description}
+                    </p>
+                    <p className="mt-auto inline-flex items-center gap-1 text-sm font-bold text-brand">
+                      詳しく見る
+                      <span aria-hidden>→</span>
+                    </p>
+                  </a>
+                </li>
+              ) : (
+                <li key={item.label}>
+                  <div className="flex h-full flex-col gap-3 rounded-lg border border-line bg-paper p-6 shadow-sm">
+                    <p className="font-serif-jp text-lg font-medium text-ink-deep md:text-xl">
+                      {item.label}
+                    </p>
+                    <p className="text-sm leading-7 text-ink-mid">
+                      {item.description}
+                    </p>
+                  </div>
+                </li>
+              )
+            )}
           </ul>
         </div>
       </section>

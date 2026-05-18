@@ -70,7 +70,7 @@ export const company: CompanyInfo = {
     "板橋区",
     "北区",
   ],
-  mapEmbedQuery: "埼玉県川口市西新井宿440-1",
+  mapEmbedQuery: "川口メモリアルホール 埼玉県川口市西新井宿440-1",
   parkingCapacity: "70台",
   distanceToMegurinomori: "車で約5分",
   maxFuneralScale: "最大200名規模の一般葬まで対応",
