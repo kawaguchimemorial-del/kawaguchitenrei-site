@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { getRecentCases } from "@/lib/cases";
 
 export function CasesSection() {
@@ -34,10 +35,23 @@ export function CasesSection() {
             <li key={item.slug}>
               <a
                 href={`/case/${item.slug}/`}
-                className="group block h-full rounded-lg border border-line bg-white shadow-sm transition hover:shadow-md"
+                className="group block h-full overflow-hidden rounded-lg border border-line bg-white shadow-sm transition hover:shadow-md"
               >
-                <div className="flex aspect-[4/3] items-center justify-center rounded-t-lg bg-[repeating-linear-gradient(135deg,#eef3ee_0_8px,transparent_8px_16px)] text-sm font-semibold text-ink-soft">
-                  [祭壇のお写真]
+                <div className="relative aspect-[4/3] bg-warm">
+                  {item.photo ? (
+                    <Image
+                      src={item.photo.src}
+                      alt={item.photo.alt}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 380px"
+                      className="object-cover object-center"
+                    />
+                  ) : (
+                    <div
+                      aria-hidden
+                      className="absolute inset-0 bg-[repeating-linear-gradient(135deg,#eef3ee_0_8px,transparent_8px_16px)]"
+                    />
+                  )}
                 </div>
                 <div className="p-6">
                   <h3 className="font-serif-jp text-lg font-medium leading-7 text-ink-deep group-hover:text-brand md:text-xl">
