@@ -1,3 +1,12 @@
+const HALL_QUERY = "川口メモリアルホール 埼玉県川口市西新井宿440-1";
+const SAIJO_QUERY = "川口市めぐりの森 埼玉県川口市大字新井宿430-1";
+const ROUTE_EMBED_SRC = `https://www.google.com/maps?saddr=${encodeURIComponent(
+  HALL_QUERY
+)}&daddr=${encodeURIComponent(SAIJO_QUERY)}&output=embed`;
+const ROUTE_EXTERNAL_HREF = `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(
+  HALL_QUERY
+)}&destination=${encodeURIComponent(SAIJO_QUERY)}`;
+
 const meguriPlans = [
   {
     name: "直葬プラン",
@@ -51,21 +60,26 @@ export function MeguriSection() {
           </div>
 
           <div className="rounded-lg border border-line bg-paper p-5 shadow-sm md:p-7">
-            <div
-              aria-hidden
-              className="relative aspect-[4/3] overflow-hidden rounded-lg bg-warm"
-            >
-              <div className="absolute inset-x-6 top-1/2 h-px -translate-y-1/2 border-t border-dashed border-ink-soft/60" />
-              <div className="absolute left-6 top-10 rounded-lg bg-brand px-3 py-2 text-xs font-bold text-white shadow-md">
-                川口典礼
-              </div>
-              <div className="absolute bottom-8 right-6 rounded-lg border border-line bg-white px-3 py-2 text-xs font-bold text-ink-deep shadow-md">
-                川口市めぐりの森
-              </div>
-              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/90 px-3 py-1 text-[11px] font-semibold text-ink-soft shadow">
-                車で約5分
-              </div>
+            <div className="relative aspect-[4/3] overflow-hidden rounded-lg border border-line bg-warm">
+              <iframe
+                title="川口メモリアルホールから川口市めぐりの森までの地図"
+                src={ROUTE_EMBED_SRC}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+                className="absolute inset-0 h-full w-full border-0"
+              />
             </div>
+
+            <a
+              href={ROUTE_EXTERNAL_HREF}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-3 inline-flex items-center gap-1 text-sm font-bold text-brand hover:underline"
+            >
+              Googleマップでルートを見る
+              <span aria-hidden>→</span>
+            </a>
 
             <ul className="mt-5 space-y-3">
               {meguriPlans.map((plan) => (
