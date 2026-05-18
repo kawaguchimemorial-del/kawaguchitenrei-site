@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Breadcrumbs } from "@/components/common/Breadcrumbs";
 import type { Area } from "@/lib/areas";
 
@@ -18,7 +19,7 @@ export function AreaDetailIntro({ area }: { area: Area }) {
           />
         </div>
 
-        <div className="grid gap-10 md:grid-cols-[1.1fr_0.9fr] md:items-center">
+        <div className="grid gap-10 md:grid-cols-[1.1fr_0.9fr] md:items-start">
           <div>
             <p className="text-sm font-semibold tracking-[0.18em] text-brand uppercase">
               Area
@@ -59,52 +60,64 @@ export function AreaDetailIntro({ area }: { area: Area }) {
 
           <aside
             aria-label={`${area.name}でのご対応`}
-            className="rounded-lg border border-line bg-white p-6 shadow-sm md:p-8"
+            className="overflow-hidden rounded-lg border border-line bg-white shadow-sm"
           >
-            <p className="text-xs font-bold uppercase tracking-[0.18em] text-ink-soft">
-              対応のご案内
-            </p>
-            <dl className="mt-5 space-y-4">
-              <div className="flex items-baseline justify-between gap-4 border-b border-line-soft pb-4">
-                <dt className="text-sm font-semibold text-ink-soft">受付</dt>
-                <dd className="font-serif-jp text-xl font-medium text-emergency">
-                  24時間365日
-                </dd>
-              </div>
-              <div className="flex items-baseline justify-between gap-4 border-b border-line-soft pb-4">
-                <dt className="text-sm font-semibold text-ink-soft">電話</dt>
-                <dd>
-                  <a
-                    href="tel:0120-963-765"
-                    className="font-serif-jp text-xl font-medium text-emergency hover:underline"
-                  >
-                    0120-963-765
-                  </a>
-                </dd>
-              </div>
-              <div className="flex items-baseline justify-between gap-4 border-b border-line-soft pb-4">
-                <dt className="text-sm font-semibold text-ink-soft">対応形式</dt>
-                <dd className="text-right text-sm font-bold text-ink-deep">
-                  家族葬・一日葬
-                  <br />
-                  直葬・一般葬
-                </dd>
-              </div>
-              <div>
-                <dt className="text-sm font-semibold text-ink-soft">
-                  ホール拠点
-                </dt>
-                <dd className="mt-2 text-sm leading-7 text-ink-mid">
-                  川口市西新井宿
-                  <br />
-                  川口メモリアルホール
-                </dd>
-              </div>
-            </dl>
+            <div className="relative aspect-[16/9] w-full bg-warm">
+              <Image
+                src="/images/home/hall/hall-exterior.jpg"
+                alt="拠点・川口メモリアルホールの外観"
+                fill
+                sizes="(max-width: 768px) 100vw, 480px"
+                className="object-cover object-center"
+              />
+            </div>
 
-            <p className="mt-5 text-xs leading-6 text-ink-soft">
-              ※ お急ぎの方はフォームではなくお電話ください。深夜・早朝でも対応します。
-            </p>
+            <div className="p-6 md:p-8">
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-ink-soft">
+                対応のご案内
+              </p>
+              <dl className="mt-5 space-y-4">
+                <div className="flex items-baseline justify-between gap-4 border-b border-line-soft pb-4">
+                  <dt className="text-sm font-semibold text-ink-soft">受付</dt>
+                  <dd className="font-serif-jp text-xl font-medium text-emergency">
+                    24時間365日
+                  </dd>
+                </div>
+                <div className="flex items-baseline justify-between gap-4 border-b border-line-soft pb-4">
+                  <dt className="text-sm font-semibold text-ink-soft">電話</dt>
+                  <dd>
+                    <a
+                      href="tel:0120-963-765"
+                      className="font-serif-jp text-xl font-medium text-emergency hover:underline"
+                    >
+                      0120-963-765
+                    </a>
+                  </dd>
+                </div>
+                <div className="flex items-baseline justify-between gap-4 border-b border-line-soft pb-4">
+                  <dt className="text-sm font-semibold text-ink-soft">対応形式</dt>
+                  <dd className="text-right text-sm font-bold text-ink-deep">
+                    家族葬・一日葬
+                    <br />
+                    直葬・一般葬
+                  </dd>
+                </div>
+                <div>
+                  <dt className="text-sm font-semibold text-ink-soft">
+                    ホール拠点
+                  </dt>
+                  <dd className="mt-2 text-sm leading-7 text-ink-mid">
+                    川口市西新井宿
+                    <br />
+                    川口メモリアルホール
+                  </dd>
+                </div>
+              </dl>
+
+              <p className="mt-5 text-xs leading-6 text-ink-soft">
+                ※ お急ぎの方はフォームではなくお電話ください。深夜・早朝でも対応します。
+              </p>
+            </div>
           </aside>
         </div>
       </div>

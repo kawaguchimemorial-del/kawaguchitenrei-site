@@ -1,6 +1,16 @@
+import Image from "next/image";
 import type { Area } from "@/lib/areas";
 import { hallKawaguchi } from "@/lib/halls";
 import { saijoList } from "@/lib/saijo";
+
+type PlanCardEntry = {
+  name: string;
+  short: string;
+  price: string;
+  href: string;
+  isConsult?: boolean;
+  image?: { src: string; alt: string };
+};
 
 // セクション2: 地域ごとの葬儀の特徴
 export function AreaFeatures({ area }: { area: Area }) {
@@ -42,24 +52,36 @@ export function AreaFeatures({ area }: { area: Area }) {
 }
 
 // セクション3: 対応できる葬儀プラン (4プラン固定 + 一般葬は要相談)
-const planCards = [
+const planCards: PlanCardEntry[] = [
   {
     name: "直葬",
     short: "通夜・告別式を行わず、ご火葬を中心にシンプルにお見送り。",
     price: "139,000円(税込)〜",
     href: "/plan/direct-funeral/",
+    image: {
+      src: "/images/home/plans/plan-chokuso.png",
+      alt: "直葬プランのイメージ",
+    },
   },
   {
     name: "一日葬",
     short: "通夜を行わず、告別式と火葬を1日で執り行う形式です。",
     price: "396,000円(税込)〜",
     href: "/plan/oneday-funeral/",
+    image: {
+      src: "/images/home/plans/plan-ichinichiso-kazokuso.png",
+      alt: "一日葬プランのイメージ",
+    },
   },
   {
     name: "家族葬",
     short: "ご家族や親しい方を中心に、落ち着いてお見送りする葬儀です。",
     price: "528,000円(税込)〜",
     href: "/plan/family-funeral/",
+    image: {
+      src: "/images/home/plans/plan-ichinichiso-kazokuso.png",
+      alt: "家族葬プランのイメージ",
+    },
   },
   {
     name: "一般葬",
@@ -95,21 +117,39 @@ export function AreaPlans({ area }: { area: Area }) {
             <li key={p.name}>
               <a
                 href={p.href}
-                className="group flex h-full flex-col rounded-lg border border-line bg-white p-6 shadow-sm transition hover:border-brand hover:shadow-md"
+                className="group flex h-full flex-col overflow-hidden rounded-lg border border-line bg-white shadow-sm transition hover:border-brand hover:shadow-md"
               >
-                <div className="flex items-baseline justify-between gap-3">
-                  <h3 className="font-serif-jp text-xl font-medium text-ink-deep group-hover:text-brand md:text-2xl">
-                    {p.name}
-                  </h3>
-                  <p className="text-sm font-bold text-brand">{p.price}</p>
+                <div className="relative aspect-[4/3] bg-warm">
+                  {p.image ? (
+                    <Image
+                      src={p.image.src}
+                      alt={p.image.alt}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 280px"
+                      className="object-cover object-center"
+                    />
+                  ) : (
+                    <div
+                      aria-hidden
+                      className="absolute inset-0 bg-[repeating-linear-gradient(135deg,#eef3ee_0_8px,transparent_8px_16px)]"
+                    />
+                  )}
                 </div>
-                <p className="mt-4 text-sm leading-7 text-ink-mid md:text-base md:leading-8">
-                  {p.short}
-                </p>
-                <p className="mt-auto pt-5 inline-flex items-center gap-1 text-sm font-bold text-brand group-hover:underline">
-                  {p.isConsult ? "ご相談する" : `${p.name}の詳細を見る`}
-                  <span aria-hidden>→</span>
-                </p>
+                <div className="flex flex-1 flex-col p-6">
+                  <div className="flex items-baseline justify-between gap-3">
+                    <h3 className="font-serif-jp text-xl font-medium text-ink-deep group-hover:text-brand md:text-2xl">
+                      {p.name}
+                    </h3>
+                    <p className="text-sm font-bold text-brand">{p.price}</p>
+                  </div>
+                  <p className="mt-4 text-sm leading-7 text-ink-mid md:text-base md:leading-8">
+                    {p.short}
+                  </p>
+                  <p className="mt-auto pt-5 inline-flex items-center gap-1 text-sm font-bold text-brand group-hover:underline">
+                    {p.isConsult ? "ご相談する" : `${p.name}の詳細を見る`}
+                    <span aria-hidden>→</span>
+                  </p>
+                </div>
               </a>
             </li>
           ))}
@@ -180,21 +220,32 @@ export function AreaSaijo({ area }: { area: Area }) {
             <li>
               <a
                 href={`/hall/${ownHall.slug}/`}
-                className="group flex h-full flex-col rounded-lg border-2 border-brand bg-paper p-6 shadow-sm transition hover:shadow-md"
+                className="group flex h-full flex-col overflow-hidden rounded-lg border-2 border-brand bg-paper shadow-sm transition hover:shadow-md"
               >
-                <p className="text-xs font-bold uppercase tracking-[0.18em] text-brand">
-                  自社ホール
-                </p>
-                <p className="font-serif-jp mt-2 text-lg font-medium text-ink-deep group-hover:text-brand md:text-xl">
-                  {ownHall.name}
-                </p>
-                <p className="mt-3 text-sm leading-7 text-ink-mid">
-                  川口市西新井宿の自社ホール。家族葬・一日葬に適した規模です。
-                </p>
-                <p className="mt-auto pt-4 inline-flex items-center gap-1 text-sm font-bold text-brand group-hover:underline">
-                  詳しく見る
-                  <span aria-hidden>→</span>
-                </p>
+                <div className="relative aspect-[4/3] bg-warm">
+                  <Image
+                    src="/images/home/hall/hall-exterior.jpg"
+                    alt="川口メモリアルホールの外観"
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 280px"
+                    className="object-cover object-center"
+                  />
+                </div>
+                <div className="flex flex-1 flex-col p-6">
+                  <p className="text-xs font-bold uppercase tracking-[0.18em] text-brand">
+                    自社ホール
+                  </p>
+                  <p className="font-serif-jp mt-2 text-lg font-medium text-ink-deep group-hover:text-brand md:text-xl">
+                    {ownHall.name}
+                  </p>
+                  <p className="mt-3 text-sm leading-7 text-ink-mid">
+                    川口市西新井宿の自社ホール。家族葬・一日葬に適した規模です。
+                  </p>
+                  <p className="mt-auto pt-4 inline-flex items-center gap-1 text-sm font-bold text-brand group-hover:underline">
+                    詳しく見る
+                    <span aria-hidden>→</span>
+                  </p>
+                </div>
               </a>
             </li>
           )}
@@ -203,30 +254,46 @@ export function AreaSaijo({ area }: { area: Area }) {
               {s.hasPage ? (
                 <a
                   href={`/saijo/${s.slug}/`}
-                  className="group flex h-full flex-col rounded-lg border border-line bg-white p-6 shadow-sm transition hover:border-brand hover:shadow-md"
+                  className="group flex h-full flex-col overflow-hidden rounded-lg border border-line bg-white shadow-sm transition hover:border-brand hover:shadow-md"
                 >
-                  <p className="font-serif-jp text-lg font-medium text-ink-deep group-hover:text-brand md:text-xl">
-                    {s.name}
-                  </p>
-                  <p className="mt-3 text-sm leading-7 text-ink-mid">
-                    {s.description}
-                  </p>
-                  <p className="mt-auto pt-4 inline-flex items-center gap-1 text-sm font-bold text-brand group-hover:underline">
-                    詳しく見る
-                    <span aria-hidden>→</span>
-                  </p>
+                  <div className="relative aspect-[4/3] bg-warm">
+                    <div
+                      aria-hidden
+                      className="absolute inset-0 bg-[repeating-linear-gradient(135deg,#eef3ee_0_8px,transparent_8px_16px)]"
+                    />
+                  </div>
+                  <div className="flex flex-1 flex-col p-6">
+                    <p className="font-serif-jp text-lg font-medium text-ink-deep group-hover:text-brand md:text-xl">
+                      {s.name}
+                    </p>
+                    <p className="mt-3 text-sm leading-7 text-ink-mid">
+                      {s.description}
+                    </p>
+                    <p className="mt-auto pt-4 inline-flex items-center gap-1 text-sm font-bold text-brand group-hover:underline">
+                      詳しく見る
+                      <span aria-hidden>→</span>
+                    </p>
+                  </div>
                 </a>
               ) : (
-                <div className="flex h-full flex-col rounded-lg border border-line bg-white p-6 shadow-sm">
-                  <p className="font-serif-jp text-lg font-medium text-ink-deep md:text-xl">
-                    {s.name}
-                  </p>
-                  <p className="mt-3 text-sm leading-7 text-ink-mid">
-                    {s.description}
-                  </p>
-                  <p className="mt-auto pt-4 text-xs text-ink-soft">
-                    ご利用について詳しくはお問い合わせください
-                  </p>
+                <div className="flex h-full flex-col overflow-hidden rounded-lg border border-line bg-white shadow-sm">
+                  <div className="relative aspect-[4/3] bg-warm">
+                    <div
+                      aria-hidden
+                      className="absolute inset-0 bg-[repeating-linear-gradient(135deg,#eef3ee_0_8px,transparent_8px_16px)]"
+                    />
+                  </div>
+                  <div className="flex flex-1 flex-col p-6">
+                    <p className="font-serif-jp text-lg font-medium text-ink-deep md:text-xl">
+                      {s.name}
+                    </p>
+                    <p className="mt-3 text-sm leading-7 text-ink-mid">
+                      {s.description}
+                    </p>
+                    <p className="mt-auto pt-4 text-xs text-ink-soft">
+                      ご利用について詳しくはお問い合わせください
+                    </p>
+                  </div>
                 </div>
               )}
             </li>
