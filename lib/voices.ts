@@ -38,7 +38,7 @@ export const voices: Voice[] = [
     area: "川口市・新井宿",
     staff: "担当：◯◯",
     hasHandwrittenSurvey: true,
-    relatedCaseSlug: "20-oneday-memorial-hall",
+    relatedCaseSlug: "kawaguchi-memorial-buddhist-20-oneday-1100k",
     relatedPlanSlugs: ["oneday-funeral", "family-funeral"],
     metaDescription:
       "川口典礼で一日葬を執り行ったご家族の声。「最初の電話から落ち着いて対応いただき安心できた」というご感想。川口メモリアルホール・20名・一日葬の実例。",
@@ -60,7 +60,6 @@ export const voices: Voice[] = [
     area: "川口市",
     staff: "担当：◯◯",
     hasHandwrittenSurvey: true,
-    relatedCaseSlug: "5-cremation-megurinomori",
     relatedPlanSlugs: ["cremation", "direct-funeral"],
     metaDescription:
       "川口市めぐりの森で火葬式を執り行ったご家族の声。「費用が事前にわかりやすく説明された」というご感想。5名・無宗教の実例。",
@@ -82,7 +81,7 @@ export const voices: Voice[] = [
     area: "川口市・西新井宿",
     staff: "担当：◯◯",
     hasHandwrittenSurvey: false,
-    relatedCaseSlug: "30-family-funeral-memorial-hall",
+    relatedCaseSlug: "kawaguchi-memorial-buddhist-20-family-1100k",
     relatedPlanSlugs: ["family-funeral", "oneday-funeral"],
     metaDescription:
       "川口メモリアルホールで30名の家族葬を執り行ったご家族の声。「親族の年齢まで気を配って対応いただいた」というご感想。仏式・通夜と告別式の二日構成の実例。",
@@ -104,7 +103,7 @@ export const voices: Voice[] = [
     area: "川口市・新井宿",
     staff: "担当：◯◯",
     hasHandwrittenSurvey: true,
-    relatedCaseSlug: "8-direct-funeral-home-placement",
+    relatedCaseSlug: "home-buddhist-10-oneday-1600k",
     relatedPlanSlugs: ["direct-funeral", "cremation"],
     metaDescription:
       "ご自宅安置からの直葬を執り行ったご家族の声。「自宅でゆっくり過ごす時間を大切にしていただけた」というご感想。8名・無宗教の実例。",
