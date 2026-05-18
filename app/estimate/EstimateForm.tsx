@@ -4,8 +4,8 @@ import { useActionState } from "react";
 import { submitEstimate, type EstimateFormState } from "./actions";
 
 const formatOptions = [
-  { value: "cremation", label: "火葬式" },
   { value: "direct-funeral", label: "直葬" },
+  { value: "hanaire-owakare", label: "花入れお別れ" },
   { value: "oneday-funeral", label: "一日葬" },
   { value: "family-funeral", label: "家族葬" },
   { value: "kawaguchi-shimin", label: "川口市民葬" },

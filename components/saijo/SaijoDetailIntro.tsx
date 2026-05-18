@@ -86,7 +86,7 @@ export function SaijoDetailIntro({ saijo }: { saijo: Saijo }) {
               <div className="flex items-baseline justify-between gap-4 border-b border-line-soft pb-4">
                 <dt className="text-sm font-semibold text-ink-soft">対応形式</dt>
                 <dd className="text-right text-sm font-bold text-ink-deep">
-                  火葬式・直葬
+                  直葬・花入れお別れ
                   <br />
                   一日葬・家族葬
                 </dd>

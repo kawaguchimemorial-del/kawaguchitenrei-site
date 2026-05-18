@@ -30,8 +30,8 @@ const REQUIRED_FIELDS: { name: string; label: string }[] = [
 
 const VALUE_LABELS: Record<string, Record<string, string>> = {
   format: {
-    cremation: "火葬式",
     "direct-funeral": "直葬",
+    "hanaire-owakare": "花入れお別れ",
     "oneday-funeral": "一日葬",
     "family-funeral": "家族葬",
     "kawaguchi-shimin": "川口市民葬",

@@ -71,7 +71,7 @@ export const hallKawaguchi: Hall = {
     { label: "宿泊", value: "要相談" },
     { label: "バリアフリー", value: "対応" },
     { label: "駐車場", value: "70台(敷地内・無料)" },
-    { label: "対応形式", value: "家族葬・一日葬・火葬式・直葬・一般葬・市民葬" },
+    { label: "対応形式", value: "家族葬・一日葬・直葬・花入れお別れ・市民葬・一般葬" },
     { label: "近隣火葬場", value: "川口市めぐりの森まで車で約5分" },
   ],
   supportedPlans: [

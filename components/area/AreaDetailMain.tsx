@@ -44,21 +44,21 @@ export function AreaFeatures({ area }: { area: Area }) {
 // セクション3: 対応できる葬儀プラン (4プラン固定 + 一般葬は要相談)
 const planCards = [
   {
-    name: "火葬式",
-    short: "通夜・告別式を行わず、火葬を中心にお見送りする形式です。",
-    price: "税込○○万円〜",
-    href: "/plan/cremation/",
+    name: "直葬",
+    short: "通夜・告別式を行わず、ご火葬を中心にシンプルにお見送り。",
+    price: "139,000円(税込)〜",
+    href: "/plan/direct-funeral/",
   },
   {
     name: "一日葬",
     short: "通夜を行わず、告別式と火葬を1日で執り行う形式です。",
-    price: "税込○○万円〜",
+    price: "396,000円(税込)〜",
     href: "/plan/oneday-funeral/",
   },
   {
     name: "家族葬",
     short: "ご家族や親しい方を中心に、落ち着いてお見送りする葬儀です。",
-    price: "税込○○万円〜",
+    price: "528,000円(税込)〜",
     href: "/plan/family-funeral/",
   },
   {

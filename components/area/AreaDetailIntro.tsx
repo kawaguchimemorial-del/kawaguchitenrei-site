@@ -87,7 +87,7 @@ export function AreaDetailIntro({ area }: { area: Area }) {
                 <dd className="text-right text-sm font-bold text-ink-deep">
                   家族葬・一日葬
                   <br />
-                  火葬式・一般葬
+                  直葬・一般葬
                 </dd>
               </div>
               <div>
