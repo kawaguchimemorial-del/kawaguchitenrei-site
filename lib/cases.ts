@@ -94,7 +94,7 @@ export const cases: CaseRecord[] = [
     religion: "カトリック",
     photo: {
       src: "/images/cases/kawaguchi-church-catholic-20-oneday-800k.jpg",
-      alt: "川口教会で執り行ったカトリック式 一日葬の祭壇のお写真",
+      alt: "川口教会で執り行ったカトリック式 一日葬の祭壇写真",
     },
     requirements:
       "カトリック式のお別れを、無理のない一日葬の形で整えたい、というご相談でした。ご親族・お知り合いを中心に20名規模での執り行いをご希望でした。",
@@ -124,7 +124,7 @@ export const cases: CaseRecord[] = [
     religion: "仏式",
     photo: {
       src: "/images/cases/kawaguchi-memorial-buddhist-20-oneday-1100k.jpg",
-      alt: "川口メモリアルホールで執り行った仏式 一日葬の祭壇のお写真",
+      alt: "川口メモリアルホールで執り行った仏式 一日葬の祭壇写真",
     },
     requirements:
       "ご親族の負担を抑えつつ、きちんと一日でお別れの時間を取りたい、というご相談でした。",
@@ -154,7 +154,7 @@ export const cases: CaseRecord[] = [
     religion: "仏式",
     photo: {
       src: "/images/cases/kawaguchi-memorial-buddhist-20-oneday-1500k.jpg",
-      alt: "川口メモリアルホールで執り行った仏式 一日葬(祭壇拡充)の祭壇のお写真",
+      alt: "川口メモリアルホールで執り行った仏式 一日葬(祭壇拡充)の祭壇写真",
     },
     requirements:
       "一日葬としてシンプルに、ただ祭壇のお花を充実させて丁寧にお見送りしたい、というご相談でした。",
@@ -183,7 +183,7 @@ export const cases: CaseRecord[] = [
     religion: "仏式",
     photo: {
       src: "/images/cases/sangakuin-gokurakuden-buddhist-800-company-contact.jpg",
-      alt: "三学院 極楽殿で執り行った社葬の祭壇のお写真",
+      alt: "三学院 極楽殿で執り行った社葬の祭壇写真",
     },
     requirements:
       "会社関係者を含めた規模あるお別れの会を整えたい、というご相談でした。受付・案内・進行を含めて段取りのご支援が必要とのことでした。",
@@ -212,7 +212,7 @@ export const cases: CaseRecord[] = [
     religion: "仏式",
     photo: {
       src: "/images/cases/machiya-saijo-buddhist-20-family-1200k.jpg",
-      alt: "町屋斎場で執り行った家族葬の祭壇のお写真",
+      alt: "町屋斎場で執り行った家族葬の祭壇写真",
     },
     requirements:
       "ご家族中心の落ち着いた家族葬を、町屋斎場で執り行いたい、というご相談でした。",
@@ -241,7 +241,7 @@ export const cases: CaseRecord[] = [
     religion: "仏式",
     photo: {
       src: "/images/cases/yatsuka-saijo-buddhist-20-family-1200k.jpg",
-      alt: "谷塚斎場で執り行った家族葬の祭壇のお写真",
+      alt: "谷塚斎場で執り行った家族葬の祭壇写真",
     },
     requirements:
       "ご家族中心の落ち着いた家族葬を、谷塚斎場で執り行いたい、というご相談でした。",
@@ -271,7 +271,7 @@ export const cases: CaseRecord[] = [
     religion: "友人葬",
     photo: {
       src: "/images/cases/kawaguchi-memorial-friend-10-oneday-570k.jpg",
-      alt: "川口メモリアルホールで執り行った友人葬 一日葬の祭壇のお写真",
+      alt: "川口メモリアルホールで執り行った友人葬 一日葬の祭壇写真",
     },
     requirements:
       "友人葬の形式でのお別れを、ご家族と親しい方で行いたい、というご相談でした。",
@@ -300,7 +300,7 @@ export const cases: CaseRecord[] = [
     religion: "仏式",
     photo: {
       src: "/images/cases/home-buddhist-10-oneday-1600k.jpg",
-      alt: "ご自宅で執り行った仏式 一日葬の祭壇のお写真",
+      alt: "ご自宅で執り行った仏式 一日葬の祭壇写真",
     },
     requirements:
       "ご自宅で過ごした故人様を、最後までご自宅近くで丁寧にお見送りしたい、というご家族のご希望でした。",
@@ -330,7 +330,7 @@ export const cases: CaseRecord[] = [
     religion: "仏式",
     photo: {
       src: "/images/cases/kawaguchi-memorial-buddhist-20-family-1100k.jpg",
-      alt: "川口メモリアルホールで執り行った仏式 家族葬の祭壇のお写真",
+      alt: "川口メモリアルホールで執り行った仏式 家族葬の祭壇写真",
     },
     requirements:
       "ご家族中心で、通夜・告別式の二日間で丁寧にお別れしたい、というご相談でした。",
@@ -360,7 +360,7 @@ export const cases: CaseRecord[] = [
     religion: "仏式",
     photo: {
       src: "/images/cases/kawaguchi-memorial-buddhist-20-oneday-580k.jpg",
-      alt: "川口メモリアルホールで執り行った仏式 一日葬(少人数規模)の祭壇のお写真",
+      alt: "川口メモリアルホールで執り行った仏式 一日葬(少人数規模)の祭壇写真",
     },
     requirements:
       "ご親族中心で、費用面のご負担を抑えて一日葬を行いたい、というご相談でした。",
@@ -389,7 +389,7 @@ export const cases: CaseRecord[] = [
     religion: "仏式",
     photo: {
       src: "/images/cases/yatsuka-buddhist-400-company-contact.png",
-      alt: "谷塚斎場で執り行った社葬の祭壇のお写真",
+      alt: "谷塚斎場で執り行った社葬の祭壇写真",
     },
     requirements:
       "会社関係者の方々を含めた400名規模のお別れの会を整えたい、というご相談でした。受付・案内・進行を含めて段取りのご支援が必要とのことでした。",
