@@ -159,21 +159,22 @@ export function AreaPlans({ area }: { area: Area }) {
   );
 }
 
-// セクション4: よく利用される斎場
+// セクション4: よく利用される斎場・ホール / 火葬場・火葬場併設斎場
 const saijoLabels: Record<string, { name: string; description: string }> = {
   megurinomori: {
     name: "川口市めぐりの森",
     description:
-      "川口市営の火葬場・斎場。火葬と式を1つの施設で完結できます。",
+      "川口市営の火葬場です。通夜・告別式を行う式場は併設されていません。葬儀式やお別れは川口メモリアルホールなどで行い、その後、火葬を行う流れになります。",
   },
   "toda-sousaijo": {
     name: "戸田葬祭場",
-    description: "戸田市の斎場。近隣エリアからのご利用に対応します。",
+    description:
+      "火葬場を併設した斎場です。ご利用条件や空き状況により、川口市からのご利用もご相談いただけます。",
   },
   "yatsuka-saijo": {
     name: "谷塚斎場",
     description:
-      "草加市の斎場。火葬・式場利用にあわせてご案内可能です。",
+      "火葬場を併設した斎場です。ご利用条件や空き状況により、川口市からのご利用もご相談いただけます。",
   },
 };
 
@@ -196,78 +197,52 @@ export function AreaSaijo({ area }: { area: Area }) {
   });
 
   return (
-    <section className="bg-white py-16 md:py-24">
-      <div className="mx-auto max-w-6xl px-5 md:px-8">
-        <div className="max-w-3xl">
-          <p className="text-sm font-semibold tracking-[0.18em] text-brand uppercase">
-            Halls
-          </p>
-          <p className="mt-2 text-sm font-semibold text-ink-mid">
-            よく利用される斎場・ホール
-          </p>
-          <h2 className="font-serif-jp mt-4 text-3xl font-medium leading-[1.4] text-ink-deep md:text-[2.2rem]">
-            {area.name}でよくご利用いただく
-            <br className="md:hidden" />
-            斎場・ホール。
-          </h2>
-          <p className="mt-5 text-base leading-9 text-ink-mid md:text-lg">
-            自社ホールに加えて、地域の公営・民営斎場でのご葬儀にも対応しています。日程・規模・ご希望に合わせて最適な施設をご案内します。
-          </p>
-        </div>
+    <>
+      {/* Section 1: 斎場・ホール（自社ホールのみ） */}
+      <section className="bg-white py-16 md:py-24">
+        <div className="mx-auto max-w-6xl px-5 md:px-8">
+          <div className="max-w-3xl">
+            <p className="text-sm font-semibold tracking-[0.18em] text-brand uppercase">
+              Halls
+            </p>
+            <p className="mt-2 text-sm font-semibold text-ink-mid">
+              よく利用される斎場・ホール
+            </p>
+            <h2 className="font-serif-jp mt-4 text-3xl font-medium leading-[1.4] text-ink-deep md:text-[2.2rem]">
+              {area.name}でよくご利用いただく
+              <br className="md:hidden" />
+              斎場・ホール。
+            </h2>
+            <p className="mt-5 text-base leading-9 text-ink-mid md:text-lg">
+              川口市西新井宿の自社ホール「川口メモリアルホール」を中心に、ご葬儀をお手伝いします。日程・規模・ご希望に合わせて最適な施設をご案内します。
+            </p>
+          </div>
 
-        <ul className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
           {ownHall && (
-            <li>
-              <a
-                href={`/hall/${ownHall.slug}/`}
-                className="group flex h-full flex-col overflow-hidden rounded-lg border-2 border-brand bg-paper shadow-sm transition hover:shadow-md"
-              >
-                <div className="relative aspect-[4/3] bg-warm">
-                  <Image
-                    src="/images/home/hall/hall-exterior.jpg"
-                    alt="川口メモリアルホールの外観"
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 280px"
-                    className="object-cover object-center"
-                  />
-                </div>
-                <div className="flex flex-1 flex-col p-6">
-                  <p className="text-xs font-bold uppercase tracking-[0.18em] text-brand">
-                    自社ホール
-                  </p>
-                  <p className="font-serif-jp mt-2 text-lg font-medium text-ink-deep group-hover:text-brand md:text-xl">
-                    {ownHall.name}
-                  </p>
-                  <p className="mt-3 text-sm leading-7 text-ink-mid">
-                    川口市西新井宿の自社ホール。家族葬・一日葬に適した規模です。
-                  </p>
-                  <p className="mt-auto pt-4 inline-flex items-center gap-1 text-sm font-bold text-brand group-hover:underline">
-                    詳しく見る
-                    <span aria-hidden>→</span>
-                  </p>
-                </div>
-              </a>
-            </li>
-          )}
-          {saijoEntries.map((s) => (
-            <li key={s.slug}>
-              {s.hasPage ? (
+            <ul className="mt-10 grid max-w-md gap-5">
+              <li>
                 <a
-                  href={`/saijo/${s.slug}/`}
-                  className="group flex h-full flex-col overflow-hidden rounded-lg border border-line bg-white shadow-sm transition hover:border-brand hover:shadow-md"
+                  href={`/hall/${ownHall.slug}/`}
+                  className="group flex h-full flex-col overflow-hidden rounded-lg border-2 border-brand bg-paper shadow-sm transition hover:shadow-md"
                 >
                   <div className="relative aspect-[4/3] bg-warm">
-                    <div
-                      aria-hidden
-                      className="absolute inset-0 bg-[repeating-linear-gradient(135deg,#eef3ee_0_8px,transparent_8px_16px)]"
+                    <Image
+                      src="/images/home/hall/hall-exterior.jpg"
+                      alt="川口メモリアルホールの外観"
+                      fill
+                      sizes="(max-width: 768px) 100vw, 400px"
+                      className="object-cover object-center"
                     />
                   </div>
                   <div className="flex flex-1 flex-col p-6">
-                    <p className="font-serif-jp text-lg font-medium text-ink-deep group-hover:text-brand md:text-xl">
-                      {s.name}
+                    <p className="text-xs font-bold uppercase tracking-[0.18em] text-brand">
+                      自社ホール
+                    </p>
+                    <p className="font-serif-jp mt-2 text-lg font-medium text-ink-deep group-hover:text-brand md:text-xl">
+                      {ownHall.name}
                     </p>
                     <p className="mt-3 text-sm leading-7 text-ink-mid">
-                      {s.description}
+                      川口市西新井宿の自社ホール。家族葬・一日葬に適した規模です。
                     </p>
                     <p className="mt-auto pt-4 inline-flex items-center gap-1 text-sm font-bold text-brand group-hover:underline">
                       詳しく見る
@@ -275,49 +250,103 @@ export function AreaSaijo({ area }: { area: Area }) {
                     </p>
                   </div>
                 </a>
-              ) : (
-                <div className="flex h-full flex-col overflow-hidden rounded-lg border border-line bg-white shadow-sm">
-                  <div className="relative aspect-[4/3] bg-warm">
-                    <div
-                      aria-hidden
-                      className="absolute inset-0 bg-[repeating-linear-gradient(135deg,#eef3ee_0_8px,transparent_8px_16px)]"
-                    />
-                  </div>
-                  <div className="flex flex-1 flex-col p-6">
-                    <p className="font-serif-jp text-lg font-medium text-ink-deep md:text-xl">
-                      {s.name}
-                    </p>
-                    <p className="mt-3 text-sm leading-7 text-ink-mid">
-                      {s.description}
-                    </p>
-                    <p className="mt-auto pt-4 text-xs text-ink-soft">
-                      ご利用について詳しくはお問い合わせください
-                    </p>
-                  </div>
-                </div>
-              )}
-            </li>
-          ))}
-        </ul>
+              </li>
+            </ul>
+          )}
 
-        {area.otherFacilities && area.otherFacilities.length > 0 && (
-          <div className="mt-8 space-y-3">
-            {area.otherFacilities.map((f) => (
-              <div
-                key={f.name}
-                className="rounded-lg border border-line-soft bg-cool px-5 py-4 md:px-6 md:py-5"
-              >
-                <p className="text-sm font-bold text-ink-deep md:text-base">
-                  {f.name}
-                </p>
-                <p className="mt-2 text-sm leading-7 text-ink-mid">
-                  {f.description}
-                </p>
-              </div>
-            ))}
+          {area.otherFacilities && area.otherFacilities.length > 0 && (
+            <div className="mt-8 space-y-3">
+              {area.otherFacilities.map((f) => (
+                <div
+                  key={f.name}
+                  className="rounded-lg border border-line-soft bg-cool px-5 py-4 md:px-6 md:py-5"
+                >
+                  <p className="text-sm font-bold text-ink-deep md:text-base">
+                    {f.name}
+                  </p>
+                  <p className="mt-2 text-sm leading-7 text-ink-mid">
+                    {f.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Section 2: 火葬場・火葬場併設斎場 */}
+      <section className="bg-paper py-16 md:py-24">
+        <div className="mx-auto max-w-6xl px-5 md:px-8">
+          <div className="max-w-3xl">
+            <p className="text-sm font-semibold tracking-[0.18em] text-brand uppercase">
+              Cremation
+            </p>
+            <p className="mt-2 text-sm font-semibold text-ink-mid">
+              よく利用される火葬場・火葬場併設斎場
+            </p>
+            <h2 className="font-serif-jp mt-4 text-3xl font-medium leading-[1.4] text-ink-deep md:text-[2.2rem]">
+              {area.name}でよくご利用いただく
+              <br className="md:hidden" />
+              火葬場・火葬場併設斎場。
+            </h2>
+            <p className="mt-5 text-base leading-9 text-ink-mid md:text-lg">
+              川口市めぐりの森をはじめ、近隣の火葬場・火葬場併設斎場のご利用もご相談いただけます。施設の利用条件や空き状況により、ご案内内容が変わります。
+            </p>
           </div>
-        )}
-      </div>
-    </section>
+
+          <ul className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {saijoEntries.map((s) => (
+              <li key={s.slug}>
+                {s.hasPage ? (
+                  <a
+                    href={`/saijo/${s.slug}/`}
+                    className="group flex h-full flex-col overflow-hidden rounded-lg border border-line bg-white shadow-sm transition hover:border-brand hover:shadow-md"
+                  >
+                    <div className="relative aspect-[4/3] bg-warm">
+                      <div
+                        aria-hidden
+                        className="absolute inset-0 bg-[repeating-linear-gradient(135deg,#eef3ee_0_8px,transparent_8px_16px)]"
+                      />
+                    </div>
+                    <div className="flex flex-1 flex-col p-6">
+                      <p className="font-serif-jp text-lg font-medium text-ink-deep group-hover:text-brand md:text-xl">
+                        {s.name}
+                      </p>
+                      <p className="mt-3 text-sm leading-7 text-ink-mid">
+                        {s.description}
+                      </p>
+                      <p className="mt-auto pt-4 inline-flex items-center gap-1 text-sm font-bold text-brand group-hover:underline">
+                        詳しく見る
+                        <span aria-hidden>→</span>
+                      </p>
+                    </div>
+                  </a>
+                ) : (
+                  <div className="flex h-full flex-col overflow-hidden rounded-lg border border-line bg-white shadow-sm">
+                    <div className="relative aspect-[4/3] bg-warm">
+                      <div
+                        aria-hidden
+                        className="absolute inset-0 bg-[repeating-linear-gradient(135deg,#eef3ee_0_8px,transparent_8px_16px)]"
+                      />
+                    </div>
+                    <div className="flex flex-1 flex-col p-6">
+                      <p className="font-serif-jp text-lg font-medium text-ink-deep md:text-xl">
+                        {s.name}
+                      </p>
+                      <p className="mt-3 text-sm leading-7 text-ink-mid">
+                        {s.description}
+                      </p>
+                      <p className="mt-auto pt-4 text-xs text-ink-soft">
+                        ご利用について詳しくはお問い合わせください
+                      </p>
+                    </div>
+                  </div>
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    </>
   );
 }
