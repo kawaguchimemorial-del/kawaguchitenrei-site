@@ -1,6 +1,6 @@
 export type CompanyInfo = {
   name: string;
-  legalName: string;
+  legalName?: string;
   shortDescription: string;
   postal: string;
   address: string;
@@ -11,12 +11,12 @@ export type CompanyInfo = {
   phoneTelLink: string;
   email: string;
   hours: string;
-  representative: string;
+  representative?: string;
   founded: string;
   foundedYear: number;
   yearsInBusiness: number;
   annualCases: string;
-  capital: string;
+  capital?: string;
   business: string[];
   affiliations: string[];
   hallSlug: string;
@@ -30,7 +30,6 @@ export type CompanyInfo = {
 
 export const company: CompanyInfo = {
   name: "川口典礼",
-  legalName: "(要確認)株式会社川口典礼",
   shortDescription:
     "川口市・新井宿の地域密着葬儀社。川口メモリアルホール(駐車場70台・川口市めぐりの森まで車5分)を拠点に、家族葬から200名規模の一般葬まで対応します。創業20年、年間約260件の施行実績。",
   postal: "333-0833",
@@ -42,14 +41,12 @@ export const company: CompanyInfo = {
   phoneTelLink: "tel:0120-963-765",
   email: "kawaguchi.memorial@gmail.com",
   hours: "24時間365日 受付",
-  representative: "(要確認)",
   founded: "2006年(創業20年)",
   foundedYear: 2006,
   yearsInBusiness: 20,
   annualCases: "年間約260件",
-  capital: "(要確認)",
   business: [
-    "葬儀・告別式の請負(家族葬・一日葬・火葬式・直葬・一般葬)",
+    "葬儀・告別式の請負(家族葬・一日葬・直葬ほか)",
     "事前相談・葬儀プランのご案内",
     "斎場・式場の運営(川口メモリアルホール・駐車場70台)",
     "搬送・ご安置のサポート",
@@ -57,7 +54,7 @@ export const company: CompanyInfo = {
     "法要・アフターサポート",
     "川口市民葬制度の活用ご案内",
   ],
-  affiliations: ["(要確認)加盟団体・認可情報"],
+  affiliations: [],
   hallSlug: "kawaguchi-memorial-hall",
   hallName: "川口メモリアルホール",
   serviceAreas: [

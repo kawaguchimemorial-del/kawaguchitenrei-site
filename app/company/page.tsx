@@ -5,7 +5,7 @@ import { company, getLocalBusinessJsonLd } from "@/lib/company";
 export const metadata: Metadata = {
   title: "会社概要 | 川口典礼",
   description:
-    "川口典礼は、埼玉県川口市西新井宿の地域密着葬儀社です。川口メモリアルホールを拠点に、家族葬・一日葬・火葬式・直葬・川口市民葬まで対応。24時間365日受付。",
+    "川口典礼は、埼玉県川口市西新井宿の地域密着葬儀社です。川口メモリアルホールを拠点に、家族葬・一日葬・直葬・川口市民葬まで対応。24時間365日受付。",
   alternates: { canonical: "/company/" },
 };
 
@@ -144,14 +144,16 @@ export default function CompanyPage() {
                 </span>
               </dd>
             </div>
-            <div className="grid grid-cols-[auto_1fr] gap-x-6 border-t border-line-soft px-5 py-4 md:grid-cols-[220px_1fr] md:px-8 md:py-5">
-              <dt className="text-sm font-semibold text-ink-soft md:text-base">
-                代表者
-              </dt>
-              <dd className="text-base text-ink-deep md:text-lg">
-                {company.representative}
-              </dd>
-            </div>
+            {company.representative && (
+              <div className="grid grid-cols-[auto_1fr] gap-x-6 border-t border-line-soft px-5 py-4 md:grid-cols-[220px_1fr] md:px-8 md:py-5">
+                <dt className="text-sm font-semibold text-ink-soft md:text-base">
+                  代表者
+                </dt>
+                <dd className="text-base text-ink-deep md:text-lg">
+                  {company.representative}
+                </dd>
+              </div>
+            )}
             <div className="grid grid-cols-[auto_1fr] gap-x-6 border-t border-line-soft px-5 py-4 md:grid-cols-[220px_1fr] md:px-8 md:py-5">
               <dt className="text-sm font-semibold text-ink-soft md:text-base">
                 設立
@@ -160,14 +162,16 @@ export default function CompanyPage() {
                 {company.founded}
               </dd>
             </div>
-            <div className="grid grid-cols-[auto_1fr] gap-x-6 border-t border-line-soft px-5 py-4 md:grid-cols-[220px_1fr] md:px-8 md:py-5">
-              <dt className="text-sm font-semibold text-ink-soft md:text-base">
-                資本金
-              </dt>
-              <dd className="text-base text-ink-deep md:text-lg">
-                {company.capital}
-              </dd>
-            </div>
+            {company.capital && (
+              <div className="grid grid-cols-[auto_1fr] gap-x-6 border-t border-line-soft px-5 py-4 md:grid-cols-[220px_1fr] md:px-8 md:py-5">
+                <dt className="text-sm font-semibold text-ink-soft md:text-base">
+                  資本金
+                </dt>
+                <dd className="text-base text-ink-deep md:text-lg">
+                  {company.capital}
+                </dd>
+              </div>
+            )}
             <div className="grid grid-cols-[auto_1fr] gap-x-6 border-t border-line-soft px-5 py-4 md:grid-cols-[220px_1fr] md:px-8 md:py-5">
               <dt className="text-sm font-semibold text-ink-soft md:text-base">
                 自社ホール
@@ -303,20 +307,15 @@ export default function CompanyPage() {
               </div>
             </div>
 
-            <div
-              className="relative aspect-[4/3] overflow-hidden rounded-lg border border-line bg-white shadow-sm"
-              aria-label="地図プレースホルダー"
-            >
-              <div
-                aria-hidden
-                className="absolute inset-0 bg-[repeating-linear-gradient(0deg,transparent_0_24px,#e2eae3_24px,#e2eae3_25px),repeating-linear-gradient(90deg,transparent_0_24px,#e2eae3_24px,#e2eae3_25px),#faf8f3]"
+            <div className="relative aspect-[4/3] overflow-hidden rounded-lg border border-line bg-warm shadow-sm">
+              <iframe
+                title="川口メモリアルホールの地図"
+                src={`https://www.google.com/maps?q=${encodeURIComponent(company.mapEmbedQuery)}&output=embed`}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+                className="absolute inset-0 h-full w-full border-0"
               />
-              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-4xl">
-                📍
-              </div>
-              <div className="absolute bottom-3 right-3 rounded-md bg-white px-3 py-1.5 text-xs font-bold text-ink-mid shadow">
-                [Googleマップ埋め込み枠]
-              </div>
             </div>
           </div>
         </div>
