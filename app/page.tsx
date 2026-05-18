@@ -7,6 +7,7 @@ import { FaqSection } from "@/components/home/FaqSection";
 import { FinalCtaSection } from "@/components/home/FinalCtaSection";
 import { HallSection } from "@/components/home/HallSection";
 import { Hero } from "@/components/home/Hero";
+import { MediaLinksSection } from "@/components/home/MediaLinksSection";
 import { MeguriSection } from "@/components/home/MeguriSection";
 import { PlanSection } from "@/components/home/PlanSection";
 import { ThreeStrengthsSection } from "@/components/home/ThreeStrengthsSection";
@@ -28,6 +29,7 @@ export default function Home() {
       <AreasSection />
       <AccessSection />
       <FinalCtaSection />
+      <MediaLinksSection />
     </>
   );
 }
