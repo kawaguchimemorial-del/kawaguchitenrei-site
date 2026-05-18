@@ -1,46 +1,8 @@
+import Image from "next/image";
 import type { CaseRecord } from "@/lib/cases";
 import { plans } from "@/lib/plans";
 import { cases } from "@/lib/cases";
 import { getVoiceByCaseSlug } from "@/lib/voices";
-
-export function CaseGallery({ caseItem }: { caseItem: CaseRecord }) {
-  if (caseItem.altarCount <= 0) return null;
-
-  return (
-    <section className="bg-white py-16 md:py-24">
-      <div className="mx-auto max-w-6xl px-5 md:px-8">
-        <div className="max-w-3xl">
-          <p className="text-sm font-semibold tracking-[0.18em] text-brand uppercase">
-            Altar
-          </p>
-          <p className="mt-2 text-sm font-semibold text-ink-mid">
-            祭壇のお写真
-          </p>
-          <h2 className="font-serif-jp mt-4 text-3xl font-medium leading-[1.4] text-ink-deep md:text-[2.2rem]">
-            お見送りの祭壇。
-          </h2>
-          <p className="mt-5 text-base leading-9 text-ink-mid md:text-lg">
-            この事例でご用意した祭壇の写真です。ご家族のご希望や宗教形式に合わせてしつらえました。
-          </p>
-        </div>
-
-        <ul className="mt-9 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {Array.from({ length: caseItem.altarCount }, (_, i) => (
-            <li key={i}>
-              <div className="flex aspect-[4/3] items-center justify-center rounded-lg border border-line bg-[repeating-linear-gradient(135deg,#eef3ee_0_8px,transparent_8px_16px)] text-sm font-semibold text-ink-soft">
-                [祭壇のお写真 {i + 1}]
-              </div>
-            </li>
-          ))}
-        </ul>
-
-        <p className="mt-6 text-xs leading-6 text-ink-soft">
-          ※ 祭壇のお写真は、ご家族の許可をいただいたうえで掲載しています。お顔やお名前など個人を特定する情報は伏せています。
-        </p>
-      </div>
-    </section>
-  );
-}
 
 export function CaseStory({ caseItem }: { caseItem: CaseRecord }) {
   return (
@@ -112,8 +74,8 @@ export function CaseCostBreakdown({ caseItem }: { caseItem: CaseRecord }) {
             費用に含まれたもの・別途費用。
           </h2>
           <p className="mt-5 text-base leading-9 text-ink-mid md:text-lg">
-            総額 <strong className="text-brand">{caseItem.total}</strong>{" "}
-            の内訳の目安です。実際の項目はご家族の状況により異なります。
+            この事例の費用構成の目安です。総額はご家族の状況により異なるため、
+            <strong className="text-brand">個別にご案内</strong>します。
           </p>
         </div>
 
@@ -260,10 +222,23 @@ export function CaseRelated({ caseItem }: { caseItem: CaseRecord }) {
                 <li key={c.slug}>
                   <a
                     href={`/case/${c.slug}/`}
-                    className="group block h-full rounded-lg border border-line bg-paper shadow-sm transition hover:shadow-md"
+                    className="group block h-full overflow-hidden rounded-lg border border-line bg-paper shadow-sm transition hover:shadow-md"
                   >
-                    <div className="flex aspect-[4/3] items-center justify-center rounded-t-lg bg-[repeating-linear-gradient(135deg,#eef3ee_0_8px,transparent_8px_16px)] text-sm font-semibold text-ink-soft">
-                      [祭壇のお写真]
+                    <div className="relative aspect-[4/3] bg-warm">
+                      {c.photo ? (
+                        <Image
+                          src={c.photo.src}
+                          alt={c.photo.alt}
+                          fill
+                          sizes="(max-width: 768px) 100vw, 320px"
+                          className="object-cover object-center"
+                        />
+                      ) : (
+                        <div
+                          aria-hidden
+                          className="absolute inset-0 bg-[repeating-linear-gradient(135deg,#eef3ee_0_8px,transparent_8px_16px)]"
+                        />
+                      )}
                     </div>
                     <div className="p-5">
                       <p className="font-serif-jp text-base font-medium text-ink-deep group-hover:text-brand md:text-lg">

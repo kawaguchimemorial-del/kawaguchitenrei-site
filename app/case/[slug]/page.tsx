@@ -4,7 +4,6 @@ import { CaseDetailIntro } from "@/components/case/CaseDetailIntro";
 import {
   CaseCostBreakdown,
   CaseCta,
-  CaseGallery,
   CaseRelated,
   CaseStory,
 } from "@/components/case/CaseDetailBody";
@@ -48,7 +47,6 @@ export default async function CaseDetailPage({ params }: Props) {
   return (
     <>
       <CaseDetailIntro caseItem={caseItem} />
-      <CaseGallery caseItem={caseItem} />
       <CaseStory caseItem={caseItem} />
       <CaseCostBreakdown caseItem={caseItem} />
       <CaseRelated caseItem={caseItem} />

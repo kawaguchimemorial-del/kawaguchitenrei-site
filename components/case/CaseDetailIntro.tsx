@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Breadcrumbs } from "@/components/common/Breadcrumbs";
 import type { CaseRecord } from "@/lib/cases";
 
@@ -97,14 +98,22 @@ export function CaseDetailIntro({ caseItem }: { caseItem: CaseRecord }) {
         </div>
 
         <figure className="mt-10">
-          <div className="relative flex aspect-[16/9] items-center justify-center overflow-hidden rounded-lg border border-line bg-warm shadow-[0_24px_70px_rgba(26,42,35,0.12)]">
-            <div
-              aria-hidden
-              className="absolute inset-0 bg-[repeating-linear-gradient(135deg,#e8e1d2_0_10px,transparent_10px_22px)]"
-            />
-            <div className="relative z-10 text-sm font-semibold text-ink-soft">
-              [メイン祭壇のお写真]
-            </div>
+          <div className="relative aspect-[16/9] overflow-hidden rounded-lg border border-line bg-warm shadow-[0_24px_70px_rgba(26,42,35,0.12)]">
+            {caseItem.photo ? (
+              <Image
+                src={caseItem.photo.src}
+                alt={caseItem.photo.alt}
+                fill
+                sizes="(max-width: 768px) 100vw, 900px"
+                className="object-cover object-center"
+                priority
+              />
+            ) : (
+              <div
+                aria-hidden
+                className="absolute inset-0 bg-[repeating-linear-gradient(135deg,#e8e1d2_0_10px,transparent_10px_22px)]"
+              />
+            )}
           </div>
         </figure>
       </div>

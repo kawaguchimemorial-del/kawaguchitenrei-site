@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { PageHero } from "@/components/common/PageHero";
 import { cases } from "@/lib/cases";
 
 export const metadata: Metadata = {
   title: "施行事例一覧 | 川口典礼",
   description:
-    "川口典礼の施行事例をご覧いただけます。家族葬・一日葬・火葬式・直葬の費用、参列人数、内容、ご家族からのご要望と実施内容まで掲載。川口市・新井宿エリアの実例です。",
+    "川口典礼の施行事例をご覧いただけます。家族葬・一日葬・直葬の費用、参列人数、内容、ご家族からのご要望と実施内容まで掲載。川口市・新井宿エリアの実例です。",
   alternates: { canonical: "/case/" },
 };
 
@@ -63,10 +64,23 @@ export default function CaseIndexPage() {
               <li key={c.slug}>
                 <a
                   href={`/case/${c.slug}/`}
-                  className="group flex h-full flex-col rounded-lg border border-line bg-white shadow-sm transition hover:shadow-md"
+                  className="group flex h-full flex-col overflow-hidden rounded-lg border border-line bg-white shadow-sm transition hover:shadow-md"
                 >
-                  <div className="flex aspect-[4/3] items-center justify-center rounded-t-lg bg-[repeating-linear-gradient(135deg,#eef3ee_0_8px,transparent_8px_16px)] text-sm font-semibold text-ink-soft">
-                    [祭壇のお写真]
+                  <div className="relative aspect-[4/3] bg-warm">
+                    {c.photo ? (
+                      <Image
+                        src={c.photo.src}
+                        alt={c.photo.alt}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 320px"
+                        className="object-cover object-center"
+                      />
+                    ) : (
+                      <div
+                        aria-hidden
+                        className="absolute inset-0 bg-[repeating-linear-gradient(135deg,#eef3ee_0_8px,transparent_8px_16px)]"
+                      />
+                    )}
                   </div>
                   <div className="flex flex-1 flex-col p-6">
                     <div className="flex flex-wrap items-center gap-2 text-xs">
