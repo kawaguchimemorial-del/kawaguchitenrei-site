@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { PageHero } from "@/components/common/PageHero";
 import { voices } from "@/lib/voices";
 
 export const metadata: Metadata = {
   title: "お客様の声一覧 | 川口典礼",
   description:
-    "川口典礼でご葬儀を執り行ったご家族から、ご利用いただいた感想をお寄せいただいています。プラン・人数・総額・施行場所もあわせて掲載。手書きアンケートも掲載しています。",
+    "川口典礼でご葬儀を執り行ったご家族から、ご利用いただいた感想をお寄せいただいています。お客様アンケートと感想本文を掲載しています。",
   alternates: { canonical: "/voice/" },
 };
 
@@ -14,11 +15,27 @@ function formatDate(iso: string): string {
   return `${y}/${m}/${d}`;
 }
 
+function StarRating({ rating }: { rating: number }) {
+  const clamped = Math.max(0, Math.min(5, Math.round(rating)));
+  return (
+    <p
+      aria-label={`5段階中${clamped}の評価`}
+      className="flex items-center gap-2"
+    >
+      <span aria-hidden className="text-base tracking-[0.18em] text-gold">
+        {"★".repeat(clamped)}
+        <span className="text-gold/30">{"★".repeat(5 - clamped)}</span>
+      </span>
+      <span className="text-xs font-semibold text-ink-soft">
+        5段階中 {clamped}
+      </span>
+    </p>
+  );
+}
+
 const sortedVoices = [...voices].sort((a, b) =>
   a.publishedAt < b.publishedAt ? 1 : -1
 );
-
-const surveyCount = voices.filter((v) => v.hasHandwrittenSurvey).length;
 
 export default function VoiceIndexPage() {
   return (
@@ -35,7 +52,7 @@ export default function VoiceIndexPage() {
         }
         description={
           <p>
-            川口典礼でお見送りをお手伝いしたご家族からの感想を掲載しています。プラン・人数・総額・施行場所もあわせてご覧いただけます。掲載は個人情報を確認のうえ、ご家族の許可を得たものです。
+            川口典礼でお見送りをお手伝いしたご家族から、お客様アンケートと感想をお寄せいただいています。掲載は個人情報を確認のうえ、ご家族の許可を得たものです。
           </p>
         }
         breadcrumbs={[
@@ -54,11 +71,6 @@ export default function VoiceIndexPage() {
               <p className="mt-2 font-serif-jp text-2xl font-medium text-ink-deep md:text-3xl">
                 公開中のお声 {sortedVoices.length}件
               </p>
-              {surveyCount > 0 && (
-                <p className="mt-1 text-sm text-ink-mid">
-                  うち手書きアンケート掲載 {surveyCount}件
-                </p>
-              )}
             </div>
             <p className="text-sm text-ink-soft">
               公開日が新しい順に表示しています
@@ -70,53 +82,40 @@ export default function VoiceIndexPage() {
               <li key={voice.slug}>
                 <a
                   href={`/voice/${voice.slug}/`}
-                  className="group flex h-full flex-col gap-5 rounded-lg border border-line bg-white p-6 shadow-sm transition hover:shadow-md md:p-8"
+                  className="group flex h-full flex-col overflow-hidden rounded-lg border border-line bg-white shadow-sm transition hover:shadow-md"
                 >
-                  <div className="flex items-center gap-3 text-xs">
-                    <span className="inline-flex rounded-full border border-line bg-paper px-3 py-1 font-bold text-ink-deep">
-                      {voice.format}
-                    </span>
-                    {voice.hasHandwrittenSurvey && (
-                      <span className="inline-flex items-center gap-1 rounded-full border border-gold/40 bg-gold-soft/40 px-3 py-1 font-bold text-gold">
-                        手書きあり
-                      </span>
-                    )}
-                    <span className="text-ink-soft">
-                      {formatDate(voice.publishedAt)} 公開
-                    </span>
+                  <div className="relative aspect-[4/3] bg-warm">
+                    <Image
+                      src={voice.surveyImage.src}
+                      alt={voice.surveyImage.alt}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 480px"
+                      className="object-cover object-center"
+                    />
                   </div>
 
-                  <p className="font-serif-jp text-xl font-medium leading-[1.55] text-ink-deep group-hover:text-brand md:text-2xl">
-                    「{voice.title}」
-                  </p>
+                  <div className="flex flex-1 flex-col gap-4 p-6 md:p-8">
+                    <p className="text-xs text-ink-soft">
+                      {formatDate(voice.publishedAt)} 公開
+                    </p>
 
-                  <blockquote className="border-l-2 border-brand pl-4 text-sm leading-8 text-ink-mid md:text-base">
-                    {voice.quote}
-                  </blockquote>
+                    <p className="font-serif-jp text-xl font-medium leading-[1.55] text-ink-deep group-hover:text-brand md:text-2xl">
+                      「{voice.title}」
+                    </p>
 
-                  <dl className="mt-auto grid grid-cols-[auto_1fr] gap-x-4 gap-y-2 rounded-lg border border-line-soft bg-paper px-4 py-4 text-sm">
-                    <dt className="text-ink-soft">プラン</dt>
-                    <dd className="font-semibold text-ink-deep">
-                      {voice.format}
-                    </dd>
-                    <dt className="text-ink-soft">参列人数</dt>
-                    <dd className="font-semibold text-ink-deep">
-                      {voice.people}
-                    </dd>
-                    <dt className="text-ink-soft">総額</dt>
-                    <dd className="font-bold text-brand">{voice.total}</dd>
-                    <dt className="text-ink-soft">施行場所</dt>
-                    <dd className="font-semibold text-ink-deep">
-                      {voice.hall}
-                    </dd>
-                  </dl>
+                    <StarRating rating={voice.rating} />
 
-                  <div className="flex items-center justify-between text-sm">
-                    <span className="text-ink-soft">{voice.family}</span>
-                    <span className="inline-flex items-center gap-1 font-bold text-brand group-hover:underline">
-                      詳しく見る
-                      <span aria-hidden>→</span>
-                    </span>
+                    <blockquote className="border-l-2 border-brand pl-4 text-sm leading-8 text-ink-mid md:text-base">
+                      {voice.comment}
+                    </blockquote>
+
+                    <div className="mt-auto flex items-center justify-between text-sm">
+                      <span className="text-ink-soft">{voice.family}</span>
+                      <span className="inline-flex items-center gap-1 font-bold text-brand group-hover:underline">
+                        詳しく見る
+                        <span aria-hidden>→</span>
+                      </span>
+                    </div>
                   </div>
                 </a>
               </li>
@@ -137,7 +136,7 @@ export default function VoiceIndexPage() {
                   お客様の声の掲載方針
                 </p>
                 <p className="mt-3 text-sm leading-7 text-ink-mid md:text-base md:leading-8">
-                  ご家族の許可をいただいたうえで掲載しています。お名前や個人を特定する情報はマスキングし、星評価などの簡易な数値化ではなく、お客様のお言葉そのものを大切に扱っています。
+                  ご家族の許可をいただいたうえで掲載しています。お名前や個人を特定する情報はマスキングし、お客様のお言葉そのものを大切に扱っています。
                 </p>
               </div>
               <a

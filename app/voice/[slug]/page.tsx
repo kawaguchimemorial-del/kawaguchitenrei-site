@@ -4,7 +4,6 @@ import { VoiceDetailIntro } from "@/components/voice/VoiceDetailIntro";
 import {
   VoiceCta,
   VoiceLong,
-  VoiceRelated,
   VoiceSurvey,
 } from "@/components/voice/VoiceDetailBody";
 import { getAllVoiceSlugs, getVoice } from "@/lib/voices";
@@ -49,8 +48,7 @@ export default async function VoiceDetailPage({ params }: Props) {
       <VoiceDetailIntro voice={voice} />
       <VoiceLong voice={voice} />
       <VoiceSurvey voice={voice} />
-      <VoiceRelated voice={voice} />
-      <VoiceCta voice={voice} />
+      <VoiceCta />
     </>
   );
 }

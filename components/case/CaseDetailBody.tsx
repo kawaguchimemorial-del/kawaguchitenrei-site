@@ -2,7 +2,6 @@ import Image from "next/image";
 import type { CaseRecord } from "@/lib/cases";
 import { plans } from "@/lib/plans";
 import { cases } from "@/lib/cases";
-import { getVoiceByCaseSlug } from "@/lib/voices";
 
 export function CaseStory({ caseItem }: { caseItem: CaseRecord }) {
   return (
@@ -138,7 +137,6 @@ export function CaseRelated({ caseItem }: { caseItem: CaseRecord }) {
   const otherCases = cases
     .filter((c) => c.slug !== caseItem.slug)
     .slice(0, 3);
-  const relatedVoice = getVoiceByCaseSlug(caseItem.slug);
 
   return (
     <section className="bg-white py-16 md:py-24">
@@ -152,35 +150,6 @@ export function CaseRelated({ caseItem }: { caseItem: CaseRecord }) {
             関連するプラン・他の事例。
           </h2>
         </div>
-
-        {relatedVoice && (
-          <div className="mt-9">
-            <p className="text-xs font-bold uppercase tracking-[0.18em] text-ink-soft">
-              この事例に関するお客様の声
-            </p>
-            <a
-              href={`/voice/${relatedVoice.slug}/`}
-              className="group mt-4 block rounded-lg border border-line bg-paper p-6 shadow-sm transition hover:border-brand hover:shadow-md md:p-7"
-            >
-              <p className="text-xs font-bold uppercase tracking-[0.18em] text-brand">
-                Voice
-              </p>
-              <p className="font-serif-jp mt-2 text-xl font-medium leading-[1.55] text-ink-deep group-hover:text-brand md:text-2xl">
-                「{relatedVoice.title}」
-              </p>
-              <blockquote className="mt-3 border-l-2 border-brand pl-4 text-sm leading-7 text-ink-mid md:text-base">
-                {relatedVoice.quote}
-              </blockquote>
-              <p className="mt-5 flex items-center justify-between text-sm">
-                <span className="text-ink-soft">{relatedVoice.family}</span>
-                <span className="inline-flex items-center gap-1 font-bold text-brand group-hover:underline">
-                  お客様の声を見る
-                  <span aria-hidden>→</span>
-                </span>
-              </p>
-            </a>
-          </div>
-        )}
 
         {relatedPlans.length > 0 && (
           <div className="mt-9">
