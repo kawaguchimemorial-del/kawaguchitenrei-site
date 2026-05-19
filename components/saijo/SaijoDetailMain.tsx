@@ -232,6 +232,125 @@ export function SaijoAvailablePlans({ saijo }: { saijo: Saijo }) {
             </li>
           ))}
         </ul>
+
+        <p className="mt-8 text-center text-sm leading-7 text-ink-mid md:text-base md:leading-8">
+          どのプランが合うかは、ご家族の状況やご希望に合わせてご案内します。
+          <a
+            href="/contact/"
+            className="ml-2 inline-flex items-center gap-1 font-bold text-brand hover:underline"
+          >
+            川口典礼へご相談
+            <span aria-hidden>→</span>
+          </a>
+        </p>
+      </div>
+    </section>
+  );
+}
+
+export function SaijoGallery({ saijo }: { saijo: Saijo }) {
+  if (!saijo.photos || saijo.photos.length === 0) return null;
+
+  return (
+    <section className="bg-paper py-16 md:py-24">
+      <div className="mx-auto max-w-6xl px-5 md:px-8">
+        <div className="max-w-3xl">
+          <p className="text-sm font-semibold tracking-[0.18em] text-brand uppercase">
+            Facility
+          </p>
+          <p className="mt-2 text-sm font-semibold text-ink-mid">施設の様子</p>
+          <h2 className="font-serif-jp mt-4 text-3xl font-medium leading-[1.4] text-ink-deep md:text-[2.2rem]">
+            川口市めぐりの森の施設写真。
+          </h2>
+          <p className="mt-5 text-base leading-9 text-ink-mid md:text-lg">
+            外観・火葬炉・待合室・館内通路の写真です。火葬を行う施設で、通夜・告別式を行う式場は併設されていません。
+          </p>
+        </div>
+
+        <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {saijo.photos.map((photo) => (
+            <li key={photo.src}>
+              <figure className="overflow-hidden rounded-lg border border-line bg-white shadow-sm">
+                <div className="relative aspect-[4/3] bg-warm">
+                  <Image
+                    src={photo.src}
+                    alt={photo.alt}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 320px"
+                    className="object-cover object-center"
+                  />
+                </div>
+                <figcaption className="border-t border-line-soft px-5 py-4">
+                  <p className="font-serif-jp text-base font-medium text-ink-deep md:text-lg">
+                    {photo.label}
+                  </p>
+                  <p className="mt-1 text-sm leading-6 text-ink-mid">
+                    {photo.caption}
+                  </p>
+                </figcaption>
+              </figure>
+            </li>
+          ))}
+        </ul>
+
+        <p className="mt-6 text-xs leading-6 text-ink-soft md:text-sm">
+          ※ 川口市めぐりの森は火葬場です。通夜・告別式を行う式場は併設されていません。葬儀式やお別れの時間は川口メモリアルホールなどの式場で行い、その後、火葬を行う流れになります。
+        </p>
+      </div>
+    </section>
+  );
+}
+
+export function SaijoFlow({ saijo }: { saijo: Saijo }) {
+  if (!saijo.flow || saijo.flow.length === 0) return null;
+
+  return (
+    <section className="bg-white py-16 md:py-24">
+      <div className="mx-auto max-w-4xl px-5 md:px-8">
+        <div className="max-w-3xl">
+          <p className="text-sm font-semibold tracking-[0.18em] text-brand uppercase">
+            Flow
+          </p>
+          <p className="mt-2 text-sm font-semibold text-ink-mid">利用の流れ</p>
+          <h2 className="font-serif-jp mt-4 text-3xl font-medium leading-[1.4] text-ink-deep md:text-[2.2rem]">
+            川口市めぐりの森を利用する葬儀の流れ。
+          </h2>
+          <p className="mt-5 text-base leading-9 text-ink-mid md:text-lg">
+            式場でのお別れの後、川口市めぐりの森で火葬を行う一般的な流れです。火葬場予約、ご搬送、ご安置、式場でのお別れ、火葬当日の移動まで、川口典礼が一貫してお手伝いします。
+          </p>
+        </div>
+
+        <ol className="mt-10 space-y-4">
+          {saijo.flow.map((s, i) => (
+            <li
+              key={i}
+              className="flex items-start gap-4 rounded-lg border border-line bg-paper p-5 shadow-sm md:gap-6 md:p-6"
+            >
+              <span
+                aria-hidden
+                className="font-serif-jp mt-0.5 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand text-base font-bold text-white md:h-10 md:w-10"
+              >
+                {i + 1}
+              </span>
+              <div className="min-w-0 flex-1">
+                <p className="font-serif-jp text-lg font-medium text-ink-deep md:text-xl">
+                  {s.step}
+                </p>
+                <p className="mt-2 text-sm leading-7 text-ink-mid md:text-base md:leading-8">
+                  {s.description}
+                </p>
+              </div>
+            </li>
+          ))}
+        </ol>
+
+        <p className="mt-6 text-sm leading-7 text-ink-mid md:text-base md:leading-8">
+          この流れを
+          <strong className="font-bold text-ink-deep">
+            川口典礼が一貫してお手伝いします
+          </strong>
+          。火葬場予約、ご搬送、ご安置、式場でのお別れ、火葬当日の移動などをまとめてご相談いただけます。
+        </p>
       </div>
     </section>
   );

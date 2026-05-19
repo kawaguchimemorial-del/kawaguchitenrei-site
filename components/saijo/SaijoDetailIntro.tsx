@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Breadcrumbs } from "@/components/common/Breadcrumbs";
 import type { Saijo } from "@/lib/saijo";
 
@@ -15,7 +16,7 @@ export function SaijoDetailIntro({ saijo }: { saijo: Saijo }) {
           />
         </div>
 
-        <div className="grid gap-10 md:grid-cols-[1.05fr_0.95fr] md:items-center">
+        <div className="grid gap-10 md:grid-cols-[1.05fr_0.95fr] md:items-start">
           <div>
             <p className="text-sm font-semibold tracking-[0.18em] text-brand uppercase">
               Saijo
@@ -65,45 +66,61 @@ export function SaijoDetailIntro({ saijo }: { saijo: Saijo }) {
 
           <aside
             aria-label={`${saijo.name}の概要`}
-            className="rounded-lg border border-line bg-white p-6 shadow-sm md:p-8"
+            className="overflow-hidden rounded-lg border border-line bg-white shadow-sm"
           >
-            <p className="text-xs font-bold uppercase tracking-[0.18em] text-ink-soft">
-              施設の概要
-            </p>
-            <dl className="mt-5 space-y-4">
-              <div className="flex items-baseline justify-between gap-4 border-b border-line-soft pb-4">
-                <dt className="text-sm font-semibold text-ink-soft">施設種別</dt>
-                <dd className="text-base font-bold text-ink-deep">
-                  {saijo.type}
-                </dd>
-              </div>
-              <div className="flex items-baseline justify-between gap-4 border-b border-line-soft pb-4">
-                <dt className="text-sm font-semibold text-ink-soft">運営</dt>
-                <dd className="text-base font-bold text-ink-deep">
-                  {saijo.operator}
-                </dd>
-              </div>
-              <div className="flex items-baseline justify-between gap-4 border-b border-line-soft pb-4">
-                <dt className="text-sm font-semibold text-ink-soft">対応形式</dt>
-                <dd className="text-right text-sm font-bold text-ink-deep">
-                  直葬・花入れお別れ
-                  <br />
-                  一日葬・家族葬
-                </dd>
-              </div>
-              <div className="border-b border-line-soft pb-4">
-                <dt className="text-sm font-semibold text-ink-soft">
-                  川口典礼から
-                </dt>
-                <dd className="mt-2 text-sm leading-7 text-ink-mid">
-                  {saijo.access.fromKawaguchi}
-                </dd>
-              </div>
-            </dl>
+            <div className="relative aspect-[16/9] w-full bg-warm">
+              <Image
+                src="/images/saijo/megurinomori/exterior.png"
+                alt="川口市めぐりの森の外観"
+                fill
+                sizes="(max-width: 768px) 100vw, 480px"
+                className="object-cover object-center"
+              />
+            </div>
 
-            <p className="mt-5 text-xs leading-6 text-ink-soft">
-              ※ 利用料金や予約可否は、ご家族の状況・ご希望の日程により異なります。事前にお電話でご確認いただけます。
-            </p>
+            <div className="p-6 md:p-8">
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-ink-soft">
+                施設の概要
+              </p>
+              <dl className="mt-5 space-y-4">
+                <div className="flex items-baseline justify-between gap-4 border-b border-line-soft pb-4">
+                  <dt className="text-sm font-semibold text-ink-soft">
+                    施設種別
+                  </dt>
+                  <dd className="text-base font-bold text-ink-deep">
+                    {saijo.type}
+                  </dd>
+                </div>
+                <div className="flex items-baseline justify-between gap-4 border-b border-line-soft pb-4">
+                  <dt className="text-sm font-semibold text-ink-soft">運営</dt>
+                  <dd className="text-base font-bold text-ink-deep">
+                    {saijo.operator}
+                  </dd>
+                </div>
+                <div className="flex items-baseline justify-between gap-4 border-b border-line-soft pb-4">
+                  <dt className="text-sm font-semibold text-ink-soft">
+                    川口典礼の対応形式
+                  </dt>
+                  <dd className="text-right text-sm font-bold text-ink-deep">
+                    直葬・花入れお別れ
+                    <br />
+                    一日葬・家族葬
+                  </dd>
+                </div>
+                <div className="border-b border-line-soft pb-4">
+                  <dt className="text-sm font-semibold text-ink-soft">
+                    川口典礼から
+                  </dt>
+                  <dd className="mt-2 text-sm leading-7 text-ink-mid">
+                    {saijo.access.fromKawaguchi}
+                  </dd>
+                </div>
+              </dl>
+
+              <p className="mt-5 text-xs leading-6 text-ink-soft">
+                ※ 葬儀式やお別れの時間は川口メモリアルホールなどの式場で行い、その後、川口市めぐりの森で火葬を行う流れになります。
+              </p>
+            </div>
           </aside>
         </div>
       </div>

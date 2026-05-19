@@ -5,6 +5,8 @@ import {
   SaijoCremationFees,
   SaijoFacilityInfo,
   SaijoFeatures,
+  SaijoFlow,
+  SaijoGallery,
   SaijoImportantNotice,
   SaijoOurSupport,
 } from "@/components/saijo/SaijoDetailMain";
@@ -35,7 +37,9 @@ export default function MegurinomoriPage() {
     <>
       <SaijoDetailIntro saijo={saijoMegurinomori} />
       <SaijoImportantNotice saijo={saijoMegurinomori} />
+      <SaijoGallery saijo={saijoMegurinomori} />
       <SaijoFeatures saijo={saijoMegurinomori} />
+      <SaijoFlow saijo={saijoMegurinomori} />
       <SaijoOurSupport saijo={saijoMegurinomori} />
       <SaijoAvailablePlans saijo={saijoMegurinomori} />
       <SaijoFacilityInfo saijo={saijoMegurinomori} />
