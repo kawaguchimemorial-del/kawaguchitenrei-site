@@ -9,6 +9,7 @@ import {
   PlanFaq,
   PlanFlow,
   PlanInclusions,
+  PlanSimpleAlternative,
 } from "@/components/plan/PlanDetailBody";
 import { getAllPlanSlugs, getPlan } from "@/lib/plans";
 
@@ -58,6 +59,7 @@ export default async function PlanDetailPage({ params }: Props) {
       ) : (
         <>
           <PlanInclusions plan={plan} />
+          <PlanSimpleAlternative plan={plan} />
           <PlanFlow plan={plan} />
           <PlanAdditional plan={plan} />
           <PlanCompatibleHalls plan={plan} />

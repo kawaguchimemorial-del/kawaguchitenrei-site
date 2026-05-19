@@ -30,6 +30,16 @@ export type CitizenFuneralInfo = {
   faqs: { q: string; a: string }[];
 };
 
+export type SimpleAlternative = {
+  heading: string;
+  name: string;
+  description: string;
+  memberPrice: string;
+  regularPrice: string;
+  peopleNote: string;
+  cautions: string[];
+};
+
 export type Plan = {
   slug: string;
   name: string;
@@ -50,6 +60,7 @@ export type Plan = {
   faqs: { q: string; a: string }[];
   metaDescription: string;
   citizenFuneralInfo?: CitizenFuneralInfo;
+  simpleAlternative?: SimpleAlternative;
 };
 
 const compatibleHallsAll = [
@@ -289,6 +300,20 @@ export const plans: Plan[] = [
     ],
     metaDescription:
       "川口典礼の直葬は、宗教儀礼を行わず必要な手配と火葬のみで完結する葬儀プランです。費用を抑えてお見送りしたい方に。川口市・新井宿で24時間365日対応。",
+    simpleAlternative: {
+      heading: "さらに費用を抑えた「シンプル直葬プラン」もございます",
+      name: "シンプル直葬プラン",
+      description:
+        "宗教的な物品を含まず、お預かり中の面会を行わない、より簡素なお見送りのプランです。人数は5名様までを目安にご案内しています。",
+      memberPrice: "88,000円(税込)",
+      regularPrice: "138,000円(税込)",
+      peopleNote: "～5名",
+      cautions: [
+        "宗教的な物品は含まれません。",
+        "お預かり中の面会はできません。",
+        "内容が合うかどうかは、事前相談時にご確認ください。",
+      ],
+    },
   },
   {
     slug: "kawaguchi-shimin",

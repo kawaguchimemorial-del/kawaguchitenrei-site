@@ -90,6 +90,10 @@ const planCards: PlanCardEntry[] = [
     price: "内容により変動",
     href: "/contact/",
     isConsult: true,
+    image: {
+      src: "/images/home/plans/plan-ippan.png",
+      alt: "一般葬プランのイメージ",
+    },
   },
 ];
 

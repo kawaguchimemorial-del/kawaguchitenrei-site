@@ -40,6 +40,73 @@ export function PlanInclusions({ plan }: { plan: Plan }) {
   );
 }
 
+export function PlanSimpleAlternative({ plan }: { plan: Plan }) {
+  if (!plan.simpleAlternative) return null;
+  const sa = plan.simpleAlternative;
+
+  return (
+    <section className="bg-paper py-16 md:py-24">
+      <div className="mx-auto max-w-4xl px-5 md:px-8">
+        <div className="max-w-3xl">
+          <p className="text-sm font-semibold tracking-[0.18em] text-brand uppercase">
+            Alternative
+          </p>
+          <p className="mt-2 text-sm font-semibold text-ink-mid">
+            さらに簡素な選択肢
+          </p>
+          <h2 className="font-serif-jp mt-4 text-2xl font-medium leading-[1.4] text-ink-deep md:text-[1.8rem]">
+            {sa.heading}
+          </h2>
+        </div>
+
+        <div className="mt-8 rounded-lg border border-line bg-white p-6 shadow-sm md:p-8">
+          <div className="flex flex-wrap items-baseline justify-between gap-4">
+            <p className="font-serif-jp text-xl font-medium text-ink-deep md:text-2xl">
+              {sa.name}
+            </p>
+            <p className="text-sm font-bold text-ink-soft">
+              人数目安 {sa.peopleNote}
+            </p>
+          </div>
+          <p className="mt-4 text-base leading-9 text-ink-mid md:text-lg md:leading-10">
+            {sa.description}
+          </p>
+
+          <dl className="mt-6 grid gap-3 sm:grid-cols-2">
+            <div className="rounded-lg border border-line-soft bg-paper px-5 py-4">
+              <dt className="text-xs font-bold uppercase tracking-[0.18em] text-ink-soft">
+                会員価格
+              </dt>
+              <dd className="font-serif-jp mt-2 text-2xl font-medium text-ink-deep">
+                {sa.memberPrice}
+              </dd>
+            </div>
+            <div className="rounded-lg border border-line-soft bg-paper px-5 py-4">
+              <dt className="text-xs font-bold uppercase tracking-[0.18em] text-ink-soft">
+                通常価格
+              </dt>
+              <dd className="font-serif-jp mt-2 text-2xl font-medium text-ink-deep">
+                {sa.regularPrice}
+              </dd>
+            </div>
+          </dl>
+
+          <ul className="mt-6 space-y-2 text-sm leading-7 text-ink-mid md:text-base md:leading-8">
+            {sa.cautions.map((c) => (
+              <li key={c} className="flex items-start gap-2">
+                <span aria-hidden className="mt-1 text-ink-soft">
+                  ※
+                </span>
+                <span>{c}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export function PlanFlow({ plan }: { plan: Plan }) {
   return (
     <section className="bg-cool py-16 md:py-24">
