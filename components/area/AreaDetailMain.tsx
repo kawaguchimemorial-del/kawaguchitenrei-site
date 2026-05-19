@@ -164,12 +164,12 @@ const saijoLabels: Record<string, { name: string; description: string }> = {
   megurinomori: {
     name: "川口市めぐりの森",
     description:
-      "川口市営の火葬場です。通夜・告別式を行う式場は併設されていません。葬儀式やお別れは川口メモリアルホールなどで行い、その後、火葬を行う流れになります。",
+      "川口市営の火葬場です。通夜・告別式を行う式場は併設されていません。",
   },
-  "toda-sousaijo": {
+  "toda-sousaijyo": {
     name: "戸田葬祭場",
     description:
-      "火葬場を併設した斎場です。ご利用条件や空き状況により、川口市からのご利用もご相談いただけます。",
+      "東京都板橋区舟渡の火葬場併設斎場です。川口典礼は、戸田葬祭場でのご葬儀の手配・搬送・式場利用相談をサポートします。",
   },
   "yatsuka-saijo": {
     name: "谷塚斎場",
@@ -193,6 +193,7 @@ export function AreaSaijo({ area }: { area: Area }) {
         existing?.intro ??
         "ご利用についてお気軽にご相談ください。",
       hasPage: Boolean(existing),
+      photo: existing?.photos?.[0],
     };
   });
 
@@ -295,55 +296,66 @@ export function AreaSaijo({ area }: { area: Area }) {
           </div>
 
           <ul className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {saijoEntries.map((s) => (
-              <li key={s.slug}>
-                {s.hasPage ? (
-                  <a
-                    href={`/saijo/${s.slug}/`}
-                    className="group flex h-full flex-col overflow-hidden rounded-lg border border-line bg-white shadow-sm transition hover:border-brand hover:shadow-md"
-                  >
-                    <div className="relative aspect-[4/3] bg-warm">
-                      <div
-                        aria-hidden
-                        className="absolute inset-0 bg-[repeating-linear-gradient(135deg,#eef3ee_0_8px,transparent_8px_16px)]"
-                      />
+            {saijoEntries.map((s) => {
+              const cover = s.photo ? (
+                <div className="relative aspect-[4/3] bg-warm">
+                  <Image
+                    src={s.photo.src}
+                    alt={s.photo.alt}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 360px"
+                    className="object-cover object-center"
+                  />
+                </div>
+              ) : (
+                <div className="relative aspect-[4/3] bg-warm">
+                  <div
+                    aria-hidden
+                    className="absolute inset-0 bg-[repeating-linear-gradient(135deg,#eef3ee_0_8px,transparent_8px_16px)]"
+                  />
+                </div>
+              );
+
+              return (
+                <li key={s.slug}>
+                  {s.hasPage ? (
+                    <a
+                      href={`/saijo/${s.slug}/`}
+                      className="group flex h-full flex-col overflow-hidden rounded-lg border border-line bg-white shadow-sm transition hover:border-brand hover:shadow-md"
+                    >
+                      {cover}
+                      <div className="flex flex-1 flex-col p-6">
+                        <p className="font-serif-jp text-lg font-medium text-ink-deep group-hover:text-brand md:text-xl">
+                          {s.name}
+                        </p>
+                        <p className="mt-3 text-sm leading-7 text-ink-mid">
+                          {s.description}
+                        </p>
+                        <p className="mt-auto pt-4 inline-flex items-center gap-1 text-sm font-bold text-brand group-hover:underline">
+                          詳しく見る
+                          <span aria-hidden>→</span>
+                        </p>
+                      </div>
+                    </a>
+                  ) : (
+                    <div className="flex h-full flex-col overflow-hidden rounded-lg border border-line bg-white shadow-sm">
+                      {cover}
+                      <div className="flex flex-1 flex-col p-6">
+                        <p className="font-serif-jp text-lg font-medium text-ink-deep md:text-xl">
+                          {s.name}
+                        </p>
+                        <p className="mt-3 text-sm leading-7 text-ink-mid">
+                          {s.description}
+                        </p>
+                        <p className="mt-auto pt-4 text-xs text-ink-soft">
+                          ご利用について詳しくはお問い合わせください
+                        </p>
+                      </div>
                     </div>
-                    <div className="flex flex-1 flex-col p-6">
-                      <p className="font-serif-jp text-lg font-medium text-ink-deep group-hover:text-brand md:text-xl">
-                        {s.name}
-                      </p>
-                      <p className="mt-3 text-sm leading-7 text-ink-mid">
-                        {s.description}
-                      </p>
-                      <p className="mt-auto pt-4 inline-flex items-center gap-1 text-sm font-bold text-brand group-hover:underline">
-                        詳しく見る
-                        <span aria-hidden>→</span>
-                      </p>
-                    </div>
-                  </a>
-                ) : (
-                  <div className="flex h-full flex-col overflow-hidden rounded-lg border border-line bg-white shadow-sm">
-                    <div className="relative aspect-[4/3] bg-warm">
-                      <div
-                        aria-hidden
-                        className="absolute inset-0 bg-[repeating-linear-gradient(135deg,#eef3ee_0_8px,transparent_8px_16px)]"
-                      />
-                    </div>
-                    <div className="flex flex-1 flex-col p-6">
-                      <p className="font-serif-jp text-lg font-medium text-ink-deep md:text-xl">
-                        {s.name}
-                      </p>
-                      <p className="mt-3 text-sm leading-7 text-ink-mid">
-                        {s.description}
-                      </p>
-                      <p className="mt-auto pt-4 text-xs text-ink-soft">
-                        ご利用について詳しくはお問い合わせください
-                      </p>
-                    </div>
-                  </div>
-                )}
-              </li>
-            ))}
+                  )}
+                </li>
+              );
+            })}
           </ul>
         </div>
       </section>

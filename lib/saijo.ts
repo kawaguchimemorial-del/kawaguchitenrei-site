@@ -16,8 +16,10 @@ export type FeeTable = {
   heading: string;
   lead?: string;
   columns: string[];
+  noteHeader?: string;
   rows: { category: string; values: string[]; note?: string }[];
   footnote?: string;
+  footnotes?: string[];
 };
 
 export type CremationFurnace = {
@@ -70,7 +72,15 @@ export type Saijo = {
   importantNotice?: { heading: string; body: string };
   cremationFees?: CremationFees;
   photos?: { src: string; alt: string; label: string; caption: string }[];
+  photosHeading?: string;
+  photosLead?: string;
+  photosFootnote?: string;
   flow?: { step: string; description: string }[];
+  flowHeading?: string;
+  flowLead?: string;
+  availablePlansLabel?: string;
+  availablePlansHeading?: string;
+  availablePlansLead?: string;
   cremationFurnaces?: {
     heading: string;
     lead?: string;
@@ -256,6 +266,11 @@ export const saijoMegurinomori: Saijo = {
       caption: "館内の通路です。",
     },
   ],
+  photosHeading: "川口市めぐりの森の施設写真。",
+  photosLead:
+    "外観・火葬炉・待合室・館内通路の写真です。火葬を行う施設で、通夜・告別式を行う式場は併設されていません。",
+  photosFootnote:
+    "川口市めぐりの森は火葬場です。通夜・告別式を行う式場は併設されていません。葬儀式やお別れの時間は川口メモリアルホールなどの式場で行い、その後、火葬を行う流れになります。",
   flow: [
     {
       step: "川口メモリアルホールなどで葬儀式・お別れ",
@@ -277,6 +292,13 @@ export const saijoMegurinomori: Saijo = {
       description: "火葬後、ご家族で収骨を行います。",
     },
   ],
+  flowHeading: "川口市めぐりの森を利用する葬儀の流れ。",
+  flowLead:
+    "式場でのお別れの後、川口市めぐりの森で火葬を行う一般的な流れです。火葬場予約、ご搬送、ご安置、式場でのお別れ、火葬当日の移動まで、川口典礼が一貫してお手伝いします。",
+  availablePlansLabel: "めぐりの森での火葬を含む葬儀プラン",
+  availablePlansHeading: "めぐりの森での火葬を含む葬儀プラン。",
+  availablePlansLead:
+    "川口典礼では、川口メモリアルホールなどでのお別れ・葬儀式から、川口市めぐりの森での火葬まで、ご家族のご希望に合わせて一貫してお手伝いします。直葬プラン、花入れお別れプラン、一日葬プラン、家族葬プラン、市民葬プランなど、内容に応じてご相談いただけます。",
 };
 
 export const saijoTodaSousaijyo: Saijo = {
@@ -428,6 +450,18 @@ export const saijoTodaSousaijyo: Saijo = {
       caption: "ご予約いただける椅子席です。",
     },
   ],
+  photosHeading: "戸田葬祭場の施設写真。",
+  photosLead:
+    "外観・総合案内・ロビー・椅子席の写真です。戸田葬祭場は、式場・火葬炉・待合室を備えた火葬場併設斎場です。",
+  photosFootnote:
+    "式場や火葬炉、待合室の利用については、川口典礼へご相談ください。",
+  flowHeading: "戸田葬祭場を利用する葬儀の流れ。",
+  flowLead:
+    "式場でのお別れから火葬、収骨までの流れを、川口典礼が一貫してサポートします。",
+  availablePlansLabel: "戸田葬祭場でのご葬儀に対応",
+  availablePlansHeading: "戸田葬祭場の利用に対応する葬儀プラン。",
+  availablePlansLead:
+    "川口典礼では、戸田葬祭場での式場利用や火葬を含む葬儀のご相談に対応しています。施設利用料・火葬料は葬儀プラン料金とは別途必要です。",
   cremationFurnaces: {
     heading: "戸田葬祭場の火葬炉。",
     lead: "戸田葬祭場では、特別殯館・特別室・最上等の3種の火葬炉から、ご希望や予算に応じてご案内します。詳しい仕様や違いは事前相談時にご案内します。",
@@ -538,95 +572,119 @@ export const saijoTodaSousaijyo: Saijo = {
       "椅子席は1席990円(税込)。待合室料金は来場者人数に席料を乗じた額となります。来場者人数に応じた部屋を施設側で指定します。未就学児は無料です。",
   },
   feeTablesNote:
-    "以下の料金は戸田葬祭場の施設利用料・火葬料です。川口典礼の葬儀プラン料金とは別途必要となります。総額のお見積りは事前のご相談時にご案内します。",
+    "以下の料金は戸田葬祭場の施設利用料・火葬料です。川口典礼の葬儀プラン料金とは別途必要です。",
   feeTables: [
     {
-      heading: "式場料金",
-      columns: ["式場", "料金"],
+      heading: "式場料金一覧",
+      columns: ["斎場(式場)名", "料金"],
+      noteHeader: "摘要",
       rows: [
-        { category: "光の間(本館3階)", values: ["297,000円(税込)"] },
-        { category: "せせらぎの間(本館4階)", values: ["198,000円(税込)"] },
-        { category: "思食の間(別館)", values: ["253,000円(税込)"] },
+        { category: "3階 光の間", values: ["297,000円"], note: "消費税込" },
+        {
+          category: "4階 せせらぎの間",
+          values: ["198,000円"],
+          note: "消費税込",
+        },
+        { category: "別館 思食の間", values: ["253,000円"], note: "消費税込" },
       ],
-      footnote:
-        "料金は変更される可能性があります。最新の料金はお問い合わせください。",
     },
     {
-      heading: "別間使用料金(清め料金)",
+      heading: "別間使用(清め料金)一覧",
       lead: "本館2階・3階の別間ご使用時の料金です。",
-      columns: ["席数", "料金"],
+      columns: ["区分", "席数", "料金"],
+      noteHeader: "摘要",
       rows: [
-        { category: "2階・3階 30席", values: ["37,400円(税込)"] },
-        { category: "2階・3階 60席", values: ["64,900円(税込)"] },
-        { category: "2階・3階 90席", values: ["92,400円(税込)"] },
-        { category: "2階・3階 120席", values: ["119,900円(税込)"] },
+        {
+          category: "2階・3階",
+          values: ["30席", "37,400円"],
+          note: "消費税込",
+        },
+        {
+          category: "2階・3階",
+          values: ["60席", "64,900円"],
+          note: "消費税込",
+        },
+        {
+          category: "2階・3階",
+          values: ["90席", "92,400円"],
+          note: "消費税込",
+        },
+        {
+          category: "2階・3階",
+          values: ["120席", "119,900円"],
+          note: "消費税込",
+        },
       ],
-      footnote:
-        "料金は変更される可能性があります。最新の料金はお問い合わせください。",
     },
     {
-      heading: "火葬料金(一般料金)",
+      heading: "火葬料金一覧(一般料金)",
       columns: ["区分", "大人", "小人"],
+      noteHeader: "摘要",
       rows: [
         {
           category: "特別殯館",
-          values: ["177,000円(非課税)", "104,000円(非課税)"],
-          note: "収骨容器無料",
+          values: ["177,000円", "104,000円"],
+          note: "非課税・収骨容器無料",
         },
         {
           category: "特別室(仏心)",
-          values: ["107,500円(非課税)", "54,500円(非課税)"],
-          note: "収骨容器無料",
+          values: ["107,500円", "54,500円"],
+          note: "非課税・収骨容器無料",
         },
         {
           category: "最上等",
-          values: ["80,000円(非課税)", "44,000円(非課税)"],
-          note: "収骨容器無料",
+          values: ["80,000円", "44,000円"],
+          note: "非課税・収骨容器無料",
         },
       ],
-      footnote:
-        "料金は変更される可能性があります。最新の料金はお問い合わせください。",
     },
     {
-      heading: "火葬料金(区民葬料金)",
+      heading: "火葬料金一覧(区民葬料金)",
       lead: "区民葬の対象となる方の料金です。",
       columns: ["区分", "大人", "小人"],
+      noteHeader: "摘要",
       rows: [
         {
           category: "最上等",
-          values: ["59,600円(非課税)", "34,500円(非課税)"],
-          note: "収骨容器有料",
+          values: ["59,600円", "34,500円"],
+          note: "非課税・収骨容器有料",
         },
       ],
-      footnote:
-        "適用条件・料金は変更される可能性があります。最新の料金・適用条件はお問い合わせください。",
     },
     {
-      heading: "火葬料金(市民葬料金)",
+      heading: "火葬料金一覧(市民葬料金)",
       lead: "市民葬の対象となる方の料金です。",
       columns: ["区分", "大人", "小人"],
+      noteHeader: "摘要",
       rows: [
         {
           category: "最上等",
-          values: ["72,000円(非課税)", "39,600円(非課税)"],
-          note: "収骨容器無料",
+          values: ["72,000円", "39,600円"],
+          note: "非課税・収骨容器無料",
         },
       ],
-      footnote:
-        "適用条件・料金は変更される可能性があります。最新の料金・適用条件はお問い合わせください。",
+      footnotes: [
+        "小人は満6歳以下です。",
+        "市民葬適用の収骨容器以外は有料となります。",
+        "料金は変更される可能性があるため、最新の料金はお問い合わせください。",
+      ],
     },
     {
-      heading: "待合室席料",
-      columns: ["項目", "料金"],
+      heading: "待合室料金一覧",
+      columns: ["区分", "料金"],
+      noteHeader: "摘要",
       rows: [
         {
-          category: "椅子席 1席",
-          values: ["990円(税込)"],
-          note: "未就学児は無料",
+          category: "席料",
+          values: ["1席 990円"],
+          note: "消費税込",
         },
       ],
-      footnote:
-        "待合室料金は来場者人数に席料を乗じた額となります。来場者人数に応じた部屋を施設側で指定します。",
+      footnotes: [
+        "待合室料金は、来場者人数に椅子席料を乗じた額です。",
+        "待合室は人数に応じた部屋を施設側で指定します。",
+        "未就学児は無料です。",
+      ],
     },
   ],
 };

@@ -46,7 +46,7 @@ export const areaKawaguchi: Area = {
     },
   ],
   primaryHallSlug: "kawaguchi-memorial-hall",
-  primarySaijoSlugs: ["megurinomori", "toda-sousaijo", "yatsuka-saijo"],
+  primarySaijoSlugs: ["megurinomori", "toda-sousaijyo", "yatsuka-saijo"],
   otherFacilities: [
     {
       name: "近隣の公営・民営斎場・寺院式場",

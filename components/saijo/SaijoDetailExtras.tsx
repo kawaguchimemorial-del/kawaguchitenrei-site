@@ -84,7 +84,7 @@ export function SaijoAccess({ saijo }: { saijo: Saijo }) {
 
           <div className="relative aspect-[4/3] overflow-hidden rounded-lg border border-line bg-white shadow-sm md:aspect-auto md:min-h-[420px]">
             <iframe
-              title="川口市めぐりの森の地図"
+              title={`${saijo.name}の地図`}
               src={`https://www.google.com/maps?q=${encodeURIComponent(saijo.mapEmbedQuery)}&output=embed`}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"

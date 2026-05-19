@@ -185,14 +185,16 @@ export function SaijoAvailablePlans({ saijo }: { saijo: Saijo }) {
             Plans
           </p>
           <p className="mt-2 text-sm font-semibold text-ink-mid">
-            めぐりの森での火葬を含む葬儀プラン
+            {saijo.availablePlansLabel ?? "葬儀プラン"}
           </p>
           <h2 className="font-serif-jp mt-4 text-3xl font-medium leading-[1.4] text-ink-deep md:text-[2.2rem]">
-            めぐりの森での火葬を含む葬儀プラン。
+            {saijo.availablePlansHeading ?? `${saijo.shortName}での葬儀プラン。`}
           </h2>
-          <p className="mt-5 text-base leading-9 text-ink-mid md:text-lg">
-            川口典礼では、川口メモリアルホールなどでのお別れ・葬儀式から、川口市めぐりの森での火葬まで、ご家族のご希望に合わせて一貫してお手伝いします。直葬プラン、花入れお別れプラン、一日葬プラン、家族葬プラン、市民葬プランなど、内容に応じてご相談いただけます。
-          </p>
+          {saijo.availablePlansLead && (
+            <p className="mt-5 text-base leading-9 text-ink-mid md:text-lg">
+              {saijo.availablePlansLead}
+            </p>
+          )}
         </div>
 
         <ul className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
@@ -260,11 +262,13 @@ export function SaijoGallery({ saijo }: { saijo: Saijo }) {
           </p>
           <p className="mt-2 text-sm font-semibold text-ink-mid">施設の様子</p>
           <h2 className="font-serif-jp mt-4 text-3xl font-medium leading-[1.4] text-ink-deep md:text-[2.2rem]">
-            川口市めぐりの森の施設写真。
+            {saijo.photosHeading ?? `${saijo.name}の施設写真。`}
           </h2>
-          <p className="mt-5 text-base leading-9 text-ink-mid md:text-lg">
-            外観・火葬炉・待合室・館内通路の写真です。火葬を行う施設で、通夜・告別式を行う式場は併設されていません。
-          </p>
+          {saijo.photosLead && (
+            <p className="mt-5 text-base leading-9 text-ink-mid md:text-lg">
+              {saijo.photosLead}
+            </p>
+          )}
         </div>
 
         <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -293,9 +297,11 @@ export function SaijoGallery({ saijo }: { saijo: Saijo }) {
           ))}
         </ul>
 
-        <p className="mt-6 text-xs leading-6 text-ink-soft md:text-sm">
-          ※ 川口市めぐりの森は火葬場です。通夜・告別式を行う式場は併設されていません。葬儀式やお別れの時間は川口メモリアルホールなどの式場で行い、その後、火葬を行う流れになります。
-        </p>
+        {saijo.photosFootnote && (
+          <p className="mt-6 text-xs leading-6 text-ink-soft md:text-sm">
+            ※ {saijo.photosFootnote}
+          </p>
+        )}
       </div>
     </section>
   );
@@ -313,11 +319,13 @@ export function SaijoFlow({ saijo }: { saijo: Saijo }) {
           </p>
           <p className="mt-2 text-sm font-semibold text-ink-mid">利用の流れ</p>
           <h2 className="font-serif-jp mt-4 text-3xl font-medium leading-[1.4] text-ink-deep md:text-[2.2rem]">
-            川口市めぐりの森を利用する葬儀の流れ。
+            {saijo.flowHeading ?? `${saijo.name}を利用する葬儀の流れ。`}
           </h2>
-          <p className="mt-5 text-base leading-9 text-ink-mid md:text-lg">
-            式場でのお別れの後、川口市めぐりの森で火葬を行う一般的な流れです。火葬場予約、ご搬送、ご安置、式場でのお別れ、火葬当日の移動まで、川口典礼が一貫してお手伝いします。
-          </p>
+          {saijo.flowLead && (
+            <p className="mt-5 text-base leading-9 text-ink-mid md:text-lg">
+              {saijo.flowLead}
+            </p>
+          )}
         </div>
 
         <ol className="mt-10 space-y-4">
@@ -625,67 +633,86 @@ export function SaijoFeeTables({ saijo }: { saijo: Saijo }) {
         </div>
 
         <div className="mt-10 space-y-10">
-          {saijo.feeTables.map((table) => (
-            <div key={table.heading}>
-              <h3 className="font-serif-jp text-xl font-medium leading-[1.4] text-ink-deep md:text-2xl">
-                {table.heading}
-              </h3>
-              {table.lead && (
-                <p className="mt-3 text-sm leading-7 text-ink-mid md:text-base md:leading-8">
-                  {table.lead}
-                </p>
-              )}
+          {saijo.feeTables.map((table, tableIndex) => {
+            const hasNoteColumn =
+              Boolean(table.noteHeader) ||
+              table.rows.some((r) => r.note && r.note.length > 0);
 
-              <div className="mt-5 overflow-x-auto rounded-lg border border-line bg-white shadow-sm">
-                <table className="w-full min-w-[480px] border-collapse">
-                  <thead>
-                    <tr className="bg-paper">
-                      {table.columns.map((col, i) => (
-                        <th
-                          key={col}
-                          className={`px-4 py-3 text-sm font-bold text-ink-deep md:px-5 md:py-4 md:text-base ${
-                            i === 0 ? "text-left" : "text-right"
-                          }`}
-                        >
-                          {col}
-                        </th>
-                      ))}
-                      <th className="px-4 py-3 text-right text-xs font-bold text-ink-soft md:px-5 md:py-4 md:text-sm" />
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {table.rows.map((row) => (
-                      <tr
-                        key={row.category}
-                        className="border-t border-line-soft"
-                      >
-                        <td className="px-4 py-4 text-sm leading-6 text-ink md:px-5 md:py-5 md:text-base">
-                          {row.category}
-                        </td>
-                        {row.values.map((val, i) => (
-                          <td
-                            key={i}
-                            className="font-serif-jp px-4 py-4 text-right text-base font-bold text-ink-deep md:px-5 md:py-5 md:text-lg"
+            return (
+              <div key={`${table.heading}-${tableIndex}`}>
+                <h3 className="font-serif-jp text-xl font-medium leading-[1.4] text-ink-deep md:text-2xl">
+                  {table.heading}
+                </h3>
+                {table.lead && (
+                  <p className="mt-3 text-sm leading-7 text-ink-mid md:text-base md:leading-8">
+                    {table.lead}
+                  </p>
+                )}
+
+                <div className="mt-5 overflow-x-auto rounded-lg border border-line bg-white shadow-sm">
+                  <table className="w-full min-w-[480px] border-collapse">
+                    <thead>
+                      <tr className="bg-paper">
+                        {table.columns.map((col, i) => (
+                          <th
+                            key={col}
+                            className={`px-4 py-3 text-sm font-bold text-ink-deep md:px-5 md:py-4 md:text-base ${
+                              i === 0 ? "text-left" : "text-right"
+                            }`}
                           >
-                            {val}
-                          </td>
+                            {col}
+                          </th>
                         ))}
-                        <td className="px-4 py-4 text-right text-xs leading-6 text-ink-soft md:px-5 md:py-5 md:text-sm">
-                          {row.note ?? ""}
-                        </td>
+                        {hasNoteColumn && (
+                          <th className="px-4 py-3 text-right text-xs font-bold text-ink-soft md:px-5 md:py-4 md:text-sm">
+                            {table.noteHeader ?? ""}
+                          </th>
+                        )}
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+                    </thead>
+                    <tbody>
+                      {table.rows.map((row, rowIndex) => (
+                        <tr
+                          key={`${row.category}-${rowIndex}`}
+                          className="border-t border-line-soft"
+                        >
+                          <td className="px-4 py-4 text-sm leading-6 text-ink md:px-5 md:py-5 md:text-base">
+                            {row.category}
+                          </td>
+                          {row.values.map((val, i) => (
+                            <td
+                              key={i}
+                              className="font-serif-jp px-4 py-4 text-right text-base font-bold text-ink-deep md:px-5 md:py-5 md:text-lg"
+                            >
+                              {val}
+                            </td>
+                          ))}
+                          {hasNoteColumn && (
+                            <td className="px-4 py-4 text-right text-xs leading-6 text-ink-soft md:px-5 md:py-5 md:text-sm">
+                              {row.note ?? ""}
+                            </td>
+                          )}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
 
-              {table.footnote && (
-                <p className="mt-3 text-xs leading-6 text-ink-soft md:text-sm">
-                  ※ {table.footnote}
-                </p>
-              )}
-            </div>
-          ))}
+                {table.footnote && (
+                  <p className="mt-3 text-xs leading-6 text-ink-soft md:text-sm">
+                    ※ {table.footnote}
+                  </p>
+                )}
+                {table.footnotes && table.footnotes.length > 0 && (
+                  <ul className="mt-3 space-y-1 text-xs leading-6 text-ink-soft md:text-sm">
+                    {table.footnotes.map((note, i) => (
+                      <li key={i}>※ {note}</li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
