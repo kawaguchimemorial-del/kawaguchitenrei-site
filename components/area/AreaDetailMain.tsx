@@ -178,7 +178,7 @@ const saijoLabels: Record<string, { name: string; description: string }> = {
   "yatsuka-saijo": {
     name: "谷塚斎場",
     description:
-      "火葬場を併設した斎場です。ご利用条件や空き状況により、川口市からのご利用もご相談いただけます。",
+      "埼玉県草加市の火葬場併設斎場です。川口典礼は、谷塚斎場でのご葬儀の手配・搬送・式場利用相談をサポートします。",
   },
 };
 
