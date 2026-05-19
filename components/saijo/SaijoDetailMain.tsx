@@ -395,3 +395,299 @@ export function SaijoFacilityInfo({ saijo }: { saijo: Saijo }) {
     </section>
   );
 }
+
+export function SaijoCremationFurnaces({ saijo }: { saijo: Saijo }) {
+  if (!saijo.cremationFurnaces || saijo.cremationFurnaces.items.length === 0)
+    return null;
+  const block = saijo.cremationFurnaces;
+
+  return (
+    <section className="bg-white py-16 md:py-24">
+      <div className="mx-auto max-w-6xl px-5 md:px-8">
+        <div className="max-w-3xl">
+          <p className="text-sm font-semibold tracking-[0.18em] text-brand uppercase">
+            Cremation Furnace
+          </p>
+          <p className="mt-2 text-sm font-semibold text-ink-mid">火葬炉</p>
+          <h2 className="font-serif-jp mt-4 text-3xl font-medium leading-[1.4] text-ink-deep md:text-[2.2rem]">
+            {block.heading}
+          </h2>
+          {block.lead && (
+            <p className="mt-5 text-base leading-9 text-ink-mid md:text-lg">
+              {block.lead}
+            </p>
+          )}
+        </div>
+
+        <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {block.items.map((item) => (
+            <li key={item.name}>
+              <figure className="overflow-hidden rounded-lg border border-line bg-white shadow-sm">
+                <div className="relative aspect-[4/3] bg-warm">
+                  <Image
+                    src={item.image.src}
+                    alt={item.image.alt}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 360px"
+                    className="object-cover object-center"
+                  />
+                </div>
+                <figcaption className="border-t border-line-soft px-5 py-4">
+                  <p className="font-serif-jp text-base font-medium text-ink-deep md:text-lg">
+                    {item.name}
+                  </p>
+                  {item.description && (
+                    <p className="mt-1 text-sm leading-6 text-ink-mid">
+                      {item.description}
+                    </p>
+                  )}
+                </figcaption>
+              </figure>
+            </li>
+          ))}
+        </ul>
+
+        <p className="mt-6 text-xs leading-6 text-ink-soft md:text-sm">
+          ※ 各火葬炉の仕様や違いについては事前のご相談時にご案内します。
+        </p>
+      </div>
+    </section>
+  );
+}
+
+export function SaijoHallRooms({ saijo }: { saijo: Saijo }) {
+  if (!saijo.hallRooms || saijo.hallRooms.items.length === 0) return null;
+  const block = saijo.hallRooms;
+
+  return (
+    <section className="bg-paper py-16 md:py-24">
+      <div className="mx-auto max-w-6xl px-5 md:px-8">
+        <div className="max-w-3xl">
+          <p className="text-sm font-semibold tracking-[0.18em] text-brand uppercase">
+            Hall Rooms
+          </p>
+          <p className="mt-2 text-sm font-semibold text-ink-mid">式場</p>
+          <h2 className="font-serif-jp mt-4 text-3xl font-medium leading-[1.4] text-ink-deep md:text-[2.2rem]">
+            {block.heading}
+          </h2>
+          {block.lead && (
+            <p className="mt-5 text-base leading-9 text-ink-mid md:text-lg">
+              {block.lead}
+            </p>
+          )}
+        </div>
+
+        <ul className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {block.items.map((room) => {
+            const content = (
+              <>
+                <div className="relative aspect-[4/3] bg-warm">
+                  <Image
+                    src={room.image.src}
+                    alt={room.image.alt}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 360px"
+                    className="object-cover object-center"
+                  />
+                </div>
+                <div className="flex flex-1 flex-col p-6">
+                  <p className="text-xs font-bold uppercase tracking-[0.18em] text-ink-soft">
+                    {room.location}
+                  </p>
+                  <p className="font-serif-jp mt-2 text-lg font-medium text-ink-deep md:text-xl">
+                    {room.name}
+                  </p>
+                  {room.description && (
+                    <p className="mt-2 text-sm leading-7 text-ink-mid">
+                      {room.description}
+                    </p>
+                  )}
+                  {room.feeNote && (
+                    <p className="mt-3 text-sm font-bold text-brand">
+                      式場料金 {room.feeNote}
+                    </p>
+                  )}
+                  <p className="mt-auto pt-4 text-xs text-ink-soft">
+                    {room.detailHref
+                      ? "式場の詳細を見る →"
+                      : "詳細は事前相談時にご案内"}
+                  </p>
+                </div>
+              </>
+            );
+
+            return (
+              <li key={room.slug}>
+                {room.detailHref ? (
+                  <a
+                    href={room.detailHref}
+                    className="group flex h-full flex-col overflow-hidden rounded-lg border border-line bg-white shadow-sm transition hover:border-brand hover:shadow-md"
+                  >
+                    {content}
+                  </a>
+                ) : (
+                  <div className="flex h-full flex-col overflow-hidden rounded-lg border border-line bg-white shadow-sm">
+                    {content}
+                  </div>
+                )}
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    </section>
+  );
+}
+
+export function SaijoCremationWaitingRooms({ saijo }: { saijo: Saijo }) {
+  if (
+    !saijo.cremationWaitingRooms ||
+    saijo.cremationWaitingRooms.items.length === 0
+  )
+    return null;
+  const block = saijo.cremationWaitingRooms;
+
+  return (
+    <section className="bg-white py-16 md:py-24">
+      <div className="mx-auto max-w-6xl px-5 md:px-8">
+        <div className="max-w-3xl">
+          <p className="text-sm font-semibold tracking-[0.18em] text-brand uppercase">
+            Waiting Room
+          </p>
+          <p className="mt-2 text-sm font-semibold text-ink-mid">
+            火葬待合室
+          </p>
+          <h2 className="font-serif-jp mt-4 text-3xl font-medium leading-[1.4] text-ink-deep md:text-[2.2rem]">
+            {block.heading}
+          </h2>
+          {block.lead && (
+            <p className="mt-5 text-base leading-9 text-ink-mid md:text-lg">
+              {block.lead}
+            </p>
+          )}
+        </div>
+
+        <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {block.items.map((room) => (
+            <li key={room.name}>
+              <figure className="overflow-hidden rounded-lg border border-line bg-white shadow-sm">
+                <div className="relative aspect-[4/3] bg-warm">
+                  <Image
+                    src={room.image.src}
+                    alt={room.image.alt}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 280px"
+                    className="object-cover object-center"
+                  />
+                </div>
+                <figcaption className="border-t border-line-soft px-5 py-4">
+                  <p className="font-serif-jp text-base font-medium text-ink-deep md:text-lg">
+                    {room.name}
+                  </p>
+                  <p className="mt-1 text-sm leading-6 text-ink-mid">
+                    収容: {room.capacity}
+                  </p>
+                </figcaption>
+              </figure>
+            </li>
+          ))}
+        </ul>
+
+        {block.seatFeeNote && (
+          <p className="mt-6 rounded-lg border border-line-soft bg-paper px-5 py-4 text-sm leading-7 text-ink-mid md:px-6 md:py-5 md:text-base md:leading-8">
+            {block.seatFeeNote}
+          </p>
+        )}
+      </div>
+    </section>
+  );
+}
+
+export function SaijoFeeTables({ saijo }: { saijo: Saijo }) {
+  if (!saijo.feeTables || saijo.feeTables.length === 0) return null;
+
+  return (
+    <section className="bg-cool py-16 md:py-24">
+      <div className="mx-auto max-w-5xl px-5 md:px-8">
+        <div className="max-w-3xl">
+          <p className="text-sm font-semibold tracking-[0.18em] text-brand uppercase">
+            Fees
+          </p>
+          <p className="mt-2 text-sm font-semibold text-ink-mid">料金一覧</p>
+          <h2 className="font-serif-jp mt-4 text-3xl font-medium leading-[1.4] text-ink-deep md:text-[2.2rem]">
+            {saijo.shortName}の施設利用料・火葬料。
+          </h2>
+          {saijo.feeTablesNote && (
+            <p className="mt-5 text-base leading-9 text-ink-mid md:text-lg">
+              {saijo.feeTablesNote}
+            </p>
+          )}
+        </div>
+
+        <div className="mt-10 space-y-10">
+          {saijo.feeTables.map((table) => (
+            <div key={table.heading}>
+              <h3 className="font-serif-jp text-xl font-medium leading-[1.4] text-ink-deep md:text-2xl">
+                {table.heading}
+              </h3>
+              {table.lead && (
+                <p className="mt-3 text-sm leading-7 text-ink-mid md:text-base md:leading-8">
+                  {table.lead}
+                </p>
+              )}
+
+              <div className="mt-5 overflow-x-auto rounded-lg border border-line bg-white shadow-sm">
+                <table className="w-full min-w-[480px] border-collapse">
+                  <thead>
+                    <tr className="bg-paper">
+                      {table.columns.map((col, i) => (
+                        <th
+                          key={col}
+                          className={`px-4 py-3 text-sm font-bold text-ink-deep md:px-5 md:py-4 md:text-base ${
+                            i === 0 ? "text-left" : "text-right"
+                          }`}
+                        >
+                          {col}
+                        </th>
+                      ))}
+                      <th className="px-4 py-3 text-right text-xs font-bold text-ink-soft md:px-5 md:py-4 md:text-sm" />
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {table.rows.map((row) => (
+                      <tr
+                        key={row.category}
+                        className="border-t border-line-soft"
+                      >
+                        <td className="px-4 py-4 text-sm leading-6 text-ink md:px-5 md:py-5 md:text-base">
+                          {row.category}
+                        </td>
+                        {row.values.map((val, i) => (
+                          <td
+                            key={i}
+                            className="font-serif-jp px-4 py-4 text-right text-base font-bold text-ink-deep md:px-5 md:py-5 md:text-lg"
+                          >
+                            {val}
+                          </td>
+                        ))}
+                        <td className="px-4 py-4 text-right text-xs leading-6 text-ink-soft md:px-5 md:py-5 md:text-sm">
+                          {row.note ?? ""}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              {table.footnote && (
+                <p className="mt-3 text-xs leading-6 text-ink-soft md:text-sm">
+                  ※ {table.footnote}
+                </p>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}

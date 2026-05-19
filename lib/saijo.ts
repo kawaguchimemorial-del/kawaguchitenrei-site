@@ -12,6 +12,36 @@ export type CremationFees = {
   changeNotice: string;
 };
 
+export type FeeTable = {
+  heading: string;
+  lead?: string;
+  columns: string[];
+  rows: { category: string; values: string[]; note?: string }[];
+  footnote?: string;
+};
+
+export type CremationFurnace = {
+  name: string;
+  description?: string;
+  image: { src: string; alt: string };
+};
+
+export type CremationWaitingRoom = {
+  name: string;
+  capacity: string;
+  image: { src: string; alt: string };
+};
+
+export type HallRoom = {
+  slug: string;
+  name: string;
+  location: string;
+  feeNote?: string;
+  description?: string;
+  image: { src: string; alt: string };
+  detailHref?: string;
+};
+
 export type Saijo = {
   slug: string;
   name: string;
@@ -41,6 +71,24 @@ export type Saijo = {
   cremationFees?: CremationFees;
   photos?: { src: string; alt: string; label: string; caption: string }[];
   flow?: { step: string; description: string }[];
+  cremationFurnaces?: {
+    heading: string;
+    lead?: string;
+    items: CremationFurnace[];
+  };
+  cremationWaitingRooms?: {
+    heading: string;
+    lead?: string;
+    items: CremationWaitingRoom[];
+    seatFeeNote?: string;
+  };
+  hallRooms?: {
+    heading: string;
+    lead?: string;
+    items: HallRoom[];
+  };
+  feeTables?: FeeTable[];
+  feeTablesNote?: string;
 };
 
 export const saijoMegurinomori: Saijo = {
@@ -231,7 +279,359 @@ export const saijoMegurinomori: Saijo = {
   ],
 };
 
-export const saijoList: Saijo[] = [saijoMegurinomori];
+export const saijoTodaSousaijyo: Saijo = {
+  slug: "toda-sousaijyo",
+  name: "戸田葬祭場",
+  shortName: "戸田葬祭場",
+  type: "東京都板橋区の火葬場併設斎場",
+  operator: "事前相談時にご案内",
+  postal: "174-0041",
+  address: "東京都板橋区舟渡四丁目15番1号",
+  h1: "戸田葬祭場での\n葬儀・火葬のご相談",
+  metaTitle: "戸田葬祭場 | 東京都板橋区の火葬場併設斎場 | 川口典礼",
+  intro:
+    "戸田葬祭場は、東京都板橋区にある火葬場併設の斎場です。光の間・せせらぎの間・思食の間の3式場と、特別殯館・特別室・最上等の火葬炉を備えています。",
+  description:
+    "川口典礼では、戸田葬祭場でのご葬儀・火葬の手配を承ります。式場利用のご相談、ご搬送、ご安置、火葬予約、当日の進行までサポートします。戸田葬祭場は川口典礼が運営している施設ではありません。",
+  features: [
+    "東京都板橋区舟渡の火葬場併設斎場",
+    "本館3階「光の間」、本館4階「せせらぎの間」、別館「思食の間」の3式場",
+    "特別殯館・特別室・最上等の3種の火葬炉",
+    "香・華・光の3種の待合室と椅子席(予約席)",
+    "JR埼京線「浮間舟渡」駅、都営三田線「西台」駅からアクセス可",
+    "24時間365日、手配・搬送・式段取りまで川口典礼がサポート",
+  ],
+  ourSupport: [
+    "戸田葬祭場での葬儀・火葬の手配・予約",
+    "ご搬送・ご安置・式場利用のご相談",
+    "直葬・花入れお別れ・一日葬・家族葬まで相談可能",
+    "葬儀当日の進行・宗教者の手配までサポート",
+  ],
+  availablePlans: [
+    "direct-funeral",
+    "hanaire-owakare",
+    "oneday-funeral",
+    "family-funeral",
+    "kawaguchi-shimin",
+  ],
+  facilityInfo: [
+    {
+      label: "所在地",
+      value: "〒174-0041 東京都板橋区舟渡四丁目15番1号",
+    },
+    { label: "電話", value: "03-3966-4241" },
+    { label: "運営", value: "事前相談時にご案内" },
+    { label: "施設種別", value: "火葬場併設斎場" },
+    {
+      label: "式場",
+      value: "光の間(本館3階)・せせらぎの間(本館4階)・思食の間(別館)",
+    },
+    { label: "火葬炉", value: "特別殯館・特別室・最上等" },
+    {
+      label: "待合室",
+      value: "香(1〜5)・華(1〜10)・光(1〜6)・椅子席(予約席)",
+    },
+    {
+      label: "川口典礼のサポート範囲",
+      value:
+        "葬儀の手配・ご搬送・ご安置・式場利用相談・火葬予約・当日の進行",
+    },
+  ],
+  access: {
+    fromKawaguchi:
+      "ご搬送・送迎は川口典礼で手配いたします。事前のご相談時にご案内します。",
+    stations: [
+      "JR埼京線「浮間舟渡」駅より徒歩約25分(快速・通勤快速は通過、各駅停車をご利用ください)",
+      "都営三田線「西台」駅 東口より徒歩約30分",
+    ],
+    car: "国際興業バス「舟渡小学校」バス停下車、徒歩約5〜10分。浮間舟渡駅東口からバス約5分(東練01・東練05系統)、西台駅東口からバス約5分(東練05・浮舟80系統)でもアクセスいただけます。",
+    parking:
+      "駐車場の利用可否・台数については施設へ事前にご確認ください。詳しい交通手段は事前相談時にご案内します。",
+  },
+  importantNotice: {
+    heading: "戸田葬祭場の運営は川口典礼ではありません。",
+    body: "戸田葬祭場は東京都板橋区舟渡にある火葬場併設の斎場で、川口典礼が運営している施設ではありません。川口典礼では、戸田葬祭場でのご葬儀の手配・ご搬送・ご安置・式場利用相談・火葬予約・当日の進行をサポートします。葬儀のご相談は川口典礼までお気軽にお問い合わせください。",
+  },
+  flow: [
+    {
+      step: "葬儀式・お別れの時間",
+      description:
+        "戸田葬祭場の式場(光の間・せせらぎの間・思食の間)、または別会場でお別れの時間をお取りいただきます。式場手配、宗教者のお勤め、お料理・返礼品の段取りも川口典礼でご手配します。",
+    },
+    {
+      step: "火葬場へ移動",
+      description:
+        "戸田葬祭場は式場と火葬場が同じ施設内にあります。霊柩車・送迎車の手配も川口典礼で承ります。",
+    },
+    {
+      step: "戸田葬祭場で火葬",
+      description:
+        "特別殯館・特別室・最上等の火葬炉から、ご希望や予算に応じてご案内します。火葬の間は待合室でお待ちいただきます。",
+    },
+    {
+      step: "収骨",
+      description: "火葬後、ご家族で収骨を行います。",
+    },
+  ],
+  faqs: [
+    {
+      q: "戸田葬祭場は川口典礼が運営しているのですか？",
+      a: "いいえ。戸田葬祭場は東京都板橋区舟渡にある火葬場併設の斎場で、川口典礼が運営している施設ではありません。川口典礼は、戸田葬祭場でのご葬儀の手配・ご搬送・ご安置・式場利用相談・火葬予約・当日の進行をサポートする立場です。",
+    },
+    {
+      q: "戸田葬祭場での家族葬や一日葬は相談できますか？",
+      a: "はい。戸田葬祭場の式場(光の間・せせらぎの間・思食の間)を利用したご葬儀の手配を承ります。家族葬・一日葬の段取りから当日の進行まで、川口典礼が一貫してお手伝いします。",
+    },
+    {
+      q: "川口市から戸田葬祭場までのご搬送もお願いできますか？",
+      a: "はい。ご自宅・病院・施設からのご搬送、ご安置、戸田葬祭場までの当日の移動まで、川口典礼が手配します。",
+    },
+    {
+      q: "戸田葬祭場の最寄駅はどこですか？",
+      a: "JR埼京線「浮間舟渡」駅より徒歩約25分、都営三田線「西台」駅東口より徒歩約30分です。浮間舟渡駅・西台駅からは国際興業バス(東練01・東練05・浮舟80)で「舟渡小学校」バス停まで約5分、そこから徒歩約5〜10分です。",
+    },
+    {
+      q: "戸田葬祭場の料金は変わることがありますか？",
+      a: "施設利用料・火葬料は変更される可能性があります。最新の料金は事前のご相談時にご案内しますので、川口典礼までお問い合わせください。",
+    },
+    {
+      q: "戸田葬祭場の料金と、川口典礼の葬儀プラン料金は同じですか？",
+      a: "別途必要です。戸田葬祭場の式場料金・火葬料金・待合室料金は施設利用料として支払いが必要です。川口典礼の葬儀プラン料金とは別途必要となるため、総額のお見積りは事前にご案内します。",
+    },
+  ],
+  mapEmbedQuery: "戸田葬祭場 東京都板橋区舟渡四丁目15番1号",
+  metaDescription:
+    "戸田葬祭場は東京都板橋区舟渡の火葬場併設斎場です。光の間・せせらぎの間・思食の間の3式場と複数の火葬炉・待合室を備えます。川口典礼では戸田葬祭場でのご葬儀の手配・搬送・安置・火葬予約・当日の進行を一貫してサポートします。",
+  photos: [
+    {
+      src: "/images/saijo/toda-sousaijyo/exterior.png",
+      alt: "戸田葬祭場の外観",
+      label: "外観",
+      caption: "戸田葬祭場の外観です。",
+    },
+    {
+      src: "/images/saijo/toda-sousaijyo/information-counter.png",
+      alt: "戸田葬祭場の総合案内",
+      label: "総合案内",
+      caption: "施設の総合案内カウンターです。",
+    },
+    {
+      src: "/images/saijo/toda-sousaijyo/lobby.png",
+      alt: "戸田葬祭場のロビー",
+      label: "ロビー",
+      caption: "施設内のロビーです。",
+    },
+    {
+      src: "/images/saijo/toda-sousaijyo/waiting-chair-seats.png",
+      alt: "戸田葬祭場の椅子席(予約席)",
+      label: "椅子席(予約席)",
+      caption: "ご予約いただける椅子席です。",
+    },
+  ],
+  cremationFurnaces: {
+    heading: "戸田葬祭場の火葬炉。",
+    lead: "戸田葬祭場では、特別殯館・特別室・最上等の3種の火葬炉から、ご希望や予算に応じてご案内します。詳しい仕様や違いは事前相談時にご案内します。",
+    items: [
+      {
+        name: "特別殯館",
+        description: "上位グレードの火葬炉です。",
+        image: {
+          src: "/images/saijo/toda-sousaijyo/cremation/tokubetsu-hinkan.png",
+          alt: "戸田葬祭場の特別殯館",
+        },
+      },
+      {
+        name: "特別室(仏心)",
+        description: "中位グレードの火葬炉です。",
+        image: {
+          src: "/images/saijo/toda-sousaijyo/cremation/tokubetsu-shitsu.png",
+          alt: "戸田葬祭場の特別室",
+        },
+      },
+      {
+        name: "最上等",
+        description: "標準の火葬炉です。区民葬・市民葬の対象もこちらです。",
+        image: {
+          src: "/images/saijo/toda-sousaijyo/cremation/saijo-class.png",
+          alt: "戸田葬祭場の最上等",
+        },
+      },
+    ],
+  },
+  hallRooms: {
+    heading: "戸田葬祭場の式場。",
+    lead: "本館3階の「光の間」、本館4階の「せせらぎの間」、別館の「思食の間」の3式場があります。各式場の詳細・空き状況は事前相談時にご案内します。",
+    items: [
+      {
+        slug: "hikari",
+        name: "光の間",
+        location: "本館3階",
+        feeNote: "297,000円(税込)",
+        description: "本館3階にある式場です。",
+        image: {
+          src: "/images/saijo/toda-sousaijyo/hikari/ceremony-room.png",
+          alt: "戸田葬祭場 光の間 の式場",
+        },
+      },
+      {
+        slug: "seseragi",
+        name: "せせらぎの間",
+        location: "本館4階",
+        feeNote: "198,000円(税込)",
+        description: "本館4階にある式場です。",
+        image: {
+          src: "/images/saijo/toda-sousaijyo/seseragi/ceremony-room.png",
+          alt: "戸田葬祭場 せせらぎの間 の式場",
+        },
+      },
+      {
+        slug: "shijiki",
+        name: "思食の間",
+        location: "別館",
+        feeNote: "253,000円(税込)",
+        description: "別館にある式場です。",
+        image: {
+          src: "/images/saijo/toda-sousaijyo/shijiki/ceremony-room.png",
+          alt: "戸田葬祭場 思食の間 の式場",
+        },
+      },
+    ],
+  },
+  cremationWaitingRooms: {
+    heading: "戸田葬祭場の火葬待合室。",
+    lead: "火葬の間は待合室でお待ちいただきます。来場者人数・ご希望に応じて、施設側がお部屋をご案内します。",
+    items: [
+      {
+        name: "香(1〜5)",
+        capacity: "各20名",
+        image: {
+          src: "/images/saijo/toda-sousaijyo/cremation-waiting/kou.png",
+          alt: "戸田葬祭場の待合室「香」",
+        },
+      },
+      {
+        name: "華(1〜4)",
+        capacity: "30〜120名",
+        image: {
+          src: "/images/saijo/toda-sousaijyo/cremation-waiting/hana-small.png",
+          alt: "戸田葬祭場の待合室「華」",
+        },
+      },
+      {
+        name: "華(5〜10)・光(1〜6)",
+        capacity: "30〜180名",
+        image: {
+          src: "/images/saijo/toda-sousaijyo/cremation-waiting/hana-hikari-large.png",
+          alt: "戸田葬祭場の大型待合室「華・光」",
+        },
+      },
+      {
+        name: "椅子席(予約席)",
+        capacity: "1席単位での予約",
+        image: {
+          src: "/images/saijo/toda-sousaijyo/cremation-waiting/reserved-chair-seats.png",
+          alt: "戸田葬祭場の椅子席(予約席)",
+        },
+      },
+    ],
+    seatFeeNote:
+      "椅子席は1席990円(税込)。待合室料金は来場者人数に席料を乗じた額となります。来場者人数に応じた部屋を施設側で指定します。未就学児は無料です。",
+  },
+  feeTablesNote:
+    "以下の料金は戸田葬祭場の施設利用料・火葬料です。川口典礼の葬儀プラン料金とは別途必要となります。総額のお見積りは事前のご相談時にご案内します。",
+  feeTables: [
+    {
+      heading: "式場料金",
+      columns: ["式場", "料金"],
+      rows: [
+        { category: "光の間(本館3階)", values: ["297,000円(税込)"] },
+        { category: "せせらぎの間(本館4階)", values: ["198,000円(税込)"] },
+        { category: "思食の間(別館)", values: ["253,000円(税込)"] },
+      ],
+      footnote:
+        "料金は変更される可能性があります。最新の料金はお問い合わせください。",
+    },
+    {
+      heading: "別間使用料金(清め料金)",
+      lead: "本館2階・3階の別間ご使用時の料金です。",
+      columns: ["席数", "料金"],
+      rows: [
+        { category: "2階・3階 30席", values: ["37,400円(税込)"] },
+        { category: "2階・3階 60席", values: ["64,900円(税込)"] },
+        { category: "2階・3階 90席", values: ["92,400円(税込)"] },
+        { category: "2階・3階 120席", values: ["119,900円(税込)"] },
+      ],
+      footnote:
+        "料金は変更される可能性があります。最新の料金はお問い合わせください。",
+    },
+    {
+      heading: "火葬料金(一般料金)",
+      columns: ["区分", "大人", "小人"],
+      rows: [
+        {
+          category: "特別殯館",
+          values: ["177,000円(非課税)", "104,000円(非課税)"],
+          note: "収骨容器無料",
+        },
+        {
+          category: "特別室(仏心)",
+          values: ["107,500円(非課税)", "54,500円(非課税)"],
+          note: "収骨容器無料",
+        },
+        {
+          category: "最上等",
+          values: ["80,000円(非課税)", "44,000円(非課税)"],
+          note: "収骨容器無料",
+        },
+      ],
+      footnote:
+        "料金は変更される可能性があります。最新の料金はお問い合わせください。",
+    },
+    {
+      heading: "火葬料金(区民葬料金)",
+      lead: "区民葬の対象となる方の料金です。",
+      columns: ["区分", "大人", "小人"],
+      rows: [
+        {
+          category: "最上等",
+          values: ["59,600円(非課税)", "34,500円(非課税)"],
+          note: "収骨容器有料",
+        },
+      ],
+      footnote:
+        "適用条件・料金は変更される可能性があります。最新の料金・適用条件はお問い合わせください。",
+    },
+    {
+      heading: "火葬料金(市民葬料金)",
+      lead: "市民葬の対象となる方の料金です。",
+      columns: ["区分", "大人", "小人"],
+      rows: [
+        {
+          category: "最上等",
+          values: ["72,000円(非課税)", "39,600円(非課税)"],
+          note: "収骨容器無料",
+        },
+      ],
+      footnote:
+        "適用条件・料金は変更される可能性があります。最新の料金・適用条件はお問い合わせください。",
+    },
+    {
+      heading: "待合室席料",
+      columns: ["項目", "料金"],
+      rows: [
+        {
+          category: "椅子席 1席",
+          values: ["990円(税込)"],
+          note: "未就学児は無料",
+        },
+      ],
+      footnote:
+        "待合室料金は来場者人数に席料を乗じた額となります。来場者人数に応じた部屋を施設側で指定します。",
+    },
+  ],
+};
+
+export const saijoList: Saijo[] = [saijoMegurinomori, saijoTodaSousaijyo];
 
 export function getSaijo(slug: string): Saijo | undefined {
   return saijoList.find((s) => s.slug === slug);

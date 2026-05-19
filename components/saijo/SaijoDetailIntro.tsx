@@ -68,15 +68,17 @@ export function SaijoDetailIntro({ saijo }: { saijo: Saijo }) {
             aria-label={`${saijo.name}の概要`}
             className="overflow-hidden rounded-lg border border-line bg-white shadow-sm"
           >
-            <div className="relative aspect-[16/9] w-full bg-warm">
-              <Image
-                src="/images/saijo/megurinomori/exterior.png"
-                alt="川口市めぐりの森の外観"
-                fill
-                sizes="(max-width: 768px) 100vw, 480px"
-                className="object-cover object-center"
-              />
-            </div>
+            {saijo.photos && saijo.photos[0] && (
+              <div className="relative aspect-[16/9] w-full bg-warm">
+                <Image
+                  src={saijo.photos[0].src}
+                  alt={saijo.photos[0].alt}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 480px"
+                  className="object-cover object-center"
+                />
+              </div>
+            )}
 
             <div className="p-6 md:p-8">
               <p className="text-xs font-bold uppercase tracking-[0.18em] text-ink-soft">
@@ -118,7 +120,7 @@ export function SaijoDetailIntro({ saijo }: { saijo: Saijo }) {
               </dl>
 
               <p className="mt-5 text-xs leading-6 text-ink-soft">
-                ※ 葬儀式やお別れの時間は川口メモリアルホールなどの式場で行い、その後、川口市めぐりの森で火葬を行う流れになります。
+                ※ ご利用の詳しい流れや、ご相談に応じた料金のお見積りは、事前のご相談時にご案内します。
               </p>
             </div>
           </aside>
