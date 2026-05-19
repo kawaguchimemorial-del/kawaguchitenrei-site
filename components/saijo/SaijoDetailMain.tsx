@@ -615,7 +615,7 @@ export function SaijoFeeTables({ saijo }: { saijo: Saijo }) {
   if (!saijo.feeTables || saijo.feeTables.length === 0) return null;
 
   return (
-    <section className="bg-cool py-16 md:py-24">
+    <section className="bg-white py-16 md:py-24">
       <div className="mx-auto max-w-5xl px-5 md:px-8">
         <div className="max-w-3xl">
           <p className="text-sm font-semibold tracking-[0.18em] text-brand uppercase">
@@ -699,12 +699,12 @@ export function SaijoFeeTables({ saijo }: { saijo: Saijo }) {
                 </div>
 
                 {table.footnote && (
-                  <p className="mt-3 text-xs leading-6 text-ink-soft md:text-sm">
+                  <p className="mt-3 text-sm leading-7 text-ink-soft md:text-base md:leading-8">
                     ※ {table.footnote}
                   </p>
                 )}
                 {table.footnotes && table.footnotes.length > 0 && (
-                  <ul className="mt-3 space-y-1 text-xs leading-6 text-ink-soft md:text-sm">
+                  <ul className="mt-3 space-y-1 text-sm leading-7 text-ink-soft md:text-base md:leading-8">
                     {table.footnotes.map((note, i) => (
                       <li key={i}>※ {note}</li>
                     ))}
