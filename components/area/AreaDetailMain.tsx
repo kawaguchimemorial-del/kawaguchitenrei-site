@@ -332,7 +332,7 @@ export function AreaSaijo({ area }: { area: Area }) {
                           {s.description}
                         </p>
                         <p className="mt-auto pt-4 inline-flex items-center gap-1 text-sm font-bold text-brand group-hover:underline">
-                          詳しく見る
+                          {s.name}の詳細を見る
                           <span aria-hidden>→</span>
                         </p>
                       </div>
