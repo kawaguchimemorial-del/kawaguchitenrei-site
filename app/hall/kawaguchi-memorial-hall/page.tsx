@@ -13,7 +13,7 @@ import {
 } from "@/components/hall/HallDetailExtras";
 import { hallKawaguchi } from "@/lib/halls";
 
-const SITE_URL = "https://kawaguchitenrei-site-psi.vercel.app";
+const SITE_URL = "https://kawaguchitenrei.com";
 const pageUrl = `${SITE_URL}/hall/${hallKawaguchi.slug}/`;
 const imageUrl = `${SITE_URL}/images/home/hall/hall-exterior.jpg`;
 const pageTitle = `${hallKawaguchi.name} | 川口典礼の自社ホール`;

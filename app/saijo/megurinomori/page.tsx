@@ -17,7 +17,7 @@ import {
 } from "@/components/saijo/SaijoDetailExtras";
 import { saijoMegurinomori } from "@/lib/saijo";
 
-const SITE_URL = "https://kawaguchitenrei-site-psi.vercel.app";
+const SITE_URL = "https://kawaguchitenrei.com";
 const pageUrl = `${SITE_URL}/saijo/${saijoMegurinomori.slug}/`;
 const imageUrl = `${SITE_URL}/images/saijo/megurinomori/exterior.png`;
 

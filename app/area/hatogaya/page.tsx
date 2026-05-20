@@ -14,7 +14,7 @@ import { AreaDetailCta } from "@/components/area/AreaDetailCta";
 import { AreaPrimaryHall } from "@/components/area/AreaPrimaryHall";
 import { areaHatogaya } from "@/lib/areas";
 
-const SITE_URL = "https://kawaguchitenrei-site-psi.vercel.app";
+const SITE_URL = "https://kawaguchitenrei.com";
 const pageUrl = `${SITE_URL}/area/${areaHatogaya.slug}/`;
 const imageUrl = `${SITE_URL}/images/home/hall/hall-exterior.jpg`;
 

@@ -20,7 +20,7 @@ import {
 } from "@/components/saijo/SaijoDetailExtras";
 import { saijoYatsuka } from "@/lib/saijo";
 
-const SITE_URL = "https://kawaguchitenrei-site-psi.vercel.app";
+const SITE_URL = "https://kawaguchitenrei.com";
 const pageUrl = `${SITE_URL}/saijo/${saijoYatsuka.slug}/`;
 const imageUrl = `${SITE_URL}/images/saijo/yatsuka-saijo/exterior.png`;
 

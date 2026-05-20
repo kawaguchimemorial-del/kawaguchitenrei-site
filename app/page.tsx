@@ -14,7 +14,7 @@ import { PlanSection } from "@/components/home/PlanSection";
 import { ThreeStrengthsSection } from "@/components/home/ThreeStrengthsSection";
 import { VoicesSection } from "@/components/home/VoicesSection";
 
-const SITE_URL = "https://kawaguchitenrei-site-psi.vercel.app";
+const SITE_URL = "https://kawaguchitenrei.com";
 const pageTitle =
   "川口典礼 | 川口市・新井宿の葬儀・家族葬 | 川口メモリアルホール";
 const pageDescription =
