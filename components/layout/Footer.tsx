@@ -9,6 +9,7 @@ const footerColumns = [
       { label: "家族葬プラン", href: "/plan/family-funeral/" },
       { label: "市民葬プラン", href: "/plan/kawaguchi-shimin/" },
       { label: "よくある質問", href: "/faq/" },
+      { label: "コラム", href: "/column/" },
     ],
   },
   {
