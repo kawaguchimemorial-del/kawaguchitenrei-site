@@ -82,6 +82,46 @@ export function ColumnBody({ body }: { body: ColumnBlock[] }) {
                 </a>
               </p>
             );
+          case "table":
+            return (
+              <figure key={i} className="my-2">
+                <div className="overflow-x-auto rounded-lg border border-line bg-white shadow-sm">
+                  <table className="w-full min-w-[480px] border-collapse">
+                    <thead>
+                      <tr className="bg-paper">
+                        {block.headers.map((h, j) => (
+                          <th
+                            key={j}
+                            className="px-4 py-3 text-left text-sm font-bold text-ink-deep md:px-5 md:py-4 md:text-base"
+                          >
+                            {h}
+                          </th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {block.rows.map((row, r) => (
+                        <tr key={r} className="border-t border-line-soft">
+                          {row.map((cell, c) => (
+                            <td
+                              key={c}
+                              className="px-4 py-3 text-sm leading-7 text-ink md:px-5 md:py-4 md:text-base md:leading-8"
+                            >
+                              {cell}
+                            </td>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                {block.caption && (
+                  <figcaption className="mt-2 text-sm text-ink-mid">
+                    {block.caption}
+                  </figcaption>
+                )}
+              </figure>
+            );
         }
       })}
     </div>
