@@ -314,6 +314,46 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/QA/siboutodoke",
+        destination: "/column/shibou-todoke/",
+        permanent: true,
+      },
+      {
+        source: "/QA/siboutodoke/",
+        destination: "/column/shibou-todoke/",
+        permanent: true,
+      },
+      {
+        source: "/QA/yuujinn_sou",
+        destination: "/column/yujinso-sokagakkai/",
+        permanent: true,
+      },
+      {
+        source: "/QA/yuujinn_sou/",
+        destination: "/column/yujinso-sokagakkai/",
+        permanent: true,
+      },
+      {
+        source: "/QA/kazokusou_10",
+        destination: "/column/kazokusou-missou/",
+        permanent: true,
+      },
+      {
+        source: "/QA/kazokusou_10/",
+        destination: "/column/kazokusou-missou/",
+        permanent: true,
+      },
+      {
+        source: "/QA/kazokusou_6",
+        destination: "/column/saidan-kazokusou/",
+        permanent: true,
+      },
+      {
+        source: "/QA/kazokusou_6/",
+        destination: "/column/saidan-kazokusou/",
+        permanent: true,
+      },
+      {
         source: "/Column_list/8xhJXcZx",
         destination: "/column/",
         permanent: true,
