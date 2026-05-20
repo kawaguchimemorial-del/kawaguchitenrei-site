@@ -534,6 +534,16 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/gojo",
+        destination: "/column/gojokai-kaiyaku/",
+        permanent: true,
+      },
+      {
+        source: "/gojo/",
+        destination: "/column/gojokai-kaiyaku/",
+        permanent: true,
+      },
+      {
         source: "/case/20-oneday-memorial-hall",
         destination: "/case/kawaguchi-memorial-buddhist-20-oneday-1100k",
         permanent: true,
