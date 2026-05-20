@@ -64,13 +64,19 @@ export function AreaDetailIntro({ area }: { area: Area }) {
           >
             <div className="relative aspect-[16/9] w-full bg-warm">
               <Image
-                src="/images/home/hall/hall-exterior.jpg"
-                alt="拠点・川口メモリアルホールの外観"
+                src={area.heroImage?.src ?? "/images/home/hall/hall-exterior.jpg"}
+                alt={area.heroImage?.alt ?? "拠点・川口メモリアルホールの外観"}
                 fill
                 sizes="(max-width: 768px) 100vw, 480px"
                 className="object-cover object-center"
               />
             </div>
+
+            {area.heroImage?.caption && (
+              <p className="border-b border-line-soft px-6 py-3 text-xs leading-6 text-ink-soft md:px-8">
+                {area.heroImage.caption}
+              </p>
+            )}
 
             <div className="p-6 md:p-8">
               <p className="text-xs font-bold uppercase tracking-[0.18em] text-ink-soft">

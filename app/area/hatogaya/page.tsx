@@ -12,20 +12,20 @@ import {
 } from "@/components/area/AreaDetailExtras";
 import { AreaDetailCta } from "@/components/area/AreaDetailCta";
 import { AreaPrimaryHall } from "@/components/area/AreaPrimaryHall";
-import { areaAraijuku } from "@/lib/areas";
+import { areaHatogaya } from "@/lib/areas";
 
 const SITE_URL = "https://kawaguchitenrei-site-psi.vercel.app";
-const pageUrl = `${SITE_URL}/area/${areaAraijuku.slug}/`;
+const pageUrl = `${SITE_URL}/area/${areaHatogaya.slug}/`;
 const imageUrl = `${SITE_URL}/images/home/hall/hall-exterior.jpg`;
 
 export const metadata: Metadata = {
-  title: areaAraijuku.metaTitle,
-  description: areaAraijuku.metaDescription,
-  alternates: { canonical: `/area/${areaAraijuku.slug}/` },
+  title: areaHatogaya.metaTitle,
+  description: areaHatogaya.metaDescription,
+  alternates: { canonical: `/area/${areaHatogaya.slug}/` },
   openGraph: {
-    title: areaAraijuku.metaTitle,
-    description: areaAraijuku.metaDescription,
-    url: `/area/${areaAraijuku.slug}/`,
+    title: areaHatogaya.metaTitle,
+    description: areaHatogaya.metaDescription,
+    url: `/area/${areaHatogaya.slug}/`,
     type: "article",
     images: [
       {
@@ -57,7 +57,7 @@ const breadcrumbJsonLd = {
     {
       "@type": "ListItem",
       position: 3,
-      name: "新井宿",
+      name: "鳩ヶ谷",
       item: pageUrl,
     },
   ],
@@ -66,7 +66,7 @@ const breadcrumbJsonLd = {
 const faqJsonLd = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  mainEntity: areaAraijuku.faqs.map((f) => ({
+  mainEntity: areaHatogaya.faqs.map((f) => ({
     "@type": "Question",
     name: f.q,
     acceptedAnswer: {
@@ -93,10 +93,10 @@ const funeralHomeJsonLd = {
   },
   areaServed: {
     "@type": "AdministrativeArea",
-    name: "埼玉県川口市新井宿",
+    name: "埼玉県川口市鳩ヶ谷",
   },
   description:
-    "川口市新井宿周辺で葬儀・家族葬・直葬・一日葬を承る葬儀社。自社式場「川口メモリアルホール」(川口市西新井宿)と川口市めぐりの森(車約5分)の近接立地で、ご家族の負担を抑えてお別れいただけます。",
+    "川口市鳩ヶ谷・南鳩ヶ谷周辺で葬儀・家族葬・直葬・一日葬を承る葬儀社。搬送・安置・ご葬儀・火葬場(川口市めぐりの森)利用の手配まで、ご家族の状況に合わせて一貫してサポートします。",
 };
 
 const relatedLinks = [
@@ -106,13 +106,18 @@ const relatedLinks = [
     href: "/area/kawaguchi/",
   },
   {
+    label: "新井宿の葬儀・家族葬",
+    description: "新井宿エリアの葬儀・家族葬のご案内",
+    href: "/area/araijuku/",
+  },
+  {
     label: "川口メモリアルホール",
     description: "自社式場(川口市西新井宿)のご紹介",
     href: "/hall/kawaguchi-memorial-hall/",
   },
   {
     label: "川口市めぐりの森",
-    description: "車約5分の公営火葬場のご案内",
+    description: "鳩ヶ谷エリアからも利用できる公営火葬場",
     href: "/saijo/megurinomori/",
   },
   {
@@ -137,7 +142,7 @@ const relatedLinks = [
   },
 ];
 
-export default function AraijukuAreaPage() {
+export default function HatogayaAreaPage() {
   return (
     <>
       <script
@@ -153,17 +158,17 @@ export default function AraijukuAreaPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(funeralHomeJsonLd) }}
       />
 
-      <AreaDetailIntro area={areaAraijuku} />
+      <AreaDetailIntro area={areaHatogaya} />
       <AreaPrimaryHall
-        area={areaAraijuku}
-        description="新井宿地区(川口市西新井宿)に位置する川口典礼の自社ホール。新井宿エリアから歩く距離・短い移動でご来館いただけ、川口市めぐりの森(火葬場)まで車で約5分です。1日1組貸切の落ち着いた式場で、家族葬・一日葬に適しています。"
+        area={areaHatogaya}
+        description="鳩ヶ谷エリアからのご葬儀の主な拠点となる、川口典礼の自社ホール。1日1組貸切の落ち着いた式場で、家族葬・一日葬に適した規模です。川口市めぐりの森(火葬場)まで車で約5分の立地で、鳩ヶ谷からのお別れの段取りもスムーズです。"
       />
-      <AreaFeatures area={areaAraijuku} />
-      <AreaPlans area={areaAraijuku} />
-      <AreaSaijo area={areaAraijuku} />
-      <AreaReasons area={areaAraijuku} />
-      <AreaFlow area={areaAraijuku} />
-      <AreaFaq area={areaAraijuku} />
+      <AreaFeatures area={areaHatogaya} />
+      <AreaPlans area={areaHatogaya} />
+      <AreaSaijo area={areaHatogaya} />
+      <AreaReasons area={areaHatogaya} />
+      <AreaFlow area={areaHatogaya} />
+      <AreaFaq area={areaHatogaya} />
 
       {/* 関連ページ導線 */}
       <section className="bg-white py-16 md:py-24">
@@ -176,7 +181,7 @@ export default function AraijukuAreaPage() {
               関連するページ
             </p>
             <h2 className="font-serif-jp mt-4 text-2xl font-medium leading-[1.4] text-ink-deep md:text-3xl">
-              新井宿の葬儀を検討する方へ、
+              鳩ヶ谷の葬儀を検討する方へ、
               <br className="md:hidden" />
               あわせてご覧ください。
             </h2>
@@ -206,7 +211,7 @@ export default function AraijukuAreaPage() {
         </div>
       </section>
 
-      <AreaDetailCta area={areaAraijuku} />
+      <AreaDetailCta area={areaHatogaya} />
     </>
   );
 }
