@@ -184,8 +184,313 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/QA/kazokusou_1",
+        destination: "/column/kazokusou/",
+        permanent: true,
+      },
+      {
+        source: "/QA/kazokusou_1/",
+        destination: "/column/kazokusou/",
+        permanent: true,
+      },
+      {
+        source: "/QA/kazokusou_2",
+        destination: "/column/ichinichi-sou/",
+        permanent: true,
+      },
+      {
+        source: "/QA/kazokusou_2/",
+        destination: "/column/ichinichi-sou/",
+        permanent: true,
+      },
+      {
+        source: "/QA/kazokusou_3",
+        destination: "/column/kazokusou/",
+        permanent: true,
+      },
+      {
+        source: "/QA/kazokusou_3/",
+        destination: "/column/kazokusou/",
+        permanent: true,
+      },
+      {
+        source: "/QA/kazokusou_4",
+        destination: "/column/fuhou/",
+        permanent: true,
+      },
+      {
+        source: "/QA/kazokusou_4/",
+        destination: "/column/fuhou/",
+        permanent: true,
+      },
+      {
+        source: "/QA/kazokusou_7",
+        destination: "/column/sougidai/",
+        permanent: true,
+      },
+      {
+        source: "/QA/kazokusou_7/",
+        destination: "/column/sougidai/",
+        permanent: true,
+      },
+      {
+        source: "/QA/kazokusou_8",
+        destination: "/column/sougi_flow/",
+        permanent: true,
+      },
+      {
+        source: "/QA/kazokusou_8/",
+        destination: "/column/sougi_flow/",
+        permanent: true,
+      },
+      {
+        source: "/QA/kazokusou_9",
+        destination: "/column/hiyou/",
+        permanent: true,
+      },
+      {
+        source: "/QA/kazokusou_9/",
+        destination: "/column/hiyou/",
+        permanent: true,
+      },
+      {
+        source: "/QA/chokusou_1",
+        destination: "/plan/direct-funeral/",
+        permanent: true,
+      },
+      {
+        source: "/QA/chokusou_1/",
+        destination: "/plan/direct-funeral/",
+        permanent: true,
+      },
+      {
+        source: "/QA/flow",
+        destination: "/column/sougi_flow/",
+        permanent: true,
+      },
+      {
+        source: "/QA/flow/",
+        destination: "/column/sougi_flow/",
+        permanent: true,
+      },
+      {
+        source: "/QA/mosyu_1",
+        destination: "/column/mosyu/",
+        permanent: true,
+      },
+      {
+        source: "/QA/mosyu_1/",
+        destination: "/column/mosyu/",
+        permanent: true,
+      },
+      {
+        source: "/QA/mosyu_2",
+        destination: "/column/mosyu/",
+        permanent: true,
+      },
+      {
+        source: "/QA/mosyu_2/",
+        destination: "/column/mosyu/",
+        permanent: true,
+      },
+      {
+        source: "/QA/yukan",
+        destination: "/column/yukan/",
+        permanent: true,
+      },
+      {
+        source: "/QA/yukan/",
+        destination: "/column/yukan/",
+        permanent: true,
+      },
+      {
+        source: "/QA/info-1",
+        destination: "/column/",
+        permanent: true,
+      },
+      {
+        source: "/QA/info-1/",
+        destination: "/column/",
+        permanent: true,
+      },
+      {
+        source: "/Column_list/8xhJXcZx",
+        destination: "/column/",
+        permanent: true,
+      },
+      {
+        source: "/Column_list/8xhJXcZx/",
+        destination: "/column/",
+        permanent: true,
+      },
+      {
+        source: "/Column_list/RKDapyrF",
+        destination: "/column/",
+        permanent: true,
+      },
+      {
+        source: "/Column_list/RKDapyrF/",
+        destination: "/column/",
+        permanent: true,
+      },
+      {
+        source: "/Column_list/SmrhNZZl",
+        destination: "/column/",
+        permanent: true,
+      },
+      {
+        source: "/Column_list/SmrhNZZl/",
+        destination: "/column/",
+        permanent: true,
+      },
+      {
+        source: "/Column_list/v6jFx5md",
+        destination: "/column/",
+        permanent: true,
+      },
+      {
+        source: "/Column_list/v6jFx5md/",
+        destination: "/column/",
+        permanent: true,
+      },
+      {
+        source: "/Column_list/sougimade",
+        destination: "/column/",
+        permanent: true,
+      },
+      {
+        source: "/Column_list/sougimade/",
+        destination: "/column/",
+        permanent: true,
+      },
+      {
+        source: "/Column_list/kP-rSeSF",
+        destination: "/column/",
+        permanent: true,
+      },
+      {
+        source: "/Column_list/kP-rSeSF/",
+        destination: "/column/",
+        permanent: true,
+      },
+      {
+        source: "/Column_list/eH0hUogJ",
+        destination: "/column/",
+        permanent: true,
+      },
+      {
+        source: "/Column_list/eH0hUogJ/",
+        destination: "/column/",
+        permanent: true,
+      },
+      {
         source: "/Column_list/:slug*",
         destination: "/column/:slug*",
+        permanent: true,
+      },
+      {
+        source: "/QA/:slug*",
+        destination: "/column/",
+        permanent: true,
+      },
+      {
+        source: "/kawaguchishi-megurinomori",
+        destination: "/saijo/megurinomori/",
+        permanent: true,
+      },
+      {
+        source: "/kawaguchishi-megurinomori/",
+        destination: "/saijo/megurinomori/",
+        permanent: true,
+      },
+      {
+        source: "/chokusou",
+        destination: "/plan/direct-funeral/",
+        permanent: true,
+      },
+      {
+        source: "/chokusou/",
+        destination: "/plan/direct-funeral/",
+        permanent: true,
+      },
+      {
+        source: "/kazoku_sou",
+        destination: "/plan/family-funeral/",
+        permanent: true,
+      },
+      {
+        source: "/kazoku_sou/",
+        destination: "/plan/family-funeral/",
+        permanent: true,
+      },
+      {
+        source: "/shimin_sou",
+        destination: "/plan/kawaguchi-shimin/",
+        permanent: true,
+      },
+      {
+        source: "/shimin_sou/",
+        destination: "/plan/kawaguchi-shimin/",
+        permanent: true,
+      },
+      {
+        source: "/kawaguchi_hall",
+        destination: "/hall/kawaguchi-memorial-hall/",
+        permanent: true,
+      },
+      {
+        source: "/kawaguchi_hall/",
+        destination: "/hall/kawaguchi-memorial-hall/",
+        permanent: true,
+      },
+      {
+        source: "/kawaguchi/hall",
+        destination: "/hall/kawaguchi-memorial-hall/",
+        permanent: true,
+      },
+      {
+        source: "/kawaguchi/hall/",
+        destination: "/hall/kawaguchi-memorial-hall/",
+        permanent: true,
+      },
+      {
+        source: "/kawaguchi/main",
+        destination: "/area/kawaguchi/",
+        permanent: true,
+      },
+      {
+        source: "/kawaguchi/main/",
+        destination: "/area/kawaguchi/",
+        permanent: true,
+      },
+      {
+        source: "/toda-sousaijyo",
+        destination: "/saijo/toda-sousaijyo/",
+        permanent: true,
+      },
+      {
+        source: "/toda-sousaijyo/",
+        destination: "/saijo/toda-sousaijyo/",
+        permanent: true,
+      },
+      {
+        source: "/toda",
+        destination: "/saijo/toda-sousaijyo/",
+        permanent: true,
+      },
+      {
+        source: "/toda/",
+        destination: "/saijo/toda-sousaijyo/",
+        permanent: true,
+      },
+      {
+        source: "/kasou_sikijou",
+        destination: "/area/kawaguchi/",
+        permanent: true,
+      },
+      {
+        source: "/kasou_sikijou/",
+        destination: "/area/kawaguchi/",
         permanent: true,
       },
       {
