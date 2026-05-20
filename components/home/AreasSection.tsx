@@ -2,7 +2,7 @@ type AreaLink = { name: string; href?: string };
 
 const kawaguchiAreas: AreaLink[] = [
   { name: "川口市", href: "/area/kawaguchi/" },
-  { name: "新井宿" },
+  { name: "新井宿", href: "/area/araijuku/" },
   { name: "鳩ヶ谷" },
 ];
 
