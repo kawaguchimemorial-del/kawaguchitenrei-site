@@ -3563,7 +3563,7 @@ export const columns: ColumnArticle[] = [
     metaDescription: "終活は“亡くなる時”の準備だけでなく、自分らしく生きるための活動。エンディングノートに書くこと、身の回り・デジタル・お金の整理、家族との話し合いまで川口典礼が整理しました。",
   },
   {
-    slug: "6cm52Rik",
+    slug: "seshu-moshu",
     title: "施主と喪主の違いとは？葬儀における役割・決め方・よくある悩みをわかりやすく解説",
     description:
       "「喪主」と「施主」の違いを整理しました。喪主は遺族代表、施主は契約と費用負担の中心。現代は兼任が多い理由、それぞれの役割と決め方の手順、よくあるマナーやFAQまでまとめています。",
@@ -3571,8 +3571,8 @@ export const columns: ColumnArticle[] = [
     updatedAt: "2026-04-18",
     category: "葬儀の知識",
     tags: ["喪主", "施主", "葬儀の役割"],
-    thumbnail: { src: "/images/column/6cm52Rik/cover.png", alt: "施主と喪主の違いに関する記事イメージ" },
-    heroImage: { src: "/images/column/6cm52Rik/cover.png", alt: "施主と喪主の違いに関する記事イメージ" },
+    thumbnail: { src: "/images/column/seshu-moshu/cover.png", alt: "施主と喪主の違いに関する記事イメージ" },
+    heroImage: { src: "/images/column/seshu-moshu/cover.png", alt: "施主と喪主の違いに関する記事イメージ" },
     body: [
       { type: "p", text: "「喪主(もしゅ)と施主(せしゅ)は何が違うの？」「誰がどちらを務めるべき？」葬儀の打ち合わせでよく出てくる言葉ですが、初めて喪主を務める方にとっては分かりにくいものです。結論から言うと、喪主=遺族代表、施主=費用負担と契約の中心(実務の責任者)という整理が基本です。" },
       { type: "p", text: "ただ、現代の葬儀では葬儀社が段取りを進めるため、喪主と施主が同一人物になるケースが多いのも事実です。この記事では、川口典礼の視点で、施主と喪主の違い・役割・決め方をやさしく解説します。" },
@@ -3684,7 +3684,7 @@ export const columns: ColumnArticle[] = [
     metaDescription: "喪主と施主の違い、それぞれの役割、決め方の手順、喪主挨拶の基本、よくあるFAQまで整理。現代は兼任が一般的ですが、状況によって分ける選択肢もあります。川口典礼が解説します。",
   },
   {
-    slug: "s_njTeQ9",
+    slug: "chokusou-fukusou",
     title: "直葬に参列するときの服装は？マナー・平服の目安・NG例を整理",
     description:
       "直葬(火葬式)に参列するときの服装マナーを、男性・女性別の準喪服の基本、「平服」と言われたときの目安、避けたいNG例、川口市で火葬に立ち会う場合の注意点まで整理しました。地域や家族意向で表現は柔軟に変わります。",
@@ -3692,8 +3692,8 @@ export const columns: ColumnArticle[] = [
     updatedAt: "2026-01-27",
     category: "葬儀マナー",
     tags: ["直葬", "服装", "参列マナー"],
-    thumbnail: { src: "/images/column/s_njTeQ9/cover.png", alt: "直葬の服装マナーに関する記事イメージ" },
-    heroImage: { src: "/images/column/s_njTeQ9/cover.png", alt: "直葬の服装マナーに関する記事イメージ" },
+    thumbnail: { src: "/images/column/chokusou-fukusou/cover.png", alt: "直葬の服装マナーに関する記事イメージ" },
+    heroImage: { src: "/images/column/chokusou-fukusou/cover.png", alt: "直葬の服装マナーに関する記事イメージ" },
     body: [
       { type: "p", text: "「直葬(火葬式)に呼ばれたけど、喪服？平服？どこまできちんとすればいい？」直葬は通夜・告別式を行わないことが多い一方で、“お別れの場”であることは同じです。川口市(めぐりの森等)で火葬に立ち会うケースも想定し、服装マナーを整理しました。" },
       { type: "h2", text: "この記事の要約" },
@@ -3795,7 +3795,7 @@ export const columns: ColumnArticle[] = [
     metaDescription: "直葬(火葬式)に参列するときの服装マナーを、準喪服の基本、平服の目安、避けたいNG例まで整理。地域・宗派・家族の意向で表現は変わるため、目安としてご活用ください。",
   },
   {
-    slug: "xGsLB4Wb",
+    slug: "ichinichi-sou",
     title: "「一日葬」を選ぶ人が増加中？川口市で家族葬との違い・流れ・注意点をわかりやすく解説",
     description:
       "通夜を行わず1日で告別式と火葬まで進める「一日葬」について、家族葬との違い、流れ、メリット、注意点(菩提寺の理解・当日進行の慌ただしさ)、向いているケースを整理しました。",
@@ -3803,8 +3803,8 @@ export const columns: ColumnArticle[] = [
     updatedAt: "2026-01-26",
     category: "葬儀",
     tags: ["一日葬", "家族葬", "葬儀形式"],
-    thumbnail: { src: "/images/column/xGsLB4Wb/cover.png", alt: "一日葬についての記事イメージ" },
-    heroImage: { src: "/images/column/xGsLB4Wb/cover.png", alt: "一日葬についての記事イメージ" },
+    thumbnail: { src: "/images/column/ichinichi-sou/cover.png", alt: "一日葬についての記事イメージ" },
+    heroImage: { src: "/images/column/ichinichi-sou/cover.png", alt: "一日葬についての記事イメージ" },
     body: [
       { type: "p", text: "近年、お通夜を行わず1日で葬儀(告別式)と火葬まで進める「一日葬」を選ぶ方が増えています。体力的・時間的な負担を抑えやすく、遠方親族が多いご家庭にも合いやすい一方で、菩提寺(お寺)や親族の理解、当日の段取りなど、事前に知っておくべきポイントもあります。" },
       { type: "p", text: "この記事では、川口市で葬儀をご検討の方向けに、一日葬と家族葬の違い／流れ／注意点／向いているケースを、川口典礼の視点で整理します。" },
@@ -3895,7 +3895,7 @@ export const columns: ColumnArticle[] = [
     metaDescription: "通夜を行わず1日で告別式と火葬まで進める「一日葬」について、家族葬との違い、川口市での流れ、メリット・注意点を整理。菩提寺の理解や当日進行の慌ただしさにも触れています。",
   },
   {
-    slug: "C0IHfdrz",
+    slug: "bukkyou-shuha-13",
     title: "13宗派56派の宗祖・教え・教典・唱名・焼香の目安|川口市の葬儀で困らない早見表",
     description:
       "仏教の13宗派(分派含め56派)の宗祖・本尊・教典・唱名・焼香回数の目安を早見表で整理しました。宗派が分からない場合の対応や、葬儀日程で優先すべきポイントも解説。川口典礼は宗旨・宗派問わずご相談に対応します。",
@@ -4154,7 +4154,7 @@ export const columns: ColumnArticle[] = [
     metaDescription: "副葬品(棺へ納める品)の選び方を、安全に燃えるかの基準、向くもの・避けたいもの、OKに見えてNGな例、代案まで整理。最終判断は火葬場の指示に従う必要があります。川口典礼が解説します。",
   },
   {
-    slug: "DDK0uG6r",
+    slug: "mushukyo-sou",
     title: "無宗教葬とは？選ばれる理由・進行モデル・費用の考え方",
     description:
       "宗教者の読経や作法を必須とせず、献花・黙祷・音楽・スライド上映などでお別れを行う無宗教葬。選ばれる理由、進行モデル（家族葬20名想定）、費用の考え方、葬儀後の供養と納骨、事前準備チェックリストまで川口典礼が整理します。",
@@ -4163,11 +4163,11 @@ export const columns: ColumnArticle[] = [
     category: "葬儀形式",
     tags: ["無宗教葬", "家族葬", "一日葬", "川口市"],
     thumbnail: {
-      src: "/images/column/DDK0uG6r/cover.png",
+      src: "/images/column/mushukyo-sou/cover.png",
       alt: "無宗教葬とは？選ばれる理由・進行・費用の考え方を解説するコラム記事のイメージ",
     },
     heroImage: {
-      src: "/images/column/DDK0uG6r/cover.png",
+      src: "/images/column/mushukyo-sou/cover.png",
       alt: "無宗教葬とは？選ばれる理由・進行・費用の考え方を解説するコラム記事のイメージ",
     },
     body: [
@@ -4260,7 +4260,7 @@ export const columns: ColumnArticle[] = [
       "無宗教葬の特徴・選ばれる理由・進行モデル（家族葬20名想定）・費用（家族葬528,000円／一日葬396,000円・税込）・葬儀後の供養と納骨・事前準備までを川口典礼が整理します。",
   },
   {
-    slug: "VWorrTRf",
+    slug: "jitakusou-merit",
     title: "我が家で葬儀を行う「自宅葬」とは？メリット・注意点・費用の目安（川口市）",
     description:
       "故人を“いつもの家”で見送る自宅葬。会館葬とは違うスペース・搬出・近隣配慮・安置環境のチェックポイント、川口市の葬祭事業（市民葬：通夜・告別式等231,000円・税込）との関係まで、川口典礼が整理します。",
@@ -4269,11 +4269,11 @@ export const columns: ColumnArticle[] = [
     category: "葬儀形式",
     tags: ["自宅葬", "家族葬", "直葬", "川口市", "市民葬"],
     thumbnail: {
-      src: "/images/column/VWorrTRf/cover.png",
+      src: "/images/column/jitakusou-merit/cover.png",
       alt: "自宅葬（我が家で葬儀）のメリット・注意点・費用の目安を解説するコラム記事のイメージ",
     },
     heroImage: {
-      src: "/images/column/VWorrTRf/cover.png",
+      src: "/images/column/jitakusou-merit/cover.png",
       alt: "自宅葬（我が家で葬儀）のメリット・注意点・費用の目安を解説するコラム記事のイメージ",
     },
     body: [
@@ -4373,7 +4373,7 @@ export const columns: ColumnArticle[] = [
       "自宅葬（我が家で葬儀）の3パターン、メリット、マンション・搬出・近隣配慮の注意点、流れ、費用の考え方、川口市の葬祭事業（市民葬：通夜・告別式等231,000円・税込／火葬のみ143,000円・税込）との関係まで川口典礼が整理。",
   },
   {
-    slug: "5w7LS4x1",
+    slug: "sousai-fujo",
     title: "生活保護受給者の火葬・葬儀｜葬祭扶助の対象・金額の目安・申請の流れ（川口市）",
     description:
       "故人や喪主が生活保護受給で葬儀費用の捻出が難しい場合に使える「葬祭扶助」。対象範囲（原則は火葬のみ）、12歳以上／12歳未満の上限金額目安、申請の順番（葬儀の前に福祉事務所へ）、川口市の葬祭費5万円との関係まで川口典礼が整理します。",
@@ -4382,11 +4382,11 @@ export const columns: ColumnArticle[] = [
     category: "費用と制度",
     tags: ["葬祭扶助", "生活保護", "直葬", "川口市", "市民葬"],
     thumbnail: {
-      src: "/images/column/5w7LS4x1/cover.png",
+      src: "/images/column/sousai-fujo/cover.png",
       alt: "生活保護受給者の葬祭扶助の対象・金額の目安・申請の流れを解説するコラム記事のイメージ",
     },
     heroImage: {
-      src: "/images/column/5w7LS4x1/cover.png",
+      src: "/images/column/sousai-fujo/cover.png",
       alt: "生活保護受給者の葬祭扶助の対象・金額の目安・申請の流れを解説するコラム記事のイメージ",
     },
     body: [
@@ -4647,7 +4647,7 @@ export const columns: ColumnArticle[] = [
       "死体検案書の発行費用は3〜10万円。検視・検案・解剖の内訳、司法解剖は国負担・その他は原則遺族負担、川口市では補助制度なしの旨、提出前のコピー準備まで川口典礼が解説。",
   },
   {
-    slug: "xK_jXyB6",
+    slug: "kenshi-nagare",
     title: "検視の流れ｜遺体が警察に安置されたら家族がやるべきこと（川口市・めぐりの森利用を想定）",
     description:
       "病院以外で亡くなられた場合に行われる「検視」。検視・検死・検案の違い、期間の目安（半日〜数日以上）、費用（検視は無料／死体検案書・搬送・安置は費用発生）、検視中に進めておくべき葬儀社選び・安置先確保まで川口典礼が整理します。",
@@ -4656,11 +4656,11 @@ export const columns: ColumnArticle[] = [
     category: "費用と制度",
     tags: ["検視", "死体検案書", "警察", "川口市", "めぐりの森"],
     thumbnail: {
-      src: "/images/column/xK_jXyB6/cover.png",
+      src: "/images/column/kenshi-nagare/cover.png",
       alt: "検視の流れ・遺体が警察に安置されたら家族がやるべきことを解説するコラム記事のイメージ",
     },
     heroImage: {
-      src: "/images/column/xK_jXyB6/cover.png",
+      src: "/images/column/kenshi-nagare/cover.png",
       alt: "検視の流れ・遺体が警察に安置されたら家族がやるべきことを解説するコラム記事のイメージ",
     },
     body: [

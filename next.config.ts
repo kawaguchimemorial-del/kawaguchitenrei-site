@@ -24,6 +24,166 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/column/6cm52Rik",
+        destination: "/column/seshu-moshu/",
+        permanent: true,
+      },
+      {
+        source: "/column/6cm52Rik/",
+        destination: "/column/seshu-moshu/",
+        permanent: true,
+      },
+      {
+        source: "/Column_list/6cm52Rik",
+        destination: "/column/seshu-moshu/",
+        permanent: true,
+      },
+      {
+        source: "/Column_list/6cm52Rik/",
+        destination: "/column/seshu-moshu/",
+        permanent: true,
+      },
+      {
+        source: "/column/s_njTeQ9",
+        destination: "/column/chokusou-fukusou/",
+        permanent: true,
+      },
+      {
+        source: "/column/s_njTeQ9/",
+        destination: "/column/chokusou-fukusou/",
+        permanent: true,
+      },
+      {
+        source: "/Column_list/s_njTeQ9",
+        destination: "/column/chokusou-fukusou/",
+        permanent: true,
+      },
+      {
+        source: "/Column_list/s_njTeQ9/",
+        destination: "/column/chokusou-fukusou/",
+        permanent: true,
+      },
+      {
+        source: "/column/xGsLB4Wb",
+        destination: "/column/ichinichi-sou/",
+        permanent: true,
+      },
+      {
+        source: "/column/xGsLB4Wb/",
+        destination: "/column/ichinichi-sou/",
+        permanent: true,
+      },
+      {
+        source: "/Column_list/xGsLB4Wb",
+        destination: "/column/ichinichi-sou/",
+        permanent: true,
+      },
+      {
+        source: "/Column_list/xGsLB4Wb/",
+        destination: "/column/ichinichi-sou/",
+        permanent: true,
+      },
+      {
+        source: "/column/C0IHfdrz",
+        destination: "/column/bukkyou-shuha-13/",
+        permanent: true,
+      },
+      {
+        source: "/column/C0IHfdrz/",
+        destination: "/column/bukkyou-shuha-13/",
+        permanent: true,
+      },
+      {
+        source: "/Column_list/C0IHfdrz",
+        destination: "/column/bukkyou-shuha-13/",
+        permanent: true,
+      },
+      {
+        source: "/Column_list/C0IHfdrz/",
+        destination: "/column/bukkyou-shuha-13/",
+        permanent: true,
+      },
+      {
+        source: "/column/DDK0uG6r",
+        destination: "/column/mushukyo-sou/",
+        permanent: true,
+      },
+      {
+        source: "/column/DDK0uG6r/",
+        destination: "/column/mushukyo-sou/",
+        permanent: true,
+      },
+      {
+        source: "/Column_list/DDK0uG6r",
+        destination: "/column/mushukyo-sou/",
+        permanent: true,
+      },
+      {
+        source: "/Column_list/DDK0uG6r/",
+        destination: "/column/mushukyo-sou/",
+        permanent: true,
+      },
+      {
+        source: "/column/VWorrTRf",
+        destination: "/column/jitakusou-merit/",
+        permanent: true,
+      },
+      {
+        source: "/column/VWorrTRf/",
+        destination: "/column/jitakusou-merit/",
+        permanent: true,
+      },
+      {
+        source: "/Column_list/VWorrTRf",
+        destination: "/column/jitakusou-merit/",
+        permanent: true,
+      },
+      {
+        source: "/Column_list/VWorrTRf/",
+        destination: "/column/jitakusou-merit/",
+        permanent: true,
+      },
+      {
+        source: "/column/5w7LS4x1",
+        destination: "/column/sousai-fujo/",
+        permanent: true,
+      },
+      {
+        source: "/column/5w7LS4x1/",
+        destination: "/column/sousai-fujo/",
+        permanent: true,
+      },
+      {
+        source: "/Column_list/5w7LS4x1",
+        destination: "/column/sousai-fujo/",
+        permanent: true,
+      },
+      {
+        source: "/Column_list/5w7LS4x1/",
+        destination: "/column/sousai-fujo/",
+        permanent: true,
+      },
+      {
+        source: "/column/xK_jXyB6",
+        destination: "/column/kenshi-nagare/",
+        permanent: true,
+      },
+      {
+        source: "/column/xK_jXyB6/",
+        destination: "/column/kenshi-nagare/",
+        permanent: true,
+      },
+      {
+        source: "/Column_list/xK_jXyB6",
+        destination: "/column/kenshi-nagare/",
+        permanent: true,
+      },
+      {
+        source: "/Column_list/xK_jXyB6/",
+        destination: "/column/kenshi-nagare/",
+        permanent: true,
+      },
+      {
         source: "/Column_list/:slug*",
         destination: "/column/:slug*",
         permanent: true,
