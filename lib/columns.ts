@@ -5187,46 +5187,6 @@ export const columns: ColumnArticle[] = [
     metaDescription:
       "葬儀費用に納得した人は73.3%・見積もりと支払額が違った人は34.5%（平均＋19.5万円）の調査結果をもとに、納得度を分ける要因、見積もりチェックリスト、川口市で費用と満足度の両方を高めるコツを川口典礼が整理。",
   },
-  {
-    slug: "sample-article",
-    title: "【サンプル】事前相談で確認しておきたい3つのこと",
-    description:
-      "（サンプル記事）コラム機能の骨組み動作確認用の仮記事です。後日、実コンテンツに差し替えます。",
-    publishedAt: "2026-05-18",
-    category: "事前相談",
-    tags: ["サンプル", "骨組み確認用"],
-    body: [
-      {
-        type: "p",
-        text: "※ このページはコラム機能の骨組み動作確認用のサンプル記事です。実際のコンテンツは後日差し替えます。",
-      },
-      { type: "h2", text: "サンプル見出し H2" },
-      {
-        type: "p",
-        text: "段落のテストです。本文はブロック単位（段落、見出し、リスト、画像、引用、CTA）で構造化して管理しています。",
-      },
-      { type: "h3", text: "サンプル見出し H3" },
-      {
-        type: "ul",
-        items: [
-          "箇条書きの項目1",
-          "箇条書きの項目2",
-          "箇条書きの項目3",
-        ],
-      },
-      {
-        type: "quote",
-        text: "引用ブロックのサンプルです。ご家族の言葉や、参考になる一節を引用するときに使います。",
-      },
-      {
-        type: "cta",
-        label: "事前相談はこちら",
-        href: "/contact/",
-      },
-    ],
-    metaDescription:
-      "（サンプル記事の meta description）後日、実コンテンツに差し替えます。",
-  },
 ];
 
 export function getColumn(slug: string): ColumnArticle | undefined {
