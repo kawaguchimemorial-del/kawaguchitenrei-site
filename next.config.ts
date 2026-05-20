@@ -14,6 +14,16 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/Column_list/sougi_納得",
+        destination: "/column/sougi_nattoku/",
+        permanent: true,
+      },
+      {
+        source: "/Column_list/sougi_%E7%B4%8D%E5%BE%97",
+        destination: "/column/sougi_nattoku/",
+        permanent: true,
+      },
+      {
         source: "/Column_list/:slug*",
         destination: "/column/:slug*",
         permanent: true,
