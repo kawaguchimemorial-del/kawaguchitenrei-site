@@ -8,6 +8,7 @@ const navItems = [
   { label: "施行事例", href: "/#cases" },
   { label: "お客様の声", href: "/#voices" },
   { label: "よくある質問", href: "/#faq" },
+  { label: "コラム", href: "/column/" },
   { label: "アクセス", href: "/#access" },
 ];
 
