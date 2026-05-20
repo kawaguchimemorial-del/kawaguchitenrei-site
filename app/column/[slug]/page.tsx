@@ -5,8 +5,10 @@ import { PageHero } from "@/components/common/PageHero";
 import { ColumnBody } from "@/components/column/ColumnBody";
 import { ColumnToc } from "@/components/column/ColumnToc";
 import { RelatedColumns } from "@/components/column/RelatedColumns";
-import { getAllColumnSlugs, getColumn } from "@/lib/columns";
+import { getAllColumnSlugs, getColumn, type ColumnArticle } from "@/lib/columns";
 import { extractToc } from "@/lib/column-toc";
+
+const SITE_URL = "https://kawaguchitenrei.com";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -43,6 +45,56 @@ function formatDate(iso: string): string {
   return `${y}/${m}/${d}`;
 }
 
+function buildArticleJsonLd(article: ColumnArticle) {
+  const pageUrl = `${SITE_URL}/column/${article.slug}/`;
+  const description = article.metaDescription ?? article.description;
+  const datePublished = article.publishedAt;
+  const dateModified = article.updatedAt ?? article.publishedAt;
+
+  const jsonLd: Record<string, unknown> = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": pageUrl,
+    },
+    headline: article.title,
+    description,
+    datePublished,
+    dateModified,
+    url: pageUrl,
+    inLanguage: "ja",
+    isAccessibleForFree: true,
+    author: {
+      "@type": "Organization",
+      name: "川口典礼",
+      url: `${SITE_URL}/`,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "川口典礼",
+      url: `${SITE_URL}/`,
+    },
+  };
+
+  if (article.heroImage?.src) {
+    const src = article.heroImage.src;
+    const imageUrl = src.startsWith("http") ? src : `${SITE_URL}${src}`;
+    jsonLd.image = imageUrl;
+    jsonLd.thumbnailUrl = imageUrl;
+  }
+
+  if (article.category) {
+    jsonLd.articleSection = article.category;
+  }
+
+  if (article.tags && article.tags.length > 0) {
+    jsonLd.keywords = article.tags.join(", ");
+  }
+
+  return jsonLd;
+}
+
 export default async function ColumnDetailPage({ params }: Props) {
   const { slug } = await params;
   const article = getColumn(slug);
@@ -51,9 +103,14 @@ export default async function ColumnDetailPage({ params }: Props) {
   }
 
   const toc = extractToc(article.body);
+  const articleJsonLd = buildArticleJsonLd(article);
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
       <PageHero
         eyebrow="Column"
         subLabel={article.category ?? "コラム"}
