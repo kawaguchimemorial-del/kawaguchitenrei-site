@@ -15,8 +15,8 @@ const nearbyAreas: AreaLink[] = [
 const halls: AreaLink[] = [
   { name: "川口市めぐりの森", href: "/saijo/megurinomori/" },
   { name: "川口メモリアルホール", href: "/hall/kawaguchi-memorial-hall/" },
-  { name: "戸田葬祭場" },
-  { name: "谷塚斎場" },
+  { name: "戸田葬祭場", href: "/saijo/toda-sousaijyo/" },
+  { name: "谷塚斎場", href: "/saijo/yatsuka-saijo/" },
 ];
 
 export function AreasSection() {
