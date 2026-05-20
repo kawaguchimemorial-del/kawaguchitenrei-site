@@ -1,5 +1,7 @@
 "use server";
 
+import { sendWebhook } from "@/lib/forms/sendWebhook";
+
 export type ContactFormState = {
   ok?: boolean;
   errors?: Record<string, string>;
@@ -71,11 +73,14 @@ export async function submitContact(
     submittedAt: new Date().toISOString(),
   };
 
-  // TODO: 実メール送信の連携
-  // 例: Resend / SendGrid / SES などへの API 呼び出しをここに追加
-  // 送信先メールアドレスは環境変数 (CONTACT_EMAIL_TO) などで管理する想定
-  // 受付完了の自動返信メールも別途送信する
-  console.info("[contact] submitted", payload);
+  const result = await sendWebhook("contact", payload);
+  if (!result.ok) {
+    return {
+      errors: { _form: "送信に失敗しました" },
+      message:
+        "申し訳ありません。送信処理でエラーが発生しました。お急ぎの方は 0120-963-765 までお電話ください。",
+    };
+  }
 
   return {
     ok: true,

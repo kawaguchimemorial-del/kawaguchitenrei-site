@@ -1,5 +1,7 @@
 "use server";
 
+import { sendWebhook } from "@/lib/forms/sendWebhook";
+
 export type EstimateFormState = {
   ok?: boolean;
   errors?: Record<string, string>;
@@ -160,11 +162,14 @@ export async function submitEstimate(
     submittedAt: new Date().toISOString(),
   };
 
-  // TODO: 実メール送信の連携
-  // 現状は概算ロジックを持たないため、ご担当者へメール通知し、
-  // 正式な概算金額は担当者からご連絡いただく運用を想定。
-  // 将来的に内部の概算システム(設計書 §11.1)と接続する場合は、ここで API 呼び出しを行う。
-  console.info("[estimate] submitted", payload);
+  const result = await sendWebhook("estimate", payload);
+  if (!result.ok) {
+    return {
+      errors: { _form: "送信に失敗しました" },
+      message:
+        "申し訳ありません。送信処理でエラーが発生しました。お急ぎの方は 0120-963-765 までお電話ください。",
+    };
+  }
 
   return {
     ok: true,
