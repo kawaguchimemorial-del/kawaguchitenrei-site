@@ -3,7 +3,10 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { PageHero } from "@/components/common/PageHero";
 import { ColumnBody } from "@/components/column/ColumnBody";
+import { ColumnToc } from "@/components/column/ColumnToc";
+import { RelatedColumns } from "@/components/column/RelatedColumns";
 import { getAllColumnSlugs, getColumn } from "@/lib/columns";
+import { extractToc } from "@/lib/column-toc";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -47,6 +50,8 @@ export default async function ColumnDetailPage({ params }: Props) {
     notFound();
   }
 
+  const toc = extractToc(article.body);
+
   return (
     <>
       <PageHero
@@ -86,40 +91,144 @@ export default async function ColumnDetailPage({ params }: Props) {
         ]}
       />
 
-      <article className="bg-white py-14 md:py-20">
-        <div className="mx-auto max-w-3xl px-5 md:px-8">
-          {article.heroImage && (
-            <div className="relative mb-10 aspect-[16/9] w-full overflow-hidden rounded-lg border border-line bg-warm">
-              <Image
-                src={article.heroImage.src}
-                alt={article.heroImage.alt}
-                fill
-                sizes="(max-width: 768px) 100vw, 768px"
-                className="object-cover object-center"
-                priority
-              />
+      <article className="bg-white py-12 md:py-16">
+        <div className="mx-auto max-w-6xl px-5 md:px-8">
+          <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_280px] lg:gap-12">
+            {/* Main content */}
+            <div className="min-w-0">
+              {article.heroImage && (
+                <div className="relative mb-8 aspect-[16/9] w-full overflow-hidden rounded-lg border border-line bg-warm md:mb-10">
+                  <Image
+                    src={article.heroImage.src}
+                    alt={article.heroImage.alt}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 720px"
+                    className="object-cover object-center"
+                    priority
+                  />
+                </div>
+              )}
+
+              {/* リード文（要点ボックス） */}
+              <div className="rounded-lg border-l-4 border-brand bg-paper px-5 py-5 md:px-6 md:py-6">
+                <p className="flex items-center gap-2 text-xs font-semibold tracking-[0.18em] text-brand uppercase">
+                  <span aria-hidden className="inline-block h-1 w-4 bg-brand" />
+                  Lead
+                </p>
+                <p className="mt-2 text-sm font-bold text-ink-deep md:text-base">
+                  この記事のご案内
+                </p>
+                <p className="mt-3 text-sm leading-[1.95] text-ink-mid md:text-base md:leading-[2.05]">
+                  {article.description}
+                </p>
+              </div>
+
+              {/* モバイル用目次（折りたたみ） */}
+              {toc.length > 0 && (
+                <div className="mt-6 lg:hidden">
+                  <ColumnToc items={toc} variant="mobile" />
+                </div>
+              )}
+
+              <div className="mt-10 md:mt-12">
+                <ColumnBody body={article.body} />
+              </div>
+
+              {/* 記事下のCTA + 戻り導線 */}
+              <div className="mt-14 rounded-lg border border-line bg-paper px-6 py-8 text-center md:px-8 md:py-10">
+                <p className="text-sm font-semibold tracking-[0.18em] text-brand uppercase">
+                  Contact
+                </p>
+                <p className="font-serif-jp mt-3 text-lg font-medium text-ink-deep md:text-xl">
+                  ご家族のお気持ちに、寄り添うお手伝いを。
+                </p>
+                <p className="mt-3 text-sm leading-7 text-ink-mid md:text-base">
+                  記事の内容でわからないこと、ご家族の状況に合わせたご相談も承ります。
+                </p>
+                <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center">
+                  <a
+                    href="/contact/"
+                    className="inline-flex items-center justify-center gap-2 rounded-lg bg-brand px-6 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-brand-deep md:text-base"
+                  >
+                    事前相談する
+                    <span aria-hidden>→</span>
+                  </a>
+                  <a
+                    href="/estimate/"
+                    className="inline-flex items-center justify-center gap-2 rounded-lg border border-line bg-white px-6 py-3 text-sm font-bold text-brand transition hover:border-brand md:text-base"
+                  >
+                    見積りを依頼する
+                  </a>
+                </div>
+              </div>
+
+              <div className="mt-10 border-t border-line-soft pt-6">
+                <a
+                  href="/column/"
+                  className="inline-flex items-center gap-1 text-sm font-bold text-brand hover:underline md:text-base"
+                >
+                  <span aria-hidden>←</span>
+                  コラム一覧へ戻る
+                </a>
+              </div>
             </div>
-          )}
 
-          <p className="rounded-lg border border-line-soft bg-paper px-5 py-4 text-sm leading-7 text-ink-mid md:text-base md:leading-8">
-            {article.description}
-          </p>
+            {/* サイドバー（PCのみ） */}
+            <aside className="hidden lg:block">
+              <div className="sticky top-24 space-y-6">
+                {toc.length > 0 && <ColumnToc items={toc} />}
 
-          <div className="mt-10">
-            <ColumnBody body={article.body} />
-          </div>
+                <div className="rounded-lg border border-line-soft bg-white p-5">
+                  <RelatedColumns
+                    currentSlug={article.slug}
+                    category={article.category}
+                    limit={4}
+                    variant="list"
+                    title="この記事を読む方におすすめ"
+                  />
+                </div>
 
-          <div className="mt-14 border-t border-line-soft pt-8">
-            <a
-              href="/column/"
-              className="inline-flex items-center gap-1 text-sm font-bold text-brand hover:underline md:text-base"
-            >
-              <span aria-hidden>←</span>
-              コラム一覧へ戻る
-            </a>
+                <div className="rounded-lg border border-line-soft bg-paper p-5 text-center">
+                  <p className="text-xs font-semibold tracking-[0.18em] text-brand uppercase">
+                    Contact
+                  </p>
+                  <p className="font-serif-jp mt-2 text-base font-medium text-ink-deep">
+                    まずはお気軽に
+                  </p>
+                  <p className="mt-2 text-xs leading-6 text-ink-mid">
+                    24時間365日 受付
+                  </p>
+                  <a
+                    href="tel:0120-963-765"
+                    className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-md bg-emergency px-4 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-emergency-deep"
+                  >
+                    <span aria-hidden>☎</span>
+                    0120-963-765
+                  </a>
+                  <a
+                    href="/contact/"
+                    className="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-md border border-line bg-white px-4 py-3 text-sm font-bold text-brand transition hover:border-brand"
+                  >
+                    事前相談する
+                  </a>
+                </div>
+              </div>
+            </aside>
           </div>
         </div>
       </article>
+
+      {/* 関連記事（記事下） */}
+      <section className="bg-paper py-14 md:py-20">
+        <div className="mx-auto max-w-6xl px-5 md:px-8">
+          <RelatedColumns
+            currentSlug={article.slug}
+            category={article.category}
+            limit={6}
+            title="この記事を読む方におすすめ"
+          />
+        </div>
+      </section>
 
       <section
         id="consultation"
