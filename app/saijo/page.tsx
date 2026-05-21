@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Breadcrumbs } from "@/components/common/Breadcrumbs";
 
 const SITE_URL = "https://kawaguchitenrei.com";
@@ -18,89 +19,108 @@ export const metadata: Metadata = {
   },
 };
 
-const publicSaijo = [
+const mapSearchUrl = (query: string) =>
+  `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
+
+type PublicSaijo = {
+  name: string;
+  href: string;
+  address: string;
+  badge: string;
+  summary: string;
+};
+
+const publicSaijo: PublicSaijo[] = [
   {
     name: "川口市めぐりの森",
     href: "/saijo/megurinomori/",
     address: "埼玉県川口市大字新井宿430-1",
-    summary:
-      "川口市が運営する火葬場。式場は併設されておらず、ご家族の式場とは別の場所で火葬を行います。",
     badge: "公営・火葬場",
+    summary:
+      "川口市が運営する火葬場。式場は併設されていないため、別の式場でお別れの時間を過ごしたあと、火葬のために移動します。川口メモリアルホールから車で約5分。",
   },
   {
     name: "戸田葬祭場",
     href: "/saijo/toda-sousaijyo/",
-    address: "埼玉県戸田市美女木2-15-1",
-    summary:
-      "式場と火葬場が同じ敷地内にある民営の総合斎場。川口市から車で利用しやすく、移動の負担が少ない斎場です。",
+    address: "東京都板橋区舟渡4-15-1",
     badge: "式場・火葬場併設",
+    summary:
+      "東京都板橋区舟渡の火葬場併設斎場。式場・火葬炉・待合室を同じ敷地内に備え、移動の負担が少ない斎場です。",
   },
   {
     name: "谷塚斎場",
     href: "/saijo/yatsuka-saijo/",
-    address: "埼玉県草加市谷塚町474",
-    summary:
-      "草加市・八潮市・川口市東部の方が利用される斎場。式場と火葬場を併設しています。",
+    address: "埼玉県草加市瀬崎4-6-36",
     badge: "式場・火葬場併設",
+    summary:
+      "草加市瀬崎にある火葬場併設の斎場。5式場と複数の火葬炉を備え、家族葬から一般葬まで幅広く対応できます。",
   },
 ];
 
-const templeHalls = [
+type TempleHall = {
+  name: string;
+  address: string;
+  feeNote: string;
+  suitedFor: string;
+  features: string;
+};
+
+const templeHalls: TempleHall[] = [
   {
     name: "東礼川口",
-    address: "埼玉県川口市内",
-    suitedFor: "ご家族・ご親族中心の家族葬や一日葬をお考えの方",
+    address: "埼玉県川口市大字榛松1980-1",
+    feeNote: "式場使用料の目安：110,000円",
+    suitedFor: "ご家族・ご親族中心の家族葬・一日葬をお考えの方",
     features:
-      "川口市内の民営式場。少人数のお別れから一般的な家族葬まで、落ち着いた雰囲気でお見送りいただけます。",
+      "川口市榛松エリアの民営式場。家族葬から一般葬まで対応できる規模感で、落ち着いた雰囲気の中でお見送りいただけます。",
   },
   {
     name: "随泉寺会館",
-    address: "埼玉県川口市内",
-    suitedFor: "菩提寺や宗教者との繋がりを大切にしたいご家族",
+    address: "埼玉県川口市元郷3-4-17",
+    feeNote: "式場使用料の目安：50,000円〜100,000円",
+    suitedFor: "菩提寺や宗教者との繋がりを大切にされたいご家族",
     features:
-      "寺院に併設された会館で、僧侶との連携がスムーズ。宗教儀礼を丁寧に進めたい方に向いています。",
+      "川口市元郷の寺院会館。宗教者との連携がしやすく、宗教儀礼を丁寧に進めたい方に向いています。",
   },
   {
     name: "実相寺会館 鷲峰殿",
-    address: "埼玉県川口市内",
-    suitedFor: "格式を保ちながら家族葬を行いたいご家族",
+    address: "埼玉県川口市領家2-14-11",
+    feeNote: "式場使用料の目安：1日葬 100,000円／2日葬 200,000円",
+    suitedFor: "格式を保ちながら家族葬・一日葬を行いたいご家族",
     features:
-      "落ち着いた佇まいの寺院会館。家族葬から一般葬まで幅広く対応できる規模感です。",
+      "川口市領家の寺院会館。落ち着いた佇まいで、家族葬から一般葬まで幅広く対応できる規模感です。",
   },
   {
     name: "東光院会館",
-    address: "埼玉県川口市内",
+    address: "埼玉県川口市江戸袋1-20-32",
+    feeNote: "式場使用料は確認のうえご案内します",
     suitedFor: "菩提寺との関係を活かしたお別れをご希望の方",
     features:
-      "寺院併設の会館。読経・法要の流れをそのまま会館内で行えるため、ご家族の移動負担が少ない式場です。",
+      "川口市江戸袋の寺院会館。読経・法要から告別の流れまでひと続きで行いやすく、ご家族の移動負担が少ない式場です。",
   },
   {
     name: "専称寺会館 迎了殿",
-    address: "埼玉県川口市内",
+    address: "埼玉県川口市上青木5-3-43",
+    feeNote: "式場使用料の目安：200,000円",
     suitedFor: "親族・ご近所中心の家族葬をご希望の方",
     features:
-      "ご家族・ご親族でゆっくりとお別れの時間を過ごしていただける広さ。地域に根ざした式場です。",
+      "川口市上青木の寺院会館。ご家族・ご親族でゆっくりとお別れの時間を過ごしていただける広さがあります。",
   },
   {
-    name: "正源寺",
-    address: "埼玉県川口市内",
-    suitedFor: "寺院の本堂で式を執り行いたい方",
+    name: "正源寺会館",
+    address: "埼玉県川口市新堀934",
+    feeNote: "式場使用料の目安：150,000円",
+    suitedFor: "寺院の境内で落ち着いたお別れをご希望の方",
     features:
-      "寺院本堂を式場としてご利用いただける場合があります。詳細はご相談時にご案内します。",
+      "川口市新堀の寺院会館。地域に根ざした寺院に併設された式場で、家族葬を中心にご利用いただけます。",
   },
   {
     name: "興照寺センゲンホール",
-    address: "埼玉県川口市内",
+    address: "埼玉県川口市差間2-13-5",
+    feeNote: "式場使用料の目安：150,000円",
     suitedFor: "ご家族中心のお見送り、一日葬・家族葬をお考えの方",
     features:
-      "寺院に併設された式場。宗教者との連携がしやすく、お別れの場として落ち着いた環境を整えやすい会館です。",
-  },
-  {
-    name: "新隆寺 法要殿",
-    address: "埼玉県川口市内",
-    suitedFor: "法要・告別を同じ場所で行いたいご家族",
-    features:
-      "寺院併設の法要殿。お通夜・告別式から法要までをひと続きで行いやすい式場です。",
+      "川口市差間の寺院に併設された式場。宗教者との連携がしやすく、落ち着いた環境でお別れの時間を過ごせます。",
   },
 ];
 
@@ -142,27 +162,27 @@ const selectionPoints = [
 const faqs = [
   {
     q: "川口メモリアルホール以外でも葬儀はできますか？",
-    a: "はい。川口典礼では、自社式場の川口メモリアルホールに加えて、川口市めぐりの森・戸田葬祭場・谷塚斎場や、川口市内の寺院会館・民営式場など、ご希望や地域に合わせた葬儀場でのご相談・手配に対応しています。",
+    a: "はい。川口典礼では、自社式場の川口メモリアルホールに加えて、川口市めぐりの森、戸田葬祭場、谷塚斎場、川口市内の寺院会館・民営式場など、ご希望や地域に合わせた葬儀場でのご相談・手配に対応しています。詳しい利用条件は、正式なお見積り時に確認しご案内します。",
   },
   {
     q: "めぐりの森で葬儀はできますか？",
-    a: "川口市めぐりの森は火葬場で、通夜・告別式を行う式場は併設されていません。川口典礼では、式場でのお別れから川口市めぐりの森での火葬まで、一連の流れをサポートします。",
+    a: "川口市めぐりの森は川口市が運営する火葬場で、通夜・告別式を行う式場は併設されていません。川口メモリアルホールなどの式場でお別れの時間を過ごしたあと、車で約5分のめぐりの森へ移動して火葬を行う流れになります。川口典礼では一連の流れをまとめてサポートします。",
   },
   {
     q: "戸田葬祭場や谷塚斎場も手配できますか？",
-    a: "はい。戸田葬祭場・谷塚斎場はいずれも川口典礼の運営する施設ではありませんが、ご希望に応じて、これらの斎場をご利用いただく葬儀のご相談・手配に対応しています。",
+    a: "はい。戸田葬祭場・谷塚斎場はいずれも川口典礼が運営する施設ではありませんが、川口典礼ではこれらの斎場をご利用いただく葬儀のご相談・手配に対応しています。空き状況や料金は時期・条件により変わるため、正式なお見積り時に確認のうえご案内します。",
   },
   {
     q: "寺院会館でも家族葬はできますか？",
-    a: "はい。川口市内の寺院会館・民営式場でも、家族葬・一日葬・一般葬のお見送りに対応しています。菩提寺との関係や、ご希望の規模・雰囲気に合わせてご提案します。",
+    a: "はい。川口市内の寺院会館・民営式場でも、家族葬・一日葬・一般葬のお見送りに対応しています。寺院会館・民営式場は川口典礼が運営する施設ではありませんが、菩提寺との関係やご希望の規模・雰囲気に合わせてご相談・ご提案します。",
   },
   {
     q: "式場の空き状況は確認してもらえますか？",
-    a: "はい。ご希望の式場・日程をお伺いしたうえで、空き状況を確認しご連絡します。ご相談・お見積りは無料で承っています。",
+    a: "はい。ご希望の式場・日程をお伺いしたうえで、空き状況を確認しご連絡します。空き状況は時期により変わるため、正式なお見積り時に最新の状況をご案内します。事前のご相談・お見積りは無料で承っています。",
   },
   {
     q: "費用は式場によって変わりますか？",
-    a: "はい。式場使用料、ご利用時間、付帯設備、火葬場までの距離などにより、ご葬儀全体の費用は変動します。ご希望の式場・規模に合わせて、概算のお見積りをお出しします。",
+    a: "はい。式場使用料、ご利用時間、付帯設備、火葬場までの距離などにより、ご葬儀全体の費用は変動します。掲載している式場使用料はあくまで目安で、ご利用条件により変わる場合があります。ご希望の式場・規模に合わせて、正式なお見積りでご案内します。",
   },
 ];
 
@@ -270,11 +290,22 @@ export default function SaijoIndexPage() {
               川口メモリアルホール。
             </h2>
             <p className="mt-5 text-base leading-9 text-ink-mid md:text-lg">
-              ご家族中心の落ち着いたお別れを、ご移動の少ない動線で。川口典礼の自社式場として、家族葬・一日葬・直葬まで丁寧にお手伝いします。
+              川口市の家族葬・一日葬・直葬を、ご移動の少ない動線でお手伝いする川口典礼の自社式場。落ち着いた雰囲気のなか、ご家族中心のお別れの時間を過ごしていただけます。
             </p>
           </div>
 
-          <div className="mt-10 overflow-hidden rounded-lg border-2 border-brand bg-white shadow-sm md:grid md:grid-cols-[1.05fr_0.95fr] md:items-stretch">
+          <article className="mt-10 overflow-hidden rounded-lg border-2 border-brand bg-white shadow-md md:grid md:grid-cols-[1.05fr_0.95fr] md:items-stretch">
+            <div className="relative aspect-[16/10] w-full bg-warm md:aspect-auto md:min-h-[460px]">
+              <Image
+                src="/images/home/hall/hall-exterior.jpg"
+                alt="川口メモリアルホールの外観"
+                fill
+                sizes="(max-width: 768px) 100vw, 600px"
+                className="object-cover object-center"
+                priority
+              />
+            </div>
+
             <div className="p-6 md:p-10">
               <p className="text-xs font-bold uppercase tracking-[0.18em] text-brand">
                 Our Own Hall
@@ -286,13 +317,21 @@ export default function SaijoIndexPage() {
                 川口典礼の自社式場
               </p>
 
-              <dl className="mt-6 grid grid-cols-1 gap-y-4 text-sm md:gap-y-5">
+              <dl className="mt-6 space-y-4 text-sm md:text-base">
                 <div className="flex items-baseline gap-3 border-b border-line-soft pb-3">
                   <dt className="w-28 shrink-0 font-semibold text-ink-soft">
                     所在地
                   </dt>
                   <dd className="font-bold text-ink-deep">
                     埼玉県川口市西新井宿440-1
+                  </dd>
+                </div>
+                <div className="flex items-baseline gap-3 border-b border-line-soft pb-3">
+                  <dt className="w-28 shrink-0 font-semibold text-ink-soft">
+                    式場使用料
+                  </dt>
+                  <dd className="text-ink-deep">
+                    プラン・ご葬儀内容により異なります。詳しくはお見積りでご案内します。
                   </dd>
                 </div>
                 <div className="flex items-baseline gap-3 border-b border-line-soft pb-3">
@@ -319,55 +358,38 @@ export default function SaijoIndexPage() {
                 </div>
               </dl>
 
+              <ul className="mt-6 space-y-2 text-sm leading-7 text-ink-mid md:text-base md:leading-8">
+                <li className="flex items-start gap-3">
+                  <span aria-hidden className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand" />
+                  <span>めぐりの森に近く、式場と火葬場の移動負担が少ない動線</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span aria-hidden className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand" />
+                  <span>ご家族中心のお見送りに合う、落ち着いた雰囲気の式場</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span aria-hidden className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand" />
+                  <span>ご安置・お打合せから式当日まで、川口典礼が一貫してお手伝い</span>
+                </li>
+              </ul>
+
               <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <a
                   href="/hall/kawaguchi-memorial-hall/"
                   className="inline-flex items-center justify-center gap-2 rounded-lg bg-brand px-6 py-4 text-base font-bold text-white shadow-sm transition hover:bg-brand-deep"
                 >
-                  川口メモリアルホールの詳細
+                  詳しく見る
                   <span aria-hidden>→</span>
                 </a>
                 <a
                   href="/contact/"
                   className="inline-flex items-center justify-center gap-2 rounded-lg border border-ink-deep bg-white px-6 py-4 text-base font-bold text-ink-deep transition hover:bg-cool"
                 >
-                  この式場について相談する
+                  式場見学を相談する
                 </a>
               </div>
             </div>
-
-            <div className="bg-paper p-6 md:p-10">
-              <p className="text-xs font-bold uppercase tracking-[0.18em] text-ink-soft">
-                川口メモリアルホールの特徴
-              </p>
-              <ul className="mt-5 space-y-4 text-base leading-8 text-ink-mid">
-                <li className="flex items-start gap-3">
-                  <span aria-hidden className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand" />
-                  <span>
-                    川口市めぐりの森に近く、式場と火葬場の移動負担が少ない動線。
-                  </span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span aria-hidden className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand" />
-                  <span>
-                    駐車場70台で、ご親族・参列者の方も停めやすい広さ。
-                  </span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span aria-hidden className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand" />
-                  <span>
-                    家族葬・一日葬・直葬まで、ご希望の規模に合わせて柔軟に対応。
-                  </span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span aria-hidden className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand" />
-                  <span>
-                    ご安置・お打合せ・式当日まで、川口典礼が一貫してお手伝い。
-                  </span>
-                </li>
-              </ul>
-            </div>
-          </div>
+          </article>
         </div>
       </section>
 
@@ -385,14 +407,18 @@ export default function SaijoIndexPage() {
               地域の公営斎場・火葬場併設斎場。
             </h2>
             <p className="mt-5 text-base leading-9 text-ink-mid md:text-lg">
-              川口典礼が運営する施設ではありませんが、ご希望に応じて、これらの斎場をご利用いただく葬儀のご相談・手配に対応しています。
+              川口市の家族葬・一日葬・直葬で利用される、公営斎場・火葬場併設斎場をご案内します。
             </p>
           </div>
 
-          <ul className="mt-10 grid gap-5 md:grid-cols-3">
+          <p className="mt-6 rounded-lg border border-line-soft bg-white px-5 py-4 text-sm leading-7 text-ink-mid">
+            ※ 掲載している公営斎場・火葬場併設斎場は、川口典礼が運営する施設ではありません。川口典礼で葬儀のご相談・手配に対応している斎場としてご案内しています。式場使用料・空き状況・利用条件は変更となる場合があるため、正式なお見積り時に確認いたします。
+          </p>
+
+          <ul className="mt-8 grid gap-5 md:grid-cols-3">
             {publicSaijo.map((s) => (
               <li key={s.name}>
-                <article className="flex h-full flex-col rounded-lg border border-line bg-white p-6 shadow-sm md:p-8">
+                <article className="flex h-full flex-col rounded-lg border border-line bg-white p-6 shadow-sm md:p-7">
                   <p className="text-xs font-bold uppercase tracking-[0.18em] text-brand">
                     {s.badge}
                   </p>
@@ -405,23 +431,35 @@ export default function SaijoIndexPage() {
                   <p className="mt-4 text-sm leading-7 text-ink-mid">
                     {s.summary}
                   </p>
-                  <div className="mt-auto pt-6">
+
+                  <div className="mt-5 rounded-lg border border-line-soft bg-paper px-4 py-3">
+                    <p className="text-xs font-bold uppercase tracking-[0.18em] text-brand">
+                      川口典礼での対応
+                    </p>
+                    <p className="mt-1 text-sm font-semibold text-ink-deep">
+                      ご相談・手配に対応
+                    </p>
+                  </div>
+
+                  <div className="mt-auto pt-6 flex flex-col gap-2">
                     <a
                       href={s.href}
-                      className="inline-flex items-center gap-2 text-sm font-bold text-brand-deep hover:underline"
+                      className="inline-flex items-center justify-center gap-2 rounded-lg bg-brand px-4 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-brand-deep"
                     >
                       {s.name}の詳細
                       <span aria-hidden>→</span>
+                    </a>
+                    <a
+                      href="/contact/"
+                      className="inline-flex items-center justify-center gap-2 rounded-lg border border-ink-deep bg-white px-4 py-3 text-sm font-bold text-ink-deep transition hover:bg-cool"
+                    >
+                      この斎場について相談する
                     </a>
                   </div>
                 </article>
               </li>
             ))}
           </ul>
-
-          <p className="mt-8 rounded-lg border border-line-soft bg-white px-5 py-4 text-sm leading-7 text-ink-mid">
-            ※ 川口市めぐりの森・戸田葬祭場・谷塚斎場はいずれも川口典礼が運営する施設ではありません。川口典礼ではこれらの斎場をご利用いただく葬儀のご相談・手配に対応しています。
-          </p>
         </div>
       </section>
 
@@ -436,17 +474,23 @@ export default function SaijoIndexPage() {
               川口市内の寺院会館・民営式場
             </p>
             <h2 className="font-serif-jp mt-4 text-3xl font-medium leading-[1.4] text-ink-deep md:text-[2.2rem]">
-              寺院会館・民営式場でのお見送り。
+              川口市 寺院会館・民営式場での
+              <br className="md:hidden" />
+              お見送り。
             </h2>
             <p className="mt-5 text-base leading-9 text-ink-mid md:text-lg">
-              菩提寺との関係を大切にされたい方や、地域に馴染んだ式場でお別れをご希望の方に。川口典礼では、これらの式場でも葬儀のご相談・手配に対応しています。
+              菩提寺との関係を大切にされたい方や、地域に馴染んだ式場で家族葬・一日葬をご希望の方に。川口市内の寺院会館・民営式場でも、川口典礼で葬儀のご相談・手配に対応しています。
             </p>
           </div>
 
-          <ul className="mt-10 grid gap-5 md:grid-cols-2">
+          <p className="mt-6 rounded-lg border border-line-soft bg-paper px-5 py-4 text-sm leading-7 text-ink-mid">
+            ※ 掲載している寺院会館・民営式場は、川口典礼が運営する施設ではありません。川口典礼で葬儀のご相談・手配に対応している式場としてご案内しています。式場使用料・空き状況・利用条件は変更となる場合があるため、正式なお見積り時に確認いたします。
+          </p>
+
+          <ul className="mt-8 grid gap-5 md:grid-cols-2">
             {templeHalls.map((h) => (
               <li key={h.name}>
-                <article className="flex h-full flex-col rounded-lg border border-line bg-white p-6 shadow-sm md:p-8">
+                <article className="flex h-full flex-col rounded-lg border border-line bg-white p-6 shadow-sm md:p-7">
                   <h3 className="font-serif-jp text-xl font-medium leading-[1.4] text-ink-deep md:text-2xl">
                     {h.name}
                   </h3>
@@ -455,6 +499,14 @@ export default function SaijoIndexPage() {
                   </p>
 
                   <dl className="mt-5 space-y-4 text-sm leading-7">
+                    <div>
+                      <dt className="text-xs font-bold uppercase tracking-[0.18em] text-ink-soft">
+                        式場使用料の目安
+                      </dt>
+                      <dd className="mt-1 font-bold text-ink-deep">
+                        {h.feeNote}
+                      </dd>
+                    </div>
                     <div>
                       <dt className="text-xs font-bold uppercase tracking-[0.18em] text-ink-soft">
                         向いている方
@@ -477,13 +529,21 @@ export default function SaijoIndexPage() {
                     </div>
                   </dl>
 
-                  <div className="mt-auto pt-6">
+                  <div className="mt-auto pt-6 flex flex-col gap-2 sm:flex-row sm:flex-wrap">
+                    <a
+                      href={mapSearchUrl(`${h.name} ${h.address}`)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex flex-1 items-center justify-center gap-2 rounded-lg border border-ink-deep bg-white px-4 py-3 text-sm font-bold text-ink-deep transition hover:bg-cool"
+                    >
+                      Googleマップで見る
+                      <span aria-hidden>↗</span>
+                    </a>
                     <a
                       href="/contact/"
-                      className="inline-flex items-center justify-center gap-2 rounded-lg border border-ink-deep bg-white px-5 py-3 text-sm font-bold text-ink-deep transition hover:bg-cool"
+                      className="inline-flex flex-1 items-center justify-center gap-2 rounded-lg bg-brand px-4 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-brand-deep"
                     >
                       この式場について相談する
-                      <span aria-hidden>→</span>
                     </a>
                   </div>
                 </article>
@@ -491,8 +551,8 @@ export default function SaijoIndexPage() {
             ))}
           </ul>
 
-          <p className="mt-8 rounded-lg border border-line-soft bg-paper px-5 py-4 text-sm leading-7 text-ink-mid">
-            ※ 上記の寺院会館・民営式場は川口典礼が運営する施設ではありません。利用条件や空き状況は式場により異なります。詳しくはお電話・お問い合わせフォームよりご相談ください。
+          <p className="mt-8 text-sm leading-7 text-ink-soft">
+            ※ 式場使用料の表記は、確認時点での目安です。税込・税別の区分や、控室・通夜振舞いなど付帯条件により変動する場合があります。最新の金額は正式なお見積り時にご案内します。
           </p>
         </div>
       </section>
@@ -508,12 +568,12 @@ export default function SaijoIndexPage() {
               葬儀場の選び方
             </p>
             <h2 className="font-serif-jp mt-4 text-3xl font-medium leading-[1.4] text-ink-deep md:text-[2.2rem]">
-              葬儀場を選ぶときに、
+              川口市の葬儀場・斎場を選ぶときに、
               <br className="md:hidden" />
               確認しておきたいこと。
             </h2>
             <p className="mt-5 text-base leading-9 text-ink-mid md:text-lg">
-              「どの斎場が向いているか」は、ご家族の人数や宗教者との関係、ご自宅からの距離など、いくつかの条件で見えてきます。迷われたときは、川口典礼にご相談ください。
+              「どの葬儀場が向いているか」は、ご家族の人数や菩提寺との関係、ご自宅からの距離など、いくつかの観点で見えてきます。
             </p>
           </div>
 
@@ -533,6 +593,28 @@ export default function SaijoIndexPage() {
               </li>
             ))}
           </ul>
+
+          <div className="mt-10 rounded-lg border border-line bg-white p-6 shadow-sm md:p-8">
+            <p className="text-base leading-9 text-ink-mid md:text-lg md:leading-10">
+              どの式場がよいか分からない場合は、川口典礼へご相談ください。ご希望の地域・人数・ご予算に合わせて、利用しやすい葬儀場をご案内します。
+            </p>
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <a
+                href="/contact/"
+                className="inline-flex items-center justify-center gap-2 rounded-lg bg-brand px-6 py-4 text-base font-bold text-white shadow-sm transition hover:bg-brand-deep"
+              >
+                葬儀場について相談する
+                <span aria-hidden>→</span>
+              </a>
+              <a
+                href="/estimate/"
+                className="inline-flex items-center justify-center gap-2 rounded-lg border border-ink-deep bg-white px-6 py-4 text-base font-bold text-ink-deep transition hover:bg-cool"
+              >
+                費用の見積りを依頼する
+                <span aria-hidden>→</span>
+              </a>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -597,12 +679,12 @@ export default function SaijoIndexPage() {
             ご相談ください
           </p>
           <h2 className="font-serif-jp mt-4 text-3xl font-medium leading-[1.4] md:text-[2.4rem]">
-            葬儀場のご相談・お手配は、
+            川口市の葬儀場のご相談・お手配は、
             <br className="md:hidden" />
             川口典礼へ。
           </h2>
           <p className="mt-5 text-base leading-9 text-white/80 md:text-lg">
-            ご希望の式場・地域・規模をお伺いし、空き状況の確認から概算のお見積りまで、川口典礼が承ります。事前のご相談は無料です。
+            ご希望の式場・地域・規模をお伺いし、空き状況の確認から正式なお見積りまで、川口典礼が承ります。事前のご相談は無料です。
           </p>
 
           <div className="mt-9 grid gap-3 sm:grid-cols-[1.2fr_1fr]">
