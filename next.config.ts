@@ -544,6 +544,271 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/koe",
+        destination: "/voice/",
+        permanent: true,
+      },
+      {
+        source: "/koe/",
+        destination: "/voice/",
+        permanent: true,
+      },
+      {
+        source: "/koe/20250521_k_001",
+        destination: "/voice/20250521_k_001/",
+        permanent: true,
+      },
+      {
+        source: "/koe/20250521_k_001/",
+        destination: "/voice/20250521_k_001/",
+        permanent: true,
+      },
+      {
+        source: "/koe/20240521__kasoou2",
+        destination: "/voice/20240521__kasoou2/",
+        permanent: true,
+      },
+      {
+        source: "/koe/20240521__kasoou2/",
+        destination: "/voice/20240521__kasoou2/",
+        permanent: true,
+      },
+      {
+        source: "/koe/20240812_kazokusou",
+        destination: "/voice/20240812_kazokusou/",
+        permanent: true,
+      },
+      {
+        source: "/koe/20240812_kazokusou/",
+        destination: "/voice/20240812_kazokusou/",
+        permanent: true,
+      },
+      {
+        source: "/koe/20240602_k",
+        destination: "/voice/20240602_k/",
+        permanent: true,
+      },
+      {
+        source: "/koe/20240602_k/",
+        destination: "/voice/20240602_k/",
+        permanent: true,
+      },
+      {
+        source: "/koe/20240604_kk",
+        destination: "/voice/20240604_kk/",
+        permanent: true,
+      },
+      {
+        source: "/koe/20240604_kk/",
+        destination: "/voice/20240604_kk/",
+        permanent: true,
+      },
+      {
+        source: "/koe/20240608_ichi",
+        destination: "/voice/20240608_ichi/",
+        permanent: true,
+      },
+      {
+        source: "/koe/20240608_ichi/",
+        destination: "/voice/20240608_ichi/",
+        permanent: true,
+      },
+      {
+        source: "/koe/20240617_ichi",
+        destination: "/voice/20240617_ichi/",
+        permanent: true,
+      },
+      {
+        source: "/koe/20240617_ichi/",
+        destination: "/voice/20240617_ichi/",
+        permanent: true,
+      },
+      {
+        source: "/koe/20240619_ichi",
+        destination: "/voice/20240619_ichi/",
+        permanent: true,
+      },
+      {
+        source: "/koe/20240619_ichi/",
+        destination: "/voice/20240619_ichi/",
+        permanent: true,
+      },
+      {
+        source: "/koe/2020603_ichi",
+        destination: "/voice/2020603_ichi/",
+        permanent: true,
+      },
+      {
+        source: "/koe/2020603_ichi/",
+        destination: "/voice/2020603_ichi/",
+        permanent: true,
+      },
+      {
+        source: "/koe/20240623_kazoku",
+        destination: "/voice/20240623_kazoku/",
+        permanent: true,
+      },
+      {
+        source: "/koe/20240623_kazoku/",
+        destination: "/voice/20240623_kazoku/",
+        permanent: true,
+      },
+      {
+        source: "/koe/20240624_kasou",
+        destination: "/voice/20240624_kasou/",
+        permanent: true,
+      },
+      {
+        source: "/koe/20240624_kasou/",
+        destination: "/voice/20240624_kasou/",
+        permanent: true,
+      },
+      {
+        source: "/koe/20240628_kazoku",
+        destination: "/voice/20240628_kazoku/",
+        permanent: true,
+      },
+      {
+        source: "/koe/20240628_kazoku/",
+        destination: "/voice/20240628_kazoku/",
+        permanent: true,
+      },
+      {
+        source: "/koe/20240702",
+        destination: "/voice/20240702/",
+        permanent: true,
+      },
+      {
+        source: "/koe/20240702/",
+        destination: "/voice/20240702/",
+        permanent: true,
+      },
+      {
+        source: "/koe/20270704_kazoku",
+        destination: "/voice/20270704_kazoku/",
+        permanent: true,
+      },
+      {
+        source: "/koe/20270704_kazoku/",
+        destination: "/voice/20270704_kazoku/",
+        permanent: true,
+      },
+      {
+        source: "/koe/20240710_kazoku",
+        destination: "/voice/20240710_kazoku/",
+        permanent: true,
+      },
+      {
+        source: "/koe/20240710_kazoku/",
+        destination: "/voice/20240710_kazoku/",
+        permanent: true,
+      },
+      {
+        source: "/koe/20240717_ippann",
+        destination: "/voice/20240717_ippann/",
+        permanent: true,
+      },
+      {
+        source: "/koe/20240717_ippann/",
+        destination: "/voice/20240717_ippann/",
+        permanent: true,
+      },
+      {
+        source: "/koe/20240716_kasou",
+        destination: "/voice/20240716_kasou/",
+        permanent: true,
+      },
+      {
+        source: "/koe/20240716_kasou/",
+        destination: "/voice/20240716_kasou/",
+        permanent: true,
+      },
+      {
+        source: "/koe/tq4nrjZa",
+        destination: "/voice/tq4nrjZa/",
+        permanent: true,
+      },
+      {
+        source: "/koe/tq4nrjZa/",
+        destination: "/voice/tq4nrjZa/",
+        permanent: true,
+      },
+      {
+        source: "/koe/20250721",
+        destination: "/voice/20250721/",
+        permanent: true,
+      },
+      {
+        source: "/koe/20250721/",
+        destination: "/voice/20250721/",
+        permanent: true,
+      },
+      {
+        source: "/koe/20240721",
+        destination: "/voice/20240721/",
+        permanent: true,
+      },
+      {
+        source: "/koe/20240721/",
+        destination: "/voice/20240721/",
+        permanent: true,
+      },
+      {
+        source: "/koe/20240730_ichi",
+        destination: "/voice/20240730_ichi/",
+        permanent: true,
+      },
+      {
+        source: "/koe/20240730_ichi/",
+        destination: "/voice/20240730_ichi/",
+        permanent: true,
+      },
+      {
+        source: "/koe/20240730",
+        destination: "/voice/20240730/",
+        permanent: true,
+      },
+      {
+        source: "/koe/20240730/",
+        destination: "/voice/20240730/",
+        permanent: true,
+      },
+      {
+        source: "/koe/20250912",
+        destination: "/voice/20250912/",
+        permanent: true,
+      },
+      {
+        source: "/koe/20250912/",
+        destination: "/voice/20250912/",
+        permanent: true,
+      },
+      {
+        source: "/koe/ckgS6F6p",
+        destination: "/voice/ckgS6F6p/",
+        permanent: true,
+      },
+      {
+        source: "/koe/ckgS6F6p/",
+        destination: "/voice/ckgS6F6p/",
+        permanent: true,
+      },
+      {
+        source: "/koe/2020914ippan",
+        destination: "/voice/2020914ippan/",
+        permanent: true,
+      },
+      {
+        source: "/koe/2020914ippan/",
+        destination: "/voice/2020914ippan/",
+        permanent: true,
+      },
+      {
+        source: "/koe/:slug*",
+        destination: "/voice/",
+        permanent: true,
+      },
+      {
         source: "/case/20-oneday-memorial-hall",
         destination: "/case/kawaguchi-memorial-buddhist-20-oneday-1100k",
         permanent: true,

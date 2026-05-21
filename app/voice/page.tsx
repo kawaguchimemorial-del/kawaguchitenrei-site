@@ -84,15 +84,17 @@ export default function VoiceIndexPage() {
                   href={`/voice/${voice.slug}/`}
                   className="group flex h-full flex-col overflow-hidden rounded-lg border border-line bg-white shadow-sm transition hover:shadow-md"
                 >
-                  <div className="relative aspect-[4/3] bg-warm">
-                    <Image
-                      src={voice.surveyImage.src}
-                      alt={voice.surveyImage.alt}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 480px"
-                      className="object-cover object-center"
-                    />
-                  </div>
+                  {voice.surveyImage && (
+                    <div className="relative aspect-[4/3] bg-warm">
+                      <Image
+                        src={voice.surveyImage.src}
+                        alt={voice.surveyImage.alt}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 480px"
+                        className="object-cover object-center"
+                      />
+                    </div>
+                  )}
 
                   <div className="flex flex-1 flex-col gap-4 p-6 md:p-8">
                     <p className="text-xs text-ink-soft">

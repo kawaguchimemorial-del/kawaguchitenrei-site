@@ -31,6 +31,7 @@ export function VoiceLong({ voice }: { voice: Voice }) {
 }
 
 export function VoiceSurvey({ voice }: { voice: Voice }) {
+  if (!voice.surveyImage) return null;
   return (
     <section className="bg-paper py-16 md:py-24">
       <div className="mx-auto max-w-4xl px-5 md:px-8">
