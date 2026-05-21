@@ -193,7 +193,7 @@ export function PlanCompatibleHalls({ plan }: { plan: Plan }) {
   const hallSlugMap: Record<string, string> = {
     川口メモリアルホール: "/hall/kawaguchi-memorial-hall/",
     川口市めぐりの森: "/saijo/megurinomori/",
-    戸田葬祭場: "/saijo/toda-sousaijo/",
+    戸田葬祭場: "/saijo/toda-sousaijyo/",
     谷塚斎場: "/saijo/yatsuka-saijo/",
   };
 
