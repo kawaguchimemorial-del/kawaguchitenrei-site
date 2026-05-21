@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useEffect } from "react";
 import { submitEstimate, type EstimateFormState } from "./actions";
 
 const formatOptions = [
@@ -155,6 +155,12 @@ export function EstimateForm() {
     EstimateFormState,
     FormData
   >(submitEstimate, null);
+
+  useEffect(() => {
+    if (state?.ok) {
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    }
+  }, [state?.ok]);
 
   if (state?.ok && state.summary) {
     const s = state.summary;

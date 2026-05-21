@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useEffect } from "react";
 import { submitContact, type ContactFormState } from "./actions";
 
 const purposeOptions = [
@@ -40,6 +40,12 @@ export function ContactForm() {
     ContactFormState,
     FormData
   >(submitContact, null);
+
+  useEffect(() => {
+    if (state?.ok) {
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    }
+  }, [state?.ok]);
 
   if (state?.ok) {
     return (
