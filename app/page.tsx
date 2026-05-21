@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { AccessSection } from "@/components/home/AccessSection";
+import { AdvanceConsultSection } from "@/components/home/AdvanceConsultSection";
 import { AreasSection } from "@/components/home/AreasSection";
 import { CasesSection } from "@/components/home/CasesSection";
 import { CostEstimateSection } from "@/components/home/CostEstimateSection";
@@ -86,6 +87,7 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
       />
       <Hero />
+      <AdvanceConsultSection />
       <ThreeStrengthsSection />
       <EmergencySection />
       <CostEstimateSection />
