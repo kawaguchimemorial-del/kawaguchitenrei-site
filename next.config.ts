@@ -809,6 +809,21 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/ques",
+        destination: "/voice/",
+        permanent: true,
+      },
+      {
+        source: "/ques/",
+        destination: "/voice/",
+        permanent: true,
+      },
+      {
+        source: "/ques/:slug*",
+        destination: "/voice/",
+        permanent: true,
+      },
+      {
         source: "/case/20-oneday-memorial-hall",
         destination: "/case/kawaguchi-memorial-buddhist-20-oneday-1100k",
         permanent: true,
