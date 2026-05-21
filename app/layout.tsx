@@ -1,4 +1,8 @@
 import type { Metadata } from "next";
+import {
+  GoogleTagManager,
+  GoogleTagManagerNoscript,
+} from "@/components/analytics/GoogleTagManager";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { MobileBottomCTA } from "@/components/layout/MobileBottomCTA";
@@ -18,7 +22,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja" className="h-full scroll-smooth antialiased">
+      <GoogleTagManager />
       <body className="min-h-full bg-paper pb-[calc(6rem+env(safe-area-inset-bottom))] text-ink md:pb-0">
+        <GoogleTagManagerNoscript />
         <Header />
         <main>{children}</main>
         <Footer />
