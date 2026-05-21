@@ -1,6 +1,7 @@
 "use client";
 
 import { useActionState, useEffect } from "react";
+import { pushGenerateLead } from "@/lib/analytics";
 import { submitEstimate, type EstimateFormState } from "./actions";
 
 const formatOptions = [
@@ -158,6 +159,7 @@ export function EstimateForm() {
 
   useEffect(() => {
     if (state?.ok) {
+      pushGenerateLead("estimate");
       window.scrollTo({ top: 0, left: 0, behavior: "auto" });
     }
   }, [state?.ok]);
