@@ -824,6 +824,51 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/pet/funeral",
+        destination: "/pet/",
+        permanent: true,
+      },
+      {
+        source: "/pet/funeral/",
+        destination: "/pet/",
+        permanent: true,
+      },
+      {
+        source: "/pet/nagare",
+        destination: "/pet/",
+        permanent: true,
+      },
+      {
+        source: "/pet/nagare/",
+        destination: "/pet/",
+        permanent: true,
+      },
+      {
+        source: "/pet/what",
+        destination: "/pet/",
+        permanent: true,
+      },
+      {
+        source: "/pet/what/",
+        destination: "/pet/",
+        permanent: true,
+      },
+      {
+        source: "/pet/saved",
+        destination: "/pet/",
+        permanent: true,
+      },
+      {
+        source: "/pet/saved/",
+        destination: "/pet/",
+        permanent: true,
+      },
+      {
+        source: "/pet/:slug+",
+        destination: "/pet/",
+        permanent: true,
+      },
+      {
         source: "/case/20-oneday-memorial-hall",
         destination: "/case/kawaguchi-memorial-buddhist-20-oneday-1100k",
         permanent: true,
