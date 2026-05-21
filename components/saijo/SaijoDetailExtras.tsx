@@ -145,6 +145,27 @@ export function SaijoFaq({ saijo }: { saijo: Saijo }) {
             </li>
           ))}
         </ul>
+
+        <div className="mt-10 rounded-lg border border-line bg-paper p-6 shadow-sm md:p-8">
+          <p className="text-xs font-bold uppercase tracking-[0.18em] text-brand">
+            Saijo List
+          </p>
+          <p className="font-serif-jp mt-2 text-xl font-medium text-ink-deep md:text-2xl">
+            ほかの葬儀場も比較したい方へ。
+          </p>
+          <p className="mt-3 text-sm leading-7 text-ink-mid md:text-base md:leading-8">
+            川口市・近隣で利用できる葬儀場を一覧でご案内しています。所在地・特徴・川口典礼での対応をまとめてご確認いただけます。
+          </p>
+          <div className="mt-5">
+            <a
+              href="/saijo/"
+              className="inline-flex items-center gap-2 rounded-lg border border-ink-deep bg-white px-5 py-3 text-sm font-bold text-ink-deep transition hover:bg-cool md:text-base"
+            >
+              川口市・近隣の葬儀場一覧を見る
+              <span aria-hidden>→</span>
+            </a>
+          </div>
+        </div>
       </div>
     </section>
   );

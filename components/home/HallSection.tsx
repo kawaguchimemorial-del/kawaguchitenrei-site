@@ -109,6 +109,16 @@ export function HallSection() {
                 </a>
                 もご覧ください。
               </p>
+              <p className="mt-3 text-sm leading-7 text-ink-mid">
+                自社ホール以外の式場をご検討の方は、
+                <a
+                  href="/saijo/"
+                  className="font-bold text-brand hover:underline"
+                >
+                  川口市・近隣で利用できる葬儀場を見る
+                </a>
+                からご覧いただけます。
+              </p>
             </div>
           </div>
         </div>

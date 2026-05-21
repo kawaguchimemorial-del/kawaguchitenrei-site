@@ -361,6 +361,21 @@ export function AreaSaijo({ area }: { area: Area }) {
               );
             })}
           </ul>
+
+          <div className="mt-10 rounded-lg border border-line bg-white p-6 shadow-sm md:p-8">
+            <p className="text-base leading-8 text-ink-mid md:text-lg md:leading-9">
+              川口市で利用できる葬儀場を比較したい方へ。所在地・特徴・川口典礼での対応をまとめてご案内しています。
+            </p>
+            <div className="mt-5">
+              <a
+                href="/saijo/"
+                className="inline-flex items-center gap-2 rounded-lg border border-ink-deep bg-white px-5 py-3 text-sm font-bold text-ink-deep transition hover:bg-cool md:text-base"
+              >
+                川口市・近隣の葬儀場一覧を見る
+                <span aria-hidden>→</span>
+              </a>
+            </div>
+          </div>
         </div>
       </section>
     </>

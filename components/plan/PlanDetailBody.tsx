@@ -236,6 +236,17 @@ export function PlanCompatibleHalls({ plan }: { plan: Plan }) {
             );
           })}
         </ul>
+
+        <p className="mt-8 text-sm leading-7 text-ink-mid md:text-base">
+          川口市・近隣の他の葬儀場もご検討の方は、
+          <a
+            href="/saijo/"
+            className="font-bold text-brand hover:underline"
+          >
+            各プランで利用できる葬儀場を見る
+          </a>
+          からまとめてご覧いただけます。
+        </p>
       </div>
     </section>
   );

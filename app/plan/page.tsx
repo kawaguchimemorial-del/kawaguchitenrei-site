@@ -417,6 +417,31 @@ export default function PlanIndexPage() {
         </div>
       </section>
 
+      <section className="bg-white py-12 md:py-16">
+        <div className="mx-auto max-w-4xl px-5 md:px-8">
+          <div className="rounded-lg border border-line bg-paper p-6 shadow-sm md:p-8">
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-brand">
+              Saijo
+            </p>
+            <p className="font-serif-jp mt-2 text-xl font-medium text-ink-deep md:text-2xl">
+              各プランで利用できる葬儀場を見る。
+            </p>
+            <p className="mt-3 text-sm leading-7 text-ink-mid md:text-base md:leading-8">
+              川口メモリアルホールをはじめ、川口市めぐりの森・戸田葬祭場・谷塚斎場、川口市内の寺院会館・民営式場まで、ご希望の式場をご案内します。
+            </p>
+            <div className="mt-5">
+              <a
+                href="/saijo/"
+                className="inline-flex items-center gap-2 rounded-lg border border-ink-deep bg-white px-5 py-3 text-sm font-bold text-ink-deep transition hover:bg-cool md:text-base"
+              >
+                川口市・近隣で利用できる葬儀場一覧
+                <span aria-hidden>→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section
         id="consultation"
         className="scroll-mt-24 bg-deep py-16 text-white md:py-24"
