@@ -28,6 +28,7 @@ type PublicSaijo = {
   address: string;
   badge: string;
   summary: string;
+  image: { src: string; alt: string };
 };
 
 const publicSaijo: PublicSaijo[] = [
@@ -38,6 +39,10 @@ const publicSaijo: PublicSaijo[] = [
     badge: "公営・火葬場",
     summary:
       "川口市が運営する火葬場。式場は併設されていないため、別の式場でお別れの時間を過ごしたあと、火葬のために移動します。川口メモリアルホールから車で約5分。",
+    image: {
+      src: "/images/saijo/megurinomori/exterior.png",
+      alt: "川口市めぐりの森の外観",
+    },
   },
   {
     name: "戸田葬祭場",
@@ -46,6 +51,10 @@ const publicSaijo: PublicSaijo[] = [
     badge: "式場・火葬場併設",
     summary:
       "東京都板橋区舟渡の火葬場併設斎場。式場・火葬炉・待合室を同じ敷地内に備え、移動の負担が少ない斎場です。",
+    image: {
+      src: "/images/saijo/toda-sousaijyo/exterior.png",
+      alt: "戸田葬祭場の外観",
+    },
   },
   {
     name: "谷塚斎場",
@@ -54,6 +63,10 @@ const publicSaijo: PublicSaijo[] = [
     badge: "式場・火葬場併設",
     summary:
       "草加市瀬崎にある火葬場併設の斎場。5式場と複数の火葬炉を備え、家族葬から一般葬まで幅広く対応できます。",
+    image: {
+      src: "/images/saijo/yatsuka-saijo/exterior.png",
+      alt: "谷塚斎場の外観",
+    },
   },
 ];
 
@@ -418,43 +431,55 @@ export default function SaijoIndexPage() {
           <ul className="mt-8 grid gap-5 md:grid-cols-3">
             {publicSaijo.map((s) => (
               <li key={s.name}>
-                <article className="flex h-full flex-col rounded-lg border border-line bg-white p-6 shadow-sm md:p-7">
-                  <p className="text-xs font-bold uppercase tracking-[0.18em] text-brand">
-                    {s.badge}
-                  </p>
-                  <h3 className="font-serif-jp mt-3 text-xl font-medium leading-[1.4] text-ink-deep md:text-2xl">
-                    {s.name}
-                  </h3>
-                  <p className="mt-3 text-sm font-semibold text-ink-mid">
-                    {s.address}
-                  </p>
-                  <p className="mt-4 text-sm leading-7 text-ink-mid">
-                    {s.summary}
-                  </p>
-
-                  <div className="mt-5 rounded-lg border border-line-soft bg-paper px-4 py-3">
-                    <p className="text-xs font-bold uppercase tracking-[0.18em] text-brand">
-                      川口典礼での対応
-                    </p>
-                    <p className="mt-1 text-sm font-semibold text-ink-deep">
-                      ご相談・手配に対応
-                    </p>
+                <article className="flex h-full flex-col overflow-hidden rounded-lg border border-line bg-white shadow-sm">
+                  <div className="relative aspect-[4/3] w-full bg-warm">
+                    <Image
+                      src={s.image.src}
+                      alt={s.image.alt}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 360px"
+                      className="object-cover object-center"
+                    />
                   </div>
 
-                  <div className="mt-auto pt-6 flex flex-col gap-2">
-                    <a
-                      href={s.href}
-                      className="inline-flex items-center justify-center gap-2 rounded-lg bg-brand px-4 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-brand-deep"
-                    >
-                      {s.name}の詳細
-                      <span aria-hidden>→</span>
-                    </a>
-                    <a
-                      href="/contact/"
-                      className="inline-flex items-center justify-center gap-2 rounded-lg border border-ink-deep bg-white px-4 py-3 text-sm font-bold text-ink-deep transition hover:bg-cool"
-                    >
-                      この斎場について相談する
-                    </a>
+                  <div className="flex flex-1 flex-col p-6 md:p-7">
+                    <p className="text-xs font-bold uppercase tracking-[0.18em] text-brand">
+                      {s.badge}
+                    </p>
+                    <h3 className="font-serif-jp mt-3 text-xl font-medium leading-[1.4] text-ink-deep md:text-2xl">
+                      {s.name}
+                    </h3>
+                    <p className="mt-3 text-sm font-semibold text-ink-mid">
+                      {s.address}
+                    </p>
+                    <p className="mt-4 text-sm leading-7 text-ink-mid">
+                      {s.summary}
+                    </p>
+
+                    <div className="mt-5 rounded-lg border border-line-soft bg-paper px-4 py-3">
+                      <p className="text-xs font-bold uppercase tracking-[0.18em] text-brand">
+                        川口典礼での対応
+                      </p>
+                      <p className="mt-1 text-sm font-semibold text-ink-deep">
+                        ご相談・手配に対応（川口典礼の運営施設ではありません）
+                      </p>
+                    </div>
+
+                    <div className="mt-auto pt-6 flex flex-col gap-2">
+                      <a
+                        href={s.href}
+                        className="inline-flex items-center justify-center gap-2 rounded-lg bg-brand px-4 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-brand-deep"
+                      >
+                        詳しく見る
+                        <span aria-hidden>→</span>
+                      </a>
+                      <a
+                        href="/contact/"
+                        className="inline-flex items-center justify-center gap-2 rounded-lg border border-ink-deep bg-white px-4 py-3 text-sm font-bold text-ink-deep transition hover:bg-cool"
+                      >
+                        この斎場について相談する
+                      </a>
+                    </div>
                   </div>
                 </article>
               </li>
