@@ -151,19 +151,12 @@ export function HallVisitationRoom() {
               </li>
             </ul>
 
-            <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <div className="mt-7">
               <a
                 href="/contact/"
                 className="inline-flex items-center justify-center gap-2 rounded-lg bg-brand px-6 py-4 text-base font-bold text-white shadow-sm transition hover:bg-brand-deep"
               >
                 個室面会室について相談する
-                <span aria-hidden>→</span>
-              </a>
-              <a
-                href="/pet/"
-                className="inline-flex items-center justify-center gap-2 rounded-lg border border-ink-deep bg-white px-6 py-4 text-base font-bold text-ink-deep transition hover:bg-cool"
-              >
-                ペットのお見送りについても相談する
                 <span aria-hidden>→</span>
               </a>
             </div>
