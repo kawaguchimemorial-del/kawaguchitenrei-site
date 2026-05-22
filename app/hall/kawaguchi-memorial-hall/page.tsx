@@ -5,6 +5,7 @@ import {
   HallFeatures,
   HallGallery,
   HallSupportedPlans,
+  HallVisitationRoom,
 } from "@/components/hall/HallDetailMain";
 import {
   HallAccess,
@@ -113,6 +114,7 @@ export default function KawaguchiMemorialHallPage() {
       <HallDetailIntro hall={hallKawaguchi} />
       <HallFeatures hall={hallKawaguchi} />
       <HallGallery hall={hallKawaguchi} />
+      <HallVisitationRoom />
       <HallEquipment hall={hallKawaguchi} />
       <HallSupportedPlans hall={hallKawaguchi} />
       <HallAccess hall={hallKawaguchi} />

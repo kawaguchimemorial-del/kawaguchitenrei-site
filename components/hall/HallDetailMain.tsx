@@ -94,6 +94,86 @@ export function HallGallery({ hall }: { hall: Hall }) {
   );
 }
 
+export function HallVisitationRoom() {
+  return (
+    <section className="bg-white py-16 md:py-24">
+      <div className="mx-auto max-w-6xl px-5 md:px-8">
+        <div className="max-w-3xl">
+          <p className="text-sm font-semibold tracking-[0.18em] text-brand uppercase">
+            Visitation Room
+          </p>
+          <p className="mt-2 text-sm font-semibold text-ink-mid">
+            個室面会室・ペット同伴のご相談
+          </p>
+          <h2 className="font-serif-jp mt-4 text-3xl font-medium leading-[1.4] text-ink-deep md:text-[2.2rem]">
+            個室面会室で、
+            <br className="md:hidden" />
+            ゆっくりお別れいただけます。
+          </h2>
+        </div>
+
+        <div className="mt-10 grid gap-8 md:grid-cols-[1.05fr_0.95fr] md:items-start">
+          <figure className="overflow-hidden rounded-lg border border-line bg-white shadow-sm">
+            <div className="relative aspect-[4/3] w-full bg-warm">
+              <Image
+                src="/images/hall/kawaguchi-memorial-hall/kawaguchi-memorial-hall-visitation-room-pet.png"
+                alt="川口メモリアルホールの個室面会室でペットと一緒にお別れする様子"
+                fill
+                sizes="(max-width: 768px) 100vw, 560px"
+                className="object-cover object-center"
+              />
+            </div>
+            <figcaption className="border-t border-line-soft px-5 py-4 text-sm leading-6 text-ink-mid">
+              個室面会室では、ご家族・ペットと一緒に静かなお別れの時間を過ごしていただけます。
+            </figcaption>
+          </figure>
+
+          <div>
+            <p className="text-base leading-9 text-ink-mid md:text-lg md:leading-10">
+              川口メモリアルホールには、故人様とゆっくりお別れいただける個室面会室を備えています。ご家族だけで静かに過ごしたい方、葬儀までの間にお顔を見てお別れしたい方にもご利用いただけます。
+            </p>
+            <p className="mt-5 text-base leading-9 text-ink-mid md:text-lg md:leading-10">
+              ペットも大切なご家族の一員と考え、ペットを連れてのご面会にも可能な範囲で対応しています。ご希望の場合は、事前にご相談ください。
+            </p>
+
+            <ul className="mt-7 space-y-3 rounded-lg border border-line-soft bg-paper p-5 md:p-6">
+              <li className="flex items-start gap-3 text-sm leading-7 text-ink md:text-base md:leading-8">
+                <span aria-hidden className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand" />
+                <span>ご家族だけで、故人様と静かに過ごせる個室空間</span>
+              </li>
+              <li className="flex items-start gap-3 text-sm leading-7 text-ink md:text-base md:leading-8">
+                <span aria-hidden className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand" />
+                <span>葬儀までの間、お顔を見てお別れの時間を過ごしたい方にも</span>
+              </li>
+              <li className="flex items-start gap-3 text-sm leading-7 text-ink md:text-base md:leading-8">
+                <span aria-hidden className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand" />
+                <span>ペット同伴のご面会も、可能な範囲で対応（事前にご相談ください）</span>
+              </li>
+            </ul>
+
+            <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <a
+                href="/contact/"
+                className="inline-flex items-center justify-center gap-2 rounded-lg bg-brand px-6 py-4 text-base font-bold text-white shadow-sm transition hover:bg-brand-deep"
+              >
+                個室面会室について相談する
+                <span aria-hidden>→</span>
+              </a>
+              <a
+                href="/pet/"
+                className="inline-flex items-center justify-center gap-2 rounded-lg border border-ink-deep bg-white px-6 py-4 text-base font-bold text-ink-deep transition hover:bg-cool"
+              >
+                ペットのお見送りについても相談する
+                <span aria-hidden>→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export function HallEquipment({ hall }: { hall: Hall }) {
   return (
     <section className="bg-cool py-16 md:py-24">
