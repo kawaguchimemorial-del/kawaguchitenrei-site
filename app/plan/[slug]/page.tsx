@@ -5,6 +5,7 @@ import {
   PlanAdditional,
   PlanCitizenFuneralBody,
   PlanCompatibleHalls,
+  PlanCostGuide,
   PlanCta,
   PlanFaq,
   PlanFlow,
@@ -180,6 +181,7 @@ export default async function PlanDetailPage({ params }: Props) {
           <PlanSimpleAlternative plan={plan} />
           <PlanFlow plan={plan} />
           <PlanAdditional plan={plan} />
+          <PlanCostGuide plan={plan} />
           <PlanCompatibleHalls plan={plan} />
           <PlanFaq plan={plan} />
         </>

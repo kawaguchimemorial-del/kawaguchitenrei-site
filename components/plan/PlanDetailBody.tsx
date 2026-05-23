@@ -189,6 +189,163 @@ export function PlanAdditional({ plan }: { plan: Plan }) {
   );
 }
 
+const costConfirmationPriorities = [
+  {
+    title: "火葬料",
+    note: "公営(川口市めぐりの森など)と民営で費用が異なります。",
+  },
+  {
+    title: "式場使用料",
+    note: "外部斎場をご利用の場合は別途必要になる場合があります。",
+  },
+  {
+    title: "お料理・返礼品",
+    note: "参列人数やご希望のグレードにより変動します。",
+  },
+  {
+    title: "宗教者へのお礼",
+    note: "宗派・寺院・地域により異なります。具体額はご希望に合わせてご確認ください。",
+  },
+  {
+    title: "ご安置日数の延長",
+    note: "友引や火葬場の予約状況により、必要日数が変わる場合があります。",
+  },
+] as const;
+
+export function PlanCostGuide({ plan }: { plan: Plan }) {
+  const hasPricing = Boolean(plan.pricing);
+
+  return (
+    <section className="bg-paper py-16 md:py-24">
+      <div className="mx-auto max-w-6xl px-5 md:px-8">
+        <div className="max-w-3xl">
+          <p className="text-sm font-semibold tracking-[0.18em] text-brand uppercase">
+            Cost Guide
+          </p>
+          <p className="mt-2 text-sm font-semibold text-ink-mid">
+            費用の考え方
+          </p>
+          <h2 className="font-serif-jp mt-4 text-3xl font-medium leading-[1.4] text-ink-deep md:text-[2.2rem]">
+            {plan.name}の総額の考え方。
+          </h2>
+        </div>
+
+        <div className="mt-8 rounded-lg border border-line bg-white p-6 shadow-sm md:p-8">
+          <p className="text-base leading-9 text-ink-mid md:text-lg md:leading-10">
+            {hasPricing
+              ? "葬儀の総額は、プランに含まれる基本費用に加えて、火葬料・式場使用料・お料理・返礼品・宗教者へのお礼などにより変動します。川口典礼では、ご家族の状況とご希望をうかがったうえで、正式なお見積りで個別にご案内します。"
+              : `${plan.name}の費用は、ご家族の人数・ご希望の内容・ご利用予定の火葬場により変動します。プランの内容や費用の目安は、事前のご相談で個別にご案内します。`}
+          </p>
+        </div>
+
+        <div className="mt-8 grid gap-4 md:grid-cols-2">
+          <div className="rounded-lg border border-line bg-white p-6 shadow-sm md:p-7">
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-brand">
+              Included
+            </p>
+            <p className="font-serif-jp mt-2 text-lg font-medium text-ink-deep md:text-xl">
+              プランに含まれるもの
+            </p>
+            <p className="mt-3 text-sm leading-7 text-ink-mid md:text-base md:leading-8">
+              基本費用としてご用意する項目です。
+            </p>
+            <ul className="mt-5 space-y-2.5 text-sm leading-7 text-ink md:text-base md:leading-8">
+              {plan.inclusions.map((item) => (
+                <li key={item} className="flex items-start gap-2.5">
+                  <span
+                    aria-hidden
+                    className="mt-2 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-brand"
+                  />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="rounded-lg border border-line-soft bg-cool p-6 shadow-sm md:p-7">
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-ink-soft">
+              Additional
+            </p>
+            <p className="font-serif-jp mt-2 text-lg font-medium text-ink-deep md:text-xl">
+              別途必要になる場合があるもの
+            </p>
+            <p className="mt-3 text-sm leading-7 text-ink-mid md:text-base md:leading-8">
+              ご希望の内容や状況により変動する項目です。
+            </p>
+            <ul className="mt-5 space-y-2.5 text-sm leading-7 text-ink-mid md:text-base md:leading-8">
+              {plan.additional.map((item) => (
+                <li key={item} className="flex items-start gap-2.5">
+                  <span
+                    aria-hidden
+                    className="mt-2 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-ink-soft"
+                  />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <div className="mt-10 rounded-lg border border-line bg-white p-6 shadow-sm md:p-8">
+          <p className="text-xs font-bold uppercase tracking-[0.18em] text-brand">
+            Check Points
+          </p>
+          <p className="font-serif-jp mt-2 text-xl font-medium text-ink-deep md:text-2xl">
+            事前に確認しておきたい費用。
+          </p>
+          <p className="mt-3 text-sm leading-7 text-ink-mid md:text-base md:leading-8">
+            葬儀社選びで分かりにくいのが「あとで追加されるかもしれない費用」です。川口典礼では、以下の項目を事前に整理してご案内します。
+          </p>
+          <ol className="mt-6 space-y-3">
+            {costConfirmationPriorities.map((item, i) => (
+              <li
+                key={item.title}
+                className="flex items-start gap-4 rounded-lg border border-line-soft bg-paper p-4 md:p-5"
+              >
+                <span
+                  aria-hidden
+                  className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-tint font-serif-jp text-base font-medium text-brand md:h-9 md:w-9"
+                >
+                  {i + 1}
+                </span>
+                <div>
+                  <p className="text-base font-bold text-ink-deep md:text-lg">
+                    {item.title}
+                  </p>
+                  <p className="mt-1 text-sm leading-7 text-ink-mid md:text-base md:leading-8">
+                    {item.note}
+                  </p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+
+        <div className="mt-10 rounded-lg border border-line-soft bg-white p-6 md:p-8">
+          <p className="text-base leading-9 text-ink-mid md:text-lg md:leading-10">
+            ご家族の人数・ご希望・ご利用予定の斎場などをお伺いし、正式なお見積りで個別にご案内します。事前相談・お見積りは無料です。
+          </p>
+          <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <a
+              href="/estimate/"
+              className="inline-flex items-center justify-center gap-2 rounded-lg border border-ink-deep bg-white px-6 py-4 text-base font-bold text-ink-deep transition hover:bg-paper"
+            >
+              費用の概算を依頼する
+              <span aria-hidden>→</span>
+            </a>
+            <a
+              href="/contact/"
+              className="inline-flex items-center justify-center gap-2 rounded-lg border border-line bg-white px-6 py-4 text-base font-semibold text-ink-mid transition hover:border-brand hover:text-brand"
+            >
+              事前相談する
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export function PlanCompatibleHalls({ plan }: { plan: Plan }) {
   const hallSlugMap: Record<string, string> = {
     川口メモリアルホール: "/hall/kawaguchi-memorial-hall/",
