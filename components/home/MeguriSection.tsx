@@ -46,6 +46,22 @@ export function MeguriSection() {
               当ホール(川口メモリアルホール)から川口市めぐりの森まで車で約5分。火葬場までの移動が短く、ご親族のご負担を抑えてお見送りができます。当ホールでの通夜+翌日めぐりの森での火葬という組み合わせもスムーズです。
             </p>
 
+            <aside
+              role="note"
+              aria-label="川口市めぐりの森の利用についての補足"
+              className="mt-6 rounded-lg border border-line-soft bg-paper p-5 md:p-6"
+            >
+              <p className="text-base leading-9 text-ink-mid md:text-lg md:leading-10">
+                <span className="font-bold text-ink-deep">
+                  川口市めぐりの森は、川口市営の火葬場です。
+                </span>
+                通夜・告別式を行う式場は併設されていないため、葬儀式は川口メモリアルホール（車で約5分）などの式場で行い、その後、めぐりの森へ移動して火葬を行います。
+              </p>
+              <p className="mt-3 text-sm leading-7 text-ink-soft md:text-base md:leading-8">
+                ※ 川口市めぐりの森は川口典礼の運営施設ではありませんが、川口典礼で葬儀のご相談・手配に対応しています。
+              </p>
+            </aside>
+
             <a
               href="/saijo/megurinomori/"
               className="mt-7 inline-flex items-center gap-2 rounded-lg bg-brand px-6 py-4 text-base font-bold text-white shadow-sm transition hover:bg-brand-deep"
