@@ -14,6 +14,7 @@ import { MeguriSection } from "@/components/home/MeguriSection";
 import { PlanSection } from "@/components/home/PlanSection";
 import { ThreeStrengthsSection } from "@/components/home/ThreeStrengthsSection";
 import { VoicesSection } from "@/components/home/VoicesSection";
+import { getHomeFaqs } from "@/lib/faqs";
 
 const SITE_URL = "https://kawaguchitenrei.com";
 const pageTitle =
@@ -79,12 +80,29 @@ const organizationJsonLd = {
   },
 };
 
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: getHomeFaqs().map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: faq.answer,
+    },
+  })),
+};
+
 export default function Home() {
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
       <Hero />
       <AdvanceConsultSection />
