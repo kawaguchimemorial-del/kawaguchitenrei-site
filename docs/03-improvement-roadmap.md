@@ -102,10 +102,13 @@
 - `/plan/[slug]/` BreadcrumbList + Service + Offer（cremation 除く）+ FAQPage（commit `24f51e7`）
 - ホーム `/` FAQPage 追加（commit `a91cf09`）— トップ BreadcrumbList は Google 推奨に従い意図的に追加せず
 
+**追加完了**:
+- `/case/` BreadcrumbList + ItemList（commit `e03df99`）
+- `/case/[slug]/` BreadcrumbList + Article（commit `e03df99`）— author / publisher は `Organization` 川口典礼、個人情報は不含
+- `/voice/` BreadcrumbList + ItemList（commit `e03df99`）— Review schema は未採用、ItemList は URL + name のみ
+- `/voice/[slug]/` BreadcrumbList + Article（commit `e03df99`）— **Review schema は採用せず Article で実装**。`surveyImage` は JSON-LD の image に含めず、`ratingValue` も未出力。Google の self-promotional review フィルタ回避 + 個人情報配慮を優先
+
 **残タスク**:
-- `/case/[slug]/` Article + BreadcrumbList（個人情報に注意、`docs/04-privacy-review.md` §7 を遵守）
-- `/voice/[slug]/` Review + BreadcrumbList（同上）
-- `/case/` `/voice/` 一覧ページの BreadcrumbList
 - `@id` のサイト全体統一（`lib/company.ts` の `getLocalBusinessJsonLd()` ヘルパーへの集約。P1 で対応推奨）
 - Google Rich Results Test での検証
 - Search Console URL Inspection
@@ -145,11 +148,14 @@ P0 の各サブタスク（P0-1〜P0-7）とは別に、本番反映・検証・
 | Vercel 本番表示確認 | 高 | push 済みのコミット（`27109c2` 以降）が本番反映され、表示崩れがないかをブラウザで確認 |
 | Google Rich Results Test | 中 | 主要 URL（`/`、`/plan/`、`/plan/family-funeral/`、`/area/kawaguchi/`、`/saijo/megurinomori/`、`/hall/kawaguchi-memorial-hall/`）を投入し、構造化データの警告ゼロを確認 |
 | Search Console URL Inspection | 中 | 同主要 URL で「公開 URL をテスト」を実行し、インデックス可能かつ構造化データが認識されることを確認 |
-| `/case/[slug]/` JSON-LD（Article + BreadcrumbList） | 中 | P0-6 残タスク。`docs/04-privacy-review.md` §7 の個人情報ルール遵守 |
-| `/voice/[slug]/` JSON-LD（Review + BreadcrumbList） | 中 | P0-6 残タスク。同上 |
-| `/case/` `/voice/` 一覧 BreadcrumbList | 中 | P0-6 残タスク。最小実装 |
 | `docs/eval/records/<日付>-<対象>.md` 形式のサンプル作成 | 低 | `docs/eval/seo-aio-checklist.md` の運用ルールに沿った記録の蓄積開始（運用定着用） |
 | `lib/company.ts` の `getLocalBusinessJsonLd()` ヘルパーへの集約 + `@id` 統一 | 低 | 既存ヘルパーが未使用。P1 で広範囲リファクタとして対応推奨 |
+
+**完了済み（履歴）**:
+- `/case/[slug]/` JSON-LD（Article + BreadcrumbList） — commit `e03df99`
+- `/voice/[slug]/` JSON-LD（Article + BreadcrumbList）— commit `e03df99`。**Review schema は採用せず Article で実装**
+- `/case/` `/voice/` 一覧 BreadcrumbList + ItemList — commit `e03df99`
+- `next.config.ts` trailing slash 整合（`trailingSlash: true`）— commit `d509211`
 
 ---
 
