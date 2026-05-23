@@ -3,6 +3,8 @@ import Image from "next/image";
 import { PageHero } from "@/components/common/PageHero";
 import { voices } from "@/lib/voices";
 
+const SITE_URL = "https://kawaguchitenrei.com";
+
 export const metadata: Metadata = {
   title: "お客様の声一覧 | 川口典礼",
   description:
@@ -37,9 +39,50 @@ const sortedVoices = [...voices].sort((a, b) =>
   a.publishedAt < b.publishedAt ? 1 : -1
 );
 
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "川口典礼",
+      item: `${SITE_URL}/`,
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "お客様の声",
+      item: `${SITE_URL}/voice/`,
+    },
+  ],
+};
+
+const itemListJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "川口典礼のお客様の声一覧",
+  numberOfItems: sortedVoices.length,
+  itemListElement: sortedVoices.map((v, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    url: `${SITE_URL}/voice/${v.slug}/`,
+    name: v.title,
+  })),
+};
+
 export default function VoiceIndexPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
+      />
+
       <PageHero
         eyebrow="Voices"
         subLabel="お客様の声一覧"

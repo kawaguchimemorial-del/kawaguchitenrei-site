@@ -7,11 +7,71 @@ import {
   CaseRelated,
   CaseStory,
 } from "@/components/case/CaseDetailBody";
-import { getAllCaseSlugs, getCase } from "@/lib/cases";
+import { getAllCaseSlugs, getCase, type CaseRecord } from "@/lib/cases";
+
+const SITE_URL = "https://kawaguchitenrei.com";
 
 type Props = {
   params: Promise<{ slug: string }>;
 };
+
+function buildCaseJsonLd(c: CaseRecord) {
+  const pageUrl = `${SITE_URL}/case/${c.slug}/`;
+
+  const breadcrumb = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "川口典礼",
+        item: `${SITE_URL}/`,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "施行事例",
+        item: `${SITE_URL}/case/`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: c.title,
+        item: pageUrl,
+      },
+    ],
+  };
+
+  const article = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: c.title,
+    description: c.metaDescription,
+    datePublished: c.publishedAt,
+    dateModified: c.publishedAt,
+    author: {
+      "@type": "Organization",
+      name: "川口典礼",
+      url: `${SITE_URL}/`,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "川口典礼",
+      url: `${SITE_URL}/`,
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/icon.png`,
+      },
+    },
+    articleSection: "施行事例",
+    about: c.format,
+    mainEntityOfPage: pageUrl,
+    ...(c.photo ? { image: `${SITE_URL}${c.photo.src}` } : {}),
+  };
+
+  return { breadcrumb, article };
+}
 
 export async function generateStaticParams() {
   return getAllCaseSlugs().map((slug) => ({ slug }));
@@ -44,8 +104,19 @@ export default async function CaseDetailPage({ params }: Props) {
     notFound();
   }
 
+  const { breadcrumb, article } = buildCaseJsonLd(caseItem);
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(article) }}
+      />
+
       <CaseDetailIntro caseItem={caseItem} />
       <CaseStory caseItem={caseItem} />
       <CaseCostBreakdown caseItem={caseItem} />

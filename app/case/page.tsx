@@ -3,6 +3,8 @@ import Image from "next/image";
 import { PageHero } from "@/components/common/PageHero";
 import { cases } from "@/lib/cases";
 
+const SITE_URL = "https://kawaguchitenrei.com";
+
 export const metadata: Metadata = {
   title: "施行事例一覧 | 川口典礼",
   description:
@@ -19,9 +21,50 @@ const sortedCases = [...cases].sort((a, b) =>
   a.publishedAt < b.publishedAt ? 1 : -1
 );
 
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "川口典礼",
+      item: `${SITE_URL}/`,
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "施行事例",
+      item: `${SITE_URL}/case/`,
+    },
+  ],
+};
+
+const itemListJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "川口典礼の施行事例一覧",
+  numberOfItems: sortedCases.length,
+  itemListElement: sortedCases.map((c, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    url: `${SITE_URL}/case/${c.slug}/`,
+    name: c.title,
+  })),
+};
+
 export default function CaseIndexPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
+      />
+
       <PageHero
         eyebrow="Cases"
         subLabel="施行事例一覧"
