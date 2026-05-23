@@ -1,15 +1,16 @@
 import Image from "next/image";
 
 const trustPoints = [
-  "めぐりの森から車で約5分",
-  "駐車場70台",
+  "川口市めぐりの森まで車で約5分",
+  "駐車場70台の自社式場",
   "直葬〜一般葬まで対応",
+  "創業20年・年間約260件",
 ];
 
 const mobileTrustPoints = [
-  "めぐりの森まで車で約5分",
+  "川口市めぐりの森まで車で約5分",
   "駐車場70台の自社式場",
-  "事前見積り無料",
+  "直葬〜一般葬まで対応",
 ];
 
 const heroImage = "/images/home/hero/kawaguchi-memorial-hall-hero.png";
@@ -42,7 +43,7 @@ export function Hero() {
               <h1 className="font-serif-jp text-[1.55rem] font-medium leading-[1.4] [text-shadow:_0_2px_12px_rgba(0,0,0,0.35)]">
                 川口市・新井宿で
                 <br />
-                家族葬・直葬をお考えの方へ
+                家族葬・直葬をお考えの方へ。
               </h1>
               <p className="mt-3 text-sm leading-6 text-white/95 [text-shadow:_0_1px_8px_rgba(0,0,0,0.35)]">
                 急なお迎えから費用のご相談まで
@@ -98,6 +99,16 @@ export function Hero() {
           >
             事前相談する
           </a>
+
+          <div className="mt-4 text-center">
+            <a
+              href="/plan/"
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-ink-mid transition hover:text-brand hover:underline"
+            >
+              <span aria-hidden>→</span>
+              プラン・費用の目安を見る
+            </a>
+          </div>
 
           <p className="mt-5 text-xs leading-5 text-ink-soft">
             創業20年・年間約260件の施行実績／川口市西新井宿の自社式場
