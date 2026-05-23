@@ -4,6 +4,11 @@ const kawaguchiAreas: AreaLink[] = [
   { name: "川口市", href: "/area/kawaguchi/" },
   { name: "新井宿", href: "/area/araijuku/" },
   { name: "鳩ヶ谷", href: "/area/hatogaya/" },
+  { name: "西川口", href: "/area/nishikawaguchi/" },
+  { name: "東川口", href: "/area/higashikawaguchi/" },
+  { name: "川口元郷", href: "/area/kawaguchi-motogo/" },
+  { name: "南鳩ヶ谷", href: "/area/minami-hatogaya/" },
+  { name: "戸塚安行", href: "/area/tozuka-angyo/" },
 ];
 
 const nearbyAreas: AreaLink[] = [
