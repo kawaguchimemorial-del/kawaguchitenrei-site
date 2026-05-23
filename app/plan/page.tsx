@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { PageHero } from "@/components/common/PageHero";
 
+const SITE_URL = "https://kawaguchitenrei.com";
+
 type PlanPricing =
   | { type: "member-regular"; member: number; regular: number }
   | { type: "citizen"; citizen: number };
@@ -139,6 +141,75 @@ export const metadata: Metadata = {
   alternates: { canonical: "/plan/" },
 };
 
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "川口典礼",
+      item: `${SITE_URL}/`,
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "葬儀プラン",
+      item: `${SITE_URL}/plan/`,
+    },
+  ],
+};
+
+function pricingToOffer(pricing: PlanPricing) {
+  if (pricing.type === "member-regular") {
+    return {
+      "@type": "Offer",
+      priceCurrency: "JPY",
+      price: pricing.member,
+      description: `事前相談会員価格 ${pricing.member.toLocaleString("ja-JP")}円(税込)から。通常価格 ${pricing.regular.toLocaleString("ja-JP")}円(税込)。`,
+      availability: "https://schema.org/InStock",
+    } as const;
+  }
+  return {
+    "@type": "Offer",
+    priceCurrency: "JPY",
+    price: pricing.citizen,
+    description: `川口市民 葬祭事業価格 ${pricing.citizen.toLocaleString("ja-JP")}円(税込)。`,
+    availability: "https://schema.org/InStock",
+  } as const;
+}
+
+const itemListJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "川口典礼の葬儀プラン一覧",
+  numberOfItems: planList.length,
+  itemListElement: planList.map((plan, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    url: `${SITE_URL}${plan.detailHref}`,
+    name: plan.name,
+    item: {
+      "@type": "Service",
+      name: plan.name,
+      description: plan.description,
+      url: `${SITE_URL}${plan.detailHref}`,
+      serviceType: plan.name,
+      provider: {
+        "@type": "FuneralHome",
+        name: "川口典礼",
+        url: `${SITE_URL}/`,
+        telephone: "0120-963-765",
+      },
+      areaServed: {
+        "@type": "City",
+        name: "埼玉県川口市",
+      },
+      offers: pricingToOffer(plan.pricing),
+    },
+  })),
+};
+
 function formatPrice(value: number): string {
   return `${value.toLocaleString("ja-JP")}円（税込）`;
 }
@@ -200,6 +271,15 @@ function CardPriceBlock({ pricing }: { pricing: PlanPricing }) {
 export default function PlanIndexPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
+      />
+
       <PageHero
         eyebrow="Plan"
         subLabel="葬儀プラン一覧"
