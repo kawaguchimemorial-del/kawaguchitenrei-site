@@ -17,6 +17,12 @@
 
 ### P0-1. CLAUDE.md / docs 整備
 
+**状態**: ✅ 完了
+- AI 作業ルール / docs 整備（commit `27109c2`）
+- `.claude/settings.local.json` を gitignore（commit `6c15e3b`）
+
+**完了メモ**: `CLAUDE.md` に §10〜§18 を追加、`docs/` 配下に 8 ファイル新設、相互参照リンクを通した。Claude Code 用ローカル設定は per-user で運用。
+
 | 項目 | 内容 |
 |---|---|
 | 目的 | 今後の改修を一貫して安全に進めるための共通ルール整備 |
@@ -27,6 +33,10 @@
 | 完了条件 | `CLAUDE.md` / `docs/*` が揃い、参照リンクが繋がっている |
 
 ### P0-2. トップ FV 改善
+
+**状態**: ✅ 完了（commit `b7e9c6c`）
+
+**完了メモ**: スマホ FV に「→ プラン・費用の目安を見る」テキストリンクを追加、h1 句点をスマホ/PC で統一、trustPoints をスマホ 3 個 / PC 4 個に整合（めぐりの森「まで」表記統一）。
 
 | 項目 | 内容 |
 |---|---|
@@ -39,6 +49,10 @@
 
 ### P0-3. スマホ CTA 確認
 
+**状態**: ⏸ 保留（監査のみ実施・実装は別タスク）
+
+**保留理由**: `CLAUDE.md` §5 で `MobileBottomCTA.tsx` は明示指示なしでは変更しない対象。現状は「電話する／相談する（`#consultation`）」の 2 ボタン構成で機能しており、ホームでは `CostEstimateSection` の `id="consultation"` に着地。他ページでの動作確認・改修は別チャットで合意取得後に実施。
+
 | 項目 | 内容 |
 |---|---|
 | 目的 | 「電話」「事前相談」の 2 つの導線がスマホ下部で常に視認できる |
@@ -49,6 +63,10 @@
 | 完了条件 | フォームページ・FAQ・コラムでも操作を邪魔せず常に視認できる |
 
 ### P0-4. 総額モデル追加
+
+**状態**: ✅ 完了（commit `22571cf`）
+
+**完了メモ**: プラン詳細に「費用の考え方（PlanCostGuide）」セクションを追加。結論ボックス + 含む/別途 の 2 列比較 + 事前確認 5 項目 + `/estimate/` `/contact/` CTA。5 プラン（family/oneday/direct/hanaire/cremation）に表示、kawaguchi-shimin は `PlanCitizenFuneralBody` 分岐により対象外。cremation は `pricing` なしのため数値示唆なし版を自動切替。**数値レンジ・人数別費用例は今回未実装**（火葬料・式場使用料の正本データ整備が必要、P1 で検討）。
 
 | 項目 | 内容 |
 |---|---|
@@ -61,6 +79,10 @@
 
 ### P0-5. めぐりの森導線強化
 
+**状態**: ✅ 完了（commit `8f363f5`）
+
+**完了メモ**: ホーム `MeguriSection` 内に結論ボックス（`<aside role="note">`）を追加。「川口市営の火葬場」「式場併設なし」「川口典礼の運営施設ではない」「相談・手配に対応」を明記。`/saijo/megurinomori/` 側は既存の `SaijoImportantNotice` / `SaijoFlow` / `SaijoFaq` で十分手厚いため今回は未変更。
+
 | 項目 | 内容 |
 |---|---|
 | 目的 | 「めぐりの森 葬儀」検索からの流入を取り切る |
@@ -71,6 +93,22 @@
 | 完了条件 | 「車で約 5 分」を主要ページに自然配置、`/saijo/megurinomori/` への内部リンクが各所にある |
 
 ### P0-6. LocalBusiness / FAQ / Breadcrumb 構造化データ確認
+
+**状態**: 🟡 一部完了（残タスクあり）
+
+**完了済み**:
+- `/area/kawaguchi/` BreadcrumbList + FAQPage + FuneralHome（commit `f0bf205`）
+- `/plan/` BreadcrumbList + ItemList（Service + Offer + FuneralHome 埋め込み）（commit `24f51e7`）
+- `/plan/[slug]/` BreadcrumbList + Service + Offer（cremation 除く）+ FAQPage（commit `24f51e7`）
+- ホーム `/` FAQPage 追加（commit `a91cf09`）— トップ BreadcrumbList は Google 推奨に従い意図的に追加せず
+
+**残タスク**:
+- `/case/[slug]/` Article + BreadcrumbList（個人情報に注意、`docs/04-privacy-review.md` §7 を遵守）
+- `/voice/[slug]/` Review + BreadcrumbList（同上）
+- `/case/` `/voice/` 一覧ページの BreadcrumbList
+- `@id` のサイト全体統一（`lib/company.ts` の `getLocalBusinessJsonLd()` ヘルパーへの集約。P1 で対応推奨）
+- Google Rich Results Test での検証
+- Search Console URL Inspection
 
 | 項目 | 内容 |
 |---|---|
@@ -83,6 +121,10 @@
 
 ### P0-7. フォーム・Webhook・環境変数に触る前の Privacy Review
 
+**状態**: ⏸ 未着手（フォーム改修タスクが発生したときに実施）
+
+**メモ**: ここまでの P0 ではフォーム本体・Webhook 連携・環境変数を変更する作業は発生していないため、Privacy Review の発動条件に到達していない。`docs/04-privacy-review.md` のチェックリスト自体は整備済。今後フォーム改修・Webhook 仕様変更・GA4/GTM の `generate_lead` イベント変更などが発生したタイミングで実施する。
+
 | 項目 | 内容 |
 |---|---|
 | 目的 | フォーム・Webhook・個人情報を扱う作業の安全確保 |
@@ -91,6 +133,23 @@
 | 注意点 | `.env` / `FORM_WEBHOOK_SECRET` を絶対に表示・コミットしない |
 | 実装前チェック | `docs/04-privacy-review.md` のチェックリスト |
 | 完了条件 | 改修ごとに Privacy Review のチェックが完了 |
+
+---
+
+### P0 全体の運用残タスク
+
+P0 の各サブタスク（P0-1〜P0-7）とは別に、本番反映・検証・運用面で以下が残っている。
+
+| タスク | 優先度 | メモ |
+|---|---|---|
+| Vercel 本番表示確認 | 高 | push 済みのコミット（`27109c2` 以降）が本番反映され、表示崩れがないかをブラウザで確認 |
+| Google Rich Results Test | 中 | 主要 URL（`/`、`/plan/`、`/plan/family-funeral/`、`/area/kawaguchi/`、`/saijo/megurinomori/`、`/hall/kawaguchi-memorial-hall/`）を投入し、構造化データの警告ゼロを確認 |
+| Search Console URL Inspection | 中 | 同主要 URL で「公開 URL をテスト」を実行し、インデックス可能かつ構造化データが認識されることを確認 |
+| `/case/[slug]/` JSON-LD（Article + BreadcrumbList） | 中 | P0-6 残タスク。`docs/04-privacy-review.md` §7 の個人情報ルール遵守 |
+| `/voice/[slug]/` JSON-LD（Review + BreadcrumbList） | 中 | P0-6 残タスク。同上 |
+| `/case/` `/voice/` 一覧 BreadcrumbList | 中 | P0-6 残タスク。最小実装 |
+| `docs/eval/records/<日付>-<対象>.md` 形式のサンプル作成 | 低 | `docs/eval/seo-aio-checklist.md` の運用ルールに沿った記録の蓄積開始（運用定着用） |
+| `lib/company.ts` の `getLocalBusinessJsonLd()` ヘルパーへの集約 + `@id` 統一 | 低 | 既存ヘルパーが未使用。P1 で広範囲リファクタとして対応推奨 |
 
 ---
 
