@@ -10,6 +10,7 @@ import {
   PlanFaq,
   PlanFlow,
   PlanInclusions,
+  PlanNonReligiousBody,
   PlanSimpleAlternative,
 } from "@/components/plan/PlanDetailBody";
 import { getAllPlanSlugs, getPlan, type Plan } from "@/lib/plans";
@@ -21,6 +22,10 @@ type Props = {
 };
 
 function buildOffers(plan: Plan) {
+  // 無宗教葬は新規価格を出さないため Offer は付与しない
+  if (plan.nonReligiousInfo) {
+    return undefined;
+  }
   // 川口市民葬の仕様1・仕様2を Offer 配列で出す（公式と整合：仕様1=231,000円/補助40,000円、仕様2=143,000円/補助20,000円）
   if (plan.citizenFuneralInfo) {
     const offers = plan.citizenFuneralInfo.specs.map((spec) => {
@@ -117,7 +122,9 @@ function buildPlanJsonLd(plan: Plan) {
     ...(offers ? { offers } : {}),
   };
 
-  const displayedFaqs = plan.citizenFuneralInfo
+  const displayedFaqs = plan.nonReligiousInfo
+    ? plan.nonReligiousInfo.faqs
+    : plan.citizenFuneralInfo
     ? plan.citizenFuneralInfo.faqs
     : plan.faqs;
   const faqPage =
@@ -194,7 +201,9 @@ export default async function PlanDetailPage({ params }: Props) {
       )}
 
       <PlanDetailIntro plan={plan} />
-      {plan.citizenFuneralInfo ? (
+      {plan.nonReligiousInfo ? (
+        <PlanNonReligiousBody plan={plan} />
+      ) : plan.citizenFuneralInfo ? (
         <PlanCitizenFuneralBody plan={plan} />
       ) : (
         <>

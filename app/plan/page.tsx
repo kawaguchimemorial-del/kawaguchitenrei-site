@@ -522,6 +522,31 @@ export default function PlanIndexPage() {
         </div>
       </section>
 
+      <section className="bg-paper py-12 md:py-16">
+        <div className="mx-auto max-w-4xl px-5 md:px-8">
+          <div className="rounded-lg border border-line bg-white p-6 shadow-sm md:p-8">
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-brand">
+              Non-religious
+            </p>
+            <p className="font-serif-jp mt-2 text-xl font-medium text-ink-deep md:text-2xl">
+              ご家族らしい形でお別れしたい方へ。
+            </p>
+            <p className="mt-3 text-sm leading-7 text-ink-mid md:text-base md:leading-8">
+              宗教者を呼ばない無宗教葬のご相談も承ります。献花・黙祷・思い出の紹介など、進行はご家族のご希望に合わせてご相談いただけます。費用は内容により異なります。
+            </p>
+            <div className="mt-5">
+              <a
+                href="/plan/non-religious-funeral/"
+                className="inline-flex items-center gap-2 rounded-lg border border-ink-deep bg-white px-5 py-3 text-sm font-bold text-ink-deep transition hover:bg-cool md:text-base"
+              >
+                無宗教葬の相談を見る
+                <span aria-hidden>→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section
         id="consultation"
         className="scroll-mt-24 bg-deep py-16 text-white md:py-24"

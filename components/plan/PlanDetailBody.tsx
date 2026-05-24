@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { Plan } from "@/lib/plans";
 
 export function PlanInclusions({ plan }: { plan: Plan }) {
@@ -954,6 +955,470 @@ export function PlanCitizenFuneralBody({ plan }: { plan: Plan }) {
 
           <ul className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {citizenFuneralRelatedLinks.map((link) => (
+              <li key={link.href}>
+                <a
+                  href={link.href}
+                  className="group flex h-full flex-col rounded-lg border border-line bg-paper p-5 shadow-sm transition hover:border-brand hover:shadow-md md:p-6"
+                >
+                  <p className="font-serif-jp text-base font-medium text-ink-deep group-hover:text-brand md:text-lg">
+                    {link.label}
+                  </p>
+                  <p className="mt-2 text-sm leading-7 text-ink-mid">
+                    {link.description}
+                  </p>
+                  <p className="mt-auto pt-4 inline-flex items-center gap-1 text-sm font-bold text-brand group-hover:underline">
+                    詳しく見る
+                    <span aria-hidden>→</span>
+                  </p>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    </>
+  );
+}
+
+export function PlanNonReligiousBody({ plan }: { plan: Plan }) {
+  if (!plan.nonReligiousInfo) return null;
+  const info = plan.nonReligiousInfo;
+
+  return (
+    <>
+      {/* Hero 画像 */}
+      <section className="bg-white pt-2 pb-10 md:pt-4 md:pb-14">
+        <div className="mx-auto max-w-5xl px-5 md:px-8">
+          <figure className="overflow-hidden rounded-lg border border-line bg-paper shadow-sm">
+            <div className="relative aspect-[16/9] w-full md:aspect-[2.2/1]">
+              <Image
+                src={info.hero.src}
+                alt={info.hero.alt}
+                fill
+                sizes="(max-width: 768px) 100vw, 960px"
+                className="object-cover object-center"
+                priority
+              />
+            </div>
+            <figcaption className="px-5 py-4 text-sm leading-7 text-ink-mid md:px-6 md:py-5 md:text-base md:leading-8">
+              {info.hero.caption}
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      {/* 結論ボックス（AIO 向け） */}
+      <section className="bg-white pb-12 md:pb-16">
+        <div className="mx-auto max-w-4xl px-5 md:px-8">
+          <div className="rounded-lg border border-brand/30 bg-paper p-6 shadow-sm md:p-8">
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-brand">
+              Summary
+            </p>
+            <h2 className="font-serif-jp mt-3 text-2xl font-medium leading-[1.5] text-ink-deep md:text-[1.75rem]">
+              {info.conclusion.heading}
+            </h2>
+            <p className="mt-4 text-base leading-9 text-ink-mid md:text-lg md:leading-10">
+              {info.conclusion.intro}
+            </p>
+            <ul className="mt-5 space-y-2 text-sm leading-7 text-ink md:text-base md:leading-8">
+              {info.conclusion.points.map((point) => (
+                <li key={point} className="flex items-start gap-3">
+                  <span
+                    aria-hidden
+                    className="mt-2 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-brand"
+                  />
+                  <span>{point}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* 無宗教葬とは */}
+      <section className="bg-paper py-12 md:py-16">
+        <div className="mx-auto max-w-4xl px-5 md:px-8">
+          <h2 className="font-serif-jp text-2xl font-medium leading-[1.4] text-ink-deep md:text-3xl">
+            {info.whatIs.heading}
+          </h2>
+          <p className="mt-5 text-base leading-9 text-ink-mid md:text-lg md:leading-10">
+            {info.whatIs.body}
+          </p>
+        </div>
+      </section>
+
+      {/* 仏式との違い */}
+      <section className="bg-white py-16 md:py-24">
+        <div className="mx-auto max-w-6xl px-5 md:px-8">
+          <div className="max-w-3xl">
+            <p className="text-sm font-semibold tracking-[0.18em] text-brand uppercase">
+              Differences
+            </p>
+            <h2 className="font-serif-jp mt-3 text-2xl font-medium leading-[1.4] text-ink-deep md:text-3xl">
+              {info.differences.heading}
+            </h2>
+            <p className="mt-5 text-base leading-9 text-ink-mid md:text-lg">
+              {info.differences.intro}
+            </p>
+          </div>
+
+          <div className="mt-8 overflow-x-auto rounded-lg border border-line bg-white shadow-sm">
+            <table className="w-full min-w-[640px] border-collapse text-left">
+              <thead className="bg-cool text-ink-deep">
+                <tr>
+                  <th className="px-4 py-4 text-sm font-bold">観点</th>
+                  <th className="px-4 py-4 text-sm font-bold">仏式葬儀</th>
+                  <th className="px-4 py-4 text-sm font-bold">無宗教葬</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-line-soft">
+                {info.differences.items.map((item) => (
+                  <tr key={item.aspect} className="align-top">
+                    <td className="whitespace-nowrap px-4 py-4 font-serif-jp text-base font-medium text-ink-deep">
+                      {item.aspect}
+                    </td>
+                    <td className="px-4 py-4 text-sm leading-7 text-ink-mid">
+                      {item.buddhist}
+                    </td>
+                    <td className="px-4 py-4 text-sm leading-7 text-ink-mid">
+                      {item.nonReligious}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="mt-4 text-xs leading-6 text-ink-soft md:text-sm">
+            ※ 一般的な目安です。実際の進行はご家族のご希望に合わせて調整いたします。
+          </p>
+        </div>
+      </section>
+
+      {/* お別れの例 */}
+      <section className="bg-cool py-16 md:py-24">
+        <div className="mx-auto max-w-6xl px-5 md:px-8">
+          <div className="max-w-3xl">
+            <p className="text-sm font-semibold tracking-[0.18em] text-brand uppercase">
+              Farewell
+            </p>
+            <h2 className="font-serif-jp mt-3 text-2xl font-medium leading-[1.4] text-ink-deep md:text-3xl">
+              {info.farewellExamples.heading}
+            </h2>
+            <p className="mt-5 text-base leading-9 text-ink-mid md:text-lg">
+              {info.farewellExamples.intro}
+            </p>
+          </div>
+
+          <ul className="mt-10 grid gap-5 md:grid-cols-2 md:gap-6">
+            {info.farewellExamples.items.map((item) => (
+              <li
+                key={item.title}
+                className="flex h-full flex-col rounded-lg border border-line bg-white p-6 shadow-sm md:p-7"
+              >
+                <p className="font-serif-jp text-lg font-medium text-ink-deep md:text-xl">
+                  {item.title}
+                </p>
+                <p className="mt-3 text-sm leading-7 text-ink-mid md:text-base md:leading-8">
+                  {item.description}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* 川口メモリアルホールでできること */}
+      <section className="bg-white py-16 md:py-24">
+        <div className="mx-auto max-w-6xl px-5 md:px-8">
+          <div className="grid gap-10 md:grid-cols-[1fr_1.1fr] md:items-start">
+            <div>
+              <p className="text-sm font-semibold tracking-[0.18em] text-brand uppercase">
+                Hall
+              </p>
+              <h2 className="font-serif-jp mt-3 text-2xl font-medium leading-[1.4] text-ink-deep md:text-3xl">
+                {info.hallSupport.heading}
+              </h2>
+              <p className="mt-5 text-base leading-9 text-ink-mid md:text-lg md:leading-10">
+                {info.hallSupport.body}
+              </p>
+              <div className="mt-6">
+                <a
+                  href="/hall/kawaguchi-memorial-hall/"
+                  className="inline-flex items-center gap-2 rounded-lg border border-ink-deep bg-white px-5 py-3 text-sm font-bold text-ink-deep transition hover:bg-cool md:text-base"
+                >
+                  川口メモリアルホールを見る
+                  <span aria-hidden>→</span>
+                </a>
+              </div>
+            </div>
+
+            <ul className="space-y-3">
+              {info.hallSupport.points.map((point) => (
+                <li
+                  key={point}
+                  className="flex items-start gap-4 rounded-lg border border-line bg-paper p-5 shadow-sm md:p-6"
+                >
+                  <span
+                    aria-hidden
+                    className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-tint font-serif-jp text-sm font-medium text-brand"
+                  >
+                    →
+                  </span>
+                  <p className="text-base leading-8 text-ink md:text-lg">{point}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* めぐりの森での火葬まで */}
+      <section className="bg-paper py-12 md:py-16">
+        <div className="mx-auto max-w-4xl px-5 md:px-8">
+          <h2 className="font-serif-jp text-2xl font-medium leading-[1.4] text-ink-deep md:text-3xl">
+            {info.cremationFlow.heading}
+          </h2>
+          <p className="mt-5 text-base leading-9 text-ink-mid md:text-lg md:leading-10">
+            {info.cremationFlow.body}
+          </p>
+          <div className="mt-6">
+            <a
+              href="/saijo/megurinomori/"
+              className="inline-flex items-center gap-2 rounded-lg border border-ink-deep bg-white px-5 py-3 text-sm font-bold text-ink-deep transition hover:bg-cool md:text-base"
+            >
+              川口市めぐりの森を見る
+              <span aria-hidden>→</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* 流れ */}
+      <section className="bg-white py-16 md:py-24">
+        <div className="mx-auto max-w-6xl px-5 md:px-8">
+          <div className="max-w-3xl">
+            <p className="text-sm font-semibold tracking-[0.18em] text-brand uppercase">
+              Flow
+            </p>
+            <h2 className="font-serif-jp mt-3 text-2xl font-medium leading-[1.4] text-ink-deep md:text-3xl">
+              {info.funeralFlow.heading}
+            </h2>
+            <p className="mt-5 text-base leading-9 text-ink-mid md:text-lg">
+              {info.funeralFlow.intro}
+            </p>
+          </div>
+
+          <ol className="mt-10 space-y-3">
+            {info.funeralFlow.steps.map((step, i) => (
+              <li
+                key={step.step}
+                className="flex gap-4 rounded-lg border border-line bg-paper p-5 shadow-sm md:p-6"
+              >
+                <span
+                  aria-hidden
+                  className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand-tint font-serif-jp text-sm font-bold text-brand"
+                >
+                  {i + 1}
+                </span>
+                <div>
+                  <p className="font-serif-jp text-lg font-medium text-ink-deep md:text-xl">
+                    {step.step}
+                  </p>
+                  <p className="mt-2 text-sm leading-7 text-ink-mid md:text-base md:leading-8">
+                    {step.description}
+                  </p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* 注意点 */}
+      <section className="bg-cool py-16 md:py-24">
+        <div className="mx-auto max-w-6xl px-5 md:px-8">
+          <div className="max-w-3xl">
+            <p className="text-sm font-semibold tracking-[0.18em] text-brand uppercase">
+              Notes
+            </p>
+            <h2 className="font-serif-jp mt-3 text-2xl font-medium leading-[1.4] text-ink-deep md:text-3xl">
+              {info.notes.heading}
+            </h2>
+            <p className="mt-5 text-base leading-9 text-ink-mid md:text-lg">
+              {info.notes.intro}
+            </p>
+          </div>
+
+          <ul className="mt-10 grid gap-5 md:grid-cols-2 md:gap-6">
+            {info.notes.items.map((item) => (
+              <li
+                key={item.title}
+                className="flex h-full flex-col rounded-lg border border-line bg-white p-6 shadow-sm md:p-7"
+              >
+                <p className="font-serif-jp text-lg font-medium text-ink-deep md:text-xl">
+                  {item.title}
+                </p>
+                <p className="mt-3 text-sm leading-7 text-ink-mid md:text-base md:leading-8">
+                  {item.description}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* 費用の考え方 */}
+      <section className="bg-white py-16 md:py-24">
+        <div className="mx-auto max-w-4xl px-5 md:px-8">
+          <p className="text-sm font-semibold tracking-[0.18em] text-brand uppercase">
+            Cost
+          </p>
+          <h2 className="font-serif-jp mt-3 text-2xl font-medium leading-[1.4] text-ink-deep md:text-3xl">
+            {info.costGuide.heading}
+          </h2>
+          <p className="mt-5 text-base leading-9 text-ink-mid md:text-lg md:leading-10">
+            {info.costGuide.intro}
+          </p>
+          <ul className="mt-6 space-y-2 rounded-lg border border-line bg-paper p-5 text-sm leading-7 text-ink md:p-6 md:text-base md:leading-8">
+            {info.costGuide.factors.map((factor) => (
+              <li key={factor} className="flex items-start gap-3">
+                <span
+                  aria-hidden
+                  className="mt-2 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-brand"
+                />
+                <span>{factor}</span>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-5 text-sm leading-7 text-ink-mid md:text-base md:leading-8">
+            {info.costGuide.note}
+          </p>
+        </div>
+      </section>
+
+      {/* 中間 CTA */}
+      <section className="bg-paper py-12 md:py-16">
+        <div className="mx-auto max-w-4xl px-5 md:px-8">
+          <div className="rounded-lg border border-line bg-white p-6 shadow-sm md:p-8">
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-brand">
+              Consultation
+            </p>
+            <h2 className="font-serif-jp mt-3 text-2xl font-medium leading-[1.4] text-ink-deep md:text-3xl">
+              無宗教葬の進め方や費用が気になる方へ。
+            </h2>
+            <p className="mt-4 text-sm leading-7 text-ink-mid md:text-base md:leading-8">
+              ご希望の進行・参列規模・式場・親族へのご説明など、川口典礼までお気軽にご相談ください。事前相談・お見積りは無料です。
+            </p>
+            <div className="mt-6 grid gap-3 md:grid-cols-[1.2fr_1fr]">
+              <a
+                href="tel:0120-963-765"
+                className="flex items-center justify-center gap-3 rounded-lg bg-emergency px-5 py-4 text-white shadow-sm transition hover:bg-emergency-deep"
+              >
+                <span aria-hidden className="text-xl">
+                  ☎
+                </span>
+                <span className="text-left">
+                  <span className="block text-base font-bold leading-tight md:text-lg">
+                    電話で相談する
+                  </span>
+                  <span className="mt-1 block text-xs font-semibold text-white/90">
+                    24時間365日 受付
+                  </span>
+                </span>
+              </a>
+              <a
+                href="/contact/"
+                className="rounded-lg border border-ink-deep bg-white px-5 py-4 text-center text-base font-bold text-ink-deep shadow-sm transition hover:bg-cool"
+              >
+                事前相談する
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="bg-white py-16 md:py-24">
+        <div className="mx-auto max-w-4xl px-5 md:px-8">
+          <div className="max-w-3xl">
+            <p className="text-sm font-semibold tracking-[0.18em] text-brand uppercase">
+              FAQ
+            </p>
+            <p className="mt-2 text-sm font-semibold text-ink-mid">
+              よくある質問
+            </p>
+            <h2 className="font-serif-jp mt-4 text-3xl font-medium leading-[1.4] text-ink-deep md:text-[2.2rem]">
+              無宗教葬についてのご質問。
+            </h2>
+          </div>
+
+          <ul className="mt-10 space-y-3">
+            {info.faqs.map((faq) => (
+              <li key={faq.q}>
+                <details className="group rounded-lg border border-line bg-white shadow-sm open:shadow-md">
+                  <summary className="flex cursor-pointer list-none items-start justify-between gap-4 px-5 py-5 text-left">
+                    <span className="flex items-start gap-3 text-base font-bold text-ink-deep md:text-lg">
+                      <span aria-hidden className="font-serif-jp text-brand">
+                        Q.
+                      </span>
+                      <span>{faq.q}</span>
+                    </span>
+                    <span
+                      aria-hidden
+                      className="mt-1 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-line text-lg text-ink-soft transition group-open:rotate-45"
+                    >
+                      +
+                    </span>
+                  </summary>
+                  <div className="border-t border-line-soft px-5 py-5 text-base leading-8 text-ink-mid">
+                    <span
+                      aria-hidden
+                      className="font-serif-jp mr-2 font-bold text-brand"
+                    >
+                      A.
+                    </span>
+                    {faq.a}
+                  </div>
+                </details>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* 補足 */}
+      <section className="bg-paper py-12 md:py-16">
+        <div className="mx-auto max-w-4xl px-5 md:px-8">
+          <div className="rounded-lg border border-line-soft bg-white p-6 shadow-sm md:p-8">
+            <p className="font-serif-jp text-xl font-medium text-ink-deep md:text-2xl">
+              {info.supplementary.heading}
+            </p>
+            <p className="mt-4 text-sm leading-7 text-ink-mid md:text-base md:leading-8">
+              {info.supplementary.body}
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Related */}
+      <section className="bg-white py-16 md:py-24">
+        <div className="mx-auto max-w-6xl px-5 md:px-8">
+          <div className="max-w-3xl">
+            <p className="text-sm font-semibold tracking-[0.18em] text-brand uppercase">
+              Related
+            </p>
+            <p className="mt-2 text-sm font-semibold text-ink-mid">
+              関連するページ
+            </p>
+            <h2 className="font-serif-jp mt-4 text-2xl font-medium leading-[1.4] text-ink-deep md:text-3xl">
+              無宗教葬を検討する方へ、
+              <br className="md:hidden" />
+              あわせてご覧ください。
+            </h2>
+          </div>
+
+          <ul className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {info.relatedLinks.map((link) => (
               <li key={link.href}>
                 <a
                   href={link.href}
