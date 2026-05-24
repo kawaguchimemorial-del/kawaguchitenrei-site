@@ -549,6 +549,11 @@ const citizenFuneralRelatedLinks = [
     description: "新井宿エリアの葬儀・家族葬のご案内",
     href: "/area/araijuku/",
   },
+  {
+    label: "施工事例",
+    description: "川口典礼でお手伝いした葬儀の施工事例を一覧でご覧いただけます。",
+    href: "/case/",
+  },
 ];
 
 export function PlanCitizenFuneralBody({ plan }: { plan: Plan }) {

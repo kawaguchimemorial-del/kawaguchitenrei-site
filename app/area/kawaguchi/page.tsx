@@ -179,6 +179,11 @@ const relatedLinks = [
     description: "ご家族中心のお別れ・528,000円(税込)〜",
     href: "/plan/family-funeral/",
   },
+  {
+    label: "施工事例",
+    description: "川口典礼でお手伝いした葬儀の施工事例を確認できます。",
+    href: "/case/",
+  },
 ];
 
 export default function KawaguchiAreaPage() {

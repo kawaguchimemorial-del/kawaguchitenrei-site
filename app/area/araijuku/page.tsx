@@ -160,6 +160,11 @@ const relatedLinks = [
     description: "火葬中心のシンプルなお別れ・139,000円(税込)〜",
     href: "/plan/direct-funeral/",
   },
+  {
+    label: "施工事例",
+    description: "川口典礼でお手伝いした葬儀の施工事例を確認できます。",
+    href: "/case/",
+  },
 ];
 
 export default function AraijukuAreaPage() {

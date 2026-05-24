@@ -295,6 +295,11 @@ export const plans: Plan[] = [
         description: "川口市全体の葬儀・対応エリアのご案内",
         href: "/area/kawaguchi/",
       },
+      {
+        label: "施工事例",
+        description: "川口典礼でお手伝いした葬儀の施工事例を一覧でご覧いただけます。",
+        href: "/case/",
+      },
     ],
   },
   {
@@ -442,6 +447,11 @@ export const plans: Plan[] = [
         description: "川口市全体の葬儀・対応エリアのご案内",
         href: "/area/kawaguchi/",
       },
+      {
+        label: "施工事例",
+        description: "川口典礼でお手伝いした葬儀の施工事例を一覧でご覧いただけます。",
+        href: "/case/",
+      },
     ],
   },
   {
@@ -570,6 +580,11 @@ export const plans: Plan[] = [
         label: "川口市の葬儀・家族葬",
         description: "川口市全体の葬儀・対応エリアのご案内",
         href: "/area/kawaguchi/",
+      },
+      {
+        label: "施工事例",
+        description: "川口典礼でお手伝いした葬儀の施工事例を一覧でご覧いただけます。",
+        href: "/case/",
       },
     ],
   },
@@ -711,6 +726,11 @@ export const plans: Plan[] = [
         label: "川口市の葬儀・家族葬",
         description: "川口市全体の葬儀・対応エリアのご案内",
         href: "/area/kawaguchi/",
+      },
+      {
+        label: "施工事例",
+        description: "川口典礼でお手伝いした葬儀の施工事例を一覧でご覧いただけます。",
+        href: "/case/",
       },
     ],
     simpleAlternative: {
@@ -1257,6 +1277,11 @@ export const plans: Plan[] = [
           label: "新井宿の葬儀・家族葬",
           description: "新井宿エリアの葬儀・家族葬のご案内",
           href: "/area/araijuku/",
+        },
+        {
+          label: "施工事例",
+          description: "川口典礼でお手伝いした葬儀の施工事例を一覧でご覧いただけます。",
+          href: "/case/",
         },
       ],
     },
