@@ -193,7 +193,7 @@ export function SaijoCta({ saijo }: { saijo: Saijo }) {
           {saijo.shortName}でのご葬儀の手配・お見送りを、24時間365日承っています。事前のご相談・お見積りは無料です。
         </p>
 
-        <div className="mt-9 hidden gap-3 md:grid md:grid-cols-[1.2fr_1fr]">
+        <div className="mt-9 grid gap-3 md:grid-cols-[1.2fr_1fr]">
           <a
             href="tel:0120-963-765"
             className="flex items-center justify-center gap-3 rounded-lg bg-emergency px-5 py-5 text-white shadow-sm transition hover:bg-emergency-deep"
@@ -216,6 +216,53 @@ export function SaijoCta({ saijo }: { saijo: Saijo }) {
           >
             事前相談する
           </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function SaijoMidCta({ saijo }: { saijo: Saijo }) {
+  return (
+    <section className="bg-paper py-12 md:py-16">
+      <div className="mx-auto max-w-4xl px-5 md:px-8">
+        <div className="rounded-lg border border-line bg-white p-6 shadow-sm md:p-8">
+          <p className="text-xs font-bold uppercase tracking-[0.18em] text-brand">
+            Consultation
+          </p>
+          <h2 className="font-serif-jp mt-3 text-2xl font-medium leading-[1.4] text-ink-deep md:text-3xl">
+            {saijo.shortName}でのご葬儀・火葬を
+            <br className="md:hidden" />
+            ご検討の方へ。
+          </h2>
+          <p className="mt-4 text-sm leading-7 text-ink-mid md:text-base md:leading-8">
+            空き状況や日程は状況により異なります。
+            {saijo.shortName}を利用したご葬儀の流れ・お見積りは、川口典礼までお気軽にご相談ください。事前相談・お見積りは無料です。
+          </p>
+          <div className="mt-6 grid gap-3 md:grid-cols-[1.2fr_1fr]">
+            <a
+              href="tel:0120-963-765"
+              className="flex items-center justify-center gap-3 rounded-lg bg-emergency px-5 py-4 text-white shadow-sm transition hover:bg-emergency-deep"
+            >
+              <span aria-hidden className="text-xl">
+                ☎
+              </span>
+              <span className="text-left">
+                <span className="block text-base font-bold leading-tight md:text-lg">
+                  電話で相談する
+                </span>
+                <span className="mt-1 block text-xs font-semibold text-white/90">
+                  24時間365日 受付
+                </span>
+              </span>
+            </a>
+            <a
+              href="/contact/"
+              className="rounded-lg border border-ink-deep bg-white px-5 py-4 text-center text-base font-bold text-ink-deep shadow-sm transition hover:bg-cool"
+            >
+              事前相談する
+            </a>
+          </div>
         </div>
       </div>
     </section>
