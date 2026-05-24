@@ -161,8 +161,8 @@ const relatedLinks = [
     href: "/plan/direct-funeral/",
   },
   {
-    label: "施工事例",
-    description: "川口典礼でお手伝いした葬儀の施工事例を確認できます。",
+    label: "施行事例",
+    description: "川口典礼でお手伝いした葬儀の施行事例を確認できます。",
     href: "/case/",
   },
 ];

@@ -550,8 +550,8 @@ const citizenFuneralRelatedLinks = [
     href: "/area/araijuku/",
   },
   {
-    label: "施工事例",
-    description: "川口典礼でお手伝いした葬儀の施工事例を一覧でご覧いただけます。",
+    label: "施行事例",
+    description: "川口典礼でお手伝いした葬儀の施行事例を一覧でご覧いただけます。",
     href: "/case/",
   },
 ];
