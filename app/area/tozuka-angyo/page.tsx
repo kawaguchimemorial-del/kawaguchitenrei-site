@@ -106,6 +106,11 @@ const relatedLinks = [
     href: "/area/kawaguchi/",
   },
   {
+    label: "安行の葬儀・家族葬",
+    description: "安行地区全体の葬儀・家族葬のご案内",
+    href: "/area/angyo/",
+  },
+  {
     label: "南鳩ヶ谷の葬儀・家族葬",
     description: "南鳩ヶ谷エリアの葬儀・家族葬のご案内",
     href: "/area/minami-hatogaya/",

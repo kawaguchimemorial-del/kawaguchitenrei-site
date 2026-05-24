@@ -135,6 +135,36 @@ const relatedLinks = [
     href: "/area/tozuka-angyo/",
   },
   {
+    label: "神根の葬儀・家族葬",
+    description: "神根エリアの葬儀・家族葬のご案内",
+    href: "/area/kamine/",
+  },
+  {
+    label: "新郷の葬儀・家族葬",
+    description: "新郷エリアの葬儀・家族葬のご案内",
+    href: "/area/shingo/",
+  },
+  {
+    label: "芝の葬儀・家族葬",
+    description: "芝地区の葬儀・家族葬のご案内",
+    href: "/area/shiba/",
+  },
+  {
+    label: "安行の葬儀・家族葬",
+    description: "安行地区の葬儀・家族葬のご案内",
+    href: "/area/angyo/",
+  },
+  {
+    label: "上青木の葬儀・家族葬",
+    description: "上青木地区の葬儀・家族葬のご案内",
+    href: "/area/kamiaoki/",
+  },
+  {
+    label: "青木の葬儀・家族葬",
+    description: "青木地区の葬儀・家族葬のご案内",
+    href: "/area/aoki/",
+  },
+  {
     label: "川口メモリアルホール",
     description: "自社式場(川口市西新井宿)のご紹介",
     href: "/hall/kawaguchi-memorial-hall/",
@@ -148,16 +178,6 @@ const relatedLinks = [
     label: "家族葬プラン",
     description: "ご家族中心のお別れ・528,000円(税込)〜",
     href: "/plan/family-funeral/",
-  },
-  {
-    label: "一日葬プラン",
-    description: "通夜なしの1日完結プラン・396,000円(税込)〜",
-    href: "/plan/oneday-funeral/",
-  },
-  {
-    label: "直葬プラン",
-    description: "火葬中心のシンプルなお別れ・139,000円(税込)〜",
-    href: "/plan/direct-funeral/",
   },
 ];
 

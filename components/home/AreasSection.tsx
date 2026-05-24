@@ -9,6 +9,12 @@ const kawaguchiAreas: AreaLink[] = [
   { name: "川口元郷", href: "/area/kawaguchi-motogo/" },
   { name: "南鳩ヶ谷", href: "/area/minami-hatogaya/" },
   { name: "戸塚安行", href: "/area/tozuka-angyo/" },
+  { name: "神根", href: "/area/kamine/" },
+  { name: "新郷", href: "/area/shingo/" },
+  { name: "芝", href: "/area/shiba/" },
+  { name: "安行", href: "/area/angyo/" },
+  { name: "上青木", href: "/area/kamiaoki/" },
+  { name: "青木", href: "/area/aoki/" },
 ];
 
 const nearbyAreas: AreaLink[] = [

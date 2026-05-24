@@ -12,20 +12,20 @@ import {
 } from "@/components/area/AreaDetailExtras";
 import { AreaDetailCta } from "@/components/area/AreaDetailCta";
 import { AreaPrimaryHall } from "@/components/area/AreaPrimaryHall";
-import { areaAraijuku } from "@/lib/areas";
+import { areaShingo } from "@/lib/areas";
 
 const SITE_URL = "https://kawaguchitenrei.com";
-const pageUrl = `${SITE_URL}/area/${areaAraijuku.slug}/`;
+const pageUrl = `${SITE_URL}/area/${areaShingo.slug}/`;
 const imageUrl = `${SITE_URL}/images/home/hall/hall-exterior.jpg`;
 
 export const metadata: Metadata = {
-  title: areaAraijuku.metaTitle,
-  description: areaAraijuku.metaDescription,
-  alternates: { canonical: `/area/${areaAraijuku.slug}/` },
+  title: areaShingo.metaTitle,
+  description: areaShingo.metaDescription,
+  alternates: { canonical: `/area/${areaShingo.slug}/` },
   openGraph: {
-    title: areaAraijuku.metaTitle,
-    description: areaAraijuku.metaDescription,
-    url: `/area/${areaAraijuku.slug}/`,
+    title: areaShingo.metaTitle,
+    description: areaShingo.metaDescription,
+    url: `/area/${areaShingo.slug}/`,
     type: "article",
     images: [
       {
@@ -57,7 +57,7 @@ const breadcrumbJsonLd = {
     {
       "@type": "ListItem",
       position: 3,
-      name: "新井宿",
+      name: areaShingo.name,
       item: pageUrl,
     },
   ],
@@ -66,7 +66,7 @@ const breadcrumbJsonLd = {
 const faqJsonLd = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  mainEntity: areaAraijuku.faqs.map((f) => ({
+  mainEntity: areaShingo.faqs.map((f) => ({
     "@type": "Question",
     name: f.q,
     acceptedAnswer: {
@@ -93,10 +93,10 @@ const funeralHomeJsonLd = {
   },
   areaServed: {
     "@type": "AdministrativeArea",
-    name: "埼玉県川口市新井宿",
+    name: "埼玉県川口市新郷",
   },
   description:
-    "川口市新井宿周辺で葬儀・家族葬・直葬・一日葬を承る葬儀社。自社式場「川口メモリアルホール」(川口市西新井宿)と川口市めぐりの森(車約5分)の近接立地で、ご家族の負担を抑えてお別れいただけます。",
+    "川口市新郷周辺で葬儀・家族葬・直葬・一日葬を承る葬儀社。自社式場「川口メモリアルホール」(川口市西新井宿)を中心に、ご搬送・ご安置・葬儀式・川口市めぐりの森での火葬まで一貫してサポートします。",
 };
 
 const relatedLinks = [
@@ -116,24 +116,14 @@ const relatedLinks = [
     href: "/area/minami-hatogaya/",
   },
   {
-    label: "東川口の葬儀・家族葬",
-    description: "東川口エリアの葬儀・家族葬のご案内",
-    href: "/area/higashikawaguchi/",
+    label: "川口元郷の葬儀・家族葬",
+    description: "川口元郷エリアの葬儀・家族葬のご案内",
+    href: "/area/kawaguchi-motogo/",
   },
   {
-    label: "戸塚安行の葬儀・家族葬",
-    description: "戸塚安行エリアの葬儀・家族葬のご案内",
-    href: "/area/tozuka-angyo/",
-  },
-  {
-    label: "神根の葬儀・家族葬",
-    description: "神根エリアの葬儀・家族葬のご案内",
-    href: "/area/kamine/",
-  },
-  {
-    label: "安行の葬儀・家族葬",
-    description: "安行地区の葬儀・家族葬のご案内",
-    href: "/area/angyo/",
+    label: "青木の葬儀・家族葬",
+    description: "青木地区の葬儀・家族葬のご案内",
+    href: "/area/aoki/",
   },
   {
     label: "川口メモリアルホール",
@@ -142,7 +132,7 @@ const relatedLinks = [
   },
   {
     label: "川口市めぐりの森",
-    description: "車約5分の公営火葬場のご案内",
+    description: "川口市営の火葬場のご案内",
     href: "/saijo/megurinomori/",
   },
   {
@@ -150,19 +140,9 @@ const relatedLinks = [
     description: "ご家族中心のお別れ・528,000円(税込)〜",
     href: "/plan/family-funeral/",
   },
-  {
-    label: "一日葬プラン",
-    description: "通夜なしの1日完結プラン・396,000円(税込)〜",
-    href: "/plan/oneday-funeral/",
-  },
-  {
-    label: "直葬プラン",
-    description: "火葬中心のシンプルなお別れ・139,000円(税込)〜",
-    href: "/plan/direct-funeral/",
-  },
 ];
 
-export default function AraijukuAreaPage() {
+export default function ShingoAreaPage() {
   return (
     <>
       <script
@@ -178,17 +158,17 @@ export default function AraijukuAreaPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(funeralHomeJsonLd) }}
       />
 
-      <AreaDetailIntro area={areaAraijuku} />
+      <AreaDetailIntro area={areaShingo} />
       <AreaPrimaryHall
-        area={areaAraijuku}
-        description="新井宿地区(川口市西新井宿)に位置する川口典礼の自社ホール。新井宿エリアから歩く距離・短い移動でご来館いただけ、川口市めぐりの森(火葬場)まで車で約5分です。1日1組貸切の落ち着いた式場で、家族葬・一日葬に適しています。"
+        area={areaShingo}
+        description="新郷エリアの住宅地から、お車でご来館いただける川口典礼の自社ホール。1日1組貸切の落ち着いた式場で、家族葬・一日葬に適しています。"
       />
-      <AreaFeatures area={areaAraijuku} />
-      <AreaPlans area={areaAraijuku} />
-      <AreaSaijo area={areaAraijuku} />
-      <AreaReasons area={areaAraijuku} />
-      <AreaFlow area={areaAraijuku} />
-      <AreaFaq area={areaAraijuku} />
+      <AreaFeatures area={areaShingo} />
+      <AreaPlans area={areaShingo} />
+      <AreaSaijo area={areaShingo} />
+      <AreaReasons area={areaShingo} />
+      <AreaFlow area={areaShingo} />
+      <AreaFaq area={areaShingo} />
 
       {/* 関連ページ導線 */}
       <section className="bg-white py-16 md:py-24">
@@ -201,7 +181,7 @@ export default function AraijukuAreaPage() {
               関連するページ
             </p>
             <h2 className="font-serif-jp mt-4 text-2xl font-medium leading-[1.4] text-ink-deep md:text-3xl">
-              新井宿の葬儀を検討する方へ、
+              新郷の葬儀を検討する方へ、
               <br className="md:hidden" />
               あわせてご覧ください。
             </h2>
@@ -231,7 +211,7 @@ export default function AraijukuAreaPage() {
         </div>
       </section>
 
-      <AreaDetailCta area={areaAraijuku} />
+      <AreaDetailCta area={areaShingo} />
     </>
   );
 }

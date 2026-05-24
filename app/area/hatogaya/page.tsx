@@ -126,6 +126,16 @@ const relatedLinks = [
     href: "/area/tozuka-angyo/",
   },
   {
+    label: "上青木の葬儀・家族葬",
+    description: "上青木地区の葬儀・家族葬のご案内",
+    href: "/area/kamiaoki/",
+  },
+  {
+    label: "青木の葬儀・家族葬",
+    description: "青木地区の葬儀・家族葬のご案内",
+    href: "/area/aoki/",
+  },
+  {
     label: "川口メモリアルホール",
     description: "自社式場(川口市西新井宿)のご紹介",
     href: "/hall/kawaguchi-memorial-hall/",
