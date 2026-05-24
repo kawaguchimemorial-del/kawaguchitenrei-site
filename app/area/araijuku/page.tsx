@@ -106,6 +106,26 @@ const relatedLinks = [
     href: "/area/kawaguchi/",
   },
   {
+    label: "鳩ヶ谷の葬儀・家族葬",
+    description: "鳩ヶ谷エリアの葬儀・家族葬のご案内",
+    href: "/area/hatogaya/",
+  },
+  {
+    label: "南鳩ヶ谷の葬儀・家族葬",
+    description: "南鳩ヶ谷エリアの葬儀・家族葬のご案内",
+    href: "/area/minami-hatogaya/",
+  },
+  {
+    label: "東川口の葬儀・家族葬",
+    description: "東川口エリアの葬儀・家族葬のご案内",
+    href: "/area/higashikawaguchi/",
+  },
+  {
+    label: "戸塚安行の葬儀・家族葬",
+    description: "戸塚安行エリアの葬儀・家族葬のご案内",
+    href: "/area/tozuka-angyo/",
+  },
+  {
     label: "川口メモリアルホール",
     description: "自社式場(川口市西新井宿)のご紹介",
     href: "/hall/kawaguchi-memorial-hall/",
@@ -129,11 +149,6 @@ const relatedLinks = [
     label: "直葬プラン",
     description: "火葬中心のシンプルなお別れ・139,000円(税込)〜",
     href: "/plan/direct-funeral/",
-  },
-  {
-    label: "お役立ちコラム",
-    description: "葬儀の流れ・費用・準備のお役立ち情報",
-    href: "/column/",
   },
 ];
 
