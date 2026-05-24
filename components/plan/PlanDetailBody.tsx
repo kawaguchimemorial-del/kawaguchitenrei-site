@@ -507,12 +507,111 @@ export function PlanCta({ plan }: { plan: Plan }) {
   );
 }
 
+const citizenFuneralOfficialSource = {
+  url: "https://www.city.kawaguchi.lg.jp/soshiki/01090/010/sousai/19407.html",
+  label: "川口市「葬祭事業」",
+  updated: "2026-04-01",
+};
+
+const citizenFuneralRelatedLinks = [
+  {
+    label: "川口市めぐりの森",
+    description: "市民葬で利用する川口市営の火葬場のご案内",
+    href: "/saijo/megurinomori/",
+  },
+  {
+    label: "川口メモリアルホール",
+    description: "自社式場(川口市西新井宿)。仕様1のお別れにも対応します。",
+    href: "/hall/kawaguchi-memorial-hall/",
+  },
+  {
+    label: "直葬プラン",
+    description: "火葬中心のシンプルなお別れ・139,000円(税込)〜",
+    href: "/plan/direct-funeral/",
+  },
+  {
+    label: "一日葬プラン",
+    description: "通夜なしの1日完結プラン・396,000円(税込)〜",
+    href: "/plan/oneday-funeral/",
+  },
+  {
+    label: "家族葬プラン",
+    description: "ご家族中心のお別れ・528,000円(税込)〜",
+    href: "/plan/family-funeral/",
+  },
+  {
+    label: "川口市の葬儀・家族葬",
+    description: "川口市全体の葬儀・対応エリアのご案内",
+    href: "/area/kawaguchi/",
+  },
+  {
+    label: "新井宿の葬儀・家族葬",
+    description: "新井宿エリアの葬儀・家族葬のご案内",
+    href: "/area/araijuku/",
+  },
+];
+
 export function PlanCitizenFuneralBody({ plan }: { plan: Plan }) {
   if (!plan.citizenFuneralInfo) return null;
   const info = plan.citizenFuneralInfo;
 
   return (
     <>
+      {/* 結論ボックス（AIO向け） */}
+      <section className="bg-white py-12 md:py-16">
+        <div className="mx-auto max-w-4xl px-5 md:px-8">
+          <div className="rounded-lg border border-brand/30 bg-paper p-6 shadow-sm md:p-8">
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-brand">
+              Summary
+            </p>
+            <h2 className="font-serif-jp mt-3 text-2xl font-medium leading-[1.5] text-ink-deep md:text-[1.75rem]">
+              川口市民葬(葬祭事業)とは。
+            </h2>
+            <p className="mt-4 text-base leading-9 text-ink-mid md:text-lg md:leading-10">
+              川口市民葬(葬祭事業)は、川口市民の方が川口市めぐりの森で火葬を行う場合に利用できる、川口市の制度です。
+            </p>
+            <ul className="mt-5 space-y-2 text-sm leading-7 text-ink md:text-base md:leading-8">
+              <li className="flex items-start gap-3">
+                <span aria-hidden className="mt-2 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-brand" />
+                <span>
+                  <span className="font-bold">仕様1: 通夜・告別式等を行う方</span> — 231,000円(税込)・市補助40,000円
+                </span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span aria-hidden className="mt-2 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-brand" />
+                <span>
+                  <span className="font-bold">仕様2: 火葬のみを行う方</span> — 143,000円(税込)・市補助20,000円
+                </span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span aria-hidden className="mt-2 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-brand" />
+                <span>補助は市から葬祭業者へ直接支払われます。利用者への現金給付ではありません。</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span aria-hidden className="mt-2 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-brand" />
+                <span>別途、式場使用料・火葬料・宗教者費用などが必要になる場合があります。</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span aria-hidden className="mt-2 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-brand" />
+                <span>川口典礼は川口市の葬祭事業登録業者として、申請手続き・葬儀・川口市めぐりの森での火葬までサポートします。</span>
+              </li>
+            </ul>
+            <p className="mt-5 text-xs leading-6 text-ink-soft md:text-sm">
+              出典:{" "}
+              <a
+                href={citizenFuneralOfficialSource.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-brand underline underline-offset-2 hover:text-brand-deep"
+              >
+                {citizenFuneralOfficialSource.label}
+              </a>
+              （{citizenFuneralOfficialSource.updated} 更新）
+            </p>
+          </div>
+        </div>
+      </section>
+
       <section className="bg-paper py-12 md:py-16">
         <div className="mx-auto max-w-4xl px-5 md:px-8">
           <div className="rounded-lg border border-line bg-white p-6 shadow-sm md:p-8">
@@ -747,6 +846,49 @@ export function PlanCitizenFuneralBody({ plan }: { plan: Plan }) {
         </div>
       </section>
 
+      {/* 中間 CTA */}
+      <section className="bg-white py-12 md:py-16">
+        <div className="mx-auto max-w-4xl px-5 md:px-8">
+          <div className="rounded-lg border border-line bg-paper p-6 shadow-sm md:p-8">
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-brand">
+              Consultation
+            </p>
+            <h2 className="font-serif-jp mt-3 text-2xl font-medium leading-[1.4] text-ink-deep md:text-3xl">
+              川口市民葬の利用条件や費用が
+              <br className="md:hidden" />
+              気になる方へ。
+            </h2>
+            <p className="mt-4 text-sm leading-7 text-ink-mid md:text-base md:leading-8">
+              制度の対象になるか、仕様1・仕様2のどちらが合うか、別途必要になる費用の見通しなど、川口典礼までお気軽にご相談ください。事前相談・お見積りは無料です。
+            </p>
+            <div className="mt-6 grid gap-3 md:grid-cols-[1.2fr_1fr]">
+              <a
+                href="tel:0120-963-765"
+                className="flex items-center justify-center gap-3 rounded-lg bg-emergency px-5 py-4 text-white shadow-sm transition hover:bg-emergency-deep"
+              >
+                <span aria-hidden className="text-xl">
+                  ☎
+                </span>
+                <span className="text-left">
+                  <span className="block text-base font-bold leading-tight md:text-lg">
+                    電話で相談する
+                  </span>
+                  <span className="mt-1 block text-xs font-semibold text-white/90">
+                    24時間365日 受付
+                  </span>
+                </span>
+              </a>
+              <a
+                href="/contact/"
+                className="rounded-lg border border-ink-deep bg-white px-5 py-4 text-center text-base font-bold text-ink-deep shadow-sm transition hover:bg-cool"
+              >
+                事前相談する
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="bg-paper py-16 md:py-24">
         <div className="mx-auto max-w-4xl px-5 md:px-8">
           <div className="max-w-3xl">
@@ -789,6 +931,73 @@ export function PlanCitizenFuneralBody({ plan }: { plan: Plan }) {
                     {faq.a}
                   </div>
                 </details>
+              </li>
+            ))}
+          </ul>
+
+          {/* 出典・更新日 */}
+          <div className="mt-10 rounded-lg border border-line-soft bg-white px-5 py-5 text-sm leading-7 text-ink-mid md:px-6 md:py-6 md:text-base md:leading-8">
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-ink-soft">
+              Source
+            </p>
+            <p className="mt-2 font-serif-jp text-base font-medium text-ink-deep md:text-lg">
+              制度情報の確認元
+            </p>
+            <ul className="mt-3 space-y-2">
+              <li>
+                <a
+                  href={citizenFuneralOfficialSource.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-brand underline underline-offset-2 hover:text-brand-deep"
+                >
+                  {citizenFuneralOfficialSource.label}
+                </a>
+                （{citizenFuneralOfficialSource.updated} 更新確認）
+              </li>
+              <li className="text-ink-mid">
+                当ページは、川口市公式情報と既存の川口典礼データをもとに掲載しています。制度内容は変更される場合があるため、最新情報は事前相談時にご確認ください。
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Related */}
+      <section className="bg-white py-16 md:py-24">
+        <div className="mx-auto max-w-6xl px-5 md:px-8">
+          <div className="max-w-3xl">
+            <p className="text-sm font-semibold tracking-[0.18em] text-brand uppercase">
+              Related
+            </p>
+            <p className="mt-2 text-sm font-semibold text-ink-mid">
+              関連するページ
+            </p>
+            <h2 className="font-serif-jp mt-4 text-2xl font-medium leading-[1.4] text-ink-deep md:text-3xl">
+              川口市民葬を検討する方へ、
+              <br className="md:hidden" />
+              あわせてご覧ください。
+            </h2>
+          </div>
+
+          <ul className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {citizenFuneralRelatedLinks.map((link) => (
+              <li key={link.href}>
+                <a
+                  href={link.href}
+                  className="group flex h-full flex-col rounded-lg border border-line bg-paper p-5 shadow-sm transition hover:border-brand hover:shadow-md md:p-6"
+                >
+                  <p className="font-serif-jp text-base font-medium text-ink-deep group-hover:text-brand md:text-lg">
+                    {link.label}
+                  </p>
+                  <p className="mt-2 text-sm leading-7 text-ink-mid">
+                    {link.description}
+                  </p>
+                  <p className="mt-auto pt-4 inline-flex items-center gap-1 text-sm font-bold text-brand group-hover:underline">
+                    詳しく見る
+                    <span aria-hidden>→</span>
+                  </p>
+                </a>
               </li>
             ))}
           </ul>

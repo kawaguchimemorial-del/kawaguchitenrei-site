@@ -20,24 +20,44 @@ type Props = {
   params: Promise<{ slug: string }>;
 };
 
-function buildOffer(plan: Plan) {
+function buildOffers(plan: Plan) {
+  // 川口市民葬の仕様1・仕様2を Offer 配列で出す（公式と整合：仕様1=231,000円/補助40,000円、仕様2=143,000円/補助20,000円）
+  if (plan.citizenFuneralInfo) {
+    const offers = plan.citizenFuneralInfo.specs.map((spec) => {
+      const numericPrice = Number(spec.price.replace(/[^0-9]/g, ""));
+      return {
+        "@type": "Offer",
+        priceCurrency: "JPY",
+        price: Number.isFinite(numericPrice) ? numericPrice : undefined,
+        name: `${plan.name} ${spec.scope}`,
+        description: `${spec.scope}向けの仕様。${spec.price}。${spec.subsidy}。式場使用料・火葬料(川口市めぐりの森使用料)・供花・飲食代・遺影写真・寺院費用などが別途必要になる場合があります。`,
+        availability: "https://schema.org/InStock",
+      };
+    });
+    return offers.length > 0 ? offers : undefined;
+  }
+
   if (!plan.pricing) return undefined;
   if (plan.pricing.type === "member-regular") {
-    return {
+    return [
+      {
+        "@type": "Offer",
+        priceCurrency: "JPY",
+        price: plan.pricing.member,
+        description: `事前相談会員価格 ${plan.pricing.member.toLocaleString("ja-JP")}円(税込)から。通常価格 ${plan.pricing.regular.toLocaleString("ja-JP")}円(税込)。別途、火葬料・式場使用料・宗教者へのお礼などが必要になる場合があります。`,
+        availability: "https://schema.org/InStock",
+      },
+    ];
+  }
+  return [
+    {
       "@type": "Offer",
       priceCurrency: "JPY",
-      price: plan.pricing.member,
-      description: `事前相談会員価格 ${plan.pricing.member.toLocaleString("ja-JP")}円(税込)から。通常価格 ${plan.pricing.regular.toLocaleString("ja-JP")}円(税込)。別途、火葬料・式場使用料・宗教者へのお礼などが必要になる場合があります。`,
+      price: plan.pricing.citizen,
+      description: `川口市民 葬祭事業価格 ${plan.pricing.citizen.toLocaleString("ja-JP")}円(税込)。式場使用料・火葬料(川口市めぐりの森使用料)・宗教者費用などが別途必要になる場合があります。`,
       availability: "https://schema.org/InStock",
-    };
-  }
-  return {
-    "@type": "Offer",
-    priceCurrency: "JPY",
-    price: plan.pricing.citizen,
-    description: `川口市民 葬祭事業価格 ${plan.pricing.citizen.toLocaleString("ja-JP")}円(税込)。式場使用料・火葬料(川口市めぐりの森使用料)・宗教者費用などが別途必要になる場合があります。`,
-    availability: "https://schema.org/InStock",
-  };
+    },
+  ];
 }
 
 function buildPlanJsonLd(plan: Plan) {
@@ -68,7 +88,7 @@ function buildPlanJsonLd(plan: Plan) {
     ],
   };
 
-  const offer = buildOffer(plan);
+  const offers = buildOffers(plan);
   const service = {
     "@context": "https://schema.org",
     "@type": "Service",
@@ -94,7 +114,7 @@ function buildPlanJsonLd(plan: Plan) {
       "@type": "City",
       name: "埼玉県川口市",
     },
-    ...(offer ? { offers: offer } : {}),
+    ...(offers ? { offers } : {}),
   };
 
   const displayedFaqs = plan.citizenFuneralInfo
@@ -131,14 +151,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: "プランが見つかりません | 川口典礼",
     };
   }
+  const pageTitle = plan.metaTitle ?? `${plan.name} | 川口典礼の葬儀プラン`;
   return {
-    title: `${plan.name} | 川口典礼の葬儀プラン`,
+    title: pageTitle,
     description: plan.metaDescription,
     alternates: {
       canonical: `/plan/${plan.slug}/`,
     },
     openGraph: {
-      title: `${plan.name} | 川口典礼の葬儀プラン`,
+      title: pageTitle,
       description: plan.metaDescription,
       url: `/plan/${plan.slug}/`,
       type: "article",
