@@ -1443,3 +1443,82 @@ export function PlanNonReligiousBody({ plan }: { plan: Plan }) {
     </>
   );
 }
+
+export function PlanConclusionBox({ plan }: { plan: Plan }) {
+  if (!plan.conclusionBox) return null;
+  const box = plan.conclusionBox;
+
+  return (
+    <section className="bg-white py-12 md:py-16">
+      <div className="mx-auto max-w-4xl px-5 md:px-8">
+        <div className="rounded-lg border border-brand/30 bg-paper p-6 shadow-sm md:p-8">
+          <p className="text-xs font-bold uppercase tracking-[0.18em] text-brand">
+            Summary
+          </p>
+          <h2 className="font-serif-jp mt-3 text-2xl font-medium leading-[1.5] text-ink-deep md:text-[1.75rem]">
+            {box.heading}
+          </h2>
+          <p className="mt-4 text-base leading-9 text-ink-mid md:text-lg md:leading-10">
+            {box.intro}
+          </p>
+          <ul className="mt-5 space-y-2 text-sm leading-7 text-ink md:text-base md:leading-8">
+            {box.points.map((point) => (
+              <li key={point} className="flex items-start gap-3">
+                <span
+                  aria-hidden
+                  className="mt-2 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-brand"
+                />
+                <span>{point}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function PlanRelated({ plan }: { plan: Plan }) {
+  if (!plan.relatedLinks || plan.relatedLinks.length === 0) return null;
+  const links = plan.relatedLinks;
+
+  return (
+    <section className="bg-white py-16 md:py-24">
+      <div className="mx-auto max-w-6xl px-5 md:px-8">
+        <div className="max-w-3xl">
+          <p className="text-sm font-semibold tracking-[0.18em] text-brand uppercase">
+            Related
+          </p>
+          <p className="mt-2 text-sm font-semibold text-ink-mid">
+            関連するページ
+          </p>
+          <h2 className="font-serif-jp mt-4 text-2xl font-medium leading-[1.4] text-ink-deep md:text-3xl">
+            あわせてご覧ください。
+          </h2>
+        </div>
+
+        <ul className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {links.map((link) => (
+            <li key={link.href}>
+              <a
+                href={link.href}
+                className="group flex h-full flex-col rounded-lg border border-line bg-paper p-5 shadow-sm transition hover:border-brand hover:shadow-md md:p-6"
+              >
+                <p className="font-serif-jp text-base font-medium text-ink-deep group-hover:text-brand md:text-lg">
+                  {link.label}
+                </p>
+                <p className="mt-2 text-sm leading-7 text-ink-mid">
+                  {link.description}
+                </p>
+                <p className="mt-auto pt-4 inline-flex items-center gap-1 text-sm font-bold text-brand group-hover:underline">
+                  詳しく見る
+                  <span aria-hidden>→</span>
+                </p>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+}

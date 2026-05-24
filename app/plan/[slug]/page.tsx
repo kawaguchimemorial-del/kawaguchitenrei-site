@@ -5,12 +5,14 @@ import {
   PlanAdditional,
   PlanCitizenFuneralBody,
   PlanCompatibleHalls,
+  PlanConclusionBox,
   PlanCostGuide,
   PlanCta,
   PlanFaq,
   PlanFlow,
   PlanInclusions,
   PlanNonReligiousBody,
+  PlanRelated,
   PlanSimpleAlternative,
 } from "@/components/plan/PlanDetailBody";
 import { getAllPlanSlugs, getPlan, type Plan } from "@/lib/plans";
@@ -207,6 +209,7 @@ export default async function PlanDetailPage({ params }: Props) {
         <PlanCitizenFuneralBody plan={plan} />
       ) : (
         <>
+          <PlanConclusionBox plan={plan} />
           <PlanInclusions plan={plan} />
           <PlanSimpleAlternative plan={plan} />
           <PlanFlow plan={plan} />
@@ -214,6 +217,7 @@ export default async function PlanDetailPage({ params }: Props) {
           <PlanCostGuide plan={plan} />
           <PlanCompatibleHalls plan={plan} />
           <PlanFaq plan={plan} />
+          <PlanRelated plan={plan} />
         </>
       )}
       <PlanCta plan={plan} />
