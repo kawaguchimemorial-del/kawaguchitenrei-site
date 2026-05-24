@@ -508,7 +508,6 @@ export function PlanCta({ plan }: { plan: Plan }) {
 }
 
 const citizenFuneralOfficialSource = {
-  url: "https://www.city.kawaguchi.lg.jp/soshiki/01090/010/sousai/19407.html",
   label: "川口市「葬祭事業」",
   updated: "2026-04-01",
 };
@@ -597,16 +596,8 @@ export function PlanCitizenFuneralBody({ plan }: { plan: Plan }) {
               </li>
             </ul>
             <p className="mt-5 text-xs leading-6 text-ink-soft md:text-sm">
-              出典:{" "}
-              <a
-                href={citizenFuneralOfficialSource.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-brand underline underline-offset-2 hover:text-brand-deep"
-              >
-                {citizenFuneralOfficialSource.label}
-              </a>
-              （{citizenFuneralOfficialSource.updated} 更新）
+              確認元: {citizenFuneralOfficialSource.label}（
+              {citizenFuneralOfficialSource.updated} 更新確認）
             </p>
           </div>
         </div>
@@ -935,31 +926,12 @@ export function PlanCitizenFuneralBody({ plan }: { plan: Plan }) {
             ))}
           </ul>
 
-          {/* 出典・更新日 */}
-          <div className="mt-10 rounded-lg border border-line-soft bg-white px-5 py-5 text-sm leading-7 text-ink-mid md:px-6 md:py-6 md:text-base md:leading-8">
-            <p className="text-xs font-bold uppercase tracking-[0.18em] text-ink-soft">
-              Source
-            </p>
-            <p className="mt-2 font-serif-jp text-base font-medium text-ink-deep md:text-lg">
-              制度情報の確認元
-            </p>
-            <ul className="mt-3 space-y-2">
-              <li>
-                <a
-                  href={citizenFuneralOfficialSource.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-brand underline underline-offset-2 hover:text-brand-deep"
-                >
-                  {citizenFuneralOfficialSource.label}
-                </a>
-                （{citizenFuneralOfficialSource.updated} 更新確認）
-              </li>
-              <li className="text-ink-mid">
-                当ページは、川口市公式情報と既存の川口典礼データをもとに掲載しています。制度内容は変更される場合があるため、最新情報は事前相談時にご確認ください。
-              </li>
-            </ul>
-          </div>
+          {/* 制度情報の確認元（テキストのみ・補足表示） */}
+          <p className="mt-10 text-xs leading-6 text-ink-soft md:text-sm md:leading-7">
+            制度情報の確認元: {citizenFuneralOfficialSource.label}（
+            {citizenFuneralOfficialSource.updated} 更新確認）。
+            制度内容は変更される場合があるため、最新情報はご相談時に確認いたします。
+          </p>
         </div>
       </section>
 
