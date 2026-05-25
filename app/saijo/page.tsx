@@ -8,12 +8,12 @@ const pageUrl = `${SITE_URL}/saijo/`;
 export const metadata: Metadata = {
   title: "川口市・近隣の葬儀場一覧｜川口典礼",
   description:
-    "川口市・近隣で利用できる葬儀場を一覧でご案内。川口メモリアルホール、めぐりの森、戸田葬祭場、谷塚斎場、川口市内の寺院会館・民営式場など、川口典礼でご相談・手配に対応しています。",
+    "川口市・近隣で利用できる葬儀場を一覧でご案内。川口メモリアルホール、川口市めぐりの森、戸田葬祭場、谷塚斎場に加え、朝日・本町・上青木・安行・南鳩ヶ谷・新郷など川口市内の寺院会館・民営式場をエリア別にご紹介。川口典礼でご相談・手配に対応しています。",
   alternates: { canonical: "/saijo/" },
   openGraph: {
     title: "川口市・近隣の葬儀場一覧｜川口典礼",
     description:
-      "川口市・近隣で利用できる葬儀場を一覧でご案内。川口メモリアルホール、めぐりの森、戸田葬祭場、谷塚斎場、川口市内の寺院会館・民営式場など、川口典礼でご相談・手配に対応しています。",
+      "川口市・近隣で利用できる葬儀場を一覧でご案内。川口メモリアルホール、川口市めぐりの森、戸田葬祭場、谷塚斎場に加え、朝日・本町・上青木・安行・南鳩ヶ谷・新郷など川口市内の寺院会館・民営式場をエリア別にご紹介。川口典礼でご相談・手配に対応しています。",
     url: "/saijo/",
     type: "website",
   },
@@ -73,67 +73,186 @@ const publicSaijo: PublicSaijo[] = [
 type TempleHall = {
   name: string;
   address: string;
+  parking: string;
+  capacity: string;
   feeNote: string;
-  suitedFor: string;
-  features: string;
 };
 
-const templeHalls: TempleHall[] = [
+type TempleHallArea = {
+  id: string;
+  groupName: string;
+  description: string;
+  halls: TempleHall[];
+};
+
+const templeHallAreas: TempleHallArea[] = [
   {
-    name: "東礼川口",
-    address: "埼玉県川口市大字榛松1980-1",
-    feeNote: "式場使用料の目安：110,000円",
-    suitedFor: "ご家族・ご親族中心の家族葬・一日葬をお考えの方",
-    features:
-      "川口市榛松エリアの民営式場。家族葬から一般葬まで対応できる規模感で、落ち着いた雰囲気の中でお見送りいただけます。",
+    id: "asahi-minami-hatogaya",
+    groupName: "朝日・南鳩ヶ谷方面",
+    description:
+      "川口市朝日・南鳩ヶ谷・三ツ和エリアの寺院会館。南鳩ヶ谷駅周辺からアクセスしやすく、地域に根ざしたお別れに向いています。「朝日 葬儀場」「南鳩ヶ谷 葬儀場」をお探しの方の選択肢となります。",
+    halls: [
+      {
+        name: "薬林寺会館",
+        address: "埼玉県川口市朝日1-4-33",
+        parking: "約70台",
+        capacity: "着席80名 / 会葬150名",
+        feeNote: "250,000円",
+      },
+      {
+        name: "実正寺 弘法館",
+        address: "埼玉県川口市南鳩ヶ谷3-15-14",
+        parking: "約30台",
+        capacity: "ご相談時に確認",
+        feeNote: "100,000円〜",
+      },
+      {
+        name: "源永寺会館",
+        address: "埼玉県川口市三ツ和2-19-7",
+        parking: "約50台",
+        capacity: "着席80名",
+        feeNote: "250,000円",
+      },
+    ],
   },
   {
-    name: "随泉寺会館",
-    address: "埼玉県川口市元郷3-4-17",
-    feeNote: "式場使用料の目安：50,000円〜100,000円",
-    suitedFor: "菩提寺や宗教者との繋がりを大切にされたいご家族",
-    features:
-      "川口市元郷の寺院会館。宗教者との連携がしやすく、宗教儀礼を丁寧に進めたい方に向いています。",
+    id: "honcho-funado",
+    groupName: "本町・舟戸町方面",
+    description:
+      "川口駅西側・本町・舟戸町エリアの寺院会館。川口駅周辺に位置し、参列者が集まりやすい立地です。「本町 葬儀場」「川口駅 葬儀場」をお探しの方の選択肢となります。",
+    halls: [
+      {
+        name: "錫杖寺",
+        address: "埼玉県川口市本町2-4-37",
+        parking: "約15台",
+        capacity: "着席100名",
+        feeNote: "確認のうえご案内します",
+      },
+      {
+        name: "善光寺",
+        address: "埼玉県川口市舟戸町1-29",
+        parking: "約50台",
+        capacity: "着席50名",
+        feeNote: "250,000円",
+      },
+      {
+        name: "明王会館",
+        address: "埼玉県川口市本町3-3-17",
+        parking: "ご相談時に確認",
+        capacity: "100席",
+        feeNote: "150,000円",
+      },
+    ],
   },
   {
-    name: "実相寺会館 鷲峰殿",
-    address: "埼玉県川口市領家2-14-11",
-    feeNote: "式場使用料の目安：1日葬 100,000円／2日葬 200,000円",
-    suitedFor: "格式を保ちながら家族葬・一日葬を行いたいご家族",
-    features:
-      "川口市領家の寺院会館。落ち着いた佇まいで、家族葬から一般葬まで幅広く対応できる規模感です。",
+    id: "motogo-ryoke",
+    groupName: "元郷・領家方面",
+    description:
+      "川口市元郷・領家エリアの寺院会館。川口駅・川口元郷駅から利用しやすい立地で、家族葬から一般葬まで対応しやすい規模感の式場があります。",
+    halls: [
+      {
+        name: "随泉寺会館",
+        address: "埼玉県川口市元郷3-4-17",
+        parking: "約20台",
+        capacity: "着席100名",
+        feeNote: "50,000円〜100,000円",
+      },
+      {
+        name: "実相寺会館 鷲峰殿",
+        address: "埼玉県川口市領家2-14-11",
+        parking: "約80台",
+        capacity: "80席",
+        feeNote: "1日葬 120,000円 / 2日葬 200,000円",
+      },
+    ],
   },
   {
-    name: "東光院会館",
-    address: "埼玉県川口市江戸袋1-20-32",
-    feeNote: "式場使用料は確認のうえご案内します",
-    suitedFor: "菩提寺との関係を活かしたお別れをご希望の方",
-    features:
-      "川口市江戸袋の寺院会館。読経・法要から告別の流れまでひと続きで行いやすく、ご家族の移動負担が少ない式場です。",
+    id: "kamiaoki-aoki",
+    groupName: "上青木・青木方面",
+    description:
+      "川口駅東側・上青木・青木エリアの寺院会館。地域に根ざした寺院に併設され、家族葬・一日葬に向いた規模感です。「上青木 葬儀場」「青木 葬儀場」をお探しの方の選択肢となります。",
+    halls: [
+      {
+        name: "専称寺会館 迎了殿",
+        address: "埼玉県川口市上青木5-3-43",
+        parking: "約30台",
+        capacity: "着席50名",
+        feeNote: "200,000円",
+      },
+      {
+        name: "龍泉寺 清龍会館",
+        address: "埼玉県川口市青木5-5-36",
+        parking: "約30台",
+        capacity: "60席程度",
+        feeNote: "170,000円",
+      },
+    ],
   },
   {
-    name: "専称寺会館 迎了殿",
-    address: "埼玉県川口市上青木5-3-43",
-    feeNote: "式場使用料の目安：200,000円",
-    suitedFor: "親族・ご近所中心の家族葬をご希望の方",
-    features:
-      "川口市上青木の寺院会館。ご家族・ご親族でゆっくりとお別れの時間を過ごしていただける広さがあります。",
+    id: "edobukuro-shinbori",
+    groupName: "江戸袋・新堀方面",
+    description:
+      "川口市東部・江戸袋・新堀エリアの寺院会館。新郷・神根寄りの落ち着いた立地で、家族葬を中心としたお別れに向いています。「新郷 葬儀場」をお探しの方にも選択肢となります。",
+    halls: [
+      {
+        name: "東光院会館",
+        address: "埼玉県川口市江戸袋1-20-32",
+        parking: "ご相談時に確認",
+        capacity: "ご相談時に確認",
+        feeNote: "確認のうえご案内します",
+      },
+      {
+        name: "正源寺会館",
+        address: "埼玉県川口市新堀933-4",
+        parking: "約40台",
+        capacity: "着席40名程度",
+        feeNote: "150,000円",
+      },
+    ],
   },
   {
-    name: "正源寺会館",
-    address: "埼玉県川口市新堀934",
-    feeNote: "式場使用料の目安：150,000円",
-    suitedFor: "寺院の境内で落ち着いたお別れをご希望の方",
-    features:
-      "川口市新堀の寺院会館。地域に根ざした寺院に併設された式場で、家族葬を中心にご利用いただけます。",
+    id: "angyo-tozuka-angyo",
+    groupName: "安行・戸塚安行方面",
+    description:
+      "川口市東部・安行・戸塚安行エリアの寺院会館。駐車場が比較的広く、参列者の多いお別れにも対応しやすい規模感の式場があります。「安行 葬儀場」「戸塚安行 葬儀場」をお探しの方の選択肢となります。",
+    halls: [
+      {
+        name: "密蔵院 松雲",
+        address: "埼玉県川口市安行原2008",
+        parking: "約200台",
+        capacity: "着席150席",
+        feeNote: "1日葬 100,000円 / 2日葬 170,000円",
+      },
+      {
+        name: "新隆寺 法要殿 観音堂",
+        address: "埼玉県川口市安行出羽4-5-18",
+        parking: "あり",
+        capacity: "20〜200名",
+        feeNote: "1日葬 110,000円前後 / 2日葬 165,000円前後",
+      },
+    ],
   },
   {
-    name: "興照寺センゲンホール",
-    address: "埼玉県川口市差間2-13-5",
-    feeNote: "式場使用料の目安：150,000円",
-    suitedFor: "ご家族中心のお見送り、一日葬・家族葬をお考えの方",
-    features:
-      "川口市差間の寺院に併設された式場。宗教者との連携がしやすく、落ち着いた環境でお別れの時間を過ごせます。",
+    id: "hagimatsu-shingo-sashima",
+    groupName: "榛松・新郷・差間方面",
+    description:
+      "川口市東端・東川口寄りエリアの寺院会館・民営式場。榛松・差間は東川口駅からのアクセスも考えやすく、新郷エリア寄りのお別れに向いています。「東川口 葬儀場」「新郷 葬儀場」をお探しの方の選択肢となります。",
+    halls: [
+      {
+        name: "東礼川口",
+        address: "埼玉県川口市榛松1980-1",
+        parking: "ご相談時に確認",
+        capacity: "ご相談時に確認",
+        feeNote: "110,000円",
+      },
+      {
+        name: "興照寺センゲンホール",
+        address: "埼玉県川口市差間2-13-5",
+        parking: "ご相談時に確認",
+        capacity: "ご相談時に確認",
+        feeNote: "150,000円",
+      },
+    ],
   },
 ];
 
@@ -178,20 +297,32 @@ const faqs = [
     a: "はい。川口典礼では、自社式場の川口メモリアルホールに加えて、川口市めぐりの森、戸田葬祭場、谷塚斎場、川口市内の寺院会館・民営式場など、ご希望や地域に合わせた葬儀場でのご相談・手配に対応しています。詳しい利用条件は、正式なお見積り時に確認しご案内します。",
   },
   {
+    q: "川口市内の寺院会館や民営式場でも家族葬はできますか？",
+    a: "はい。川口市内の寺院会館や民営式場でも、家族葬・一日葬・一般葬のご相談に対応しています。掲載している寺院会館・民営式場は川口典礼が運営する施設ではないため、利用条件・空き状況・式場使用料は式場ごとに異なります。菩提寺との関係やご希望の規模・地域をお伺いしたうえで、川口典礼で確認のうえご案内します。",
+  },
+  {
+    q: "寺院会館・民営式場と川口市めぐりの森の違いは何ですか？",
+    a: "川口市めぐりの森は川口市が運営する火葬場で、ご遺体を火葬する施設です。通夜・告別式を行う式場は併設されていません。一方、寺院会館・民営式場は、通夜・告別式・家族葬・一日葬などのお別れを行う『式場』です。寺院会館・民営式場でお別れの時間を過ごしたあと、川口市めぐりの森などの火葬場へ移動して火葬を行う流れになる場合があります。式場と火葬場の組み合わせは、ご希望と空き状況を踏まえて川口典礼で確認しご案内します。",
+  },
+  {
+    q: "寺院会館を利用する場合、宗派の制限はありますか？",
+    a: "寺院会館は、運営する寺院・運営者の方針により、利用条件・宗派の取り扱いが異なる場合があります。一般的には宗派を問わずご相談可能なケースが多いですが、式場ごとに最終的な利用可否や条件が異なるため、ご希望の式場・宗派をお伺いしたうえで、川口典礼で事前に確認しご案内します。",
+  },
+  {
     q: "めぐりの森で葬儀はできますか？",
-    a: "川口市めぐりの森は川口市が運営する火葬場で、通夜・告別式を行う式場は併設されていません。川口メモリアルホールなどの式場でお別れの時間を過ごしたあと、車で約5分のめぐりの森へ移動して火葬を行う流れになります。川口典礼では一連の流れをまとめてサポートします。",
+    a: "川口市めぐりの森は川口市が運営する火葬場で、通夜・告別式を行う式場は併設されていません。川口メモリアルホールや川口市内の寺院会館・民営式場などの式場でお別れの時間を過ごしたあと、車で約5分のめぐりの森へ移動して火葬を行う流れになります。川口典礼では一連の流れをまとめてサポートします。",
   },
   {
     q: "戸田葬祭場や谷塚斎場も手配できますか？",
     a: "はい。戸田葬祭場・谷塚斎場はいずれも川口典礼が運営する施設ではありませんが、川口典礼ではこれらの斎場をご利用いただく葬儀のご相談・手配に対応しています。空き状況や料金は時期・条件により変わるため、正式なお見積り時に確認のうえご案内します。",
   },
   {
-    q: "寺院会館でも家族葬はできますか？",
-    a: "はい。川口市内の寺院会館・民営式場でも、家族葬・一日葬・一般葬のお見送りに対応しています。寺院会館・民営式場は川口典礼が運営する施設ではありませんが、菩提寺との関係やご希望の規模・雰囲気に合わせてご相談・ご提案します。",
-  },
-  {
     q: "式場の空き状況は確認してもらえますか？",
     a: "はい。ご希望の式場・日程をお伺いしたうえで、空き状況を確認しご連絡します。空き状況は時期により変わるため、正式なお見積り時に最新の状況をご案内します。事前のご相談・お見積りは無料で承っています。",
+  },
+  {
+    q: "式場使用料は掲載金額で確定ですか？",
+    a: "掲載している式場使用料は、確認時点での目安です。利用日数・控室・付帯設備・宗教者・式場条件などにより変動する場合があります。最終的な金額は、ご希望の式場・規模に合わせて正式なお見積りでご案内します。掲載金額で確定するものではないため、ご検討時には川口典礼までご相談ください。",
   },
   {
     q: "費用は式場によって変わりますか？",
@@ -504,81 +635,122 @@ export default function SaijoIndexPage() {
               お見送り。
             </h2>
             <p className="mt-5 text-base leading-9 text-ink-mid md:text-lg">
-              菩提寺との関係を大切にされたい方や、地域に馴染んだ式場で家族葬・一日葬をご希望の方に。川口市内の寺院会館・民営式場でも、川口典礼で葬儀のご相談・手配に対応しています。
+              川口市内には、地域ごとに寺院会館・民営式場があります。菩提寺との関係を大切にされたい方、川口メモリアルホール以外の式場をご検討の方、参列者が集まりやすい地域でのお見送りをご希望の方の選択肢となります。利用条件・空き状況・式場使用料は式場ごとに異なるため、川口典礼で確認のうえご案内します。
+            </p>
+          </div>
+
+          {/* 火葬場と式場の役割整理 */}
+          <div className="mt-8 rounded-lg border border-line bg-paper p-6 md:p-7">
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-brand">
+              火葬場と式場の違い
+            </p>
+            <p className="mt-2 text-base font-bold text-ink-deep md:text-lg">
+              川口市めぐりの森は火葬場、寺院会館・民営式場は式場です。
+            </p>
+            <div className="mt-5 grid gap-5 md:grid-cols-2">
+              <div>
+                <p className="text-sm font-bold text-brand-deep">川口市めぐりの森(火葬場)</p>
+                <p className="mt-2 text-sm leading-7 text-ink-mid">
+                  川口市が運営する火葬場で、ご遺体を火葬する施設です。通夜・告別式を行う式場は併設されていません。
+                </p>
+              </div>
+              <div className="md:border-l md:border-line-soft md:pl-5">
+                <p className="text-sm font-bold text-brand-deep">寺院会館・民営式場(式場)</p>
+                <p className="mt-2 text-sm leading-7 text-ink-mid">
+                  通夜・告別式・家族葬・一日葬などのお別れを行う式場です。式の後、川口市めぐりの森などの火葬場へ移動して火葬する流れになる場合があります。
+                </p>
+              </div>
+            </div>
+            <p className="mt-5 text-sm leading-7 text-ink-soft">
+              式場と火葬場の組み合わせは、日程・空き状況・ご希望により変わります。川口典礼で確認のうえご案内します。
             </p>
           </div>
 
           <p className="mt-6 rounded-lg border border-line-soft bg-paper px-5 py-4 text-sm leading-7 text-ink-mid">
-            ※ 掲載している寺院会館・民営式場は、川口典礼が運営する施設ではありません。川口典礼で葬儀のご相談・手配に対応している式場としてご案内しています。式場使用料・空き状況・利用条件は変更となる場合があるため、正式なお見積り時に確認いたします。
+            ※ 掲載している寺院会館・民営式場は、川口典礼が運営する施設ではありません。川口典礼で葬儀のご相談・手配に対応している式場としてご案内しています。式場使用料・空き状況・利用条件は変更となる場合があるため、最新の状況は川口典礼で確認のうえご案内します。
           </p>
 
-          <ul className="mt-8 grid gap-5 md:grid-cols-2">
-            {templeHalls.map((h) => (
-              <li key={h.name}>
-                <article className="flex h-full flex-col rounded-lg border border-line bg-white p-6 shadow-sm md:p-7">
-                  <h3 className="font-serif-jp text-xl font-medium leading-[1.4] text-ink-deep md:text-2xl">
-                    {h.name}
-                  </h3>
-                  <p className="mt-2 text-sm font-semibold text-ink-mid">
-                    {h.address}
+          {/* エリアグループ別カード */}
+          <div className="mt-12 space-y-14">
+            {templeHallAreas.map((area) => (
+              <div key={area.id} id={area.id}>
+                <div className="max-w-3xl">
+                  <p className="text-xs font-bold uppercase tracking-[0.18em] text-brand">
+                    Area
                   </p>
+                  <h3 className="font-serif-jp mt-2 text-2xl font-medium leading-[1.4] text-ink-deep md:text-3xl">
+                    {area.groupName}
+                  </h3>
+                  <p className="mt-3 text-sm leading-7 text-ink-mid md:text-base md:leading-8">
+                    {area.description}
+                  </p>
+                </div>
 
-                  <dl className="mt-5 space-y-4 text-sm leading-7">
-                    <div>
-                      <dt className="text-xs font-bold uppercase tracking-[0.18em] text-ink-soft">
-                        式場使用料の目安
-                      </dt>
-                      <dd className="mt-1 font-bold text-ink-deep">
-                        {h.feeNote}
-                      </dd>
-                    </div>
-                    <div>
-                      <dt className="text-xs font-bold uppercase tracking-[0.18em] text-ink-soft">
-                        向いている方
-                      </dt>
-                      <dd className="mt-1 text-ink-deep">{h.suitedFor}</dd>
-                    </div>
-                    <div>
-                      <dt className="text-xs font-bold uppercase tracking-[0.18em] text-ink-soft">
-                        特徴
-                      </dt>
-                      <dd className="mt-1 text-ink-mid">{h.features}</dd>
-                    </div>
-                    <div className="rounded-lg border border-line-soft bg-paper px-4 py-3">
-                      <dt className="text-xs font-bold uppercase tracking-[0.18em] text-brand">
-                        川口典礼での対応
-                      </dt>
-                      <dd className="mt-1 text-sm font-semibold text-ink-deep">
-                        ご相談・手配に対応
-                      </dd>
-                    </div>
-                  </dl>
+                <ul className="mt-6 grid gap-4 md:grid-cols-2">
+                  {area.halls.map((h) => (
+                    <li key={h.name}>
+                      <article className="flex h-full flex-col rounded-lg border border-line bg-white p-5 shadow-sm md:p-6">
+                        <h4 className="font-serif-jp text-lg font-medium leading-[1.4] text-ink-deep md:text-xl">
+                          {h.name}
+                        </h4>
+                        <p className="mt-2 text-sm font-semibold text-ink-mid">
+                          {h.address}
+                        </p>
 
-                  <div className="mt-auto pt-6 flex flex-col gap-2 sm:flex-row sm:flex-wrap">
-                    <a
-                      href={mapSearchUrl(`${h.name} ${h.address}`)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex flex-1 items-center justify-center gap-2 rounded-lg border border-ink-deep bg-white px-4 py-3 text-sm font-bold text-ink-deep transition hover:bg-cool"
-                    >
-                      Googleマップで見る
-                      <span aria-hidden>↗</span>
-                    </a>
-                    <a
-                      href="/contact/"
-                      className="inline-flex flex-1 items-center justify-center gap-2 rounded-lg bg-brand px-4 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-brand-deep"
-                    >
-                      この式場について相談する
-                    </a>
-                  </div>
-                </article>
-              </li>
+                        <dl className="mt-4 space-y-3 text-sm leading-7">
+                          <div className="flex items-baseline gap-3 border-b border-line-soft pb-2">
+                            <dt className="w-24 shrink-0 text-xs font-bold uppercase tracking-[0.14em] text-ink-soft">
+                              駐車場
+                            </dt>
+                            <dd className="font-bold text-ink-deep">{h.parking}</dd>
+                          </div>
+                          <div className="flex items-baseline gap-3 border-b border-line-soft pb-2">
+                            <dt className="w-24 shrink-0 text-xs font-bold uppercase tracking-[0.14em] text-ink-soft">
+                              規模
+                            </dt>
+                            <dd className="font-bold text-ink-deep">{h.capacity}</dd>
+                          </div>
+                          <div className="flex items-baseline gap-3">
+                            <dt className="w-24 shrink-0 text-xs font-bold uppercase tracking-[0.14em] text-ink-soft">
+                              使用料の目安
+                            </dt>
+                            <dd className="font-bold text-ink-deep">{h.feeNote}</dd>
+                          </div>
+                        </dl>
+
+                        <div className="mt-auto pt-5 flex flex-col gap-2 sm:flex-row sm:flex-wrap">
+                          <a
+                            href={mapSearchUrl(`${h.name} ${h.address}`)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex flex-1 items-center justify-center gap-2 rounded-lg border border-ink-deep bg-white px-4 py-3 text-sm font-bold text-ink-deep transition hover:bg-cool"
+                          >
+                            Googleマップで見る
+                            <span aria-hidden>↗</span>
+                          </a>
+                          <a
+                            href="/contact/"
+                            className="inline-flex flex-1 items-center justify-center gap-2 rounded-lg bg-brand px-4 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-brand-deep"
+                          >
+                            この式場について相談する
+                          </a>
+                        </div>
+                      </article>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             ))}
-          </ul>
+          </div>
 
-          <p className="mt-8 text-sm leading-7 text-ink-soft">
-            ※ 式場使用料の表記は、確認時点での目安です。税込・税別の区分や、控室・通夜振舞いなど付帯条件により変動する場合があります。最新の金額は正式なお見積り時にご案内します。
-          </p>
+          <div className="mt-10 space-y-2 text-sm leading-7 text-ink-soft">
+            <p>
+              ※ 式場使用料の表記は、確認時点での目安です。利用日数・控室・付帯設備・宗教者・式場条件により変動する場合があります。最新の利用条件・空き状況・式場使用料は、川口典礼で確認のうえご案内します。
+            </p>
+            <p>
+              ※ 宗派については基本的にご相談可能ですが、式場・寺院・運営者の方針により確認が必要な場合があります。ご希望の式場・宗派をお伺いしたうえで、川口典礼にて事前に確認しご案内します。
+            </p>
+          </div>
         </div>
       </section>
 
