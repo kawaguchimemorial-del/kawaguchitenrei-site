@@ -2,14 +2,11 @@ import type { Metadata } from "next";
 import { SaijoDetailIntro } from "@/components/saijo/SaijoDetailIntro";
 import {
   SaijoAvailablePlans,
-  SaijoCremationFurnaces,
-  SaijoCremationWaitingRooms,
   SaijoFacilityInfo,
   SaijoFeatures,
   SaijoFeeTables,
   SaijoFlow,
   SaijoGallery,
-  SaijoHallRooms,
   SaijoImportantNotice,
   SaijoOurSupport,
 } from "@/components/saijo/SaijoDetailMain";
@@ -19,30 +16,30 @@ import {
   SaijoFaq,
   SaijoMidCta,
 } from "@/components/saijo/SaijoDetailExtras";
-import { saijoTodaSousaijyo } from "@/lib/saijo";
+import { saijoMachiya } from "@/lib/saijo";
 
 const SITE_URL = "https://kawaguchitenrei.com";
-const pageUrl = `${SITE_URL}/saijo/${saijoTodaSousaijyo.slug}/`;
-const imageUrl = `${SITE_URL}/images/saijo/toda-sousaijyo/exterior.png`;
+const pageUrl = `${SITE_URL}/saijo/${saijoMachiya.slug}/`;
+const imageUrl = `${SITE_URL}/images/saijo/machiya-saijo/machiya-saijo-funeral-ceremony-02.png`;
 
-const defaultTitle = `${saijoTodaSousaijyo.name}での葬儀 | 川口典礼`;
-const pageTitle = saijoTodaSousaijyo.metaTitle ?? defaultTitle;
+const defaultTitle = `${saijoMachiya.name}での葬儀 | 川口典礼`;
+const pageTitle = saijoMachiya.metaTitle ?? defaultTitle;
 
 export const metadata: Metadata = {
   title: pageTitle,
-  description: saijoTodaSousaijyo.metaDescription,
-  alternates: { canonical: `/saijo/${saijoTodaSousaijyo.slug}/` },
+  description: saijoMachiya.metaDescription,
+  alternates: { canonical: `/saijo/${saijoMachiya.slug}/` },
   openGraph: {
     title: pageTitle,
-    description: saijoTodaSousaijyo.metaDescription,
-    url: `/saijo/${saijoTodaSousaijyo.slug}/`,
+    description: saijoMachiya.metaDescription,
+    url: `/saijo/${saijoMachiya.slug}/`,
     type: "article",
     images: [
       {
-        url: "/images/saijo/toda-sousaijyo/exterior.png",
+        url: "/images/saijo/machiya-saijo/machiya-saijo-funeral-ceremony-02.png",
         width: 1200,
         height: 800,
-        alt: "戸田葬祭場の外観",
+        alt: "町屋斎場の式場内(椅子配置と祭壇)",
       },
     ],
   },
@@ -51,21 +48,19 @@ export const metadata: Metadata = {
 const placeJsonLd = {
   "@context": "https://schema.org",
   "@type": "Place",
-  name: "戸田葬祭場",
-  alternateName: "戸田斎場",
+  name: "町屋斎場",
   address: {
     "@type": "PostalAddress",
-    postalCode: "174-0041",
+    postalCode: "116-0001",
     addressCountry: "JP",
     addressRegion: "東京都",
-    addressLocality: "板橋区",
-    streetAddress: "舟渡四丁目15番1号",
+    addressLocality: "荒川区",
+    streetAddress: "町屋1-23-4",
   },
-  telephone: "03-3966-4241",
   url: pageUrl,
   image: imageUrl,
   description:
-    "戸田葬祭場は、東京都板橋区舟渡にある火葬場併設斎場です。川口典礼では、戸田葬祭場での葬儀相談、搬送、安置、式場利用相談、火葬予約、当日の進行をサポートします。",
+    "町屋斎場は、東京都荒川区町屋にある火葬場併設の総合斎場です。川口典礼では、町屋斎場での葬儀相談、搬送、安置、式場利用相談、火葬予約、当日の進行をサポートします。",
 };
 
 const breadcrumbJsonLd = {
@@ -87,7 +82,7 @@ const breadcrumbJsonLd = {
     {
       "@type": "ListItem",
       position: 3,
-      name: "戸田葬祭場",
+      name: "町屋斎場",
       item: pageUrl,
     },
   ],
@@ -96,7 +91,7 @@ const breadcrumbJsonLd = {
 const faqJsonLd = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  mainEntity: saijoTodaSousaijyo.faqs.map((f) => ({
+  mainEntity: saijoMachiya.faqs.map((f) => ({
     "@type": "Question",
     name: f.q,
     acceptedAnswer: {
@@ -114,20 +109,25 @@ const relatedLinks = [
     href: "/hall/kawaguchi-memorial-hall/",
   },
   {
-    label: "町屋斎場",
-    description:
-      "荒川区町屋の火葬場併設斎場。町屋斎場でのお見送りもご相談いただけます。",
-    href: "/saijo/machiya-saijo/",
-  },
-  {
     label: "川口市の葬儀・家族葬",
     description: "川口市全体の葬儀・対応エリアのご案内",
     href: "/area/kawaguchi/",
   },
   {
-    label: "西川口の葬儀・家族葬",
-    description: "西川口エリアの葬儀・家族葬のご案内",
-    href: "/area/nishikawaguchi/",
+    label: "戸田葬祭場",
+    description: "板橋区舟渡の火葬場併設斎場のご相談に対応",
+    href: "/saijo/toda-sousaijyo/",
+  },
+  {
+    label: "谷塚斎場",
+    description: "草加市瀬崎の火葬場併設斎場のご相談に対応",
+    href: "/saijo/yatsuka-saijo/",
+  },
+  {
+    label: "川口市・近隣の葬儀場一覧",
+    description:
+      "川口メモリアルホール・寺院会館・民営式場をエリア別にご紹介しています。",
+    href: "/saijo/",
   },
   {
     label: "家族葬プラン",
@@ -146,7 +146,7 @@ const relatedLinks = [
   },
 ];
 
-export default function TodaSousaijyoPage() {
+export default function MachiyaSaijoPage() {
   return (
     <>
       <script
@@ -161,21 +161,18 @@ export default function TodaSousaijyoPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
-      <SaijoDetailIntro saijo={saijoTodaSousaijyo} />
-      <SaijoImportantNotice saijo={saijoTodaSousaijyo} />
-      <SaijoGallery saijo={saijoTodaSousaijyo} />
-      <SaijoFeatures saijo={saijoTodaSousaijyo} />
-      <SaijoCremationFurnaces saijo={saijoTodaSousaijyo} />
-      <SaijoHallRooms saijo={saijoTodaSousaijyo} />
-      <SaijoCremationWaitingRooms saijo={saijoTodaSousaijyo} />
-      <SaijoFlow saijo={saijoTodaSousaijyo} />
-      <SaijoMidCta saijo={saijoTodaSousaijyo} />
-      <SaijoOurSupport saijo={saijoTodaSousaijyo} />
-      <SaijoAvailablePlans saijo={saijoTodaSousaijyo} />
-      <SaijoFacilityInfo saijo={saijoTodaSousaijyo} />
-      <SaijoFeeTables saijo={saijoTodaSousaijyo} />
-      <SaijoAccess saijo={saijoTodaSousaijyo} />
-      <SaijoFaq saijo={saijoTodaSousaijyo} />
+      <SaijoDetailIntro saijo={saijoMachiya} />
+      <SaijoImportantNotice saijo={saijoMachiya} />
+      <SaijoGallery saijo={saijoMachiya} />
+      <SaijoFeatures saijo={saijoMachiya} />
+      <SaijoFlow saijo={saijoMachiya} />
+      <SaijoMidCta saijo={saijoMachiya} />
+      <SaijoOurSupport saijo={saijoMachiya} />
+      <SaijoAvailablePlans saijo={saijoMachiya} />
+      <SaijoFacilityInfo saijo={saijoMachiya} />
+      <SaijoFeeTables saijo={saijoMachiya} />
+      <SaijoAccess saijo={saijoMachiya} />
+      <SaijoFaq saijo={saijoMachiya} />
 
       {/* 関連ページ導線 */}
       <section className="bg-white py-16 md:py-24">
@@ -188,7 +185,7 @@ export default function TodaSousaijyoPage() {
               関連するページ
             </p>
             <h2 className="font-serif-jp mt-4 text-2xl font-medium leading-[1.4] text-ink-deep md:text-3xl">
-              戸田葬祭場での葬儀を検討する方へ、
+              町屋斎場での葬儀を検討する方へ、
               <br className="md:hidden" />
               あわせてご覧ください。
             </h2>
@@ -218,7 +215,7 @@ export default function TodaSousaijyoPage() {
         </div>
       </section>
 
-      <SaijoCta saijo={saijoTodaSousaijyo} />
+      <SaijoCta saijo={saijoMachiya} />
     </>
   );
 }

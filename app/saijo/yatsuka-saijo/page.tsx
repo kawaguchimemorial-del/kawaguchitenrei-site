@@ -113,6 +113,12 @@ const relatedLinks = [
     href: "/hall/kawaguchi-memorial-hall/",
   },
   {
+    label: "町屋斎場",
+    description:
+      "荒川区町屋の火葬場併設斎場。町屋斎場でのお見送りもご相談いただけます。",
+    href: "/saijo/machiya-saijo/",
+  },
+  {
     label: "川口市の葬儀・家族葬",
     description: "川口市全体の葬儀・対応エリアのご案内",
     href: "/area/kawaguchi/",

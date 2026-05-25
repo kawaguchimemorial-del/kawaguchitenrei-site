@@ -68,6 +68,18 @@ const publicSaijo: PublicSaijo[] = [
       alt: "谷塚斎場の外観",
     },
   },
+  {
+    name: "町屋斎場",
+    href: "/saijo/machiya-saijo/",
+    address: "東京都荒川区町屋1-23-4",
+    badge: "式場・火葬場併設",
+    summary:
+      "荒川区町屋にある東京博善運営の火葬場併設斎場。町屋斎場でのお見送りについてもご相談いただけます。",
+    image: {
+      src: "/images/saijo/machiya-saijo/machiya-saijo-funeral-ceremony-02.png",
+      alt: "町屋斎場の式場内(椅子配置と祭壇)",
+    },
+  },
 ];
 
 type TempleHall = {
