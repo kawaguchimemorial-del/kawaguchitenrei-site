@@ -889,6 +889,36 @@ const nextConfig: NextConfig = {
         destination: "/case/home-buddhist-10-oneday-1600k/",
         permanent: true,
       },
+      {
+        source: "/cases",
+        destination: "/case/",
+        permanent: true,
+      },
+      {
+        source: "/cases/",
+        destination: "/case/",
+        permanent: true,
+      },
+      {
+        source: "/case/hanairo-owakarekai",
+        destination: "/case/",
+        permanent: true,
+      },
+      {
+        source: "/case/hanairo-owakarekai/",
+        destination: "/case/",
+        permanent: true,
+      },
+      {
+        source: "/hall",
+        destination: "/hall/kawaguchi-memorial-hall/",
+        permanent: true,
+      },
+      {
+        source: "/hall/",
+        destination: "/hall/kawaguchi-memorial-hall/",
+        permanent: true,
+      },
     ];
   },
 };
