@@ -254,3 +254,73 @@ SEO/AIO の観点では、構造化データ・見出し階層・地名×サー�
   - **確認 URL**：該当ページ
   - **コミット**：明示指示があれば実行・なければ未実行と明記
 - 不要な要約・自己評価・章立ては書かない
+
+---
+
+## 19. 自動 push / push 前確認の範囲
+
+詳細は `docs/ai-workflows/guardrails-and-approval.md` を参照。要点を以下に記す。
+
+### 19.1 自動 push してよい（自走 push 可）
+
+明示指示があれば、以下の範囲は build / git status / 安全確認をパスした時点で commit → push まで実施してよい:
+
+- `docs/**` の追加・更新（特に `docs/eval/records/`・`docs/operations/`・`docs/ai-workflows/`・`docs/seo-research/`）
+- 新規エリアページ追加（`app/area/*/page.tsx` の新規作成・`lib/areas.ts` への新規追加）
+- 既存ページの SEO/AIO 改善（title / metaDescription / FAQ / JSON-LD / relatedLinks / Conclusion ボックス / 結論先出し補強）
+- 画像配置（`public/images/**` への追加。**`public/images/tmp/tmp.txt` 除く**）
+- sitemap への新規エリア追加（純粋な追加のみ、既存変更なし）
+- Search Console 作業ログ更新（URL 検査・公開 URL テスト・インデックス登録リクエストの記録）
+- 本番確認記録
+- 構造化データの新規追加（**ただし Review / aggregateRating / ratingValue は除く**）
+- 文言修正（既存トーンを維持する範囲、価格・式場利用可否を変更しない範囲）
+- build 成功済みの通常 SEO/AIO 改善
+
+### 19.2 push 前確認必須（人間承認なしで push しない）
+
+以下のいずれかに該当する場合、commit までは進めてよいが、**push は人間承認後に行う**:
+
+- フォーム関連の改修（`app/contact/**`・`app/estimate/**`・`app/api/**`）
+- Webhook / `.env*` / `FORM_WEBHOOK_SECRET` / API キー / credentials / secrets
+- `package.json` / lockfile / `next.config.ts`
+- `components/layout/Header.tsx` / `Footer.tsx` / `MobileBottomCTA.tsx`
+- 価格データの新規追加・変更（§9 プラン正本以外の数字を出す場合）
+- 寺院会館・民営式場・公営斎場の利用可否・空き状況・宗派条件・檀家条件の新規断定
+- `funeral-system/` 配下
+- Review / aggregateRating / ratingValue を含む JSON-LD の新規追加
+- 個人情報（個人名・故人名・喪主名・遺影が写る画像）が含まれる可能性のある追加
+- 破壊的操作（`git reset --hard` / `git push --force` / `rm -rf` / ファイルリネーム / 依存削除）
+
+### 19.3 危険時の停止条件
+
+以下のいずれかに該当した場合、commit / push 前に**作業を停止して人間に確認を求める**:
+
+- build エラー / TypeScript エラー / 静的生成 131 ページが減る
+- `.env*` の差分が出ている
+- `public/images/tmp/tmp.txt` への接触
+- 川口典礼が運営していない施設（川口市めぐりの森・寺院会館・民営式場・戸田葬祭場・谷塚斎場）を自社運営のように見せる表現
+- 禁止表現（最安 / 必ず / 絶対 / 追加費用なし / 総額確定 / 標準価格 / いつでも利用 / 空きがあります / 確実に手配 など）の混入
+- 想定外に大きな差分（指示外ファイルへの巻き込み変更）
+
+---
+
+## 20. Skills / Agents 参照先
+
+このファイル（CLAUDE.md）は**入口・憲法**として最重要ルールに絞る。具体手順・チェックリストは Skill 側、エージェント役割は agents/ 側に分離する。
+
+| 用途 | 参照先 |
+|---|---|
+| Skill / Agent / Prompt / Hook / 人間承認の分類 | `docs/ai-workflows/skill-index.md` |
+| SEO/AIO ページ改善の標準手順 | `skills/seo-page-improvement/SKILL.md` |
+| Search Console 作業ログ手順 | `skills/search-console-log/SKILL.md` |
+| 日本向け Privacy Review 手順 | `skills/privacy-review-jp/SKILL.md` |
+| 6 段階コードレビュー手順 | `skills/code-review-6-stages/SKILL.md` |
+| 各エージェント定義 | `agents/*.md`（research / review / documentation / privacy-reviewer / memory-curator） |
+| メモリ管理ルール（チャット情報の保存先振り分け） | `docs/ai-workflows/memory-management.md` |
+| AI 運用ロードマップ | `docs/ai-workflows/ai-operations-roadmap.md` |
+| ガードレールと承認フロー | `docs/ai-workflows/guardrails-and-approval.md` |
+| タスク分類 | `docs/ai-workflows/task-classification.md` |
+| 評価指標 | `docs/ai-workflows/eval-metrics.md` |
+
+不確実な点があったら、まず該当 Skill / Agent / docs を参照してから着手する。
+それでも判断がつかない場合は、推測せず手を止めて確認する。
