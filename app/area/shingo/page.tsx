@@ -136,6 +136,11 @@ const relatedLinks = [
     href: "/saijo/megurinomori/",
   },
   {
+    label: "川口市内の寺院会館・民営式場（榛松・新郷・差間方面）",
+    description: "新郷・榛松・差間エリアで利用できる寺院会館・民営式場の候補もあわせてご相談いただけます。",
+    href: "/saijo/#hagimatsu-shingo-sashima",
+  },
+  {
     label: "家族葬プラン",
     description: "ご家族中心のお別れ・528,000円(税込)〜",
     href: "/plan/family-funeral/",

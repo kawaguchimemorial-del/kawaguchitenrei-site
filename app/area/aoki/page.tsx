@@ -136,6 +136,11 @@ const relatedLinks = [
     href: "/saijo/megurinomori/",
   },
   {
+    label: "川口市内の寺院会館・民営式場（上青木・青木方面）",
+    description: "青木・上青木エリアで利用できる寺院会館・民営式場の候補もご案内します。",
+    href: "/saijo/#kamiaoki-aoki",
+  },
+  {
     label: "家族葬プラン",
     description: "ご家族中心のお別れ・528,000円(税込)〜",
     href: "/plan/family-funeral/",

@@ -126,6 +126,11 @@ const relatedLinks = [
     href: "/saijo/megurinomori/",
   },
   {
+    label: "川口市内の寺院会館・民営式場（元郷・領家方面）",
+    description: "元郷・領家エリアで利用できる寺院会館・民営式場の候補もご案内します。",
+    href: "/saijo/#motogo-ryoke",
+  },
+  {
     label: "家族葬プラン",
     description: "ご家族中心のお別れ・528,000円(税込)〜",
     href: "/plan/family-funeral/",

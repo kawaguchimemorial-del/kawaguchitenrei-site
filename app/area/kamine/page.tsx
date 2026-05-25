@@ -136,6 +136,11 @@ const relatedLinks = [
     href: "/saijo/megurinomori/",
   },
   {
+    label: "川口市内の寺院会館・民営式場（江戸袋・新堀方面）",
+    description: "神根エリアからのご希望に応じて、川口市内の寺院会館・民営式場の候補もご案内します。",
+    href: "/saijo/#edobukuro-shinbori",
+  },
+  {
     label: "家族葬プラン",
     description: "ご家族中心のお別れ・528,000円(税込)〜",
     href: "/plan/family-funeral/",

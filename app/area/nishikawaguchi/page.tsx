@@ -121,6 +121,11 @@ const relatedLinks = [
     href: "/saijo/megurinomori/",
   },
   {
+    label: "川口市・近隣の葬儀場一覧",
+    description: "川口市内の寺院会館・民営式場の候補をエリア別にご紹介しています。",
+    href: "/saijo/",
+  },
+  {
     label: "家族葬プラン",
     description: "ご家族中心のお別れ・528,000円(税込)〜",
     href: "/plan/family-funeral/",

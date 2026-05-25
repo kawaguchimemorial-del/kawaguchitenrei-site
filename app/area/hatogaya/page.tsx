@@ -146,6 +146,11 @@ const relatedLinks = [
     href: "/saijo/megurinomori/",
   },
   {
+    label: "川口市内の寺院会館・民営式場（朝日・南鳩ヶ谷方面）",
+    description: "鳩ヶ谷・南鳩ヶ谷方面で利用できる寺院会館・民営式場の候補もあわせてご相談いただけます。",
+    href: "/saijo/#asahi-minami-hatogaya",
+  },
+  {
     label: "家族葬プラン",
     description: "ご家族中心のお別れ・528,000円(税込)〜",
     href: "/plan/family-funeral/",
