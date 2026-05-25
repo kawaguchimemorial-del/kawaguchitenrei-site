@@ -25,6 +25,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return { title: "コラム記事が見つかりません | 川口典礼" };
   }
   const description = article.metaDescription ?? article.description;
+  const ogImage = article.heroImage?.src
+    ? {
+        url: article.heroImage.src.startsWith("http")
+          ? article.heroImage.src
+          : `${SITE_URL}${article.heroImage.src}`,
+        alt: article.heroImage.alt,
+      }
+    : null;
   return {
     title: `${article.title} | 川口典礼 コラム`,
     description,
@@ -36,6 +44,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       type: "article",
       publishedTime: article.publishedAt,
       modifiedTime: article.updatedAt,
+      ...(ogImage ? { images: [ogImage] } : {}),
     },
   };
 }
