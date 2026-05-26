@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-label="仏教13宗派の主要な系統を5つの系列で整理した図">
+  <rect width="800" height="450" fill="#faf8f3"/>
+  <g font-family="'Yu Mincho','Hiragino Mincho ProN','Noto Serif JP',serif" fill="#131c18">
+    <text x="400" y="50" text-anchor="middle" font-size="22" font-weight="600">仏教 13 宗派の主な系統</text>
+    <text x="400" y="74" text-anchor="middle" font-size="12" fill="#4a5b54">寺院・地域・式場の流儀で差があります。あくまで目安としてご覧ください。</text>
+
+    <rect x="320" y="100" width="160" height="44" rx="22" fill="#2a5145"/>
+    <text x="400" y="128" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">日本仏教</text>
+
+    <line x1="400" y1="144" x2="400" y2="170" stroke="#7a8a82" stroke-width="2"/>
+    <line x1="100" y1="170" x2="700" y2="170" stroke="#7a8a82" stroke-width="2"/>
+    <line x1="100" y1="170" x2="100" y2="196" stroke="#7a8a82" stroke-width="2"/>
+    <line x1="250" y1="170" x2="250" y2="196" stroke="#7a8a82" stroke-width="2"/>
+    <line x1="400" y1="170" x2="400" y2="196" stroke="#7a8a82" stroke-width="2"/>
+    <line x1="550" y1="170" x2="550" y2="196" stroke="#7a8a82" stroke-width="2"/>
+    <line x1="700" y1="170" x2="700" y2="196" stroke="#7a8a82" stroke-width="2"/>
+
+    <g>
+      <rect x="42" y="196" width="116" height="36" rx="6" fill="#58806f"/>
+      <text x="100" y="220" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">浄土系</text>
+      <rect x="42" y="240" width="116" height="22" rx="3" fill="#ffffff" stroke="#58806f"/>
+      <text x="100" y="256" text-anchor="middle" font-size="11" fill="#1f2d27">浄土宗</text>
+      <rect x="42" y="266" width="116" height="22" rx="3" fill="#ffffff" stroke="#58806f"/>
+      <text x="100" y="282" text-anchor="middle" font-size="11" fill="#1f2d27">浄土真宗</text>
+      <rect x="42" y="292" width="116" height="22" rx="3" fill="#ffffff" stroke="#58806f"/>
+      <text x="100" y="308" text-anchor="middle" font-size="11" fill="#1f2d27">融通念仏宗</text>
+      <rect x="42" y="318" width="116" height="22" rx="3" fill="#ffffff" stroke="#58806f"/>
+      <text x="100" y="334" text-anchor="middle" font-size="11" fill="#1f2d27">時宗</text>
+      <text x="100" y="362" text-anchor="middle" font-size="10" fill="#4a5b54">南無阿弥陀仏</text>
+    </g>
+
+    <g>
+      <rect x="192" y="196" width="116" height="36" rx="6" fill="#a6864a"/>
+      <text x="250" y="220" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">密教系</text>
+      <rect x="192" y="240" width="116" height="22" rx="3" fill="#ffffff" stroke="#a6864a"/>
+      <text x="250" y="256" text-anchor="middle" font-size="11" fill="#1f2d27">真言宗</text>
+      <text x="250" y="282" text-anchor="middle" font-size="10" fill="#4a5b54">本尊：大日如来</text>
+      <text x="250" y="300" text-anchor="middle" font-size="10" fill="#4a5b54">宗祖：空海</text>
+      <text x="250" y="334" text-anchor="middle" font-size="10" fill="#4a5b54">南無大師</text>
+      <text x="250" y="350" text-anchor="middle" font-size="10" fill="#4a5b54">遍照金剛</text>
+    </g>
+
+    <g>
+      <rect x="342" y="196" width="116" height="36" rx="6" fill="#2a5145"/>
+      <text x="400" y="220" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">天台系</text>
+      <rect x="342" y="240" width="116" height="22" rx="3" fill="#ffffff" stroke="#2a5145"/>
+      <text x="400" y="256" text-anchor="middle" font-size="11" fill="#1f2d27">天台宗</text>
+      <text x="400" y="282" text-anchor="middle" font-size="10" fill="#4a5b54">宗祖：最澄</text>
+      <text x="400" y="300" text-anchor="middle" font-size="10" fill="#4a5b54">比叡山延暦寺</text>
+      <text x="400" y="334" text-anchor="middle" font-size="10" fill="#4a5b54">諸宗の母山</text>
+    </g>
+
+    <g>
+      <rect x="492" y="196" width="116" height="36" rx="6" fill="#1c3a30"/>
+      <text x="550" y="220" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">禅系</text>
+      <rect x="492" y="240" width="116" height="22" rx="3" fill="#ffffff" stroke="#1c3a30"/>
+      <text x="550" y="256" text-anchor="middle" font-size="11" fill="#1f2d27">臨済宗</text>
+      <rect x="492" y="266" width="116" height="22" rx="3" fill="#ffffff" stroke="#1c3a30"/>
+      <text x="550" y="282" text-anchor="middle" font-size="11" fill="#1f2d27">曹洞宗</text>
+      <text x="550" y="320" text-anchor="middle" font-size="10" fill="#4a5b54">坐禅を中心とする</text>
+      <text x="550" y="338" text-anchor="middle" font-size="10" fill="#4a5b54">本尊：釈迦如来</text>
+    </g>
+
+    <g>
+      <rect x="642" y="196" width="116" height="36" rx="6" fill="#841910"/>
+      <text x="700" y="220" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">法華系</text>
+      <rect x="642" y="240" width="116" height="22" rx="3" fill="#ffffff" stroke="#841910"/>
+      <text x="700" y="256" text-anchor="middle" font-size="11" fill="#1f2d27">日蓮宗</text>
+      <text x="700" y="282" text-anchor="middle" font-size="10" fill="#4a5b54">宗祖：日蓮</text>
+      <text x="700" y="300" text-anchor="middle" font-size="10" fill="#4a5b54">本尊：曼荼羅</text>
+      <text x="700" y="334" text-anchor="middle" font-size="10" fill="#4a5b54">南無妙法蓮華経</text>
+    </g>
+
+    <rect x="60" y="390" width="680" height="36" rx="6" fill="#f1ede2" stroke="#d3d9d0"/>
+    <text x="400" y="413" text-anchor="middle" font-size="12" fill="#1f2d27">奈良仏教系（法相・律・華厳）は南都六宗の流れ。葬儀の有無は寺院の方針による</text>
+  </g>
+</svg>

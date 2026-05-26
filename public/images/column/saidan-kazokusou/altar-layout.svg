@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-label="家族葬で用いる祭壇の基本的な構成">
+  <rect width="800" height="450" fill="#faf8f3"/>
+  <g font-family="'Yu Mincho','Hiragino Mincho ProN','Noto Serif JP',serif" fill="#131c18">
+    <text x="400" y="58" text-anchor="middle" font-size="22" font-weight="600">家族葬の祭壇の基本的な構成</text>
+    <text x="400" y="84" text-anchor="middle" font-size="13" fill="#4a5b54">参列者がお別れの中心としてお参りする場</text>
+
+    <rect x="120" y="120" width="560" height="240" rx="6" fill="#ffffff" stroke="#d3d9d0"/>
+    <rect x="120" y="120" width="560" height="20" fill="#f1ede2"/>
+
+    <rect x="240" y="170" width="320" height="14" fill="#a6864a"/>
+    <rect x="220" y="184" width="360" height="14" fill="#a6864a"/>
+    <rect x="200" y="198" width="400" height="14" fill="#a6864a"/>
+
+    <rect x="370" y="138" width="60" height="40" fill="#ffffff" stroke="#1f2d27" stroke-width="2"/>
+    <text x="400" y="162" text-anchor="middle" font-size="11" fill="#1f2d27">ご遺影</text>
+
+    <rect x="380" y="216" width="40" height="48" fill="#ffffff" stroke="#1f2d27"/>
+    <text x="400" y="246" text-anchor="middle" font-size="10" fill="#1f2d27">位牌</text>
+
+    <g>
+      <ellipse cx="220" cy="200" rx="40" ry="30" fill="#d6e1d8" stroke="#58806f"/>
+      <ellipse cx="230" cy="180" rx="14" ry="14" fill="#ffffff" stroke="#58806f"/>
+      <ellipse cx="200" cy="190" rx="12" ry="12" fill="#ffffff" stroke="#58806f"/>
+      <ellipse cx="240" cy="210" rx="12" ry="12" fill="#ffffff" stroke="#58806f"/>
+      <ellipse cx="580" cy="200" rx="40" ry="30" fill="#d6e1d8" stroke="#58806f"/>
+      <ellipse cx="590" cy="180" rx="14" ry="14" fill="#ffffff" stroke="#58806f"/>
+      <ellipse cx="570" cy="190" rx="12" ry="12" fill="#ffffff" stroke="#58806f"/>
+      <ellipse cx="560" cy="210" rx="12" ry="12" fill="#ffffff" stroke="#58806f"/>
+    </g>
+
+    <rect x="320" y="280" width="160" height="24" rx="3" fill="#1f2d27"/>
+    <rect x="380" y="270" width="40" height="14" rx="2" fill="#a6864a"/>
+    <text x="400" y="320" text-anchor="middle" font-size="11" fill="#4a5b54">焼香台</text>
+
+    <text x="400" y="345" text-anchor="middle" font-size="12" fill="#7a8a82">━━━━ 参列者 ━━━━</text>
+
+    <g font-size="11" fill="#4a5b54">
+      <text x="115" y="395">花</text>
+      <text x="115" y="412">（左右に配置）</text>
+      <text x="400" y="395" text-anchor="middle">ご遺影・位牌</text>
+      <text x="400" y="412" text-anchor="middle">（中央）</text>
+      <text x="685" y="395" text-anchor="end">焼香台</text>
+      <text x="685" y="412" text-anchor="end">（参列者側）</text>
+    </g>
+  </g>
+</svg>

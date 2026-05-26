@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-label="お盆の4日間の流れを13日の迎え盆から16日の送り盆まで示した図">
+  <rect width="800" height="450" fill="#faf8f3"/>
+  <g font-family="'Yu Mincho','Hiragino Mincho ProN','Noto Serif JP',serif" fill="#131c18">
+    <text x="400" y="58" text-anchor="middle" font-size="22" font-weight="600">お盆の 4 日間の流れ</text>
+    <text x="400" y="84" text-anchor="middle" font-size="13" fill="#4a5b54">迎え盆 → 中日 → 送り盆 の順で進みます</text>
+
+    <line x1="100" y1="240" x2="700" y2="240" stroke="#a6864a" stroke-width="3"/>
+    <polygon points="700,240 690,233 690,247" fill="#a6864a"/>
+
+    <g>
+      <circle cx="160" cy="240" r="26" fill="#a6864a" stroke="#ffffff" stroke-width="3"/>
+      <text x="160" y="246" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">13</text>
+      <text x="160" y="180" text-anchor="middle" font-size="15" font-weight="700" fill="#1c3a30">迎え盆</text>
+      <text x="160" y="200" text-anchor="middle" font-size="12" fill="#4a5b54">8/13</text>
+      <text x="160" y="290" text-anchor="middle" font-size="12" fill="#1f2d27">迎え火を焚く</text>
+      <text x="160" y="308" text-anchor="middle" font-size="12" fill="#1f2d27">提灯点灯</text>
+      <text x="160" y="326" text-anchor="middle" font-size="12" fill="#1f2d27">墓参り</text>
+    </g>
+
+    <g>
+      <circle cx="340" cy="240" r="26" fill="#58806f" stroke="#ffffff" stroke-width="3"/>
+      <text x="340" y="246" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">14</text>
+      <text x="340" y="180" text-anchor="middle" font-size="15" font-weight="700" fill="#1c3a30">中日</text>
+      <text x="340" y="200" text-anchor="middle" font-size="12" fill="#4a5b54">8/14</text>
+      <text x="340" y="290" text-anchor="middle" font-size="12" fill="#1f2d27">親族と会食</text>
+      <text x="340" y="308" text-anchor="middle" font-size="12" fill="#1f2d27">故人を偲ぶ</text>
+      <text x="340" y="326" text-anchor="middle" font-size="12" fill="#1f2d27">盂蘭盆会法要</text>
+    </g>
+
+    <g>
+      <circle cx="500" cy="240" r="26" fill="#58806f" stroke="#ffffff" stroke-width="3"/>
+      <text x="500" y="246" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">15</text>
+      <text x="500" y="180" text-anchor="middle" font-size="15" font-weight="700" fill="#1c3a30">中日</text>
+      <text x="500" y="200" text-anchor="middle" font-size="12" fill="#4a5b54">8/15</text>
+      <text x="500" y="290" text-anchor="middle" font-size="12" fill="#1f2d27">五供をそなえる</text>
+      <text x="500" y="308" text-anchor="middle" font-size="12" fill="#1f2d27">家族で時間</text>
+      <text x="500" y="326" text-anchor="middle" font-size="12" fill="#1f2d27">を過ごす</text>
+    </g>
+
+    <g>
+      <circle cx="660" cy="240" r="26" fill="#2a5145" stroke="#ffffff" stroke-width="3"/>
+      <text x="660" y="246" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">16</text>
+      <text x="660" y="180" text-anchor="middle" font-size="15" font-weight="700" fill="#1c3a30">送り盆</text>
+      <text x="660" y="200" text-anchor="middle" font-size="12" fill="#4a5b54">8/16</text>
+      <text x="660" y="290" text-anchor="middle" font-size="12" fill="#1f2d27">送り火を焚き</text>
+      <text x="660" y="308" text-anchor="middle" font-size="12" fill="#1f2d27">霊をお見送り</text>
+      <text x="660" y="326" text-anchor="middle" font-size="12" fill="#1f2d27">飾りを片付け</text>
+    </g>
+
+    <rect x="100" y="380" width="600" height="42" rx="6" fill="#f1ede2" stroke="#d3d9d0"/>
+    <text x="400" y="406" text-anchor="middle" font-size="12" fill="#1f2d27">地域により 7/13 〜 7/16 や 8/12 〜 8/15 で行うこともあります</text>
+  </g>
+</svg>

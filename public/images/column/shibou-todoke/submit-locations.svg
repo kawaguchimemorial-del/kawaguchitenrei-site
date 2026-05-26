@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-label="死亡届の提出先となる3つの市区町村役場の選択肢">
+  <rect width="800" height="450" fill="#faf8f3"/>
+  <g font-family="'Yu Mincho','Hiragino Mincho ProN','Noto Serif JP',serif" fill="#131c18">
+    <text x="400" y="58" text-anchor="middle" font-size="22" font-weight="600">死亡届はどこに提出できるか</text>
+    <text x="400" y="84" text-anchor="middle" font-size="13" fill="#4a5b54">次の 3 つのいずれかの市区町村役場で受け付けられます</text>
+
+    <g>
+      <rect x="80" y="130" width="200" height="200" rx="10" fill="#ffffff" stroke="#2a5145" stroke-width="2"/>
+      <circle cx="180" cy="170" r="22" fill="#2a5145"/>
+      <text x="180" y="177" text-anchor="middle" font-size="20" font-weight="700" fill="#ffffff">1</text>
+      <text x="180" y="220" text-anchor="middle" font-size="15" font-weight="700">故人の本籍地</text>
+      <text x="180" y="246" text-anchor="middle" font-size="12" fill="#4a5b54">の市区町村役場</text>
+      <line x1="100" y1="265" x2="260" y2="265" stroke="#d3d9d0"/>
+      <text x="180" y="290" text-anchor="middle" font-size="12" fill="#4a5b54">戸籍がある自治体</text>
+      <text x="180" y="308" text-anchor="middle" font-size="12" fill="#4a5b54">に提出するパターン</text>
+    </g>
+
+    <g>
+      <rect x="300" y="130" width="200" height="200" rx="10" fill="#ffffff" stroke="#2a5145" stroke-width="2"/>
+      <circle cx="400" cy="170" r="22" fill="#2a5145"/>
+      <text x="400" y="177" text-anchor="middle" font-size="20" font-weight="700" fill="#ffffff">2</text>
+      <text x="400" y="220" text-anchor="middle" font-size="15" font-weight="700">故人の死亡地</text>
+      <text x="400" y="246" text-anchor="middle" font-size="12" fill="#4a5b54">の市区町村役場</text>
+      <line x1="320" y1="265" x2="480" y2="265" stroke="#d3d9d0"/>
+      <text x="400" y="290" text-anchor="middle" font-size="12" fill="#4a5b54">病院・施設・自宅</text>
+      <text x="400" y="308" text-anchor="middle" font-size="12" fill="#4a5b54">のあるエリア</text>
+    </g>
+
+    <g>
+      <rect x="520" y="130" width="200" height="200" rx="10" fill="#ffffff" stroke="#2a5145" stroke-width="2"/>
+      <circle cx="620" cy="170" r="22" fill="#2a5145"/>
+      <text x="620" y="177" text-anchor="middle" font-size="20" font-weight="700" fill="#ffffff">3</text>
+      <text x="620" y="220" text-anchor="middle" font-size="15" font-weight="700">届出人の所在地</text>
+      <text x="620" y="246" text-anchor="middle" font-size="12" fill="#4a5b54">の市区町村役場</text>
+      <line x1="540" y1="265" x2="700" y2="265" stroke="#d3d9d0"/>
+      <text x="620" y="290" text-anchor="middle" font-size="12" fill="#4a5b54">届出人が住む</text>
+      <text x="620" y="308" text-anchor="middle" font-size="12" fill="#4a5b54">自治体でも可</text>
+    </g>
+
+    <rect x="80" y="365" width="640" height="50" rx="6" fill="#d6e1d8" stroke="#2a5145"/>
+    <text x="400" y="386" text-anchor="middle" font-size="14" font-weight="700" fill="#1c3a30">川口市の場合：川口市役所 戸籍住民課（または各支所）</text>
+    <text x="400" y="405" text-anchor="middle" font-size="12" fill="#1f2d27">夜間・休日も時間外受付窓口で受理可</text>
+  </g>
+</svg>

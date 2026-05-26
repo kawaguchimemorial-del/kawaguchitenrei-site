@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-label="一般的な仏式葬儀と創価学会の友人葬の違いを比較した図">
+  <rect width="800" height="450" fill="#faf8f3"/>
+  <g font-family="'Yu Mincho','Hiragino Mincho ProN','Noto Serif JP',serif" fill="#131c18">
+    <text x="400" y="58" text-anchor="middle" font-size="22" font-weight="600">一般的な仏式葬儀と友人葬の主な違い</text>
+
+    <g>
+      <rect x="90" y="100" width="290" height="320" rx="10" fill="#ffffff" stroke="#7a8a82" stroke-width="2"/>
+      <rect x="90" y="100" width="290" height="48" fill="#4a5b54" rx="10"/>
+      <rect x="90" y="130" width="290" height="18" fill="#4a5b54"/>
+      <text x="235" y="132" text-anchor="middle" font-size="17" font-weight="700" fill="#ffffff">一般的な仏式葬儀</text>
+      <g font-size="14" fill="#1f2d27">
+        <text x="110" y="180">導師</text>
+        <text x="370" y="180" text-anchor="end">僧侶</text>
+        <line x1="110" y1="194" x2="360" y2="194" stroke="#e6ebe3"/>
+        <text x="110" y="218">読経</text>
+        <text x="370" y="218" text-anchor="end">経典の読経</text>
+        <line x1="110" y1="232" x2="360" y2="232" stroke="#e6ebe3"/>
+        <text x="110" y="256">戒名</text>
+        <text x="370" y="256" text-anchor="end">授与される</text>
+        <line x1="110" y1="270" x2="360" y2="270" stroke="#e6ebe3"/>
+        <text x="110" y="294">お布施</text>
+        <text x="370" y="294" text-anchor="end">あり</text>
+        <line x1="110" y1="308" x2="360" y2="308" stroke="#e6ebe3"/>
+        <text x="110" y="332">焼香</text>
+        <text x="370" y="332" text-anchor="end">抹香焼香</text>
+      </g>
+      <text x="235" y="385" text-anchor="middle" font-size="12" fill="#4a5b54">伝統的な仏教儀礼に沿った葬儀</text>
+    </g>
+
+    <g>
+      <rect x="420" y="100" width="290" height="320" rx="10" fill="#ffffff" stroke="#2a5145" stroke-width="2.5"/>
+      <rect x="420" y="100" width="290" height="48" fill="#2a5145" rx="10"/>
+      <rect x="420" y="130" width="290" height="18" fill="#2a5145"/>
+      <text x="565" y="132" text-anchor="middle" font-size="17" font-weight="700" fill="#ffffff">友人葬</text>
+      <g font-size="14" fill="#1f2d27">
+        <text x="440" y="180">導師</text>
+        <text x="700" y="180" text-anchor="end">信徒の代表</text>
+        <line x1="440" y1="194" x2="690" y2="194" stroke="#e6ebe3"/>
+        <text x="440" y="218">読経</text>
+        <text x="700" y="218" text-anchor="end">南無妙法蓮華経</text>
+        <line x1="440" y1="232" x2="690" y2="232" stroke="#e6ebe3"/>
+        <text x="440" y="256">戒名</text>
+        <text x="700" y="256" text-anchor="end">授与されない</text>
+        <line x1="440" y1="270" x2="690" y2="270" stroke="#e6ebe3"/>
+        <text x="440" y="294">お布施</text>
+        <text x="700" y="294" text-anchor="end">なし</text>
+        <line x1="440" y1="308" x2="690" y2="308" stroke="#e6ebe3"/>
+        <text x="440" y="332">焼香</text>
+        <text x="700" y="332" text-anchor="end">しきみ焼香</text>
+      </g>
+      <text x="565" y="385" text-anchor="middle" font-size="12" fill="#4a5b54">信徒同士が題目を中心に営む</text>
+    </g>
+  </g>
+</svg>

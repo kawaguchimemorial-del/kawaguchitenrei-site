@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-label="仏式・神式・キリスト教式・無宗教の祭壇の特徴をまとめた図">
+  <rect width="800" height="450" fill="#faf8f3"/>
+  <g font-family="'Yu Mincho','Hiragino Mincho ProN','Noto Serif JP',serif" fill="#131c18">
+    <text x="400" y="58" text-anchor="middle" font-size="22" font-weight="600">宗教形式と祭壇の関係</text>
+    <text x="400" y="84" text-anchor="middle" font-size="13" fill="#4a5b54">それぞれの形式で中心となる装飾の考え方</text>
+
+    <g>
+      <rect x="60" y="118" width="170" height="280" rx="8" fill="#ffffff" stroke="#a6864a" stroke-width="1.5"/>
+      <rect x="60" y="118" width="170" height="36" fill="#a6864a" rx="8"/>
+      <rect x="60" y="142" width="170" height="12" fill="#a6864a"/>
+      <text x="145" y="143" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">仏式</text>
+      <g transform="translate(145, 230)">
+        <rect x="-50" y="10" width="100" height="14" fill="#f1e8d0" stroke="#a6864a"/>
+        <rect x="-45" y="-4" width="90" height="14" fill="#f1e8d0" stroke="#a6864a"/>
+        <rect x="-40" y="-18" width="80" height="14" fill="#f1e8d0" stroke="#a6864a"/>
+        <rect x="-14" y="-46" width="28" height="22" fill="#ffffff" stroke="#1f2d27"/>
+      </g>
+      <text x="145" y="320" text-anchor="middle" font-size="12" fill="#1f2d27">白木祭壇が伝統</text>
+      <text x="145" y="338" text-anchor="middle" font-size="12" fill="#1f2d27">花祭壇との組合せも</text>
+      <text x="145" y="378" text-anchor="middle" font-size="11" fill="#7a8a82">遺影 / 位牌 / 供花</text>
+    </g>
+
+    <g>
+      <rect x="245" y="118" width="170" height="280" rx="8" fill="#ffffff" stroke="#2a5145" stroke-width="1.5"/>
+      <rect x="245" y="118" width="170" height="36" fill="#2a5145" rx="8"/>
+      <rect x="245" y="142" width="170" height="12" fill="#2a5145"/>
+      <text x="330" y="143" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">神式</text>
+      <g transform="translate(330, 230)">
+        <ellipse cx="-30" cy="0" rx="20" ry="35" fill="#d6e1d8" stroke="#2a5145"/>
+        <ellipse cx="30" cy="0" rx="20" ry="35" fill="#d6e1d8" stroke="#2a5145"/>
+        <rect x="-14" y="-30" width="28" height="22" fill="#ffffff" stroke="#1f2d27"/>
+      </g>
+      <text x="330" y="320" text-anchor="middle" font-size="12" fill="#1f2d27">白木祭壇に</text>
+      <text x="330" y="338" text-anchor="middle" font-size="12" fill="#1f2d27">榊（さかき）が中心</text>
+      <text x="330" y="378" text-anchor="middle" font-size="11" fill="#7a8a82">遺影 / 玉串 / 神饌</text>
+    </g>
+
+    <g>
+      <rect x="430" y="118" width="170" height="280" rx="8" fill="#ffffff" stroke="#58806f" stroke-width="1.5"/>
+      <rect x="430" y="118" width="170" height="36" fill="#58806f" rx="8"/>
+      <rect x="430" y="142" width="170" height="12" fill="#58806f"/>
+      <text x="515" y="143" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">キリスト教式</text>
+      <g transform="translate(515, 230)">
+        <rect x="-4" y="-44" width="8" height="58" fill="#1f2d27"/>
+        <rect x="-22" y="-26" width="44" height="8" fill="#1f2d27"/>
+        <ellipse cx="-30" cy="20" rx="16" ry="14" fill="#ffffff" stroke="#58806f"/>
+        <ellipse cx="30" cy="20" rx="16" ry="14" fill="#ffffff" stroke="#58806f"/>
+      </g>
+      <text x="515" y="320" text-anchor="middle" font-size="12" fill="#1f2d27">十字架と献花が</text>
+      <text x="515" y="338" text-anchor="middle" font-size="12" fill="#1f2d27">中心の花祭壇</text>
+      <text x="515" y="378" text-anchor="middle" font-size="11" fill="#7a8a82">遺影 / 十字架 / 献花</text>
+    </g>
+
+    <g>
+      <rect x="615" y="118" width="125" height="280" rx="8" fill="#ffffff" stroke="#7a8a82" stroke-width="1.5"/>
+      <rect x="615" y="118" width="125" height="36" fill="#4a5b54" rx="8"/>
+      <rect x="615" y="142" width="125" height="12" fill="#4a5b54"/>
+      <text x="677" y="143" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">無宗教</text>
+      <g transform="translate(677, 230)">
+        <ellipse cx="0" cy="0" rx="40" ry="32" fill="#d6e1d8" stroke="#58806f"/>
+        <ellipse cx="-15" cy="-5" rx="11" ry="11" fill="#ffffff" stroke="#58806f"/>
+        <ellipse cx="15" cy="-5" rx="11" ry="11" fill="#ffffff" stroke="#58806f"/>
+        <ellipse cx="0" cy="10" rx="11" ry="11" fill="#f1e8d0" stroke="#a6864a"/>
+        <rect x="-12" y="-30" width="24" height="20" fill="#ffffff" stroke="#1f2d27"/>
+      </g>
+      <text x="677" y="320" text-anchor="middle" font-size="11" fill="#1f2d27">花祭壇中心で</text>
+      <text x="677" y="338" text-anchor="middle" font-size="11" fill="#1f2d27">故人らしさを表現</text>
+      <text x="677" y="378" text-anchor="middle" font-size="10" fill="#7a8a82">遺影 / 花 / 思い出の品</text>
+    </g>
+  </g>
+</svg>

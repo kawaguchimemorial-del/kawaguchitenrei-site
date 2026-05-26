@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-label="死亡診断書から火葬許可証までの5ステップの手続きの流れ">
+  <rect width="800" height="450" fill="#faf8f3"/>
+  <g font-family="'Yu Mincho','Hiragino Mincho ProN','Noto Serif JP',serif" fill="#131c18">
+    <text x="400" y="58" text-anchor="middle" font-size="22" font-weight="600">死亡診断書から火葬までの流れ</text>
+    <text x="400" y="84" text-anchor="middle" font-size="13" fill="#4a5b54">5 つのステップで進みます（葬儀社が多くの工程をサポート）</text>
+
+    <g>
+      <circle cx="100" cy="220" r="44" fill="#2a5145"/>
+      <text x="100" y="217" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">STEP</text>
+      <text x="100" y="240" text-anchor="middle" font-size="22" font-weight="700" fill="#ffffff">1</text>
+      <text x="100" y="290" text-anchor="middle" font-size="13" font-weight="600" fill="#131c18">死亡診断書</text>
+      <text x="100" y="308" text-anchor="middle" font-size="12" fill="#4a5b54">医師が作成</text>
+    </g>
+    <path d="M 152 220 L 188 220" stroke="#7a8a82" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+
+    <g>
+      <circle cx="240" cy="220" r="44" fill="#2a5145"/>
+      <text x="240" y="217" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">STEP</text>
+      <text x="240" y="240" text-anchor="middle" font-size="22" font-weight="700" fill="#ffffff">2</text>
+      <text x="240" y="290" text-anchor="middle" font-size="13" font-weight="600" fill="#131c18">死亡届を記入</text>
+      <text x="240" y="308" text-anchor="middle" font-size="12" fill="#4a5b54">届出人（家族）</text>
+    </g>
+    <path d="M 292 220 L 328 220" stroke="#7a8a82" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+
+    <g>
+      <circle cx="380" cy="220" r="44" fill="#2a5145"/>
+      <text x="380" y="217" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">STEP</text>
+      <text x="380" y="240" text-anchor="middle" font-size="22" font-weight="700" fill="#ffffff">3</text>
+      <text x="380" y="290" text-anchor="middle" font-size="13" font-weight="600" fill="#131c18">役場へ提出</text>
+      <text x="380" y="308" text-anchor="middle" font-size="12" fill="#4a5b54">市区町村窓口</text>
+    </g>
+    <path d="M 432 220 L 468 220" stroke="#7a8a82" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+
+    <g>
+      <circle cx="520" cy="220" r="44" fill="#a6864a"/>
+      <text x="520" y="217" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">STEP</text>
+      <text x="520" y="240" text-anchor="middle" font-size="22" font-weight="700" fill="#ffffff">4</text>
+      <text x="520" y="290" text-anchor="middle" font-size="13" font-weight="600" fill="#131c18">火葬許可証</text>
+      <text x="520" y="308" text-anchor="middle" font-size="12" fill="#4a5b54">役場が交付</text>
+    </g>
+    <path d="M 572 220 L 608 220" stroke="#7a8a82" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+
+    <g>
+      <circle cx="660" cy="220" r="44" fill="#a6864a"/>
+      <text x="660" y="217" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">STEP</text>
+      <text x="660" y="240" text-anchor="middle" font-size="22" font-weight="700" fill="#ffffff">5</text>
+      <text x="660" y="290" text-anchor="middle" font-size="13" font-weight="600" fill="#131c18">火葬場へ提出</text>
+      <text x="660" y="308" text-anchor="middle" font-size="12" fill="#4a5b54">火葬当日</text>
+    </g>
+
+    <rect x="80" y="370" width="640" height="44" rx="6" fill="#f1ede2" stroke="#d3d9d0"/>
+    <text x="400" y="397" text-anchor="middle" font-size="13" fill="#1f2d27">火葬後は「埋葬許可証」として返却 → 納骨時に必要となるため大切に保管</text>
+  </g>
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#7a8a82"/>
+    </marker>
+  </defs>
+</svg>

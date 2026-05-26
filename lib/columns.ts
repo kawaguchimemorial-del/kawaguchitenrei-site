@@ -3276,6 +3276,12 @@ export const columns: ColumnArticle[] = [
         ["九州", "8/12〜8/15"],
       ]},
       { type: "p", text: "迎え盆(13日)→中日(14・15日)→送り盆(16日)の順で進行します。" },
+      {
+        type: "image",
+        src: "/images/column/obon/four-days.svg",
+        alt: "お盆の4日間の流れ。13日の迎え盆、14・15日の中日、16日の送り盆を時系列で示した図",
+        caption: "迎え盆 → 中日 → 送り盆 と進む4日間",
+      },
       { type: "h2", text: "お盆の風習を紹介" },
       { type: "h3", text: "迎え火・送り火" },
       { type: "ul", items: [
@@ -3285,6 +3291,12 @@ export const columns: ColumnArticle[] = [
       { type: "h3", text: "お盆提灯" },
       { type: "p", text: "仏壇や玄関に飾る提灯。灯りが霊の道しるべになるとされ、期間中は夜間に灯火を絶やさないのが習わしです。" },
       { type: "h3", text: "精霊馬(しょうりょううま)" },
+      {
+        type: "image",
+        src: "/images/column/obon/shoryouma.svg",
+        alt: "精霊馬のキュウリの馬とナスの牛のイメージと、それぞれが表す意味を示した図",
+        caption: "行きは速く、帰りはゆっくりという願いを込めて",
+      },
       { type: "ul", items: [
         "キュウリの馬:速く帰って来られるように",
         "ナスの牛:ゆっくり供え物を載せて戻れるように",
@@ -3299,6 +3311,12 @@ export const columns: ColumnArticle[] = [
         "お盆飾り・提灯・精霊馬を準備",
         "墓石・仏壇の掃除",
       ]},
+      {
+        type: "image",
+        src: "/images/column/obon/gokyou.svg",
+        alt: "お盆でお供えする五供(香・花・灯明・浄水・飲食)を5つ並べて示した図",
+        caption: "五供（ごく）は仏前にお供えする5つの基本",
+      },
       { type: "h3", text: "13日(迎え盆)" },
       { type: "ul", items: [
         "五供(香・花・灯明・浄水・飲食)を供える",
@@ -3913,6 +3931,12 @@ export const columns: ColumnArticle[] = [
         "菩提寺がない:仏式で整える／無宗教にする／僧侶手配をする等、希望優先でOK",
         "焼香回数は“厳密ルール”より“周囲に合わせる”:会場アナウンスや係の案内に従えば失礼にならない",
       ]},
+      {
+        type: "image",
+        src: "/images/column/bukkyou-shuha-13/family-tree.svg",
+        alt: "日本仏教を浄土系・密教系・天台系・禅系・法華系の5つに整理した系統図",
+        caption: "13宗派は大きく5つの系統に分けて捉えると理解しやすくなります",
+      },
       { type: "h2", text: "13宗派 早見表(葬儀で見るポイントだけ)" },
       { type: "p", text: "寺院・地域・式場の流儀で差があります。ここでは一般的な目安としてご覧ください。" },
       { type: "table", headers: ["宗派", "宗祖", "本尊(代表)", "唱名(代表)", "焼香の目安"], rows: [
@@ -3972,6 +3996,12 @@ export const columns: ColumnArticle[] = [
       { type: "ul", items: [
         "曹洞宗／法相宗／律宗／華厳宗／融通念仏宗／時宗",
       ]},
+      {
+        type: "image",
+        src: "/images/column/bukkyou-shuha-13/shoukou.svg",
+        alt: "焼香の回数と作法を3回・2回・1回の3パターンで宗派ごとに整理した図",
+        caption: "迷ったら1回で丁寧に。会場の案内に従えば失礼にはなりません",
+      },
       { type: "h2", text: "葬儀日程を決めるとき「宗派」より優先すべきこと" },
       { type: "ul", items: [
         "火葬場の空き状況(川口市だと“めぐりの森”の予約状況が最優先)",
@@ -5271,6 +5301,12 @@ export const columns: ColumnArticle[] = [
         type: "p",
         text: "実際に役所の窓口へ持参する人は届出人と別の方でも構いません（葬儀社のスタッフが代行することもあります）。署名は必ず届出人本人が行います。",
       },
+      {
+        type: "image",
+        src: "/images/column/shibou-todoke/submit-locations.svg",
+        alt: "死亡届の提出先となる3つの市区町村役場の選択肢を示した図",
+        caption: "提出先は3つのうちのいずれかで構いません",
+      },
       { type: "h2", text: "提出先と提出方法（川口市の場合）" },
       {
         type: "p",
@@ -5288,6 +5324,12 @@ export const columns: ColumnArticle[] = [
         type: "p",
         text: "川口市内で亡くなられた場合や、川口市に本籍地・届出人の住所がある場合は、川口市役所（戸籍住民課）または各支所で受け付けています。夜間・休日も時間外受付窓口で受理してもらえるため、葬儀日程に合わせて柔軟に提出可能です。",
       },
+      {
+        type: "image",
+        src: "/images/column/shibou-todoke/form-structure.svg",
+        alt: "死亡届の用紙が左右に分かれており、左側に届出人、右側に医師が記入する構成を示した図",
+        caption: "1枚の用紙の左半分が「届出」、右半分が「診断書」",
+      },
       { type: "h2", text: "死亡診断書／死体検案書との関係" },
       {
         type: "p",
@@ -5303,6 +5345,12 @@ export const columns: ColumnArticle[] = [
       {
         type: "p",
         text: "いずれも医師の作成が前提のため、ご家族側で右半分を記入することはありません。死体検案書については、別記事「検視の流れ｜遺体が警察に安置されたら家族がやるべきこと」もあわせてご覧ください。",
+      },
+      {
+        type: "image",
+        src: "/images/column/shibou-todoke/flow.svg",
+        alt: "死亡診断書の作成から火葬許可証の交付までの5ステップの流れを示した図",
+        caption: "葬儀社が役所への提出を代行するケースが多くあります",
       },
       { type: "h2", text: "火葬許可証の交付までの流れ" },
       {
@@ -5404,6 +5452,12 @@ export const columns: ColumnArticle[] = [
         type: "p",
         text: "宗教儀礼を伴わない無宗教葬とは異なり、友人葬は明確に宗教的な意味合いを持つ儀式です。南無妙法蓮華経の題目を中心とした唱題が儀式の柱となります。",
       },
+      {
+        type: "image",
+        src: "/images/column/yujinso-sokagakkai/comparison.svg",
+        alt: "一般的な仏式葬儀と創価学会の友人葬の違いを項目別に並べて比較した図",
+        caption: "導師・読経・戒名・お布施・焼香で考え方が異なります",
+      },
       { type: "h2", text: "一般的な仏式葬儀との違い" },
       {
         type: "p",
@@ -5484,6 +5538,12 @@ export const columns: ColumnArticle[] = [
       {
         type: "p",
         text: "服装は一般的な葬儀と同様、準喪服（黒の礼服）が基本です。男女ともに、黒を基調とした落ち着いた装いで参列してください。",
+      },
+      {
+        type: "image",
+        src: "/images/column/yujinso-sokagakkai/shikimi-steps.svg",
+        alt: "しきみ焼香の5ステップの所作を示した図",
+        caption: "学会員でない方も会場の案内に従って差し支えありません",
       },
       { type: "h3", text: "しきみ焼香について" },
       {
@@ -5571,6 +5631,12 @@ export const columns: ColumnArticle[] = [
           "本葬・お別れ会を行う予定があるかどうかが、両者を分ける本質的なポイント",
         ],
       },
+      {
+        type: "image",
+        src: "/images/column/kazokusou-missou/scale-comparison.svg",
+        alt: "一般葬・家族葬・密葬の参列範囲の規模感を3つの円で比較した図",
+        caption: "参列範囲の大きさのイメージ（一般葬→家族葬→密葬）",
+      },
       { type: "h2", text: "家族葬とは" },
       {
         type: "p",
@@ -5592,6 +5658,12 @@ export const columns: ColumnArticle[] = [
       {
         type: "p",
         text: "ただし近年は、家族葬と同義の意味で「密葬」という言葉を使うケースも増えています。本来の用語と実際の使われ方が異なるため、葬儀社や周囲とのコミュニケーションでは「本葬を行うかどうか」を明確にすることが大切です。",
+      },
+      {
+        type: "image",
+        src: "/images/column/kazokusou-missou/flow-difference.svg",
+        alt: "家族葬は葬儀で完結、密葬は後日の本葬と二段構えになる流れの違いを示した図",
+        caption: "本葬・お別れ会を予定するかどうかが本質的な違い",
       },
       { type: "h2", text: "家族葬と密葬の違い" },
       {
@@ -5733,6 +5805,12 @@ export const columns: ColumnArticle[] = [
         type: "p",
         text: "一方、通夜・告別式を行わない直葬（火葬中心）の場合は、祭壇を設けず、火葬場の控室や安置施設で簡単なお別れを行うケースが多くなります。",
       },
+      {
+        type: "image",
+        src: "/images/column/saidan-kazokusou/altar-layout.svg",
+        alt: "家族葬の祭壇の基本的な構成。中央にご遺影と位牌、左右に供花、参列者側に焼香台を配置した図",
+        caption: "祭壇は「お別れの中心」となる場",
+      },
       { type: "h2", text: "花祭壇とは" },
       {
         type: "p",
@@ -5771,6 +5849,12 @@ export const columns: ColumnArticle[] = [
         type: "p",
         text: "格式を重んじる地域・ご家庭、菩提寺の意向がある場合は、白木祭壇を中心に検討するのが一般的です。",
       },
+      {
+        type: "image",
+        src: "/images/column/saidan-kazokusou/altar-types.svg",
+        alt: "花を中心にデザインされた花祭壇と、白木で組まれた段状の白木祭壇のイメージを並べた比較図",
+        caption: "雰囲気と相性のよい葬儀形式が異なります",
+      },
       { type: "h2", text: "花祭壇と白木祭壇の比較" },
       {
         type: "table",
@@ -5801,6 +5885,12 @@ export const columns: ColumnArticle[] = [
       {
         type: "p",
         text: "家族葬プランの基本料金には標準的な祭壇が含まれていることが多く、グレードアップする場合は別料金で対応します。事前相談で希望の雰囲気・予算を伝えると、葬儀社側で適切な提案ができます。",
+      },
+      {
+        type: "image",
+        src: "/images/column/saidan-kazokusou/religion-altar.svg",
+        alt: "仏式・神式・キリスト教式・無宗教の4形式それぞれの祭壇の特徴を整理した図",
+        caption: "形式ごとに中心となる装飾が異なります",
       },
       { type: "h2", text: "宗教形式と祭壇の関係" },
       {

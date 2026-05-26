@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-label="精霊馬であるキュウリの馬とナスの牛の意味を示した図">
+  <rect width="800" height="450" fill="#faf8f3"/>
+  <g font-family="'Yu Mincho','Hiragino Mincho ProN','Noto Serif JP',serif" fill="#131c18">
+    <text x="400" y="58" text-anchor="middle" font-size="22" font-weight="600">精霊馬（しょうりょううま）の意味</text>
+    <text x="400" y="84" text-anchor="middle" font-size="13" fill="#4a5b54">割り箸や麻がらで脚を付け、仏前にお供えします</text>
+
+    <g>
+      <rect x="80" y="120" width="320" height="280" rx="10" fill="#ffffff" stroke="#58806f" stroke-width="2"/>
+      <rect x="80" y="120" width="320" height="40" fill="#58806f" rx="10"/>
+      <rect x="80" y="146" width="320" height="14" fill="#58806f"/>
+      <text x="240" y="146" text-anchor="middle" font-size="16" font-weight="700" fill="#ffffff">キュウリの馬</text>
+
+      <g transform="translate(240, 250)">
+        <ellipse cx="0" cy="0" rx="80" ry="18" fill="#58806f"/>
+        <ellipse cx="-55" cy="-2" rx="14" ry="20" fill="#58806f"/>
+        <line x1="-55" y1="14" x2="-55" y2="48" stroke="#a6864a" stroke-width="3"/>
+        <line x1="-25" y1="14" x2="-25" y2="48" stroke="#a6864a" stroke-width="3"/>
+        <line x1="25" y1="14" x2="25" y2="48" stroke="#a6864a" stroke-width="3"/>
+        <line x1="55" y1="14" x2="55" y2="48" stroke="#a6864a" stroke-width="3"/>
+        <line x1="-72" y1="-8" x2="-90" y2="-22" stroke="#58806f" stroke-width="3"/>
+        <circle cx="-90" cy="-22" r="4" fill="#1f2d27"/>
+      </g>
+
+      <text x="240" y="340" text-anchor="middle" font-size="14" font-weight="700" fill="#1c3a30">速く帰って来られるように</text>
+      <text x="240" y="370" text-anchor="middle" font-size="12" fill="#4a5b54">ご先祖様が浄土から我が家へ</text>
+      <text x="240" y="388" text-anchor="middle" font-size="12" fill="#4a5b54">急いで戻れるように願う</text>
+    </g>
+
+    <g>
+      <rect x="420" y="120" width="300" height="280" rx="10" fill="#ffffff" stroke="#a6864a" stroke-width="2"/>
+      <rect x="420" y="120" width="300" height="40" fill="#a6864a" rx="10"/>
+      <rect x="420" y="146" width="300" height="14" fill="#a6864a"/>
+      <text x="570" y="146" text-anchor="middle" font-size="16" font-weight="700" fill="#ffffff">ナスの牛</text>
+
+      <g transform="translate(570, 250)">
+        <ellipse cx="0" cy="0" rx="70" ry="26" fill="#7a1f7e" opacity="0.85"/>
+        <ellipse cx="-50" cy="-4" rx="18" ry="22" fill="#7a1f7e" opacity="0.85"/>
+        <line x1="-50" y1="18" x2="-50" y2="48" stroke="#a6864a" stroke-width="3"/>
+        <line x1="-20" y1="22" x2="-20" y2="48" stroke="#a6864a" stroke-width="3"/>
+        <line x1="20" y1="22" x2="20" y2="48" stroke="#a6864a" stroke-width="3"/>
+        <line x1="50" y1="22" x2="50" y2="48" stroke="#a6864a" stroke-width="3"/>
+        <circle cx="-66" cy="-10" r="4" fill="#1f2d27"/>
+        <line x1="-60" y1="-22" x2="-66" y2="-32" stroke="#58806f" stroke-width="2"/>
+      </g>
+
+      <text x="570" y="340" text-anchor="middle" font-size="14" font-weight="700" fill="#1c3a30">ゆっくり供え物を載せて</text>
+      <text x="570" y="370" text-anchor="middle" font-size="12" fill="#4a5b54">浄土へお戻りになる時は</text>
+      <text x="570" y="388" text-anchor="middle" font-size="12" fill="#4a5b54">荷を背負ってゆっくりと</text>
+    </g>
+  </g>
+</svg>
