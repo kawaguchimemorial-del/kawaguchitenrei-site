@@ -925,12 +925,12 @@ export const columns: ColumnArticle[] = [
     category: "葬儀費用",
     tags: ["葬儀費用", "川口市", "家族葬", "一日葬", "直葬"],
     thumbnail: {
-      src: "/images/column/sougidai/image-02.png",
-      alt: "川口市で安い葬儀を考える際のイメージ",
+      src: "/images/column/sougidai/cover.png",
+      alt: "葬儀費用の見積書を確認するイメージ",
     },
     heroImage: {
-      src: "/images/column/sougidai/image-02.png",
-      alt: "川口市で安い葬儀を考える際のイメージ",
+      src: "/images/column/sougidai/cover.png",
+      alt: "葬儀費用の見積書を確認するイメージ",
     },
     body: [
       {
@@ -996,6 +996,12 @@ export const columns: ColumnArticle[] = [
           "儀礼は行いたいが、大規模にはしたくない",
           "家族のペースで、ゆっくりお別れしたい",
         ],
+      },
+      {
+        type: "image",
+        src: "/images/column/sougidai/image-04.png",
+        alt: "家族葬向けの小規模な式場イメージ",
+        caption: "家族葬は参列者を絞ることで、会場規模を調整しやすい形式です",
       },
 
       { type: "h3", text: "一日葬では時間と費用を節約できる" },
@@ -1099,6 +1105,12 @@ export const columns: ColumnArticle[] = [
           "申請期限(原則2年以内など)は必ず川口市の案内で確認してください。",
         ],
       },
+      {
+        type: "image",
+        src: "/images/column/sougidai/image-05.png",
+        alt: "市区町村窓口で申請書類を確認するイメージ",
+        caption: "葬祭費などの制度は、申請が必要になる場合があります",
+      },
 
       { type: "h2", text: "4) 故人様の遺産や香典を活用する(支払いの現実策)" },
       { type: "h3", text: "故人様の預貯金を葬儀費用に使う方法(口座凍結に注意)" },
@@ -1157,6 +1169,12 @@ export const columns: ColumnArticle[] = [
       {
         type: "p",
         text: "川口市には多くの葬儀社があります。同じように見えるプランでも、含まれる内容や追加条件が違い、結果の総額が変わります。",
+      },
+      {
+        type: "image",
+        src: "/images/column/sougidai/image-06.png",
+        alt: "複数の見積書を比較するイメージ",
+        caption: "同じ条件で比較すると、費用の違いや確認点が見えやすくなります",
       },
       { type: "h3", text: "見積比較の正しいやり方(ここだけは統一)" },
       {
@@ -3269,6 +3287,14 @@ export const columns: ColumnArticle[] = [
     updatedAt: "2025-08-01",
     category: "行事",
     tags: ["お盆", "盂蘭盆会", "先祖供養"],
+    thumbnail: {
+      src: "/images/column/obon/cover.png",
+      alt: "盆提灯と精霊馬を飾ったお盆の供養イメージ",
+    },
+    heroImage: {
+      src: "/images/column/obon/cover.png",
+      alt: "盆提灯と精霊馬を飾ったお盆の供養イメージ",
+    },
     body: [
       { type: "quote", text: "「お盆って何をする日？」「提灯や迎え火の意味は？」8月中旬に行われるお盆について、由来や準備、地域行事までご紹介します。ご先祖さまを迎え、感謝を伝える1年に1度の機会を整理しましょう。" },
       { type: "h2", text: "お盆とは？" },
@@ -3292,12 +3318,24 @@ export const columns: ColumnArticle[] = [
       ]},
       { type: "h3", text: "お盆提灯" },
       { type: "p", text: "仏壇や玄関に飾る提灯。灯りが霊の道しるべになるとされ、期間中は夜間に灯火を絶やさないのが習わしです。" },
+      {
+        type: "image",
+        src: "/images/column/obon/image-01.png",
+        alt: "和室に飾られた盆提灯のイメージ",
+        caption: "盆提灯の灯りは、ご先祖様の道しるべとされています",
+      },
       { type: "h3", text: "精霊馬(しょうりょううま)" },
       { type: "ul", items: [
         "キュウリの馬:速く帰って来られるように",
         "ナスの牛:ゆっくり供え物を載せて戻れるように",
       ]},
       { type: "p", text: "割り箸や麻がらで脚を付け、仏前に供えます。" },
+      {
+        type: "image",
+        src: "/images/column/obon/image-02.png",
+        alt: "キュウリの馬とナスの牛で作る精霊馬",
+        caption: "行きは馬で速く、帰りは牛でゆっくりという願いが込められています",
+      },
       { type: "h3", text: "水の子と蓮の葉" },
       { type: "p", text: "賽の目に切ったキュウリ・ナスと洗米を蓮の葉へ盛った供物。先祖の喉を潤し煩悩を払う意味があると伝わります。" },
       { type: "h2", text: "お盆の過ごし方" },
@@ -3911,6 +3949,14 @@ export const columns: ColumnArticle[] = [
     updatedAt: "2026-01-24",
     category: "宗派",
     tags: ["宗派", "仏教", "葬儀の知識"],
+    thumbnail: {
+      src: "/images/column/bukkyou-shuha-13/cover.png",
+      alt: "数珠と線香立てを置いた仏事のイメージ",
+    },
+    heroImage: {
+      src: "/images/column/bukkyou-shuha-13/cover.png",
+      alt: "数珠と線香立てを置いた仏事のイメージ",
+    },
     body: [
       { type: "p", text: "葬儀の場でいちばん困るのは「宗派が分からない／作法が違って失礼にならないか不安」という点です。結論から言うと、宗派は“分からなくても大丈夫”です。菩提寺(お付き合いのあるお寺)がある場合は寺院へ確認し、ない場合は葬儀社が希望(仏式・神式・無宗教など)に合わせて整えられます。" },
       { type: "p", text: "この記事では、よくご相談の多い仏教13宗派(分派含め56派)を、葬儀で必要なポイントに絞ってまとめます。表記や作法は寺院・地域・式場の流儀で差があるため、あくまで目安としてご覧ください。" },
@@ -3921,6 +3967,12 @@ export const columns: ColumnArticle[] = [
         "菩提寺がない:仏式で整える／無宗教にする／僧侶手配をする等、希望優先でOK",
         "焼香回数は“厳密ルール”より“周囲に合わせる”:会場アナウンスや係の案内に従えば失礼にならない",
       ]},
+      {
+        type: "image",
+        src: "/images/column/bukkyou-shuha-13/image-01.png",
+        alt: "香炉に線香を立てたイメージ",
+        caption: "線香や焼香の作法は、宗派や地域によって異なる場合があります",
+      },
       { type: "h2", text: "13宗派 早見表(葬儀で見るポイントだけ)" },
       { type: "p", text: "寺院・地域・式場の流儀で差があります。ここでは一般的な目安としてご覧ください。" },
       { type: "table", headers: ["宗派", "宗祖", "本尊(代表)", "唱名(代表)", "焼香の目安"], rows: [
@@ -3980,6 +4032,12 @@ export const columns: ColumnArticle[] = [
       { type: "ul", items: [
         "曹洞宗／法相宗／律宗／華厳宗／融通念仏宗／時宗",
       ]},
+      {
+        type: "image",
+        src: "/images/column/bukkyou-shuha-13/image-02.png",
+        alt: "日本の寺院本堂の静かな雰囲気",
+        caption: "同じ仏教でも、寺院ごとに作法や雰囲気は少しずつ異なります",
+      },
       { type: "h2", text: "葬儀日程を決めるとき「宗派」より優先すべきこと" },
       { type: "ul", items: [
         "火葬場の空き状況(川口市だと“めぐりの森”の予約状況が最優先)",
@@ -5205,6 +5263,14 @@ export const columns: ColumnArticle[] = [
     updatedAt: "2026-05-21",
     category: "手続き",
     tags: ["死亡届", "葬儀の手続き", "川口市"],
+    thumbnail: {
+      src: "/images/column/shibou-todoke/cover.png",
+      alt: "死亡届などの手続き書類を整えるイメージ",
+    },
+    heroImage: {
+      src: "/images/column/shibou-todoke/cover.png",
+      alt: "死亡届などの手続き書類を整えるイメージ",
+    },
     body: [
       {
         type: "p",
@@ -5233,6 +5299,12 @@ export const columns: ColumnArticle[] = [
       {
         type: "p",
         text: "この届出が受理されることで、戸籍が抹消され、その後の火葬許可証の交付、年金停止、健康保険資格の喪失、相続手続きなど、あらゆる公的手続きの起点となります。",
+      },
+      {
+        type: "image",
+        src: "/images/column/shibou-todoke/image-01.png",
+        alt: "死亡届に必要事項を記入するイメージ",
+        caption: "届出に必要な内容を確認しながら、落ち着いて手続きを進めます",
       },
       { type: "h2", text: "提出期限は「死亡を知った日から7日以内」" },
       {
@@ -5283,6 +5355,12 @@ export const columns: ColumnArticle[] = [
       {
         type: "p",
         text: "死亡届は、次のいずれかの市区町村役場に提出できます。",
+      },
+      {
+        type: "image",
+        src: "/images/column/shibou-todoke/image-02.png",
+        alt: "死亡届を提出する市区町村役場のイメージ",
+        caption: "死亡届は本籍地・死亡地・届出人所在地のいずれかの市区町村役場に提出します",
       },
       {
         type: "ul",
@@ -5384,12 +5462,12 @@ export const columns: ColumnArticle[] = [
     category: "葬儀形式",
     tags: ["友人葬", "創価学会", "葬儀形式", "宗教"],
     thumbnail: {
-      src: "/images/home/hall/hall-family-waiting-room.jpg",
-      alt: "落ち着いた式場のご家族控室イメージ",
+      src: "/images/column/yujinso-sokagakkai/cover.png",
+      alt: "静かな式場で行うお別れのイメージ",
     },
     heroImage: {
-      src: "/images/home/hall/hall-family-waiting-room.jpg",
-      alt: "落ち着いた式場のご家族控室イメージ",
+      src: "/images/column/yujinso-sokagakkai/cover.png",
+      alt: "静かな式場で行うお別れのイメージ",
     },
     body: [
       {
@@ -5507,6 +5585,12 @@ export const columns: ColumnArticle[] = [
         text: "友人葬では、抹香ではなく「しきみ（樒）」と呼ばれる植物の葉を使った焼香が行われることがあります。",
       },
       {
+        type: "image",
+        src: "/images/column/yujinso-sokagakkai/image-01.png",
+        alt: "しきみの枝を飾ったイメージ",
+        caption: "しきみは、友人葬の焼香で用いられることがあります",
+      },
+      {
         type: "ul",
         items: [
           "ご焼香台で一礼",
@@ -5515,6 +5599,12 @@ export const columns: ColumnArticle[] = [
           "合掌（南無妙法蓮華経の題目を心の中で唱える）",
           "一礼して戻る",
         ],
+      },
+      {
+        type: "image",
+        src: "/images/column/yujinso-sokagakkai/image-02.png",
+        alt: "香炉としきみの葉を置いたイメージ",
+        caption: "友人葬では、抹香ではなくしきみを用いる場合があります",
       },
       {
         type: "p",
@@ -5569,12 +5659,12 @@ export const columns: ColumnArticle[] = [
     category: "葬儀形式",
     tags: ["家族葬", "密葬", "葬儀形式"],
     thumbnail: {
-      src: "/images/home/hall/hall-interior.jpg",
-      alt: "川口メモリアルホールの落ち着いた館内",
+      src: "/images/column/kazokusou-missou/cover.png",
+      alt: "少人数で行う家族葬の式場イメージ",
     },
     heroImage: {
-      src: "/images/home/hall/hall-interior.jpg",
-      alt: "川口メモリアルホールの落ち着いた館内",
+      src: "/images/column/kazokusou-missou/cover.png",
+      alt: "少人数で行う家族葬の式場イメージ",
     },
     body: [
       {
@@ -5603,6 +5693,12 @@ export const columns: ColumnArticle[] = [
       {
         type: "p",
         text: "葬儀後に別途「本葬」や「お別れ会」を予定しないため、家族葬そのものが葬儀の完結となります。香典や弔問対応も、家族葬の場で完結する形が一般的です。",
+      },
+      {
+        type: "image",
+        src: "/images/column/kazokusou-missou/image-01.png",
+        alt: "家族葬で利用する控室のイメージ",
+        caption: "ご家族が落ち着いて過ごせる空間も、葬儀形式を考えるうえで大切です",
       },
       { type: "h2", text: "密葬とは" },
       {
@@ -5654,6 +5750,12 @@ export const columns: ColumnArticle[] = [
       {
         type: "p",
         text: "家族葬と密葬では、訃報の伝え方も異なります。",
+      },
+      {
+        type: "image",
+        src: "/images/column/kazokusou-missou/image-02.png",
+        alt: "葬儀の案内状を準備するイメージ",
+        caption: "家族葬や密葬では、知らせる範囲と伝え方を整理しておくと安心です",
       },
       { type: "h3", text: "家族葬の場合" },
       {
@@ -5729,12 +5831,12 @@ export const columns: ColumnArticle[] = [
     category: "家族葬",
     tags: ["家族葬", "祭壇", "花祭壇", "白木祭壇"],
     thumbnail: {
-      src: "/images/home/hall/hall-ceremony-room.jpg",
-      alt: "川口メモリアルホールの式典の部屋",
+      src: "/images/column/saidan-kazokusou/cover.png",
+      alt: "白い花を中心にした家族葬の祭壇イメージ",
     },
     heroImage: {
-      src: "/images/home/hall/hall-ceremony-room.jpg",
-      alt: "川口メモリアルホールの式典の部屋",
+      src: "/images/column/saidan-kazokusou/cover.png",
+      alt: "白い花を中心にした家族葬の祭壇イメージ",
     },
     body: [
       {
@@ -5770,6 +5872,12 @@ export const columns: ColumnArticle[] = [
         type: "p",
         text: "花祭壇は、生花を中心にデザインされた祭壇です。白菊・百合・洋花などを使い、故人の好みや人柄を表現できる柔らかな印象が特徴です。",
       },
+      {
+        type: "image",
+        src: "/images/column/saidan-kazokusou/image-01.png",
+        alt: "白い花を中心にした花祭壇のイメージ",
+        caption: "花祭壇は、花の種類や色合いで印象が大きく変わります",
+      },
       { type: "h3", text: "花祭壇の特徴" },
       {
         type: "ul",
@@ -5788,6 +5896,12 @@ export const columns: ColumnArticle[] = [
       {
         type: "p",
         text: "白木祭壇は、白木で作られた段状の祭壇です。伝統的な仏式葬儀でよく用いられ、厳粛で格式のある印象が特徴です。",
+      },
+      {
+        type: "image",
+        src: "/images/column/saidan-kazokusou/image-02.png",
+        alt: "伝統的な白木祭壇のイメージ",
+        caption: "白木祭壇は、伝統的で厳粛な雰囲気を大切にした祭壇です",
       },
       { type: "h3", text: "白木祭壇の特徴" },
       {
@@ -5856,6 +5970,12 @@ export const columns: ColumnArticle[] = [
       {
         type: "p",
         text: "家族葬は参列者が限られる分、祭壇で故人らしさを表現する余地があります。",
+      },
+      {
+        type: "image",
+        src: "/images/column/saidan-kazokusou/image-03.png",
+        alt: "思い出の品と季節の花を飾ったイメージ",
+        caption: "故人らしさを表す品や花を添えることで、あたたかい雰囲気になります",
       },
       {
         type: "ul",
