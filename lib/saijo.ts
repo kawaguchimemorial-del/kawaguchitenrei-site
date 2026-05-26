@@ -1276,6 +1276,12 @@ export const saijoMachiya: Saijo = {
   mapEmbedQuery: "町屋斎場 東京都荒川区町屋1-23-4",
   photos: [
     {
+      src: "/images/saijo/machiya-saijo/machiya-saijo-exterior.png",
+      alt: "町屋斎場の外観",
+      label: "外観",
+      caption: "町屋斎場の外観（東京都荒川区）。",
+    },
+    {
       src: "/images/saijo/machiya-saijo/machiya-saijo-funeral-ceremony-02.png",
       alt: "町屋斎場の式場内(椅子配置と祭壇)",
       label: "式場全体",

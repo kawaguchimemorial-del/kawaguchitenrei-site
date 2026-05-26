@@ -20,7 +20,7 @@ import { saijoMachiya } from "@/lib/saijo";
 
 const SITE_URL = "https://kawaguchitenrei.com";
 const pageUrl = `${SITE_URL}/saijo/${saijoMachiya.slug}/`;
-const imageUrl = `${SITE_URL}/images/saijo/machiya-saijo/machiya-saijo-funeral-ceremony-02.png`;
+const imageUrl = `${SITE_URL}/images/saijo/machiya-saijo/machiya-saijo-exterior.png`;
 
 const defaultTitle = `${saijoMachiya.name}での葬儀 | 川口典礼`;
 const pageTitle = saijoMachiya.metaTitle ?? defaultTitle;
@@ -36,10 +36,10 @@ export const metadata: Metadata = {
     type: "article",
     images: [
       {
-        url: "/images/saijo/machiya-saijo/machiya-saijo-funeral-ceremony-02.png",
+        url: "/images/saijo/machiya-saijo/machiya-saijo-exterior.png",
         width: 1200,
         height: 800,
-        alt: "町屋斎場の式場内(椅子配置と祭壇)",
+        alt: "町屋斎場の外観",
       },
     ],
   },

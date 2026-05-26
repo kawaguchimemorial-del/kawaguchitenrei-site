@@ -76,8 +76,8 @@ const publicSaijo: PublicSaijo[] = [
     summary:
       "荒川区町屋にある東京博善運営の火葬場併設斎場。町屋斎場でのお見送りについてもご相談いただけます。",
     image: {
-      src: "/images/saijo/machiya-saijo/machiya-saijo-funeral-ceremony-02.png",
-      alt: "町屋斎場の式場内(椅子配置と祭壇)",
+      src: "/images/saijo/machiya-saijo/machiya-saijo-exterior.png",
+      alt: "町屋斎場の外観",
     },
   },
 ];
