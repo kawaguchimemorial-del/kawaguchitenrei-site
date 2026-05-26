@@ -6023,6 +6023,14 @@ export const columns: ColumnArticle[] = [
     updatedAt: "2026-05-21",
     category: "葬儀費用",
     tags: ["互助会", "葬儀費用", "見積り", "事前相談", "川口市"],
+    thumbnail: {
+      src: "/images/column/gojokai-kaiyaku/cover.png",
+      alt: "互助会の契約書類を確認するイメージ",
+    },
+    heroImage: {
+      src: "/images/column/gojokai-kaiyaku/cover.png",
+      alt: "互助会の契約書類を確認するイメージ",
+    },
     body: [
       {
         type: "p",
@@ -6057,6 +6065,12 @@ export const columns: ColumnArticle[] = [
         type: "p",
         text: "互助会に加入していても、葬儀費用の全体像を確認することは大切です。多くの場合、積立金は「祭壇や式の基本的な部分」をカバーするもので、参列者数や式場・火葬場の条件によって追加費用が発生します。",
       },
+      {
+        type: "image",
+        src: "/images/column/gojokai-kaiyaku/image-01.png",
+        alt: "契約内容を家族で確認する手元のイメージ",
+        caption: "積立で何がまかなえ、何が追加になるかを内訳で確認することが大切です",
+      },
       { type: "h3", text: "追加費用が発生しやすい項目（一例）" },
       {
         type: "ul",
@@ -6077,6 +6091,12 @@ export const columns: ColumnArticle[] = [
       {
         type: "p",
         text: "契約内容によっては、互助会を途中で解約できる場合があります。ただし、解約や返戻金の取り扱いは契約先によって条件が異なります。",
+      },
+      {
+        type: "image",
+        src: "/images/column/gojokai-kaiyaku/image-02.png",
+        alt: "互助会の解約手続きに使う書類のイメージ",
+        caption: "解約や返戻金の取り扱いは、契約先によって条件が異なります",
       },
       {
         type: "ul",
@@ -6119,6 +6139,12 @@ export const columns: ColumnArticle[] = [
       {
         type: "p",
         text: "「互助会に入っているから、他の葬儀社には相談しづらい」と感じる方もいらっしゃいますが、葬儀社の見積りや事前相談は、互助会に加入していても受けることができます。比較したうえで、互助会のサービスを使う選択肢も、他社を選ぶ選択肢も、ご家族のお考え次第です。",
+      },
+      {
+        type: "image",
+        src: "/images/column/gojokai-kaiyaku/image-03.png",
+        alt: "葬儀社で見積りや相談をするイメージ",
+        caption: "互助会に加入していても、他社の事前相談や見積りを受けることができます",
       },
       {
         type: "p",
