@@ -3,9 +3,7 @@ import {
   GoogleTagManager,
   GoogleTagManagerNoscript,
 } from "@/components/analytics/GoogleTagManager";
-import { Footer } from "@/components/layout/Footer";
-import { Header } from "@/components/layout/Header";
-import { MobileBottomCTA } from "@/components/layout/MobileBottomCTA";
+import { FooterSlot, HeaderSlot, MobileBottomCTASlot } from "./_layout-slots";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -21,14 +19,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ja" className="h-full scroll-smooth antialiased">
+    <html
+      lang="ja"
+      className="h-full scroll-smooth antialiased"
+      data-scroll-behavior="smooth"
+    >
       <GoogleTagManager />
       <body className="min-h-full bg-paper pb-[calc(6rem+env(safe-area-inset-bottom))] text-ink md:pb-0">
         <GoogleTagManagerNoscript />
-        <Header />
+        <HeaderSlot />
         <main>{children}</main>
-        <Footer />
-        <MobileBottomCTA />
+        <FooterSlot />
+        <MobileBottomCTASlot />
       </body>
     </html>
   );
