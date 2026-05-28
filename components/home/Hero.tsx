@@ -28,7 +28,7 @@ export function Hero() {
               fill
               sizes="100vw"
               priority
-              className="object-cover object-center"
+              className="hero-image-fade object-cover object-center"
             />
             <div
               aria-hidden
@@ -140,7 +140,7 @@ export function Hero() {
               fill
               sizes="(max-width: 768px) 100vw, 480px"
               priority
-              className="object-cover object-center"
+              className="hero-image-fade object-cover object-center"
             />
             <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 bg-gradient-to-t from-ink-deep/55 via-ink-deep/0 p-5 text-white md:p-6">
               <div>
