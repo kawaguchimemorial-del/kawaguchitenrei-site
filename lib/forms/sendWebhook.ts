@@ -1,4 +1,4 @@
-export type FormType = "contact" | "estimate";
+export type FormType = "contact" | "estimate" | "customer_survey";
 
 export type SendWebhookResult =
   | { ok: true }
