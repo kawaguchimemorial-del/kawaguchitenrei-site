@@ -3,7 +3,12 @@ import {
   GoogleTagManager,
   GoogleTagManagerNoscript,
 } from "@/components/analytics/GoogleTagManager";
-import { FooterSlot, HeaderSlot, MobileBottomCTASlot } from "./_layout-slots";
+import {
+  FooterSlot,
+  HeaderSlot,
+  MobileBottomCTASlot,
+  RevealOnScrollSlot,
+} from "./_layout-slots";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -31,6 +36,7 @@ export default function RootLayout({
         <main>{children}</main>
         <FooterSlot />
         <MobileBottomCTASlot />
+        <RevealOnScrollSlot />
       </body>
     </html>
   );

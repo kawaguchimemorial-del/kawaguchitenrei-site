@@ -58,8 +58,9 @@ export function ColumnCard({
 
   return (
     <a
+      data-reveal
       href={`/column/${article.slug}/`}
-      className="group flex h-full flex-col overflow-hidden rounded-lg border border-line bg-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+      className="card-hover group flex h-full flex-col overflow-hidden rounded-lg border border-line bg-white shadow-sm"
     >
       {article.thumbnail ? (
         <div className="relative aspect-[16/9] w-full overflow-hidden bg-warm">

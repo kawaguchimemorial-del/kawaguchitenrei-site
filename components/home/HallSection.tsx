@@ -56,9 +56,11 @@ export function HallSection() {
 
         <div className="mt-10 grid gap-6 md:grid-cols-[1.1fr_0.9fr] md:items-start">
           <div className="grid grid-cols-2 gap-3">
-            {hallGallery.map((item) => (
+            {hallGallery.map((item, i) => (
               <div
                 key={item.label}
+                data-reveal
+                data-reveal-delay={String(Math.min(i, 3))}
                 className={`${item.aspect} relative overflow-hidden rounded-lg border border-line bg-warm`}
               >
                 <Image
@@ -72,7 +74,10 @@ export function HallSection() {
             ))}
           </div>
 
-          <div className="rounded-lg border border-line bg-white p-6 shadow-sm md:p-8">
+          <div
+            data-reveal
+            className="rounded-lg border border-line bg-white p-6 shadow-sm md:p-8"
+          >
             <p className="text-lg font-bold text-ink-deep md:text-xl">
               ホールの特長
             </p>

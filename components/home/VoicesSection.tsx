@@ -41,11 +41,11 @@ export function VoicesSection() {
         </div>
 
         <ul className="mt-10 grid gap-6 md:grid-cols-2">
-          {items.map((voice) => (
-            <li key={voice.slug}>
+          {items.map((voice, i) => (
+            <li key={voice.slug} data-reveal data-reveal-delay={String(Math.min(i, 5))}>
               <a
                 href={`/voice/${voice.slug}/`}
-                className="group flex h-full flex-col overflow-hidden rounded-lg border border-line bg-paper shadow-sm transition hover:shadow-md"
+                className="card-hover group flex h-full flex-col overflow-hidden rounded-lg border border-line bg-paper shadow-sm"
               >
                 {voice.surveyImage && (
                   <div className="relative aspect-[4/3] bg-warm">

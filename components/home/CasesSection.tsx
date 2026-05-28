@@ -31,11 +31,11 @@ export function CasesSection() {
         </div>
 
         <ul className="mt-10 grid gap-6 md:grid-cols-3">
-          {items.map((item) => (
-            <li key={item.slug}>
+          {items.map((item, i) => (
+            <li key={item.slug} data-reveal data-reveal-delay={String(Math.min(i, 5))}>
               <a
                 href={`/case/${item.slug}/`}
-                className="group block h-full overflow-hidden rounded-lg border border-line bg-white shadow-sm transition hover:shadow-md"
+                className="card-hover group block h-full overflow-hidden rounded-lg border border-line bg-white shadow-sm"
               >
                 <div className="relative aspect-[4/3] bg-warm">
                   {item.photo ? (

@@ -119,9 +119,13 @@ function PriceBlock({ pricing }: { pricing: PlanPricing }) {
   );
 }
 
-function PlanCard({ plan }: { plan: Plan }) {
+function PlanCard({ plan, delay }: { plan: Plan; delay?: number }) {
   return (
-    <article className="overflow-hidden rounded-lg border border-line bg-white shadow-sm transition hover:shadow-md">
+    <article
+      data-reveal
+      {...(delay !== undefined ? { "data-reveal-delay": String(delay) } : {})}
+      className="card-hover overflow-hidden rounded-lg border border-line bg-white shadow-sm"
+    >
       <div className="flex">
         <div className="relative w-28 flex-shrink-0 self-stretch bg-warm md:w-36">
           <Image
@@ -194,8 +198,8 @@ export function PlanSection() {
         </div>
 
         <div className="mt-10 grid gap-4 md:grid-cols-2 md:gap-6">
-          {plans.map((plan) => (
-            <PlanCard key={plan.slug} plan={plan} />
+          {plans.map((plan, i) => (
+            <PlanCard key={plan.slug} plan={plan} delay={Math.min(i, 5)} />
           ))}
         </div>
 

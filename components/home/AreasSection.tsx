@@ -50,7 +50,7 @@ export function AreasSection() {
         </div>
 
         <div className="mt-10 grid gap-10 md:grid-cols-2">
-          <div>
+          <div data-reveal>
             <p className="text-xs font-bold uppercase tracking-[0.18em] text-ink-soft">
               対応エリア
             </p>
@@ -100,7 +100,7 @@ export function AreasSection() {
             </ul>
           </div>
 
-          <div>
+          <div data-reveal data-reveal-delay="1">
             <p className="text-xs font-bold uppercase tracking-[0.18em] text-ink-soft">
               利用できる斎場
             </p>
