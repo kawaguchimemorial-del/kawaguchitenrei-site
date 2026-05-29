@@ -219,6 +219,23 @@ export function PlanSection() {
             <span aria-hidden>→</span>
           </a>
         </div>
+
+        <div className="mt-6 grid gap-3 sm:grid-cols-2">
+          <a
+            href="/contact/"
+            className="inline-flex items-center justify-center gap-2 rounded-lg bg-brand px-5 py-3.5 text-base font-bold text-white shadow-sm transition hover:bg-brand-deep"
+          >
+            事前相談する
+            <span aria-hidden>→</span>
+          </a>
+          <a
+            href="/estimate/"
+            className="inline-flex items-center justify-center gap-2 rounded-lg border border-line bg-white px-5 py-3.5 text-base font-bold text-ink-deep transition hover:border-brand hover:text-brand"
+          >
+            見積りを依頼する
+            <span aria-hidden>→</span>
+          </a>
+        </div>
       </div>
     </section>
   );

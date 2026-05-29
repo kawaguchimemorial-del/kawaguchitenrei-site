@@ -110,7 +110,7 @@ export function Hero() {
             </a>
           </div>
 
-          <p className="mt-5 text-xs leading-5 text-ink-soft">
+          <p className="mt-5 text-[13px] leading-6 text-ink-mid">
             創業20年・年間約260件の施行実績／川口市西新井宿の自社式場
           </p>
         </div>

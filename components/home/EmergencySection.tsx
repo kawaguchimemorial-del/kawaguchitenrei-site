@@ -26,7 +26,7 @@ export function EmergencySection() {
             </p>
             <a
               href="tel:0120-963-765"
-              className="mt-7 hidden w-full items-center justify-center gap-2 rounded-lg bg-emergency px-6 py-4 text-lg font-bold text-white shadow-sm transition hover:bg-emergency-deep sm:w-auto md:inline-flex"
+              className="mt-7 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-emergency px-6 py-4 text-lg font-bold text-white shadow-sm transition hover:bg-emergency-deep sm:w-auto"
             >
               <span aria-hidden>☎</span>
               電話で相談する
