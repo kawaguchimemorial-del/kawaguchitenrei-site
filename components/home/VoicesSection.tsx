@@ -48,13 +48,13 @@ export function VoicesSection() {
                 className="card-hover group flex h-full flex-col overflow-hidden rounded-lg border border-line bg-paper shadow-sm"
               >
                 {voice.surveyImage && (
-                  <div className="relative aspect-[4/3] bg-warm">
+                  <div className="relative aspect-[4/3] overflow-hidden bg-warm">
                     <Image
                       src={voice.surveyImage.src}
                       alt={voice.surveyImage.alt}
                       fill
                       sizes="(max-width: 768px) 100vw, 480px"
-                      className="object-cover object-center"
+                      className="object-cover object-center transition duration-500 ease-out group-hover:scale-[1.03] motion-reduce:transform-none motion-reduce:transition-none"
                     />
                   </div>
                 )}

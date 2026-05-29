@@ -68,7 +68,7 @@ export function ColumnCard({
           <img
             src={article.thumbnail.src}
             alt={article.thumbnail.alt}
-            className="absolute inset-0 h-full w-full object-cover object-center transition duration-300 group-hover:scale-[1.03]"
+            className="absolute inset-0 h-full w-full object-cover object-center transition duration-500 ease-out group-hover:scale-[1.03] motion-reduce:transform-none motion-reduce:transition-none"
             loading="lazy"
           />
         </div>

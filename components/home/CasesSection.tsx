@@ -37,14 +37,14 @@ export function CasesSection() {
                 href={`/case/${item.slug}/`}
                 className="card-hover group block h-full overflow-hidden rounded-lg border border-line bg-white shadow-sm"
               >
-                <div className="relative aspect-[4/3] bg-warm">
+                <div className="relative aspect-[4/3] overflow-hidden bg-warm">
                   {item.photo ? (
                     <Image
                       src={item.photo.src}
                       alt={item.photo.alt}
                       fill
                       sizes="(max-width: 768px) 100vw, 380px"
-                      className="object-cover object-center"
+                      className="object-cover object-center transition duration-500 ease-out group-hover:scale-[1.03] motion-reduce:transform-none motion-reduce:transition-none"
                     />
                   ) : (
                     <div

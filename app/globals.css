@@ -125,10 +125,11 @@ summary:focus-visible {
 /* Card hover — 控えめな浮き上がり */
 .card-hover {
   transition:
-    transform 0.3s ease-out,
-    box-shadow 0.3s ease-out;
+    transform 0.35s cubic-bezier(0.22, 0.61, 0.36, 1),
+    box-shadow 0.35s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
-.card-hover:hover {
+.card-hover:hover,
+.card-hover:focus-visible {
   transform: translateY(-3px);
   box-shadow: 0 10px 24px -10px rgba(31, 45, 39, 0.18);
 }
@@ -143,7 +144,8 @@ summary:focus-visible {
   .card-hover {
     transition: none;
   }
-  .card-hover:hover {
+  .card-hover:hover,
+  .card-hover:focus-visible {
     transform: none;
     box-shadow: none;
   }
