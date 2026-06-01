@@ -919,6 +919,26 @@ const nextConfig: NextConfig = {
         destination: "/hall/kawaguchi-memorial-hall/",
         permanent: true,
       },
+      {
+        source: "/plank",
+        destination: "/plan/",
+        permanent: true,
+      },
+      {
+        source: "/plank/",
+        destination: "/plan/",
+        permanent: true,
+      },
+      {
+        source: "/our-business",
+        destination: "/company/",
+        permanent: true,
+      },
+      {
+        source: "/our-business/",
+        destination: "/company/",
+        permanent: true,
+      },
     ];
   },
 };
