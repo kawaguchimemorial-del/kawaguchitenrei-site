@@ -68,7 +68,38 @@ function buildVoiceJsonLd(v: Voice) {
     mainEntityOfPage: pageUrl,
   };
 
-  return { breadcrumb, article };
+  // 個別 Review（aggregateRating はサイトに出さない）。
+  // 個人名・故人名・喪主名は出さず、author は匿名表記とする（§12）。
+  const review = {
+    "@context": "https://schema.org",
+    "@type": "Review",
+    itemReviewed: {
+      "@type": "FuneralHome",
+      name: "川口典礼(川口メモリアルホール)",
+      url: `${SITE_URL}/`,
+      telephone: "0120-963-765",
+      address: {
+        "@type": "PostalAddress",
+        postalCode: "333-0833",
+        addressCountry: "JP",
+        addressRegion: "埼玉県",
+        addressLocality: "川口市",
+        streetAddress: "西新井宿440-1",
+      },
+    },
+    reviewRating: {
+      "@type": "Rating",
+      ratingValue: v.rating,
+      bestRating: 5,
+      worstRating: 1,
+    },
+    author: { "@type": "Person", name: "ご利用者" },
+    name: v.title,
+    reviewBody: v.comment,
+    datePublished: v.publishedAt,
+  };
+
+  return { breadcrumb, article, review };
 }
 
 export async function generateStaticParams() {
@@ -102,7 +133,7 @@ export default async function VoiceDetailPage({ params }: Props) {
     notFound();
   }
 
-  const { breadcrumb, article } = buildVoiceJsonLd(voice);
+  const { breadcrumb, article, review } = buildVoiceJsonLd(voice);
 
   return (
     <>
@@ -113,6 +144,10 @@ export default async function VoiceDetailPage({ params }: Props) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(article) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(review) }}
       />
 
       <VoiceDetailIntro voice={voice} />
