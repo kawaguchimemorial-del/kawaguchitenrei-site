@@ -96,7 +96,7 @@ const funeralHomeJsonLd = {
     name: "埼玉県川口市(川口駅周辺・本町・栄町)",
   },
   description:
-    "川口駅周辺(本町・栄町など川口市の中心部)で葬儀・家族葬・直葬・一日葬を承る葬儀社。自社式場「川口メモリアルホール」(川口市西新井宿)と川口市めぐりの森(車約5分)を中心に、搬送から火葬まで一貫してサポートします。",
+    "川口駅周辺(本町・栄町など)で葬儀・家族葬・直葬・一日葬を承る葬儀社。お住まいの近くの寺院会館・式場のご利用から、火葬場(川口市めぐりの森)まで車で約5分の川口メモリアルホールでのお別れまで、ご希望に合わせて搬送から火葬まで一貫してサポートします。",
 };
 
 const relatedLinks = [
@@ -186,7 +186,7 @@ export default function KawaguchiEkimaeAreaPage() {
       <AreaDetailIntro area={areaKawaguchiEkimae} />
       <AreaPrimaryHall
         area={areaKawaguchiEkimae}
-        description="川口市西新井宿の自社ホール。川口駅・本町・栄町エリアからもお車でご来館いただけ、川口市めぐりの森(火葬場)まで車で約5分です。1日1組貸切の落ち着いた式場で、家族葬・一日葬に適しています。"
+        description="川口市西新井宿の自社ホール。川口駅からは車で約25分と離れますが、川口市めぐりの森(火葬場)まで車で約5分と近く、式場でのお別れから火葬までの移動を抑えられます。1日1組貸切の落ち着いた式場で、家族葬・一日葬に適しています。お住まいの近くをご希望の場合は、川口駅周辺の寺院会館・式場のご利用もご相談ください。"
       />
       <AreaFeatures area={areaKawaguchiEkimae} />
       <AreaPlans area={areaKawaguchiEkimae} />

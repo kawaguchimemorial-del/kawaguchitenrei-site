@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>作業レポート 2026-06-06｜川口駅周辺ページの内容是正（距離・2選択肢）</title>
+<style>
+  :root{--ink:#2b2b2b;--soft:#6b6b6b;--line:#e3e0da;--bg:#faf9f7;--accent:#7a6a55;--ok:#2e7d52;--warn:#b4691f}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;line-height:1.85;font-size:15px}
+  .wrap{max-width:860px;margin:0 auto;padding:40px 22px 80px}
+  header.doc{border-bottom:2px solid var(--line);padding-bottom:18px;margin-bottom:28px}
+  .kicker{font-size:12px;letter-spacing:.12em;color:var(--accent);margin:0 0 6px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:22px;font-weight:600;margin:0 0 10px;line-height:1.5}
+  .meta{font-size:12.5px;color:var(--soft)} .meta span{margin-right:14px}
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:19px;font-weight:600;margin:34px 0 12px;padding-left:11px;border-left:4px solid var(--accent)}
+  p{margin:8px 0}
+  .card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:14px 0}
+  .tag{display:inline-block;font-size:11.5px;padding:2px 9px;border-radius:999px;border:1px solid var(--line);color:var(--soft);background:#fff}
+  .tag.ok{color:var(--ok);border-color:#bfe0cd}
+  .tag.warn{color:var(--warn);border-color:#e7cdab}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13.5px;background:#fff}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  code{background:#f1efe9;padding:1px 6px;border-radius:5px;font-size:12.5px;font-family:ui-monospace,Consolas,monospace}
+  ul,ol{margin:8px 0;padding-left:22px} li{margin:4px 0}
+  .callout{border-left:4px solid var(--warn);background:#fdf6ec;padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0}
+  .callout p:first-child{margin-top:0}.callout p:last-child{margin-bottom:0}
+  .muted{color:var(--soft);font-size:13px}
+  footer.doc{margin-top:50px;padding-top:18px;border-top:1px solid var(--line);color:var(--soft);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <p class="kicker">川口典礼サイト ＿ 作業レポート（社内記録・非公開）</p>
+  <h1>/area/kawaguchi-ekimae/ の内容是正（距離の正直化・2選択肢型へ）</h1>
+  <p class="meta">
+    <span>作成日：2026-06-06</span>
+    <span>担当：Claude Code</span>
+  </p>
+  <p class="muted">社内記録（Web非公開・<code>noindex</code>）。個人情報・秘密情報なし。ユーザー指摘に基づく内容是正。</p>
+</header>
+
+<div class="callout">
+  <p><strong>背景：</strong>新設した川口駅周辺ページが、川口駅→川口メモリアルホールは車で約25分と離れているのに「お車でご来館いただけます／中心部からアクセスしやすい」と<strong>近接を誇張</strong>していた（実態と乖離）。ユーザー指摘により正直な内容へ全面是正。</p>
+</div>
+
+<h2>1. サマリ</h2>
+<div class="card">
+  <ul>
+    <li><span class="tag ok">完了</span> 距離の誇張表現を撤回し、<strong>川口駅→ホールは「車で約25分と離れる」と明記</strong>。</li>
+    <li><span class="tag ok">完了</span> ページを<strong>2選択肢型</strong>に再構成：①川口駅周辺の寺院会館・式場を使う ②火葬場(めぐりの森)に近い川口メモリアルホールを使う。</li>
+    <li><span class="tag ok">完了</span> 寺院会館・民営式場の利用可否・宗派条件は<strong>断定せず</strong>「施設により異なる・事前確認」と明記（§15・§19.3）。</li>
+    <li><span class="tag ok">完了</span> <code>npm run build</code> 成功・135ページ維持。生成HTMLで「車で約25分」「寺院会館」反映を確認。</li>
+    <li><span class="tag ok">完了</span> ヒーロー画像を<strong>ユーザー提供の川口駅（JR東口）写真</strong>に差し替え（<code>public/images/area/kawaguchi-ekimae/station.png</code>）。alt「JR川口駅 東口の駅前の様子」。</li>
+  </ul>
+</div>
+
+<h2>2. 変更内容</h2>
+<table>
+  <thead><tr><th>ファイル</th><th>内容</th></tr></thead>
+  <tbody>
+    <tr><td><code>lib/areas.ts</code>（areaKawaguchiEkimae）</td><td>heroLead / heroDescription / features(3) / otherFacilities / reasons / faqs / metaTitle / metaDescription を全面書き換え。<br>・features：「寺院会館・式場を使う」「火葬場に近いホールを使う」「24時間お迎え」の2選択肢＋対応。<br>・FAQ「川口メモリアルホールは川口駅から近いですか？」→「車で約25分と離れる。一方でめぐりの森まで車約5分で当日の移動が少ない」と正直に回答。</td></tr>
+    <tr><td><code>app/area/kawaguchi-ekimae/page.tsx</code></td><td>AreaPrimaryHall の説明文を「川口駅から車で約25分／火葬場まで車約5分／お住まいの近くなら駅周辺の会館も」に是正。FuneralHome JSON-LD の説明文も2選択肢に整合。</td></tr>
+  </tbody>
+</table>
+<p class="muted">価格は §9 正本のみ（変更なし）。煽り・断定なし。寺院会館・民営式場を自社運営のように見せる表現なし（§19.3）。</p>
+
+<h2>3. 確認結果</h2>
+<ul>
+  <li><code>npm run build</code>：✓ Compiled successfully、135ページ維持、型エラーなし。</li>
+  <li>生成HTML：「車で約25分」「寺院会館（2選択肢の文脈）」を確認。</li>
+</ul>
+
+<h2>4. 残・今後</h2>
+<ol>
+  <li><strong>ヒーロー画像：</strong>ユーザーが <code>public/images/tmp/川口駅.png</code> に置いた写真を <code>public/images/area/kawaguchi-ekimae/station.png</code> へ配置し、<code>heroImage</code> に連携済み（next/image で最適化配信）。tmp の原本は残置（削除はご指示があれば実施）。元PNGは約2.2MBのため、必要なら軽量化（リサイズ/圧縮）も可能。</li>
+  <li>GSC：<code>/area/kawaguchi-ekimae/</code> はまだ「URL is unknown to Google」のため、本是正後にユーザーがインデックス登録リクエストを送信（作業ログ参照）。</li>
+</ol>
+
+<footer class="doc">川口典礼サイト 社内作業レポート｜2026-06-06 作成｜非公開（docs/reports/・noindex）｜個人情報・秘密情報なし</footer>
+
+</div>
+</body>
+</html>
