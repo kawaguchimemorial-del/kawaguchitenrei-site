@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>作業レポート 2026-06-05｜サイト全体の弱点監査</title>
+<style>
+  :root{--ink:#2b2b2b;--soft:#6b6b6b;--line:#e3e0da;--bg:#faf9f7;--accent:#7a6a55;--ok:#2e7d52;--warn:#b4691f;--danger:#a83838}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;line-height:1.8;font-size:15px}
+  .wrap{max-width:920px;margin:0 auto;padding:40px 22px 80px}
+  header.doc{border-bottom:2px solid var(--line);padding-bottom:18px;margin-bottom:24px}
+  .kicker{font-size:12px;letter-spacing:.12em;color:var(--accent);margin:0 0 6px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:24px;font-weight:600;margin:0 0 10px;line-height:1.5}
+  .meta{font-size:12.5px;color:var(--soft)} .meta span{margin-right:14px}
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:19px;font-weight:600;margin:34px 0 10px;padding-left:11px;border-left:4px solid var(--accent)}
+  h2.hi{border-color:var(--danger)} h2.mid{border-color:var(--warn)} h2.lo{border-color:var(--ok)}
+  p{margin:8px 0}
+  table{width:100%;border-collapse:collapse;margin:10px 0;font-size:13px;background:#fff}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  th{background:#f3f1ec;font-weight:600;color:#4a4438}
+  code{background:#f1efe9;padding:1px 5px;border-radius:5px;font-size:12px;font-family:ui-monospace,Consolas,monospace}
+  .tag{display:inline-block;font-size:11px;padding:1px 8px;border-radius:999px;border:1px solid var(--line);white-space:nowrap}
+  .tag.self{color:var(--ok);border-color:#bfe0cd}
+  .tag.appr{color:var(--warn);border-color:#e7cdab}
+  .muted{color:var(--soft);font-size:13px}
+  .callout{border-left:4px solid var(--accent);background:#fff;border:1px solid var(--line);border-left-width:4px;padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0}
+  ol.steps{counter-reset:s;list-style:none;padding-left:0}
+  ol.steps li{margin:6px 0;padding-left:34px;position:relative}
+  ol.steps li::before{counter-increment:s;content:counter(s);position:absolute;left:0;top:0;display:inline-flex;width:22px;height:22px;align-items:center;justify-content:center;border-radius:999px;background:var(--accent);color:#fff;font-size:12px;font-weight:700}
+  footer.doc{margin-top:48px;padding-top:18px;border-top:1px solid var(--line);color:var(--soft);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <p class="kicker">川口典礼サイト ＿ 作業レポート（社内記録・非公開）</p>
+  <h1>サイト全体の弱点監査</h1>
+  <p class="meta">
+    <span>作成日：2026-06-05</span>
+    <span>手法：3観点の並列精査（SEO/AIO技術・コンテンツ/内部リンク・技術/A11y/性能）× GSC実データ照合</span>
+    <span>担当：Claude Code</span>
+  </p>
+  <p class="muted">社内記録（Web非公開・<code>noindex</code>）。本監査は<strong>読み取りのみ・サイトは未変更</strong>。今後の改善バッチの計画台帳として使用する。<span class="tag self">自走</span>＝§19.1自走push可／<span class="tag appr">承認</span>＝§19.2 push前に人間承認（共通レイアウト・価格等）。</p>
+</header>
+
+<div class="callout">
+  <p><strong>総評：</strong>土台は良好。metadata・canonical・trailingSlash・alt テキスト・見出し階層（h1単一）・フォーカス可視化・<code>tel:</code> 導線・禁止表現の不在などは概ね整備済み。弱点は主に<strong>「受け皿は揃っているが内部リンクで活かしきれていない」</strong>点と、いくつかの構造化データ欠落・画像LCPの小バグに集約される。</p>
+</div>
+
+<h2 class="hi">🔴 高（効果大・優先）</h2>
+<table>
+  <thead><tr><th>#</th><th>弱点</th><th>根拠 / GSC</th><th>対象</th><th>区分</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td><strong>/pet/ の取りこぼし</strong>：上位表示なのにCTR0%。完全孤立（内部リンク0・HTMLサイトマップ未掲載）＋title/h1が「ご相談」前面で検索意図（流れ・収骨・川口市）とズレ</td><td><code>ペット葬儀 川口市</code>1位 / <code>ペット火葬 川口市</code>2位・CTR0%</td><td><code>app/pet/page.tsx</code>, <code>app/sitemap/page.tsx</code>, Footer</td><td><span class="tag self">自走</span>＋<span class="tag appr">承認</span>(Footer)</td></tr>
+    <tr><td>2</td><td><strong>コラム資産の死蔵</strong>：46コラムがめぐりの森に64回言及するのに <code>/saijo/megurinomori/</code> へのリンク0本。コラム下部導線はプラン5本＋<code>/area/kawaguchi/</code> のみ</td><td><code>めぐりの森 葬儀/家族葬/火葬式/直葬</code> 表示0</td><td><code>components/column/ColumnLocalFuneralGuide.tsx</code></td><td><span class="tag self">自走</span></td></tr>
+    <tr><td>3</td><td><strong>/area/ 索引が存在しない</strong>のに、全14エリアの BreadcrumbList JSON-LD が <code>/area/</code>（404）を指す</td><td>コード確認済</td><td>新規 <code>app/area/page.tsx</code>＋<code>app/sitemap.ts</code></td><td><span class="tag self">自走</span></td></tr>
+    <tr><td>4</td><td><strong>コラムの構造化データ不足</strong>：詳細に BreadcrumbList 無し（他詳細ページと不整合）、一覧 <code>/column/</code> はJSON-LDゼロ。AIO中核なのに</td><td>コード確認済</td><td><code>app/column/[slug]/page.tsx</code>, <code>app/column/page.tsx</code></td><td><span class="tag self">自走</span></td></tr>
+    <tr><td>5</td><td><strong>画像LCPバグ</strong>：<code>PlanDetailIntro.tsx:28</code> が無効プロパティ <code>preload</code>（正：<code>priority</code>）。<code>/area/*</code>・<code>/saijo/*</code> ヒーローに <code>priority</code> 無し</td><td>コード確認済</td><td><code>components/plan|area|saijo/*Intro.tsx</code></td><td><span class="tag self">自走</span></td></tr>
+    <tr><td>6</td><td><strong>「川口 斎場」の受け皿弱</strong>：<code>/saijo/</code> のtitle/h1に「斎場」語が薄い＋一覧への全体導線（Footer/Header）が弱い</td><td><code>川口 斎場</code> 18.7位</td><td><code>app/saijo/page.tsx</code>（＋Footer）</td><td><span class="tag self">自走</span>(title)＋<span class="tag appr">承認</span>(Footer)</td></tr>
+  </tbody>
+</table>
+
+<h2 class="mid">🟡 中</h2>
+<table>
+  <thead><tr><th>弱点</th><th>対象</th><th>区分</th></tr></thead>
+  <tbody>
+    <tr><td><strong>OG既定の欠如</strong>：layoutに <code>openGraph</code> 既定が無く、OG未設定13ページがSNS/AIで画像・タイトル不発 → layout既定で一括救済</td><td><code>app/layout.tsx</code></td><td><span class="tag self">自走</span></td></tr>
+    <tr><td><strong>指名・信頼クエリの器</strong>：<code>company</code> title が「会社概要」のみ（<code>川口 葬儀社</code>7位補強余地）／<code>voice</code> title に地名・サービス語なし（<code>川口 家族葬 口コミ</code>取りこぼし）</td><td><code>app/company/page.tsx</code>, <code>app/voice/page.tsx</code></td><td><span class="tag self">自走</span></td></tr>
+    <tr><td><strong>MobileBottomCTA の死んだアンカー</strong>：<code>#consultation</code> が privacy/tokushoho/sitemap に無く固定CTA「相談する」が無反応</td><td><code>components/layout/MobileBottomCTA.tsx</code></td><td><span class="tag appr">承認</span>(共通)</td></tr>
+    <tr><td><strong>Footer「対応エリア」が川口市1件のみ</strong> → 14エリアへの内部リンク密度不足</td><td><code>components/layout/Footer.tsx</code></td><td><span class="tag appr">承認</span>(共通)</td></tr>
+    <tr><td>saijo一覧に ItemList／company・access に BreadcrumbList 追加</td><td><code>app/saijo/page.tsx</code>, <code>company</code>, <code>access</code></td><td><span class="tag self">自走</span></td></tr>
+    <tr><td><code>hanaire-owakare</code> の metaTitle 未設定（地名がタイトルに乗らない）／voice・case 詳細のOG画像なし</td><td><code>lib/plans.ts</code>, voice/case 詳細</td><td><span class="tag self">自走</span></td></tr>
+    <tr><td><code>ColumnCard</code> の生 <code>&lt;img&gt;</code>（eslint-disable）→ <code>next/image</code> 化で自動最適化</td><td><code>components/column/ColumnCard.tsx</code></td><td><span class="tag self">自走</span></td></tr>
+    <tr><td>voice 詳細：<code>rating</code>(1-5) を持つのに Review/Rating 化していない（※Review/aggregateRating は §19.2 で<strong>人間承認必須</strong>）</td><td>voice 詳細</td><td><span class="tag appr">承認</span></td></tr>
+    <tr><td>area → voice/case の送客が薄い（信頼シグナルが検討の深いページに接続していない）</td><td><code>app/area/*/page.tsx</code></td><td><span class="tag self">自走</span></td></tr>
+  </tbody>
+</table>
+
+<h2 class="lo">🟢 低（仕上げ）</h2>
+<table>
+  <thead><tr><th>弱点</th><th>対象</th></tr></thead>
+  <tbody>
+    <tr><td>「ページの先頭へ戻る」が <code>href="#"</code>（実アンカー or button へ）</td><td><code>app/column/page.tsx</code></td></tr>
+    <tr><td><code>text-ink-soft</code>(#7a8a82) の小キャプションが白背景で約3:1（WCAG AA未満）／<code>text-[10px]</code> 多用は高齢層に小さめ</td><td><code>app/globals.css</code> ほか</td></tr>
+    <tr><td>Hero のモバイル/PC用 <code>h1</code> が両方DOM存在（スクリーンリーダー上 h1 が2つ）</td><td><code>components/home/Hero.tsx</code></td></tr>
+    <tr><td>Hero のモバイル/PC ヒーロー画像が両方 <code>priority</code>（未使用側も先読み）</td><td><code>components/home/Hero.tsx</code></td></tr>
+    <tr><td>sitemap.ts の area/saijo が手動列挙（lib駆動化で追加漏れ防止）</td><td><code>app/sitemap.ts</code></td></tr>
+  </tbody>
+</table>
+
+<h2>🆕 新規コンテンツ機会（GSC）</h2>
+<ul>
+  <li><strong>「川口（川口駅・本町・栄町）」エリアページ新設</strong>：市の中心商業地で検索量大、現状エリアページ無し（§7最優先・<span class="tag self">自走</span>）。<code>/saijo/</code> に「本町・舟戸町方面」寺院会館が既出で受け皿の素地あり。</li>
+  <li><strong>/saijo/megurinomori/ に h2 で「家族葬／火葬式／直葬」語を補強</strong>：内容は厚いので見出し語の補強のみ（煽らず事実ベース）。</li>
+  <li>次点エリア：朝日・三ツ和（<code>/saijo/</code> に該当方面の施設が既出）。近隣市（戸田・蕨・草加）は無理に作らない方針を維持。</li>
+</ul>
+
+<h2>推奨着手順（自走push可・効果大から）</h2>
+<ol class="steps">
+  <li>コラム→めぐりの森/saijo/area の内部リンク開通（#2）</li>
+  <li><code>/area/</code> 索引ページ新設＋sitemap追加（#3）</li>
+  <li><code>/pet/</code> の title/h1 改善＋孤立解消（#1。Footer掲載は承認バッチ）</li>
+  <li>コラムJSON-LD補強（#4）＋OG既定（中）</li>
+  <li>画像 priority 修正（#5）</li>
+  <li>「川口（川口駅）」エリアページ新設（新規機会）</li>
+</ol>
+<p class="muted">共通レイアウト（Footer / MobileBottomCTA / Header）に関わる項目（#1の一部・#6の導線・対応エリア14化・MobileBottomCTAの死んだアンカー）は §19.2 により <strong>push前に人間承認</strong>。別バッチで提案する。価格・式場利用可否・Review/aggregateRating も承認対象。</p>
+
+<footer class="doc">川口典礼サイト 社内作業レポート｜2026-06-05 作成｜非公開（docs/reports/・noindex）｜個人情報・秘密情報なし｜本監査は読み取りのみ・サイト未変更</footer>
+
+</div>
+</body>
+</html>
