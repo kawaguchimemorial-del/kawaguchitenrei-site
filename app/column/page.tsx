@@ -4,11 +4,31 @@ import { ColumnCard } from "@/components/column/ColumnCard";
 import { CategoryChips } from "@/components/column/CategoryChips";
 import { columns } from "@/lib/columns";
 
+const SITE_URL = "https://kawaguchitenrei.com";
+
+const META_DESCRIPTION =
+  "川口典礼のコラム一覧ページです。葬儀の準備、事前相談、家族葬・直葬・一日葬の違いなど、ご家族の判断の助けになる情報をお届けします。";
+
 export const metadata: Metadata = {
   title: "コラム一覧 | 川口典礼",
-  description:
-    "川口典礼のコラム一覧ページです。葬儀の準備、事前相談、家族葬・直葬・一日葬の違いなど、ご家族の判断の助けになる情報をお届けします。",
+  description: META_DESCRIPTION,
   alternates: { canonical: "/column/" },
+  openGraph: {
+    title: "コラム一覧 | 川口典礼",
+    description: META_DESCRIPTION,
+    url: "/column/",
+    type: "website",
+    siteName: "川口典礼",
+    locale: "ja_JP",
+    images: [
+      {
+        url: "/images/home/hall/hall-exterior.jpg",
+        width: 1200,
+        height: 800,
+        alt: "川口メモリアルホールの外観",
+      },
+    ],
+  },
 };
 
 const sortedColumns = [...columns].sort((a, b) =>
@@ -46,6 +66,32 @@ function buildSections(
   return sections;
 }
 
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "ホーム", item: `${SITE_URL}/` },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "コラム",
+      item: `${SITE_URL}/column/`,
+    },
+  ],
+};
+
+const itemListJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "川口典礼 コラム一覧",
+  itemListElement: sortedColumns.map((article, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    url: `${SITE_URL}/column/${article.slug}/`,
+    name: article.title,
+  })),
+};
+
 export default function ColumnIndexPage() {
   const sections = buildSections(sortedColumns);
   const chipCategories = sections.map(([label, arts]) => ({
@@ -55,6 +101,14 @@ export default function ColumnIndexPage() {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
+      />
       <PageHero
         eyebrow="Column"
         subLabel="コラム"
