@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>作業レポート 2026-06-05｜/saijo/ に「斎場」語を補強（監査#6 / D）</title>
+<style>
+  :root{--ink:#2b2b2b;--soft:#6b6b6b;--line:#e3e0da;--bg:#faf9f7;--accent:#7a6a55;--ok:#2e7d52}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;line-height:1.85;font-size:15px}
+  .wrap{max-width:860px;margin:0 auto;padding:40px 22px 80px}
+  header.doc{border-bottom:2px solid var(--line);padding-bottom:18px;margin-bottom:28px}
+  .kicker{font-size:12px;letter-spacing:.12em;color:var(--accent);margin:0 0 6px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:23px;font-weight:600;margin:0 0 10px;line-height:1.5}
+  .meta{font-size:12.5px;color:var(--soft)} .meta span{margin-right:14px}
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:19px;font-weight:600;margin:36px 0 12px;padding-left:11px;border-left:4px solid var(--accent)}
+  p{margin:8px 0}
+  .card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:14px 0}
+  .tag{display:inline-block;font-size:11.5px;padding:2px 9px;border-radius:999px;border:1px solid var(--line);color:var(--soft);background:#fff}
+  .tag.ok{color:var(--ok);border-color:#bfe0cd}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13.5px;background:#fff}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  code{background:#f1efe9;padding:1px 6px;border-radius:5px;font-size:12.5px;font-family:ui-monospace,Consolas,monospace}
+  ul,ol{margin:8px 0;padding-left:22px} li{margin:4px 0}
+  .muted{color:var(--soft);font-size:13px}
+  footer.doc{margin-top:50px;padding-top:18px;border-top:1px solid var(--line);color:var(--soft);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <p class="kicker">川口典礼サイト ＿ 作業レポート（社内記録・非公開）</p>
+  <h1>/saijo/ に「斎場」語を補強（川口 斎場 対策）</h1>
+  <p class="meta">
+    <span>作成日：2026-06-05</span>
+    <span>施策：弱点監査 #6 / 修正プロンプト集 D</span>
+    <span>担当：Claude Code</span>
+  </p>
+  <p class="muted">社内記録（Web非公開・<code>noindex</code>）。個人情報・秘密情報なし。出典：<a href="./2026-06-05-current-state-and-fix-prompts.html">現状分析＆修正プロンプト集</a> の D。</p>
+</header>
+
+<h2>1. サマリ</h2>
+<div class="card">
+  <ul>
+    <li><span class="tag ok">完了</span> <code>app/saijo/page.tsx</code> の title／og:title／サブ見出し／リード文に「斎場」を自然に補強（<code>川口 斎場</code> 18.7位対策）。</li>
+    <li><span class="tag ok">完了</span> 既存の網羅的な内容・トーン・施設の記述は維持。利用可否・宗派条件・空き状況の新規断定なし。</li>
+    <li><span class="tag ok">完了</span> <code>npm run build</code> 成功・静的生成134ページ（減少なし）。</li>
+  </ul>
+</div>
+
+<h2>2. 変更内容（語の補強のみ）</h2>
+<table>
+  <thead><tr><th>箇所</th><th>変更前</th><th>変更後</th></tr></thead>
+  <tbody>
+    <tr><td>title / og:title</td><td>川口市・近隣の葬儀場一覧｜川口典礼</td><td>川口市・近隣の葬儀場<strong>・斎場</strong>一覧｜川口典礼</td></tr>
+    <tr><td>サブ見出し（kicker）</td><td>川口市・近隣で利用できる葬儀場</td><td>川口市・近隣で利用できる葬儀場<strong>・斎場</strong></td></tr>
+    <tr><td>リード文</td><td>（末尾）…ご相談に対応しています。</td><td>…ご相談に対応しています。<strong>川口の斎場・葬儀場は、地域別にもまとめてご紹介しています。</strong></td></tr>
+  </tbody>
+</table>
+<p class="muted">本文には元々「川口市の葬儀場・斎場を選ぶときに」（780行目付近）等の記述があり、今回の補強はそれと整合。キーワードの羅列・連呼は避けた（§10.2）。h1・施設データ・配色・レイアウトは未変更。</p>
+
+<h2>3. 確認結果</h2>
+<ul>
+  <li><code>npm run build</code>：✓ Compiled successfully、静的生成134ページ（減少なし）、型エラーなし。</li>
+  <li>確認URL：<code>/saijo/</code>（title・サブ見出し・リードに「斎場」）。</li>
+  <li>施設の利用可否・宗派条件・空き状況の新規断定なし（§19.3）。価格・式場可否・共通レイアウト・フォーム未変更。</li>
+</ul>
+
+<h2>4. 今後のアクション（プロンプト集より）</h2>
+<ol>
+  <li>次の自走候補：C <code>/pet/</code> 改善、E company/voice title、F saijo ItemList＋Breadcrumb など。</li>
+  <li>承認バッチ：K Footer（<code>/saijo/</code> 一覧への全体導線追加）。</li>
+  <li>再測定：2026-06-26 頃に GSC で <code>川口 斎場</code> の順位・表示を確認。</li>
+</ol>
+
+<footer class="doc">川口典礼サイト 社内作業レポート｜2026-06-05 作成｜非公開（docs/reports/・noindex）｜個人情報・秘密情報なし</footer>
+
+</div>
+</body>
+</html>

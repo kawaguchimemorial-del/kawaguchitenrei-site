@@ -6,12 +6,12 @@ const SITE_URL = "https://kawaguchitenrei.com";
 const pageUrl = `${SITE_URL}/saijo/`;
 
 export const metadata: Metadata = {
-  title: "川口市・近隣の葬儀場一覧｜川口典礼",
+  title: "川口市・近隣の葬儀場・斎場一覧｜川口典礼",
   description:
     "川口市・近隣で利用できる葬儀場を一覧でご案内。川口メモリアルホール、川口市めぐりの森、戸田葬祭場、谷塚斎場に加え、朝日・本町・上青木・安行・南鳩ヶ谷・新郷など川口市内の寺院会館・民営式場をエリア別にご紹介。川口典礼でご相談・手配に対応しています。",
   alternates: { canonical: "/saijo/" },
   openGraph: {
-    title: "川口市・近隣の葬儀場一覧｜川口典礼",
+    title: "川口市・近隣の葬儀場・斎場一覧｜川口典礼",
     description:
       "川口市・近隣で利用できる葬儀場を一覧でご案内。川口メモリアルホール、川口市めぐりの森、戸田葬祭場、谷塚斎場に加え、朝日・本町・上青木・安行・南鳩ヶ谷・新郷など川口市内の寺院会館・民営式場をエリア別にご紹介。川口典礼でご相談・手配に対応しています。",
     url: "/saijo/",
@@ -402,7 +402,7 @@ export default function SaijoIndexPage() {
             Saijo
           </p>
           <p className="mt-2 text-sm font-semibold text-ink-mid">
-            川口市・近隣で利用できる葬儀場
+            川口市・近隣で利用できる葬儀場・斎場
           </p>
           <h1 className="font-serif-jp mt-4 max-w-3xl text-[2.1rem] font-medium leading-[1.35] text-ink-deep md:text-[2.9rem] md:leading-[1.3]">
             川口市・近隣で利用できる
@@ -410,7 +410,7 @@ export default function SaijoIndexPage() {
             葬儀場一覧
           </h1>
           <p className="mt-6 max-w-3xl text-base leading-9 text-ink-mid md:text-lg md:leading-10">
-            川口典礼では、自社式場「川口メモリアルホール」をはじめ、川口市めぐりの森、戸田葬祭場、谷塚斎場、川口市内の寺院会館・民営式場など、ご希望や地域に合わせた葬儀場のご相談に対応しています。
+            川口典礼では、自社式場「川口メモリアルホール」をはじめ、川口市めぐりの森、戸田葬祭場、谷塚斎場、川口市内の寺院会館・民営式場など、ご希望や地域に合わせた葬儀場のご相談に対応しています。川口の斎場・葬儀場は、地域別にもまとめてご紹介しています。
           </p>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
