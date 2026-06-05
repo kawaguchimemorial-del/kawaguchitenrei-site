@@ -76,6 +76,7 @@ export function SaijoDetailIntro({ saijo }: { saijo: Saijo }) {
                   fill
                   sizes="(max-width: 768px) 100vw, 480px"
                   className="object-cover object-center"
+                  priority
                 />
               </div>
             )}

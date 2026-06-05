@@ -25,7 +25,7 @@ export function PlanDetailIntro({ plan }: { plan: Plan }) {
                 fill
                 sizes="(max-width: 768px) 100vw, 1024px"
                 className="object-cover object-center"
-                preload
+                priority
               />
             </div>
           </div>

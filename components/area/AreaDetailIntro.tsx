@@ -69,6 +69,7 @@ export function AreaDetailIntro({ area }: { area: Area }) {
                 fill
                 sizes="(max-width: 768px) 100vw, 480px"
                 className="object-cover object-center"
+                priority
               />
             </div>
 
