@@ -139,6 +139,23 @@ export const metadata: Metadata = {
   description:
     "川口典礼の直葬・花入れお別れ・一日葬・家族葬・市民葬の各プランをご紹介します。費用や対応形式の比較、向いている方の目安もあわせてご確認いただけます。",
   alternates: { canonical: "/plan/" },
+  openGraph: {
+    title: "葬儀プラン一覧 | 川口典礼",
+    description:
+      "川口典礼の直葬・花入れお別れ・一日葬・家族葬・市民葬の各プランをご紹介します。費用や対応形式の比較、向いている方の目安もあわせてご確認いただけます。",
+    url: "/plan/",
+    type: "website",
+    siteName: "川口典礼",
+    locale: "ja_JP",
+    images: [
+      {
+        url: "/images/home/hall/hall-exterior.jpg",
+        width: 1200,
+        height: 800,
+        alt: "川口メモリアルホールの外観",
+      },
+    ],
+  },
 };
 
 const breadcrumbJsonLd = {

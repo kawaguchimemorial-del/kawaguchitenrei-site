@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>作業レポート 2026-06-05｜まとめ修正 G・H・I・J・N</title>
+<style>
+  :root{--ink:#2b2b2b;--soft:#6b6b6b;--line:#e3e0da;--bg:#faf9f7;--accent:#7a6a55;--ok:#2e7d52}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;line-height:1.85;font-size:15px}
+  .wrap{max-width:880px;margin:0 auto;padding:40px 22px 80px}
+  header.doc{border-bottom:2px solid var(--line);padding-bottom:18px;margin-bottom:28px}
+  .kicker{font-size:12px;letter-spacing:.12em;color:var(--accent);margin:0 0 6px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:23px;font-weight:600;margin:0 0 10px;line-height:1.5}
+  .meta{font-size:12.5px;color:var(--soft)} .meta span{margin-right:14px}
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:19px;font-weight:600;margin:34px 0 10px;padding-left:11px;border-left:4px solid var(--accent)}
+  p{margin:8px 0}
+  .card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:14px 0}
+  .tag{display:inline-block;font-size:11.5px;padding:2px 9px;border-radius:999px;border:1px solid var(--line);color:var(--soft);background:#fff}
+  .tag.ok{color:var(--ok);border-color:#bfe0cd}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13px;background:#fff}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  code{background:#f1efe9;padding:1px 6px;border-radius:5px;font-size:12px;font-family:ui-monospace,Consolas,monospace}
+  ul,ol{margin:8px 0;padding-left:22px} li{margin:4px 0}
+  .muted{color:var(--soft);font-size:13px}
+  footer.doc{margin-top:50px;padding-top:18px;border-top:1px solid var(--line);color:var(--soft);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <p class="kicker">川口典礼サイト ＿ 作業レポート（社内記録・非公開）</p>
+  <h1>まとめ修正：G（hanaire metaTitle）／ H（ColumnCard next/image）／ I（一覧 固有OG）／ J（新規エリア）／ N（href修正）</h1>
+  <p class="meta">
+    <span>作成日：2026-06-05</span>
+    <span>施策：修正プロンプト集 G・H・I・J・N</span>
+    <span>担当：Claude Code</span>
+  </p>
+  <p class="muted">社内記録（Web非公開・<code>noindex</code>）。個人情報・秘密情報なし。出典：<a href="./2026-06-05-current-state-and-fix-prompts.html">現状分析＆修正プロンプト集</a>。</p>
+</header>
+
+<h2>1. サマリ</h2>
+<div class="card">
+  <ul>
+    <li><span class="tag ok">G</span> <code>lib/plans.ts</code> の <code>hanaire-owakare</code> に metaTitle を追加（地名がタイトルに乗るように）。</li>
+    <li><span class="tag ok">H</span> <code>ColumnCard</code> の生 <code>&lt;img&gt;</code>（default/compact）を <code>next/image</code>（fill＋sizes）に置換。自動最適化・eslint-disable解消。</li>
+    <li><span class="tag ok">I</span> <code>/plan/</code>・<code>/case/</code>・<code>/voice/</code> 一覧に固有 <code>openGraph</code> を付与（ブランド既定→各ページ固有タイトル）。</li>
+    <li><span class="tag ok">J</span> 新規エリア「川口駅周辺（本町・栄町）」を新設（<code>lib/areas.ts</code>＋<code>app/area/kawaguchi-ekimae/page.tsx</code>＋sitemap）。</li>
+    <li><span class="tag ok">N</span> <code>/column/</code> の「先頭へ戻る」<code>href="#"</code> を <code>#all-articles</code> に修正。</li>
+    <li><span class="tag ok">完了</span> <code>npm run build</code> 成功・静的生成 <strong>134→135ページ</strong>（+1、減少なし）。生成HTMLで実機確認。</li>
+  </ul>
+</div>
+
+<h2>2. 変更ファイル</h2>
+<table>
+  <thead><tr><th>項目</th><th>ファイル</th><th>内容</th></tr></thead>
+  <tbody>
+    <tr><td>G</td><td><code>lib/plans.ts</code></td><td>hanaire-owakare に metaTitle「川口市の花入れお別れプラン（火葬前のお別れ）| 川口典礼」。価格・他フィールド不変。</td></tr>
+    <tr><td>H</td><td><code>components/column/ColumnCard.tsx</code></td><td>default（aspect-16/9, sizes=…360px）/ compact（aspect-4/3, sizes=80px）の <code>&lt;img&gt;</code> を <code>&lt;Image fill&gt;</code> に。hover scale・alt・角丸は維持。</td></tr>
+    <tr><td>I</td><td><code>app/plan/page.tsx</code>・<code>app/case/page.tsx</code>・<code>app/voice/page.tsx</code></td><td>各 metadata に固有 openGraph（title＝各ページ名・description・url・type:website・siteName・locale・既定画像）。</td></tr>
+    <tr><td>J</td><td><code>lib/areas.ts</code>（新規 <code>areaKawaguchiEkimae</code>＋配列追加）／ <code>app/area/kawaguchi-ekimae/page.tsx</code>（新規）／ <code>app/sitemap.ts</code></td><td>川口駅周辺（本町・栄町）エリアページ。既存エリアの構成・JSON-LD（Breadcrumb/FAQ/FuneralHome）・トーンを踏襲。heroImage は未保有のため省略（既定画像にフォールバック）。価格は §9 正本のみ、施設利用可否の新規断定なし。</td></tr>
+    <tr><td>N</td><td><code>app/column/page.tsx</code></td><td>ダミーリンク <code>href="#"</code> → <code>#all-articles</code>。</td></tr>
+  </tbody>
+</table>
+
+<h2>3. 確認結果（生成HTML 実機確認）</h2>
+<ul>
+  <li><code>npm run build</code>：✓ Compiled successfully、静的生成135ページ（+1、減少なし）、型エラー・no-img-element 警告なし。</li>
+  <li><code>area/kawaguchi-ekimae.html</code> 生成を確認。<code>plan.html</code> og:title「葬儀プラン一覧 | 川口典礼」、<code>voice.html</code> og:title「川口の葬儀・家族葬 お客様の声｜川口典礼」。</li>
+  <li><code>column.html</code>：戻るリンク <code>#all-articles</code>、カード画像が <code>/_next/image</code>（最適化）経由。</li>
+  <li>価格・式場利用可否・共通レイアウト・フォーム・全体デザイン未変更。Review/aggregateRating 不使用。</li>
+</ul>
+
+<h2>4. 残タスク</h2>
+<ol>
+  <li>自走の残り：C <code>/pet/</code> 改善（title/h1＋孤立解消。Footer掲載は承認）。</li>
+  <li>承認バッチ：K Footer 導線（<code>/area/</code> 索引・<code>/saijo/</code>・<code>/pet/</code> 等）、L MobileBottomCTA フォールバック、M voice Review/Rating。</li>
+  <li>再測定：2026-06-26 頃に GSC で各施策の効果を確認。</li>
+</ol>
+
+<footer class="doc">川口典礼サイト 社内作業レポート｜2026-06-05 作成｜非公開（docs/reports/・noindex）｜個人情報・秘密情報なし</footer>
+
+</div>
+</body>
+</html>

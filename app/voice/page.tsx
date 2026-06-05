@@ -10,6 +10,23 @@ export const metadata: Metadata = {
   description:
     "川口市で川口典礼にご葬儀をご依頼いただいたご家族の声を掲載。家族葬・一日葬・直葬などのご感想と、お客様アンケートをご紹介しています。",
   alternates: { canonical: "/voice/" },
+  openGraph: {
+    title: "川口の葬儀・家族葬 お客様の声｜川口典礼",
+    description:
+      "川口市で川口典礼にご葬儀をご依頼いただいたご家族の声を掲載。家族葬・一日葬・直葬などのご感想と、お客様アンケートをご紹介しています。",
+    url: "/voice/",
+    type: "website",
+    siteName: "川口典礼",
+    locale: "ja_JP",
+    images: [
+      {
+        url: "/images/home/hall/hall-exterior.jpg",
+        width: 1200,
+        height: 800,
+        alt: "川口メモリアルホールの外観",
+      },
+    ],
+  },
 };
 
 function formatDate(iso: string): string {

@@ -11,6 +11,23 @@ export const metadata: Metadata = {
   description:
     "川口市で施行した葬儀事例をご紹介しています。家族葬・一日葬・直葬・火葬式の形式別に、参列人数・式場・内容・総額の例を掲載。事例の総額は内容・人数・式場・火葬場・料理・返礼品等により変わるため、事前のご相談で個別にお見積りをご案内します。",
   alternates: { canonical: "/case/" },
+  openGraph: {
+    title: "川口市の施行事例 | 川口典礼の家族葬・一日葬・直葬の実例 | 川口典礼",
+    description:
+      "川口市で施行した葬儀事例をご紹介しています。家族葬・一日葬・直葬・火葬式の形式別に、参列人数・式場・内容・総額の例を掲載。事例の総額は内容・人数・式場・火葬場・料理・返礼品等により変わるため、事前のご相談で個別にお見積りをご案内します。",
+    url: "/case/",
+    type: "website",
+    siteName: "川口典礼",
+    locale: "ja_JP",
+    images: [
+      {
+        url: "/images/home/hall/hall-exterior.jpg",
+        width: 1200,
+        height: 800,
+        alt: "川口メモリアルホールの外観",
+      },
+    ],
+  },
 };
 
 const conclusionPoints = [

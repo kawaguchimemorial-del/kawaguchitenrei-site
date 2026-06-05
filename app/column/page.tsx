@@ -216,7 +216,7 @@ export default function ColumnIndexPage() {
           {remaining.length > 0 && (
             <div className="mt-14 flex justify-center md:mt-20">
               <a
-                href="#"
+                href="#all-articles"
                 className="inline-flex items-center gap-2 rounded-lg border border-line bg-white px-6 py-3 text-sm font-bold text-brand transition hover:border-brand"
               >
                 <span aria-hidden>↑</span>
