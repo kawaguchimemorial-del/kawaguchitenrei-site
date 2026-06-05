@@ -180,9 +180,29 @@ const relatedLinks = [
     href: "/saijo/",
   },
   {
-    label: "家族葬プラン",
-    description: "ご家族中心のお別れ・528,000円(税込)〜",
+    label: "川口市の家族葬",
+    description: "ご家族中心のお別れ。事前相談会員価格 528,000円(税込)〜",
     href: "/plan/family-funeral/",
+  },
+  {
+    label: "川口の一日葬",
+    description: "通夜を行わない1日完結のお別れ。396,000円(税込)〜",
+    href: "/plan/oneday-funeral/",
+  },
+  {
+    label: "川口の直葬",
+    description: "火葬を中心としたシンプルなお別れ。139,000円(税込)〜",
+    href: "/plan/direct-funeral/",
+  },
+  {
+    label: "川口の火葬式",
+    description: "通夜・告別式を行わないお別れのご相談",
+    href: "/plan/cremation/",
+  },
+  {
+    label: "川口市民葬",
+    description: "川口市民の方の市民葬制度。231,000円(税込)",
+    href: "/plan/kawaguchi-shimin/",
   },
   {
     label: "施行事例",

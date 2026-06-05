@@ -443,7 +443,7 @@ export const plans: Plan[] = [
         href: "/plan/non-religious-funeral/",
       },
       {
-        label: "川口市の葬儀・家族葬",
+        label: "川口市の葬儀・対応エリア",
         description: "川口市全体の葬儀・対応エリアのご案内",
         href: "/area/kawaguchi/",
       },
@@ -577,7 +577,7 @@ export const plans: Plan[] = [
         href: "/plan/non-religious-funeral/",
       },
       {
-        label: "川口市の葬儀・家族葬",
+        label: "川口市の葬儀・対応エリア",
         description: "川口市全体の葬儀・対応エリアのご案内",
         href: "/area/kawaguchi/",
       },
@@ -723,7 +723,7 @@ export const plans: Plan[] = [
         href: "/plan/non-religious-funeral/",
       },
       {
-        label: "川口市の葬儀・家族葬",
+        label: "川口市の葬儀・対応エリア",
         description: "川口市全体の葬儀・対応エリアのご案内",
         href: "/area/kawaguchi/",
       },
