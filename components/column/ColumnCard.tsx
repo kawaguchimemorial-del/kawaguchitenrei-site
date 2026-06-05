@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { ColumnArticle } from "@/lib/columns";
 
 function formatDate(iso: string): string {
@@ -26,12 +27,12 @@ export function ColumnCard({
       >
         <div className="relative aspect-[4/3] w-20 shrink-0 overflow-hidden rounded-md bg-warm">
           {article.thumbnail ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
+            <Image
               src={article.thumbnail.src}
               alt={article.thumbnail.alt}
-              className="absolute inset-0 h-full w-full object-cover object-center"
-              loading="lazy"
+              fill
+              sizes="80px"
+              className="object-cover object-center"
             />
           ) : (
             <div
@@ -64,12 +65,12 @@ export function ColumnCard({
     >
       {article.thumbnail ? (
         <div className="relative aspect-[16/9] w-full overflow-hidden bg-warm">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src={article.thumbnail.src}
             alt={article.thumbnail.alt}
-            className="absolute inset-0 h-full w-full object-cover object-center transition duration-500 ease-out group-hover:scale-[1.03] motion-reduce:transform-none motion-reduce:transition-none"
-            loading="lazy"
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 360px"
+            className="object-cover object-center transition duration-500 ease-out group-hover:scale-[1.03] motion-reduce:transform-none motion-reduce:transition-none"
           />
         </div>
       ) : (
