@@ -8,6 +8,7 @@ const footerColumns = [
       { label: "一日葬プラン", href: "/plan/oneday-funeral/" },
       { label: "家族葬プラン", href: "/plan/family-funeral/" },
       { label: "市民葬プラン", href: "/plan/kawaguchi-shimin/" },
+      { label: "ペット火葬のご相談", href: "/pet/" },
       { label: "よくある質問", href: "/faq/" },
       { label: "コラム", href: "/column/" },
     ],
@@ -17,6 +18,7 @@ const footerColumns = [
     items: [
       { label: "川口メモリアルホール", href: "/hall/kawaguchi-memorial-hall/" },
       { label: "川口市めぐりの森", href: "/saijo/megurinomori/" },
+      { label: "葬儀場・斎場一覧", href: "/saijo/" },
       { label: "施行事例", href: "/case/" },
       { label: "お客様の声", href: "/voice/" },
     ],
@@ -24,12 +26,20 @@ const footerColumns = [
   {
     title: "対応エリア",
     items: [
+      { label: "対応エリア一覧", href: "/area/" },
       { label: "川口市", href: "/area/kawaguchi/" },
+      { label: "川口駅周辺", href: "/area/kawaguchi-ekimae/" },
+      { label: "新井宿", href: "/area/araijuku/" },
+      { label: "鳩ヶ谷", href: "/area/hatogaya/" },
+      { label: "西川口", href: "/area/nishikawaguchi/" },
+      { label: "東川口", href: "/area/higashikawaguchi/" },
+      { label: "川口元郷", href: "/area/kawaguchi-motogo/" },
     ],
   },
 ];
 
 const policyLinks = [
+  { label: "会社概要", href: "/company/" },
   { label: "プライバシーポリシー", href: "/privacy/" },
   { label: "特定商取引法に基づく表記", href: "/tokushoho/" },
   { label: "サイトマップ", href: "/sitemap/" },

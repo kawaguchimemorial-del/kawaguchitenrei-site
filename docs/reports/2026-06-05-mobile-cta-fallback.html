@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>作業レポート 2026-06-05｜MobileBottomCTA フォールバック（L・承認待ち）</title>
+<style>
+  :root{--ink:#2b2b2b;--soft:#6b6b6b;--line:#e3e0da;--bg:#faf9f7;--accent:#7a6a55;--ok:#2e7d52;--warn:#b4691f}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;line-height:1.85;font-size:15px}
+  .wrap{max-width:860px;margin:0 auto;padding:40px 22px 80px}
+  header.doc{border-bottom:2px solid var(--line);padding-bottom:18px;margin-bottom:28px}
+  .kicker{font-size:12px;letter-spacing:.12em;color:var(--accent);margin:0 0 6px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:22px;font-weight:600;margin:0 0 10px;line-height:1.5}
+  .meta{font-size:12.5px;color:var(--soft)} .meta span{margin-right:14px}
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:19px;font-weight:600;margin:36px 0 12px;padding-left:11px;border-left:4px solid var(--accent)}
+  p{margin:8px 0}
+  .card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:14px 0}
+  .tag{display:inline-block;font-size:11.5px;padding:2px 9px;border-radius:999px;border:1px solid var(--line);color:var(--soft);background:#fff}
+  .tag.ok{color:var(--ok);border-color:#bfe0cd}
+  .tag.warn{color:var(--warn);border-color:#e7cdab}
+  code{background:#f1efe9;padding:1px 6px;border-radius:5px;font-size:12.5px;font-family:ui-monospace,Consolas,monospace}
+  ul,ol{margin:8px 0;padding-left:22px} li{margin:4px 0}
+  .callout{border-left:4px solid var(--warn);background:#fdf6ec;padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0}
+  .callout p:first-child{margin-top:0}.callout p:last-child{margin-bottom:0}
+  .muted{color:var(--soft);font-size:13px}
+  footer.doc{margin-top:50px;padding-top:18px;border-top:1px solid var(--line);color:var(--soft);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <p class="kicker">川口典礼サイト ＿ 作業レポート（社内記録・非公開）</p>
+  <h1>MobileBottomCTA「相談する」のフォールバック実装</h1>
+  <p class="meta">
+    <span>作成日：2026-06-05</span>
+    <span>施策：修正プロンプト集 L（承認バッチ）</span>
+    <span>担当：Claude Code</span>
+  </p>
+  <p class="muted">社内記録（Web非公開・<code>noindex</code>）。個人情報・秘密情報なし。出典：<a href="./2026-06-05-current-state-and-fix-prompts.html">現状分析＆修正プロンプト集</a> の L。</p>
+</header>
+
+<div class="callout">
+  <p><strong>状態：push 未実施（人間承認待ち）。</strong>MobileBottomCTA は共通レイアウト（CLAUDE.md §5・§19.2）に該当するため、実装と <code>npm run build</code> まで進め、push は承認後に行う。</p>
+</div>
+
+<h2>1. サマリ</h2>
+<div class="card">
+  <ul>
+    <li><span class="tag ok">完了</span> スマホ下部固定CTAの「相談する」が <code>#consultation</code> 固定で、当該アンカーの無い privacy / tokushoho / sitemap 等で無反応だった問題を修正。</li>
+    <li><span class="tag ok">完了</span> <code>#consultation</code> があるページはそのままスムーススクロール、無いページは <code>/contact/</code> へフォールバック。</li>
+    <li><span class="tag ok">完了</span> CTAは「電話」「事前相談」の2つのまま（LINE は入れない／§4）。<code>npm run build</code> 成功・135ページ維持。</li>
+    <li><span class="tag warn">承認待ち</span> push は人間承認後。</li>
+  </ul>
+</div>
+
+<h2>2. 変更内容（components/layout/MobileBottomCTA.tsx）</h2>
+<ul>
+  <li>コンポーネント先頭に <code>"use client"</code> を追加（クリック判定のため）。</li>
+  <li>「相談する」リンクに <code>onClick</code> を追加：<code>document.getElementById("consultation")</code> が無い場合のみ <code>preventDefault</code> して <code>/contact/</code> へ遷移。ある場合は既定のアンカー挙動（<code>html</code> の <code>scroll-smooth</code> によるスムーススクロール）を維持。</li>
+</ul>
+<p class="muted">ページ名のハードコードはせず、DOM 上の <code>#consultation</code> 有無で判定。意匠・配色・レイアウト・「電話する」ボタンは変更なし。新規の価格・LINE 導線なし。</p>
+
+<h2>3. 確認結果</h2>
+<ul>
+  <li><code>npm run build</code>：✓ Compiled successfully、静的生成135ページ（減少なし）、型エラーなし。</li>
+  <li>挙動：詳細・エリア・プラン等（<code>#consultation</code> あり）はスクロール維持／privacy・tokushoho・sitemap 等（無し）は <code>/contact/</code> へ遷移。</li>
+  <li>共通レイアウトのため <strong>push は承認後</strong>。</li>
+</ul>
+
+<h2>4. 残タスク</h2>
+<ol>
+  <li>承認後に push（K Footer と合わせて承認バッチとして）。</li>
+  <li>承認バッチの残り：M voice Review/Rating（§19.2）。</li>
+  <li>自走の残り：C <code>/pet/</code> の title/h1 改善。</li>
+</ol>
+
+<footer class="doc">川口典礼サイト 社内作業レポート｜2026-06-05 作成｜非公開（docs/reports/・noindex）｜個人情報・秘密情報なし</footer>
+
+</div>
+</body>
+</html>

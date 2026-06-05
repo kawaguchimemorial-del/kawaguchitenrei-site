@@ -1,3 +1,5 @@
+"use client";
+
 export function MobileBottomCTA() {
   return (
     <div className="fixed inset-x-0 bottom-0 z-50 border-t border-line-soft bg-white/95 px-3 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] shadow-[0_-10px_30px_rgba(21,32,28,0.16)] backdrop-blur md:hidden">
@@ -18,6 +20,14 @@ export function MobileBottomCTA() {
         </a>
         <a
           href="#consultation"
+          onClick={(e) => {
+            // #consultation がないページ（privacy / tokushoho / sitemap 等）では
+            // アンカーが無反応になるため、/contact/ へフォールバックする。
+            if (!document.getElementById("consultation")) {
+              e.preventDefault();
+              window.location.href = "/contact/";
+            }
+          }}
           className="flex min-h-16 items-center justify-center gap-2 rounded-lg bg-brand px-3 text-center text-white shadow-sm transition active:bg-brand-deep"
         >
           <span aria-hidden className="text-lg">

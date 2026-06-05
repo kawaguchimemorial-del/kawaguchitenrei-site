@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>作業レポート 2026-06-05｜Footer 導線拡充（K・承認待ち）</title>
+<style>
+  :root{--ink:#2b2b2b;--soft:#6b6b6b;--line:#e3e0da;--bg:#faf9f7;--accent:#7a6a55;--ok:#2e7d52;--warn:#b4691f}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;line-height:1.85;font-size:15px}
+  .wrap{max-width:860px;margin:0 auto;padding:40px 22px 80px}
+  header.doc{border-bottom:2px solid var(--line);padding-bottom:18px;margin-bottom:28px}
+  .kicker{font-size:12px;letter-spacing:.12em;color:var(--accent);margin:0 0 6px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:22px;font-weight:600;margin:0 0 10px;line-height:1.5}
+  .meta{font-size:12.5px;color:var(--soft)} .meta span{margin-right:14px}
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:19px;font-weight:600;margin:36px 0 12px;padding-left:11px;border-left:4px solid var(--accent)}
+  p{margin:8px 0}
+  .card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:14px 0}
+  .tag{display:inline-block;font-size:11.5px;padding:2px 9px;border-radius:999px;border:1px solid var(--line);color:var(--soft);background:#fff}
+  .tag.ok{color:var(--ok);border-color:#bfe0cd}
+  .tag.warn{color:var(--warn);border-color:#e7cdab}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13.5px;background:#fff}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  code{background:#f1efe9;padding:1px 6px;border-radius:5px;font-size:12.5px;font-family:ui-monospace,Consolas,monospace}
+  ul,ol{margin:8px 0;padding-left:22px} li{margin:4px 0}
+  .callout{border-left:4px solid var(--warn);background:#fdf6ec;padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0}
+  .callout p:first-child{margin-top:0}.callout p:last-child{margin-bottom:0}
+  .muted{color:var(--soft);font-size:13px}
+  footer.doc{margin-top:50px;padding-top:18px;border-top:1px solid var(--line);color:var(--soft);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <p class="kicker">川口典礼サイト ＿ 作業レポート（社内記録・非公開）</p>
+  <h1>Footer 導線拡充（対応エリア／葬儀場・斎場一覧／会社概要／ペット火葬）</h1>
+  <p class="meta">
+    <span>作成日：2026-06-05</span>
+    <span>施策：修正プロンプト集 K（承認バッチ）</span>
+    <span>担当：Claude Code</span>
+  </p>
+  <p class="muted">社内記録（Web非公開・<code>noindex</code>）。個人情報・秘密情報なし。出典：<a href="./2026-06-05-current-state-and-fix-prompts.html">現状分析＆修正プロンプト集</a> の K。</p>
+</header>
+
+<div class="callout">
+  <p><strong>状態：push 未実施（人間承認待ち）。</strong>Footer は共通レイアウト（CLAUDE.md §5・§19.2）に該当するため、実装と <code>npm run build</code>・<code>git status</code> まで進め、push は承認後に行う。</p>
+</div>
+
+<h2>1. サマリ</h2>
+<div class="card">
+  <ul>
+    <li><span class="tag ok">完了</span> Footer「対応エリア」を川口市1件から、エリア一覧＋主要7エリアに拡充。</li>
+    <li><span class="tag ok">完了</span> 「施設・事例」に <code>/saijo/</code>（葬儀場・斎場一覧）、「葬儀について」に <code>/pet/</code>（ペット火葬のご相談）、下部に <code>/company/</code>（会社概要）を追加。</li>
+    <li><span class="tag ok">完了</span> <code>npm run build</code> 成功・135ページ維持。意匠・配色・カラム構成・トーンは現状維持。</li>
+    <li><span class="tag warn">承認待ち</span> push は人間承認後。</li>
+  </ul>
+</div>
+
+<h2>2. 変更内容（components/layout/Footer.tsx）</h2>
+<table>
+  <thead><tr><th>箇所</th><th>変更</th></tr></thead>
+  <tbody>
+    <tr><td>対応エリア（カラム）</td><td>「川口市」1件 →「対応エリア一覧(<code>/area/</code>)」「川口市」「川口駅周辺」「新井宿」「鳩ヶ谷」「西川口」「東川口」「川口元郷」の8件に拡充。</td></tr>
+    <tr><td>施設・事例（カラム）</td><td>「葬儀場・斎場一覧(<code>/saijo/</code>)」を追加。</td></tr>
+    <tr><td>葬儀について（カラム）</td><td>「ペット火葬のご相談(<code>/pet/</code>)」を追加（孤立ページの内部リンク開通）。</td></tr>
+    <tr><td>下部ユーティリティ行</td><td>「会社概要(<code>/company/</code>)」を先頭に追加。</td></tr>
+  </tbody>
+</table>
+<p class="muted">配列（footerColumns / policyLinks）への項目追加のみ。グリッド（4カラム）・配色・余白・タイポグラフィ等のデザインは一切変更していない（§3 デザイン維持）。新規の価格・施設利用可否の記載なし。</p>
+
+<h2>3. 確認結果</h2>
+<ul>
+  <li><code>npm run build</code>：✓ Compiled successfully、静的生成135ページ（減少なし）、型エラーなし。</li>
+  <li>効果：<code>/area/</code> 索引・<code>/saijo/</code> 一覧・<code>/pet/</code>（旧・孤立ページ）・<code>/company/</code> へ全ページ共通の導線が通る。</li>
+  <li>共通レイアウトのため <strong>push は承認後</strong>。</li>
+</ul>
+
+<h2>4. 残タスク</h2>
+<ol>
+  <li>承認後に Footer を push。</li>
+  <li>承認バッチの残り：L MobileBottomCTA フォールバック、M voice Review/Rating。</li>
+  <li>自走の残り：C <code>/pet/</code> の title/h1 改善（本タスクで Footer 掲載＝孤立は解消済み）。</li>
+</ol>
+
+<footer class="doc">川口典礼サイト 社内作業レポート｜2026-06-05 作成｜非公開（docs/reports/・noindex）｜個人情報・秘密情報なし</footer>
+
+</div>
+</body>
+</html>
