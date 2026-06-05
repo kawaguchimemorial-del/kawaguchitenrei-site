@@ -15,6 +15,19 @@
 - 直近の実装変更が Vercel に反映済み：**確認済み**（`/area/`・`/area/kawaguchi-ekimae/`・`/pet/`・`/saijo/`・`/company/`・`/voice/`・`/column/` を実機確認）
 - 重複防止：本バッチの対象URLについて直近の Search Console リクエストなし
 
+## URL検査API 実施結果（2026-06-06・読み取りのみ／Claude 実施）
+
+URL検査API（`webmasters.readonly`）で新規2ページのインデックス状況を確認。
+※「インデックス登録リクエスト」は API では送信できないため未送信（GUI でのみ可能）。
+
+| URL | verdict | coverageState | 最終クロール | 対応 |
+|---|---|---|---|---|
+| /area/ | PASS | Submitted and indexed | 2026-06-05 | **既にインデックス済み → リクエスト不要** |
+| /area/kawaguchi-ekimae/ | NEUTRAL | URL is unknown to Google | 未クロール | **GUI でインデックス登録リクエスト推奨**（または sitemap クロール待ち） |
+
+→ 当面ユーザーに依頼したい GSC 操作は **`/area/kawaguchi-ekimae/` の登録リクエスト1件のみ**。`/area/` は対応不要。
+他の重要変更ページ（/pet/・/saijo/ ほか）は既存URLのため、再クロール促進として任意でリクエストしてよい。
+
 ## 対象 URL（優先度順・GSCで「URL検査→公開URLテスト→インデックス登録をリクエスト」）
 
 優先度高（新規ページ＝最優先）
