@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>作業レポート 2026-06-05｜/area/ 索引ページ新設（監査#3 / A）</title>
+<style>
+  :root{--ink:#2b2b2b;--soft:#6b6b6b;--line:#e3e0da;--bg:#faf9f7;--accent:#7a6a55;--ok:#2e7d52;--warn:#b4691f}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;line-height:1.85;font-size:15px}
+  .wrap{max-width:860px;margin:0 auto;padding:40px 22px 80px}
+  header.doc{border-bottom:2px solid var(--line);padding-bottom:18px;margin-bottom:28px}
+  .kicker{font-size:12px;letter-spacing:.12em;color:var(--accent);margin:0 0 6px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:23px;font-weight:600;margin:0 0 10px;line-height:1.5}
+  .meta{font-size:12.5px;color:var(--soft)} .meta span{margin-right:14px}
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:19px;font-weight:600;margin:36px 0 12px;padding-left:11px;border-left:4px solid var(--accent)}
+  p{margin:8px 0}
+  .card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:14px 0}
+  .tag{display:inline-block;font-size:11.5px;padding:2px 9px;border-radius:999px;border:1px solid var(--line);color:var(--soft);background:#fff}
+  .tag.ok{color:var(--ok);border-color:#bfe0cd}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13.5px;background:#fff}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  code{background:#f1efe9;padding:1px 6px;border-radius:5px;font-size:12.5px;font-family:ui-monospace,Consolas,monospace}
+  ul,ol{margin:8px 0;padding-left:22px} li{margin:4px 0}
+  .callout{border-left:4px solid var(--ok);background:#f3faf5;padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0}
+  .callout p:first-child{margin-top:0}.callout p:last-child{margin-bottom:0}
+  .muted{color:var(--soft);font-size:13px}
+  footer.doc{margin-top:50px;padding-top:18px;border-top:1px solid var(--line);color:var(--soft);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <p class="kicker">川口典礼サイト ＿ 作業レポート（社内記録・非公開）</p>
+  <h1>/area/ 対応エリア索引ページの新設</h1>
+  <p class="meta">
+    <span>作成日：2026-06-05</span>
+    <span>施策：弱点監査 #3 / 修正プロンプト集 A</span>
+    <span>担当：Claude Code</span>
+  </p>
+  <p class="muted">社内記録（Web非公開・<code>noindex</code>）。個人情報・秘密情報なし。出典：<a href="./2026-06-05-current-state-and-fix-prompts.html">現状分析＆修正プロンプト集</a> の A。</p>
+</header>
+
+<h2>1. サマリ</h2>
+<div class="card">
+  <ul>
+    <li><span class="tag ok">完了</span> <code>app/area/page.tsx</code> を新設。全14エリアをカード一覧表示するハブページ。</li>
+    <li><span class="tag ok">完了</span> 各エリア詳細の BreadcrumbList JSON-LD が指していた <code>/area/</code> が<strong>実在ページになり、構造化データの404を解消</strong>。</li>
+    <li><span class="tag ok">完了</span> <code>app/sitemap.ts</code> に <code>/area/</code> を追加。</li>
+    <li><span class="tag ok">完了</span> <code>npm run build</code> 成功・静的生成 <strong>133→134ページ</strong>（+1、減少なし）。生成HTMLで実機確認。</li>
+  </ul>
+</div>
+
+<h2>2. 背景・狙い</h2>
+<div class="callout">
+  <p>全14エリアの BreadcrumbList JSON-LD が <code>/area/</code> を指すのに索引ページが存在せず、<strong>構造化データが404を指す</strong>状態だった。索引ハブを新設してこれを解消し、エリア群への内部リンクの集約点（§7エリアSEO最優先）を作る。</p>
+</div>
+
+<h2>3. 変更内容</h2>
+<table>
+  <thead><tr><th>ファイル</th><th>内容</th></tr></thead>
+  <tbody>
+    <tr><td><code>app/area/page.tsx</code>（新規）</td><td>PageHero（h1「川口市・近隣の対応エリア」、パンくず ホーム→対応エリア）＋ <code>lib/areas.ts</code> の全エリアをカードグリッド表示（既存 relatedLinks 意匠踏襲）。各カードは <code>/area/&lt;slug&gt;/</code> へ。BreadcrumbList ＋ ItemList JSON-LD、metadata（title/description/canonical「/area/」/openGraph 既定画像）。プラン・葬儀場一覧への補助導線＋ <code>#consultation</code> CTA帯（当ページでモバイル固定CTAが機能）。</td></tr>
+    <tr><td><code>app/sitemap.ts</code></td><td><code>/area/</code> を追加（priority 0.9、エリア群の先頭）。</td></tr>
+  </tbody>
+</table>
+<p class="muted"><code>lib/areas.ts</code> は読み取りのみ（<code>areas</code> 配列・<code>name</code>・<code>heroLead</code> を流用、新フィールド追加なし）。価格・式場利用可否は記載せず、煽り・断定なし。</p>
+
+<h2>4. 確認結果（生成HTML 実機確認）</h2>
+<ul>
+  <li><code>npm run build</code>：✓ Compiled successfully、静的生成 134ページ（+1）、型エラーなし。</li>
+  <li><code>area.html</code>：BreadcrumbList ＋ ItemList を出力、エリアカード14件、h1「川口市・近隣の対応エリア」、og:title「対応エリア一覧｜…」を確認。</li>
+  <li>価格・式場利用可否・共通レイアウト・フォーム・全体デザイン未変更。</li>
+</ul>
+
+<h2>5. 今後のアクション</h2>
+<ol>
+  <li>新規エリア「川口（川口駅・本町）」（プロンプト集 J）を追加すれば、本索引へ自動的に載る。</li>
+  <li>承認バッチ K（Footer に「エリア一覧 /area/」導線）で、索引への全体回遊を強化。</li>
+  <li>再測定：2026-06-26 頃に GSC でエリア群の表示・内部遷移を確認。</li>
+</ol>
+
+<footer class="doc">川口典礼サイト 社内作業レポート｜2026-06-05 作成｜非公開（docs/reports/・noindex）｜個人情報・秘密情報なし</footer>
+
+</div>
+</body>
+</html>

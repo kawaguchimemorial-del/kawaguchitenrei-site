@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>現状分析 ＆ 修正プロンプト集｜川口典礼サイト 2026-06-05</title>
+<style>
+  :root{--ink:#2b2b2b;--soft:#6b6b6b;--line:#e3e0da;--bg:#faf9f7;--accent:#7a6a55;--ok:#2e7d52;--warn:#b4691f;--danger:#a83838}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;line-height:1.8;font-size:15px}
+  .wrap{max-width:940px;margin:0 auto;padding:40px 22px 90px}
+  header.doc{border-bottom:2px solid var(--line);padding-bottom:18px;margin-bottom:24px}
+  .kicker{font-size:12px;letter-spacing:.12em;color:var(--accent);margin:0 0 6px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:25px;font-weight:600;margin:0 0 10px;line-height:1.5}
+  .meta{font-size:12.5px;color:var(--soft)} .meta span{margin-right:14px}
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:20px;font-weight:600;margin:36px 0 12px;padding-left:11px;border-left:4px solid var(--accent)}
+  h2.hi{border-color:var(--danger)} h2.mid{border-color:var(--warn)} h2.appr{border-color:#3a5a8a} h2.lo{border-color:var(--ok)}
+  p{margin:8px 0}
+  code{background:#f1efe9;padding:1px 5px;border-radius:5px;font-size:12.5px;font-family:ui-monospace,Consolas,monospace}
+  .done{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 18px;margin:12px 0}
+  .done ul{margin:6px 0;padding-left:20px}
+  .tag{display:inline-block;font-size:11px;padding:1px 8px;border-radius:999px;border:1px solid var(--line);white-space:nowrap}
+  .tag.self{color:var(--ok);border-color:#bfe0cd}
+  .tag.appr{color:#3a5a8a;border-color:#bcd0ea}
+  .fix{background:#fff;border:1px solid var(--line);border-radius:10px;padding:0;margin:14px 0;overflow:hidden}
+  .fix>.head{padding:14px 18px}
+  .fix h3{margin:0 0 6px;font-size:16px}
+  .fix .why{color:var(--soft);font-size:13.5px;margin:4px 0}
+  .fix .files{font-size:12.5px;color:var(--soft);margin-top:6px}
+  details{border-top:1px solid var(--line);background:#fcfbf9}
+  summary{cursor:pointer;list-style:none;padding:11px 18px;font-size:13.5px;font-weight:700;color:#3a5a8a;user-select:none}
+  summary::-webkit-details-marker{display:none}
+  summary::before{content:"▶ ";font-size:11px}
+  details[open] summary::before{content:"▼ "}
+  details[open] summary{border-bottom:1px solid var(--line)}
+  pre{margin:0;padding:14px 18px;background:#1f2a24;color:#eef3ee;font-size:12.5px;line-height:1.7;
+      white-space:pre-wrap;word-break:break-word;font-family:ui-monospace,Consolas,monospace;overflow-x:auto}
+  .hint{font-size:11.5px;color:var(--soft);padding:6px 18px;background:#f3f1ec;border-top:1px solid var(--line)}
+  .muted{color:var(--soft);font-size:13px}
+  .legend{font-size:12.5px;color:var(--soft);margin:10px 0}
+  footer.doc{margin-top:48px;padding-top:18px;border-top:1px solid var(--line);color:var(--soft);font-size:12px}
+  a.toclink{color:#3a5a8a;text-decoration:none} a.toclink:hover{text-decoration:underline}
+  ol.toc{columns:2;font-size:13.5px} @media(max-width:640px){ol.toc{columns:1}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <p class="kicker">川口典礼サイト ＿ 現状分析 ＆ 修正プロンプト集（社内・非公開）</p>
+  <h1>現時点の状態分析と、直すべき箇所・実行用プロンプト</h1>
+  <p class="meta">
+    <span>作成日：2026-06-05</span>
+    <span>担当：Claude Code</span>
+    <span>本ドキュメントはサイト未変更（分析のみ）</span>
+  </p>
+  <p class="muted">各修正項目の「<strong>▶ 修正用プロンプトを開く</strong>」をクリックすると、そのまま Claude Code に貼り付けて実行できるプロンプトが展開されます。プロンプトは選択してコピーしてください。<span class="tag self">自走</span>＝§19.1で実装→push可／<span class="tag appr">承認</span>＝§19.2でpush前に人間承認。</p>
+</header>
+
+<h2>0. 本セッションで対応済み（現状の前提）</h2>
+<div class="done">
+  <ul>
+    <li>✅ SEOダッシュボード復旧（refresh_token失効）＋ OAuth同意画面を本番化（7日失効の恒久解消）</li>
+    <li>✅ Tier2：<code>/area/kawaguchi/</code>→各プランの地名アンカー追加／プラン→エリア逆リンクのアンカー是正</li>
+    <li>✅ 全46コラムに地域密着導線「川口市で葬儀をお考えのご家族へ」＋施設・エリア（めぐりの森/斎場一覧/エリア）リンク開通</li>
+    <li>✅ <code>/column/</code> 一覧のカテゴリ整理（1記事カテゴリを「その他のテーマ」に集約）</li>
+    <li>✅ コラムJSON-LD補強（詳細＝BreadcrumbList、一覧＝BreadcrumbList＋ItemList）＋ layout の OG既定</li>
+    <li>✅ 作業レポートの仕組み化（<code>skills/work-report</code>＋CLAUDE.md §16/§20）</li>
+  </ul>
+</div>
+
+<h2>現状の総評</h2>
+<p>土台は良好で、本セッションでコラム周りの内部リンク・構造化データ・OGは大きく改善した。残る弱点は <strong>(1) エリア索引の不在による構造化データの404、(2) 画像LCPの小バグ、(3) 上位表示なのに取りこぼしている <code>/pet/</code>、(4) 「斎場」語・指名クエリの器、(5) 共通レイアウト（Footer/CTA）の導線</strong> に整理できる。以下、優先度順に「直し方」と「実行プロンプト」を示す。</p>
+
+<div class="legend">目次：
+<ol class="toc">
+  <li><a class="toclink" href="#A">A. /area/ 索引ページ新設＋sitemap</a></li>
+  <li><a class="toclink" href="#B">B. 画像 priority 修正（preloadバグ）</a></li>
+  <li><a class="toclink" href="#C">C. /pet/ のタイトル・h1・孤立解消</a></li>
+  <li><a class="toclink" href="#D">D. /saijo/ に「斎場」語補強</a></li>
+  <li><a class="toclink" href="#E">E. company / voice の title 補強</a></li>
+  <li><a class="toclink" href="#F">F. saijo一覧 ItemList ＋ company/access Breadcrumb</a></li>
+  <li><a class="toclink" href="#G">G. hanaire-owakare の metaTitle</a></li>
+  <li><a class="toclink" href="#H">H. ColumnCard を next/image 化</a></li>
+  <li><a class="toclink" href="#I">I. plan/case/voice 一覧の固有OG</a></li>
+  <li><a class="toclink" href="#J">J. 新規エリア「川口（川口駅・本町）」</a></li>
+  <li><a class="toclink" href="#K">K. Footer 導線拡充（承認）</a></li>
+  <li><a class="toclink" href="#L">L. MobileBottomCTA フォールバック（承認）</a></li>
+  <li><a class="toclink" href="#M">M. voice の Review/Rating（承認）</a></li>
+  <li><a class="toclink" href="#N">N. /column/ の href="#" 修正</a></li>
+</ol>
+</div>
+
+<!-- ===================== HIGH ===================== -->
+<h2 class="hi" id="A">🔴 高 ｜ A. /area/ 索引ページ新設＋sitemap <span class="tag self">自走</span></h2>
+<div class="fix">
+  <div class="head">
+    <h3>問題</h3>
+    <p class="why">全14エリアの BreadcrumbList JSON-LD が <code>/area/</code> を指すのに、<code>app/area/page.tsx</code> が存在せず<strong>構造化データが404を指している</strong>。エリア群のハブも無い。</p>
+    <p class="files">対象：新規 <code>app/area/page.tsx</code>、<code>app/sitemap.ts</code>、<code>lib/areas.ts</code>（参照）</p>
+  </div>
+  <details><summary>修正用プロンプトを開く</summary>
+<pre>川口典礼サイトで対応エリアの索引ページを新設してください（§7エリアSEO最優先・既存エリアページのトーン/意匠を踏襲）。
+
+1) 新規 app/area/page.tsx を作成：
+   - lib/areas.ts の全エリアを一覧表示するカードグリッド。各カードは /area/&lt;slug&gt;/ へリンク（既存 /area/kawaguchi/ の relatedLinks カード意匠に合わせる）。
+   - PageHero で h1「川口市・近隣の対応エリア」、パンくず（ホーム→対応エリア）。
+   - BreadcrumbList JSON-LD（ホーム→対応エリア）と ItemList JSON-LD（各エリア名＋/area/&lt;slug&gt;/）を付与。
+   - metadata：title・description・canonical「/area/」・openGraph（既定画像 /images/home/hall/hall-exterior.jpg）。
+2) app/sitemap.ts に /area/ を追加。
+3) 各 app/area/*/page.tsx の BreadcrumbList が指す /area/ が実在ページになることを確認。
+
+制約：lib/areas.ts のデータ構造を流用（新フィールド追加は最小限）。価格・式場利用可否は書かない。煽らない・断定しない。
+完了後：npm run build でエラーなし・静的生成ページ数が減らない（増える想定）ことを確認し、git status を提示。docs/reports/ に作業レポートを残す（skills/work-report）。push は §19.1 自走可だが、最終差分を提示してから行う。</pre>
+    <div class="hint">このプロンプトを選択してコピー → Claude Code に貼り付け。</div>
+  </details>
+</div>
+
+<h2 class="hi" id="B">🔴 高 ｜ B. 画像 priority 修正（preload バグ） <span class="tag self">自走</span></h2>
+<div class="fix">
+  <div class="head">
+    <h3>問題</h3>
+    <p class="why"><code>PlanDetailIntro.tsx</code> のヒーロー画像が無効プロパティ <code>preload</code>（正：<code>priority</code>）。<code>/area/*</code>・<code>/saijo/*</code> のヒーローに <code>priority</code> 無しで LCP 悪化。</p>
+    <p class="files">対象：<code>components/plan/PlanDetailIntro.tsx</code>・<code>components/area/AreaDetailIntro.tsx</code>・<code>components/saijo/SaijoDetailIntro.tsx</code></p>
+  </div>
+  <details><summary>修正用プロンプトを開く</summary>
+<pre>画像のLCP最適化バグを修正してください（変更は該当コンポーネントのヒーロー画像のみ）。
+
+1) components/plan/PlanDetailIntro.tsx：ヒーロー &lt;Image&gt; に付いている無効プロパティ preload を priority に置換。
+2) components/area/AreaDetailIntro.tsx：above-the-fold のヒーロー &lt;Image&gt; に priority を付与。
+3) components/saijo/SaijoDetailIntro.tsx：ヒーロー &lt;Image&gt; に priority を付与。
+
+他の画像・レイアウト・sizes は変更しない。
+完了後：npm run build（133ページ維持）を確認し、docs/reports/ にレポート（skills/work-report）。最終差分を提示してから push。</pre>
+    <div class="hint">選択してコピー。</div>
+  </details>
+</div>
+
+<h2 class="hi" id="C">🔴 高 ｜ C. /pet/ のタイトル・h1・孤立解消 <span class="tag self">自走</span>（Footer掲載のみ承認）</h2>
+<div class="fix">
+  <div class="head">
+    <h3>問題</h3>
+    <p class="why"><code>ペット葬儀 川口市</code>1位・<code>ペット火葬 川口市</code>2位なのにCTR0%。h1 が「ペット火葬のご相談」で地名なし、かつ内部リンクが1本も無い孤立ページ（HTMLサイトマップにも未掲載）。</p>
+    <p class="files">対象：<code>app/pet/page.tsx</code>、<code>app/sitemap/page.tsx</code>（HTMLサイトマップ）</p>
+  </div>
+  <details><summary>修正用プロンプトを開く</summary>
+<pre>/pet/ ページの検索パフォーマンスを改善してください（CLAUDE.md §11 のペット方針＝面会セクションには入れない、を尊重し /pet/ 内で完結）。
+
+1) app/pet/page.tsx：
+   - title/h1/description に地名と検索意図語を補強。
+     例 title「ペット火葬 川口市｜流れ・お立ち会い・収骨のご相談｜川口典礼」、h1「川口市のペット火葬のご相談」。
+   - description に「お立ち会い・収骨・日程」など具体語を前出し。ただし金額は不確実なので断定せず「個別にご案内」を維持。煽らない・断定しない。
+   - openGraph の title/description も合わせて更新。
+2) 孤立解消（自走範囲）：app/sitemap/page.tsx（HTMLサイトマップ）の主要ページ一覧に /pet/ を追加。
+
+注意：Footer への /pet/ 追加は共通レイアウト（§19.2）に該当するため、この作業では行わず別バッチに回す（K 参照）。
+完了後：npm run build（133維持）を確認し、docs/reports/ にレポート。最終差分を提示してから push。</pre>
+    <div class="hint">選択してコピー。</div>
+  </details>
+</div>
+
+<h2 class="hi" id="D">🔴 高 ｜ D. /saijo/ に「斎場」語を補強 <span class="tag self">自走</span></h2>
+<div class="fix">
+  <div class="head">
+    <h3>問題</h3>
+    <p class="why"><code>川口 斎場</code>(18.7位)。<code>/saijo/</code> の title は「葬儀場一覧」で<strong>「斎場」語が無い</strong>。内容は網羅的で良質。</p>
+    <p class="files">対象：<code>app/saijo/page.tsx</code></p>
+  </div>
+  <details><summary>修正用プロンプトを開く</summary>
+<pre>「川口 斎場」向けに app/saijo/page.tsx を補強してください（既存の網羅的な内容・トーンは維持し、語の補強のみ）。
+
+- title に「斎場」を自然に併記。例：title「川口市の葬儀場・斎場一覧｜川口典礼」。openGraph.title も合わせる。
+- h1 直下または既存セクションの h2 に「川口の斎場・葬儀場を地域別にご案内」程度の自然な見出しを追加（キーワード羅列・連呼にしない）。
+- 施設の利用可否・宗派条件・空き状況などの新規断定はしない（§19.3 禁止）。
+
+完了後：npm run build（133維持）を確認し、docs/reports/ にレポート。最終差分を提示してから push。</pre>
+    <div class="hint">選択してコピー。</div>
+  </details>
+</div>
+
+<!-- ===================== MEDIUM ===================== -->
+<h2 class="mid" id="E">🟡 中 ｜ E. company / voice の title 補強 <span class="tag self">自走</span></h2>
+<div class="fix">
+  <div class="head">
+    <h3>問題</h3>
+    <p class="why"><code>company</code> title「会社概要 | 川口典礼」は <code>川口 葬儀社</code>(7位) を取りこぼし。<code>voice</code> title「お客様の声一覧 | 川口典礼」は地名・サービス語なしで <code>川口 家族葬 口コミ</code> 等を逃す。</p>
+    <p class="files">対象：<code>app/company/page.tsx</code>、<code>app/voice/page.tsx</code></p>
+  </div>
+  <details><summary>修正用プロンプトを開く</summary>
+<pre>指名・信頼クエリ向けに2ファイルの title/description を補強してください（本文・トーンは変えず、文言のみ。誇張・断定しない）。
+
+1) app/company/page.tsx：title「会社概要 | 川口典礼」→例「川口の葬儀社 川口典礼｜会社概要・創業20年・年間約260件」。
+   数値は既存の正本表現（創業20年・年間約260件）の範囲のみ。openGraph.title も合わせる。
+2) app/voice/page.tsx：title「お客様の声一覧 | 川口典礼」→例「川口の葬儀・家族葬 お客様の声｜川口典礼」。
+   description に地名・サービス語を自然に。openGraph があれば合わせる。
+
+完了後：npm run build を確認し、docs/reports/ にレポート。最終差分を提示してから push。</pre>
+    <div class="hint">選択してコピー。</div>
+  </details>
+</div>
+
+<h2 class="mid" id="F">🟡 中 ｜ F. saijo一覧 ItemList ＋ company/access の Breadcrumb <span class="tag self">自走</span></h2>
+<div class="fix">
+  <div class="head">
+    <h3>問題</h3>
+    <p class="why">saijo一覧に ItemList が無くリスト構造が機械可読でない。company/access に BreadcrumbList が無く他ページと不整合。</p>
+    <p class="files">対象：<code>app/saijo/page.tsx</code>・<code>app/company/page.tsx</code>・<code>app/access/page.tsx</code></p>
+  </div>
+  <details><summary>修正用プロンプトを開く</summary>
+<pre>構造化データの不足を補ってください。
+
+1) app/saijo/page.tsx：掲載している葬儀場の列挙に対する ItemList JSON-LD を追加（各施設名＋該当する /saijo/&lt;slug&gt;/ URL。ページを持たない施設は name のみ、または除外）。自社非運営施設の利用可否は新規断定しない。
+2) app/company/page.tsx と app/access/page.tsx：BreadcrumbList JSON-LD を追加（ホーム→会社概要 / ホーム→アクセス）。
+
+Review/aggregateRating は付けない（§19.2）。
+完了後：npm run build を確認し、docs/reports/ にレポート。最終差分を提示してから push。</pre>
+    <div class="hint">選択してコピー。</div>
+  </details>
+</div>
+
+<h2 class="mid" id="G">🟡 中 ｜ G. hanaire-owakare の metaTitle <span class="tag self">自走</span></h2>
+<div class="fix">
+  <div class="head">
+    <h3>問題</h3>
+    <p class="why"><code>hanaire-owakare</code> は metaTitle 未設定で、fallback により地名（川口市）がタイトルに乗らない。</p>
+    <p class="files">対象：<code>lib/plans.ts</code></p>
+  </div>
+  <details><summary>修正用プロンプトを開く</summary>
+<pre>lib/plans.ts の hanaire-owakare プランに metaTitle を追加してください。
+例「川口市の花入れお別れプラン（火葬前のお別れ）| 川口典礼」。
+価格・他フィールドは変更しない（価格は §9 正本のみ）。
+完了後：npm run build を確認し、docs/reports/ にレポート。最終差分を提示してから push。</pre>
+    <div class="hint">選択してコピー。</div>
+  </details>
+</div>
+
+<h2 class="mid" id="H">🟡 中 ｜ H. ColumnCard を next/image 化 <span class="tag self">自走</span></h2>
+<div class="fix">
+  <div class="head">
+    <h3>問題</h3>
+    <p class="why"><code>ColumnCard.tsx</code> が唯一 生 <code>&lt;img&gt;</code>（eslint-disable）で、自動最適化（srcset/AVIF/サイズ）の恩恵を逃す。</p>
+    <p class="files">対象：<code>components/column/ColumnCard.tsx</code></p>
+  </div>
+  <details><summary>修正用プロンプトを開く</summary>
+<pre>components/column/ColumnCard.tsx の生 &lt;img&gt;（@next/next/no-img-element を disable している default/compact 両方）を next/image に置き換えてください。
+- fill + 既存の親アスペクト比（aspect-[16/9] / aspect-[4/3]）に合った sizes を指定し CLS を防ぐ。
+- alt は既存値を維持。hover 挙動（group-hover scale 等）・角丸・object-cover も維持。
+完了後：npm run build（133維持）を確認し、docs/reports/ にレポート。最終差分を提示してから push。</pre>
+    <div class="hint">選択してコピー。</div>
+  </details>
+</div>
+
+<h2 class="mid" id="I">🟡 中 ｜ I. plan/case/voice 一覧の固有OG <span class="tag self">自走</span></h2>
+<div class="fix">
+  <div class="head">
+    <h3>問題</h3>
+    <p class="why">これらの一覧は現在 layout のブランドOG既定を継承中。固有OG（ページ名タイトル）に格上げ余地。</p>
+    <p class="files">対象：<code>app/plan/page.tsx</code>・<code>app/case/page.tsx</code>・<code>app/voice/page.tsx</code></p>
+  </div>
+  <details><summary>修正用プロンプトを開く</summary>
+<pre>OG既定（ブランド）から固有OGへ格上げします。
+app/plan/page.tsx・app/case/page.tsx・app/voice/page.tsx の各 metadata に、それぞれ固有の openGraph を追加してください。
+- title＝各ページのタイトル、description、url（各ルート）、type:"website"、siteName:"川口典礼"、locale:"ja_JP"、images:[{ url:"/images/home/hall/hall-exterior.jpg", width:1200, height:800, alt:"川口メモリアルホールの外観" }]。
+- 注意：Next の openGraph は浅いマージのため、各ページで画像も含めて明示すること（親の継承は効かない）。
+完了後：npm run build を確認し、docs/reports/ にレポート。最終差分を提示してから push。</pre>
+    <div class="hint">選択してコピー。</div>
+  </details>
+</div>
+
+<h2 class="mid" id="J">🟡 中 ｜ J. 新規エリア「川口（川口駅・本町・栄町）」 <span class="tag self">自走</span></h2>
+<div class="fix">
+  <div class="head">
+    <h3>問題</h3>
+    <p class="why">市の中心商業地で検索量大だが、該当エリアページが無い。<code>/saijo/</code> に「本町・舟戸町方面」寺院会館が既出で受け皿の素地あり。</p>
+    <p class="files">対象：新規 <code>app/area/&lt;slug&gt;/page.tsx</code>、<code>lib/areas.ts</code></p>
+  </div>
+  <details><summary>修正用プロンプトを開く</summary>
+<pre>川口市の中心部「川口（川口駅・本町・栄町）」エリアページを新設してください（§7最優先・既存エリアページの構成/トーン/JSON-LDを踏襲）。
+- lib/areas.ts に新規エリアを追加し、app/area/&lt;slug&gt;/page.tsx を作成（既存 araijuku 等のページ構成をコピーして内容を地域に合わせる）。
+- /saijo/ の「本町・舟戸町方面」寺院会館などを受け皿として自然に参照。ただし民営式場・寺院会館の利用可否・宗派条件は新規断定しない。
+- 価格は §9 正本のみ。kawaguchi 等の近隣エリアと相互リンク。BreadcrumbList/FAQPage/FuneralHome JSON-LD を既存エリア同様に付与。
+- app/area/page.tsx（索引・A実施後）と app/sitemap.ts にも追加。
+完了後：npm run build（ページ増を確認・減少が無いこと）を確認し、docs/reports/ にレポート。最終差分を提示してから push。</pre>
+    <div class="hint">選択してコピー。A（/area/索引）の後に実施すると索引へも自動的に載る。</div>
+  </details>
+</div>
+
+<!-- ===================== APPROVAL ===================== -->
+<h2 class="appr" id="K">🔵 承認バッチ ｜ K. Footer 導線拡充 <span class="tag appr">承認</span></h2>
+<div class="fix">
+  <div class="head">
+    <h3>問題</h3>
+    <p class="why">Footer「対応エリア」が川口市1件のみ。<code>/saijo/</code>一覧・<code>/company/</code>・<code>/pet/</code> への導線も欠く。<strong>共通レイアウト＝push前承認必須。</strong></p>
+    <p class="files">対象：<code>components/layout/Footer.tsx</code></p>
+  </div>
+  <details><summary>修正用プロンプトを開く</summary>
+<pre>【push前に人間承認が必要：共通レイアウト Footer（CLAUDE.md §19.2）】
+components/layout/Footer.tsx の「対応エリア」を、現在の川口市1件から拡充してください。
+- 主要エリア（lib/areas.ts）へのリンク、または「エリア一覧 /area/」へのリンクを追加。
+- あわせて /saijo/（葬儀場・斎場一覧）・/company/・/pet/ への導線を Footer に追加。
+- 意匠・配色・トーン・全体構成は現状維持（デザインコンセプトを変えない §3）。
+実装 → npm run build → git status まで進めてよいが、push はしないこと。最終差分を提示して承認を求める。docs/reports/ にレポート。</pre>
+    <div class="hint">選択してコピー。※push前に必ず人へ確認。</div>
+  </details>
+</div>
+
+<h2 class="appr" id="L">🔵 承認バッチ ｜ L. MobileBottomCTA のフォールバック <span class="tag appr">承認</span></h2>
+<div class="fix">
+  <div class="head">
+    <h3>問題</h3>
+    <p class="why">固定CTA「相談する」が <code>#consultation</code> 固定で、該当アンカーの無い privacy/tokushoho/sitemap で無反応。<strong>共通レイアウト＝push前承認必須。</strong></p>
+    <p class="files">対象：<code>components/layout/MobileBottomCTA.tsx</code></p>
+  </div>
+  <details><summary>修正用プロンプトを開く</summary>
+<pre>【push前に人間承認が必要：共通レイアウト MobileBottomCTA（CLAUDE.md §19.2）】
+components/layout/MobileBottomCTA.tsx の「相談する」が href="#consultation" 固定で、#consultation が存在しない privacy/tokushoho/sitemap 等で無反応になっています。
+- これらのページでも機能するようフォールバック（例：/contact/ へ遷移）を実装してください。CTAは「電話」と「事前相談」の2つのみ・LINEは入れない（§4）。
+実装 → npm run build まで進め、push はしない。最終差分を提示して承認を求める。docs/reports/ にレポート。</pre>
+    <div class="hint">選択してコピー。※push前に必ず人へ確認。</div>
+  </details>
+</div>
+
+<h2 class="appr" id="M">🔵 承認バッチ ｜ M. voice の Review/Rating 構造化データ <span class="tag appr">承認</span></h2>
+<div class="fix">
+  <div class="head">
+    <h3>問題</h3>
+    <p class="why"><code>lib/voices.ts</code> は <code>rating</code>(1-5) を持つのに Review/Rating 化していない。<strong>Review/aggregateRating は §19.2 で人間承認必須。</strong></p>
+    <p class="files">対象：voice 詳細テンプレート、<code>lib/voices.ts</code></p>
+  </div>
+  <details><summary>修正用プロンプトを開く</summary>
+<pre>【push前に人間承認が必要：Review/aggregateRating（CLAUDE.md §19.2）】
+lib/voices.ts の rating(1-5) を用いて、voice 詳細ページに Review/reviewRating の JSON-LD を追加する案を実装してください。
+- 個人名・故人名・喪主名は出さない（§12）。aggregateRating をサイト全体に出すかは特に慎重に判断し、初期は個別 Review のみを提案。
+実装 → npm run build まで進め、push はしない。最終差分・スキーマ例を提示して承認を求める。docs/reports/ にレポート。</pre>
+    <div class="hint">選択してコピー。※push前に必ず人へ確認。</div>
+  </details>
+</div>
+
+<!-- ===================== LOW ===================== -->
+<h2 class="lo" id="N">🟢 低 ｜ N. /column/ の href="#" 修正 <span class="tag self">自走</span></h2>
+<div class="fix">
+  <div class="head">
+    <h3>問題</h3>
+    <p class="why"><code>app/column/page.tsx</code> の「ページの先頭へ戻る」が <code>href="#"</code> のダミーリンク。</p>
+    <p class="files">対象：<code>app/column/page.tsx</code></p>
+  </div>
+  <details><summary>修正用プロンプトを開く</summary>
+<pre>app/column/page.tsx の「ページの先頭へ戻る」の href="#" を、実在アンカー（例 #all-articles）へのリンクに変更してください（または button＋スクロール処理）。他は変更しない。
+完了後：npm run build を確認し、docs/reports/ にレポート。最終差分を提示してから push。
+
+（あわせて低優先：text-ink-soft(#7a8a82) の小キャプションのコントラスト改善、Hero のモバイル/PC 二重 h1 の解消も、別途必要なら同様のプロンプトで指示可能。）</pre>
+    <div class="hint">選択してコピー。</div>
+  </details>
+</div>
+
+<h2>推奨実行順</h2>
+<p class="muted">自走バッチ：<strong>A → B → D → C → F → G → H → E → I → N → J</strong>（効果と安全性のバランス。Aを先にやると J のエリアページが索引へ自動的に載る）。<br>
+承認バッチ（別途・push前確認）：<strong>K → L → M</strong>。<br>
+各修正後は GSC 効果測定を <strong>2026-06-26 頃</strong> に実施。</p>
+
+<footer class="doc">川口典礼サイト 社内ドキュメント｜2026-06-05 作成｜非公開（docs/reports/・noindex）｜個人情報・秘密情報なし｜本書は分析のみ・サイト未変更</footer>
+
+</div>
+</body>
+</html>
