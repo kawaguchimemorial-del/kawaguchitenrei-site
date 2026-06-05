@@ -6,9 +6,9 @@ import { voices } from "@/lib/voices";
 const SITE_URL = "https://kawaguchitenrei.com";
 
 export const metadata: Metadata = {
-  title: "お客様の声一覧 | 川口典礼",
+  title: "川口の葬儀・家族葬 お客様の声｜川口典礼",
   description:
-    "川口典礼でご葬儀を執り行ったご家族から、ご利用いただいた感想をお寄せいただいています。お客様アンケートと感想本文を掲載しています。",
+    "川口市で川口典礼にご葬儀をご依頼いただいたご家族の声を掲載。家族葬・一日葬・直葬などのご感想と、お客様アンケートをご紹介しています。",
   alternates: { canonical: "/voice/" },
 };
 

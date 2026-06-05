@@ -2,11 +2,31 @@ import type { Metadata } from "next";
 import { PageHero } from "@/components/common/PageHero";
 import { company, getLocalBusinessJsonLd } from "@/lib/company";
 
+const COMPANY_TITLE =
+  "川口の葬儀社 川口典礼｜会社概要・創業20年・年間約260件";
+const COMPANY_DESCRIPTION =
+  "川口典礼は、埼玉県川口市西新井宿の地域密着葬儀社です。川口メモリアルホールを拠点に、家族葬・一日葬・直葬・川口市民葬まで対応。創業20年・年間約260件の施行実績。24時間365日受付。";
+
 export const metadata: Metadata = {
-  title: "会社概要 | 川口典礼",
-  description:
-    "川口典礼は、埼玉県川口市西新井宿の地域密着葬儀社です。川口メモリアルホールを拠点に、家族葬・一日葬・直葬・川口市民葬まで対応。24時間365日受付。",
+  title: COMPANY_TITLE,
+  description: COMPANY_DESCRIPTION,
   alternates: { canonical: "/company/" },
+  openGraph: {
+    title: COMPANY_TITLE,
+    description: COMPANY_DESCRIPTION,
+    url: "/company/",
+    type: "website",
+    siteName: "川口典礼",
+    locale: "ja_JP",
+    images: [
+      {
+        url: "/images/home/hall/hall-exterior.jpg",
+        width: 1200,
+        height: 800,
+        alt: "川口メモリアルホールの外観",
+      },
+    ],
+  },
 };
 
 const values = [
