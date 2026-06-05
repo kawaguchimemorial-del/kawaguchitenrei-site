@@ -1,18 +1,16 @@
-import type { ColumnArticle } from "@/lib/columns";
+type ChipCategory = {
+  label: string;
+  count: number;
+};
 
 type Props = {
-  articles: ColumnArticle[];
+  categories: ChipCategory[];
+  total: number;
   activeCategory?: string;
 };
 
-export function CategoryChips({ articles, activeCategory }: Props) {
-  const counts = new Map<string, number>();
-  for (const a of articles) {
-    if (!a.category) continue;
-    counts.set(a.category, (counts.get(a.category) ?? 0) + 1);
-  }
-  const entries = Array.from(counts.entries()).sort((a, b) => b[1] - a[1]);
-  if (entries.length === 0) return null;
+export function CategoryChips({ categories, total, activeCategory }: Props) {
+  if (categories.length === 0) return null;
 
   return (
     <nav aria-label="カテゴリ" className="flex flex-wrap gap-2">
@@ -25,18 +23,18 @@ export function CategoryChips({ articles, activeCategory }: Props) {
         }
       >
         すべて
-        <span className="text-xs font-normal opacity-80">
-          ({articles.length})
-        </span>
+        <span className="text-xs font-normal opacity-80">({total})</span>
       </a>
-      {entries.map(([category, count]) => (
+      {categories.map((category) => (
         <a
-          key={category}
-          href={`#cat-${encodeURIComponent(category)}`}
+          key={category.label}
+          href={`#cat-${encodeURIComponent(category.label)}`}
           className="inline-flex items-center gap-1 rounded-full border border-line bg-white px-4 py-1.5 text-sm font-bold text-ink-mid transition hover:border-brand hover:text-brand"
         >
-          {category}
-          <span className="text-xs font-normal opacity-70">({count})</span>
+          {category.label}
+          <span className="text-xs font-normal opacity-70">
+            ({category.count})
+          </span>
         </a>
       ))}
     </nav>

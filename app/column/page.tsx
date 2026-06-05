@@ -18,20 +18,40 @@ const sortedColumns = [...columns].sort((a, b) =>
 const featured = sortedColumns.slice(0, 3);
 const remaining = sortedColumns.slice(3);
 
-// Group remaining by category (preserves original sort)
-function groupByCategory(articles: typeof sortedColumns) {
+// 表示用セクションを構成する。
+// 2記事以上のカテゴリは件数の多い順に個別セクション化し、
+// 1記事だけのカテゴリは「その他のテーマ」に集約して、
+// 下部グリッドが疎にならない（＝スカスカに見えない）ようにする。
+const OTHER_LABEL = "その他のテーマ";
+
+function buildSections(
+  articles: typeof sortedColumns
+): [string, typeof sortedColumns][] {
   const map = new Map<string, typeof sortedColumns>();
   for (const a of articles) {
-    const key = a.category ?? "その他";
+    const key = a.category ?? OTHER_LABEL;
     const arr = map.get(key);
     if (arr) arr.push(a);
     else map.set(key, [a]);
   }
-  return Array.from(map.entries()).sort((a, b) => b[1].length - a[1].length);
+  const all = Array.from(map.entries());
+  const major = all
+    .filter(([, arr]) => arr.length >= 2)
+    .sort((a, b) => b[1].length - a[1].length);
+  const minor = all
+    .filter(([, arr]) => arr.length < 2)
+    .flatMap(([, arr]) => arr);
+  const sections: [string, typeof sortedColumns][] = [...major];
+  if (minor.length > 0) sections.push([OTHER_LABEL, minor]);
+  return sections;
 }
 
 export default function ColumnIndexPage() {
-  const grouped = groupByCategory(sortedColumns);
+  const sections = buildSections(sortedColumns);
+  const chipCategories = sections.map(([label, arts]) => ({
+    label,
+    count: arts.length,
+  }));
 
   return (
     <>
@@ -92,7 +112,10 @@ export default function ColumnIndexPage() {
             <p className="text-sm font-semibold tracking-[0.18em] text-brand uppercase shrink-0">
               Categories
             </p>
-            <CategoryChips articles={sortedColumns} />
+            <CategoryChips
+              categories={chipCategories}
+              total={sortedColumns.length}
+            />
           </div>
         </div>
       </section>
@@ -109,7 +132,7 @@ export default function ColumnIndexPage() {
             </p>
           ) : (
             <div className="space-y-14 md:space-y-20">
-              {grouped.map(([category, arts]) => (
+              {sections.map(([category, arts]) => (
                 <div
                   key={category}
                   id={`cat-${encodeURIComponent(category)}`}
