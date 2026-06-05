@@ -223,6 +223,7 @@ SEO/AIO の観点では、構造化データ・見出し階層・地名×サー�
 3. 変更ファイル一覧と確認 URL を提示
 4. コミット・push は明示的に指示されたときだけ実行
 5. 破壊的操作（`git reset --hard`、`git push --force`、`rm -rf`、ファイルリネーム、依存削除など）は事前承認なしに実行しない
+6. **サイトを修正したら、毎回 `docs/reports/` に HTML レポートを残す**（手順は `skills/work-report/SKILL.md`）。Web 非公開・秘密情報/個人情報は記載しない
 
 ---
 
@@ -312,6 +313,7 @@ SEO/AIO の観点では、構造化データ・見出し階層・地名×サー�
 |---|---|
 | Skill / Agent / Prompt / Hook / 人間承認の分類 | `docs/ai-workflows/skill-index.md` |
 | SEO/AIO ページ改善の標準手順 | `skills/seo-page-improvement/SKILL.md` |
+| サイト修正レポート記録手順（修正のたびに必ず） | `skills/work-report/SKILL.md` |
 | Search Console 作業ログ手順 | `skills/search-console-log/SKILL.md` |
 | 日本向け Privacy Review 手順 | `skills/privacy-review-jp/SKILL.md` |
 | 6 段階コードレビュー手順 | `skills/code-review-6-stages/SKILL.md` |

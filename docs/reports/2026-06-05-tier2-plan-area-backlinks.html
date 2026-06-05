@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>作業レポート 2026-06-05｜Tier2 第2作業：専用プラン→エリアの逆リンク是正</title>
+<style>
+  :root{--ink:#2b2b2b;--soft:#6b6b6b;--line:#e3e0da;--bg:#faf9f7;--accent:#7a6a55;--ok:#2e7d52;--warn:#b4691f}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;line-height:1.85;font-size:15px}
+  .wrap{max-width:860px;margin:0 auto;padding:40px 22px 80px}
+  header.doc{border-bottom:2px solid var(--line);padding-bottom:18px;margin-bottom:28px}
+  .kicker{font-size:12px;letter-spacing:.12em;color:var(--accent);margin:0 0 6px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:24px;font-weight:600;margin:0 0 10px;line-height:1.5}
+  .meta{font-size:12.5px;color:var(--soft)} .meta span{margin-right:14px}
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:19px;font-weight:600;margin:36px 0 12px;padding-left:11px;border-left:4px solid var(--accent)}
+  p{margin:8px 0}
+  .card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:14px 0}
+  .tag{display:inline-block;font-size:11.5px;padding:2px 9px;border-radius:999px;border:1px solid var(--line);color:var(--soft);background:#fff}
+  .tag.ok{color:var(--ok);border-color:#bfe0cd}
+  .tag.warn{color:var(--warn);border-color:#e7cdab}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13.5px;background:#fff}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  code{background:#f1efe9;padding:1px 6px;border-radius:5px;font-size:12.5px;font-family:ui-monospace,Consolas,monospace}
+  ul,ol{margin:8px 0;padding-left:22px} li{margin:4px 0}
+  .callout{border-left:4px solid var(--ok);background:#f3faf5;padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0}
+  .callout.warn{border-color:var(--warn);background:#fdf6ec}
+  .callout p:first-child{margin-top:0}.callout p:last-child{margin-bottom:0}
+  .muted{color:var(--soft);font-size:13px}
+  footer.doc{margin-top:50px;padding-top:18px;border-top:1px solid var(--line);color:var(--soft);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <p class="kicker">川口典礼サイト ＿ 作業レポート（社内記録・非公開）</p>
+  <h1>Tier2 第2作業：専用プラン → /area/kawaguchi/ 逆リンクのアンカー是正</h1>
+  <p class="meta">
+    <span>作成日：2026-06-05</span>
+    <span>施策バッチ：Tier2（地域×形式）第2作業</span>
+    <span>担当：Claude Code</span>
+  </p>
+  <p class="muted">社内記録（Web非公開・<code>noindex</code>）。個人情報・秘密情報なし。関連：<a href="./2026-06-05-tier2-internal-links-kawaguchi.html">Tier2 第1作業</a> / <a href="./2026-06-05-seo-dashboard-and-keyword-analysis.html">SEO分析</a>。</p>
+</header>
+
+<h2>1. サマリ</h2>
+<div class="card">
+  <ul>
+    <li><span class="tag ok">確認</span> 主要5プラン（家族葬・一日葬・火葬式・直葬・無宗教）は <code>/area/kawaguchi/</code> への地名アンカー逆リンクを<strong>既に保有</strong>（移行時設定済み）。</li>
+    <li><span class="tag ok">是正</span> 一日葬・火葬式・直葬の逆リンクが、文脈とズレる同一アンカー「川口市の葬儀・<strong>家族葬</strong>」だった点を「川口市の葬儀・対応エリア」に修正（head term「川口市の葬儀」は保持）。</li>
+    <li><span class="tag ok">完了</span> <code>npm run build</code> 成功・静的生成133ページ（減少なし）。</li>
+    <li><span class="tag warn">未対応・要判断</span> <code>kawaguchi-shimin</code>（市民葬・専用ボディ）と <code>hanaire-owakare</code>（relatedLinks ゼロ）は別対応が必要。</li>
+  </ul>
+</div>
+
+<h2>2. 背景・狙い</h2>
+<p>Tier2 第1作業でエリア→プランの内部リンクを地名アンカーで補強。第2作業では逆方向（専用プラン→エリアハブ <code>/area/kawaguchi/</code>）の逆リンクを点検し、<code>川口市 葬儀</code>（3,553表示・8.4位、現状トップ経由）の受け皿となるエリアハブの評価を補強することを狙った。</p>
+<div class="callout">
+  <p>点検の結果、主要5プランは既にエリアハブへ地名アンカーで逆リンク済みであった。一方、<strong>5ページとも同一アンカー「川口市の葬儀・家族葬」</strong>で、一日葬・火葬式・直葬のページに「家族葬」が付くのは文脈とズレ、かつ同一アンカーの量産は templated link の足跡になり得る。そこで <strong>head term「川口市の葬儀」を保ちつつ、文脈に合わない「家族葬」を外す</strong>最小是正を行った。</p>
+</div>
+
+<h2>3. 変更内容</h2>
+<p>対象：<code>lib/plans.ts</code>（1ファイル）。各プランの <code>relatedLinks</code> 内、<code>/area/kawaguchi/</code> 行のラベルのみ変更。</p>
+<table>
+  <thead><tr><th>プラン（ページ）</th><th>変更前ラベル</th><th>変更後ラベル</th></tr></thead>
+  <tbody>
+    <tr><td>一日葬 <code>/plan/oneday-funeral/</code></td><td>川口市の葬儀・家族葬</td><td>川口市の葬儀・対応エリア</td></tr>
+    <tr><td>火葬式 <code>/plan/cremation/</code></td><td>川口市の葬儀・家族葬</td><td>川口市の葬儀・対応エリア</td></tr>
+    <tr><td>直葬 <code>/plan/direct-funeral/</code></td><td>川口市の葬儀・家族葬</td><td>川口市の葬儀・対応エリア</td></tr>
+    <tr><td>家族葬 <code>/plan/family-funeral/</code></td><td colspan="2">現状維持（「川口市の葬儀・家族葬」は文脈に合致）</td></tr>
+    <tr><td>無宗教 <code>/plan/non-religious-funeral/</code></td><td colspan="2">現状維持（優先度低・別途検討）</td></tr>
+  </tbody>
+</table>
+<p class="muted">リンク先・説明文・件数・価格・デザインは変更なし。ラベル文言のみの最小修正。</p>
+
+<h2>4. 確認結果</h2>
+<ul>
+  <li><code>npm run build</code>：✓ Compiled successfully、静的生成 133ページ（減少なし）。</li>
+  <li>アンカー件数：「川口市の葬儀・家族葬」2件（家族葬・無宗教）／「川口市の葬儀・対応エリア」3件（一日葬・火葬式・直葬）。意図どおり。</li>
+  <li>禁止表現なし。価格・式場利用可否・共通レイアウト・フォーム未変更。</li>
+</ul>
+
+<h2>5. 未対応・今後のアクション</h2>
+<ol>
+  <li><strong>kawaguchi-shimin（市民葬）：</strong>専用ボディ <code>PlanCitizenFuneralBody</code> が関連リンク欄を描画しないため、エリア逆リンクが表示されない。表示するにはコンポーネント側の対応が必要（別タスク・要承認）。</li>
+  <li><strong>hanaire-owakare（花入れお別れ）：</strong><code>relatedLinks</code> が未設定で内部リンクがゼロ。エリア逆リンク＋プラン相互リンクの追加余地あり（優先度は低・別タスク）。</li>
+  <li><strong>第3作業（要承認）：</strong>高表示コラム（神式香典袋・友人葬など）やトップページからの導線。トップは design 配慮のうえ別途。</li>
+  <li><strong>再測定：</strong>2026-06-26 頃に GSC 再取得で着地ページ・順位の変化を確認。</li>
+</ol>
+
+<footer class="doc">川口典礼サイト 社内作業レポート｜2026-06-05 作成｜非公開（docs/reports/・noindex）｜個人情報・秘密情報なし</footer>
+
+</div>
+</body>
+</html>

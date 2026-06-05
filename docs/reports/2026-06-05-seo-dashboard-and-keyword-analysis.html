@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>作業レポート 2026-06-05｜SEOダッシュボード復旧 & あと一歩KW分析</title>
+<style>
+  :root{
+    --ink:#2b2b2b; --soft:#6b6b6b; --line:#e3e0da; --bg:#faf9f7;
+    --accent:#7a6a55; --ok:#2e7d52; --warn:#b4691f; --danger:#a83838;
+    --card:#ffffff;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;
+    line-height:1.85; font-size:15px;
+  }
+  .wrap{max-width:860px; margin:0 auto; padding:40px 22px 80px}
+  header.doc{border-bottom:2px solid var(--line); padding-bottom:18px; margin-bottom:28px}
+  .kicker{font-size:12px; letter-spacing:.12em; color:var(--accent); margin:0 0 6px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif; font-size:25px; font-weight:600; margin:0 0 10px; line-height:1.5}
+  .meta{font-size:12.5px; color:var(--soft)}
+  .meta span{margin-right:14px}
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif; font-size:19px; font-weight:600;
+     margin:38px 0 12px; padding-left:11px; border-left:4px solid var(--accent)}
+  h3{font-size:15px; margin:22px 0 8px}
+  p{margin:8px 0}
+  .card{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:16px 18px; margin:14px 0}
+  .tag{display:inline-block; font-size:11.5px; padding:2px 9px; border-radius:999px; border:1px solid var(--line); color:var(--soft); background:#fff}
+  .tag.ok{color:var(--ok); border-color:#bfe0cd}
+  .tag.warn{color:var(--warn); border-color:#e7cdab}
+  .tag.danger{color:var(--danger); border-color:#e7b9b9}
+  table{width:100%; border-collapse:collapse; margin:12px 0; font-size:13.5px; background:#fff}
+  th,td{border:1px solid var(--line); padding:7px 9px; text-align:left; vertical-align:top}
+  th{background:#f3f1ec; font-weight:600; color:#4a4438}
+  td.num{text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap}
+  .hl{background:#fff6e9}
+  ul,ol{margin:8px 0 8px; padding-left:22px}
+  li{margin:4px 0}
+  code{background:#f1efe9; padding:1px 6px; border-radius:5px; font-size:12.5px;
+       font-family:ui-monospace,Menlo,Consolas,monospace}
+  .callout{border-left:4px solid var(--ok); background:#f3faf5; padding:12px 16px; border-radius:0 8px 8px 0; margin:14px 0}
+  .callout.warn{border-color:var(--warn); background:#fdf6ec}
+  .callout.danger{border-color:var(--danger); background:#fcf1f1}
+  .callout p:first-child{margin-top:0} .callout p:last-child{margin-bottom:0}
+  .muted{color:var(--soft); font-size:13px}
+  footer.doc{margin-top:50px; padding-top:18px; border-top:1px solid var(--line); color:var(--soft); font-size:12px}
+  .legend{font-size:12px; color:var(--soft); margin:4px 0 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <p class="kicker">川口典礼サイト ＿ 作業レポート（社内記録・非公開）</p>
+  <h1>SEOダッシュボード復旧 ＆「あと一歩キーワード」着地ページ分析</h1>
+  <p class="meta">
+    <span>作成日：2026-06-05</span>
+    <span>対象データ期間：2026-05-06 〜 2026-06-02（GSC・直近28日）</span>
+    <span>担当：Claude Code</span>
+  </p>
+  <p class="muted">本レポートは <code>docs/reports/</code> 配下の社内記録です。Next.js は <code>public/</code> と <code>app/</code> のみを配信するため、Webサイトには公開されません（<code>noindex</code> 指定済み）。個人情報・秘密情報は含みません。</p>
+</header>
+
+<!-- ============ 1. サマリ ============ -->
+<h2>1. 本日の対応サマリ</h2>
+<div class="card">
+  <ul>
+    <li><span class="tag ok">完了</span> 管理画面 <code>/admin/seo/</code> の「データを取得できませんでした」を復旧（原因：Google OAuth の refresh_token 失効）。</li>
+    <li><span class="tag ok">完了</span> 新しい refresh_token を再取得し、<code>.env.local</code> と Vercel 本番環境変数を更新 → 再デプロイ。</li>
+    <li><span class="tag ok">完了</span> OAuth 同意画面を「本番」へ変更し、約7日での再失効を恒久的に解消。</li>
+    <li><span class="tag ok">完了</span> 復旧後に実データを再取得し、SEO の現状を分析。</li>
+    <li><span class="tag warn">提案・未着手</span>「あと一歩キーワード」テコ入れの実装方針を策定（内部リンク集約＋再評価促進）。着手は承認待ち。</li>
+  </ul>
+</div>
+
+<!-- ============ 2. 障害 ============ -->
+<h2>2. 障害対応：SEOダッシュボードのデータ取得失敗</h2>
+
+<h3>事象</h3>
+<p>管理画面 <code>/admin/seo/</code> が「データを取得できませんでした。」と表示。Search Console データが全く出ない状態。</p>
+
+<h3>原因</h3>
+<div class="callout danger">
+  <p><strong>Google OAuth の refresh_token が失効</strong>していた。</p>
+  <p class="muted">認証の最初の段階（refresh_token → access_token 交換）で次のエラー：</p>
+  <p><code>invalid_grant | code=400 | http=400 | desc=Token has been expired or revoked.</code></p>
+</div>
+<p>コード・エラーハンドリング・環境変数の設定自体に問題はなし。ダッシュボードは失敗を <code>ok:false</code> に握り潰す設計のため、画面には汎用メッセージのみ表示され、実エラーはサーバーログ（<code>[search-console] fetch failed: ...</code>）にのみ出力される。</p>
+
+<h3>根本要因</h3>
+<p>OAuth 同意画面が「<strong>テスト中（Testing）</strong>」公開ステータスのままだったため、Google の仕様により refresh_token が<strong>約7日で自動失効</strong>。<code>.env.local</code> の最終更新（2026-05-27）から約9日経過しており、時系列も一致。「動いていたのに急に止まった」典型パターン。</p>
+
+<h3>対応</h3>
+<ol>
+  <li>既存スクリプト <code>scripts/get-refresh-token.mjs</code> でブラウザ承認 → 新しい refresh_token を再取得。</li>
+  <li>値を画面に出さず、スクリプト経由で <code>.env.local</code> の <code>GOOGLE_OAUTH_REFRESH_TOKEN</code> を更新。</li>
+  <li>ローカルで実クエリ成功を確認（access token OK、データ返却）。</li>
+  <li>Vercel ダッシュボードの環境変数を同じ値に更新 → 再デプロイ。</li>
+  <li><strong>恒久対策：</strong>Google Cloud Console の OAuth 同意画面を「本番（In production）」に変更し、7日失効を解消。</li>
+</ol>
+
+<div class="callout">
+  <p><strong>再発時の切り分け手順（メモ）：</strong>同症状が再発したら、まず Vercel の Functions ログで <code>[search-console] fetch failed: ...</code> の実エラー本文を確認する。<code>invalid_grant</code> なら refresh_token 再取得、それ以外なら CLIENT_ID/SECRET・GSC プロパティ権限・サイトURL設定を確認。</p>
+</div>
+
+<!-- ============ 3. 現状データ ============ -->
+<h2>3. SEO現状スナップショット（GSC 直近28日・全体）</h2>
+
+<h3>上位クエリ（抜粋）</h3>
+<table>
+  <thead><tr><th>クエリ</th><th class="num">クリック</th><th class="num">表示</th><th class="num">CTR</th><th class="num">掲載順位</th></tr></thead>
+  <tbody>
+    <tr><td>川口典礼（指名）</td><td class="num">39</td><td class="num">217</td><td class="num">18.0%</td><td class="num">3.6</td></tr>
+    <tr><td>神式葬儀 香典袋</td><td class="num">7</td><td class="num">585</td><td class="num">1.2%</td><td class="num">9.7</td></tr>
+    <tr><td>訃報 返信</td><td class="num">3</td><td class="num">320</td><td class="num">0.9%</td><td class="num">11.7</td></tr>
+    <tr><td>川口メモリアルホール</td><td class="num">2</td><td class="num">270</td><td class="num">0.7%</td><td class="num">13.6</td></tr>
+    <tr><td>川口 一日葬</td><td class="num">1</td><td class="num">28</td><td class="num">3.6%</td><td class="num">9.0</td></tr>
+  </tbody>
+</table>
+<p class="legend">指名検索「川口典礼」は3.6位・CTR18%と良好。コラム（神式・訃報・湯灌）経由の情報系流入が多い。</p>
+
+<h3>重要キーワード（固定20件）の所感</h3>
+<ul>
+  <li><strong>表示はあるがクリックがほぼ0</strong>。順位が1ページ目の下〜2ページ目に滞留しているのが主因。</li>
+  <li>伸びしろ大：<code>川口市 葬儀</code>（表示1262・7.3位）、<code>川口 葬儀</code>（表示596・8.8位）、<code>川口 葬儀社</code>（6.7位）。</li>
+  <li>2ページ目で要対策：<code>川口市 家族葬</code>（15.2位）、<code>川口 火葬</code>系。</li>
+  <li><code>めぐりの森 ◯◯</code>（葬儀／家族葬／火葬式／直葬）は4語すべて<strong>表示0</strong>＝まだ未獲得。</li>
+</ul>
+
+<!-- ============ 4. あと一歩分析 ============ -->
+<h2>4.「あと一歩キーワード」着地ページ分析（核心）</h2>
+<p>順位6〜15位の「あと一歩」キーワードについて、Google が実際にどのURLを当てているかを GSC で実測。</p>
+
+<table>
+  <thead><tr><th>キーワード</th><th>現在の着地URL</th><th class="num">順位</th><th>本来あるべき専用ページ</th></tr></thead>
+  <tbody>
+    <tr class="hl"><td>川口市 葬儀（表示1262）</td><td><code>/</code>（トップ）</td><td class="num">7.3</td><td>トップで妥当（ヘッドターム）</td></tr>
+    <tr class="hl"><td>川口 葬儀（表示595）</td><td><code>/</code></td><td class="num">8.6</td><td>トップで妥当</td></tr>
+    <tr><td>川口 葬儀社</td><td><code>/</code></td><td class="num">6.7</td><td>トップで妥当</td></tr>
+    <tr><td>川口市 葬儀社</td><td><code>/</code></td><td class="num">12.4</td><td>—</td></tr>
+    <tr class="hl"><td>川口市 家族葬（表示319）</td><td><code>/</code></td><td class="num">15.2</td><td><code>/plan/family-funeral/</code></td></tr>
+    <tr class="hl"><td>川口 一日葬</td><td><code>/</code></td><td class="num">9.0</td><td><code>/plan/oneday-funeral/</code></td></tr>
+    <tr><td>川口市 火葬式</td><td><code>/</code></td><td class="num">3.9</td><td><code>/plan/cremation/</code>（現状トップで好位置）</td></tr>
+    <tr><td>川口市 市民葬</td><td><code>/shimin_sou</code>→ &amp; <code>/plan/kawaguchi-shimin/</code></td><td class="num">10.1 / 15.8</td><td>301統合中（自然解消見込み）</td></tr>
+    <tr><td>川口市 直葬</td><td><code>/</code></td><td class="num">21.5</td><td><code>/plan/direct-funeral/</code></td></tr>
+  </tbody>
+</table>
+
+<div class="callout warn">
+  <p><strong>核心の発見：</strong>専用プランページ（家族葬・一日葬・直葬など）が全形式そろって存在し、各ページの文言SEO（metaTitle・結論先出し・FAQ・関連リンク）も<strong>すでに十分に最適化されている</strong>。にもかかわらず、Google は多くの地名×形式クエリで<strong>専用ページではなくトップ <code>/</code> を当てている</strong>。</p>
+</div>
+
+<h3>なぜトップに負けているか</h3>
+<ol>
+  <li><strong>ページの新しさ：</strong>リニューアルでURL構造が変わり、専用プランページはまだ約2週間。Google が評価をトップから専用ページへ移し終えていない。</li>
+  <li><strong>内部リンク評価の偏り：</strong>トップが最も内部リンク・権威を集めており、専用ページの topical signal が不足。暫定的にトップが当たっている。</li>
+</ol>
+<p>＝ <strong>コンテンツ不足ではない</strong>。したがって metaTitle 等の書き換えは効果が薄く不要。打ち手は「内部リンク集約」と「再評価の促進＋時間」。</p>
+
+<!-- ============ 5. リダイレクト監査 ============ -->
+<h2>5. リダイレクト監査（旧URL→新URL）</h2>
+<div class="callout">
+  <p><span class="tag ok">問題なし</span> <code>next.config.ts</code> の <code>redirects()</code> は網羅的。旧URLは301で新ページへ正しく転送されている。</p>
+</div>
+<ul>
+  <li><code>/shimin_sou</code> → <code>/plan/kawaguchi-shimin/</code></li>
+  <li><code>/kazoku_sou</code> → <code>/plan/family-funeral/</code></li>
+  <li><code>/kawaguchi_hall</code> → <code>/hall/kawaguchi-memorial-hall/</code></li>
+  <li><code>/kasou_sikijou</code> → <code>/area/kawaguchi/</code></li>
+  <li><code>/Column_list/:slug*</code> → <code>/column/:slug*</code> ／ <code>/QA/:slug*</code> → <code>/column/</code> ほか多数</li>
+</ul>
+<p class="muted">GSCに旧URLが残るのは301統合の進行中であるため。数週間で新URLへ評価が寄る見込み。対応不要。</p>
+
+<!-- ============ 6. 推奨プラン ============ -->
+<h2>6. 推奨アクションプラン（あと一歩KWテコ入れ・改訂版）</h2>
+<table>
+  <thead><tr><th>区分</th><th>内容</th><th>担当</th><th>状態</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><strong>A. 内部リンク強化</strong></td>
+      <td>トップ・エリアページ・関連コラムから各専用プランページへ、<strong>「川口市の家族葬」「川口の一日葬」等の地名×形式アンカー</strong>でリンクを張り、トピック信号を専用ページへ集約。優先：<code>family-funeral</code>・<code>oneday-funeral</code>。</td>
+      <td>Claude（実装）</td>
+      <td><span class="tag warn">承認待ち</span></td>
+    </tr>
+    <tr>
+      <td><strong>B. 再評価リクエスト</strong></td>
+      <td>Search Console で7つのプランページ＋主要エリアページの URL を「インデックス登録をリクエスト」し再クロールを促す。</td>
+      <td>人間（手動）</td>
+      <td><span class="tag warn">未着手</span></td>
+    </tr>
+    <tr>
+      <td><strong>C. 再測定</strong></td>
+      <td>3週間後（目安 2026-06-26 頃）に GSC を再取得し、専用ページが各KWで順位に出てきたかを確認。</td>
+      <td>Claude</td>
+      <td><span class="tag">予定</span></td>
+    </tr>
+  </tbody>
+</table>
+<p class="muted">いずれも §10.3 の3軸（検索される／AIに引用される／問い合わせにつながる）に整合。metaTitle・価格・式場利用可否は変更しない。</p>
+
+<!-- ============ 7. 変更ファイル ============ -->
+<h2>7. 本セッションでの実変更</h2>
+<table>
+  <thead><tr><th>対象</th><th>内容</th><th>git</th></tr></thead>
+  <tbody>
+    <tr><td><code>.env.local</code></td><td><code>GOOGLE_OAUTH_REFRESH_TOKEN</code> を新トークンへ更新（値は非開示）</td><td>管理外（未コミット）</td></tr>
+    <tr><td>Vercel 環境変数</td><td>本番の <code>GOOGLE_OAUTH_REFRESH_TOKEN</code> を更新 → 再デプロイ</td><td>—（人間が実施）</td></tr>
+    <tr><td>Google Cloud Console</td><td>OAuth 同意画面を「本番」へ変更</td><td>—（人間が実施）</td></tr>
+    <tr><td>メモリ</td><td><code>feedback-env-file-permission.md</code> 追加（env読み書き権限の付与を記録）</td><td>—（CC内部メモリ）</td></tr>
+    <tr><td><code>docs/reports/</code></td><td>本レポート及び一覧インデックスを追加</td><td>追加</td></tr>
+  </tbody>
+</table>
+<p class="muted">サイトのソースコード（<code>app/</code>・<code>components/</code>・<code>lib/</code> 等）は本セッションでは未変更。</p>
+
+<footer class="doc">
+  川口典礼サイト 社内作業レポート｜2026-06-05 作成｜非公開（docs/reports/・noindex）｜個人情報・秘密情報なし
+</footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>作業レポート 2026-06-05｜Tier2 内部リンク強化（/area/kawaguchi/）</title>
+<style>
+  :root{--ink:#2b2b2b;--soft:#6b6b6b;--line:#e3e0da;--bg:#faf9f7;--accent:#7a6a55;--ok:#2e7d52;--warn:#b4691f}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;line-height:1.85;font-size:15px}
+  .wrap{max-width:860px;margin:0 auto;padding:40px 22px 80px}
+  header.doc{border-bottom:2px solid var(--line);padding-bottom:18px;margin-bottom:28px}
+  .kicker{font-size:12px;letter-spacing:.12em;color:var(--accent);margin:0 0 6px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:24px;font-weight:600;margin:0 0 10px;line-height:1.5}
+  .meta{font-size:12.5px;color:var(--soft)} .meta span{margin-right:14px}
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:19px;font-weight:600;margin:36px 0 12px;padding-left:11px;border-left:4px solid var(--accent)}
+  p{margin:8px 0}
+  .card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:14px 0}
+  .tag{display:inline-block;font-size:11.5px;padding:2px 9px;border-radius:999px;border:1px solid var(--line);color:var(--soft);background:#fff}
+  .tag.ok{color:var(--ok);border-color:#bfe0cd}
+  .tag.warn{color:var(--warn);border-color:#e7cdab}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13.5px;background:#fff}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  th{background:#f3f1ec;font-weight:600;color:#4a4438}
+  td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+  code{background:#f1efe9;padding:1px 6px;border-radius:5px;font-size:12.5px;font-family:ui-monospace,Consolas,monospace}
+  ul,ol{margin:8px 0;padding-left:22px} li{margin:4px 0}
+  .callout{border-left:4px solid var(--ok);background:#f3faf5;padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0}
+  .callout p:first-child{margin-top:0}.callout p:last-child{margin-bottom:0}
+  .muted{color:var(--soft);font-size:13px}
+  footer.doc{margin-top:50px;padding-top:18px;border-top:1px solid var(--line);color:var(--soft);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <p class="kicker">川口典礼サイト ＿ 作業レポート（社内記録・非公開）</p>
+  <h1>Tier2 内部リンク強化：/area/kawaguchi/ から各専用プランへの地名アンカー集約</h1>
+  <p class="meta">
+    <span>作成日：2026-06-05</span>
+    <span>施策バッチ：Tier2（地域×形式）第1作業</span>
+    <span>担当：Claude Code</span>
+  </p>
+  <p class="muted">本レポートは <code>docs/reports/</code> 配下の社内記録（Web非公開・<code>noindex</code>）。個人情報・秘密情報なし。前提分析は <a href="./2026-06-05-seo-dashboard-and-keyword-analysis.html">同日のSEO分析レポート</a> を参照。</p>
+</header>
+
+<h2>1. サマリ</h2>
+<div class="card">
+  <ul>
+    <li><span class="tag ok">完了</span> <code>app/area/kawaguchi/page.tsx</code> の関連リンク欄に、専用プランページ5件を<strong>地名×形式アンカー</strong>で追加。</li>
+    <li><span class="tag ok">完了</span> <code>npm run build</code> 成功・静的生成133ページ（減少なし）。</li>
+    <li><span class="tag warn">予定</span> 続く第2作業（専用プラン→エリアページの逆リンク／他エリアページ横展開）は別途承認のうえ実施。</li>
+  </ul>
+</div>
+
+<h2>2. 背景・狙い</h2>
+<p>3か月の GSC 分析で、<code>川口 家族葬</code>（9.9〜11位）・<code>川口 直葬</code>・<code>川口 一日葬</code> 等の地域×形式クエリが、本来の専用プランページではなく<strong>トップ <code>/</code> 経由で表示</strong>していることが判明。原因はコンテンツ不足ではなく「ページの新しさ＋専用ページへの内部リンク評価の不足」。</p>
+<div class="callout">
+  <p>対策の本筋は<strong>「地名×形式アンカーで専用プランページへの内部リンクを増やし、トピック信号を集約する」</strong>。その第1歩として、川口の地域ハブである <code>/area/kawaguchi/</code> から各専用プランへのリンクを地名アンカーで拡充した。</p>
+</div>
+
+<h2>3. 変更内容</h2>
+<p>対象：<code>app/area/kawaguchi/page.tsx</code> の <code>relatedLinks</code> 配列（1ファイルのみ）。</p>
+<p>従来はプラン系リンクが「家族葬プラン」1件のみ。これを地名アンカー付き5件に拡充：</p>
+<table>
+  <thead><tr><th>アンカー（label）</th><th>リンク先</th><th>説明の価格（§9正本）</th></tr></thead>
+  <tbody>
+    <tr><td>川口市の家族葬</td><td><code>/plan/family-funeral/</code></td><td class="num">528,000円(税込)〜</td></tr>
+    <tr><td>川口の一日葬</td><td><code>/plan/oneday-funeral/</code></td><td class="num">396,000円(税込)〜</td></tr>
+    <tr><td>川口の直葬</td><td><code>/plan/direct-funeral/</code></td><td class="num">139,000円(税込)〜</td></tr>
+    <tr><td>川口の火葬式</td><td><code>/plan/cremation/</code></td><td>価格表記なし（相談表記）</td></tr>
+    <tr><td>川口市民葬</td><td><code>/plan/kawaguchi-shimin/</code></td><td class="num">231,000円(税込・川口市民)</td></tr>
+  </tbody>
+</table>
+<p class="muted">本文 <code>AreaPlans</code> は元々これらプランへリンク済みだが、アンカーが「家族葬の詳細を見る」等で地名を含まなかった。関連リンク欄に地名×形式アンカーを補うことで、専用ページに対する topical signal を補強する狙い。</p>
+
+<h2>4. 確認結果</h2>
+<ul>
+  <li><code>npm run build</code>：成功（エラー・警告なし）。</li>
+  <li>静的生成：133ページ（編集はルート数を変えないため減少なし）。</li>
+  <li>価格は §9 プラン正本のみ使用。火葬式は正本に金額がないため価格を出さず相談表記。</li>
+  <li>デザイン・トーン・式場利用可否・フォーム・共通レイアウトは未変更。</li>
+</ul>
+
+<h2>5. 今後のアクション</h2>
+<ol>
+  <li><strong>第2作業（要承認）：</strong>各専用プランページ <code>relatedLinks</code> から <code>/area/kawaguchi/</code> への逆リンクを地名アンカーで確認・補強。</li>
+  <li><strong>第3作業（要承認）：</strong>他エリアページ・関連コラムからの横展開。トップページの導線は design 配慮のうえ別途検討。</li>
+  <li><strong>再測定：</strong>2026-06-26 頃に GSC を再取得し、対象クエリの着地ページが <code>/</code> から専用ページへ移ったか・順位が上がったかを確認。</li>
+</ol>
+
+<footer class="doc">川口典礼サイト 社内作業レポート｜2026-06-05 作成｜非公開（docs/reports/・noindex）｜個人情報・秘密情報なし</footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>作業レポート一覧｜川口典礼サイト（社内・非公開）</title>
+<style>
+  :root{--ink:#2b2b2b;--soft:#6b6b6b;--line:#e3e0da;--bg:#faf9f7;--accent:#7a6a55}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;line-height:1.8;font-size:15px}
+  .wrap{max-width:820px;margin:0 auto;padding:44px 22px 80px}
+  .kicker{font-size:12px;letter-spacing:.12em;color:var(--accent);margin:0 0 6px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:24px;font-weight:600;margin:0 0 8px}
+  .intro{color:var(--soft);font-size:13.5px;border-bottom:2px solid var(--line);padding-bottom:18px;margin-bottom:8px}
+  code{background:#f1efe9;padding:1px 6px;border-radius:5px;font-size:12.5px;font-family:ui-monospace,Consolas,monospace}
+  ul.list{list-style:none;padding:0;margin:18px 0}
+  ul.list li{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 18px;margin:10px 0}
+  ul.list a{font-size:16px;color:#3a5a8a;text-decoration:none;font-weight:600}
+  ul.list a:hover{text-decoration:underline}
+  .date{font-size:12px;color:var(--soft);font-variant-numeric:tabular-nums;margin-right:10px}
+  .desc{display:block;margin-top:5px;color:var(--soft);font-size:13px}
+  footer{margin-top:40px;border-top:1px solid var(--line);padding-top:16px;color:var(--soft);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="kicker">川口典礼サイト ＿ 社内記録</p>
+  <h1>作業レポート一覧</h1>
+  <p class="intro">
+    Claude Code での作業内容・分析・修正記録を残す社内フォルダ（<code>docs/reports/</code>）。
+    Next.js は <code>public/</code> と <code>app/</code> のみを配信するため、これらの HTML は<strong>Webサイトには公開されません</strong>（各ファイル <code>noindex</code> 指定）。
+    閲覧はファイルを直接ブラウザで開く（<code>file://</code>）。新しい順に追記していきます。
+  </p>
+
+  <ul class="list">
+    <li>
+      <span class="date">2026-06-05</span>
+      <a href="./2026-06-05-tier2-plan-area-backlinks.html">Tier2 第2作業：専用プラン→/area/kawaguchi/ 逆リンクのアンカー是正</a>
+      <span class="desc">主要5プランは既にエリアハブへ逆リンク済みと確認。一日葬・火葬式・直葬の同一・文脈ズレアンカー「川口市の葬儀・家族葬」を「川口市の葬儀・対応エリア」に是正。build成功・133ページ維持。shimin/hanaire は別対応。</span>
+    </li>
+    <li>
+      <span class="date">2026-06-05</span>
+      <a href="./2026-06-05-tier2-internal-links-kawaguchi.html">Tier2 内部リンク強化：/area/kawaguchi/ から各専用プランへの地名アンカー集約</a>
+      <span class="desc">地域×形式クエリ（川口 家族葬/直葬/一日葬 等）がトップ経由で表示している問題への第1手。川口の地域ハブの関連リンク欄に専用プラン5件を地名アンカーで追加。build成功・133ページ維持。</span>
+    </li>
+    <li>
+      <span class="date">2026-06-05</span>
+      <a href="./2026-06-05-seo-dashboard-and-keyword-analysis.html">SEOダッシュボード復旧 ＆「あと一歩KW」着地ページ分析</a>
+      <span class="desc">refresh_token失効によるダッシュボード障害の復旧（原因・対応・恒久対策）。復旧後の実データ分析。専用プランページがトップに負けている構造の特定と、内部リンク集約を中心とした改善方針。</span>
+    </li>
+  </ul>
+
+  <footer>川口典礼サイト 社内作業レポート｜非公開（noindex）｜個人情報・秘密情報なし</footer>
+</div>
+</body>
+</html>
