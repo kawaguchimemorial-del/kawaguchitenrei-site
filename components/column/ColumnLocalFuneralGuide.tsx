@@ -8,6 +8,13 @@ type LocalPlanLink = {
   href: string;
 };
 
+// 施設・エリアへの導線。コラム群から斎場・火葬場・エリアハブへ内部リンクを通す。
+const LOCAL_FACILITY_LINKS: { label: string; href: string }[] = [
+  { label: "川口市めぐりの森（火葬場）", href: "/saijo/megurinomori/" },
+  { label: "川口市・近隣の葬儀場一覧", href: "/saijo/" },
+  { label: "川口市の対応エリア", href: "/area/kawaguchi/" },
+];
+
 const LOCAL_PLAN_LINKS: LocalPlanLink[] = [
   {
     label: "川口市の家族葬",
@@ -68,14 +75,23 @@ export function ColumnLocalFuneralGuide() {
         ))}
       </ul>
 
-      <div className="mt-5 border-t border-line-soft pt-4">
-        <a
-          href="/area/kawaguchi/"
-          className="inline-flex items-center gap-1 text-sm font-bold text-brand hover:underline"
-        >
-          川口市・近隣エリアの対応について
-          <span aria-hidden>→</span>
-        </a>
+      <div className="mt-6 border-t border-line-soft pt-5">
+        <p className="text-xs font-semibold text-ink-mid">
+          施設・エリアのご案内
+        </p>
+        <ul className="mt-3 flex flex-wrap gap-x-5 gap-y-2">
+          {LOCAL_FACILITY_LINKS.map((link) => (
+            <li key={link.href}>
+              <a
+                href={link.href}
+                className="inline-flex items-center gap-1 text-sm font-bold text-brand hover:underline"
+              >
+                {link.label}
+                <span aria-hidden>→</span>
+              </a>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );

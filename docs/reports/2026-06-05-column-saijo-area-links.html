@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>作業レポート 2026-06-05｜コラム→めぐりの森/斎場/エリアの内部リンク開通</title>
+<style>
+  :root{--ink:#2b2b2b;--soft:#6b6b6b;--line:#e3e0da;--bg:#faf9f7;--accent:#7a6a55;--ok:#2e7d52;--warn:#b4691f}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;line-height:1.85;font-size:15px}
+  .wrap{max-width:860px;margin:0 auto;padding:40px 22px 80px}
+  header.doc{border-bottom:2px solid var(--line);padding-bottom:18px;margin-bottom:28px}
+  .kicker{font-size:12px;letter-spacing:.12em;color:var(--accent);margin:0 0 6px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:23px;font-weight:600;margin:0 0 10px;line-height:1.5}
+  .meta{font-size:12.5px;color:var(--soft)} .meta span{margin-right:14px}
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:19px;font-weight:600;margin:36px 0 12px;padding-left:11px;border-left:4px solid var(--accent)}
+  p{margin:8px 0}
+  .card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:14px 0}
+  .tag{display:inline-block;font-size:11.5px;padding:2px 9px;border-radius:999px;border:1px solid var(--line);color:var(--soft);background:#fff}
+  .tag.ok{color:var(--ok);border-color:#bfe0cd}
+  .tag.warn{color:var(--warn);border-color:#e7cdab}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13.5px;background:#fff}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  code{background:#f1efe9;padding:1px 6px;border-radius:5px;font-size:12.5px;font-family:ui-monospace,Consolas,monospace}
+  ul,ol{margin:8px 0;padding-left:22px} li{margin:4px 0}
+  .callout{border-left:4px solid var(--ok);background:#f3faf5;padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0}
+  .callout p:first-child{margin-top:0}.callout p:last-child{margin-bottom:0}
+  .muted{color:var(--soft);font-size:13px}
+  footer.doc{margin-top:50px;padding-top:18px;border-top:1px solid var(--line);color:var(--soft);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <p class="kicker">川口典礼サイト ＿ 作業レポート（社内記録・非公開）</p>
+  <h1>コラム → めぐりの森 / 斎場一覧 / エリアの内部リンク開通</h1>
+  <p class="meta">
+    <span>作成日：2026-06-05</span>
+    <span>施策：弱点監査 #2（コラム資産の死蔵解消）</span>
+    <span>担当：Claude Code</span>
+  </p>
+  <p class="muted">社内記録（Web非公開・<code>noindex</code>）。個人情報・秘密情報なし。出典：<a href="./2026-06-05-site-wide-weakness-audit.html">サイト全体の弱点監査</a> の高優先 #2。</p>
+</header>
+
+<h2>1. サマリ</h2>
+<div class="card">
+  <ul>
+    <li><span class="tag ok">完了</span> コラム共通導線に「施設・エリアのご案内」を追加し、全46コラムから <code>/saijo/megurinomori/</code>・<code>/saijo/</code>・<code>/area/kawaguchi/</code> への内部リンクを開通。</li>
+    <li><span class="tag ok">完了</span> <code>npm run build</code> 成功・静的生成133ページ（減少なし）。</li>
+  </ul>
+</div>
+
+<h2>2. 背景・狙い</h2>
+<div class="callout">
+  <p>弱点監査で、<strong>46コラムがめぐりの森に64回言及しているのに <code>/saijo/megurinomori/</code> への内部リンクが0本</strong>であることを確認。GSC で <code>めぐりの森 葬儀/家族葬/火葬式/直葬</code> が表示0だったのは、ページが無いからではなく内部リンクが届いていないため。コラム資産から斎場・火葬場・エリアハブへリンクを通す。</p>
+</div>
+
+<h2>3. 変更内容</h2>
+<p>対象：<code>components/column/ColumnLocalFuneralGuide.tsx</code>（1ファイル）。従来は末尾に <code>/area/kawaguchi/</code> 単独リンクのみだったブロックを、「施設・エリアのご案内」3リンク群に拡張。</p>
+<table>
+  <thead><tr><th>アンカー</th><th>リンク先</th></tr></thead>
+  <tbody>
+    <tr><td>川口市めぐりの森（火葬場）</td><td><code>/saijo/megurinomori/</code></td></tr>
+    <tr><td>川口市・近隣の葬儀場一覧</td><td><code>/saijo/</code></td></tr>
+    <tr><td>川口市の対応エリア</td><td><code>/area/kawaguchi/</code></td></tr>
+  </tbody>
+</table>
+<p class="muted">既存の形式別プラン5リンク（家族葬／一日葬／火葬式／直葬／市民葬）はそのまま。価格非表示・トーン維持。コンポーネント1つの変更で全46コラムに反映。</p>
+
+<h2>4. 確認結果</h2>
+<ul>
+  <li><code>npm run build</code>：✓ Compiled successfully、静的生成133ページ（減少なし）。</li>
+  <li>確認URL：任意のコラム（例 <code>/column/shinsiki/</code>・<code>/column/kenshi-nagare/</code>）記事下の「施設・エリアのご案内」。</li>
+  <li>価格・式場利用可否・共通レイアウト・フォーム・全体デザイン未変更。禁止表現なし。</li>
+</ul>
+
+<h2>5. 今後のアクション（監査台帳より）</h2>
+<ol>
+  <li><strong>次:</strong> #3 <code>/area/</code> 索引ページ新設＋sitemap追加（BreadcrumbList JSON-LD の <code>/area/</code> 404解消）。</li>
+  <li>めぐりの森に直接言及するコラムからの<strong>本文中リンク</strong>（per-column）は、効果を見つつ段階的に検討。</li>
+  <li><strong>再測定:</strong> 2026-06-26 頃に GSC で <code>めぐりの森</code> 系の表示・コラム→斎場の内部遷移を確認。</li>
+</ol>
+
+<footer class="doc">川口典礼サイト 社内作業レポート｜2026-06-05 作成｜非公開（docs/reports/・noindex）｜個人情報・秘密情報なし</footer>
+
+</div>
+</body>
+</html>
