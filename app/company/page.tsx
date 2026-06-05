@@ -47,11 +47,34 @@ const values = [
   },
 ];
 
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "ホーム",
+      item: "https://kawaguchitenrei.com/",
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "会社概要",
+      item: "https://kawaguchitenrei.com/company/",
+    },
+  ],
+};
+
 export default function CompanyPage() {
   const jsonLd = getLocalBusinessJsonLd();
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <script
         type="application/ld+json"
         // LocalBusiness 構造化データ

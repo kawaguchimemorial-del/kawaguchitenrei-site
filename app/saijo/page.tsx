@@ -374,12 +374,28 @@ const faqJsonLd = {
   })),
 };
 
+const itemListJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "川口市・近隣で利用できる葬儀場・斎場",
+  itemListElement: publicSaijo.map((s, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    url: `${SITE_URL}${s.href}`,
+    name: s.name,
+  })),
+};
+
 export default function SaijoIndexPage() {
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
       />
       <script
         type="application/ld+json"
