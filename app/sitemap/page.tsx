@@ -30,6 +30,7 @@ const mainPages: Link[] = [
   { label: "アクセス", href: "/access/" },
   { label: "会社案内", href: "/company/" },
   { label: "よくある質問", href: "/faq/" },
+  { label: "ペット火葬のご相談", href: "/pet/" },
 ];
 
 const contactPages: Link[] = [

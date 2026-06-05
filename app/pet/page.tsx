@@ -3,15 +3,18 @@ import { PageHero } from "@/components/common/PageHero";
 
 const SITE_URL = "https://kawaguchitenrei.com";
 
+const PET_TITLE =
+  "ペット火葬 川口市｜流れ・お立ち会い・収骨のご相談｜川口典礼";
+const PET_DESCRIPTION =
+  "川口市周辺でペット火葬をお考えの方へ。お立ち会い・収骨・日程など、お見送りの流れを個別にご案内します。対応可否や費用はペットの大きさやご希望により異なるため、まずはお電話またはお問い合わせフォームよりお気軽にご相談ください。";
+
 export const metadata: Metadata = {
-  title: "ペット火葬のご相談｜川口市周辺でペットのお見送りをお考えの方へ | 川口典礼",
-  description:
-    "川口市周辺でペット火葬をご検討の方へ。川口典礼では、対応可否や日程、費用について個別にご相談を承っています。まずはお電話またはお問い合わせフォームよりご相談ください。",
+  title: PET_TITLE,
+  description: PET_DESCRIPTION,
   alternates: { canonical: "/pet/" },
   openGraph: {
-    title: "ペット火葬のご相談｜川口市周辺でペットのお見送りをお考えの方へ | 川口典礼",
-    description:
-      "川口市周辺でペット火葬をご検討の方へ。対応可否や日程、費用は個別にご相談を承っています。",
+    title: PET_TITLE,
+    description: PET_DESCRIPTION,
     url: "/pet/",
     type: "article",
   },
@@ -47,10 +50,10 @@ export default function PetPage() {
       <PageHero
         eyebrow="Pet"
         subLabel="ペット火葬のご相談"
-        title="ペット火葬のご相談"
+        title="川口市のペット火葬のご相談"
         description={
           <p>
-            大切なご家族であるペットのお見送りについて、対応可否や流れを個別にご案内します。お電話またはお問い合わせフォームよりご相談ください。
+            大切なご家族であるペットのお見送りについて、お立ち会いや収骨を含めた流れ・日程を個別にご案内します。対応可否やご希望に沿えるかは、お電話またはお問い合わせフォームよりお気軽にご相談ください。
           </p>
         }
         breadcrumbs={[
