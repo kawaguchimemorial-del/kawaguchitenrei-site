@@ -169,6 +169,54 @@ export default function MegurinomoriPage() {
       <SaijoDetailIntro saijo={saijoMegurinomori} />
       <SaijoImportantNotice saijo={saijoMegurinomori} />
 
+      {/* 結論先出し＋基本情報表（AIO・施設名キーワード対策） */}
+      <section className="bg-white py-12 md:py-16">
+        <div className="mx-auto max-w-4xl px-5 md:px-8">
+          <div className="rounded-lg border border-line bg-paper p-6 shadow-sm md:p-8">
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-brand">
+              Summary
+            </p>
+            <h2 className="font-serif-jp mt-3 text-2xl font-medium leading-[1.4] text-ink-deep md:text-3xl">
+              川口市めぐりの森（火葬場）の基本情報
+            </h2>
+            <p className="mt-4 text-sm leading-7 text-ink-mid md:text-base md:leading-8">
+              川口市めぐりの森は<strong>川口市営の火葬場</strong>です（通夜・告別式を行う葬儀式場は併設されていません）。川口典礼の自社式場「川口メモリアルホール」から<strong>車で約5分</strong>の近さで、式場でのお別れから川口市めぐりの森での火葬まで一貫してご相談いただけます。なお川口市めぐりの森は川口市が運営する施設で、川口典礼が運営する施設ではありません。
+            </p>
+            <dl className="mt-6 grid gap-3 sm:grid-cols-2">
+              {[
+                { label: "所在地", value: saijoMegurinomori.address },
+                { label: "施設種別", value: "火葬場（川口市営・公営）" },
+                { label: "葬儀式場の併設", value: "なし" },
+                {
+                  label: "川口典礼（川口メモリアルホール）から",
+                  value: "車で約5分",
+                },
+                { label: "駐車場", value: "75台（火葬施設をご利用の方のみ）" },
+                {
+                  label: "火葬料金の目安（大人12歳以上）",
+                  value: "川口市民 30,000円 / 市外 100,000円（目安・改定の場合あり）",
+                },
+              ].map((row) => (
+                <div
+                  key={row.label}
+                  className="rounded-lg border border-line-soft bg-white px-4 py-3"
+                >
+                  <dt className="text-xs font-semibold text-ink-soft">
+                    {row.label}
+                  </dt>
+                  <dd className="mt-1 text-sm font-bold text-ink-deep">
+                    {row.value}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+            <p className="mt-4 text-xs leading-6 text-ink-soft">
+              ※ 火葬料金は目安です。火葬料のほかに搬送・ご安置・式場使用料・宗教者費用などが別途必要になる場合があります。最新の料金・総額の目安は事前のご相談でご案内します。
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* お別れの場所のご案内：川口メモリアルホール導線 */}
       <section className="bg-white py-12 md:py-16">
         <div className="mx-auto max-w-4xl px-5 md:px-8">
