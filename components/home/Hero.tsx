@@ -1,16 +1,31 @@
 import Image from "next/image";
 
+// 価格は §9 正本のみ・税込明記。割引/最安などの断定はしない（§14）。
+const priceLine = "直葬 139,000円〜（事前相談会員価格・税込）";
+
 const trustPoints = [
   "川口市めぐりの森まで車で約5分",
   "駐車場70台の自社式場",
   "直葬〜一般葬まで対応",
   "創業20年・年間約260件",
+  priceLine,
 ];
 
 const mobileTrustPoints = [
   "川口市めぐりの森まで車で約5分",
   "駐車場70台の自社式場",
   "直葬〜一般葬まで対応",
+  priceLine,
+];
+
+// FV直下の E-E-A-T バッジ列（すべて事実ベース・誇張なし §11）。
+const eeatBadges = [
+  "創業20年",
+  "年間約260件",
+  "川口市民葬 登録",
+  "葬祭ディレクター在籍",
+  "駐車場70台",
+  "めぐりの森 車5分",
 ];
 
 const heroImage = "/images/home/hero/kawaguchi-memorial-hall-hero.png";
@@ -216,6 +231,26 @@ export function Hero() {
               事前相談する
             </a>
           </div>
+        </div>
+      </div>
+
+      {/* FV直下：E-E-A-T バッジ列（控えめ・既存の丸ピン意匠に合わせる） */}
+      <div className="border-t border-line-soft bg-white">
+        <div className="mx-auto max-w-6xl px-5 py-4 md:px-8 md:py-5">
+          <ul className="flex flex-wrap items-center justify-center gap-x-2 gap-y-2 md:justify-start">
+            {eeatBadges.map((badge) => (
+              <li
+                key={badge}
+                className="inline-flex items-center gap-1.5 rounded-full border border-line bg-paper px-3 py-1.5 text-[11px] font-semibold text-ink-mid md:text-xs"
+              >
+                <span
+                  aria-hidden
+                  className="inline-block h-1.5 w-1.5 rounded-full bg-brand"
+                />
+                {badge}
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </section>

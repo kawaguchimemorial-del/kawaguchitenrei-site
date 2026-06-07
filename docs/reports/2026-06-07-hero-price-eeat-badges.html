@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>作業レポート 2026-06-07｜トップFVに価格レンジ＋E-E-A-Tバッジ（④・要承認）</title>
+<style>
+  :root{--ink:#2b2b2b;--soft:#6b6b6b;--line:#e3e0da;--bg:#faf9f7;--accent:#7a6a55;--ok:#2e7d52;--warn:#b4773a}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;line-height:1.85;font-size:15px}
+  .wrap{max-width:860px;margin:0 auto;padding:40px 22px 80px}
+  header.doc{border-bottom:2px solid var(--line);padding-bottom:18px;margin-bottom:28px}
+  .kicker{font-size:12px;letter-spacing:.12em;color:var(--accent);margin:0 0 6px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:22px;font-weight:600;margin:0 0 10px;line-height:1.5}
+  .meta{font-size:12.5px;color:var(--soft)} .meta span{margin-right:14px}
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:19px;font-weight:600;margin:34px 0 12px;padding-left:11px;border-left:4px solid var(--accent)}
+  p{margin:8px 0}
+  .card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:14px 0}
+  .tag{display:inline-block;font-size:11.5px;padding:2px 9px;border-radius:999px;border:1px solid var(--line);color:var(--soft);background:#fff}
+  .tag.ok{color:var(--ok);border-color:#bfe0cd}
+  .tag.warn{color:var(--warn);border-color:#e3c79f}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13.5px;background:#fff}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  code{background:#f1efe9;padding:1px 6px;border-radius:5px;font-size:12.5px;font-family:ui-monospace,Consolas,monospace}
+  ul,ol{margin:8px 0;padding-left:22px} li{margin:4px 0}
+  .callout{border-left:4px solid var(--warn);background:#fbf6ef;padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0}
+  .callout p:first-child{margin-top:0}.callout p:last-child{margin-bottom:0}
+  .muted{color:var(--soft);font-size:13px}
+  footer.doc{margin-top:50px;padding-top:18px;border-top:1px solid var(--line);color:var(--soft);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <p class="kicker">川口典礼サイト ＿ 作業レポート（社内記録・非公開）</p>
+  <h1>トップFVに価格レンジ＋E-E-A-Tバッジ（プレイブック④）</h1>
+  <p class="meta">
+    <span>作成日：2026-06-07</span>
+    <span>担当：Claude Code</span>
+    <span class="tag ok">人間承認のうえ commit/push 済み（§19.2）</span>
+  </p>
+  <p class="muted">社内記録（Web非公開・<code>noindex</code>）。個人情報・秘密情報なし。出典：<a href="./2026-06-07-implementation-playbook.html">改善実装プレイブック</a> の ④。</p>
+</header>
+
+<div class="callout">
+  <p><strong>承認取得済み：</strong>本変更は<strong>トップFV／価格表現</strong>に該当するため §19.2 で人間承認を要する範囲。差分提示のうえ人間承認を得て commit/push 済み。build成功・135ページ維持。「葬祭ディレクター在籍」は社内で事実確認済みとの前提で掲載。</p>
+</div>
+
+<h2>1. サマリ</h2>
+<div class="card">
+  <ul>
+    <li><span class="tag ok">追加</span> 信頼チェックリストに価格レンジ1行「<strong>直葬 139,000円〜（事前相談会員価格・税込）</strong>」を追加（PC・モバイル両方）。§9正本のみ・税込明記、割引/最安などの断定なし（§14）。</li>
+    <li><span class="tag ok">追加</span> FV直下に E-E-A-T バッジ列（創業20年／年間約260件／川口市民葬 登録／葬祭ディレクター在籍／駐車場70台／めぐりの森 車5分）。既存の丸ピン意匠に馴染む控えめなピル表示。</li>
+    <li><span class="tag ok">維持</span> デザインコンセプト・配色・レイアウト・既存CTA（電話＋事前相談の2導線・LINEなし §4）は変更なし（§3）。</li>
+    <li><span class="tag ok">完了</span> <code>npm run build</code> 成功・135ページ維持・型エラーなし。<span class="tag warn">push 未実施</span></li>
+  </ul>
+</div>
+
+<h2>2. 変更内容</h2>
+<table>
+  <thead><tr><th>箇所</th><th>内容</th></tr></thead>
+  <tbody>
+    <tr><td>価格行（信頼チェックリスト）</td><td><code>priceLine = "直葬 139,000円〜（事前相談会員価格・税込）"</code> を <code>trustPoints</code>（PC）・<code>mobileTrustPoints</code>（モバイル）に追加。既存の✓/ドット意匠でそのまま表示。</td></tr>
+    <tr><td>E-E-A-T バッジ列</td><td>Heroセクション最下部に <code>border-t</code> の白帯を追加し、6バッジを丸ピル（border-line / bg-paper / brand小ドット）で表示。モバイルは中央寄せ、PCは左寄せ。</td></tr>
+  </tbody>
+</table>
+
+<h2>3. 方針順守</h2>
+<table>
+  <thead><tr><th>項目</th><th>順守</th></tr></thead>
+  <tbody>
+    <tr><td>価格表記（§9/§14）</td><td>正本の直葬139,000円〜のみ。税込・事前相談会員価格を明記。最安/割引/必ず/総額確定などの禁止表現なし。</td></tr>
+    <tr><td>誇張しない（§11）</td><td>バッジは事実ベース（創業20年・年間約260件・川口市の葬祭事業登録・駐車70台・めぐりの森車5分・葬祭ディレクター在籍）。煽り表現なし。</td></tr>
+    <tr><td>デザイン不変（§3/§4）</td><td>配色・レイアウト・2導線CTA（電話＋事前相談）を変更せず。LINE導線は追加せず。バッジは既存意匠に追従。</td></tr>
+    <tr><td>共通レイアウト（§5）</td><td>Header/Footer/MobileBottomCTA は変更なし。Heroのみ編集。</td></tr>
+  </tbody>
+</table>
+<p class="muted">※「葬祭ディレクター在籍」はオーナー指示により事実として掲載。最終文言・資格表記の妥当性は公開前に人間が確認してください。</p>
+
+<h2>4. 変更ファイル</h2>
+<table>
+  <thead><tr><th>ファイル</th><th>内容</th></tr></thead>
+  <tbody>
+    <tr><td><code>components/home/Hero.tsx</code></td><td>価格行2配列へ追加＋ E-E-A-T バッジ帯を追加。</td></tr>
+  </tbody>
+</table>
+
+<h2>5. 確認結果</h2>
+<ul>
+  <li><code>npm run build</code>：✓ Compiled successfully、135ページ維持、型エラーなし。</li>
+  <li>確認URL：<code>/</code>（トップFV／FV直下バッジ列）。</li>
+  <li><code>git status</code> 確認済み・<strong>commit/push は未実施</strong>（承認後に実施判断）。</li>
+</ul>
+
+<h2>6. 承認後の想定</h2>
+<ol>
+  <li>人間承認 → commit → push（§19.2）。</li>
+  <li>次候補：⑤ E-E-A-T 著者性・実績の可視化（実績・著者情報の提供待ち）／⑦ aggregateRating（承認必須）／⑧ 仕上げ点検。</li>
+</ol>
+
+<footer class="doc">川口典礼サイト 社内作業レポート｜2026-06-07 作成｜非公開（docs/reports/・noindex）｜個人情報・秘密情報なし</footer>
+
+</div>
+</body>
+</html>
