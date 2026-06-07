@@ -1,6 +1,10 @@
 "use server";
 
 import { sendWebhook } from "@/lib/forms/sendWebhook";
+import { assessSpam, isBotSubmission } from "@/lib/forms/antispam";
+
+const CONTACT_SUCCESS_MESSAGE =
+  "通常2営業日以内にご担当者よりご連絡します。お急ぎの場合は 0120-963-765 までお電話ください。";
 
 export type ContactFormState = {
   ok?: boolean;
@@ -30,6 +34,12 @@ export async function submitContact(
   _prevState: ContactFormState,
   formData: FormData
 ): Promise<ContactFormState> {
+  // bot（ハニーポット混入 / 即時送信）は静かに破棄する。
+  // 成功画面は通常どおり返し、Webhook には送らない（bot に気づかせない）。
+  if (isBotSubmission(formData)) {
+    return { ok: true, message: CONTACT_SUCCESS_MESSAGE };
+  }
+
   const errors: Record<string, string> = {};
 
   for (const field of REQUIRED_FIELDS) {
@@ -61,6 +71,12 @@ export async function submitContact(
     };
   }
 
+  // 営業/勧誘らしさを採点（ブロックはせず、フラグだけ付けて運用側で仕分け）。
+  const spam = assessSpam({
+    name: formData.get("name"),
+    message: formData.get("message"),
+  });
+
   const payload = {
     name: formData.get("name"),
     nameKana: formData.get("nameKana"),
@@ -71,6 +87,7 @@ export async function submitContact(
     preferredTime: formData.get("preferredTime"),
     message: formData.get("message"),
     submittedAt: new Date().toISOString(),
+    ...spam,
   };
 
   const result = await sendWebhook("contact", payload);
@@ -84,7 +101,6 @@ export async function submitContact(
 
   return {
     ok: true,
-    message:
-      "通常2営業日以内にご担当者よりご連絡します。お急ぎの場合は 0120-963-765 までお電話ください。",
+    message: CONTACT_SUCCESS_MESSAGE,
   };
 }

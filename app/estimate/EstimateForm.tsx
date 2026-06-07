@@ -2,6 +2,7 @@
 
 import { useActionState, useEffect } from "react";
 import { pushGenerateLead } from "@/lib/analytics";
+import { SpamGuardFields } from "@/components/forms/SpamGuardFields";
 import { submitEstimate, type EstimateFormState } from "./actions";
 
 const formatOptions = [
@@ -268,6 +269,8 @@ export function EstimateForm() {
       noValidate
       className="rounded-lg border border-line bg-white p-6 shadow-sm md:p-10"
     >
+      <SpamGuardFields />
+
       {state?.message && Object.keys(errors).length > 0 && (
         <div
           role="alert"
@@ -489,6 +492,8 @@ export function EstimateForm() {
       <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-xs leading-6 text-ink-soft sm:max-w-md">
           ※ ご入力内容は正式な見積りではありません。ご担当者より概算金額をご連絡します。
+          <br />
+          ※ 営業・勧誘を目的としたご利用はご遠慮ください。
         </p>
         <button
           type="submit"

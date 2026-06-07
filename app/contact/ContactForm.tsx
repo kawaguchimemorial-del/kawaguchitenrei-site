@@ -2,6 +2,7 @@
 
 import { useActionState, useEffect } from "react";
 import { pushGenerateLead } from "@/lib/analytics";
+import { SpamGuardFields } from "@/components/forms/SpamGuardFields";
 import { submitContact, type ContactFormState } from "./actions";
 
 const purposeOptions = [
@@ -103,6 +104,8 @@ export function ContactForm() {
       noValidate
       className="rounded-lg border border-line bg-white p-6 shadow-sm md:p-10"
     >
+      <SpamGuardFields />
+
       {state?.message && Object.keys(errors).length > 0 && (
         <div
           role="alert"
@@ -331,6 +334,8 @@ export function ContactForm() {
       <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-xs leading-6 text-ink-soft sm:max-w-md">
           ※ お急ぎの場合はフォームではなくお電話ください。フォームのご返信には数営業日いただく場合があります。
+          <br />
+          ※ 営業・勧誘を目的としたご利用はご遠慮ください。
         </p>
         <button
           type="submit"

@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>作業レポート 2026-06-07｜フォーム迷惑送信対策（Tier1+2・承認待ち）</title>
+<style>
+  :root{--ink:#2b2b2b;--soft:#6b6b6b;--line:#e3e0da;--bg:#faf9f7;--accent:#7a6a55;--ok:#2e7d52;--warn:#b4691f}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;line-height:1.85;font-size:15px}
+  .wrap{max-width:880px;margin:0 auto;padding:40px 22px 80px}
+  header.doc{border-bottom:2px solid var(--line);padding-bottom:18px;margin-bottom:28px}
+  .kicker{font-size:12px;letter-spacing:.12em;color:var(--accent);margin:0 0 6px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:22px;font-weight:600;margin:0 0 10px;line-height:1.5}
+  .meta{font-size:12.5px;color:var(--soft)} .meta span{margin-right:14px}
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:19px;font-weight:600;margin:34px 0 10px;padding-left:11px;border-left:4px solid var(--accent)}
+  p{margin:8px 0}
+  .card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:14px 0}
+  .tag{display:inline-block;font-size:11.5px;padding:2px 9px;border-radius:999px;border:1px solid var(--line);color:var(--soft);background:#fff}
+  .tag.ok{color:var(--ok);border-color:#bfe0cd}
+  .tag.warn{color:var(--warn);border-color:#e7cdab}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13px;background:#fff}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  code{background:#f1efe9;padding:1px 6px;border-radius:5px;font-size:12px;font-family:ui-monospace,Consolas,monospace}
+  ul,ol{margin:8px 0;padding-left:22px} li{margin:4px 0}
+  .callout{border-left:4px solid var(--warn);background:#fdf6ec;padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0}
+  .callout p:first-child{margin-top:0}.callout p:last-child{margin-bottom:0}
+  .muted{color:var(--soft);font-size:13px}
+  .ck td:last-child{text-align:center;font-weight:700;color:var(--ok)}
+  footer.doc{margin-top:50px;padding-top:18px;border-top:1px solid var(--line);color:var(--soft);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <p class="kicker">川口典礼サイト ＿ 作業レポート（社内記録・非公開）</p>
+  <h1>フォーム迷惑送信対策（bot ＋ 営業/勧誘）Tier1+2</h1>
+  <p class="meta">
+    <span>作成日：2026-06-07</span>
+    <span>担当：Claude Code</span>
+  </p>
+  <p class="muted">社内記録（Web非公開・<code>noindex</code>）。個人情報・秘密情報なし。</p>
+</header>
+
+<div class="callout">
+  <p><strong>状態：push 未実施（人間承認待ち）。</strong>フォーム改修は CLAUDE.md §19.2 により push 前に人間承認が必要。実装・<code>npm run build</code>・Privacy Review まで完了。</p>
+</div>
+
+<h2>1. サマリ</h2>
+<div class="card">
+  <ul>
+    <li><span class="tag ok">完了</span> <strong>bot対策（Tier1）</strong>：ハニーポット項目＋送信時間トラップ。実ユーザーには完全に無害（追加操作なし）。</li>
+    <li><span class="tag ok">完了</span> <strong>営業/勧誘対策（Tier2）</strong>：文面ヒューリスティクスで「ブロックせずフラグ付け」。Webhook データに <code>spamScore</code>/<code>spamFlagged</code>/<code>spamReasons</code> を付与し、運用側で仕分け可能に。</li>
+    <li><span class="tag ok">完了</span> 注意書き「※営業・勧誘を目的としたご利用はご遠慮ください。」を両フォームに追記。</li>
+    <li><span class="tag ok">完了</span> contact / estimate 両方に適用。<code>npm run build</code> 成功・135ページ維持・型エラーなし。</li>
+    <li><span class="tag warn">承認待ち</span> push は人間承認後。</li>
+  </ul>
+</div>
+
+<h2>2. 仕組み</h2>
+<table>
+  <thead><tr><th>対策</th><th>挙動</th><th>ご遺族への影響</th></tr></thead>
+  <tbody>
+    <tr><td>ハニーポット（<code>company_url</code>）</td><td>画面外の隠し入力欄。bot が埋めたら送信を<strong>静かに破棄</strong>（成功画面は表示し Webhook には送らない）。</td><td>無し（見えない・触れない）</td></tr>
+    <tr><td>送信時間トラップ（<code>elapsedSec</code>）</td><td>JS計測の滞在秒数。3秒未満の即時送信を bot 判定し破棄。値が無い（JS無効）場合は時間では弾かずハニーポットに委ねる。</td><td>無し（全必須項目を3秒未満で埋めるのは非現実的）</td></tr>
+    <tr><td>営業フラグ（採点）</td><td>本文のURL・営業キーワード・非日本語・リンク記法を採点。<strong>ブロックせず</strong> <code>spamFlagged</code> を付けて送信。</td><td>無し（本物を取りこぼさない設計）</td></tr>
+    <tr><td>注意書き</td><td>送信ボタン付近に営業お断りの一文。</td><td>無し（抑止のみ）</td></tr>
+  </tbody>
+</table>
+<p class="muted">bot 破棄時も成功画面を返すのは、bot に弾かれたと気づかせず再試行を誘発しないため。営業/勧誘は人間の手送りでハニーポット等では止まらないため、誤って本物を消さないよう「フラグのみ」とした。GAS／スプレッドシート側で <code>spamFlagged=true</code> を別シート/別ラベルに振り分ける運用が可能。</p>
+
+<h2>3. 変更ファイル</h2>
+<table>
+  <thead><tr><th>ファイル</th><th>内容</th></tr></thead>
+  <tbody>
+    <tr><td><code>lib/forms/antispam.ts</code>（新規）</td><td><code>isBotSubmission()</code>（ハニーポット＋時間）／<code>assessSpam()</code>（営業採点）／フィールド名定数。</td></tr>
+    <tr><td><code>components/forms/SpamGuardFields.tsx</code>（新規）</td><td>隠しフィールド（ハニーポット＋滞在秒カウンタ）を描画する共通クライアント部品。</td></tr>
+    <tr><td><code>app/contact/actions.ts</code></td><td>先頭で bot を静かに破棄／payload に営業採点を付与。</td></tr>
+    <tr><td><code>app/estimate/actions.ts</code></td><td>同上（summary を先に構築して成功画面も維持）。</td></tr>
+    <tr><td><code>app/contact/ContactForm.tsx</code> / <code>app/estimate/EstimateForm.tsx</code></td><td><code>&lt;SpamGuardFields /&gt;</code> 挿入＋注意書き追記。</td></tr>
+  </tbody>
+</table>
+
+<h2>4. Privacy Review（§12 / §19.2）結果</h2>
+<table class="ck">
+  <thead><tr><th>項目</th><th>結果</th></tr></thead>
+  <tbody>
+    <tr><td>個人情報の <code>console.log</code> / ログ出力</td><td>0件（OK）</td></tr>
+    <tr><td><code>process.env</code> への接触（変更ファイル内）</td><td>0件（OK・Webhook送信は既存 sendWebhook を経由、未変更）</td></tr>
+    <tr><td>Webhook URL / secret のコード直書き</td><td>0件（OK・env のみ参照）</td></tr>
+    <tr><td>honeypot/elapsed が Webhook payload に混入</td><td>0件（OK・対策用フィールドは送信データに含めない）</td></tr>
+    <tr><td>Review / aggregateRating / ratingValue 追加</td><td>0件（OK・本対応は対象外）</td></tr>
+    <tr><td>個人名・故人名・喪主名・個人連絡先の追加</td><td>0件（OK）</td></tr>
+    <tr><td>バリデーション・同意・エラー表示の維持</td><td>維持（OK・既存ロジック不変）</td></tr>
+    <tr><td><code>.env*</code> への接触</td><td>0件（OK）</td></tr>
+  </tbody>
+</table>
+
+<h2>5. 確認結果</h2>
+<ul>
+  <li><code>npm run build</code>：✓ Compiled successfully、135ページ維持、型エラーなし。</li>
+  <li>GAS Webhook 連携・必須項目バリデーション・同意チェック・エラー表示は維持。</li>
+  <li>CTA は「電話」「事前相談」の2系統のまま。LINE 導線は追加していない（§4）。</li>
+</ul>
+
+<h2>6. 運用メモ・今後</h2>
+<ol>
+  <li><strong>承認後に push。</strong></li>
+  <li>GAS / スプレッドシート側で <code>spamFlagged</code> による振り分け（別シート/フィルタ/通知の出し分け）を設定すると効果的。設定はサイト外（GAS）作業のため、必要なら手順を案内します。</li>
+  <li>営業がそれでも多い場合は <strong>Tier3（Cloudflare Turnstile 不可視CAPTCHA）</strong>を追加可能（env追加＋プライバシーポリシー記載が必要）。</li>
+  <li>営業キーワードの辞書（<code>SALES_KEYWORDS</code>）は実際に届く文面に合わせて随時調整できます。</li>
+</ol>
+
+<footer class="doc">川口典礼サイト 社内作業レポート｜2026-06-07 作成｜非公開（docs/reports/・noindex）｜個人情報・秘密情報なし</footer>
+
+</div>
+</body>
+</html>
