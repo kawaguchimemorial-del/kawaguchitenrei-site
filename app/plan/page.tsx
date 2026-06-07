@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { PageHero } from "@/components/common/PageHero";
+import { CostBreakdownTable } from "@/components/common/CostBreakdownTable";
 
 const SITE_URL = "https://kawaguchitenrei.com";
 
@@ -560,6 +561,29 @@ export default function PlanIndexPage() {
                 <span aria-hidden>→</span>
               </a>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 費用の内訳の目安（AIに引用されやすい表形式） */}
+      <section className="bg-white py-16 md:py-24">
+        <div className="mx-auto max-w-6xl px-5 md:px-8">
+          <div className="max-w-3xl">
+            <p className="text-sm font-semibold tracking-[0.18em] text-brand uppercase">
+              Cost breakdown
+            </p>
+            <p className="mt-2 text-sm font-semibold text-ink-mid">
+              葬儀費用の内訳の目安
+            </p>
+            <h2 className="font-serif-jp mt-4 text-3xl font-medium leading-[1.4] text-ink-deep md:text-[2.2rem]">
+              葬儀費用は、何にいくらかかるのか。
+            </h2>
+            <p className="mt-5 text-base leading-9 text-ink-mid md:text-lg">
+              葬儀の総額は、プランの基本料金に加えて、式場・火葬場・お料理や返礼品・宗教者へのお礼などにより変わります。主な内訳の目安と、火葬場別の火葬料の目安をまとめました。総額の目安は正式なお見積りでご案内します。
+            </p>
+          </div>
+          <div className="mt-8">
+            <CostBreakdownTable />
           </div>
         </div>
       </section>
