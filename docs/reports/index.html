@@ -36,6 +36,11 @@
   <ul class="list">
     <li>
       <span class="date">2026-06-07</span>
+      <a href="./2026-06-07-form-antispam-regression-fix.html">【緊急修正】フォーム送信が届かない不具合（迷惑送信対策のリグレッション）</a>
+      <span class="desc">迷惑送信対策導入後、本物の送信が「成功表示なのにメール/GAS未達」だった不具合を修正。bot誤検知での"静かな破棄"を完全廃止し、常にWebhook送信＋フラグ付与のみに是正（ご遺族の問い合わせを失わない§8）。ハニーポット名も自動入力対策に変更。build成功・135ページ。</span>
+    </li>
+    <li>
+      <span class="date">2026-06-07</span>
       <a href="./2026-06-07-form-antispam.html">フォーム迷惑送信対策（bot＋営業/勧誘）Tier1+2・承認待ち</a>
       <span class="desc">contact/estimateにハニーポット＋送信時間トラップ（bot対策・実ユーザー無害）と、営業/勧誘の文面フラグ付け（ブロックせずspamFlaggedを付与）＋注意書きを実装。Privacy Reviewクリア（PIIログ/env接触/Webhook直書き/Review系なし）。フォーム改修=§19.2でpushは承認後。build成功・135ページ。</span>
     </li>

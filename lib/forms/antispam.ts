@@ -4,23 +4,35 @@
 // - 営業/勧誘（人間の手送り）対策：文面ヒューリスティクスで「ブロックせずフラグ付け」。
 //   ご遺族の本物の問い合わせを取りこぼさないため、自動破棄はしない（Webhook には送り、フラグだけ付ける）。
 
-export const HONEYPOT_FIELD = "company_url";
+// 自動入力（autofill）に拾われにくいフィールド名にする。
+// （"company"/"url" 等の autofill トークンを避ける。誤検知＝誤フラグの低減）
+export const HONEYPOT_FIELD = "contact_reference";
 export const ELAPSED_FIELD = "elapsedSec";
 
-// JS で計測した滞在秒数がこれ未満なら bot とみなす（実ユーザーが全必須項目を
-// これ未満で埋めるのは非現実的）。値が無い（JS 無効等）場合は時間では弾かない。
+// JS で計測した滞在秒数がこれ未満なら「速すぎる送信」としてフラグする。
 const MIN_ELAPSED_SEC = 3;
 
-export function isBotSubmission(formData: FormData): boolean {
+export type BotAssessment = { botFlagged: boolean; botReasons: string[] };
+
+// bot らしさを評価する。
+// 【重要】判定しても送信は絶対に破棄しない。必ず Webhook へ届けたうえで
+// フラグだけ付ける（ご遺族の本物の問い合わせを失わないため／§8）。
+// 仕分け（通知の出し分け・別シート移動など）は GAS / スプレッドシート側で行う。
+export function assessBot(formData: FormData): BotAssessment {
+  const reasons: string[] = [];
+
   const honeypot = formData.get(HONEYPOT_FIELD);
-  if (honeypot && String(honeypot).trim() !== "") return true;
+  if (honeypot && String(honeypot).trim() !== "") reasons.push("honeypot");
 
   const rawElapsed = formData.get(ELAPSED_FIELD);
   if (rawElapsed !== null && String(rawElapsed).trim() !== "") {
     const sec = Number(rawElapsed);
-    if (Number.isFinite(sec) && sec < MIN_ELAPSED_SEC) return true;
+    if (Number.isFinite(sec) && sec < MIN_ELAPSED_SEC) {
+      reasons.push(`too-fast:${sec}`);
+    }
   }
-  return false;
+
+  return { botFlagged: reasons.length > 0, botReasons: reasons };
 }
 
 const SALES_KEYWORDS = [

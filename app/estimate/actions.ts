@@ -1,7 +1,7 @@
 "use server";
 
 import { sendWebhook } from "@/lib/forms/sendWebhook";
-import { assessSpam, isBotSubmission } from "@/lib/forms/antispam";
+import { assessBot, assessSpam } from "@/lib/forms/antispam";
 
 const ESTIMATE_SUCCESS_MESSAGE =
   "ご入力いただいた内容をもとに、ご担当者より概算金額をご連絡します。お急ぎの場合は 0120-963-765 までお電話ください。";
@@ -123,12 +123,6 @@ export async function submitEstimate(
     citizen: valueToLabel("citizen", formData.get("citizen")),
   };
 
-  // bot（ハニーポット混入 / 即時送信）は静かに破棄する。
-  // 成功画面は通常どおり返し、Webhook には送らない。
-  if (isBotSubmission(formData)) {
-    return { ok: true, summary, message: ESTIMATE_SUCCESS_MESSAGE };
-  }
-
   const errors: Record<string, string> = {};
 
   for (const field of REQUIRED_FIELDS) {
@@ -160,7 +154,8 @@ export async function submitEstimate(
     };
   }
 
-  // 営業/勧誘らしさを採点（ブロックはせず、フラグだけ付けて運用側で仕分け）。
+  // bot/営業らしさを評価（ブロックはせず、必ず送信したうえでフラグだけ付ける）。
+  const bot = assessBot(formData);
   const spam = assessSpam({
     name: formData.get("name"),
     message: formData.get("note"),
@@ -176,6 +171,7 @@ export async function submitEstimate(
     preferredContact: formData.get("preferredContact"),
     note: formData.get("note"),
     submittedAt: new Date().toISOString(),
+    ...bot,
     ...spam,
   };
 

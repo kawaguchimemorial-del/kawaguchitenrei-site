@@ -33,6 +33,9 @@ export function SpamGuardFields() {
             name={HONEYPOT_FIELD}
             tabIndex={-1}
             autoComplete="off"
+            data-lpignore="true"
+            data-1p-ignore="true"
+            data-form-type="other"
           />
         </label>
       </div>

@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>作業レポート 2026-06-07｜フォーム送信が届かない不具合の緊急修正</title>
+<style>
+  :root{--ink:#2b2b2b;--soft:#6b6b6b;--line:#e3e0da;--bg:#faf9f7;--accent:#7a6a55;--ok:#2e7d52;--danger:#a83838}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;line-height:1.85;font-size:15px}
+  .wrap{max-width:860px;margin:0 auto;padding:40px 22px 80px}
+  header.doc{border-bottom:2px solid var(--line);padding-bottom:18px;margin-bottom:28px}
+  .kicker{font-size:12px;letter-spacing:.12em;color:var(--accent);margin:0 0 6px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:22px;font-weight:600;margin:0 0 10px;line-height:1.5}
+  .meta{font-size:12.5px;color:var(--soft)} .meta span{margin-right:14px}
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:19px;font-weight:600;margin:34px 0 10px;padding-left:11px;border-left:4px solid var(--accent)}
+  p{margin:8px 0}
+  .card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:14px 0}
+  .tag{display:inline-block;font-size:11.5px;padding:2px 9px;border-radius:999px;border:1px solid var(--line);color:var(--soft);background:#fff}
+  .tag.ok{color:var(--ok);border-color:#bfe0cd}
+  .tag.danger{color:var(--danger);border-color:#e7b9b9}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13px;background:#fff}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  code{background:#f1efe9;padding:1px 6px;border-radius:5px;font-size:12px;font-family:ui-monospace,Consolas,monospace}
+  ul,ol{margin:8px 0;padding-left:22px} li{margin:4px 0}
+  .callout{border-left:4px solid var(--danger);background:#fcf1f1;padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0}
+  .callout p:first-child{margin-top:0}.callout p:last-child{margin-bottom:0}
+  .muted{color:var(--soft);font-size:13px}
+  footer.doc{margin-top:50px;padding-top:18px;border-top:1px solid var(--line);color:var(--soft);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <p class="kicker">川口典礼サイト ＿ 作業レポート（社内記録・非公開）</p>
+  <h1>【緊急修正】フォーム送信が届かない不具合（迷惑送信対策のリグレッション）</h1>
+  <p class="meta">
+    <span>作成日：2026-06-07</span>
+    <span>担当：Claude Code</span>
+  </p>
+  <p class="muted">社内記録（Web非公開・<code>noindex</code>）。個人情報・秘密情報なし。関連：<a href="./2026-06-07-form-antispam.html">迷惑送信対策（初回実装）</a>。</p>
+</header>
+
+<div class="callout">
+  <p><strong>不具合：</strong>迷惑送信対策（コミット 0276ef8）の導入後、実フォームの送信で「送信できました」と表示されるのに、<strong>メール送信・GAS保存がされない</strong>事象が発生。ユーザー報告で判明。</p>
+  <p><strong>原因：</strong>bot 判定（ハニーポット／滞在時間）が<strong>本物の送信を誤検知</strong>し、「成功画面は表示するが Webhook には送らず静かに破棄」する設計だったため。誤検知の主因はハニーポット項目名 <code>company_url</code> がブラウザ自動入力に拾われた可能性が高い。</p>
+</div>
+
+<h2>1. 修正方針（設計の是正）</h2>
+<p>葬儀社サイトでご遺族の本物の問い合わせを失うことは絶対に避けるべき（§8）。よって<strong>「ブロック（握り潰し）」を完全に廃止</strong>し、次の設計に是正：</p>
+<ul>
+  <li><strong>必ず Webhook へ届ける</strong>（bot/営業と判定しても破棄しない）。</li>
+  <li>bot/営業らしさは <strong>フラグ（<code>botFlagged</code>/<code>botReasons</code>/<code>spamFlagged</code>/<code>spamScore</code>）として payload に付与</strong>するのみ。</li>
+  <li>実際の仕分け（通知の出し分け・別シート移動）は<strong>GAS／スプレッドシート側（＝送信後の安全な場所）</strong>で行う。</li>
+  <li>ハニーポット名を <code>company_url</code> → <code>contact_reference</code> に変更し、<code>data-lpignore</code> 等で自動入力を抑止（誤フラグの低減）。</li>
+</ul>
+
+<h2>2. 変更ファイル</h2>
+<table>
+  <thead><tr><th>ファイル</th><th>内容</th></tr></thead>
+  <tbody>
+    <tr><td><code>lib/forms/antispam.ts</code></td><td><code>isBotSubmission()</code>（boolean破棄判定）を削除し、<code>assessBot()</code>（フラグ評価）に置換。ハニーポット名変更。</td></tr>
+    <tr><td><code>app/contact/actions.ts</code> / <code>app/estimate/actions.ts</code></td><td>先頭の「bot静かに破棄」分岐を撤去。常に Webhook 送信し、payload に <code>...bot, ...spam</code> を付与。</td></tr>
+    <tr><td><code>components/forms/SpamGuardFields.tsx</code></td><td>ハニーポットに <code>data-lpignore</code>/<code>data-1p-ignore</code> を追加。</td></tr>
+  </tbody>
+</table>
+
+<h2>3. 確認結果</h2>
+<ul>
+  <li><code>npm run build</code>：✓ Compiled successfully、135ページ維持、型エラーなし、<code>isBotSubmission</code> 残存なし。</li>
+  <li>これ以降、contact / estimate は<strong>判定結果にかかわらず必ず Webhook へ送信</strong>（成功画面表示）。誤検知でも問い合わせは失われない。</li>
+  <li>個人情報ログ出力なし／env非接触／Webhook直書きなし／honeypot・elapsed は payload 非混入のまま。</li>
+</ul>
+
+<h2>4. 今後</h2>
+<ol>
+  <li><strong>本番反映後、ユーザーに再送信テストを依頼</strong>し、メール／GAS に届くこと、payload にフラグが付くことを確認。</li>
+  <li>迷惑送信の<strong>仕分けは GAS 側で実装</strong>（<code>botFlagged</code>/<code>spamFlagged</code> で別シート移動・通知抑制）。必要なら Apps Script のサンプルを提供。</li>
+  <li>ハードブロックが必要なら Tier3（Turnstile）を別途検討。ただし「届かない」リスクを伴うため、まずは GAS 側仕分けを推奨。</li>
+</ol>
+
+<footer class="doc">川口典礼サイト 社内作業レポート｜2026-06-07 作成｜非公開（docs/reports/・noindex）｜個人情報・秘密情報なし</footer>
+
+</div>
+</body>
+</html>
