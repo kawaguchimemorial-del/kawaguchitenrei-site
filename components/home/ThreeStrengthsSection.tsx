@@ -1,9 +1,13 @@
+import Image from "next/image";
+
 type Strength = {
   category: string;
   number: string;
   unit: string;
   title: string;
   body: string;
+  image: { src: string; alt: string };
+  note?: string;
 };
 
 const strengths: Strength[] = [
@@ -13,6 +17,12 @@ const strengths: Strength[] = [
     unit: "分",
     title: "めぐりの森まで車で約5分",
     body: "火葬場までの移動負担を抑え、故人様とのお別れの時間を落ち着いて確保できます。",
+    image: {
+      src: "/images/saijo/megurinomori/exterior.png",
+      alt: "車で約5分の公営火葬場・川口市めぐりの森の外観",
+    },
+    // §19.3：自社運営と誤認させないための明記
+    note: "※ 川口市営の火葬場（川口典礼の運営施設ではありません）",
   },
   {
     category: "Parking",
@@ -20,6 +30,10 @@ const strengths: Strength[] = [
     unit: "台",
     title: "駐車場70台完備",
     body: "ご高齢のご親族や遠方からの参列にも配慮し、敷地内に大型駐車スペースをご用意しています。",
+    image: {
+      src: "/images/home/hall/hall-parking.png",
+      alt: "川口メモリアルホールの駐車場（70台）",
+    },
   },
   {
     category: "Capacity",
@@ -27,6 +41,10 @@ const strengths: Strength[] = [
     unit: "名",
     title: "家族葬から一般葬まで対応",
     body: "少人数の家族葬から最大200名規模の一般葬まで、自社ホールで対応できます。",
+    image: {
+      src: "/images/home/hall/hall-ceremony-room.jpg",
+      alt: "川口メモリアルホールの式場（家族葬から一般葬まで対応）",
+    },
   },
 ];
 
@@ -55,30 +73,46 @@ export function ThreeStrengthsSection() {
           </p>
         </div>
 
-        <ul className="mt-10 grid gap-4 md:mt-12 md:grid-cols-3 md:gap-5">
+        <ul className="mt-10 grid gap-5 md:mt-12 md:grid-cols-3">
           {strengths.map((s) => (
             <li
               key={s.category}
-              className="flex h-full flex-col rounded-lg border border-line bg-white p-6 shadow-sm md:p-7"
+              className="flex h-full flex-col overflow-hidden rounded-lg border border-line bg-white shadow-sm"
             >
-              <p className="text-xs font-bold uppercase tracking-[0.22em] text-ink-soft">
-                {s.category}
-              </p>
-              <p
-                aria-hidden
-                className="font-serif-jp mt-3 flex items-baseline leading-none text-brand"
-              >
-                <span className="text-5xl md:text-6xl">{s.number}</span>
-                <span className="ml-1 text-base font-medium md:text-lg">
-                  {s.unit}
-                </span>
-              </p>
-              <p className="font-serif-jp mt-4 text-lg font-medium leading-[1.45] text-ink-deep md:text-xl">
-                {s.title}
-              </p>
-              <p className="mt-3 text-sm leading-7 text-ink-mid md:text-base md:leading-8">
-                {s.body}
-              </p>
+              <div className="relative aspect-[4/3] bg-warm">
+                <Image
+                  src={s.image.src}
+                  alt={s.image.alt}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 380px"
+                  className="object-cover object-center"
+                />
+              </div>
+              <div className="flex flex-1 flex-col p-6 md:p-7">
+                <p className="text-xs font-bold uppercase tracking-[0.22em] text-ink-soft">
+                  {s.category}
+                </p>
+                <p
+                  aria-hidden
+                  className="font-serif-jp mt-2 flex items-baseline leading-none text-brand"
+                >
+                  <span className="text-4xl md:text-5xl">{s.number}</span>
+                  <span className="ml-1 text-base font-medium md:text-lg">
+                    {s.unit}
+                  </span>
+                </p>
+                <p className="font-serif-jp mt-3 text-lg font-medium leading-[1.45] text-ink-deep md:text-xl">
+                  {s.title}
+                </p>
+                <p className="mt-3 text-sm leading-7 text-ink-mid md:text-base md:leading-8">
+                  {s.body}
+                </p>
+                {s.note && (
+                  <p className="mt-auto pt-4 text-xs leading-6 text-ink-soft">
+                    {s.note}
+                  </p>
+                )}
+              </div>
             </li>
           ))}
         </ul>

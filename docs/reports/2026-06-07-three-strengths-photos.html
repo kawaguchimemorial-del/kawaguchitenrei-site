@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>作業レポート 2026-06-07｜「3つの安心」を実写写真カードに変更</title>
+<style>
+  :root{--ink:#2b2b2b;--soft:#6b6b6b;--line:#e3e0da;--bg:#faf9f7;--accent:#7a6a55;--ok:#2e7d52}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;line-height:1.85;font-size:15px}
+  .wrap{max-width:860px;margin:0 auto;padding:40px 22px 80px}
+  header.doc{border-bottom:2px solid var(--line);padding-bottom:18px;margin-bottom:28px}
+  .kicker{font-size:12px;letter-spacing:.12em;color:var(--accent);margin:0 0 6px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:22px;font-weight:600;margin:0 0 10px;line-height:1.5}
+  .meta{font-size:12.5px;color:var(--soft)} .meta span{margin-right:14px}
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:19px;font-weight:600;margin:34px 0 12px;padding-left:11px;border-left:4px solid var(--accent)}
+  p{margin:8px 0}
+  .card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:14px 0}
+  .tag{display:inline-block;font-size:11.5px;padding:2px 9px;border-radius:999px;border:1px solid var(--line);color:var(--soft);background:#fff}
+  .tag.ok{color:var(--ok);border-color:#bfe0cd}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13.5px;background:#fff}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  code{background:#f1efe9;padding:1px 6px;border-radius:5px;font-size:12.5px;font-family:ui-monospace,Consolas,monospace}
+  ul,ol{margin:8px 0;padding-left:22px} li{margin:4px 0}
+  .callout{border-left:4px solid var(--ok);background:#f3faf5;padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0}
+  .callout p:first-child{margin-top:0}.callout p:last-child{margin-bottom:0}
+  .muted{color:var(--soft);font-size:13px}
+  footer.doc{margin-top:50px;padding-top:18px;border-top:1px solid var(--line);color:var(--soft);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <p class="kicker">川口典礼サイト ＿ 作業レポート（社内記録・非公開）</p>
+  <h1>トップ「川口典礼が選ばれる3つの安心」を実写写真カードに変更</h1>
+  <p class="meta">
+    <span>作成日：2026-06-07</span>
+    <span>担当：Claude Code</span>
+  </p>
+  <p class="muted">社内記録（Web非公開・<code>noindex</code>）。個人情報・秘密情報なし。</p>
+</header>
+
+<div class="callout">
+  <p><strong>狙い：</strong>「3つの安心」を、数字だけでなく<strong>実写写真</strong>で裏づけて信頼感（E-E-A-T）を高める。スマホ・PC共通。数字（5分/70台/200名）は写真の下に残し、具体値の瞬発力は維持。</p>
+</div>
+
+<h2>1. 写真の割り当て</h2>
+<table>
+  <thead><tr><th>強み</th><th>写真</th><th>備考</th></tr></thead>
+  <tbody>
+    <tr><td>① めぐりの森まで車5分</td><td><code>saijo/megurinomori/exterior.png</code></td><td>川口市営の火葬場。カード内に「※ 川口市営の火葬場（川口典礼の運営施設ではありません）」を明記（§19.3）。</td></tr>
+    <tr><td>② 駐車場70台</td><td><code>home/hall/hall-parking.png</code>（新規・オーナー提供）</td><td>川口メモリアルホール「第3駐車場」の実写。人物・ナンバー等の個人特定要素なしを確認（§12/§13）。</td></tr>
+    <tr><td>③ 家族葬〜一般葬200名</td><td><code>home/hall/hall-ceremony-room.jpg</code></td><td>自社式場。対応規模が伝わる。</td></tr>
+  </tbody>
+</table>
+
+<h2>2. 実装メモ</h2>
+<ul>
+  <li>各カードは写真（<code>aspect-[4/3]</code>・<code>object-cover</code>）＋ カテゴリ／数字／見出し／本文。スマホは縦並び、PCは3カラム。</li>
+  <li>駐車場写真は横長パノラマのため、4:3カードでは中央トリミング表示になる（必要なら別画角に差し替え可）。</li>
+  <li>①のカードには公営・非運営の注記を追加（§19.3）。</li>
+</ul>
+
+<h2>3. 方針順守</h2>
+<ul>
+  <li>誇張・断定なし（§11）。数字は事実（5分/70台/200名）。</li>
+  <li>画像（§12/§13）：駐車場写真はオーナー提供・人物/ナンバーなしを確認。式場・めぐりの森は既存掲載画像。無断使用なし。</li>
+  <li>§19.3：めぐりの森を自社運営と誤認させない注記を明示。</li>
+  <li>配色・レイアウト・CTA・共通レイアウトは不変（§3/§4/§5）。依存追加なし。</li>
+</ul>
+
+<h2>4. 変更ファイル</h2>
+<table>
+  <thead><tr><th>ファイル</th><th>内容</th></tr></thead>
+  <tbody>
+    <tr><td><code>components/home/ThreeStrengthsSection.tsx</code></td><td>数字カード→実写写真カードに変更（写真＋数字＋説明）。</td></tr>
+    <tr><td><code>public/images/home/hall/hall-parking.png</code>（新規）</td><td>駐車場の実写（オーナー提供・tmpから本配置へ移動）。</td></tr>
+  </tbody>
+</table>
+
+<h2>5. 確認結果</h2>
+<ul>
+  <li><code>npm run build</code>：✓ 成功・135ページ維持・型エラーなし。</li>
+  <li>確認URL：<code>/</code>（「3つの安心」がスマホ・PCで実写カード）。</li>
+</ul>
+
+<footer class="doc">川口典礼サイト 社内作業レポート｜2026-06-07 作成｜非公開（docs/reports/・noindex）｜個人情報・秘密情報なし</footer>
+
+</div>
+</body>
+</html>
