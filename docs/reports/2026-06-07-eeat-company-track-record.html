@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>作業レポート 2026-06-07｜E-E-A-T 実績の可視化・会社構造化（⑤ Part2）</title>
+<style>
+  :root{--ink:#2b2b2b;--soft:#6b6b6b;--line:#e3e0da;--bg:#faf9f7;--accent:#7a6a55;--ok:#2e7d52;--warn:#b4773a}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;line-height:1.85;font-size:15px}
+  .wrap{max-width:860px;margin:0 auto;padding:40px 22px 80px}
+  header.doc{border-bottom:2px solid var(--line);padding-bottom:18px;margin-bottom:28px}
+  .kicker{font-size:12px;letter-spacing:.12em;color:var(--accent);margin:0 0 6px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:22px;font-weight:600;margin:0 0 10px;line-height:1.5}
+  .meta{font-size:12.5px;color:var(--soft)} .meta span{margin-right:14px}
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:19px;font-weight:600;margin:34px 0 12px;padding-left:11px;border-left:4px solid var(--accent)}
+  p{margin:8px 0}
+  .card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:14px 0}
+  .tag{display:inline-block;font-size:11.5px;padding:2px 9px;border-radius:999px;border:1px solid var(--line);color:var(--soft);background:#fff}
+  .tag.ok{color:var(--ok);border-color:#bfe0cd}
+  .tag.warn{color:var(--warn);border-color:#e3c79f}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13.5px;background:#fff}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  code{background:#f1efe9;padding:1px 6px;border-radius:5px;font-size:12.5px;font-family:ui-monospace,Consolas,monospace}
+  ul,ol{margin:8px 0;padding-left:22px} li{margin:4px 0}
+  .callout{border-left:4px solid var(--warn);background:#fbf6ef;padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0}
+  .callout.ok{border-color:var(--ok);background:#f3faf5}
+  .callout p:first-child{margin-top:0}.callout p:last-child{margin-bottom:0}
+  .muted{color:var(--soft);font-size:13px}
+  footer.doc{margin-top:50px;padding-top:18px;border-top:1px solid var(--line);color:var(--soft);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <p class="kicker">川口典礼サイト ＿ 作業レポート（社内記録・非公開）</p>
+  <h1>E-E-A-T 著者性・実績の可視化（プレイブック⑤）</h1>
+  <p class="meta">
+    <span>作成日：2026-06-07</span>
+    <span>担当：Claude Code</span>
+  </p>
+  <p class="muted">社内記録（Web非公開・<code>noindex</code>）。個人情報・秘密情報なし。出典：<a href="./2026-06-07-implementation-playbook.html">改善実装プレイブック</a> の ⑤。</p>
+</header>
+
+<div class="callout">
+  <p><strong>Part 1（著者情報ブロック・実名/肩書き）は保留：</strong>リポジトリ内に<strong>確定・本人同意済みの実名／肩書き情報が存在しない</strong>ため、指示どおりダミーを入れず保留。①ガイド・コラムへの著者ブロック挿入は未実施。確定情報の提供後に反映する（§12 / privacy-review-jp）。</p>
+</div>
+<div class="callout ok">
+  <p><strong>Part 2（実績数値・会社構造化）は実装：</strong>すべて確定事実（創業20年・年間約260件・川口市民葬＝葬祭事業登録）で実名を含まないため実装。Review/aggregateRating/ratingValue は含めない（§19.1）。</p>
+</div>
+
+<h2>1. サマリ</h2>
+<div class="card">
+  <ul>
+    <li><span class="tag ok">追加</span> <code>lib/company.ts</code> に <code>trackRecord</code>（実績数値）と <code>citizenFuneralRegistered</code> を追加。<code>affiliations</code> に「川口市の葬祭事業（市民葬）登録店」を追加。</li>
+    <li><span class="tag ok">構造化</span> 既存 <code>FuneralHome</code> JSON-LD（= Organization サブタイプ）に <code>knowsAbout</code>（提供葬儀形式）を追加。<strong>Person は確定著者情報待ちのため未追加</strong>。<strong>Review/aggregateRating は不使用</strong>。</li>
+    <li><span class="tag ok">追加</span> <code>/company/</code> に「Track Record（地域での経験と実績）」セクションを追加（創業20年／年間約260件／川口市民葬 登録）。</li>
+    <li><span class="tag ok">完了</span> <code>npm run build</code> 成功・135ページ維持・型エラーなし。</li>
+    <li><span class="tag warn">保留</span> Part 1（実名著者ブロック）＝確定情報の提供待ち。</li>
+  </ul>
+</div>
+
+<h2>2. Part 1 で提供をお願いしたい確定情報</h2>
+<p>以下が社内確定・本人同意済みになり次第、①「川口市 葬儀ガイド」と主要コラムに「監修・担当」ブロックとして反映します。</p>
+<table>
+  <thead><tr><th>項目</th><th>内容</th></tr></thead>
+  <tbody>
+    <tr><td>氏名</td><td>掲載する実名（または「監修：○○」の表記方法）</td></tr>
+    <tr><td>肩書き・資格</td><td>例：葬祭ディレクター（1級/2級）・現場◯年 など。資格は実在・取得済みのもののみ。</td></tr>
+    <tr><td>経歴の一文</td><td>地域・経験年数など、誇張のない範囲の紹介文</td></tr>
+    <tr><td>顔写真（任意）</td><td>掲載する場合は本人同意の確認が前提（§12）。なしでも可。</td></tr>
+    <tr><td>本人同意</td><td>氏名・肩書き・写真の掲載について本人同意が取れていること</td></tr>
+  </tbody>
+</table>
+<p class="muted">提供後、<code>Person</code> 構造化データ（監修者）と著者バイラインを追加します（Review/rating は引き続き含めません）。</p>
+
+<h2>3. Part 2 の方針順守</h2>
+<table>
+  <thead><tr><th>項目</th><th>順守</th></tr></thead>
+  <tbody>
+    <tr><td>誇張・断定なし（§11）</td><td>「約260件」「車5分」など目安は目安として記載。創業年・登録区分は確定事実。最安/必ず等の禁止表現なし。</td></tr>
+    <tr><td>個人情報（§12）</td><td>実名・顔写真は未掲載。確定・同意前は出さない。</td></tr>
+    <tr><td>構造化データ（§19.1/§19.2）</td><td>Organization（FuneralHome）に knowsAbout を追加。Review/aggregateRating/ratingValue は不使用。</td></tr>
+    <tr><td>登録区分の表記</td><td>「川口市の葬祭事業（市民葬）登録店」は plans.ts の既存記載（葬祭事業登録業者）と整合。新規断定ではない。</td></tr>
+  </tbody>
+</table>
+
+<h2>4. 変更ファイル</h2>
+<table>
+  <thead><tr><th>ファイル</th><th>内容</th></tr></thead>
+  <tbody>
+    <tr><td><code>lib/company.ts</code></td><td>trackRecord / citizenFuneralRegistered / affiliations 追加、FuneralHome JSON-LD に knowsAbout 追加。</td></tr>
+    <tr><td><code>app/company/page.tsx</code></td><td>Track Record セクション追加。</td></tr>
+  </tbody>
+</table>
+
+<h2>5. 確認結果</h2>
+<ul>
+  <li><code>npm run build</code>：✓ Compiled successfully、135ページ維持、型エラーなし。</li>
+  <li>確認URL：<code>/company/</code>（Track Record／加盟・認可に登録店表示）。</li>
+  <li>実名を含まないため Part 2 は §19.1 自走push可。Part 1 は確定情報の提供後・実名push時は人間承認。</li>
+</ul>
+
+<h2>6. 今後</h2>
+<ol>
+  <li>Part 1：確定した氏名・肩書き・同意の提供 → 著者バイライン＋Person構造化を反映（実名pushは人間承認）。</li>
+  <li>残：④ FV価格・バッジ（承認待ち・別レポート）／⑦ aggregateRating（承認必須）／⑧ 仕上げ点検。</li>
+</ol>
+
+<footer class="doc">川口典礼サイト 社内作業レポート｜2026-06-07 作成｜非公開（docs/reports/・noindex）｜個人情報・秘密情報なし</footer>
+
+</div>
+</body>
+</html>

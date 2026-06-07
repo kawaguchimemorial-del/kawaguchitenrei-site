@@ -101,6 +101,50 @@ export default function CompanyPage() {
         ]}
       />
 
+      {/* 実績（E-E-A-T：地域での経験・実績の可視化。すべて確定事実・誇張なし §11） */}
+      <section className="border-b border-line-soft bg-paper py-14 md:py-20">
+        <div className="mx-auto max-w-6xl px-5 md:px-8">
+          <div className="max-w-3xl">
+            <p className="text-sm font-semibold tracking-[0.18em] text-brand uppercase">
+              Track Record
+            </p>
+            <p className="mt-2 text-sm font-semibold text-ink-mid">
+              地域での経験と実績
+            </p>
+            <h2 className="font-serif-jp mt-4 text-3xl font-medium leading-[1.4] text-ink-deep md:text-[2.2rem]">
+              川口の地で重ねてきた、
+              <br className="md:hidden" />
+              お見送りの経験。
+            </h2>
+          </div>
+
+          <dl className="mt-10 grid gap-4 sm:grid-cols-3">
+            {company.trackRecord.map((item) => (
+              <div
+                key={item.label}
+                className="flex h-full flex-col rounded-lg border border-line bg-white p-6 shadow-sm md:p-7"
+              >
+                <dt className="text-sm font-semibold text-ink-mid">
+                  {item.label}
+                </dt>
+                <dd className="font-serif-jp mt-2 text-3xl font-medium text-brand md:text-4xl">
+                  {item.value}
+                </dd>
+                {item.note && (
+                  <p className="mt-3 text-sm leading-7 text-ink-mid">
+                    {item.note}
+                  </p>
+                )}
+              </div>
+            ))}
+          </dl>
+
+          <p className="mt-6 text-xs leading-6 text-ink-soft md:text-sm">
+            ※ 施行件数は年間のおおよその目安です。創業年・登録区分は確定の事実に基づき記載しています。
+          </p>
+        </div>
+      </section>
+
       <section className="bg-white py-16 md:py-24">
         <div className="mx-auto max-w-6xl px-5 md:px-8">
           <div className="max-w-3xl">

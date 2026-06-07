@@ -16,6 +16,10 @@ export type CompanyInfo = {
   foundedYear: number;
   yearsInBusiness: number;
   annualCases: string;
+  // 川口市の葬祭事業（市民葬）登録店かどうか（確定事実）
+  citizenFuneralRegistered: boolean;
+  // 実績数値の可視化用（すべて確定事実・誇張しない §11）
+  trackRecord: { value: string; label: string; note?: string }[];
   capital?: string;
   business: string[];
   affiliations: string[];
@@ -45,6 +49,24 @@ export const company: CompanyInfo = {
   foundedYear: 2006,
   yearsInBusiness: 20,
   annualCases: "年間約260件",
+  citizenFuneralRegistered: true,
+  trackRecord: [
+    {
+      value: "20年",
+      label: "創業",
+      note: "2006年〜、川口市・新井宿でお見送りをお手伝い",
+    },
+    {
+      value: "約260件",
+      label: "年間の施行実績",
+      note: "家族葬・一日葬・直葬・一般葬・市民葬まで",
+    },
+    {
+      value: "登録店",
+      label: "川口市の葬祭事業（市民葬）",
+      note: "申請手続きから川口市めぐりの森での火葬までご相談に対応",
+    },
+  ],
   business: [
     "葬儀・告別式の請負(家族葬・一日葬・直葬ほか)",
     "事前相談・葬儀プランのご案内",
@@ -54,7 +76,7 @@ export const company: CompanyInfo = {
     "法要・アフターサポート",
     "川口市民葬制度の活用ご案内",
   ],
-  affiliations: [],
+  affiliations: ["川口市の葬祭事業（市民葬）登録店"],
   hallSlug: "kawaguchi-memorial-hall",
   hallName: "川口メモリアルホール",
   serviceAreas: [
@@ -92,6 +114,14 @@ export function getLocalBusinessJsonLd() {
       streetAddress: company.streetAddress,
     },
     telephone: `+81-${tel.startsWith("0") ? tel.slice(1) : tel}`,
+    knowsAbout: [
+      "家族葬",
+      "一日葬",
+      "直葬・火葬式",
+      "一般葬",
+      "川口市民葬（葬祭事業）",
+      "川口市めぐりの森での火葬",
+    ],
     openingHoursSpecification: {
       "@type": "OpeningHoursSpecification",
       dayOfWeek: [
