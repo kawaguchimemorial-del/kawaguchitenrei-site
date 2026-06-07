@@ -137,11 +137,12 @@ export function Hero() {
           川口市・新井宿の皆様へ
         </p>
 
-        <h1 className="font-serif-jp mt-5 text-[1.75rem] font-medium leading-[1.4] tracking-normal text-ink-deep md:col-start-1 md:row-start-2 md:mt-5 md:text-[2.2rem] md:leading-[1.32]">
+        {/* モバイル側を本ページの h1 とし、PC側は同一表記の見出し風テキスト（p）にしてh1の二重出力を回避 */}
+        <p className="font-serif-jp mt-5 text-[1.75rem] font-medium leading-[1.4] tracking-normal text-ink-deep md:col-start-1 md:row-start-2 md:mt-5 md:text-[2.2rem] md:leading-[1.32]">
           川口市・新井宿で
           <br />
           家族葬・直葬をお考えの方へ。
-        </h1>
+        </p>
 
         <p className="mt-5 text-sm leading-7 text-ink-mid md:col-start-1 md:row-start-3 md:mt-5 md:text-base md:leading-8">
           急なお迎えから費用のご相談まで、地元川口の葬儀社が24時間対応します。川口市西新井宿の自社式場 / 創業20年・年間約260件の施行実績。

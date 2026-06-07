@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>作業レポート 2026-06-07｜仕上げ点検：h1二重/メディア位置/公開日（⑧）</title>
+<style>
+  :root{--ink:#2b2b2b;--soft:#6b6b6b;--line:#e3e0da;--bg:#faf9f7;--accent:#7a6a55;--ok:#2e7d52}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;line-height:1.85;font-size:15px}
+  .wrap{max-width:860px;margin:0 auto;padding:40px 22px 80px}
+  header.doc{border-bottom:2px solid var(--line);padding-bottom:18px;margin-bottom:28px}
+  .kicker{font-size:12px;letter-spacing:.12em;color:var(--accent);margin:0 0 6px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:22px;font-weight:600;margin:0 0 10px;line-height:1.5}
+  .meta{font-size:12.5px;color:var(--soft)} .meta span{margin-right:14px}
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:19px;font-weight:600;margin:34px 0 12px;padding-left:11px;border-left:4px solid var(--accent)}
+  p{margin:8px 0}
+  .card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:14px 0}
+  .tag{display:inline-block;font-size:11.5px;padding:2px 9px;border-radius:999px;border:1px solid var(--line);color:var(--soft);background:#fff}
+  .tag.ok{color:var(--ok);border-color:#bfe0cd}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13.5px;background:#fff}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  code{background:#f1efe9;padding:1px 6px;border-radius:5px;font-size:12.5px;font-family:ui-monospace,Consolas,monospace}
+  ul,ol{margin:8px 0;padding-left:22px} li{margin:4px 0}
+  .callout{border-left:4px solid var(--ok);background:#f3faf5;padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0}
+  .callout p:first-child{margin-top:0}.callout p:last-child{margin-bottom:0}
+  .muted{color:var(--soft);font-size:13px}
+  footer.doc{margin-top:50px;padding-top:18px;border-top:1px solid var(--line);color:var(--soft);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <p class="kicker">川口典礼サイト ＿ 作業レポート（社内記録・非公開）</p>
+  <h1>仕上げ点検：h1二重出力・メディア掲載位置・公開日（プレイブック⑧）</h1>
+  <p class="meta">
+    <span>作成日：2026-06-07</span>
+    <span>担当：Claude Code</span>
+  </p>
+  <p class="muted">社内記録（Web非公開・<code>noindex</code>）。個人情報・秘密情報なし。出典：<a href="./2026-06-07-implementation-playbook.html">改善実装プレイブック</a> の ⑧。</p>
+</header>
+
+<div class="callout">
+  <p><strong>調査 → 実装の順で実施。</strong>トップページ構造に触れるため、まず現状調査で範囲を確定し、最小差分で修正。build成功・135ページ維持。⑧は自走push可。</p>
+</div>
+
+<h2>1. 現状調査の結果</h2>
+<table>
+  <thead><tr><th>項目</th><th>判定</th><th>詳細</th></tr></thead>
+  <tbody>
+    <tr><td>h1 二重出力</td><td>該当（修正）</td><td><code>components/home/Hero.tsx</code> にモバイル用・PC用の <code>&lt;h1&gt;</code> が各1つ＝計2つ。レスポンシブ表示切替だが DOM には両方出力されるため、HTML上 h1 が2つになっていた。</td></tr>
+    <tr><td>メディア掲載位置</td><td>該当（移動）</td><td><code>MediaLinksSection</code> がページ最下部（<code>FinalCtaSection</code> の後）にあった。</td></tr>
+    <tr><td>公開日（columns.ts）</td><td>問題なし</td><td><code>publishedAt</code>/<code>updatedAt</code> の最新は 2026-05-21 で本日（2026-06-07）より前。未来日なし＝修正不要。</td></tr>
+  </tbody>
+</table>
+
+<h2>2. 実装内容</h2>
+<table>
+  <thead><tr><th>項目</th><th>対応</th></tr></thead>
+  <tbody>
+    <tr><td>h1 を1ページ1つに</td><td>モバイル側を本ページの <code>&lt;h1&gt;</code> として維持（モバイルファースト索引が主）。PC側は<strong>同一表記・同一スタイルの <code>&lt;p&gt;</code></strong> に変更。見た目は不変で、DOM の h1 は1つに。</td></tr>
+    <tr><td>メディア掲載を中位へ</td><td><code>MediaLinksSection</code> を <code>VoicesSection</code> の直後（<code>FaqSection</code> の前）へ移動。実績・お客様の声と並べ、第三者掲載による信頼補強を中位に配置。</td></tr>
+    <tr><td>公開日</td><td>修正なし（未来日なし）。</td></tr>
+  </tbody>
+</table>
+
+<h2>3. 方針順守</h2>
+<ul>
+  <li>デザインコンセプト・配色・レイアウト・既存CTAは変更なし（§3/§4）。h1→pはタグのみ変更でクラス＝見た目は不変。</li>
+  <li>共通レイアウト（Header/Footer/MobileBottomCTA）未編集（§5）。</li>
+  <li>セクションの順序入替のみで、各セクションの内容・文言は不変。</li>
+</ul>
+
+<h2>4. 変更ファイル</h2>
+<table>
+  <thead><tr><th>ファイル</th><th>内容</th></tr></thead>
+  <tbody>
+    <tr><td><code>components/home/Hero.tsx</code></td><td>PC側見出しを <code>&lt;h1&gt;</code>→<code>&lt;p&gt;</code>（h1二重出力の解消）。</td></tr>
+    <tr><td><code>app/page.tsx</code></td><td><code>MediaLinksSection</code> を最下部から <code>VoicesSection</code> 直後へ移動。</td></tr>
+  </tbody>
+</table>
+
+<h2>5. 確認結果</h2>
+<ul>
+  <li><code>npm run build</code>：✓ コンパイル成功・135ページ維持（ルート増減なし）・型エラーなし。</li>
+  <li>確認URL：<code>/</code>（h1が1つ・メディア掲載が中位）。</li>
+</ul>
+
+<h2>6. 残タスク</h2>
+<ol>
+  <li>⑤ Part1：実名著者ブロック（氏名・肩書き・本人同意の提供待ち）。</li>
+  <li>⑦：aggregateRating（保留）。</li>
+</ol>
+
+<footer class="doc">川口典礼サイト 社内作業レポート｜2026-06-07 作成｜非公開（docs/reports/・noindex）｜個人情報・秘密情報なし</footer>
+
+</div>
+</body>
+</html>

@@ -114,11 +114,11 @@ export default function Home() {
       <MeguriSection />
       <CasesSection />
       <VoicesSection />
+      <MediaLinksSection />
       <FaqSection />
       <AreasSection />
       <AccessSection />
       <FinalCtaSection />
-      <MediaLinksSection />
     </>
   );
 }
