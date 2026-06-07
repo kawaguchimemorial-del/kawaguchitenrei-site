@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>作業レポート 2026-06-07｜施行事例も自動スクロール（marquee）に統一</title>
+<style>
+  :root{--ink:#2b2b2b;--soft:#6b6b6b;--line:#e3e0da;--bg:#faf9f7;--accent:#7a6a55;--ok:#2e7d52}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;line-height:1.85;font-size:15px}
+  .wrap{max-width:860px;margin:0 auto;padding:40px 22px 80px}
+  header.doc{border-bottom:2px solid var(--line);padding-bottom:18px;margin-bottom:28px}
+  .kicker{font-size:12px;letter-spacing:.12em;color:var(--accent);margin:0 0 6px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:22px;font-weight:600;margin:0 0 10px;line-height:1.5}
+  .meta{font-size:12.5px;color:var(--soft)} .meta span{margin-right:14px}
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:19px;font-weight:600;margin:34px 0 12px;padding-left:11px;border-left:4px solid var(--accent)}
+  p{margin:8px 0}
+  .card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:14px 0}
+  .tag{display:inline-block;font-size:11.5px;padding:2px 9px;border-radius:999px;border:1px solid var(--line);color:var(--soft);background:#fff}
+  .tag.ok{color:var(--ok);border-color:#bfe0cd}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13.5px;background:#fff}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  code{background:#f1efe9;padding:1px 6px;border-radius:5px;font-size:12.5px;font-family:ui-monospace,Consolas,monospace}
+  ul,ol{margin:8px 0;padding-left:22px} li{margin:4px 0}
+  .callout{border-left:4px solid var(--ok);background:#f3faf5;padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0}
+  .callout p:first-child{margin-top:0}.callout p:last-child{margin-bottom:0}
+  .muted{color:var(--soft);font-size:13px}
+  footer.doc{margin-top:50px;padding-top:18px;border-top:1px solid var(--line);color:var(--soft);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <p class="kicker">川口典礼サイト ＿ 作業レポート（社内記録・非公開）</p>
+  <h1>トップ「施行事例」も自動スクロール（marquee）に統一</h1>
+  <p class="meta">
+    <span>作成日：2026-06-07</span>
+    <span>担当：Claude Code</span>
+  </p>
+  <p class="muted">社内記録（Web非公開・<code>noindex</code>）。個人情報・秘密情報なし。</p>
+</header>
+
+<div class="callout">
+  <p><strong>狙い：</strong>「お客様の声」と同じ仕様で「施行事例」もトップで自動横スクロール化し、見せられる事例数を増やして回遊・比較検討を後押し。CSSのみ・追加ライブラリなし。</p>
+</div>
+
+<h2>1. 仕様（お客様の声と統一）</h2>
+<table>
+  <thead><tr><th>項目</th><th>内容</th></tr></thead>
+  <tbody>
+    <tr><td>方式</td><td>CSSのみの自動横スクロール（marquee）。共用クラス <code>.marquee</code>。</td></tr>
+    <tr><td>件数</td><td>公開中の全事例を新しい順に流す（従来はトップ3件のグリッド）。</td></tr>
+    <tr><td>適用範囲</td><td>スマホ・PC共通。</td></tr>
+    <tr><td>挙動</td><td>左へゆっくり自動スクロール（1周150秒）／ホバーで一時停止／<code>prefers-reduced-motion</code> で停止（全件は「事例一覧を見る」から閲覧可）。</td></tr>
+    <tr><td>カード</td><td>幅スマホ280px・PC360px。形式/場所/人数/総額の表示は従来どおり。</td></tr>
+  </tbody>
+</table>
+
+<h2>2. 共通化（リファクタ）</h2>
+<ul>
+  <li>マーキー用CSSを汎用化：<code>.voices-marquee</code>／<code>@keyframes voices-marquee</code> を <strong><code>.marquee</code>／<code>@keyframes marquee</code></strong> にリネームし、「お客様の声」「施行事例」で共用。</li>
+  <li><code>VoicesSection.tsx</code> のクラス参照も <code>.marquee</code> に更新（挙動・速度は不変）。</li>
+  <li><code>CasesSection.tsx</code> はカードを <code>CaseCard</code> に切り出し、トラックは同一列2連結＋複製側 <code>aria-hidden</code>/<code>tabIndex=-1</code> で重複回避。</li>
+</ul>
+
+<h2>3. 方針順守</h2>
+<ul>
+  <li>トーン（§3）：ゆっくり・控えめ・ホバー停止。配色・レイアウト・CTA不変。</li>
+  <li>アクセシビリティ：一時停止と <code>prefers-reduced-motion</code> 対応。</li>
+  <li>共通レイアウト（§5）：Header/Footer/MobileBottomCTA 未編集。依存追加なし。</li>
+  <li>個人情報（§12）：掲載内容は許可済みの既存事例のまま。新規の個人情報なし。</li>
+</ul>
+
+<h2>4. 変更ファイル</h2>
+<table>
+  <thead><tr><th>ファイル</th><th>内容</th></tr></thead>
+  <tbody>
+    <tr><td><code>components/home/CasesSection.tsx</code></td><td>3件グリッド→全件marqueeに変更。<code>CaseCard</code> 切り出し。</td></tr>
+    <tr><td><code>app/globals.css</code></td><td><code>.voices-marquee</code>→<code>.marquee</code> に汎用リネーム（速度150s・hover停止・reduced-motion停止）。</td></tr>
+    <tr><td><code>components/home/VoicesSection.tsx</code></td><td>クラス参照を <code>.marquee</code> に更新（挙動不変）。</td></tr>
+  </tbody>
+</table>
+
+<h2>5. 確認結果</h2>
+<ul>
+  <li><code>npm run build</code>：✓ 成功・135ページ維持・型エラーなし。</li>
+  <li>確認URL：<code>/</code>（「施行事例」「お客様の声」がスマホ・PCで自動スクロール）。</li>
+</ul>
+
+<footer class="doc">川口典礼サイト 社内作業レポート｜2026-06-07 作成｜非公開（docs/reports/・noindex）｜個人情報・秘密情報なし</footer>
+
+</div>
+</body>
+</html>

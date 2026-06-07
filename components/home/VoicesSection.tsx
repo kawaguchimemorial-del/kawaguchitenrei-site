@@ -105,7 +105,7 @@ export function VoicesSection() {
         aria-label="お客様の声（自動でスクロールします。カードにカーソルを合わせると停止します）"
       >
         <div className="overflow-hidden">
-          <ul className="voices-marquee gap-5 md:gap-6">
+          <ul className="marquee gap-5 md:gap-6">
             {[...marqueeItems, ...marqueeItems].map((voice, i) => {
               const isDup = i >= marqueeItems.length;
               return (

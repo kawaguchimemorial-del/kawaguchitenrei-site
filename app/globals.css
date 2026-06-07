@@ -172,19 +172,19 @@ summary:focus-visible {
   }
 }
 
-/* お客様の声（スマホ・PC共通）— ゆっくり横に流れる自動スクロール（marquee） */
+/* 横スクロールの自動マーキー（お客様の声・施行事例などで共用／スマホ・PC共通） */
 /* トラックは同一カード列を2連結し、-50% まで動かしてシームレスにループする。 */
-.voices-marquee {
+.marquee {
   display: flex;
   width: max-content;
-  animation: voices-marquee 150s linear infinite;
+  animation: marquee 150s linear infinite;
   will-change: transform;
 }
 /* ホバー中は一時停止（読みたいカードで止められる） */
-.voices-marquee:hover {
+.marquee:hover {
   animation-play-state: paused;
 }
-@keyframes voices-marquee {
+@keyframes marquee {
   from {
     transform: translateX(0);
   }
@@ -194,7 +194,7 @@ summary:focus-visible {
 }
 /* 動きを減らす設定では自動スクロールを停止（全件は「すべて見る」から閲覧可） */
 @media (prefers-reduced-motion: reduce) {
-  .voices-marquee {
+  .marquee {
     animation: none;
   }
 }
