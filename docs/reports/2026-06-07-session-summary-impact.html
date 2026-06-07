@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>作業レポート 2026-06-07｜セッション総括：実施内容・改善点・期待される影響</title>
+<style>
+  :root{--ink:#2b2b2b;--soft:#6b6b6b;--line:#e3e0da;--bg:#faf9f7;--accent:#7a6a55;--ok:#2e7d52;--warn:#b4773a;--hold:#7a6a55}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;line-height:1.85;font-size:15px}
+  .wrap{max-width:880px;margin:0 auto;padding:40px 22px 80px}
+  header.doc{border-bottom:2px solid var(--line);padding-bottom:18px;margin-bottom:28px}
+  .kicker{font-size:12px;letter-spacing:.12em;color:var(--accent);margin:0 0 6px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:23px;font-weight:600;margin:0 0 10px;line-height:1.5}
+  .meta{font-size:12.5px;color:var(--soft)} .meta span{margin-right:14px}
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:19px;font-weight:600;margin:36px 0 12px;padding-left:11px;border-left:4px solid var(--accent)}
+  h3{font-size:15px;font-weight:700;margin:20px 0 6px;color:var(--ink)}
+  p{margin:8px 0}
+  .card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:14px 0}
+  .tag{display:inline-block;font-size:11px;padding:2px 9px;border-radius:999px;border:1px solid var(--line);color:var(--soft);background:#fff;white-space:nowrap}
+  .tag.ok{color:var(--ok);border-color:#bfe0cd}
+  .tag.warn{color:var(--warn);border-color:#e3c79f}
+  .tag.hold{color:var(--hold);border-color:#d8d2c6}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13px;background:#fff}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  th{background:#f6f4ef}
+  code{background:#f1efe9;padding:1px 6px;border-radius:5px;font-size:12px;font-family:ui-monospace,Consolas,monospace}
+  ul,ol{margin:8px 0;padding-left:22px} li{margin:5px 0}
+  .callout{border-left:4px solid var(--accent);background:#f6f3ee;padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0}
+  .callout p:first-child{margin-top:0}.callout p:last-child{margin-bottom:0}
+  .muted{color:var(--soft);font-size:13px}
+  .grid2{display:grid;gap:12px} @media(min-width:640px){.grid2{grid-template-columns:1fr 1fr}}
+  footer.doc{margin-top:50px;padding-top:18px;border-top:1px solid var(--line);color:var(--soft);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <p class="kicker">川口典礼サイト ＿ 作業レポート（社内記録・非公開）</p>
+  <h1>セッション総括：実施内容・改善点・期待される影響</h1>
+  <p class="meta">
+    <span>作成日：2026-06-07</span>
+    <span>担当：Claude Code</span>
+    <span>対象：改善実装プレイブック ①〜⑧</span>
+  </p>
+  <p class="muted">社内記録（Web非公開・<code>noindex</code>）。個人情報・秘密情報なし。本レポートは当セッションで本番反映した施策の要約と、想定される効果（断定ではなく見込み）を記載します。</p>
+</header>
+
+<div class="callout">
+  <p><strong>このセッションでやったこと（要約）：</strong>プレイブックの改善8項目のうち <strong>①②③④⑤(Part2)⑥⑧ を本番反映</strong>。費用の透明化・形式別の読み物強化・地域内部リンク・FVの価格/実績可視化・会社の実績構造化・トップの技術仕上げを実施。<strong>⑤Part1（実名著者）は確定情報待ちで保留、⑦（aggregateRating）は妥当性を検討のうえ今回は見送り。</strong>全施行で <code>npm run build</code> 成功・<strong>135ページ維持</strong>・禁止表現/個人情報なしを確認。</p>
+</div>
+
+<h2>1. 反映した施策一覧（本番push済み）</h2>
+<table>
+  <thead><tr><th>#</th><th>施策</th><th>主な変更</th><th>commit</th></tr></thead>
+  <tbody>
+    <tr><td>③</td><td>めぐりの森ページ強化</td><td>結論先出し＋基本情報表、FAQ拡充（火葬料金・火葬式/直葬）。公営・自社非運営を明記。</td><td><code>7a44b5c</code></td></tr>
+    <tr><td>①</td><td>川口市 葬儀ガイド強化</td><td><code>/area/kawaguchi/</code> に「費用の目安」「公的制度（市民葬・葬祭費）」セクション＋FAQ2件。</td><td><code>f44c920</code></td></tr>
+    <tr><td>②</td><td>費用内訳表</td><td><code>CostBreakdownTable</code>（項目別内訳＋火葬場別火葬料の目安表）を <code>/plan/</code> に設置。</td><td><code>944c94e</code></td></tr>
+    <tr><td>⑥</td><td>形式別ページ強化＋斎場リンク</td><td>家族葬/一日葬/火葬式/直葬に「定義/メリット/デメリット/向いている方」を追加。<code>/saijo/</code> にエリア別ジャンプナビ＋<code>/area/*</code> 内部リンク。</td><td><code>1fabaee</code></td></tr>
+    <tr><td>④</td><td>FV価格＋E-E-A-Tバッジ</td><td>FVに価格レンジ1行（直葬139,000円〜・税込）＋実績バッジ6個。</td><td><code>8ed599f</code></td></tr>
+    <tr><td>⑤<br>Part2</td><td>実績の可視化・会社構造化</td><td><code>/company/</code> に Track Record。FuneralHome(Organization) JSON-LD を <code>knowsAbout</code> で補強。</td><td><code>c2fc7aa</code></td></tr>
+    <tr><td>⑧</td><td>仕上げ点検</td><td>トップの h1 を1つに（PC見出しを p 化）。メディア掲載を中位へ移動。公開日点検（未来日なし）。</td><td><code>521330c</code></td></tr>
+  </tbody>
+</table>
+
+<h2>2. 改善されたこと（観点別）</h2>
+
+<h3>費用の透明性</h3>
+<ul>
+  <li><code>/plan/</code> の費用内訳表と <code>/area/kawaguchi/</code> の費用の目安により、「何にいくらかかるか」が表形式で読めるようになった。すべて目安・要見積りを明記（誇張なし）。</li>
+  <li>FVに価格の最初の手がかり（直葬139,000円〜・税込）が1行入り、初見でも費用感の入口が得られる。</li>
+</ul>
+
+<h3>読み物としての厚み（滞在価値）</h3>
+<ul>
+  <li>形式別ページに「この形式とは／メリット／デメリット・留意点／向いている方」が加わり、比較検討に必要な情報が1ページで揃う。デメリットは煽らず「事前に整理しておきたい点」として中立に提示。</li>
+</ul>
+
+<h3>地域SEO（ロングテール）の内部導線</h3>
+<ul>
+  <li><code>/saijo/</code> の寺院会館・民営式場をエリア別に整理し、各エリアグループから該当 <code>/area/*</code>（南鳩ヶ谷・川口駅周辺・上青木・青木・安行・戸塚安行・新郷・神根・東川口 ほか）へ内部リンク。地域名×葬儀の回遊が強化。</li>
+</ul>
+
+<h3>E-E-A-T（信頼性・経験・実績）</h3>
+<ul>
+  <li><code>/company/</code> に実績数値（創業20年／年間約260件／川口市の葬祭事業＝市民葬 登録店）を可視化。Organization 構造化を補強。</li>
+  <li>FVの実績バッジで、初見でも経験・規模・地域近接が伝わる。すべて確定事実ベース。</li>
+</ul>
+
+<h3>AIO（生成AI回答への引用されやすさ）</h3>
+<ul>
+  <li>結論先出し・基本情報表・FAQ・構造化データ（FuneralHome / FAQ / BreadcrumbList / ItemList / 個別Review）という「引用されやすい形」を費用・形式・斎場・会社の各面で拡充。</li>
+</ul>
+
+<h3>技術的な健全性</h3>
+<ul>
+  <li>トップページの h1 二重出力を解消（1ページ1 h1）。見出し階層が明確になり、クロール時の主題が一意に。</li>
+  <li>メディア掲載（第三者掲載）の位置を中位へ移し、社会的証明を読了前に提示。</li>
+  <li>公開日点検：未来日なし（最新 2026-05-21）。</li>
+</ul>
+
+<h2>3. 期待される影響・反響（見込み）</h2>
+<p class="muted">以下は確約ではなく、施策の性質から想定される方向性です。効果は検索エンジン・AI側の評価により変動します。</p>
+<div class="grid2">
+  <div class="card">
+    <h3 style="margin-top:0">検索（オーガニック）</h3>
+    <ul>
+      <li>「川口 葬儀 費用」「直葬/一日葬/家族葬 費用」「○○（地域）葬儀場」などのロングテールでの被表示・クリックの底上げ。</li>
+      <li>費用・形式の網羅により、比較検討段階の滞在時間・回遊の改善が見込まれる。</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3 style="margin-top:0">AIO（AI検索・生成回答）</h3>
+    <ul>
+      <li>表・FAQ・構造化データが揃ったことで、費用相場・形式の違い・会社実績などがAI回答に引用されやすくなる方向。</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3 style="margin-top:0">問い合わせ（CV）</h3>
+    <ul>
+      <li>費用の見通しと信頼材料（実績・第三者掲載）が早期に提示され、電話/事前相談への心理的ハードルが下がる方向。CTAは従来どおり2導線を維持。</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3 style="margin-top:0">留意点</h3>
+    <ul>
+      <li>順位・流入の反映には数週間〜のインデックス更新が必要。Search Console で被表示・順位・クリックの推移を継続観測する。</li>
+    </ul>
+  </div>
+</div>
+
+<h2>4. 効果測定の見方（次の運用）</h2>
+<ul>
+  <li><strong>Search Console</strong>：対象URL（<code>/plan/</code>・<code>/area/kawaguchi/</code>・<code>/saijo/</code>・形式別 <code>/plan/*</code>・<code>/company/</code>・<code>/</code>）の被表示回数・平均掲載順位・クリックの推移。費用系・地域系クエリの動き。</li>
+  <li><strong>構造化データ</strong>：リッチリザルト/拡張の検出状況（エラー有無）。</li>
+  <li><strong>行動</strong>：トップFV→プラン/費用、エリア→斎場の回遊、電話/事前相談の発生。</li>
+</ul>
+
+<h2>5. 残課題</h2>
+<table>
+  <thead><tr><th>項目</th><th>状態</th><th>必要なもの</th></tr></thead>
+  <tbody>
+    <tr><td>⑤ Part1：実名著者ブロック</td><td><span class="tag hold">保留</span></td><td>監修者の氏名・肩書き・資格・本人同意（揃い次第、著者バイライン＋Person構造化を反映。実名pushは人間承認）。</td></tr>
+    <tr><td>⑦ aggregateRating</td><td><span class="tag hold">見送り</span></td><td>実データ30件・平均4.8で実装案は作成済み。自社サイト自社レビューは星リッチリザルト対象外の可能性が高く、AIO引用目的に限定するか再判断。</td></tr>
+  </tbody>
+</table>
+
+<h2>6. 品質・コンプライアンス（全施策共通）</h2>
+<ul>
+  <li>価格はプラン正本（§9）のみ・税込明記。最安/必ず/総額確定 等の禁止表現なし（§14）。</li>
+  <li>煽らない・断定しない（§11）。公営斎場・寺院会館の利用可否/宗派条件の新規断定なし（§19.3）。</li>
+  <li>個人名・故人名・喪主名は非掲載（§12）。お客様の声は許可・マスキング済みの既存運用を維持。</li>
+  <li>各施行で <code>npm run build</code> 成功・135ページ維持・型エラーなし。デザイン/配色/CTA/共通レイアウトは不変（§3/§4/§5）。</li>
+</ul>
+
+<footer class="doc">川口典礼サイト 社内作業レポート｜2026-06-07 作成｜非公開（docs/reports/・noindex）｜個人情報・秘密情報なし</footer>
+
+</div>
+</body>
+</html>
