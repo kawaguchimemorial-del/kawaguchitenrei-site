@@ -34,7 +34,7 @@
 
 <header class="doc">
   <p class="kicker">川口典礼サイト ＿ 作業レポート（社内記録・非公開）</p>
-  <h1>PCトップ「お客様の声」を自動スクロール（marquee）に変更</h1>
+  <h1>トップ「お客様の声」を自動スクロール（marquee）に変更（スマホ・PC共通）</h1>
   <p class="meta">
     <span>作成日：2026-06-07</span>
     <span>担当：Claude Code</span>
@@ -52,9 +52,9 @@
   <tbody>
     <tr><td>方式</td><td>CSSのみの自動横スクロール（marquee）。<code>package.json</code> 変更なし。</td></tr>
     <tr><td>件数</td><td>公開中の全件（30件）を新しい順に流す。</td></tr>
-    <tr><td>適用範囲</td><td>PCのみ（<code>hidden md:block</code>）。モバイルは現状維持（最新2件の縦並び）。</td></tr>
-    <tr><td>挙動</td><td>左へゆっくり自動スクロール（1周80秒）／カードにホバーで一時停止／<code>prefers-reduced-motion</code> で自動停止（全件は「すべて見る」から閲覧可）。</td></tr>
-    <tr><td>カード</td><td>幅360px・コメントは5行クランプで高さを揃える。リンク・★評価は従来どおり。</td></tr>
+    <tr><td>適用範囲</td><td>スマホ・PC共通（両方で自動横スクロール）。当初はPCのみだったが、ユーザー要望によりスマホにも適用。</td></tr>
+    <tr><td>挙動</td><td>左へゆっくり自動スクロール（1周150秒・当初80秒から減速）／カードにホバーで一時停止（PC）／<code>prefers-reduced-motion</code> で自動停止（全件は「すべて見る」から閲覧可）。</td></tr>
+    <tr><td>カード</td><td>幅はスマホ280px・PC360px（レスポンシブ）。コメントは5行クランプで高さを揃える。リンク・★評価は従来どおり。</td></tr>
   </tbody>
 </table>
 

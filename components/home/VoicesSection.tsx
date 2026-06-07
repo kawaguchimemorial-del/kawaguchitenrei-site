@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { voices, getRecentVoices, type Voice } from "@/lib/voices";
+import { voices, type Voice } from "@/lib/voices";
 
 function StarRating({ rating }: { rating: number }) {
   const clamped = Math.max(0, Math.min(5, Math.round(rating)));
@@ -41,7 +41,7 @@ function VoiceCard({
             src={voice.surveyImage.src}
             alt={voice.surveyImage.alt}
             fill
-            sizes="(max-width: 768px) 100vw, 360px"
+            sizes="(max-width: 768px) 280px, 360px"
             className="object-cover object-center transition duration-500 ease-out group-hover:scale-[1.03] motion-reduce:transform-none motion-reduce:transition-none"
           />
         </div>
@@ -75,10 +75,8 @@ function VoiceCard({
 }
 
 export function VoicesSection() {
-  // モバイル：従来どおり最新2件の縦並び
-  const mobileItems = getRecentVoices(2);
-  // PC：公開中の全件を新しい順に自動スクロール（marquee）
-  const pcItems = [...voices].sort((a, b) =>
+  // スマホ・PC共通：公開中の全件を新しい順に自動スクロール（marquee）
+  const marqueeItems = [...voices].sort((a, b) =>
     a.publishedAt < b.publishedAt ? 1 : -1
   );
 
@@ -101,31 +99,20 @@ export function VoicesSection() {
         </div>
       </div>
 
-      {/* モバイル：最新2件（現状維持） */}
-      <div className="mx-auto max-w-6xl px-5 md:hidden">
-        <ul className="mt-10 grid gap-6">
-          {mobileItems.map((voice) => (
-            <li key={voice.slug} data-reveal>
-              <VoiceCard voice={voice} />
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      {/* PC：全件を自動横スクロール（ホバーで一時停止／reduced-motionで停止） */}
+      {/* スマホ・PC共通：全件を自動横スクロール（ホバーで一時停止／reduced-motionで停止） */}
       <div
-        className="mt-10 hidden md:block"
+        className="mt-10"
         aria-label="お客様の声（自動でスクロールします。カードにカーソルを合わせると停止します）"
       >
         <div className="overflow-hidden">
-          <ul className="voices-marquee gap-6">
-            {[...pcItems, ...pcItems].map((voice, i) => {
-              const isDup = i >= pcItems.length;
+          <ul className="voices-marquee gap-5 md:gap-6">
+            {[...marqueeItems, ...marqueeItems].map((voice, i) => {
+              const isDup = i >= marqueeItems.length;
               return (
                 <li
                   key={`${voice.slug}-${i}`}
                   aria-hidden={isDup || undefined}
-                  className="w-[360px] shrink-0"
+                  className="w-[280px] shrink-0 md:w-[360px]"
                 >
                   <VoiceCard voice={voice} clamp duplicate={isDup} />
                 </li>

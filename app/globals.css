@@ -172,12 +172,12 @@ summary:focus-visible {
   }
 }
 
-/* お客様の声（PCのみ）— ゆっくり横に流れる自動スクロール（marquee） */
+/* お客様の声（スマホ・PC共通）— ゆっくり横に流れる自動スクロール（marquee） */
 /* トラックは同一カード列を2連結し、-50% まで動かしてシームレスにループする。 */
 .voices-marquee {
   display: flex;
   width: max-content;
-  animation: voices-marquee 80s linear infinite;
+  animation: voices-marquee 150s linear infinite;
   will-change: transform;
 }
 /* ホバー中は一時停止（読みたいカードで止められる） */
