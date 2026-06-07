@@ -90,11 +90,17 @@ type TempleHall = {
   feeNote: string;
 };
 
+type AreaLink = {
+  label: string;
+  href: string;
+};
+
 type TempleHallArea = {
   id: string;
   groupName: string;
   description: string;
   halls: TempleHall[];
+  areaLinks: AreaLink[];
 };
 
 const templeHallAreas: TempleHallArea[] = [
@@ -126,6 +132,10 @@ const templeHallAreas: TempleHallArea[] = [
         feeNote: "250,000円",
       },
     ],
+    areaLinks: [
+      { label: "南鳩ヶ谷の葬儀・家族葬", href: "/area/minami-hatogaya/" },
+      { label: "鳩ヶ谷の葬儀・家族葬", href: "/area/hatogaya/" },
+    ],
   },
   {
     id: "honcho-funado",
@@ -155,6 +165,9 @@ const templeHallAreas: TempleHallArea[] = [
         feeNote: "150,000円",
       },
     ],
+    areaLinks: [
+      { label: "川口駅周辺の葬儀・家族葬", href: "/area/kawaguchi-ekimae/" },
+    ],
   },
   {
     id: "motogo-ryoke",
@@ -176,6 +189,9 @@ const templeHallAreas: TempleHallArea[] = [
         capacity: "80席",
         feeNote: "1日葬 120,000円 / 2日葬 200,000円",
       },
+    ],
+    areaLinks: [
+      { label: "川口元郷の葬儀・家族葬", href: "/area/kawaguchi-motogo/" },
     ],
   },
   {
@@ -199,6 +215,10 @@ const templeHallAreas: TempleHallArea[] = [
         feeNote: "170,000円",
       },
     ],
+    areaLinks: [
+      { label: "上青木の葬儀・家族葬", href: "/area/kamiaoki/" },
+      { label: "青木の葬儀・家族葬", href: "/area/aoki/" },
+    ],
   },
   {
     id: "edobukuro-shinbori",
@@ -220,6 +240,10 @@ const templeHallAreas: TempleHallArea[] = [
         capacity: "着席40名程度",
         feeNote: "150,000円",
       },
+    ],
+    areaLinks: [
+      { label: "新郷の葬儀・家族葬", href: "/area/shingo/" },
+      { label: "神根の葬儀・家族葬", href: "/area/kamine/" },
     ],
   },
   {
@@ -243,6 +267,10 @@ const templeHallAreas: TempleHallArea[] = [
         feeNote: "1日葬 110,000円前後 / 2日葬 165,000円前後",
       },
     ],
+    areaLinks: [
+      { label: "安行の葬儀・家族葬", href: "/area/angyo/" },
+      { label: "戸塚安行の葬儀・家族葬", href: "/area/tozuka-angyo/" },
+    ],
   },
   {
     id: "hagimatsu-shingo-sashima",
@@ -264,6 +292,10 @@ const templeHallAreas: TempleHallArea[] = [
         capacity: "ご相談時に確認",
         feeNote: "150,000円",
       },
+    ],
+    areaLinks: [
+      { label: "新郷の葬儀・家族葬", href: "/area/shingo/" },
+      { label: "東川口の葬儀・家族葬", href: "/area/higashikawaguchi/" },
     ],
   },
 ];
@@ -698,6 +730,31 @@ export default function SaijoIndexPage() {
             ※ 掲載している寺院会館・民営式場は、川口典礼が運営する施設ではありません。川口典礼で葬儀のご相談・手配に対応している式場としてご案内しています。式場使用料・空き状況・利用条件は変更となる場合があるため、最新の状況は川口典礼で確認のうえご案内します。
           </p>
 
+          {/* エリア別ジャンプナビ（内部回遊・地域別の探しやすさ） */}
+          <nav
+            aria-label="エリア別の寺院会館・民営式場"
+            className="mt-8 rounded-lg border border-line bg-paper p-5 md:p-6"
+          >
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-brand">
+              Area Index
+            </p>
+            <p className="mt-2 text-sm font-semibold text-ink-deep">
+              エリアから寺院会館・民営式場を探す
+            </p>
+            <ul className="mt-4 flex flex-wrap gap-2">
+              {templeHallAreas.map((area) => (
+                <li key={area.id}>
+                  <a
+                    href={`#${area.id}`}
+                    className="inline-flex items-center gap-1 rounded-full border border-line bg-white px-4 py-2 text-sm font-semibold text-ink-mid transition hover:border-brand hover:text-brand"
+                  >
+                    {area.groupName}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
           {/* エリアグループ別カード */}
           <div className="mt-12 space-y-14">
             {templeHallAreas.map((area) => (
@@ -767,6 +824,24 @@ export default function SaijoIndexPage() {
                     </li>
                   ))}
                 </ul>
+
+                {area.areaLinks.length > 0 && (
+                  <div className="mt-5 flex flex-wrap items-center gap-x-2 gap-y-2 text-sm">
+                    <span className="font-semibold text-ink-soft">
+                      このエリアの地域ページ：
+                    </span>
+                    {area.areaLinks.map((link) => (
+                      <a
+                        key={link.href}
+                        href={link.href}
+                        className="inline-flex items-center gap-1 font-bold text-brand hover:underline"
+                      >
+                        {link.label}
+                        <span aria-hidden>→</span>
+                      </a>
+                    ))}
+                  </div>
+                )}
               </div>
             ))}
           </div>

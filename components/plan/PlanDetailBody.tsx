@@ -1483,6 +1483,101 @@ export function PlanConclusionBox({ plan }: { plan: Plan }) {
   );
 }
 
+export function PlanFormatGuide({ plan }: { plan: Plan }) {
+  if (!plan.formatGuide) return null;
+  const guide = plan.formatGuide;
+
+  return (
+    <section className="bg-paper py-16 md:py-24">
+      <div className="mx-auto max-w-4xl px-5 md:px-8">
+        <div className="max-w-3xl">
+          <p className="text-sm font-semibold tracking-[0.18em] text-brand uppercase">
+            About
+          </p>
+          <p className="mt-2 text-sm font-semibold text-ink-mid">
+            この葬儀形式について
+          </p>
+          <h2 className="font-serif-jp mt-4 text-3xl font-medium leading-[1.4] text-ink-deep md:text-[2.2rem]">
+            {plan.name}とは。
+          </h2>
+        </div>
+
+        <p className="mt-6 text-base leading-9 text-ink-mid md:text-lg md:leading-10">
+          {guide.definition}
+        </p>
+
+        <div className="mt-10 grid gap-4 md:grid-cols-2 md:gap-6">
+          <div className="rounded-lg border border-line bg-white p-6 shadow-sm md:p-7">
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-brand">
+              Merit
+            </p>
+            <p className="font-serif-jp mt-2 text-lg font-medium text-ink-deep md:text-xl">
+              この形式のメリット
+            </p>
+            <ul className="mt-5 space-y-2.5 text-sm leading-7 text-ink md:text-base md:leading-8">
+              {guide.merits.map((item) => (
+                <li key={item} className="flex items-start gap-2.5">
+                  <span
+                    aria-hidden
+                    className="mt-2 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-brand"
+                  />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="rounded-lg border border-line-soft bg-cool p-6 shadow-sm md:p-7">
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-ink-soft">
+              Check
+            </p>
+            <p className="font-serif-jp mt-2 text-lg font-medium text-ink-deep md:text-xl">
+              デメリット・事前に整理しておきたい点
+            </p>
+            <ul className="mt-5 space-y-2.5 text-sm leading-7 text-ink-mid md:text-base md:leading-8">
+              {guide.considerations.map((item) => (
+                <li key={item} className="flex items-start gap-2.5">
+                  <span
+                    aria-hidden
+                    className="mt-2 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-ink-soft"
+                  />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <div className="mt-6 rounded-lg border border-line bg-white p-6 shadow-sm md:p-7">
+          <p className="text-xs font-bold uppercase tracking-[0.18em] text-brand">
+            Suited For
+          </p>
+          <p className="font-serif-jp mt-2 text-lg font-medium text-ink-deep md:text-xl">
+            {plan.name}が向いている方
+          </p>
+          <ul className="mt-5 grid gap-2.5 text-sm leading-7 text-ink md:grid-cols-2 md:text-base md:leading-8">
+            {guide.suitedFor.map((item) => (
+              <li key={item} className="flex items-start gap-2.5">
+                <span
+                  aria-hidden
+                  className="mt-1.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand text-xs font-bold text-white"
+                >
+                  ✓
+                </span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <p className="mt-6 text-sm leading-7 text-ink-soft md:text-base md:leading-8">
+          どの形式が合うかは、ご家族の状況やご希望によって変わります。迷われる場合は、事前のご相談で一緒に整理させていただきます。
+        </p>
+      </div>
+    </section>
+  );
+}
+
 export function PlanRelated({ plan }: { plan: Plan }) {
   if (!plan.relatedLinks || plan.relatedLinks.length === 0) return null;
   const links = plan.relatedLinks;

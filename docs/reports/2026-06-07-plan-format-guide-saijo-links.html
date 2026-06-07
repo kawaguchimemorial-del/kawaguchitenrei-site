@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>作業レポート 2026-06-07｜形式別ページの読み物強化＋近隣斎場リンク集（⑥）</title>
+<style>
+  :root{--ink:#2b2b2b;--soft:#6b6b6b;--line:#e3e0da;--bg:#faf9f7;--accent:#7a6a55;--ok:#2e7d52}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;line-height:1.85;font-size:15px}
+  .wrap{max-width:860px;margin:0 auto;padding:40px 22px 80px}
+  header.doc{border-bottom:2px solid var(--line);padding-bottom:18px;margin-bottom:28px}
+  .kicker{font-size:12px;letter-spacing:.12em;color:var(--accent);margin:0 0 6px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:22px;font-weight:600;margin:0 0 10px;line-height:1.5}
+  .meta{font-size:12.5px;color:var(--soft)} .meta span{margin-right:14px}
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:19px;font-weight:600;margin:34px 0 12px;padding-left:11px;border-left:4px solid var(--accent)}
+  p{margin:8px 0}
+  .card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:14px 0}
+  .tag{display:inline-block;font-size:11.5px;padding:2px 9px;border-radius:999px;border:1px solid var(--line);color:var(--soft);background:#fff}
+  .tag.ok{color:var(--ok);border-color:#bfe0cd}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13.5px;background:#fff}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  code{background:#f1efe9;padding:1px 6px;border-radius:5px;font-size:12.5px;font-family:ui-monospace,Consolas,monospace}
+  ul,ol{margin:8px 0;padding-left:22px} li{margin:4px 0}
+  .callout{border-left:4px solid var(--ok);background:#f3faf5;padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0}
+  .callout p:first-child{margin-top:0}.callout p:last-child{margin-bottom:0}
+  .muted{color:var(--soft);font-size:13px}
+  footer.doc{margin-top:50px;padding-top:18px;border-top:1px solid var(--line);color:var(--soft);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <p class="kicker">川口典礼サイト ＿ 作業レポート（社内記録・非公開）</p>
+  <h1>形式別ページの読み物強化＋近隣斎場リンク集（プレイブック⑥）</h1>
+  <p class="meta">
+    <span>作成日：2026-06-07</span>
+    <span>担当：Claude Code</span>
+  </p>
+  <p class="muted">社内記録（Web非公開・<code>noindex</code>）。個人情報・秘密情報なし。出典：<a href="./2026-06-07-implementation-playbook.html">改善実装プレイブック</a> の ⑥。</p>
+</header>
+
+<div class="callout">
+  <p><strong>狙い：</strong>各形式別プランページに「この形式とは／メリット・デメリット／向いている方」の<strong>読み物ブロック</strong>を足してページの厚みと滞在価値を上げ、形式比較系クエリ（家族葬とは・一日葬 デメリット 等）と<strong>AI回答での引用</strong>を狙う。あわせて <code>/saijo/</code> の寺院会館を<strong>エリア別の内部リンク</strong>で <code>/area/*</code> に結び、地域ロングテールの回遊を強化する。</p>
+</div>
+
+<h2>1. サマリ</h2>
+<div class="card">
+  <ul>
+    <li><span class="tag ok">追加</span> <code>lib/plans.ts</code> に <code>PlanFormatGuide</code> 型（定義／メリット／デメリット・留意点／向いている方）を新設し、<strong>家族葬・一日葬・火葬式・直葬</strong>の4プランにデータを追加。</li>
+    <li><span class="tag ok">追加</span> <code>components/plan/PlanDetailBody.tsx</code> に <code>PlanFormatGuide</code> 読み物コンポーネントを新設。結論ボックス直後に配置（標準プラン分岐のみ）。</li>
+    <li><span class="tag ok">強化</span> <code>/saijo/</code>（<code>app/saijo/page.tsx</code>）にエリア別ジャンプナビ＋各エリアグループから該当 <code>/area/*</code> への内部リンクを追加。</li>
+    <li><span class="tag ok">完了</span> <code>npm run build</code> 成功・135ページ維持・型エラーなし。</li>
+  </ul>
+</div>
+
+<h2>2. 形式別ページの読み物ブロック（①の費用ガイドとは別軸）</h2>
+<p>標準プラン（家族葬・一日葬・火葬式・直葬）の詳細ページに、結論ボックス直後で以下を表示：</p>
+<table>
+  <thead><tr><th>要素</th><th>内容</th></tr></thead>
+  <tbody>
+    <tr><td>この形式とは（定義）</td><td>形式の定義・特徴を1段落で解説。家族葬⇔一日葬⇔火葬式⇔直葬の違いが伝わる書き方。</td></tr>
+    <tr><td>メリット</td><td>各3点。事実ベース・誇張なし。</td></tr>
+    <tr><td>デメリット・留意点</td><td>各3点。「煽り」ではなく「事前に整理しておきたい点」として提示（菩提寺への相談・親族間の共有・後日弔問など）。</td></tr>
+    <tr><td>向いている方</td><td>各3点。読者の自己判断を助ける。</td></tr>
+  </tbody>
+</table>
+<p>非表示対象：市民葬・無宗教葬・花入れお別れは <code>formatGuide</code> 未設定のため非表示（専用ボディ／構成を維持）。</p>
+
+<h2>3. /saijo/ 内部リンク強化（地域ロングテール）</h2>
+<table>
+  <thead><tr><th>追加要素</th><th>内容</th></tr></thead>
+  <tbody>
+    <tr><td>エリア別ジャンプナビ</td><td>寺院会館セクション冒頭に、7エリアグループ見出しへのアンカー（<code>#id</code>）をチップ表示。地域別の探しやすさと内部回遊を改善。</td></tr>
+    <tr><td>エリアグループ→地域ページ</td><td>各グループ末尾に該当 <code>/area/*</code> への内部リンク（例：朝日・南鳩ヶ谷方面→南鳩ヶ谷／鳩ヶ谷、本町・舟戸町方面→川口駅周辺、上青木・青木方面→上青木／青木 ほか）。</td></tr>
+  </tbody>
+</table>
+<p>リンク先は実在する <code>/area/*</code> ページのみ（build の135ページで確認）。施設の利用可否・宗派/檀家条件の<strong>新規断定はしていない</strong>（既存の「目安・要確認」注記を維持）。</p>
+
+<h2>4. 方針順守</h2>
+<table>
+  <thead><tr><th>項目</th><th>順守</th></tr></thead>
+  <tbody>
+    <tr><td>読ませる構成（§3）</td><td>カード羅列ではなく定義文＋要点の読み物形式。既存トーン・余白・セリフ体見出しを踏襲。</td></tr>
+    <tr><td>煽らない（§11）</td><td>デメリットは「事前に整理しておきたい点」として中立に提示。最安・必ず・絶対などの禁止表現なし。</td></tr>
+    <tr><td>価格・正本（§9）</td><td>形式別ブロックに新規金額は記載せず。既存の価格表・構成は変更なし。</td></tr>
+    <tr><td>施設の断定回避（§19.3）</td><td>寺院会館・民営式場の利用可否・宗派/檀家条件の新規断定なし。既存の運営主体明記・目安/要確認注記を維持。</td></tr>
+  </tbody>
+</table>
+
+<h2>5. 変更ファイル</h2>
+<table>
+  <thead><tr><th>ファイル</th><th>内容</th></tr></thead>
+  <tbody>
+    <tr><td><code>lib/plans.ts</code></td><td><code>PlanFormatGuide</code> 型＋4プランの <code>formatGuide</code> データ追加。</td></tr>
+    <tr><td><code>components/plan/PlanDetailBody.tsx</code></td><td><code>PlanFormatGuide</code> コンポーネント新設。</td></tr>
+    <tr><td><code>app/plan/[slug]/page.tsx</code></td><td>import＋結論ボックス直後に <code>&lt;PlanFormatGuide&gt;</code> を配置。</td></tr>
+    <tr><td><code>app/saijo/page.tsx</code></td><td>エリアジャンプナビ＋エリアグループ別の <code>/area/*</code> 内部リンク追加。</td></tr>
+  </tbody>
+</table>
+
+<h2>6. 確認結果</h2>
+<ul>
+  <li><code>npm run build</code>：✓ Compiled successfully、135ページ維持、型エラーなし。</li>
+  <li>対象URL：<code>/plan/family-funeral/</code>・<code>/plan/oneday-funeral/</code>・<code>/plan/cremation/</code>・<code>/plan/direct-funeral/</code>・<code>/saijo/</code>。</li>
+</ul>
+
+<h2>7. 今後</h2>
+<ol>
+  <li>次の自走候補：④ トップFVに価格レンジ＋E-E-A-Tバッジ（push前承認区分）／⑤ 著者性・実績（情報提供待ち）。</li>
+</ol>
+
+<footer class="doc">川口典礼サイト 社内作業レポート｜2026-06-07 作成｜非公開（docs/reports/・noindex）｜個人情報・秘密情報なし</footer>
+
+</div>
+</body>
+</html>

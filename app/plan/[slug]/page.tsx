@@ -10,6 +10,7 @@ import {
   PlanCta,
   PlanFaq,
   PlanFlow,
+  PlanFormatGuide,
   PlanInclusions,
   PlanNonReligiousBody,
   PlanRelated,
@@ -210,6 +211,7 @@ export default async function PlanDetailPage({ params }: Props) {
       ) : (
         <>
           <PlanConclusionBox plan={plan} />
+          <PlanFormatGuide plan={plan} />
           <PlanInclusions plan={plan} />
           <PlanSimpleAlternative plan={plan} />
           <PlanFlow plan={plan} />
