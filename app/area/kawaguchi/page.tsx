@@ -230,6 +230,139 @@ export default function KawaguchiAreaPage() {
       <AreaDetailIntro area={areaKawaguchi} />
       <AreaFeatures area={areaKawaguchi} />
       <AreaPlans area={areaKawaguchi} />
+
+      {/* 川口市の葬儀費用の目安（費用相場の考え方） */}
+      <section className="bg-white py-16 md:py-24">
+        <div className="mx-auto max-w-6xl px-5 md:px-8">
+          <div className="max-w-3xl">
+            <p className="text-sm font-semibold tracking-[0.18em] text-brand uppercase">
+              Cost
+            </p>
+            <p className="mt-2 text-sm font-semibold text-ink-mid">
+              川口市の葬儀費用の目安
+            </p>
+            <h2 className="font-serif-jp mt-4 text-3xl font-medium leading-[1.4] text-ink-deep md:text-[2.2rem]">
+              川口市の葬儀費用の目安と、
+              <br className="md:hidden" />
+              総額が変わる要素。
+            </h2>
+            <p className="mt-5 text-base leading-9 text-ink-mid md:text-lg">
+              川口典礼の主なプランは、直葬139,000円〜・一日葬396,000円〜・家族葬528,000円〜（いずれも事前相談会員価格・税込）です。実際の総額は、参列人数・式場・火葬場・お料理や返礼品・宗教者へのお礼などにより変わります。正式なお見積りで総額の目安をご案内します。
+            </p>
+          </div>
+
+          <ul className="mt-8 divide-y divide-line-soft overflow-hidden rounded-lg border border-line bg-white shadow-sm">
+            {[
+              { name: "直葬プラン", price: "139,000円〜", note: "火葬を中心としたシンプルなお別れ", href: "/plan/direct-funeral/" },
+              { name: "花入れお別れプラン", price: "229,000円〜", note: "火葬前にお花を手向けるお別れ", href: "/plan/hanaire-owakare/" },
+              { name: "一日葬プラン", price: "396,000円〜", note: "通夜を行わず1日で執り行う形式", href: "/plan/oneday-funeral/" },
+              { name: "家族葬プラン", price: "528,000円〜", note: "ご家族や親しい方を中心としたお別れ", href: "/plan/family-funeral/" },
+              { name: "川口市民葬プラン", price: "231,000円", note: "川口市民の方の市民葬制度に対応", href: "/plan/kawaguchi-shimin/" },
+            ].map((row) => (
+              <li
+                key={row.name}
+                className="flex flex-wrap items-baseline justify-between gap-2 px-5 py-4 md:px-6"
+              >
+                <div>
+                  <a
+                    href={row.href}
+                    className="font-serif-jp text-base font-medium text-ink-deep transition hover:text-brand md:text-lg"
+                  >
+                    {row.name}
+                  </a>
+                  <p className="mt-0.5 text-sm text-ink-mid">{row.note}</p>
+                </div>
+                <p className="text-base font-bold text-brand md:text-lg">
+                  {row.price}
+                </p>
+              </li>
+            ))}
+          </ul>
+
+          <div className="mt-6 rounded-lg border border-line-soft bg-paper p-5 md:p-6">
+            <p className="text-sm font-bold text-ink-deep">
+              総額が変わる主な要素
+            </p>
+            <ul className="mt-3 grid gap-2 text-sm leading-7 text-ink-mid sm:grid-cols-2">
+              <li>・参列人数（お料理・返礼品の数）</li>
+              <li>・式場使用料（外部斎場を利用する場合）</li>
+              <li>・火葬料（川口市めぐりの森は川口市民30,000円〜が目安）</li>
+              <li>・宗教者へのお礼（お勤めをご希望の場合）</li>
+              <li>・ご安置日数（友引・火葬場の予約状況による）</li>
+              <li>・お花・祭壇のグレード</li>
+            </ul>
+          </div>
+
+          <p className="mt-4 text-xs leading-6 text-ink-soft">
+            ※ 上記は事前相談会員価格・税込の目安です。内容・人数・式場・火葬場などにより総額は変わります。正式なお見積りで総額の目安をご案内します。
+          </p>
+          <div className="mt-5">
+            <a
+              href="/plan/"
+              className="inline-flex items-center gap-1 text-sm font-bold text-brand hover:underline md:text-base"
+            >
+              プラン・費用の詳細を見る
+              <span aria-hidden>→</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* 川口市の葬儀で使える公的制度（市民葬・葬祭費） */}
+      <section className="bg-cool py-16 md:py-24">
+        <div className="mx-auto max-w-6xl px-5 md:px-8">
+          <div className="max-w-3xl">
+            <p className="text-sm font-semibold tracking-[0.18em] text-brand uppercase">
+              Public support
+            </p>
+            <p className="mt-2 text-sm font-semibold text-ink-mid">
+              川口市の公的制度
+            </p>
+            <h2 className="font-serif-jp mt-4 text-3xl font-medium leading-[1.4] text-ink-deep md:text-[2.2rem]">
+              川口市の葬儀で使える公的制度
+              <br className="md:hidden" />
+              （市民葬・葬祭費）。
+            </h2>
+            <p className="mt-5 text-base leading-9 text-ink-mid md:text-lg">
+              川口市にお住まいの方には、費用の負担を抑えられる公的な制度があります。
+            </p>
+          </div>
+
+          <div className="mt-8 grid gap-5 md:grid-cols-2">
+            <div className="flex h-full flex-col rounded-lg border border-line bg-white p-6 shadow-sm md:p-7">
+              <p className="font-serif-jp text-lg font-medium text-ink-deep md:text-xl">
+                川口市民葬（市民葬制度）
+              </p>
+              <p className="mt-3 text-sm leading-7 text-ink-mid md:text-base md:leading-8">
+                川口市民の方を対象とした葬祭事業（市民葬）の制度に対応したプランをご用意しています（市民葬プラン 231,000円・税込ほか）。対象や含まれる内容は条件により異なるため、事前のご相談で確認のうえご案内します。
+              </p>
+              <div className="mt-auto pt-4">
+                <a
+                  href="/plan/kawaguchi-shimin/"
+                  className="inline-flex items-center gap-1 text-sm font-bold text-brand hover:underline"
+                >
+                  川口市民葬プランを見る
+                  <span aria-hidden>→</span>
+                </a>
+              </div>
+            </div>
+
+            <div className="flex h-full flex-col rounded-lg border border-line bg-white p-6 shadow-sm md:p-7">
+              <p className="font-serif-jp text-lg font-medium text-ink-deep md:text-xl">
+                国民健康保険・後期高齢者医療の葬祭費
+              </p>
+              <p className="mt-3 text-sm leading-7 text-ink-mid md:text-base md:leading-8">
+                国民健康保険・後期高齢者医療制度の被保険者が亡くなった場合、葬儀を行った喪主の方の申請により、葬祭費として5万円が支給されます（川口市の場合）。申請が必要で、支給額・要件は変わる場合があるため、最新の情報は川口市の窓口・公式情報でご確認ください。
+              </p>
+            </div>
+          </div>
+
+          <p className="mt-5 text-xs leading-6 text-ink-soft">
+            ※ 公的制度の支給額・対象・申請方法は変更される場合があります。詳細は川口市にご確認ください。川口典礼では、制度の活用も含めて事前のご相談でご案内します。
+          </p>
+        </div>
+      </section>
+
       <AreaSaijo area={areaKawaguchi} />
       <AreaReasons area={areaKawaguchi} />
       <AreaFlow area={areaKawaguchi} />

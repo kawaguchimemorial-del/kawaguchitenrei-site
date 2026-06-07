@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>作業レポート 2026-06-07｜川口市 葬儀ガイド強化（①）</title>
+<style>
+  :root{--ink:#2b2b2b;--soft:#6b6b6b;--line:#e3e0da;--bg:#faf9f7;--accent:#7a6a55;--ok:#2e7d52}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;line-height:1.85;font-size:15px}
+  .wrap{max-width:860px;margin:0 auto;padding:40px 22px 80px}
+  header.doc{border-bottom:2px solid var(--line);padding-bottom:18px;margin-bottom:28px}
+  .kicker{font-size:12px;letter-spacing:.12em;color:var(--accent);margin:0 0 6px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:22px;font-weight:600;margin:0 0 10px;line-height:1.5}
+  .meta{font-size:12.5px;color:var(--soft)} .meta span{margin-right:14px}
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:19px;font-weight:600;margin:34px 0 12px;padding-left:11px;border-left:4px solid var(--accent)}
+  p{margin:8px 0}
+  .card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:14px 0}
+  .tag{display:inline-block;font-size:11.5px;padding:2px 9px;border-radius:999px;border:1px solid var(--line);color:var(--soft);background:#fff}
+  .tag.ok{color:var(--ok);border-color:#bfe0cd}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13.5px;background:#fff}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  code{background:#f1efe9;padding:1px 6px;border-radius:5px;font-size:12.5px;font-family:ui-monospace,Consolas,monospace}
+  ul,ol{margin:8px 0;padding-left:22px} li{margin:4px 0}
+  .callout{border-left:4px solid var(--ok);background:#f3faf5;padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0}
+  .callout p:first-child{margin-top:0}.callout p:last-child{margin-bottom:0}
+  .muted{color:var(--soft);font-size:13px}
+  footer.doc{margin-top:50px;padding-top:18px;border-top:1px solid var(--line);color:var(--soft);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <p class="kicker">川口典礼サイト ＿ 作業レポート（社内記録・非公開）</p>
+  <h1>川口市 葬儀ガイドの強化：費用の目安＋公的制度（プレイブック①）</h1>
+  <p class="meta">
+    <span>作成日：2026-06-07</span>
+    <span>担当：Claude Code</span>
+  </p>
+  <p class="muted">社内記録（Web非公開・<code>noindex</code>）。個人情報・秘密情報なし。出典：<a href="./2026-06-07-implementation-playbook.html">改善実装プレイブック</a> の ①。</p>
+</header>
+
+<div class="callout">
+  <p><strong>前提：</strong><code>/area/kawaguchi/</code> は既に「流れ（6ステップ）・式場一覧（/saijo/）・めぐりの森・FAQ」を網羅。不足していた<strong>「費用相場の考え方」と「公的制度（市民葬・葬祭費）」</strong>を、ページ固有セクションとして追加（§3：既存の流れ等は活かし、過度な作り直しはしない）。</p>
+</div>
+
+<h2>1. サマリ</h2>
+<div class="card">
+  <ul>
+    <li><span class="tag ok">追加</span> <strong>「川口市の葬儀費用の目安」</strong>セクション：主要プランの目安価格（§9正本）一覧＋<strong>総額が変わる主な要素</strong>（参列人数・式場使用料・火葬料〔めぐりの森 市民30,000円〜目安〕・宗教者・安置日数・お花）＋「正式見積で確認」（§14）。結論先出し。</li>
+    <li><span class="tag ok">追加</span> <strong>「川口市の葬儀で使える公的制度」</strong>セクション：①川口市民葬（231,000円・§9）②国民健康保険・後期高齢者医療の<strong>葬祭費5万円（川口市・喪主の申請により支給）</strong>。金額は川口市公式で裏取り済み。「申請が必要・変更の場合あり・最新は川口市で確認」を明記（§14）。</li>
+    <li><span class="tag ok">追加</span> FAQ2件（「使える補助や制度は？」「川口市民葬とは？」）→ AreaFaq の FAQPage JSON-LD に自動反映。</li>
+    <li><span class="tag ok">完了</span> <code>npm run build</code> 成功・135ページ維持。生成HTMLで反映確認。</li>
+  </ul>
+</div>
+
+<h2>2. 変更ファイル</h2>
+<table>
+  <thead><tr><th>ファイル</th><th>内容</th></tr></thead>
+  <tbody>
+    <tr><td><code>app/area/kawaguchi/page.tsx</code></td><td>AreaPlans 直後に「費用の目安」「公的制度」の2セクションを追加（既存の意匠・トーンを踏襲したページ固有セクション）。</td></tr>
+    <tr><td><code>lib/areas.ts</code>（areaKawaguchi.faqs）</td><td>制度・市民葬のFAQ2件を追加。</td></tr>
+  </tbody>
+</table>
+
+<h2>3. 事実の裏取り（公的制度）</h2>
+<p>葬祭費の金額は、誤りを避けるため<strong>川口市公式サイトで確認</strong>しました（国民健康保険・後期高齢者医療いずれも葬祭費5万円・喪主の申請により支給）。ページ上では「川口市の場合・要申請・変更の場合あり・最新は川口市で確認」と併記し、断定を避けています（§14/§19.3）。</p>
+<ul class="muted">
+  <li>後期高齢者医療（被保険者が亡くなったとき）：<code>city.kawaguchi.lg.jp/soshiki/01090/040/2/2/3360.html</code></li>
+  <li>国民健康保険の給付（葬祭費）：<code>city.kawaguchi.lg.jp/soshiki/01090/030/2_1/3308.html</code> ／ FAQ <code>.../030/faq/iryouhikyuhu/7031.html</code></li>
+</ul>
+
+<h2>4. 方針順守</h2>
+<ul>
+  <li>§9：プラン価格は正本のみ（直葬139,000〜／花入れ229,000〜／一日葬396,000〜／家族葬528,000〜／市民葬231,000）。</li>
+  <li>§14：すべて「目安・税込・正式見積で確認」を併記。最安・総額確定・追加費用なし等の禁止表現なし。</li>
+  <li>§19.3：めぐりの森（公営・火葬専用）・公的制度を断定せず「川口市で確認」。施設の自社運営誤認なし。</li>
+  <li>§10.2／§3：地名×サービス語は自然配置（羅列なし）。流れ・式場・FAQ等の既存構成は維持し、不足分のみ追加。</li>
+</ul>
+
+<h2>5. 確認結果</h2>
+<ul>
+  <li><code>npm run build</code>：✓ Compiled successfully、135ページ維持、型エラーなし。</li>
+  <li>生成HTML：「川口市の葬儀費用の目安」「総額が変わる主な要素」「葬祭費」「川口市民葬とは」を確認。</li>
+</ul>
+
+<h2>6. 期待効果・今後</h2>
+<ol>
+  <li>「川口市 葬儀（11位）」「川口市 葬儀 費用」「川口市民葬」「川口 葬祭費」等を、費用・制度の網羅で押し上げ。表形式はAI回答にも引用されやすい。</li>
+  <li>本番反映後、<code>/area/kawaguchi/</code> のインデックス登録リクエスト（GSC）を推奨。</li>
+  <li>次の自走候補：② 費用内訳表（独立コンポーネント化して /plan/ にも展開）／⑥ 形式別ページ強化。</li>
+</ol>
+
+<footer class="doc">川口典礼サイト 社内作業レポート｜2026-06-07 作成｜非公開（docs/reports/・noindex）｜個人情報・秘密情報なし</footer>
+
+</div>
+</body>
+</html>
