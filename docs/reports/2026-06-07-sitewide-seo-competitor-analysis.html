@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>川口典礼サイト 現状分析＆競合比較＆改善提案｜2026-06-07</title>
+<style>
+  :root{--ink:#2b2b2b;--soft:#6b6b6b;--line:#e3e0da;--bg:#faf9f7;--accent:#7a6a55;--ok:#2e7d52;--warn:#b4691f;--danger:#a83838;--blue:#3a5a8a}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;line-height:1.85;font-size:15px}
+  .wrap{max-width:980px;margin:0 auto;padding:40px 22px 90px}
+  header.doc{border-bottom:2px solid var(--line);padding-bottom:18px;margin-bottom:24px}
+  .kicker{font-size:12px;letter-spacing:.12em;color:var(--accent);margin:0 0 6px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:25px;font-weight:600;margin:0 0 10px;line-height:1.5}
+  .meta{font-size:12.5px;color:var(--soft)} .meta span{margin-right:14px}
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:20px;font-weight:600;margin:38px 0 12px;padding-left:11px;border-left:4px solid var(--accent)}
+  h3{font-size:16px;margin:22px 0 8px}
+  p{margin:8px 0}
+  code{background:#f1efe9;padding:1px 5px;border-radius:5px;font-size:12.5px;font-family:ui-monospace,Consolas,monospace}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13px;background:#fff}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  th{background:#f3f1ec;font-weight:600;color:#4a4438}
+  td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .tag{display:inline-block;font-size:11px;padding:1px 8px;border-radius:999px;border:1px solid var(--line);white-space:nowrap}
+  .tag.hi{color:var(--danger);border-color:#e7b9b9}
+  .tag.mid{color:var(--warn);border-color:#e7cdab}
+  .tag.lo{color:var(--ok);border-color:#bfe0cd}
+  .tag.appr{color:var(--blue);border-color:#bcd0ea}
+  .card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 18px;margin:14px 0}
+  .callout{border-left:4px solid var(--accent);background:#fff;border:1px solid var(--line);border-left-width:4px;padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0}
+  .callout.ok{border-color:var(--ok);background:#f3faf5}
+  .callout.warn{border-color:var(--warn);background:#fdf6ec}
+  .callout.danger{border-color:var(--danger);background:#fcf1f1}
+  ul,ol{margin:8px 0;padding-left:22px} li{margin:5px 0}
+  .muted{color:var(--soft);font-size:13px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px} @media(max-width:720px){.grid2{grid-template-columns:1fr}}
+  .impact{font-size:12.5px;color:var(--ok);font-weight:700}
+  .kwtag{font-size:11.5px;color:var(--blue)}
+  footer.doc{margin-top:48px;padding-top:18px;border-top:1px solid var(--line);color:var(--soft);font-size:12px}
+  ol.toc{columns:2;font-size:13.5px;margin:8px 0} @media(max-width:640px){ol.toc{columns:1}}
+  a.toclink{color:var(--blue);text-decoration:none} a.toclink:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <p class="kicker">川口典礼サイト ＿ 現状分析・競合比較・改善提案（社内・非公開）</p>
+  <h1>「川口 葬儀」上位化に向けた サイト全体分析＆競合比較レポート</h1>
+  <p class="meta">
+    <span>作成日：2026-06-07</span>
+    <span>担当：Claude Code</span>
+    <span>本書は分析のみ・サイトは未変更</span>
+  </p>
+  <p class="muted">対象：<code>https://kawaguchitenrei.com/</code> 全体（トップ＋主要子ページ）。自社サイト実機＋ソース、競合 約16サイト（地域系8・ポータル/仲介系8）を WebFetch で実調査。GSC実データ（ユーザー提供）と突き合わせ。</p>
+  <div class="muted">目次：
+  <ol class="toc">
+    <li><a class="toclink" href="#s1">1. 結論（先出し）</a></li>
+    <li><a class="toclink" href="#s2">2. 検索順位の現状（GSC）</a></li>
+    <li><a class="toclink" href="#s3">3. 競合の構造（なぜ上位を取られているか）</a></li>
+    <li><a class="toclink" href="#s4">4. 自社サイト評価：FV</a></li>
+    <li><a class="toclink" href="#s5">5. 自社サイト評価：デザイン/レイアウト</a></li>
+    <li><a class="toclink" href="#s6">6. 自社サイト評価：コンテンツ/SEO/AIO</a></li>
+    <li><a class="toclink" href="#s7">7. 改善プラン（優先度・狙うKW・期待効果）</a></li>
+    <li><a class="toclink" href="#s8">8. 期待される成果の見立て</a></li>
+    <li><a class="toclink" href="#s9">9. やらないこと（方針順守）</a></li>
+  </ol>
+  </div>
+</header>
+
+<!-- ============ 1 ============ -->
+<h2 id="s1">1. 結論（先出し）</h2>
+<div class="callout ok">
+  <p><strong>サイトの作り自体は葬儀社サイトとして高水準。</strong>地域密着・24時間・料金透明性・信頼指標・構造化データ（FuneralHome/FAQPage/Service/Breadcrumb/ItemList）が揃い、土台はできている。<strong>「上位に出ない」のはサイト品質の問題ではなく、競合の壁が高いから。</strong></p>
+</div>
+<p><strong>勝てない相手の正体は2層：</strong></p>
+<ul>
+  <li><strong>ポータル/比較サイト</strong>（小さなお葬式・安心葬儀・みんなが選んだお葬式 等）＝上場企業級のドメイン権威＋式場数百件の網羅＋口コミUGC＋形式×地域の自動量産ページ。<strong>「面（網羅）」で圧倒</strong>している。</li>
+  <li><strong>コンテンツの厚い地域社/チェーン</strong>（さがみ典礼の「川口市 家族葬ガイド」約3,500語＋監修者明記 等）＝<strong>「地域×形式×費用」の深い記事＋E-E-A-T</strong>で上位。</li>
+</ul>
+<div class="callout">
+  <p><strong>取るべき戦略＝「面では戦わず、縦で勝つ」。</strong>ポータルが構造的に書けない<strong>一次情報（自社式場＋火葬場まで車5分）</strong>と、<strong>地域×施設名×形式の深いコンテンツ＋AIO構造化＋透明な正本価格＋ローカルE-E-A-T</strong>で差別化する。特に「めぐりの森 葬儀/家族葬/火葬式」（現在<strong>表示0</strong>）は、施設名を主題にした強化で逆転余地が最も大きい。</p>
+</div>
+
+<!-- ============ 2 ============ -->
+<h2 id="s2">2. 検索順位の現状（GSC・直近）</h2>
+<p>主要キーワードは<strong>表示はされるが順位11〜35位＝検索2〜4ページ目</strong>のため、クリックがほぼ0。「あと一歩」ではなく「もう一段の押し上げ」が必要な段階。</p>
+<table>
+  <thead><tr><th>キーワード</th><th class="num">表示</th><th class="num">平均順位</th><th>診断</th></tr></thead>
+  <tbody>
+    <tr><td>川口市 葬儀</td><td class="num">207</td><td class="num">11.0</td><td>1ページ目目前。最有望ヘッドターム</td></tr>
+    <tr><td>川口 葬儀</td><td class="num">87</td><td class="num">16.0</td><td>2ページ目</td></tr>
+    <tr><td>川口市 葬儀社</td><td class="num">42</td><td class="num">20.0</td><td>2ページ目。company強化余地</td></tr>
+    <tr><td>川口市 家族葬</td><td class="num">85</td><td class="num">28.6</td><td>3ページ目。要テコ入れ</td></tr>
+    <tr><td>川口 家族葬</td><td class="num">44</td><td class="num">22.9</td><td>3ページ目</td></tr>
+    <tr><td>川口市 市民葬</td><td class="num">22</td><td class="num">14.4</td><td>2ページ目。市民葬は勝ち筋</td></tr>
+    <tr><td>川口市 直葬 / 一日葬 / 火葬(式)</td><td class="num">7〜18</td><td class="num">16〜26</td><td>表示少・順位深い。形式別ページ強化で改善余地</td></tr>
+    <tr><td><strong>めぐりの森 葬儀/家族葬/火葬式/直葬</strong></td><td class="num">0(—)</td><td class="num">—</td><td><strong>表示ゼロ＝そもそも土俵に乗れていない</strong></td></tr>
+  </tbody>
+</table>
+<p class="muted">※「川口市 葬儀」が表示207・11位と最も惜しい。ここを1ページ目に押し上げるのが費用対効果の起点。めぐりの森系は別途「施設名ページ」で土俵に乗せる必要がある。</p>
+
+<!-- ============ 3 ============ -->
+<h2 id="s3">3. 競合の構造（なぜ上位を取られているか）</h2>
+<h3>3-1. 上位を占める3タイプ</h3>
+<table>
+  <thead><tr><th>タイプ</th><th>例</th><th>強み</th><th>弱み（＝付け入る隙）</th></tr></thead>
+  <tbody>
+    <tr><td>全国ポータル/比較</td><td>小さなお葬式、安心葬儀、みんなが選んだお葬式、これからのお葬式</td><td>ドメイン権威・被リンク／式場数百件の網羅／口コミUGC／形式×地域の自動量産ページ／ランキング形式</td><td>一次情報・実体験が薄い／価格が全国一律 or 曖昧／自社式場や地理的近接を語れない</td></tr>
+    <tr><td>大手チェーン公式</td><td>家族葬のファミーユ</td><td>全国ドメイン権威／FAQ充実／推奨度データ</td><td>価格<strong>非開示</strong>／地元の一次情報が薄い</td></tr>
+    <tr><td>コンテンツ厚い地域社</td><td>さがみ典礼ガイド、中央福祉、山﨑典礼、井上式典、花善、永遠、南彩</td><td>「地域×形式×費用」の深い記事／費用内訳の表／監修者・創業年・資格でE-E-A-T／近隣斎場の網羅リンク</td><td>個社差。構造化データや運営者情報が薄い社も多い</td></tr>
+  </tbody>
+</table>
+
+<h3>3-2.「めぐりの森」は誰が押さえているか</h3>
+<div class="callout warn">
+  <p>「めぐりの森」関連は、<strong>(a) 完全一致系ドメインの民間仲介/葬儀社2社</strong>と<strong>(b) ドメイン権威の高いポータル</strong>の二層が占有：</p>
+  <ul>
+    <li><code>megurinomori.com</code>＝「公営斎場相談センター めぐりの森受付窓口」を名乗る<strong>民間の葬儀仲介</strong>（川口市公式ではない）。施設名そのものをURL・名称で占有。<strong>構造化データ・口コミは皆無</strong>。</li>
+    <li><code>kawaguchishi-megurinomori.info</code>＝民間葬儀社（東礼自動車）。<strong>市営施設を連想させるドメイン</strong>＋形式別LP。<strong>構造化データ皆無</strong>。</li>
+    <li>大手ポータル群＝火葬場情報として網羅言及し、ドメイン権威で複合KWを拾う。</li>
+  </ul>
+  <p><strong>付け入る隙：</strong>仲介系ドメインは構造化データ・口コミが無く、「公営の公式と紛らわしい」グレーさを抱える。<strong>川口典礼は「自社式場→めぐりの森まで車5分」という、仲介にもポータルにも書けない一次情報</strong>＋誠実な事実明記（公営・火葬専用・自社運営ではない）＋AIO構造化で、AI検索・ロングテールでは十分に逆転可能。</p>
+</div>
+
+<h3>3-3. 地域系競合の「勝ちパターン」（共通項）</h3>
+<ol>
+  <li>title/H1に<strong>「地域×形式（×費用）」を直球</strong>で（最強は疑問形＋網羅予告型：「川口市の一日葬の費用はいくら？」「【川口市の家族葬ガイド】」）。</li>
+  <li><strong>費用を“表”で透明化</strong>：プラン総額（税込明記）＋<strong>項目別内訳表</strong>＋<strong>火葬場別の火葬料</strong>（めぐりの森30,000円〜等）。← 検索にもAI引用にも最も効く。</li>
+  <li><strong>近隣斎場・火葬場の網羅リンク集</strong>で地域関連性を厚く（井上式典17施設）。</li>
+  <li><strong>E-E-A-Tの可視化</strong>：創業年・有資格・市民葬登録・<strong>監修者の実名＋現場年数</strong>（さがみ典礼）。</li>
+  <li>公的制度の引用（川口市葬祭事業231,000円・国保葬祭費5万円）＋統計の出典明記。</li>
+  <li>CTAの<strong>二層分岐</strong>（お急ぎ／事前相談）を反復配置。</li>
+</ol>
+
+<!-- ============ 4 ============ -->
+<h2 id="s4">4. 自社サイト評価：FV（ファーストビュー）</h2>
+<p>現状のトップFV（<code>components/home/Hero.tsx</code>）は、h1「川口市・新井宿で家族葬・直葬をお考えの方へ。」＋ヒーロー画像（川口メモリアルホール）＋信頼3点＋電話/事前相談CTA＋実績帯。<strong>地域密着・24時間は明確に伝わる。良くできている。</strong></p>
+<div class="grid2">
+  <div class="card">
+    <p><strong>◎ 良い点</strong></p>
+    <ul>
+      <li>地名・自社式場名が h1/サブ/帯に自然配置</li>
+      <li>24時間対応が3箇所（サブ・CTA・ヘッダー固定）</li>
+      <li>CTAの色の役割分担（緊急色＝電話／白＝事前相談）が一貫・方針準拠（§4）</li>
+      <li>画像 priority 済みでLCP配慮</li>
+    </ul>
+  </div>
+  <div class="card">
+    <p><strong>△ 弱い点（競合比）</strong></p>
+    <ul>
+      <li><strong>FVに価格が出ない</strong>（「費用のご相談」止まり）。競合は「税込◯円〜」を即提示し安心感とCTRを取る</li>
+      <li><strong>E-E-A-Tバッジが弱い</strong>。市民葬登録・葬祭ディレクター等の資格/登録をFV直下に並べる競合に対し、文章内に留まる</li>
+      <li>「人の温度（スタッフ・寄り添い）」が画像から伝わりにくい</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ============ 5 ============ -->
+<h2 id="s5">5. 自社サイト評価：デザイン/レイアウト</h2>
+<ul>
+  <li><strong>◎ 情報設計：</strong>トップは購買検討の流れ（特徴→安心→緊急フロー→費用→プラン→ホール→めぐりの森→事例→声→FAQ→エリア→アクセス→CTA）に沿い、上品トーン・余白・セリフ体見出しが一貫。スマホ下部固定CTAも本文に被らない配慮あり。</li>
+  <li><strong>△ 改善余地：</strong>トップが縦に長く、<strong>「メディア掲載」など信頼補強が最下部</strong>。安心3点付近など中位へ前倒しすると効く。プラン比較表はスマホ横スクロールで機能するが、主要3指標の縦積みカード化も検討余地。</li>
+  <li><strong>△ 信頼の“見せ方”：</strong>実績（創業20年・年間約260件）はあるが、競合のような<strong>バッジ/アイコンでの即時可視化</strong>が弱い。口コミは30件・★表示があるのに<strong>星のリッチリザルト（AggregateRating構造化）未実装</strong>で、検索結果での見栄えに反映されていない。</li>
+</ul>
+
+<!-- ============ 6 ============ -->
+<h2 id="s6">6. 自社サイト評価：コンテンツ / SEO / AIO</h2>
+<p><strong>コンテンツの厚みは主要ページで十分（plan詳細・area・saijo・case11・voice30・column44）。</strong>title/meta/構造化データ/canonical/OGも整備済み。残る課題：</p>
+<table>
+  <thead><tr><th>課題</th><th>内容</th></tr></thead>
+  <tbody>
+    <tr><td>トップ h1 の二重出力</td><td>モバイル版・PC版で同一コピーのh1が別DOMに2つ。1ページ1h1が望ましく、片方は <code>&lt;p&gt;</code>/<code>aria-hidden</code> 化が無難。</td></tr>
+    <tr><td>口コミの構造化データ未実装</td><td>voice 30件・高評価の資産が <strong>AggregateRating/Review schema 未実装</strong>で星リッチリザルトに反映されない（※§19.2で人間承認必須・自社レビューのGoogle方針にも留意）。</td></tr>
+    <tr><td>めぐりの森ページが順位に出ない</td><td><code>/saijo/megurinomori/</code> は存在し内容も厚いが、施設名複合KWで表示0。h1/title/FAQに「川口市めぐりの森」を主題化し、「車5分」の一次情報を主訴求に。</td></tr>
+    <tr><td>費用の“内訳表”が弱い</td><td>プラン総額は明示済みだが、競合のような<strong>項目別内訳表・火葬場別火葬料の表</strong>が無く、「川口 葬儀 費用」系とAI引用を取りこぼし。</td></tr>
+    <tr><td>E-E-A-T（著者性）が弱い</td><td>競合上位は<strong>監修者の実名＋現場年数</strong>を明記。川口典礼は実績数はあるが著者性の構造化が弱い。</td></tr>
+    <tr><td>地域×形式の専用ランディング</td><td>area から13サブエリアへは張れているが、「川口 家族葬」「川口 直葬」等の<strong>形式別ランディングの厚み・内部リンク</strong>を競合ガイド水準へ。</td></tr>
+  </tbody>
+</table>
+
+<!-- ============ 7 ============ -->
+<h2 id="s7">7. 改善プラン（優先度・狙うKW・期待効果）</h2>
+<p class="muted">区分：<span class="tag hi">高</span>効果大／<span class="tag mid">中</span>／<span class="tag lo">低</span>仕上げ／<span class="tag appr">承認</span>＝価格・共通レイアウト・Review等で人間承認必須。すべて CLAUDE.md の方針（煽らない・断定しない・正本価格§9・施設誤認回避§19.3）順守前提。</p>
+
+<div class="card">
+  <p><span class="tag hi">高</span> <strong>① 「川口市 葬儀ガイド」ハブの網羅強化</strong>（さがみ典礼を範に）</p>
+  <p>費用相場 → 葬儀の流れ → <strong>市民葬・国保葬祭費などの公的制度</strong> → 式場一覧 → <strong>めぐりの森（車5分）</strong> → FAQ を1ページで完結させる決定版ガイドに。中心軸5本柱（§10.1）と完全一致。</p>
+  <p class="kwtag">狙うKW：川口市 葬儀 / 川口 葬儀 / 川口市 葬儀 費用</p>
+  <p class="impact">期待効果：表示207・11位の「川口市 葬儀」を1ページ目へ押し上げる主施策。AI検索の引用元にもなりやすい。</p>
+</div>
+
+<div class="card">
+  <p><span class="tag hi">高</span> <strong>② 費用の“内訳表”を追加</strong>（中央福祉・山﨑を範に）</p>
+  <p>正本プラン（§9）に加え、<strong>項目別内訳表</strong>（式場使用料・火葬料・搬送・飲食・返礼品・宗教者）と<strong>火葬場別の火葬料目安</strong>（川口市めぐりの森ほか）を「目安・正式見積時に確認」併記（§14）で表組み化。</p>
+  <p class="kwtag">狙うKW：川口 葬儀 費用 / 一日葬 費用 / 直葬 費用</p>
+  <p class="impact">期待効果：費用系クエリの取り込み＋<strong>AIに引用されやすい表形式</strong>で生成AI回答に拾われやすくなる。</p>
+</div>
+
+<div class="card">
+  <p><span class="tag hi">高</span> <strong>③ 「川口市めぐりの森」ページの主題化強化</strong></p>
+  <p>既存 <code>/saijo/megurinomori/</code> の h1/title/h2 に「川口市めぐりの森」を自然に主題化。<strong>結論先出し＋基本情報表</strong>（所在地・アクセス・市民料金30,000円〜・火葬専用/公営の事実）＋<strong>「めぐりの森で家族葬はできる？」等のFAQ（JSON-LD）</strong>。<strong>「自社式場→車5分」という固有の地理的優位</strong>を主訴求に。公営・自社運営ではない旨を明記（§19.3＝むしろ誠実さでE-E-A-T差別化）。</p>
+  <p class="kwtag">狙うKW：めぐりの森 葬儀 / めぐりの森 家族葬 / めぐりの森 火葬式（現在 表示0）</p>
+  <p class="impact">期待効果：<strong>表示0＝未獲得を獲得へ</strong>。仲介系ドメインは構造化データ皆無のため、AIO最適化で逆転余地が最大。</p>
+</div>
+
+<div class="card">
+  <p><span class="tag mid">中</span> <strong>④ FVに価格レンジ＋E-E-A-Tバッジ</strong> <span class="tag appr">承認</span>（FV/価格表現）</p>
+  <p>FV信頼リストに1行「直葬 139,000円〜（事前相談会員価格・税込）」。FV直下に<strong>バッジ列</strong>（創業20年／年間約260件／川口市民葬登録／葬祭ディレクター／駐車70台／めぐりの森 車5分）。トーンは現状維持で崩さない。</p>
+  <p class="kwtag">効く面：CTR・直帰・初訪問の安心感</p>
+  <p class="impact">期待効果：表示はあるが0クリックの状況で<strong>クリック率の底上げ</strong>。順位そのものより「来たユーザーを逃さない」改善。</p>
+</div>
+
+<div class="card">
+  <p><span class="tag mid">中</span> <strong>⑤ E-E-A-T（著者性・実績）の構造化</strong></p>
+  <p>ガイド/コラムに<strong>監修者・担当者の実名＋現場年数</strong>を明記（さがみ典礼の最大の差）。会社情報の充実、実績数値（創業20年・年間約260件・市民葬登録）を著者性として可視化。</p>
+  <p class="impact">期待効果：難関ヘッドKWで効く信頼シグナル。中長期で順位の底上げ。</p>
+</div>
+
+<div class="card">
+  <p><span class="tag mid">中</span> <strong>⑥ 形式別ランディングの厚み＋近隣斎場リンク集</strong></p>
+  <p>「川口 家族葬／一日葬／直葬」の各ページに<strong>定義＋メリット/デメリット＋向いている人</strong>の読み物ブロック（南彩・さがみを範に・読ませる方針§3と親和）。<code>/saijo/</code> の近隣斎場網羅リンクを地域ロングテール獲得に活用。</p>
+  <p class="kwtag">狙うKW：川口 家族葬(22.9位) / 川口市 家族葬(28.6位) / 形式別ロングテール</p>
+  <p class="impact">期待効果：3〜4ページ目に沈む形式別KWを引き上げ。</p>
+</div>
+
+<div class="card">
+  <p><span class="tag appr">承認</span> <strong>⑦ 口コミの AggregateRating/Review 構造化</strong></p>
+  <p>voice 30件の★を構造化（§19.2で人間承認必須）。<strong>ただしGoogleは「自社サイト上の自社レビュー」を星リッチリザルト対象外とする方針</strong>のため、星表示は出ない可能性が高い点を理解のうえ判断（AIO引用目的なら有効）。</p>
+  <p class="impact">期待効果：限定的（星は出ない可能性）。優先度は中〜低。</p>
+</div>
+
+<div class="card">
+  <p><span class="tag lo">低</span> <strong>⑧ 仕上げ</strong>：トップ h1 の二重出力を1つに（片方 <code>&lt;p&gt;</code>/<code>aria-hidden</code>）／「メディア掲載」を中位へ再配置／column の公開日点検。</p>
+  <p class="impact">期待効果：主題明確化・回遊改善の地味な底上げ。</p>
+</div>
+
+<!-- ============ 8 ============ -->
+<h2 id="s8">8. 期待される成果の見立て（現実的に）</h2>
+<div class="callout">
+  <p><strong>大前提：</strong>ポータル（上場企業ドメイン）と「面（網羅）」で短期に勝つのは非現実的。狙いは<strong>「縦の深さ」で勝てる領域から順に1ページ目を取る</strong>こと。</p>
+</div>
+<table>
+  <thead><tr><th>時間軸</th><th>狙い</th><th>現実的な見立て</th></tr></thead>
+  <tbody>
+    <tr><td>〜1か月</td><td>FV価格/バッジ（④）、h1修正（⑧）、めぐりの森ページ強化（③）の反映・インデックス</td><td>CTR改善が先行。めぐりの森系で<strong>表示0→表示獲得</strong>が見え始める</td></tr>
+    <tr><td>1〜3か月</td><td>ガイド網羅（①）＋費用内訳表（②）＋形式別強化（⑥）</td><td><strong>「川口市 葬儀」11位→1ページ目</strong>、「川口市 家族葬」28→2ページ目級へ。めぐりの森×形式・市民葬・新井宿などニッチで1ページ目を取り始める</td></tr>
+    <tr><td>3〜6か月</td><td>E-E-A-T（⑤）＋継続更新＋内部リンク蓄積</td><td>ヘッドKW（川口 葬儀/家族葬）でじわじわ上昇。クリックが付き始め問い合わせ増に接続</td></tr>
+  </tbody>
+</table>
+<p class="muted">※順位は外部要因（競合の動き・Google変動・被リンク）にも左右されるため確約はできません。最も確度が高いのは「めぐりの森×形式」「川口市民葬」「新井宿」など<strong>競合が手薄なニッチ</strong>での1ページ目獲得。ヘッドKWは中長期戦。</p>
+
+<!-- ============ 9 ============ -->
+<h2 id="s9">9. やらないこと（方針順守）</h2>
+<div class="callout danger">
+  <p>競合がやっていても、川口典礼では<strong>採用しない</strong>：</p>
+  <ul>
+    <li>「最大25万円割引」「最安」「総額確定」「追加費用なし」等の<strong>強い断定・割引訴求</strong>（§11/§14 禁止表現）。透明性は「目安＋正式見積時に確認」で実現。</li>
+    <li>川口市めぐりの森・他社式場を<strong>自社運営のように見せる表現</strong>（§19.3）。公営・火葬専用・他社運営の事実を明記する（誠実さがE-E-A-T差別化になる）。</li>
+    <li><strong>LINE導線</strong>の追加（§4・現状は電話＋事前相談の2導線維持）。</li>
+    <li>正本（§9）以外の金額を推測で断定。引用相場は「目安・出典確認」前提。</li>
+  </ul>
+</div>
+
+<h2>推奨着手順（次フェーズ・要ご指示）</h2>
+<p><strong>③ めぐりの森ページ強化 → ① 川口市 葬儀ガイド → ② 費用内訳表 → ⑥ 形式別強化 → ④ FV価格/バッジ（承認）→ ⑤ E-E-A-T → ⑧ 仕上げ</strong>。<br>
+①〜③⑥⑧は §19.1 自走push可の範囲、④（FV/価格）と⑦（Review）は人間承認が必要。着手は本レポートのご確認後、項目ごとに実装計画を出してから進めます。</p>
+
+<footer class="doc">川口典礼サイト 社内分析レポート｜2026-06-07 作成｜非公開（docs/reports/・noindex）｜個人情報・秘密情報なし｜本書は分析のみ・サイト未変更｜引用した競合の相場・数値は各社公開表記の引用であり正本（§9）とは別管理</footer>
+
+</div>
+</body>
+</html>

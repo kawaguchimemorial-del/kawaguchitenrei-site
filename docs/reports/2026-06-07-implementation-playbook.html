@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>改善実装プレイブック（着手順＋プロンプト）＆デザイン判定｜2026-06-07</title>
+<style>
+  :root{--ink:#2b2b2b;--soft:#6b6b6b;--line:#e3e0da;--bg:#faf9f7;--accent:#7a6a55;--ok:#2e7d52;--warn:#b4691f;--danger:#a83838;--blue:#3a5a8a}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;line-height:1.8;font-size:15px}
+  .wrap{max-width:960px;margin:0 auto;padding:40px 22px 90px}
+  header.doc{border-bottom:2px solid var(--line);padding-bottom:18px;margin-bottom:24px}
+  .kicker{font-size:12px;letter-spacing:.12em;color:var(--accent);margin:0 0 6px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:24px;font-weight:600;margin:0 0 10px;line-height:1.5}
+  .meta{font-size:12.5px;color:var(--soft)} .meta span{margin-right:14px}
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:20px;font-weight:600;margin:36px 0 12px;padding-left:11px;border-left:4px solid var(--accent)}
+  h2.design{border-color:var(--blue)}
+  p{margin:8px 0}
+  code{background:#f1efe9;padding:1px 5px;border-radius:5px;font-size:12.5px;font-family:ui-monospace,Consolas,monospace}
+  .tag{display:inline-block;font-size:11px;padding:1px 8px;border-radius:999px;border:1px solid var(--line);white-space:nowrap}
+  .tag.self{color:var(--ok);border-color:#bfe0cd}
+  .tag.appr{color:var(--blue);border-color:#bcd0ea}
+  .tag.hi{color:var(--danger);border-color:#e7b9b9}
+  .tag.mid{color:var(--warn);border-color:#e7cdab}
+  .tag.lo{color:var(--ok);border-color:#bfe0cd}
+  .callout{border-left:4px solid var(--accent);background:#fff;border:1px solid var(--line);border-left-width:4px;padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0}
+  .callout.ok{border-color:var(--ok);background:#f3faf5}
+  .callout.warn{border-color:var(--warn);background:#fdf6ec}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13px;background:#fff}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  th{background:#f3f1ec;font-weight:600}
+  .fix{background:#fff;border:1px solid var(--line);border-radius:10px;margin:14px 0;overflow:hidden}
+  .fix>.head{padding:14px 18px}
+  .fix h3{margin:0 0 4px;font-size:16px}
+  .fix .why{color:var(--soft);font-size:13.5px;margin:4px 0}
+  .fix .kw{font-size:12.5px;color:var(--blue);margin-top:4px}
+  .fix .files{font-size:12px;color:var(--soft);margin-top:4px}
+  details{border-top:1px solid var(--line);background:#fcfbf9}
+  summary{cursor:pointer;list-style:none;padding:11px 18px;font-size:13.5px;font-weight:700;color:var(--blue);user-select:none}
+  summary::-webkit-details-marker{display:none}
+  summary::before{content:"▶ ";font-size:11px}
+  details[open] summary::before{content:"▼ "}
+  details[open] summary{border-bottom:1px solid var(--line)}
+  pre{margin:0;padding:14px 18px;background:#1f2a24;color:#eef3ee;font-size:12.5px;line-height:1.7;white-space:pre-wrap;word-break:break-word;font-family:ui-monospace,Consolas,monospace}
+  .hint{font-size:11.5px;color:var(--soft);padding:6px 18px;background:#f3f1ec;border-top:1px solid var(--line)}
+  ul,ol{margin:8px 0;padding-left:22px} li{margin:5px 0}
+  .muted{color:var(--soft);font-size:13px}
+  .ascii{font-family:ui-monospace,Consolas,monospace;font-size:11.5px;line-height:1.35;background:#fff;border:1px solid var(--line);border-radius:8px;padding:12px 14px;white-space:pre;overflow-x:auto;color:#3a3a3a}
+  footer.doc{margin-top:48px;padding-top:18px;border-top:1px solid var(--line);color:var(--soft);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <p class="kicker">川口典礼サイト ＿ 改善実装プレイブック（社内・非公開）</p>
+  <h1>改善の着手順「どこをどう直す」＋ そのままClaude Codeに流すプロンプト</h1>
+  <p class="meta">
+    <span>作成日：2026-06-07</span>
+    <span>担当：Claude Code</span>
+    <span>本書は計画のみ・サイトは未変更</span>
+  </p>
+  <p class="muted">前提：<a href="./2026-06-07-sitewide-seo-competitor-analysis.html">サイト全体分析＆競合比較レポート</a> の改善8項目。各項目の「<strong>▶ 修正用プロンプトを開く</strong>」をクリックすると、貼り付けて実行できるプロンプトが展開されます。<span class="tag self">自走</span>＝§19.1で実装→push可／<span class="tag appr">承認</span>＝§19.2でpush前に人間承認。</p>
+</header>
+
+<!-- ============ デザイン判定 ============ -->
+<h2 class="design">A. ワイヤーフレーム／デザインは現状でよいか？ → <span style="color:var(--ok)">結論：作り直し不要・現状維持でOK</span></h2>
+<div class="callout ok">
+  <p><strong>骨格（ワイヤーフレーム）と全体デザインは「合格ライン」。今やるべきは作り直しではなく、局所的な追加と並び順の微調整だけ。</strong>葬儀社サイトに必要な要素（地域密着・24時間・料金・信頼・導線）が、上品なトーンを保って正しい順序で並んでいます。リソースは<strong>デザイン刷新ではなくコンテンツ/SEO/AIOに振るべき</strong>です。</p>
+</div>
+<h3>そう判断する理由</h3>
+<ul>
+  <li><strong>情報設計（IA）が購買検討の流れに沿っている：</strong>特徴→安心→緊急フロー→費用→プラン→ホール→めぐりの森→事例→声→FAQ→エリア→アクセス→CTA。離脱しにくい王道の順序。</li>
+  <li><strong>トーン＆マナーが一貫：</strong>セリフ体見出し・余白・差し色ブランドカラー・柔らかい境界線。競合の"価格バナーで叩く"系より、葬儀社として信頼を生む方向で正しい（§3）。</li>
+  <li><strong>CTA設計が明快：</strong>緊急色＝電話／白＝事前相談の役割分担、スマホ下部固定CTA、ヘッダー常時電話。方針（電話＋事前相談の2導線・LINEなし§4）に合致。</li>
+  <li><strong>モバイル配慮済み：</strong>画像先行のスマホFV、LCP最適化、固定CTAの被り回避。</li>
+</ul>
+<h3>「現状維持」のなかで足す/動かすだけの微調整（＝D④/⑧で対応）</h3>
+<div class="ascii">トップFV（現状の骨格は維持。赤字=追加するだけ）
+
+┌──────────────────────────────┐
+│ 川口市・新井宿の皆様へ                          │
+│ ■ 川口市・新井宿で家族葬・直葬をお考えの方へ。   [写真] │
+│   24時間対応／自社式場／実績                  [ホール] │
+│ ＋[追加] 直葬 139,000円〜（会員価格・税込）          │  ← ④ 価格1行
+│ ＋[追加] 〔創業20年〕〔年間260件〕〔市民葬登録〕     │  ← ④ バッジ列
+│         〔駐車70台〕〔めぐりの森 車5分〕            │
+│ [☎ 電話する 24h] [事前相談する]                  │
+└──────────────────────────────┘
+   ・h1はモバイル/PCで2つ出ている → 1つに（⑧）
+   ・「メディア掲載」を最下部 → 中位へ（⑧）
+※ 枠組み・余白・配色・CTAは変えない。足すのは価格1行とバッジ列のみ。</div>
+<p class="muted">＝ ワイヤーフレームを引き直す必要はありません。「FVに価格とバッジを足す／h1を1つに／メディア掲載の位置を上げる」だけで、デザイン面の改善は十分です。大幅なレイアウト変更は §3（デザイン暴走防止）にも反するため行いません。</p>
+
+<!-- ============ 着手順＋プロンプト ============ -->
+<h2>B. 着手順ごとの「どこをどう直す」＋ プロンプト</h2>
+<p class="muted">推奨順：<strong>③ → ① → ② → ⑥ → ④ → ⑤ → ⑦ → ⑧</strong>（効果と安全性のバランス。①③②⑥⑧は自走push可、④⑤⑦は承認・情報提供が必要）。</p>
+
+<!-- ③ -->
+<div class="fix">
+  <div class="head">
+    <h3>③ 「川口市めぐりの森」ページの主題化強化 <span class="tag hi">高</span> <span class="tag self">自走</span></h3>
+    <p class="why">現状 <code>/saijo/megurinomori/</code> は内容は厚いのに施設名KWで<strong>表示0</strong>。h1/title/FAQに「川口市めぐりの森」を主題化し、「自社式場→車5分」の一次情報＋公営・火葬専用の正確な明記でAIO化する。仲介系競合（構造化データ皆無）に逆転余地が最大。</p>
+    <p class="kw">狙うKW：めぐりの森 葬儀 / めぐりの森 家族葬 / めぐりの森 火葬式（現在 表示0）</p>
+    <p class="files">対象：<code>app/saijo/megurinomori/page.tsx</code>・<code>lib/saijo.ts</code>（saijoMegurinomori）</p>
+  </div>
+  <details><summary>修正用プロンプトを開く</summary>
+<pre>川口典礼サイトの「川口市めぐりの森」ページ（app/saijo/megurinomori/page.tsx と lib/saijo.ts の saijoMegurinomori）を、施設名キーワードで上位化するよう強化してください（既存の内容・トーンは維持し、主題化と構造化を強化）。
+
+1) h1 / title / 主要 h2 に「川口市めぐりの森」を自然に主題化（キーワードの羅列・連呼はしない／§10.2）。
+2) ページ冒頭に結論先出しブロック＋基本情報表：所在地、アクセス（「自社式場の川口メモリアルホールから車で約5分」を主訴求）、市民料金の目安、火葬専用・公営施設である事実。火葬料金は §14 に従い「目安・正式にはご確認」を併記し、正本(§9)外の金額は断定しない。
+3) FAQ を追加し FAQPage の JSON-LD 化（例：「めぐりの森で家族葬はできる？」「めぐりの森の火葬料金は？」「川口典礼からめぐりの森まで何分？」）。結論先出しで回答。
+4) §19.3 を順守：川口市めぐりの森は川口市営・火葬専用で、川口典礼の運営施設ではない旨を明記（自社運営に見せない）。この正確さをむしろ E-E-A-T の差別化に使う。
+5) めぐりの森に言及するコラム等から本ページへの内部リンクを確認・補強。
+
+制約：価格は §9 正本のみ。煽り・断定・最安等の禁止表現なし（§11/§14）。デザインは現状維持（§3）。
+完了後：npm run build（135ページ維持）・docs/reports/ にレポート（skills/work-report）・最終差分を提示。§19.1 自走push可だが差分提示後に push。</pre>
+    <div class="hint">選択してコピー → Claude Code に貼り付け。</div>
+  </details>
+</div>
+
+<!-- ① -->
+<div class="fix">
+  <div class="head">
+    <h3>① 「川口市 葬儀ガイド」ハブの網羅強化 <span class="tag hi">高</span> <span class="tag self">自走</span></h3>
+    <p class="why">「川口市 葬儀」は表示207・11位＝1ページ目目前。<code>/area/kawaguchi/</code> を費用相場〜流れ〜制度〜式場〜めぐりの森〜FAQで完結する決定版ガイドに強化し、押し上げる。さがみ典礼の3,500語ガイドが範。</p>
+    <p class="kw">狙うKW：川口市 葬儀(11.0位) / 川口 葬儀(16.0位) / 川口市 葬儀 費用</p>
+    <p class="files">対象：<code>app/area/kawaguchi/page.tsx</code>・<code>lib/areas.ts</code>（areaKawaguchi）／必要なら <code>app/column/</code> 記事に分割</p>
+  </div>
+  <details><summary>修正用プロンプトを開く</summary>
+<pre>「川口市の葬儀ガイド」として /area/kawaguchi/（lib/areas.ts の areaKawaguchi と app/area/kawaguchi/page.tsx）を、費用相場〜流れ〜制度〜式場〜めぐりの森〜FAQ を1ページで完結する決定版に強化してください（中心軸5本柱 §10.1 と整合）。1ページが過大になる場合は /column/ の解説記事への分割も可。
+
+含める内容：
+- 葬儀費用の相場の考え方（§9 正本プラン＋「目安・正式見積で確認」§14。断定しない）
+- 葬儀の流れ（搬送→安置→打合せ→式→火葬→葬儀後）
+- 川口市民葬・国民健康保険の葬祭費などの公的制度（事実ベース・条件は事前確認と明記、断定回避）
+- 式場一覧（/saijo/ へ内部リンク）
+- 川口市めぐりの森（自社式場から車5分／公営・火葬専用の事実）
+- FAQ（FAQPage JSON-LD）
+
+制約：結論先出し、地名×サービス語を自然配置（羅列禁止§10.2）、煽らない・最安等の禁止表現なし（§11/§14）、施設の自社運営誤認なし（§19.3）。既存の構成・トーンを尊重し過度な作り直しはしない（§3）。
+完了後：npm run build（135維持）・docs/reports/ にレポート・最終差分提示。§19.1 自走push可。</pre>
+    <div class="hint">選択してコピー。</div>
+  </details>
+</div>
+
+<!-- ② -->
+<div class="fix">
+  <div class="head">
+    <h3>② 費用の「内訳表」を追加 <span class="tag hi">高</span> <span class="tag self">自走</span></h3>
+    <p class="why">プラン総額は明示済みだが、競合のような<strong>項目別内訳表・火葬場別火葬料の表</strong>が無く、費用系クエリとAI引用を取りこぼし。表形式はAIに最も引用されやすい。</p>
+    <p class="kw">狙うKW：川口 葬儀 費用 / 一日葬 費用 / 直葬 費用</p>
+    <p class="files">対象：新規 <code>components/common/CostBreakdownTable.tsx</code> ＋ <code>/plan/</code> または①ガイドに配置</p>
+  </div>
+  <details><summary>修正用プロンプトを開く</summary>
+<pre>葬儀費用の透明性を高める「費用内訳表」を実装してください（AIに引用されやすい表形式）。
+
+1) 新規コンポーネント（例 components/common/CostBreakdownTable.tsx）で、項目別内訳（式場使用料・火葬料・搬送・ご安置・飲食・返礼品・宗教者へのお礼 など）を「目安」として表組み表示。各項目に「内容・人数・式場により変動／正式なお見積りで確認」を明記（§14）。
+2) 火葬場別の火葬料の目安（川口市めぐりの森 ほか）を別表に。正本(§9)外の金額は「目安」とし断定しない。相場を載せる場合は出典を明記。
+3) 配置：/plan/（app/plan/page.tsx）もしくは「川口市 葬儀ガイド」(①)。必要なら各プラン詳細にも差し込む。
+
+制約：禁止表現（総額確定・追加費用なし・最安・標準価格）は使わない（§14/§19.3）。煽らない（§11）。
+完了後：npm run build（135維持）・docs/reports/ にレポート・最終差分提示。§19.1 自走push可。</pre>
+    <div class="hint">選択してコピー。①の後に配置すると相乗効果。</div>
+  </details>
+</div>
+
+<!-- ⑥ -->
+<div class="fix">
+  <div class="head">
+    <h3>⑥ 形式別ページの読み物強化＋近隣斎場リンク集 <span class="tag mid">中</span> <span class="tag self">自走</span></h3>
+    <p class="why">「川口 家族葬」22.9位・「川口市 家族葬」28.6位＝3ページ目。形式別ページに「定義＋メリット/デメリット＋向いている人」の読み物を足し、/saijo/ の近隣斎場網羅で地域ロングテールを拾う。</p>
+    <p class="kw">狙うKW：川口 家族葬 / 川口市 家族葬 / 形式別ロングテール</p>
+    <p class="files">対象：<code>lib/plans.ts</code>（各プラン）・<code>app/saijo/page.tsx</code></p>
+  </div>
+  <details><summary>修正用プロンプトを開く</summary>
+<pre>形式別ページの読み物としての厚みと、近隣斎場の網羅リンクを強化してください。
+
+1) lib/plans.ts の各プラン（family-funeral / oneday-funeral / direct-funeral / cremation）に「この形式とは（定義）／メリット・デメリット／向いている方」の解説ブロックを追加（読ませる方針§3・煽らない§11）。既存の構成・価格表（§9正本）は変えない。
+2) /saijo/（app/saijo/page.tsx）の近隣斎場・寺院会館の網羅リンクを、地域ロングテール獲得のため整理・内部リンク強化。施設の利用可否・宗派/檀家条件の新規断定はしない（§19.3）。
+
+完了後：npm run build（135維持）・docs/reports/ にレポート・最終差分提示。§19.1 自走push可。</pre>
+    <div class="hint">選択してコピー。</div>
+  </details>
+</div>
+
+<!-- ④ -->
+<div class="fix">
+  <div class="head">
+    <h3>④ FVに価格レンジ＋E-E-A-Tバッジ <span class="tag mid">中</span> <span class="tag appr">承認</span></h3>
+    <p class="why">FVに価格が出ず、信頼が文章内に留まる。価格1行＋バッジ列で「来たユーザーを逃さない」CTR改善。FV/価格表現は重要要素のため push前承認。</p>
+    <p class="kw">効く面：CTR・直帰・初訪問の安心感</p>
+    <p class="files">対象：<code>components/home/Hero.tsx</code></p>
+  </div>
+  <details><summary>修正用プロンプトを開く</summary>
+<pre>【push前に人間承認が必要：トップFV／価格表現（§19.2相当・要承認）】
+components/home/Hero.tsx のファーストビューに、トーンを崩さずに次を追加してください。
+
+1) 信頼チェックリストに価格レンジ1行「直葬 139,000円〜（事前相談会員価格・税込）」を追加（§9 正本のみ・税込明記。割引/最安などの断定はしない§14）。
+2) FV直下に E-E-A-T バッジ列を追加：創業20年／年間約260件／川口市民葬登録／葬祭ディレクター／駐車70台／めぐりの森 車5分（すべて事実ベース・誇張なし§11）。
+
+制約：デザインコンセプト・配色・レイアウト・既存CTA（電話＋事前相談の2導線・LINEなし§4）は変更しない（§3）。バッジは既存の意匠に馴染む控えめな表現に。
+実装 → npm run build（135維持）→ git status まで進め、push はしない。最終差分を提示して承認を求める。docs/reports/ にレポート。</pre>
+    <div class="hint">選択してコピー。※push前に必ず人へ確認。</div>
+  </details>
+</div>
+
+<!-- ⑤ -->
+<div class="fix">
+  <div class="head">
+    <h3>⑤ E-E-A-T（著者性・実績）の可視化 <span class="tag mid">中</span> <span class="tag appr">情報提供要</span></h3>
+    <p class="why">競合上位は「監修者の実名＋現場年数」を明記。川口典礼は実績数はあるが著者性の可視化が弱い。実名掲載は本人同意が前提のため、社内で確定情報の用意が必要。</p>
+    <p class="files">対象：<code>lib/company.ts</code>・<code>/company/</code>・ガイド/コラム</p>
+  </div>
+  <details><summary>修正用プロンプトを開く</summary>
+<pre>E-E-A-T（著者性・実績）を可視化してください。
+
+1) 「川口市 葬儀ガイド」(①)や主要コラムに「監修・担当：氏名（葬祭ディレクター・現場◯年）」のような著者情報ブロックを追加する。
+   ※実名・肩書きは、社内で確定し本人同意の取れた情報のみ使用。未確定の場合はダミーを入れず、確定情報の提供を依頼してから反映すること（個人情報＝§12／privacy-review-jp 順守）。
+2) 会社情報（lib/company.ts・/company/）に実績数値（創業20年・年間約260件・川口市民葬登録）を整理し、可能なら Organization/Person の構造化（Review/aggregateRating は含めない）。
+
+制約：誇張・断定なし（§11）。実名・顔写真など個人情報を出す場合は本人同意の確認が前提。
+完了後：npm run build・docs/reports/ にレポート・最終差分提示。実名掲載が絡む push は人間承認後。</pre>
+    <div class="hint">選択してコピー。※先に「監修者名・肩書き・同意」を社内で確定してください。</div>
+  </details>
+</div>
+
+<!-- ⑦ -->
+<div class="fix">
+  <div class="head">
+    <h3>⑦ 口コミの AggregateRating 構造化（検討） <span class="tag lo">低〜中</span> <span class="tag appr">承認</span></h3>
+    <p class="why">voice 30件の★資産。ただし Google は自社サイト上の自社レビューを星リッチリザルト対象外とする方針で、星は出ない可能性が高い。AIO引用目的に限定する前提。個別 Review JSON-LD は既に voice 詳細に実装済み。</p>
+    <p class="files">対象：<code>lib/voices.ts</code>・voice 関連テンプレート</p>
+  </div>
+  <details><summary>修正用プロンプトを開く</summary>
+<pre>【push前に人間承認が必要：Review/aggregateRating（§19.2）】
+口コミ（lib/voices.ts）の評価を用いた aggregateRating の構造化データ追加の可否を判断し、実装案を出してください。
+
+- 注意：Google は「自社サイト上の自社レビュー」を星リッチリザルト対象外とする方針のため、星は表示されない可能性が高い。AIO引用目的に限定する前提で、誇張のない実データのみ。
+- 個人名・故人名・喪主名は出さない（§12）。
+- 個別 Review JSON-LD は既に voice 詳細ページに実装済みのため、今回は aggregateRating の妥当性判断と、付ける場合の最小実装案。
+
+実装（案）→ npm run build まで進め、push はしない。最終差分・スキーマ例・リスク（星非表示の可能性）を提示して承認を求める。docs/reports/ にレポート。</pre>
+    <div class="hint">選択してコピー。※費用対効果は限定的。優先度低め。</div>
+  </details>
+</div>
+
+<!-- ⑧ -->
+<div class="fix">
+  <div class="head">
+    <h3>⑧ 仕上げ（h1二重出力・メディア掲載の位置・公開日点検） <span class="tag lo">低</span> <span class="tag self">自走</span></h3>
+    <p class="why">主題明確化・回遊改善の地味な底上げ。デザイン維持の範囲。</p>
+    <p class="files">対象：<code>components/home/Hero.tsx</code>・トップ構成・<code>lib/columns.ts</code></p>
+  </div>
+  <details><summary>修正用プロンプトを開く</summary>
+<pre>低優先の仕上げを実施してください。
+
+1) components/home/Hero.tsx：モバイル版・PC版で h1 が2つ出力されている問題を、1ページ1h1 になるよう片方を &lt;p&gt; もしくは aria-hidden 化（見た目は維持）。
+2) トップの「メディア掲載」セクションを、信頼補強として中位（安心3点の付近）へ再配置する案を検討・実装（デザイン・配色は維持／§3）。
+3) lib/columns.ts の公開日（publishedAt）が未来日になっていないか点検し、必要なら是正。
+
+完了後：npm run build（135維持）・docs/reports/ にレポート・最終差分提示。§19.1 自走push可。</pre>
+    <div class="hint">選択してコピー。</div>
+  </details>
+</div>
+
+<h2>使い方・進め方</h2>
+<ol>
+  <li>上から順（③→①→②→⑥→④→⑤→⑦→⑧）に、各プロンプトをコピーして実行依頼してください。1項目ずつが安全です。</li>
+  <li><span class="tag self">自走</span>は実装→build→差分提示→push まで一気に可。<span class="tag appr">承認</span>はpush前に必ず差分を確認してください。</li>
+  <li>④（FV）と⑤（実名）と⑦（Review）は、価格表現・個人情報・Review方針が絡むため、着手前に社内確認（バッジに載せる文言、監修者名・同意）を整えるとスムーズです。</li>
+  <li>効果測定：着手後 2〜4週でGSCを再取得し、「川口市 葬儀」「めぐりの森×形式」「川口市 家族葬」の表示・順位の変化を確認します。</li>
+</ol>
+
+<footer class="doc">川口典礼サイト 社内プレイブック｜2026-06-07 作成｜非公開（docs/reports/・noindex）｜個人情報・秘密情報なし｜本書は計画のみ・サイト未変更</footer>
+
+</div>
+</body>
+</html>
