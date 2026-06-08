@@ -36,6 +36,11 @@
   <ul class="list">
     <li>
       <span class="date">2026-06-08</span>
+      <a href="./2026-06-08-vercel-web-analytics.html">Vercel Web Analytics 導入（ページビュー計測）</a>
+      <span class="desc">@vercel/analytics を追加し、app/layout.tsx の body 末尾に &lt;Analytics /&gt; を設置（import は @vercel/analytics/next）。ページビュー計測のみ・カスタムイベントなし。metadata/GTM/デザイン/CTA/構造化データは不変。build成功・135ページ維持。デプロイ後に公開サイト訪問で計測開始（Vercel→Analytics）。package.json/lockfile変更を含むためcommit/pushは確認後（§19.2）。</span>
+    </li>
+    <li>
+      <span class="date">2026-06-08</span>
       <a href="./2026-06-08-fv-redesign-pc-mobile.html">トップFVリニューアル（PC全幅レイアウト＋デバイス別の実写画像）</a>
       <span class="desc">PCのFVを「文字→全幅画像→CTA×2」の縦構成に再設計。ヒーロー画像をデバイス別の実写合成（PC=横 hall-fv-pc.png／モバイル=縦 hall-fv-mobile.png・外観＋祭壇）に変更。画像高さclamp(260/42vh/460)・object-position40%で看板を保持。価格1行/信頼ポイント/E-E-A-Tバッジ/2導線CTA/単一h1は維持。自社実写・遺影なし確認（§12/§13）、配色・共通レイアウト不変（§3/§4/§5）。5視点レビュー＋:3100プレビューで確認、§19.2で人間承認のうえpush。build成功・135ページ。</span>
     </li>

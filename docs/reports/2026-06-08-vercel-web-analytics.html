@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>作業レポート 2026-06-08｜Vercel Web Analytics 導入（ページビュー計測）</title>
+<style>
+  :root{--ink:#2b2b2b;--soft:#6b6b6b;--line:#e3e0da;--bg:#faf9f7;--accent:#7a6a55;--ok:#2e7d52;--warn:#b4773a}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;line-height:1.85;font-size:15px}
+  .wrap{max-width:860px;margin:0 auto;padding:40px 22px 80px}
+  header.doc{border-bottom:2px solid var(--line);padding-bottom:18px;margin-bottom:28px}
+  .kicker{font-size:12px;letter-spacing:.12em;color:var(--accent);margin:0 0 6px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:22px;font-weight:600;margin:0 0 10px;line-height:1.5}
+  .meta{font-size:12.5px;color:var(--soft)} .meta span{margin-right:14px}
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:19px;font-weight:600;margin:34px 0 12px;padding-left:11px;border-left:4px solid var(--accent)}
+  p{margin:8px 0}
+  .card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:14px 0}
+  .tag{display:inline-block;font-size:11.5px;padding:2px 9px;border-radius:999px;border:1px solid var(--line);color:var(--soft);background:#fff}
+  .tag.ok{color:var(--ok);border-color:#bfe0cd}
+  .tag.warn{color:var(--warn);border-color:#e3c79f}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13.5px;background:#fff}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  code{background:#f1efe9;padding:1px 6px;border-radius:5px;font-size:12.5px;font-family:ui-monospace,Consolas,monospace}
+  ul,ol{margin:8px 0;padding-left:22px} li{margin:4px 0}
+  .callout{border-left:4px solid var(--accent);background:#f6f3ee;padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0}
+  .callout p:first-child{margin-top:0}.callout p:last-child{margin-bottom:0}
+  .muted{color:var(--soft);font-size:13px}
+  footer.doc{margin-top:50px;padding-top:18px;border-top:1px solid var(--line);color:var(--soft);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <p class="kicker">川口典礼サイト ＿ 作業レポート（社内記録・非公開）</p>
+  <h1>Vercel Web Analytics 導入（ページビュー計測）</h1>
+  <p class="meta">
+    <span>作成日：2026-06-08</span>
+    <span>担当：Claude Code</span>
+    <span class="tag warn">commit/push は確認後</span>
+  </p>
+  <p class="muted">社内記録（Web非公開・<code>noindex</code>）。個人情報・秘密情報なし。</p>
+</header>
+
+<div class="callout">
+  <p><strong>目的：</strong>Vercel 上で稼働中の kawaguchitenrei-site に Vercel Web Analytics を導入し、<strong>ページビュー計測</strong>を開始する。CTAクリック等のカスタムイベントは今回は実装しない。SEO改善タスクとは分離。</p>
+</div>
+
+<h2>1. 変更内容</h2>
+<ul>
+  <li><code>@vercel/analytics</code> を依存追加（<code>npm i @vercel/analytics</code>。1パッケージ追加）。</li>
+  <li>App Router の root layout（<code>app/layout.tsx</code>）に <code>&lt;Analytics /&gt;</code> を追加。<code>import { Analytics } from "@vercel/analytics/next";</code>、<code>&lt;body&gt;</code> 末尾付近（<code>RevealOnScrollSlot</code> の後）に設置。</li>
+  <li>既存の metadata・GoogleTagManager・レイアウト・デザイン・CTA・構造化データには変更なし。</li>
+</ul>
+
+<h2>2. 変更ファイル</h2>
+<table>
+  <thead><tr><th>ファイル</th><th>内容</th></tr></thead>
+  <tbody>
+    <tr><td><code>package.json</code></td><td><code>@vercel/analytics</code> を dependencies に追加。</td></tr>
+    <tr><td><code>package-lock.json</code></td><td>ロックファイル更新（依存追加分）。</td></tr>
+    <tr><td><code>app/layout.tsx</code></td><td>import 追加＋<code>&lt;body&gt;</code> 末尾に <code>&lt;Analytics /&gt;</code> を追加。</td></tr>
+  </tbody>
+</table>
+
+<h2>3. build 結果</h2>
+<ul>
+  <li><code>npm run build</code>：<span class="tag ok">成功</span>（✓ Compiled successfully・型エラーなし）。</li>
+  <li>静的生成ページ数：<strong>135ページ維持</strong>（導入前後で増減なし）。</li>
+</ul>
+
+<h2>4. 計測開始のしくみ（Vercel 側）</h2>
+<ul>
+  <li>本コードを Vercel に<strong>デプロイ後</strong>、公開サイトを訪問するとページビュー計測が始まる。</li>
+  <li>Vercel ダッシュボードの対象プロジェクト → <strong>Analytics</strong> タブで、Web Analytics を有効化（未有効の場合）し、計測データを確認する。</li>
+  <li>反映には実トラフィックが必要。デプロイ直後はデータ0で、訪問が発生してから数値が表示される。</li>
+  <li>今回は<strong>ページビューのみ</strong>。カスタムイベント（CTAクリック等）は未実装。</li>
+</ul>
+
+<h2>5. 方針順守</h2>
+<ul>
+  <li>新規デザイン変更なし。CTA・構造化データ・metadata 不変。</li>
+  <li>カスタムイベント未実装（今回スコープ外）。</li>
+  <li>SEO改善タスクとは混在させていない（本変更のみ）。</li>
+  <li>package.json / lockfile 変更を含むため、<strong>commit / push は人間確認後</strong>（§19.2）。本レポート時点では未commit・未push。</li>
+</ul>
+
+<h2>6. 備考</h2>
+<ul>
+  <li><code>npm i</code> 実行時、既存依存に moderate severity の audit 警告が2件あるが、本導入とは無関係（既存）。今回は対応しない。</li>
+</ul>
+
+<footer class="doc">川口典礼サイト 社内作業レポート｜2026-06-08 作成｜非公開（docs/reports/・noindex）｜個人情報・秘密情報なし</footer>
+
+</div>
+</body>
+</html>

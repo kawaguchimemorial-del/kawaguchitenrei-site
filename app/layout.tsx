@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import {
   GoogleTagManager,
   GoogleTagManagerNoscript,
@@ -60,6 +61,8 @@ export default function RootLayout({
         <FooterSlot />
         <MobileBottomCTASlot />
         <RevealOnScrollSlot />
+        {/* Vercel Web Analytics（ページビュー計測のみ・カスタムイベントなし） */}
+        <Analytics />
       </body>
     </html>
   );
