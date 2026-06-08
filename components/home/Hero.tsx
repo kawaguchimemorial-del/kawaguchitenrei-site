@@ -28,18 +28,21 @@ const eeatBadges = [
   "めぐりの森 車5分",
 ];
 
-const heroImage = "/images/home/hero/kawaguchi-memorial-hall-hero.png";
+// スマホFV用（縦・外観＋祭壇の合成）
+const heroImage = "/images/home/hero/hall-fv-mobile.png";
+// PC FV用（全幅・横・外観＋祭壇の合成）
+const heroWideImage = "/images/home/hero/hall-fv-pc.png";
 
 export function Hero() {
   return (
     <section className="bg-paper">
-      {/* スマホ用FV：画像先行型 */}
+      {/* スマホ用FV：画像先行型（現状維持） */}
       <div className="md:hidden">
         <div className="relative">
-          <div className="relative aspect-[4/5] overflow-hidden bg-warm">
+          <div className="relative aspect-[9/16] overflow-hidden bg-warm">
             <Image
               src={heroImage}
-              alt="川口メモリアルホール 外観と祭壇イメージ"
+              alt="川口メモリアルホールの外観と式場・祭壇（川口市西新井宿）"
               fill
               sizes="100vw"
               priority
@@ -131,103 +134,93 @@ export function Hero() {
         </div>
       </div>
 
-      {/* PC用FV：既存の2カラム構成を維持 */}
-      <div className="mx-auto hidden max-w-6xl px-5 pt-8 pb-12 md:grid md:grid-cols-[1.08fr_0.92fr] md:items-start md:gap-x-14 md:px-8 md:pt-20 md:pb-24">
-        <p className="text-sm font-bold tracking-[0.02em] text-brand md:col-start-1 md:row-start-1">
-          川口市・新井宿の皆様へ
-        </p>
+      {/* PC用FV：文字 → 全幅画像 → CTA×2 の縦構成 */}
+      <div className="hidden md:block">
+        {/* 文字 */}
+        <div className="mx-auto max-w-6xl px-8 pt-16 pb-8 text-center">
+          <p className="text-sm font-bold tracking-[0.02em] text-brand">
+            川口市・新井宿の皆様へ
+          </p>
+          {/* h1 はスマホ側に1つ。PC側は見出し風テキスト（p）にして h1 の二重出力を回避 */}
+          <p className="font-serif-jp mx-auto mt-4 max-w-3xl text-[2.3rem] font-medium leading-[1.32] text-ink-deep">
+            川口市・新井宿で、家族葬・直葬をお考えの方へ。
+          </p>
+          <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-ink-mid">
+            急なお迎えから費用のご相談まで、地元川口の葬儀社が24時間対応します。川口市西新井宿の自社式場 ／ 創業20年・年間約260件の施行実績。
+          </p>
+        </div>
 
-        {/* モバイル側を本ページの h1 とし、PC側は同一表記の見出し風テキスト（p）にしてh1の二重出力を回避 */}
-        <p className="font-serif-jp mt-5 text-[1.75rem] font-medium leading-[1.4] tracking-normal text-ink-deep md:col-start-1 md:row-start-2 md:mt-5 md:text-[2.2rem] md:leading-[1.32]">
-          川口市・新井宿で
-          <br />
-          家族葬・直葬をお考えの方へ。
-        </p>
-
-        <p className="mt-5 text-sm leading-7 text-ink-mid md:col-start-1 md:row-start-3 md:mt-5 md:text-base md:leading-8">
-          急なお迎えから費用のご相談まで、地元川口の葬儀社が24時間対応します。川口市西新井宿の自社式場 / 創業20年・年間約260件の施行実績。
-        </p>
-
-        <figure className="-mx-5 mt-7 md:col-start-2 md:row-start-1 md:row-span-5 md:mx-0 md:mt-0">
-          <div className="relative aspect-[4/5] overflow-hidden border-line bg-warm md:aspect-[5/6] md:rounded-lg md:border md:shadow-[0_24px_70px_rgba(26,42,35,0.12)]">
+        {/* 全幅画像（横長バナー・看板が残るよう上寄りクロップ） */}
+        <figure className="relative w-full">
+          <div className="relative h-[clamp(260px,42vh,460px)] w-full overflow-hidden bg-warm">
             <Image
-              src={heroImage}
-              alt="川口メモリアルホール 外観と祭壇イメージ"
+              src={heroWideImage}
+              alt="川口メモリアルホールの外観と式場・祭壇（埼玉県川口市西新井宿）"
               fill
-              sizes="(max-width: 768px) 100vw, 480px"
+              sizes="100vw"
               priority
-              className="hero-image-fade object-cover object-center"
+              className="hero-image-fade object-cover object-[center_40%]"
             />
-            <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 bg-gradient-to-t from-ink-deep/55 via-ink-deep/0 p-5 text-white md:p-6">
-              <div>
-                <p className="text-[11px] font-semibold tracking-[0.22em] text-white/85 uppercase">
-                  Memorial Hall
-                </p>
-                <p className="mt-1 text-base font-bold leading-tight md:text-lg">
-                  川口メモリアルホール
-                </p>
+            <div
+              aria-hidden
+              className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-ink-deep/45 to-transparent"
+            />
+            <figcaption className="absolute inset-x-0 bottom-0">
+              <div className="mx-auto flex max-w-6xl items-end justify-between gap-4 px-8 pb-5 text-white">
+                <span className="text-base font-bold [text-shadow:_0_1px_8px_rgba(0,0,0,0.45)]">
+                  川口メモリアルホール（川口市西新井宿）
+                </span>
+                <a
+                  href="#access"
+                  className="shrink-0 rounded-full bg-white/95 px-4 py-1.5 text-xs font-bold text-ink-deep transition hover:bg-white"
+                >
+                  アクセスを見る →
+                </a>
               </div>
-              <span className="rounded-full bg-white/95 px-3 py-1 text-[11px] font-bold text-ink-deep">
-                西新井宿
-              </span>
-            </div>
+            </figcaption>
           </div>
-          <figcaption className="mt-4 flex items-center justify-between gap-4 px-5 text-sm text-ink-mid md:px-0">
-            <span>埼玉県川口市西新井宿440-1</span>
-            <a href="#access" className="font-bold text-brand hover:underline">
-              アクセスを見る →
-            </a>
-          </figcaption>
         </figure>
 
-        <ul className="mt-7 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm font-semibold text-ink md:col-start-1 md:row-start-4 md:mt-7 md:text-[0.95rem]">
-          {trustPoints.map((point, i) => (
-            <li key={point} className="flex items-center gap-3">
-              {i > 0 && <span aria-hidden className="h-3 w-px bg-line" />}
-              <span className="flex items-center gap-1.5">
-                <span
-                  aria-hidden
-                  className="inline-block h-1.5 w-1.5 rounded-full bg-brand"
-                />
-                {point}
-              </span>
-            </li>
-          ))}
-        </ul>
+        {/* 信頼ポイント ＋ CTA×2（電話・事前相談） */}
+        <div className="mx-auto max-w-6xl px-8 pt-8 pb-14">
+          <ul className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-[0.95rem] font-semibold text-ink">
+            {trustPoints.map((point, i) => (
+              <li key={point} className="flex items-center gap-3">
+                {i > 0 && <span aria-hidden className="h-3 w-px bg-line" />}
+                <span className="flex items-center gap-1.5">
+                  <span
+                    aria-hidden
+                    className="inline-block h-1.5 w-1.5 rounded-full bg-brand"
+                  />
+                  {point}
+                </span>
+              </li>
+            ))}
+          </ul>
 
-        <div className="md:col-start-1 md:row-start-5 md:mt-7 md:block">
-          <a
-            href="tel:0120-963-765"
-            className="group flex w-full items-center justify-between gap-4 rounded-lg bg-emergency px-5 py-3.5 text-white transition hover:bg-emergency-deep md:max-w-md md:px-6 md:py-4"
-          >
-            <span className="flex items-center gap-3 md:gap-4">
+          <div className="mx-auto mt-7 grid max-w-2xl gap-3 sm:grid-cols-[1.2fr_1fr]">
+            <a
+              href="tel:0120-963-765"
+              className="group flex items-center justify-center gap-3 rounded-lg bg-emergency px-6 py-4 text-white shadow-sm transition hover:bg-emergency-deep"
+            >
               <span
                 aria-hidden
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-white/15 text-lg md:h-11 md:w-11 md:text-xl"
+                className="flex h-11 w-11 items-center justify-center rounded-full bg-white/15 text-xl"
               >
                 ☎
               </span>
               <span className="text-left">
-                <span className="block text-base font-bold leading-tight md:text-lg">
+                <span className="block text-lg font-bold leading-tight">
                   電話で相談する
                 </span>
-                <span className="mt-0.5 block text-[11px] font-semibold tracking-wider text-white/85 md:mt-1 md:text-xs">
+                <span className="mt-1 block text-xs font-semibold tracking-wider text-white/85">
                   24時間365日 受付
                 </span>
               </span>
-            </span>
-            <span
-              aria-hidden
-              className="text-lg text-white/80 transition group-hover:translate-x-0.5 md:text-xl"
-            >
-              →
-            </span>
-          </a>
-
-          <div className="mt-3 md:max-w-md">
+            </a>
             <a
               href="/contact/"
-              className="block rounded-lg border border-line bg-white px-5 py-3.5 text-center text-base font-bold text-ink-deep transition hover:border-brand hover:text-brand"
+              className="flex items-center justify-center rounded-lg border border-ink-deep bg-white px-6 py-4 text-center text-base font-bold text-ink-deep transition hover:bg-cool"
             >
               事前相談する
             </a>

@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>作業レポート 2026-06-08｜トップFVリニューアル（PC全幅・デバイス別画像）</title>
+<style>
+  :root{--ink:#2b2b2b;--soft:#6b6b6b;--line:#e3e0da;--bg:#faf9f7;--accent:#7a6a55;--ok:#2e7d52}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;line-height:1.85;font-size:15px}
+  .wrap{max-width:860px;margin:0 auto;padding:40px 22px 80px}
+  header.doc{border-bottom:2px solid var(--line);padding-bottom:18px;margin-bottom:28px}
+  .kicker{font-size:12px;letter-spacing:.12em;color:var(--accent);margin:0 0 6px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:22px;font-weight:600;margin:0 0 10px;line-height:1.5}
+  .meta{font-size:12.5px;color:var(--soft)} .meta span{margin-right:14px}
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:19px;font-weight:600;margin:34px 0 12px;padding-left:11px;border-left:4px solid var(--accent)}
+  p{margin:8px 0}
+  .card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:14px 0}
+  .tag{display:inline-block;font-size:11.5px;padding:2px 9px;border-radius:999px;border:1px solid var(--line);color:var(--soft);background:#fff}
+  .tag.ok{color:var(--ok);border-color:#bfe0cd}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13.5px;background:#fff}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  code{background:#f1efe9;padding:1px 6px;border-radius:5px;font-size:12.5px;font-family:ui-monospace,Consolas,monospace}
+  ul,ol{margin:8px 0;padding-left:22px} li{margin:4px 0}
+  .callout{border-left:4px solid var(--ok);background:#f3faf5;padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0}
+  .callout p:first-child{margin-top:0}.callout p:last-child{margin-bottom:0}
+  .muted{color:var(--soft);font-size:13px}
+  footer.doc{margin-top:50px;padding-top:18px;border-top:1px solid var(--line);color:var(--soft);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <p class="kicker">川口典礼サイト ＿ 作業レポート（社内記録・非公開）</p>
+  <h1>トップFVリニューアル（PC全幅レイアウト＋デバイス別の実写画像）</h1>
+  <p class="meta">
+    <span>作成日：2026-06-08</span>
+    <span>担当：Claude Code</span>
+  </p>
+  <p class="muted">社内記録（Web非公開・<code>noindex</code>）。個人情報・秘密情報なし。FV／価格表現に該当するため §19.2 により差分・プレビュー提示のうえ人間承認を得て push。</p>
+</header>
+
+<div class="callout">
+  <p><strong>概要：</strong>PCのファーストビューを「文字 → 全幅画像 → CTA×2」の縦構成にリニューアル。ヒーロー画像を<strong>デバイス別の実写合成（外観＋祭壇）</strong>に変更し、PCは横長・モバイルは縦長で最適化。5視点レビュー＋ローカルプレビュー（:3100）で確認のうえ反映。</p>
+</div>
+
+<h2>1. 変更点</h2>
+<table>
+  <thead><tr><th>項目</th><th>内容</th></tr></thead>
+  <tbody>
+    <tr><td>PCレイアウト</td><td>従来の2カラム（左:文字／右:縦画像）から、<strong>文字（中央）→ 全幅画像 → 電話/事前相談の2CTA</strong> の縦構成へ。画像高さは <code>clamp(260px,42vh,460px)</code> でCTAを折り返し内に収め、<code>object-position 40%</code> で看板が残るよう調整。</td></tr>
+    <tr><td>ヒーロー画像</td><td>デバイス別の実写合成に変更。PC＝<code>hall-fv-pc.png</code>（横・外観＋祭壇）、モバイル＝<code>hall-fv-mobile.png</code>（縦・外観＋祭壇）。いずれも自社施設の実写。</td></tr>
+    <tr><td>モバイル</td><td>従来の画像先行型レイアウトは維持しつつ、画像を縦合成に差し替え（aspect 9:16）。</td></tr>
+    <tr><td>維持</td><td>価格1行（直葬139,000円〜・税込）・信頼ポイント・E-E-A-Tバッジ帯・2導線CTA（電話＋事前相談・LINEなし）。h1はモバイル側の1つのみ（PC見出しはp）。</td></tr>
+  </tbody>
+</table>
+
+<h2>2. 画像選定の経緯（5視点レビュー）</h2>
+<p>「会館の横長単写真」「修正前の縦合成」「会館＋祭壇の横合成」などを、ご遺族／UX／SEO・E-E-A-T／ブランド／コンプラの5視点で比較。最終的に「実在の会館＋葬儀社だと一目で分かる祭壇」を両立し、かつデバイス別に最適化した実写合成（PC横・モバイル縦）を採用。</p>
+
+<h2>3. 方針順守</h2>
+<ul>
+  <li>価格（§9/§14）：正本のみ・税込明記・断定なし。</li>
+  <li>画像（§12/§13）：自社施設の実写。遺影・個人の写り込みがないことを人間確認済み。素材サイトのモデル写真は不採用。</li>
+  <li>トーン（§3/§4/§5）：配色・2導線CTA・共通レイアウト（Header/Footer/MobileBottomCTA）は不変。</li>
+  <li>§19.2：FV／価格に該当 → 差分・プレビュー提示のうえ人間承認を取得して push。</li>
+</ul>
+
+<h2>4. 変更ファイル</h2>
+<table>
+  <thead><tr><th>ファイル</th><th>内容</th></tr></thead>
+  <tbody>
+    <tr><td><code>components/home/Hero.tsx</code></td><td>PC FVを全幅縦構成に再設計。ヒーロー画像をデバイス別に差し替え。</td></tr>
+    <tr><td><code>public/images/home/hero/hall-fv-pc.png</code>（新規）</td><td>PC用・横の実写合成（外観＋祭壇）。</td></tr>
+    <tr><td><code>public/images/home/hero/hall-fv-mobile.png</code>（新規）</td><td>モバイル用・縦の実写合成（外観＋祭壇）。</td></tr>
+  </tbody>
+</table>
+<p class="muted">※ 旧 <code>hall-fv-wide.png</code>（暫定の横長単写真・未コミット）は不採用のため削除。旧 <code>kawaguchi-memorial-hall-hero.png</code> は未使用化（ファイルは残置）。</p>
+
+<h2>5. 確認結果</h2>
+<ul>
+  <li><code>npm run build</code>：✓ 成功・135ページ維持・型エラーなし。</li>
+  <li>ローカルプレビュー（<code>http://localhost:3100/</code>）でPC・モバイルの見え方を確認のうえ承認。</li>
+  <li>確認URL（本番）：<code>/</code>。</li>
+</ul>
+
+<h2>6. 今後の調整余地</h2>
+<ul>
+  <li>クロップ位置（看板・祭壇の見え方）・画像高さは数値で微調整可能。</li>
+  <li>必要なら祭壇まわりの色味を画面全体に馴染ませる微修正。</li>
+</ul>
+
+<footer class="doc">川口典礼サイト 社内作業レポート｜2026-06-08 作成｜非公開（docs/reports/・noindex）｜個人情報・秘密情報なし</footer>
+
+</div>
+</body>
+</html>
