@@ -876,7 +876,7 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/case/5-cremation-megurinomori",
-        destination: "/case/",
+        destination: "/plan/cremation/",
         permanent: true,
       },
       {
@@ -901,12 +901,12 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/case/hanairo-owakarekai",
-        destination: "/case/",
+        destination: "/plan/hanaire-owakare/",
         permanent: true,
       },
       {
         source: "/case/hanairo-owakarekai/",
-        destination: "/case/",
+        destination: "/plan/hanaire-owakare/",
         permanent: true,
       },
       {

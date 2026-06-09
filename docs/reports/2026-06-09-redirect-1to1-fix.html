@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>作業レポート 2026-06-09｜301の1対1見直し（タスクB・移行後の評価引き継ぎ）</title>
+<style>
+  :root{--ink:#2b2b2b;--soft:#6b6b6b;--line:#e3e0da;--bg:#faf9f7;--accent:#7a6a55;--ok:#2e7d52}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;line-height:1.85;font-size:15px}
+  .wrap{max-width:860px;margin:0 auto;padding:40px 22px 80px}
+  header.doc{border-bottom:2px solid var(--line);padding-bottom:18px;margin-bottom:28px}
+  .kicker{font-size:12px;letter-spacing:.12em;color:var(--accent);margin:0 0 6px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:22px;font-weight:600;margin:0 0 10px;line-height:1.5}
+  .meta{font-size:12.5px;color:var(--soft)} .meta span{margin-right:14px}
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:19px;font-weight:600;margin:34px 0 12px;padding-left:11px;border-left:4px solid var(--accent)}
+  p{margin:8px 0}
+  .tag{display:inline-block;font-size:11.5px;padding:2px 9px;border-radius:999px;border:1px solid var(--line);color:var(--soft);background:#fff}
+  .tag.ok{color:var(--ok);border-color:#bfe0cd}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13.5px;background:#fff}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  code{background:#f1efe9;padding:1px 6px;border-radius:5px;font-size:12.5px;font-family:ui-monospace,Consolas,monospace}
+  ul,ol{margin:8px 0;padding-left:22px} li{margin:4px 0}
+  .callout{border-left:4px solid var(--ok);background:#f3faf5;padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0}
+  .muted{color:var(--soft);font-size:13px}
+  footer.doc{margin-top:50px;padding-top:18px;border-top:1px solid var(--line);color:var(--soft);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <p class="kicker">川口典礼サイト ＿ 作業レポート（社内記録・非公開）</p>
+  <h1>301の1対1見直し（タスクB・移行後の評価引き継ぎ）</h1>
+  <p class="meta"><span>作成日：2026-06-09</span><span>担当：Claude Code</span></p>
+  <p class="muted">社内記録（Web非公開・<code>noindex</code>）。個人情報・秘密情報なし。</p>
+</header>
+
+<div class="callout">
+  <p><strong>狙い：</strong>リニューアル(5/19)後の順位回復施策。個別の旧URLが「カテゴリ一覧」へ301されていると旧URLの評価が該当ページに引き継がれにくいため、<strong>該当する個別新ページが明確なものを1対1の301へ</strong>修正する。</p>
+</div>
+
+<h2>1. 変更内容（next.config.ts・3エントリ）</h2>
+<table>
+  <thead><tr><th>旧URL</th><th>変更前</th><th>変更後</th></tr></thead>
+  <tbody>
+    <tr><td><code>/case/5-cremation-megurinomori</code></td><td>/case/（一覧）</td><td><strong>/plan/cremation/</strong>（火葬式）</td></tr>
+    <tr><td><code>/case/hanairo-owakarekai</code></td><td>/case/（一覧）</td><td><strong>/plan/hanaire-owakare/</strong>（花入れお別れ）</td></tr>
+    <tr><td><code>/case/hanairo-owakarekai/</code></td><td>/case/（一覧）</td><td><strong>/plan/hanaire-owakare/</strong></td></tr>
+  </tbody>
+</table>
+
+<h2>2. 据え置いた項目（変更しない判断）</h2>
+<ul>
+  <li><code>/Column_list/{8xhJXcZx, RKDapyrF, SmrhNZZl, v6jFx5md, sougimade, kP-rSeSF, eH0hUogJ}</code>（旧コラム7本）→ /column/（一覧）：<strong>旧記事のテーマが不明</strong>で対応する新コラムを確実に特定できない。誤った記事への301は逆効果のため、テーマ確認が取れるまで一覧フォールバックを維持。</li>
+  <li><code>/kasou_sikijou</code> → /area/kawaguchi/：GSCで<strong>現在改善中</strong>（順位22→15）。移行中に動かすと再評価が振り出しに戻るため据え置き。</li>
+  <li>catch-all（<code>/QA/:slug*</code>・<code>/koe/:slug*</code>・<code>/pet/:slug+</code> 等）：主要な個別ページは既に1対1済み。残りのフォールバックは妥当。</li>
+</ul>
+<p class="muted">その他の既存301はほぼ全て1対1で良好（旧記事ID→該当コラム、/chokusou→/plan/direct-funeral/、/kawaguchishi-megurinomori→/saijo/megurinomori/、/kazoku_sou→/plan/family-funeral/ 等）。</p>
+
+<h2>3. 方針順守</h2>
+<ul>
+  <li>移行中のため title/URL/構造・既存リダイレクトの大規模変更はしない。今回は<strong>2旧URLの飛ばし先を該当ページへ最適化する純粋な改善</strong>のみ。</li>
+  <li>対象の旧URLはGSC上ほぼ無表示で、現在ランクしているページへの影響なし（純粋な上振れ）。</li>
+  <li>§19.2（next.config.ts）に該当するため、差分提示のうえ人間承認を得て push。</li>
+</ul>
+
+<h2>4. 確認結果</h2>
+<ul>
+  <li><code>npm run build</code>：✓ 成功・135ページ維持・型エラーなし。</li>
+  <li>変更ファイル：<code>next.config.ts</code> のみ。</li>
+  <li>本番反映後、curl で <code>/case/hanairo-owakarekai → /plan/hanaire-owakare/</code> 等の301先を確認予定。</li>
+</ul>
+
+<h2>5. 次タスク</h2>
+<ul>
+  <li>旧コラム7本のテーマが判明すれば該当新コラムへ1対1の301を追加。</li>
+  <li>(c) 受け皿ページのインデックス促進・未登録99件の解消。</li>
+  <li>2〜4週後に同じGSC前後比較を再取得し回復トレンドを確認。</li>
+</ul>
+
+<footer class="doc">川口典礼サイト 社内作業レポート｜2026-06-09 作成｜非公開（docs/reports/・noindex）｜個人情報・秘密情報なし</footer>
+
+</div>
+</body>
+</html>
