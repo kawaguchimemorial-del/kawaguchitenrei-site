@@ -47,6 +47,23 @@ export function AreasSection() {
           <p className="mt-5 text-base leading-9 text-ink-mid md:text-lg">
             川口市の直葬・花入れお別れ・一日葬・家族葬・市民葬を中心に、新井宿・鳩ヶ谷、また戸田市・蕨市・草加市など近隣エリアのご葬儀もご相談いただけます。
           </p>
+          <p className="mt-3 text-base leading-9 text-ink-mid md:text-lg">
+            はじめての方は、
+            <a
+              href="/area/kawaguchi/"
+              className="font-bold text-brand hover:underline"
+            >
+              川口市の葬儀・家族葬の総合案内
+            </a>
+            と
+            <a
+              href="/plan/family-funeral/"
+              className="font-bold text-brand hover:underline"
+            >
+              家族葬プラン
+            </a>
+            からご覧いただくと、費用や流れが分かりやすくご確認いただけます。
+          </p>
         </div>
 
         <div className="mt-10 grid gap-10 md:grid-cols-2">
