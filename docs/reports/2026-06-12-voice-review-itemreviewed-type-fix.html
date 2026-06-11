@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>作業レポート 2026-06-12｜voice Review itemReviewed 型エラー修正</title>
+<style>
+  :root{--ink:#2b2b2b;--soft:#6b6b6b;--line:#e3e0da;--bg:#faf9f7;--accent:#7a6a55;--ok:#2e7d52;--warn:#b4691f;--danger:#a83838}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;line-height:1.85;font-size:15px}
+  .wrap{max-width:880px;margin:0 auto;padding:40px 22px 80px}
+  header.doc{border-bottom:2px solid var(--line);padding-bottom:18px;margin-bottom:28px}
+  .kicker{font-size:12px;letter-spacing:.12em;color:var(--accent);margin:0 0 6px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:22px;font-weight:600;margin:0 0 10px;line-height:1.5}
+  .meta{font-size:12.5px;color:var(--soft)} .meta span{margin-right:14px}
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:19px;font-weight:600;margin:34px 0 12px;padding-left:11px;border-left:4px solid var(--accent)}
+  p{margin:8px 0}
+  .card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:14px 0}
+  .tag{display:inline-block;font-size:11.5px;padding:2px 9px;border-radius:999px;border:1px solid var(--line);color:var(--soft);background:#fff}
+  .tag.ok{color:var(--ok);border-color:#bfe0cd}
+  .tag.warn{color:var(--warn);border-color:#e7cdab}
+  code{background:#f1efe9;padding:1px 6px;border-radius:5px;font-size:12.5px;font-family:ui-monospace,Consolas,monospace}
+  ul,ol{margin:8px 0;padding-left:22px} li{margin:4px 0}
+  .callout{border-left:4px solid var(--warn);background:#fdf6ec;padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0}
+  .callout.ok{border-color:var(--ok);background:#eef7f1}
+  .callout p:first-child{margin-top:0}.callout p:last-child{margin-bottom:0}
+  pre{margin:12px 0;padding:14px 16px;background:#1f2a24;color:#eef3ee;font-size:12px;line-height:1.6;white-space:pre-wrap;word-break:break-word;border-radius:8px;font-family:ui-monospace,Consolas,monospace}
+  .muted{color:var(--soft);font-size:13px}
+  table{border-collapse:collapse;width:100%;margin:12px 0;font-size:13.5px}
+  th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+  th{background:#f3f1ec;font-weight:600}
+  footer.doc{margin-top:50px;padding-top:18px;border-top:1px solid var(--line);color:var(--soft);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <p class="kicker">川口典礼サイト ＿ 作業レポート（社内記録・非公開）</p>
+  <h1>voice 詳細の Review 構造化データ：itemReviewed 型エラーを修正</h1>
+  <p class="meta">
+    <span>作成日：2026-06-12</span>
+    <span>施策：Search Console エラー対応</span>
+    <span>担当：Claude Code</span>
+  </p>
+  <p class="muted">社内記録（Web非公開・<code>noindex</code>）。個人情報・秘密情報なし。</p>
+</header>
+
+<div class="callout ok">
+  <p><strong>状態：commit → push 完了（<code>0419ebf</code> → main）。</strong>Review 系 JSON-LD の変更（CLAUDE.md §19.2）につき、人間承認を得たうえで push 済み。</p>
+</div>
+
+<h2>1. サマリ</h2>
+<div class="card">
+  <ul>
+    <li><span class="tag warn">検知</span> Search Console「レビュー スニペット」で <strong>「項目『itemReviewed』のオブジェクト タイプが無効です」</strong>（error）。初検出 2026-06-11、該当 1 件。例示 URL：<code>/voice/oneday-careful-guidance/</code>。</li>
+    <li><span class="tag ok">原因</span> <code>itemReviewed.@type</code> が <code>FuneralHome</code> 単体。schema.org 上は正しい型だが、<strong>Google のレビュー スニペットが認める itemReviewed 型のリストに <code>FuneralHome</code> が無い</strong>（<code>LocalBusiness</code> / <code>Organization</code> / <code>Product</code> 等のみ対応）。</li>
+    <li><span class="tag ok">修正</span> <code>@type</code> を <code>["LocalBusiness", "FuneralHome"]</code> の配列に変更。Google は先頭の <code>LocalBusiness</code> を認識しエラー解消、<code>FuneralHome</code> の具体性（AIO 向け）も保持。</li>
+    <li><span class="tag ok">検証</span> <code>npm run build</code> 成功・voice 全 30 ページ含め静的生成維持。</li>
+  </ul>
+</div>
+
+<h2>2. 原因の詳細</h2>
+<div class="card">
+  <p>Google のレビュー スニペット（review snippet）リッチリザルトは、<code>itemReviewed</code> に指定できる型を限定列挙している（Book / Course / Event / <strong>LocalBusiness</strong> / Movie / <strong>Organization</strong> / Product / Recipe / SoftwareApplication など）。</p>
+  <p><code>FuneralHome</code> は schema.org では <code>LocalBusiness</code> のサブタイプだが、Google の検証器はサブタイプを解決せず、<strong>列挙にない型＝「オブジェクト タイプが無効」</strong>として弾く。これがエラーの直接原因。</p>
+</div>
+
+<h2>3. 変更内容</h2>
+<table>
+  <tr><th>ファイル</th><th>変更</th></tr>
+  <tr>
+    <td><code>app/voice/[slug]/page.tsx</code></td>
+    <td><code>itemReviewed.@type</code>：<code>"FuneralHome"</code> → <code>["LocalBusiness", "FuneralHome"]</code>（意図コメント追記）</td>
+  </tr>
+</table>
+<pre>// before
+itemReviewed: {
+  "@type": "FuneralHome",
+  ...
+}
+
+// after
+itemReviewed: {
+  // Google のレビュー スニペットが認める型は LocalBusiness 等に限られ、
+  // サブタイプの FuneralHome 単体だと「itemReviewed のオブジェクト型が無効」になる。
+  // LocalBusiness を先頭に置きつつ FuneralHome の具体性も残す。
+  "@type": ["LocalBusiness", "FuneralHome"],
+  ...
+}</pre>
+<p class="muted">このブロックは <code>/voice/[slug]</code> の共通テンプレート。修正は voice 詳細 全 30 ページに反映される。</p>
+
+<h2>4. 確認手順</h2>
+<div class="card">
+  <ol>
+    <li>Vercel 本番デプロイ完了を待つ。</li>
+    <li>本番 <code>https://kawaguchitenrei.com/voice/oneday-careful-guidance/</code> のソースで <code>application/ld+json</code> の <code>itemReviewed.@type</code> が <code>["LocalBusiness","FuneralHome"]</code> であることを確認。</li>
+    <li>Google リッチリザルト テストで「レビュー スニペット」が有効判定になることを確認。</li>
+    <li>確認後、Search Console の「修正を完了しましたか？」→ 検証を開始（再クロール依頼）。</li>
+  </ol>
+</div>
+
+<h2>5. 3 軸チェック</h2>
+<table>
+  <tr><th>軸</th><th>評価</th></tr>
+  <tr><td>検索される</td><td>レビュー リッチリザルトの対象に復帰し得る（無効状態の解消）</td></tr>
+  <tr><td>AI に引用される</td><td><code>FuneralHome</code> の具体性を保持しつつ構造化データの有効性を回復</td></tr>
+  <tr><td>問い合わせにつながる</td><td>導線・本文に変更なし（構造化データのみ）</td></tr>
+</table>
+
+<footer class="doc">
+  川口典礼サイト 内部作業記録 ／ 2026-06-12 ／ commit <code>0419ebf</code>
+</footer>
+
+</div>
+</body>
+</html>

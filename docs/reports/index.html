@@ -35,6 +35,11 @@
 
   <ul class="list">
     <li>
+      <span class="date">2026-06-12</span>
+      <a href="./2026-06-12-voice-review-itemreviewed-type-fix.html">voice Review構造化データ：itemReviewed型エラー修正（Search Console対応）</a>
+      <span class="desc">Search Consoleの「レビュー スニペット」で「itemReviewedのオブジェクト型が無効」error。原因はitemReviewed.@typeがFuneralHome単体で、Googleが認める型リスト（LocalBusiness/Organization等）に未収載のため。@typeを["LocalBusiness","FuneralHome"]の配列化で解消、FuneralHomeの具体性も保持。app/voice/[slug]/page.tsxのみ・voice詳細30ページ共通。build成功。§19.2につき人間承認を得てpush（0419ebf）。本番反映確認後にSCで検証開始。</span>
+    </li>
+    <li>
       <span class="date">2026-06-09</span>
       <a href="./2026-06-09-redirect-1to1-fix.html">301の1対1見直し（タスクB・移行後の評価引き継ぎ）</a>
       <span class="desc">個別旧URLの“カテゴリ一覧送り”を該当個別ページへ最適化。/case/5-cremation-megurinomori→/plan/cremation/、/case/hanairo-owakarekai(/)→/plan/hanaire-owakare/ の3エントリを1対1化。旧コラム7本(hash ID)はテーマ不明のため一覧フォールバック維持、/kasou_sikijou は改善中のため据え置き。next.config.ts のみ・build成功・135ページ。§19.2につき差分提示のうえ人間承認を得てpush。</span>
