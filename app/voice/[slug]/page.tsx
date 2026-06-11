@@ -74,7 +74,10 @@ function buildVoiceJsonLd(v: Voice) {
     "@context": "https://schema.org",
     "@type": "Review",
     itemReviewed: {
-      "@type": "FuneralHome",
+      // Google のレビュー スニペットが認める型は LocalBusiness 等に限られ、
+      // サブタイプの FuneralHome 単体だと「itemReviewed のオブジェクト型が無効」になる。
+      // LocalBusiness を先頭に置きつつ FuneralHome の具体性も残す。
+      "@type": ["LocalBusiness", "FuneralHome"],
       name: "川口典礼(川口メモリアルホール)",
       url: `${SITE_URL}/`,
       telephone: "0120-963-765",
