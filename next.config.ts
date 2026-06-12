@@ -425,6 +425,16 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/Column_list/nenmastu",
+        destination: "/column/nenmastu/",
+        permanent: true,
+      },
+      {
+        source: "/Column_list/nenmastu/",
+        destination: "/column/nenmastu/",
+        permanent: true,
+      },
+      {
         source: "/Column_list/:slug*",
         destination: "/column/:slug*",
         permanent: true,
@@ -937,6 +947,36 @@ const nextConfig: NextConfig = {
       {
         source: "/our-business/",
         destination: "/company/",
+        permanent: true,
+      },
+      {
+        source: "/SK/02",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/SK/02/",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/SK/03",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/SK/03/",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/maisouhi",
+        destination: "/column/sousaihi/",
+        permanent: true,
+      },
+      {
+        source: "/maisouhi/",
+        destination: "/column/sousaihi/",
         permanent: true,
       },
     ];

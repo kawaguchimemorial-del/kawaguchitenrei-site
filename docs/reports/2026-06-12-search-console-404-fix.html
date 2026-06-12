@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>作業レポート 2026-06-12｜Search Console「見つかりませんでした(404)」対応</title>
+<style>
+  :root{--ink:#2b2b2b;--soft:#6b6b6b;--line:#e3e0da;--bg:#faf9f7;--accent:#7a6a55;--ok:#2e7d52}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;line-height:1.85;font-size:15px}
+  .wrap{max-width:860px;margin:0 auto;padding:40px 22px 80px}
+  header.doc{border-bottom:2px solid var(--line);padding-bottom:18px;margin-bottom:28px}
+  .kicker{font-size:12px;letter-spacing:.12em;color:var(--accent);margin:0 0 6px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:22px;font-weight:600;margin:0 0 10px;line-height:1.5}
+  .meta{font-size:12.5px;color:var(--soft)} .meta span{margin-right:14px}
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:19px;font-weight:600;margin:34px 0 12px;padding-left:11px;border-left:4px solid var(--accent)}
+  p{margin:8px 0}
+  .tag{display:inline-block;font-size:11.5px;padding:2px 9px;border-radius:999px;border:1px solid var(--line);color:var(--soft);background:#fff}
+  .tag.ok{color:var(--ok);border-color:#bfe0cd}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13.5px;background:#fff}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  code{background:#f1efe9;padding:1px 6px;border-radius:5px;font-size:12.5px;font-family:ui-monospace,Consolas,monospace}
+  ul,ol{margin:8px 0;padding-left:22px} li{margin:4px 0}
+  .callout{border-left:4px solid var(--ok);background:#f3faf5;padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0}
+  .muted{color:var(--soft);font-size:13px}
+  footer.doc{margin-top:50px;padding-top:18px;border-top:1px solid var(--line);color:var(--soft);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <p class="kicker">川口典礼サイト ＿ 作業レポート（社内記録・非公開）</p>
+  <h1>Search Console 重大な問題の対応（404×5・リダイレクトエラー×5・重複×1）</h1>
+  <p class="meta"><span>作成日：2026-06-12</span><span>対象データ：GSC Coverage 2026-06-12 エクスポート</span><span>担当：Claude Code</span></p>
+  <p class="muted">社内記録（Web非公開・<code>noindex</code>）。個人情報・秘密情報なし。</p>
+</header>
+
+<div class="callout">
+  <p><strong>背景：</strong>Search Console の「ページのインデックス登録」で重大な問題として 404×5・リダイレクトエラー×5 等が報告された。本対応では <strong>404 の5件（URLエクスポート取得済み）</strong>を精査し、転送先が明確なものへ 301 を追加した。</p>
+</div>
+
+<h2>1. 事前検査（リダイレクト設定の健全性）</h2>
+<ul>
+  <li>既存リダイレクト 187 件：<strong>チェーン・ループ 0 件</strong>。</li>
+  <li>転送先 64 種すべてが実在ページ（column / voice / case / plan のスラッグと一致）。<strong>リンク切れの転送先なし</strong>。</li>
+  <li>sitemap は data 駆動で、列挙 URL は全てルートが存在。</li>
+</ul>
+<p class="muted">→ 設定内部に起因する 404／リダイレクトエラーは無し。404 は sitemap 外の旧URL（外部にインデックス済みの過去URL）が原因と判断。</p>
+
+<h2>2. 404 の5件と判定</h2>
+<table>
+  <thead><tr><th>旧URL</th><th>最終クロール</th><th>判定・対応</th></tr></thead>
+  <tbody>
+    <tr><td><code>/SK/02</code></td><td>2026-06-01</td><td><strong>301 → /</strong>（内容特定不可・トップ集約。ユーザー確認済み）</td></tr>
+    <tr><td><code>/SK/03</code></td><td>2026-05-31</td><td><strong>301 → /</strong>（同上）</td></tr>
+    <tr><td><code>/maisouhi</code></td><td>2026-06-01</td><td><strong>301 → /column/sousaihi/</strong>（葬祭費コラム。ユーザー確認済み）</td></tr>
+    <tr><td><code>/plank</code></td><td>2025-12-11</td><td>対応不要：既に <code>/plank → /plan/</code> 設定済み。古いクロール残骸で再クロールにより解消見込み</td></tr>
+    <tr><td><code>/★このページのスラッグ</code></td><td>2026-05-24</td><td>対応不要：旧CMSのテンプレ消し忘れ。実在すべきでないURLのため <strong>404 のまま正解</strong>（無関係ページへの転送はしない）</td></tr>
+  </tbody>
+</table>
+
+<h2>3. 変更内容（next.config.ts・6エントリ追加）</h2>
+<ul>
+  <li><code>/SK/02</code> ・ <code>/SK/02/</code> → <code>/</code></li>
+  <li><code>/SK/03</code> ・ <code>/SK/03/</code> → <code>/</code></li>
+  <li><code>/maisouhi</code> ・ <code>/maisouhi/</code> → <code>/column/sousaihi/</code></li>
+</ul>
+<p class="muted">既存パターンに合わせ、末尾スラッシュ有無の両方を <code>permanent: true</code>（301）で追加。</p>
+
+<h2>4. 確認結果</h2>
+<ul>
+  <li><code>npm run build</code>：✓ 成功・コンパイル成功・型／警告エラーなし。</li>
+  <li>静的生成 <strong>135 ページ</strong>維持（リダイレクト追加のためページ数は不変）。</li>
+  <li>変更ファイル：<code>next.config.ts</code> のみ。</li>
+</ul>
+
+<h2>5. リダイレクトエラー×5 の精査（本番実測）</h2>
+<p>URL一覧取得後、<strong>現在の本番挙動を <code>curl</code> で実測</strong>。全て正常で、GSCのデータは刷新直後（クロール 2026-05-21〜26）の<strong>古い記録（stale）</strong>と判明。</p>
+<table>
+  <thead><tr><th>URL</th><th>最終クロール</th><th>現在の本番挙動</th></tr></thead>
+  <tbody>
+    <tr><td><code>/voice/</code></td><td>2026-05-21</td><td><strong>200 OK</strong>（リダイレクトなし・正規ページ）</td></tr>
+    <tr><td><code>/contact/</code></td><td>2026-05-21</td><td><strong>200 OK</strong>（同上）</td></tr>
+    <tr><td><code>/estimate/</code></td><td>2026-05-21</td><td><strong>200 OK</strong>（同上）</td></tr>
+    <tr><td><code>/hall</code></td><td>2026-05-26</td><td>308→<code>/hall/</code>→308→<code>/hall/kawaguchi-memorial-hall/</code>（200着地・有限チェーン）</td></tr>
+    <tr><td><code>/case/hanairo-owakarekai</code></td><td>2026-05-26</td><td>308→…→<code>/plan/hanaire-owakare/</code>（200着地・有限チェーン）</td></tr>
+  </tbody>
+</table>
+<p class="muted">ループ・到達不能なし。<strong>コード変更不要</strong>。GSCで「検証」を実行し再クロールを待つ。</p>
+
+<h2>6. 重複（正規未選択）×1 の対応</h2>
+<p>対象 <code>/Column_list/nenmastu</code>。実測で <strong>3ホップ</strong>のチェーンを経て <code>/column/nenmastu/</code>（実在の年末年始コラム）へ301。受け皿ページの canonical は <strong>自己参照で正しく設定済み</strong>（<code>/column/nenmastu/</code>・<code>/column/2026s_sougi/</code> とも）。</p>
+<ul>
+  <li>catch-all（<code>/Column_list/:slug*</code>）経由で遠回りになっていたため、<strong>明示の1:1 301</strong>を catch-all の前に追加し <strong>3ホップ→2ホップ</strong>に短縮。Googleへ明確な統合シグナルを送る（06-09「1対1 301」方針に準拠）。</li>
+  <li>追加：<code>/Column_list/nenmastu</code> ・ <code>/Column_list/nenmastu/</code> → <code>/column/nenmastu/</code></li>
+</ul>
+<p class="muted">canonical は既に正しいため、Googleの再処理で <code>/column/nenmastu/</code> に統合される見込み。今回の追加はチェーン短縮による補強。</p>
+
+<h2>7. 確認結果（リダイレクトエラー・重複 対応後）</h2>
+<ul>
+  <li><code>npm run build</code>：✓ 成功・135 ページ維持・エラーなし。</li>
+  <li>変更ファイル：<code>next.config.ts</code>（§3の404対応と合わせて計8エントリ追加）。</li>
+</ul>
+
+<h2>8. 残課題・次アクション</h2>
+<ul>
+  <li><span class="tag">要操作</span> GSC でリダイレクトエラー5件・404・重複の各レポートで「<strong>検証</strong>」を実行（コード側は対応済み／不要のため、再クロールで解消見込み）。</li>
+  <li><span class="tag">別タスク</span> <strong>クロール済み-インデックス未登録 19 件</strong>：コンテンツ品質改善で対応。</li>
+  <li>本番反映後、<code>curl</code> で <code>/maisouhi → /column/sousaihi/</code>・<code>/SK/02 → /</code>・<code>/Column_list/nenmastu → /column/nenmastu/</code>（2ホップ）を確認。</li>
+  <li><code>next.config.ts</code> は CLAUDE.md §19.2 に該当 → push は人間承認後。</li>
+</ul>
+
+<footer class="doc">川口典礼サイト 社内作業レポート｜2026-06-12 作成｜非公開（docs/reports/・noindex）｜個人情報・秘密情報なし</footer>
+
+</div>
+</body>
+</html>
