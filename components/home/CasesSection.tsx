@@ -28,8 +28,12 @@ function CaseCard({
         ) : (
           <div
             aria-hidden
-            className="absolute inset-0 bg-[repeating-linear-gradient(135deg,#eef3ee_0_8px,transparent_8px_16px)]"
-          />
+            className="absolute inset-0 flex items-center justify-center bg-warm"
+          >
+            <span className="font-serif-jp text-sm font-medium tracking-[0.18em] text-ink-soft/55">
+              川口典礼
+            </span>
+          </div>
         )}
       </div>
       <div className="flex flex-1 flex-col p-6">
@@ -60,6 +64,10 @@ export function CasesSection() {
   const marqueeItems = [...cases].sort((a, b) =>
     a.publishedAt < b.publishedAt ? 1 : -1
   );
+
+  // 1カードあたり約3.4秒で流れる速度。件数に比例させ、Voices と体感速度を揃える
+  // （globals.css の固定 150s を上書き）。最低 40s で極端に速くならないよう下限を設ける。
+  const marqueeDurationSec = Math.max(40, Math.round(marqueeItems.length * 3.4));
 
   return (
     <section id="cases" className="bg-paper py-16 md:py-24">
@@ -94,7 +102,10 @@ export function CasesSection() {
         aria-label="施行事例（自動でスクロールします。カードにカーソルを合わせると停止します）"
       >
         <div className="overflow-hidden">
-          <ul className="marquee gap-5 md:gap-6">
+          <ul
+            className="marquee gap-5 md:gap-6"
+            style={{ animationDuration: `${marqueeDurationSec}s` }}
+          >
             {[...marqueeItems, ...marqueeItems].map((item, i) => {
               const isDup = i >= marqueeItems.length;
               return (

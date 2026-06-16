@@ -86,6 +86,10 @@ export function VoicesSection() {
     a.publishedAt < b.publishedAt ? 1 : -1
   );
 
+  // 1カードあたり約3.4秒で流れる速度。件数に比例させ、Cases と体感速度を揃える
+  // （globals.css の固定 150s を上書き）。最低 40s で極端に速くならないよう下限を設ける。
+  const marqueeDurationSec = Math.max(40, Math.round(marqueeItems.length * 3.4));
+
   return (
     <section id="voices" className="bg-white py-16 md:py-24">
       <div className="mx-auto max-w-6xl px-5 md:px-8">
@@ -111,7 +115,10 @@ export function VoicesSection() {
         aria-label="お客様の声（自動でスクロールします。カードにカーソルを合わせると停止します）"
       >
         <div className="overflow-hidden">
-          <ul className="marquee gap-5 md:gap-6">
+          <ul
+            className="marquee gap-5 md:gap-6"
+            style={{ animationDuration: `${marqueeDurationSec}s` }}
+          >
             {[...marqueeItems, ...marqueeItems].map((voice, i) => {
               const isDup = i >= marqueeItems.length;
               return (

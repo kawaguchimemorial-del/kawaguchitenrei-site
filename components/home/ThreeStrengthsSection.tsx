@@ -53,7 +53,7 @@ export function ThreeStrengthsSection() {
   return (
     <section
       id="strengths"
-      className="bg-paper py-14 md:py-20"
+      className="bg-paper py-16 md:py-24"
       aria-labelledby="strengths-heading"
     >
       <div className="mx-auto max-w-6xl px-5 md:px-8">

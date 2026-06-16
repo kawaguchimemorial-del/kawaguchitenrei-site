@@ -43,7 +43,7 @@ export function AdvanceConsultSection() {
   return (
     <section
       id="advance-consult"
-      className="bg-white py-14 md:py-20"
+      className="bg-white py-16 md:py-24"
       aria-labelledby="advance-consult-heading"
     >
       <div className="mx-auto max-w-6xl px-5 md:px-8">

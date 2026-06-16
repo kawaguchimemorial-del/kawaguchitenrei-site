@@ -36,6 +36,11 @@
   <ul class="list">
     <li>
       <span class="date">2026-06-16</span>
+      <a href="./2026-06-16-home-p2-polish.html">ホーム P2 磨き込み（プレースホルダー/マーキー/コントラスト/余白）</a>
+      <span class="desc">デザイン/UX監査P2を実装（背景色は変えない低リスク改善）。E:Casesの写真未設定プレースホルダーを斜線ストライプ→無地(bg-warm)+控えめ明朝ワードマーク「川口典礼」に。F:Cases/Voicesの自動マーキーを固定150s→animationDuration件数比例(1カード≈3.4秒・下限40s)で体感速度を統一、ホバー一時停止/reduced-motion維持。D:Breadcrumbsリンク文字をtext-ink-soft→text-ink-midでコントラスト改善(›は据え置き)。G:ThreeStrengths/AdvanceConsultの余白py-14/20→標準py-16/24、MediaLinksは補足枠で据え置き。背景色は変更せず役割を整理(paper/white=読み物,warm=式場,cool=実務情報,deep=締め)＝監査の「cool/deep削除」案は§3により不採用。共通chromeは保護対象で未変更。構造・価格無変更でSEO無影響。build成功・135/135維持。未コミット。</span>
+    </li>
+    <li>
+      <span class="date">2026-06-16</span>
       <a href="./2026-06-16-home-icons-svg.html">ホームの絵文字アイコンを実SVGへ統一＋見出しサイズ統一（A＋C＋B）</a>
       <span class="desc">デザイン/UX監査の最優先P1を実装。OS依存の絵文字（☎✓→›↗★）をUIアイコンに直接使っていた点を、統一線アイコン（B案・stroke1.75/round）に置換。方向性サンプル3案を提示しユーザーがB案選択。新規 components/common/icons/index.tsx（Phone/Check/ArrowRight/ChevronRight/ExternalLink/Star、依存追加なしインラインSVG・currentColor・aria-hidden）。home 13セクション（Hero/Emergency/FinalCta/Voices/Cases/Areas/Meguri/MediaLinks/Plan/AdvanceConsult/Cost/ThreeStrengths/Hall）の絵文字を全置換。Voicesの★連打はStarIcon×5（filled/outline・C）にSVG化、aria-label維持。共通chrome（Header/Footer/MobileBottomCTA）は保護対象につき未変更＝別途承認予定。FAQの+トグルは対象外。あわせてB（見出しスケール統一）も実施：ThreeStrengths・AdvanceConsultのh2をtext-2xl/[2.2rem]→text-3xl/[2.4rem]に引き上げ、MediaLinksは補足のため据え置き（合意済み）。構造(URL/title/canonical)・価格・式場可否は無変更でSEO無影響。build成功・TypeScriptエラーなし・静的生成135/135維持。未コミット。</span>
     </li>
