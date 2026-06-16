@@ -1,3 +1,5 @@
+import { ChevronRightIcon } from "@/components/common/icons";
+
 export type Crumb = {
   label: string;
   href?: string;
@@ -27,9 +29,7 @@ export function Breadcrumbs({ items }: { items: Crumb[] }) {
                 </span>
               )}
               {!isLast && (
-                <span aria-hidden className="text-ink-soft">
-                  ›
-                </span>
+                <ChevronRightIcon className="h-3.5 w-3.5 text-ink-soft" />
               )}
             </li>
           );

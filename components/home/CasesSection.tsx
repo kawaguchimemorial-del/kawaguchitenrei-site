@@ -96,14 +96,28 @@ export function CasesSection() {
         </div>
       </div>
 
-      {/* スマホ・PC共通：全件を自動横スクロール（ホバーで一時停止／reduced-motionで停止） */}
+      {/* モバイル：スワイプで閲覧できる横スクロール（scroll-snap） */}
+      <div className="mt-10 md:hidden">
+        <ul className="flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          {marqueeItems.map((item) => (
+            <li key={item.slug} className="w-[280px] shrink-0 snap-start">
+              <CaseCard item={item} />
+            </li>
+          ))}
+        </ul>
+        <p className="mt-2 px-5 text-xs text-ink-soft">
+          ← スワイプで他の事例もご覧いただけます →
+        </p>
+      </div>
+
+      {/* PC：全件を自動横スクロール（ホバーで一時停止／reduced-motionで停止） */}
       <div
-        className="mt-10"
+        className="mt-10 hidden md:block"
         aria-label="施行事例（自動でスクロールします。カードにカーソルを合わせると停止します）"
       >
         <div className="overflow-hidden">
           <ul
-            className="marquee gap-5 md:gap-6"
+            className="marquee gap-6"
             style={{ animationDuration: `${marqueeDurationSec}s` }}
           >
             {[...marqueeItems, ...marqueeItems].map((item, i) => {
@@ -112,7 +126,7 @@ export function CasesSection() {
                 <li
                   key={`${item.slug}-${i}`}
                   aria-hidden={isDup || undefined}
-                  className="w-[280px] shrink-0 md:w-[360px]"
+                  className="w-[360px] shrink-0"
                 >
                   <CaseCard item={item} duplicate={isDup} />
                 </li>
