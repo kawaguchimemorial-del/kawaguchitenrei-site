@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/common/PageHero";
+import { ArrowRightIcon, PhoneIcon } from "@/components/common/icons";
 import { areas } from "@/lib/areas";
 
 const SITE_URL = "https://kawaguchitenrei.com";
@@ -113,7 +114,7 @@ export default function AreaIndexPage() {
                   </p>
                   <p className="mt-auto pt-4 inline-flex items-center gap-1 text-sm font-bold text-brand group-hover:underline">
                     詳しく見る
-                    <span aria-hidden>→</span>
+                    <ArrowRightIcon className="h-4 w-4" />
                   </p>
                 </a>
               </li>
@@ -130,14 +131,14 @@ export default function AreaIndexPage() {
                 className="inline-flex items-center justify-center gap-2 rounded-lg border border-ink-deep bg-white px-5 py-3 text-sm font-bold text-ink-deep transition hover:bg-cool md:text-base"
               >
                 葬儀プランを見る
-                <span aria-hidden>→</span>
+                <ArrowRightIcon className="h-4 w-4" />
               </a>
               <a
                 href="/saijo/"
                 className="inline-flex items-center justify-center gap-2 rounded-lg border border-ink-deep bg-white px-5 py-3 text-sm font-bold text-ink-deep transition hover:bg-cool md:text-base"
               >
                 川口市・近隣の葬儀場一覧を見る
-                <span aria-hidden>→</span>
+                <ArrowRightIcon className="h-4 w-4" />
               </a>
             </div>
           </div>
@@ -169,9 +170,7 @@ export default function AreaIndexPage() {
               href="tel:0120-963-765"
               className="flex items-center justify-center gap-3 rounded-lg bg-emergency px-5 py-5 text-white shadow-sm transition hover:bg-emergency-deep"
             >
-              <span aria-hidden className="text-2xl">
-                ☎
-              </span>
+              <PhoneIcon className="h-7 w-7" />
               <span className="text-left">
                 <span className="block text-lg font-bold leading-tight">
                   電話で相談する

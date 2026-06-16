@@ -12,6 +12,7 @@ import {
 } from "@/components/area/AreaDetailExtras";
 import { AreaDetailCta } from "@/components/area/AreaDetailCta";
 import { AreaPrimaryHall } from "@/components/area/AreaPrimaryHall";
+import { ArrowRightIcon } from "@/components/common/icons";
 import { areaAraijuku } from "@/lib/areas";
 
 const SITE_URL = "https://kawaguchitenrei.com";
@@ -232,7 +233,7 @@ export default function AraijukuAreaPage() {
                   </p>
                   <p className="mt-auto pt-4 inline-flex items-center gap-1 text-sm font-bold text-brand group-hover:underline">
                     詳しく見る
-                    <span aria-hidden>→</span>
+                    <ArrowRightIcon className="h-4 w-4" />
                   </p>
                 </a>
               </li>

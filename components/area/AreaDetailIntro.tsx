@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Breadcrumbs } from "@/components/common/Breadcrumbs";
+import { PhoneIcon } from "@/components/common/icons";
 import type { Area } from "@/lib/areas";
 
 export function AreaDetailIntro({ area }: { area: Area }) {
@@ -46,7 +47,7 @@ export function AreaDetailIntro({ area }: { area: Area }) {
                 href="tel:0120-963-765"
                 className="inline-flex items-center justify-center gap-3 rounded-lg bg-emergency px-6 py-4 text-base font-bold text-white shadow-sm transition hover:bg-emergency-deep"
               >
-                <span aria-hidden>☎</span>
+                <PhoneIcon className="h-4 w-4" />
                 電話で相談する
               </a>
               <a

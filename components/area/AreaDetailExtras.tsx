@@ -1,3 +1,4 @@
+import { ArrowRightIcon } from "@/components/common/icons";
 import type { Area } from "@/lib/areas";
 
 // セクション5: 川口典礼が選ばれる理由
@@ -186,7 +187,7 @@ export function AreaFaq({ area }: { area: Area }) {
             className="inline-flex items-center gap-1 text-sm font-bold text-brand hover:underline"
           >
             よくある質問の一覧を見る
-            <span aria-hidden>→</span>
+            <ArrowRightIcon className="h-4 w-4" />
           </a>
         </div>
       </div>

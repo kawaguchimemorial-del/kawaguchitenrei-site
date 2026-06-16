@@ -1,3 +1,4 @@
+import { ArrowRightIcon, PhoneIcon } from "@/components/common/icons";
 import type { Area } from "@/lib/areas";
 
 // セクション8: 自然な単独カードCTA
@@ -34,9 +35,7 @@ export function AreaDetailCta({ area }: { area: Area }) {
                 href="tel:0120-963-765"
                 className="flex items-center justify-center gap-3 rounded-lg bg-emergency px-5 py-4 text-white shadow-sm transition hover:bg-emergency-deep"
               >
-                <span aria-hidden className="text-xl">
-                  ☎
-                </span>
+                <PhoneIcon className="h-6 w-6" />
                 <span className="text-left">
                   <span className="block text-base font-bold leading-tight">
                     電話で相談する
@@ -51,7 +50,7 @@ export function AreaDetailCta({ area }: { area: Area }) {
                 className="inline-flex items-center justify-center gap-2 rounded-lg border border-ink-deep bg-white px-5 py-4 text-base font-bold text-ink-deep transition hover:bg-cool"
               >
                 事前相談する
-                <span aria-hidden>→</span>
+                <ArrowRightIcon className="h-4 w-4" />
               </a>
             </div>
           </div>

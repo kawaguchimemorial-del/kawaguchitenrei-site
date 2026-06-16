@@ -11,6 +11,7 @@ import {
   AreaReasons,
 } from "@/components/area/AreaDetailExtras";
 import { AreaDetailCta } from "@/components/area/AreaDetailCta";
+import { ArrowRightIcon } from "@/components/common/icons";
 import { areaKawaguchi } from "@/lib/areas";
 
 const SITE_URL = "https://kawaguchitenrei.com";
@@ -302,7 +303,7 @@ export default function KawaguchiAreaPage() {
               className="inline-flex items-center gap-1 text-sm font-bold text-brand hover:underline md:text-base"
             >
               プラン・費用の詳細を見る
-              <span aria-hidden>→</span>
+              <ArrowRightIcon className="h-4 w-4" />
             </a>
           </div>
         </div>
@@ -342,7 +343,7 @@ export default function KawaguchiAreaPage() {
                   className="inline-flex items-center gap-1 text-sm font-bold text-brand hover:underline"
                 >
                   川口市民葬プランを見る
-                  <span aria-hidden>→</span>
+                  <ArrowRightIcon className="h-4 w-4" />
                 </a>
               </div>
             </div>
@@ -404,7 +405,7 @@ export default function KawaguchiAreaPage() {
                   </p>
                   <p className="mt-auto pt-4 inline-flex items-center gap-1 text-sm font-bold text-brand group-hover:underline">
                     詳しく見る
-                    <span aria-hidden>→</span>
+                    <ArrowRightIcon className="h-4 w-4" />
                   </p>
                 </a>
               </li>

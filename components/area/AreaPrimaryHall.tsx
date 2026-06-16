@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { ArrowRightIcon } from "@/components/common/icons";
 import type { Area } from "@/lib/areas";
 
 // Hero 直下に配置する「○○周辺から利用しやすい自社式場」セクション
@@ -45,7 +46,7 @@ export function AreaPrimaryHall({
                 className="inline-flex items-center gap-2 rounded-lg border border-ink-deep bg-white px-5 py-3 text-sm font-bold text-ink-deep transition hover:bg-cool md:text-base"
               >
                 川口メモリアルホールを詳しく見る
-                <span aria-hidden>→</span>
+                <ArrowRightIcon className="h-4 w-4" />
               </a>
               <a
                 href="/contact/"

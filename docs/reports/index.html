@@ -36,6 +36,11 @@
   <ul class="list">
     <li>
       <span class="date">2026-06-16</span>
+      <a href="./2026-06-16-area-template-icons.html">area テンプレの絵文字アイコンSVG統一（横展開①）</a>
+      <span class="desc">「コンセプトは変えず磨き込みを横展開」方針の第一弾。地域SEO最優先(§7)のareaから着手。トップ/共通chrome/コラム/声で実施済みの絵文字→共通SVGアイコン統一を、areaテンプレ全体に展開（→☎をArrowRightIcon/PhoneIcon等へ）。対象=共有コンポーネント5本(AreaDetailMain/Cta/Intro/Extras/PrimaryHall)＋エリアページ16本＝計21ファイル・約30グリフ。サイズは本文矢印h-4、電話h-6/h-7、色クラス保持。FAQのQ./A./+・装飾※は対象外。独立検証:area配下のaria-hidden内UIグリフ残存0・21ファイル全てにicons import・抜き取り目視正常・build成功135/135維持。見た目のみで構造/URL/価格/フォーム無変更=SEO影響なし。残り横展開:plan/saijo/hall/case等、フォーム系は§19.2で別途承認。未コミット。</span>
+    </li>
+    <li>
+      <span class="date">2026-06-16</span>
       <a href="./2026-06-16-voice-keyword-filter.html">お客様の声「気になる言葉」フィルタ（クライアント側・SEO安全）</a>
       <span class="desc">アンケートを1つずつ開かずに、気になる言葉(親身/直葬/家族葬/費用など)で絞り込めるUXを /voice/ に追加。SEO安全＝新URLを作らずクライアント側フィルタ、初期HTML(SSG)に全30件描画で全件インデックス維持、URL/title/canonical不変。実装：lib/voices.ts に voiceTags(同義語グループ)＋voiceMatchesTag()を追加し title+comment から自動該当(記事ごとのタグ付け不要・担当者名等の個人名はタグにしない§12・0件タグは非表示)。新規 components/voice/VoiceFilterList.tsx(use client)で件数つきタグchip＋絞り込みグリッド(星=StarIcon,矢印=ArrowRightIcon)。app/voice/page.tsx は一覧をVoiceFilterListに置換＋残存絵文字→☎もSVG化、ItemList JSON-LDは全件維持。採用タグ:親身/丁寧/安心/わかりやすい説明/費用・明朗/迅速な対応/家族葬/直葬/一日葬/一般葬/初めて・不安/寄り添い。build成功135/135維持・dev実測200で全30件+chip描画確認。未コミット。</span>
     </li>

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { ArrowRightIcon } from "@/components/common/icons";
 import type { Area } from "@/lib/areas";
 import { hallKawaguchi } from "@/lib/halls";
 import { saijoList } from "@/lib/saijo";
@@ -151,7 +152,7 @@ export function AreaPlans({ area }: { area: Area }) {
                   </p>
                   <p className="mt-auto pt-5 inline-flex items-center gap-1 text-sm font-bold text-brand group-hover:underline">
                     {p.isConsult ? "ご相談する" : `${p.name}の詳細を見る`}
-                    <span aria-hidden>→</span>
+                    <ArrowRightIcon className="h-4 w-4" />
                   </p>
                 </div>
               </a>
@@ -251,7 +252,7 @@ export function AreaSaijo({ area }: { area: Area }) {
                     </p>
                     <p className="mt-auto pt-4 inline-flex items-center gap-1 text-sm font-bold text-brand group-hover:underline">
                       詳しく見る
-                      <span aria-hidden>→</span>
+                      <ArrowRightIcon className="h-4 w-4" />
                     </p>
                   </div>
                 </a>
@@ -337,7 +338,7 @@ export function AreaSaijo({ area }: { area: Area }) {
                         </p>
                         <p className="mt-auto pt-4 inline-flex items-center gap-1 text-sm font-bold text-brand group-hover:underline">
                           {s.name}の詳細を見る
-                          <span aria-hidden>→</span>
+                          <ArrowRightIcon className="h-4 w-4" />
                         </p>
                       </div>
                     </a>
@@ -372,7 +373,7 @@ export function AreaSaijo({ area }: { area: Area }) {
                 className="inline-flex items-center gap-2 rounded-lg border border-ink-deep bg-white px-5 py-3 text-sm font-bold text-ink-deep transition hover:bg-cool md:text-base"
               >
                 川口市・近隣の葬儀場一覧を見る
-                <span aria-hidden>→</span>
+                <ArrowRightIcon className="h-4 w-4" />
               </a>
             </div>
           </div>

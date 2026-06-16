@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>作業レポート 2026-06-16｜area テンプレの絵文字アイコンSVG統一（横展開①）</title>
+<style>
+  :root{--ink:#2b2b2b;--soft:#6b6b6b;--line:#e3e0da;--bg:#faf9f7;--accent:#7a6a55;--ok:#2e7d52}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;line-height:1.85;font-size:15px}
+  .wrap{max-width:860px;margin:0 auto;padding:40px 22px 80px}
+  header.doc{border-bottom:2px solid var(--line);padding-bottom:18px;margin-bottom:28px}
+  .kicker{font-size:12px;letter-spacing:.12em;color:var(--accent);margin:0 0 6px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:22px;font-weight:600;margin:0 0 10px;line-height:1.5}
+  .meta{font-size:12.5px;color:var(--soft)} .meta span{margin-right:14px}
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:19px;font-weight:600;margin:34px 0 12px;padding-left:11px;border-left:4px solid var(--accent)}
+  p{margin:8px 0}
+  code{background:#f1efe9;padding:1px 6px;border-radius:5px;font-size:12px;font-family:ui-monospace,Consolas,monospace}
+  ul,ol{margin:8px 0;padding-left:22px} li{margin:5px 0}
+  .ok{border-left:4px solid var(--ok);background:#f3faf5;padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0}
+  .muted{color:var(--soft);font-size:13px}
+  .tag{display:inline-block;font-size:11.5px;padding:2px 9px;border-radius:999px;border:1px solid var(--line);color:var(--soft);background:#fff}
+  footer.doc{margin-top:50px;padding-top:18px;border-top:1px solid var(--line);color:var(--soft);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <p class="kicker">川口典礼サイト ＿ 作業レポート（社内記録・非公開）</p>
+  <h1>area テンプレの絵文字アイコンをSVGへ統一（横展開①）</h1>
+  <p class="meta"><span>作成日：2026-06-16</span><span>対象：area テンプレ</span><span>担当：Claude Code</span></p>
+  <p class="muted">「コンセプトは変えず、磨き込みを他テンプレへ横展開」方針の第一弾。地域SEO最優先（§7）の area から。個人情報・秘密情報なし。</p>
+</header>
+
+<h2>1. 内容</h2>
+<p>トップ・共通chrome・コラム・声で実施済みの「絵文字→共通SVGアイコン」統一を、<strong>area テンプレ全体</strong>に横展開。OS依存の絵文字（<code>→ ☎</code> 等）を <code>@/components/common/icons</code> の SVG（<code>ArrowRightIcon / PhoneIcon</code> ほか）に置換。</p>
+<ul>
+  <li>対象：共有コンポーネント5本（<code>AreaDetailMain / AreaDetailCta / AreaDetailIntro / AreaDetailExtras / AreaPrimaryHall</code>）＋エリアページ16本（<code>app/area/page.tsx</code>＋各エリア15本）＝<strong>計21ファイル・約30グリフ</strong>。</li>
+  <li>サイズ方針：本文中矢印 <code>h-4 w-4</code>、電話アイコンは元のサイズに応じて <code>h-6/h-7</code>。色クラスは保持。</li>
+  <li>FAQの <code>Q./A./+</code>、装飾の <code>※</code> は対象外（UIアイコンではない）。</li>
+</ul>
+
+<h2>2. 確認結果（独立検証）</h2>
+<ul>
+  <li>area 配下の <code>aria-hidden</code> 内 UIグリフ（<code>→ ☎ ✓ › ↗ ←</code>）残存＝<strong>0</strong>。</li>
+  <li>21ファイル全てに <code>@/components/common/icons</code> の import あり。抜き取り目視（<code>AreaDetailCta</code>・<code>aoki</code>）で正常。</li>
+  <li><code>npm run build</code> 成功・静的生成 <strong>135/135 維持</strong>。</li>
+</ul>
+<div class="ok">
+  <p><strong>影響範囲：</strong>アイコンの字形統一（見た目のみ）。構造・URL・title・価格・式場可否・フォームに変更なし＝SEO影響なし。</p>
+</div>
+
+<h2>3. 今後（横展開の残り）</h2>
+<ul>
+  <li><span class="tag">次</span> plan テンプレ（<code>components/plan/* / app/plan</code>）。</li>
+  <li><span class="tag">次</span> saijo テンプレ（<code>components/saijo/* / app/saijo/*</code>）。</li>
+  <li><span class="tag">後</span> hall / case / pet / faq など。</li>
+  <li><span class="tag">要承認</span> フォーム系（contact / estimate / survey）の絵文字＝<code>§19.2</code> に該当するため別途承認のうえ。</li>
+</ul>
+
+<footer class="doc">川口典礼サイト 社内作業レポート｜2026-06-16 作成｜非公開（docs/reports/・noindex）｜秘密情報・個人情報なし</footer>
+
+</div>
+</body>
+</html>
