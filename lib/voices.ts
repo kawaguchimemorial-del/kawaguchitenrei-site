@@ -9,6 +9,42 @@ export type Voice = {
   metaDescription: string;
 };
 
+export type VoiceTag = { label: string; matches: string[] };
+
+/**
+ * お客様の声を「気になる言葉」で絞り込むタグ。
+ * matches のいずれかが title+comment に含まれれば該当（同義語をまとめる）。
+ * 担当者名など個人名はタグにしない（§12）。マッチ0件のタグは表示側で自動的に出さない。
+ */
+export const voiceTags: VoiceTag[] = [
+  { label: "親身", matches: ["親身"] },
+  { label: "丁寧", matches: ["丁寧", "ていねい"] },
+  { label: "安心", matches: ["安心", "安らか"] },
+  {
+    label: "わかりやすい説明",
+    matches: ["説明", "わかりやす", "分かりやす", "解りやす", "教え"],
+  },
+  {
+    label: "費用・明朗",
+    matches: ["費用", "料金", "金額", "明朗", "明瞭", "明確", "価格", "値段"],
+  },
+  { label: "迅速な対応", matches: ["迅速", "すぐ", "早", "急"] },
+  {
+    label: "家族葬",
+    matches: ["家族葬", "家族だけ", "家族親族", "こじんまり", "少人数"],
+  },
+  { label: "直葬", matches: ["直葬"] },
+  { label: "一日葬", matches: ["一日葬"] },
+  { label: "一般葬", matches: ["一般葬"] },
+  { label: "初めて・不安", matches: ["初めて", "不安", "心配", "無知", "半信半疑"] },
+  { label: "寄り添い", matches: ["寄り添"] },
+];
+
+export function voiceMatchesTag(voice: Voice, tag: VoiceTag): boolean {
+  const hay = `${voice.title}${voice.comment}`;
+  return tag.matches.some((m) => hay.includes(m));
+}
+
 export const voices: Voice[] = [
   {
     slug: "oneday-careful-guidance",

@@ -36,6 +36,11 @@
   <ul class="list">
     <li>
       <span class="date">2026-06-16</span>
+      <a href="./2026-06-16-voice-keyword-filter.html">お客様の声「気になる言葉」フィルタ（クライアント側・SEO安全）</a>
+      <span class="desc">アンケートを1つずつ開かずに、気になる言葉(親身/直葬/家族葬/費用など)で絞り込めるUXを /voice/ に追加。SEO安全＝新URLを作らずクライアント側フィルタ、初期HTML(SSG)に全30件描画で全件インデックス維持、URL/title/canonical不変。実装：lib/voices.ts に voiceTags(同義語グループ)＋voiceMatchesTag()を追加し title+comment から自動該当(記事ごとのタグ付け不要・担当者名等の個人名はタグにしない§12・0件タグは非表示)。新規 components/voice/VoiceFilterList.tsx(use client)で件数つきタグchip＋絞り込みグリッド(星=StarIcon,矢印=ArrowRightIcon)。app/voice/page.tsx は一覧をVoiceFilterListに置換＋残存絵文字→☎もSVG化、ItemList JSON-LDは全件維持。採用タグ:親身/丁寧/安心/わかりやすい説明/費用・明朗/迅速な対応/家族葬/直葬/一日葬/一般葬/初めて・不安/寄り添い。build成功135/135維持・dev実測200で全30件+chip描画確認。未コミット。</span>
+    </li>
+    <li>
+      <span class="date">2026-06-16</span>
       <a href="./2026-06-16-column-contextual-cta.html">高intentコラムの文脈CTA対応（funnel強化）</a>
       <span class="desc">競合指摘の記事→相談funnelを調査した結果、導線は既に充実（テンプレの記事末CTA/サイドバー固定/最下部深緑CTA＋本文中ctaブロックが44記事に計58個）。量は不足なし。唯一の汎用部分＝本文中CTAの説明文が全記事固定だった点を改善：cta ブロックに任意 text?:string を追加(型拡張)、ColumnBody で block.text ?? 既定文 に。高intent3記事(補助金hojokin/葬祭扶助sousai-fujo/互助会解約gojokai-kaiyaku)の主要CTAに文脈文を追加。煽り/競合名/価格追加なし(§11/§15/§9)。build成功135/135維持。あわせてコラム詳細ページ(app/column/[slug]/page.tsx)の絵文字☎→←もSVG化(PhoneIcon/ArrowRight/ArrowLeftIcon追加)＝アイコン統一の取りこぼし解消。未コミット。</span>
     </li>

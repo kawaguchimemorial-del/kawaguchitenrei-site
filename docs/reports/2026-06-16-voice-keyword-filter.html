@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>作業レポート 2026-06-16｜お客様の声「気になる言葉」フィルタ（クライアント側・SEO安全）</title>
+<style>
+  :root{--ink:#2b2b2b;--soft:#6b6b6b;--line:#e3e0da;--bg:#faf9f7;--accent:#7a6a55;--ok:#2e7d52}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;line-height:1.85;font-size:15px}
+  .wrap{max-width:860px;margin:0 auto;padding:40px 22px 80px}
+  header.doc{border-bottom:2px solid var(--line);padding-bottom:18px;margin-bottom:28px}
+  .kicker{font-size:12px;letter-spacing:.12em;color:var(--accent);margin:0 0 6px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:22px;font-weight:600;margin:0 0 10px;line-height:1.5}
+  .meta{font-size:12.5px;color:var(--soft)} .meta span{margin-right:14px}
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:19px;font-weight:600;margin:34px 0 12px;padding-left:11px;border-left:4px solid var(--accent)}
+  p{margin:8px 0}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13.5px;background:#fff}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  th{background:#f3f1ec}
+  code{background:#f1efe9;padding:1px 6px;border-radius:5px;font-size:12px;font-family:ui-monospace,Consolas,monospace}
+  ul,ol{margin:8px 0;padding-left:22px} li{margin:5px 0}
+  .ok{border-left:4px solid var(--ok);background:#f3faf5;padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0}
+  .muted{color:var(--soft);font-size:13px}
+  .tag{display:inline-block;font-size:11.5px;padding:2px 9px;border-radius:999px;border:1px solid var(--line);color:var(--soft);background:#fff}
+  footer.doc{margin-top:50px;padding-top:18px;border-top:1px solid var(--line);color:var(--soft);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <p class="kicker">川口典礼サイト ＿ 作業レポート（社内記録・非公開）</p>
+  <h1>お客様の声「気になる言葉」フィルタ（クライアント側・SEO安全）</h1>
+  <p class="meta"><span>作成日：2026-06-16</span><span>対象：/voice/</span><span>担当：Claude Code</span></p>
+  <p class="muted">アンケートを1つずつ開かずに、気になる言葉で絞り込めるUX。個人情報・秘密情報なし。</p>
+</header>
+
+<h2>1. 目的・SEO方針</h2>
+<p>「アンケートに書かれている言葉（親身・直葬・家族葬・費用 等）」で絞り込み→該当アンケート→詳細、という導線を追加。<strong>新URLを作らず <code>/voice/</code> ページ内のクライアント側フィルタ</strong>で実装したため、URL・title・canonical は不変。初期HTML（SSG）には<strong>全30件のアンケートが描画</strong>されるため全件インデックス維持＝<strong>SEO・6/26測定に影響なし</strong>。</p>
+
+<h2>2. 実装</h2>
+<ul>
+  <li><code>lib/voices.ts</code>：タグ定義 <code>voiceTags</code>（同義語グループ）＋判定 <code>voiceMatchesTag()</code> を追加。タグは <code>title+comment</code> に含まれる語で<strong>自動該当</strong>（記事ごとのタグ付け不要）。<strong>担当者名など個人名はタグにしない（§12）</strong>。マッチ0件のタグは表示しない。</li>
+  <li><code>components/voice/VoiceFilterList.tsx</code>（新規・<code>"use client"</code>）：件数つきタグchip（すべて＋各タグ）＋絞り込みグリッド。星は <code>StarIcon</code>、矢印は <code>ArrowRightIcon</code>。</li>
+  <li><code>app/voice/page.tsx</code>：一覧描画を <code>&lt;VoiceFilterList /&gt;</code> に置換（旧 StarRating/formatDate を整理）。ついでに残っていた絵文字 <code>→ ☎</code> も SVG化。JSON-LD（ItemList）は従来どおり全件出力。</li>
+</ul>
+<p>採用タグ（マッチがあるもののみ表示）：親身／丁寧／安心／わかりやすい説明／費用・明朗／迅速な対応／家族葬／直葬／一日葬／一般葬／初めて・不安／寄り添い。</p>
+
+<h2>3. 確認結果</h2>
+<ul>
+  <li><code>npm run build</code> 成功・TypeScript エラーなし・静的生成 <strong>135/135 維持</strong>。</li>
+  <li>dev 実測：<code>/voice/</code> が HTTP 200。初期HTMLに<strong>全30件のカード</strong>＋タグchip が描画されることを確認（SEO安全）。</li>
+</ul>
+<div class="ok">
+  <p><strong>影響範囲：</strong>/voice/ の絞り込みUX（クライアント側）。構造・価格・式場可否・フォーム・共通chrome に変更なし。</p>
+</div>
+
+<h2>4. 今後のアクション・調整余地</h2>
+<ul>
+  <li><span class="tag">調整可</span> タグの語・グループは <code>lib/voices.ts</code> の <code>voiceTags</code> 1か所で増減・調整可能。</li>
+  <li><span class="tag">任意</span> 該当語のハイライト表示、選択タグの件数バッジの見せ方など、好みに応じて調整可能。</li>
+</ul>
+
+<footer class="doc">川口典礼サイト 社内作業レポート｜2026-06-16 作成｜非公開（docs/reports/・noindex）｜秘密情報・個人情報なし</footer>
+
+</div>
+</body>
+</html>
