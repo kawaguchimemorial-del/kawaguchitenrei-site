@@ -1,4 +1,10 @@
 import Image from "next/image";
+import {
+  ArrowRightIcon,
+  CheckIcon,
+  ChevronRightIcon,
+  PhoneIcon,
+} from "@/components/common/icons";
 import type { CaseRecord } from "@/lib/cases";
 import { plans } from "@/lib/plans";
 import { cases } from "@/lib/cases";
@@ -91,9 +97,9 @@ export function CaseCostBreakdown({ caseItem }: { caseItem: CaseRecord }) {
                 >
                   <span
                     aria-hidden
-                    className="mt-1.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand text-xs font-bold text-white"
+                    className="mt-1.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand text-white"
                   >
-                    ✓
+                    <CheckIcon className="h-4 w-4" />
                   </span>
                   <span>{item}</span>
                 </li>
@@ -171,9 +177,7 @@ export function CaseRelated({ caseItem }: { caseItem: CaseRecord }) {
                         {plan.short}
                       </p>
                     </div>
-                    <span aria-hidden className="text-xl text-brand">
-                      ›
-                    </span>
+                    <ChevronRightIcon className="h-6 w-6 text-brand" />
                   </a>
                 </li>
               ))}
@@ -234,7 +238,7 @@ export function CaseRelated({ caseItem }: { caseItem: CaseRecord }) {
             className="inline-flex items-center gap-2 rounded-lg border border-ink-deep bg-white px-6 py-4 text-base font-bold text-ink-deep transition hover:bg-cool"
           >
             事例一覧をすべて見る
-            <span aria-hidden>→</span>
+            <ArrowRightIcon className="h-4 w-4" />
           </a>
         </div>
       </div>
@@ -269,9 +273,7 @@ export function CaseCta({ caseItem }: { caseItem: CaseRecord }) {
             href="tel:0120-963-765"
             className="flex items-center justify-center gap-3 rounded-lg bg-emergency px-5 py-5 text-white shadow-sm transition hover:bg-emergency-deep"
           >
-            <span aria-hidden className="text-2xl">
-              ☎
-            </span>
+            <PhoneIcon className="h-7 w-7" />
             <span className="text-left">
               <span className="block text-lg font-bold leading-tight">
                 電話で相談する

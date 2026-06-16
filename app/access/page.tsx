@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/common/PageHero";
+import { ArrowRightIcon, PhoneIcon } from "@/components/common/icons";
 import { company, getLocalBusinessJsonLd } from "@/lib/company";
 
 export const metadata: Metadata = {
@@ -296,7 +297,7 @@ export default function AccessPage() {
                     </p>
                     <p className="mt-auto inline-flex items-center gap-1 text-sm font-bold text-brand">
                       詳しく見る
-                      <span aria-hidden>→</span>
+                      <ArrowRightIcon className="h-4 w-4" />
                     </p>
                   </a>
                 </li>
@@ -342,9 +343,7 @@ export default function AccessPage() {
               href={company.phoneTelLink}
               className="flex items-center justify-center gap-3 rounded-lg bg-emergency px-5 py-5 text-white shadow-sm transition hover:bg-emergency-deep"
             >
-              <span aria-hidden className="text-2xl">
-                ☎
-              </span>
+              <PhoneIcon className="h-7 w-7" />
               <span className="text-left">
                 <span className="block text-lg font-bold leading-tight">
                   電話で相談する

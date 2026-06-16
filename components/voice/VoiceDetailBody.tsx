@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { PhoneIcon } from "@/components/common/icons";
 import type { Voice } from "@/lib/voices";
 
 export function VoiceLong({ voice }: { voice: Voice }) {
@@ -96,9 +97,7 @@ export function VoiceCta() {
             href="tel:0120-963-765"
             className="flex items-center justify-center gap-3 rounded-lg bg-emergency px-5 py-5 text-white shadow-sm transition hover:bg-emergency-deep"
           >
-            <span aria-hidden className="text-2xl">
-              ☎
-            </span>
+            <PhoneIcon className="h-7 w-7" />
             <span className="text-left">
               <span className="block text-lg font-bold leading-tight">
                 電話で相談する

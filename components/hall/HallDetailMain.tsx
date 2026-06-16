@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { ArrowRightIcon, CheckIcon } from "@/components/common/icons";
 import type { Hall } from "@/lib/halls";
 import { plans } from "@/lib/plans";
 
@@ -28,9 +29,9 @@ export function HallFeatures({ hall }: { hall: Hall }) {
             >
               <span
                 aria-hidden
-                className="mt-1.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand text-xs font-bold text-white"
+                className="mt-1.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand text-white"
               >
-                ✓
+                <CheckIcon className="h-4 w-4" />
               </span>
               <span className="text-base leading-7 text-ink">{feature}</span>
             </li>
@@ -157,7 +158,7 @@ export function HallVisitationRoom() {
                 className="inline-flex items-center justify-center gap-2 rounded-lg bg-brand px-6 py-4 text-base font-bold text-white shadow-sm transition hover:bg-brand-deep"
               >
                 個室面会室について相談する
-                <span aria-hidden>→</span>
+                <ArrowRightIcon className="h-4 w-4" />
               </a>
             </div>
           </div>
@@ -256,7 +257,7 @@ export function HallSupportedPlans({ hall }: { hall: Hall }) {
                   </p>
                   <p className="mt-5 inline-flex items-center gap-1 text-sm font-bold text-brand group-hover:underline">
                     {plan.name}の詳細を見る
-                    <span aria-hidden>→</span>
+                    <ArrowRightIcon className="h-3.5 w-3.5" />
                   </p>
                 </div>
               </a>

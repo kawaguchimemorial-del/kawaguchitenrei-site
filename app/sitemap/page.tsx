@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/common/PageHero";
+import { ChevronRightIcon } from "@/components/common/icons";
 import { plans } from "@/lib/plans";
 import { cases } from "@/lib/cases";
 import { voices } from "@/lib/voices";
@@ -126,9 +127,7 @@ export default function SitemapPage() {
                           href={link.href}
                           className="inline-flex items-center gap-2 rounded-md px-2 py-1.5 text-base leading-7 text-ink hover:text-brand md:text-lg"
                         >
-                          <span aria-hidden className="text-ink-soft">
-                            ›
-                          </span>
+                          <ChevronRightIcon className="h-3.5 w-3.5 text-ink-soft" />
                           <span className="underline-offset-4 hover:underline">
                             {link.label}
                           </span>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/common/PageHero";
+import { ArrowRightIcon, CheckIcon, PhoneIcon } from "@/components/common/icons";
 import { company, getLocalBusinessJsonLd } from "@/lib/company";
 
 const COMPANY_TITLE =
@@ -268,7 +269,10 @@ export default function CompanyPage() {
                   href={`/hall/${company.hallSlug}/`}
                   className="font-bold text-brand hover:underline"
                 >
-                  {company.hallName} →
+                  <span className="inline-flex items-center gap-1">
+                    {company.hallName}
+                    <ArrowRightIcon className="h-4 w-4" />
+                  </span>
                 </a>
               </dd>
             </div>
@@ -304,9 +308,9 @@ export default function CompanyPage() {
               >
                 <span
                   aria-hidden
-                  className="mt-1.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand text-xs font-bold text-white"
+                  className="mt-1.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand text-white"
                 >
-                  ✓
+                  <CheckIcon className="h-3 w-3" />
                 </span>
                 <span className="text-base leading-7 text-ink">{item}</span>
               </li>
@@ -383,7 +387,7 @@ export default function CompanyPage() {
                   className="inline-flex items-center gap-2 rounded-lg bg-brand px-5 py-3.5 text-base font-bold text-white shadow-sm transition hover:bg-brand-deep"
                 >
                   アクセスの詳細を見る
-                  <span aria-hidden>→</span>
+                  <ArrowRightIcon className="h-4 w-4" />
                 </a>
                 <a
                   href="/contact/"
@@ -433,9 +437,7 @@ export default function CompanyPage() {
               href={company.phoneTelLink}
               className="flex items-center justify-center gap-3 rounded-lg bg-emergency px-5 py-5 text-white shadow-sm transition hover:bg-emergency-deep"
             >
-              <span aria-hidden className="text-2xl">
-                ☎
-              </span>
+              <PhoneIcon className="h-7 w-7" />
               <span className="text-left">
                 <span className="block text-lg font-bold leading-tight">
                   電話で相談する

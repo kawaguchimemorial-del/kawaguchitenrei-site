@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/common/PageHero";
+import { PhoneIcon } from "@/components/common/icons";
 import { UrgentCallout } from "@/components/forms/UrgentCallout";
 import { faqCategories, faqs, getFaqsByCategory } from "@/lib/faqs";
 
@@ -188,9 +189,7 @@ export default function FaqPage() {
               href="tel:0120-963-765"
               className="flex items-center justify-center gap-3 rounded-lg bg-emergency px-5 py-5 text-white shadow-sm transition hover:bg-emergency-deep"
             >
-              <span aria-hidden className="text-2xl">
-                ☎
-              </span>
+              <PhoneIcon className="h-7 w-7" />
               <span className="text-left">
                 <span className="block text-lg font-bold leading-tight">
                   電話で相談する

@@ -1,4 +1,5 @@
 import { Breadcrumbs } from "@/components/common/Breadcrumbs";
+import { StarIcon } from "@/components/common/icons";
 import type { Voice } from "@/lib/voices";
 
 function formatDate(iso: string): string {
@@ -13,9 +14,16 @@ function StarRating({ rating }: { rating: number }) {
       aria-label={`5段階中${clamped}の評価`}
       className="mt-5 flex items-center gap-2"
     >
-      <span aria-hidden className="text-xl tracking-[0.18em] text-gold md:text-2xl">
-        {"★".repeat(clamped)}
-        <span className="text-gold/30">{"★".repeat(5 - clamped)}</span>
+      <span aria-hidden className="inline-flex items-center gap-0.5">
+        {Array.from({ length: 5 }).map((_, i) => (
+          <StarIcon
+            key={i}
+            filled={i < clamped}
+            className={`h-5 w-5 md:h-6 md:w-6 ${
+              i < clamped ? "text-gold" : "text-gold/35"
+            }`}
+          />
+        ))}
       </span>
       <span className="text-xs font-semibold text-ink-soft md:text-sm">
         5段階中 {clamped}

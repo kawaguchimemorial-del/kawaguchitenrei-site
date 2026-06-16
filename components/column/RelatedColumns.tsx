@@ -1,4 +1,5 @@
 import { ColumnCard } from "./ColumnCard";
+import { ArrowRightIcon } from "@/components/common/icons";
 import type { ColumnArticle } from "@/lib/columns";
 import { columns } from "@/lib/columns";
 
@@ -77,7 +78,10 @@ export function RelatedColumns({
           href="/column/"
           className="hidden text-sm font-bold text-brand hover:underline md:inline-flex"
         >
-          コラム一覧へ →
+          <span className="inline-flex items-center gap-1">
+            コラム一覧へ
+            <ArrowRightIcon className="h-4 w-4" />
+          </span>
         </a>
       </div>
       <ul className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">

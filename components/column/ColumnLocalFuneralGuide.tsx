@@ -1,3 +1,5 @@
+import { ArrowRightIcon } from "@/components/common/icons";
+
 // コラム記事下の「地域密着・川口市の葬儀（形式別）」導線。
 // 情報系コラムの流入を、川口市×葬儀形式のサービス相談へ自然に接続する。
 // 価格は表示しない方針（形式名＋1行説明のみ）。
@@ -87,7 +89,7 @@ export function ColumnLocalFuneralGuide() {
                 className="inline-flex items-center gap-1 text-sm font-bold text-brand hover:underline"
               >
                 {link.label}
-                <span aria-hidden>→</span>
+                <ArrowRightIcon className="h-4 w-4" />
               </a>
             </li>
           ))}

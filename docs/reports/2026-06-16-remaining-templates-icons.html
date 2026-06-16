@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>作業レポート 2026-06-16｜残テンプレ(hall/case/pet/faq/column・voice詳細/company/access/sitemap)の絵文字SVG統一（横展開③）</title>
+<style>
+  :root{--ink:#2b2b2b;--soft:#6b6b6b;--line:#e3e0da;--bg:#faf9f7;--accent:#7a6a55;--ok:#2e7d52}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;line-height:1.85;font-size:15px}
+  .wrap{max-width:860px;margin:0 auto;padding:40px 22px 80px}
+  header.doc{border-bottom:2px solid var(--line);padding-bottom:18px;margin-bottom:28px}
+  .kicker{font-size:12px;letter-spacing:.12em;color:var(--accent);margin:0 0 6px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:21px;font-weight:600;margin:0 0 10px;line-height:1.55}
+  .meta{font-size:12.5px;color:var(--soft)} .meta span{margin-right:14px}
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:19px;font-weight:600;margin:34px 0 12px;padding-left:11px;border-left:4px solid var(--accent)}
+  p{margin:8px 0}
+  code{background:#f1efe9;padding:1px 6px;border-radius:5px;font-size:12px;font-family:ui-monospace,Consolas,monospace}
+  ul,ol{margin:8px 0;padding-left:22px} li{margin:5px 0}
+  .ok{border-left:4px solid var(--ok);background:#f3faf5;padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0}
+  .muted{color:var(--soft);font-size:13px}
+  .tag{display:inline-block;font-size:11.5px;padding:2px 9px;border-radius:999px;border:1px solid var(--line);color:var(--soft);background:#fff}
+  footer.doc{margin-top:50px;padding-top:18px;border-top:1px solid var(--line);color:var(--soft);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <p class="kicker">川口典礼サイト ＿ 作業レポート（社内記録・非公開）</p>
+  <h1>残テンプレの絵文字アイコンをSVGへ統一（横展開③・フォーム以外を完了）</h1>
+  <p class="meta"><span>作成日：2026-06-16</span><span>対象：hall/case/pet/faq/column・voice詳細/company/access/sitemap</span><span>担当：Claude Code</span></p>
+  <p class="muted">アイコン統一の横展開・第3弾。フォーム系を除く残りテンプレを実施。個人情報・秘密情報なし。</p>
+</header>
+
+<h2>1. 内容</h2>
+<p>OS依存の絵文字（<code>→ ☎ ✓ › ↗ ★</code>）を <code>@/components/common/icons</code> の SVG に置換。<strong>計16ファイル・約31グリフ</strong>。</p>
+<ul>
+  <li><strong>hall</strong>：HallDetailIntro / HallDetailExtras / HallDetailMain（☎/→/✓）</li>
+  <li><strong>case</strong>：CaseDetailIntro / CaseDetailBody / app/case/page.tsx（☎/→/✓/›）</li>
+  <li><strong>pet・faq</strong>：各ページの ☎</li>
+  <li><strong>column</strong>：ColumnCard / RelatedColumns / ColumnLocalFuneralGuide（→・テキスト内→）</li>
+  <li><strong>voice 詳細</strong>：VoiceDetailBody（☎）/ VoiceDetailIntro（<strong>★連打→StarIcon×5</strong>）</li>
+  <li><strong>company / access / sitemap</strong>：☎/→/›/✓・テキスト内→</li>
+</ul>
+<p class="muted">サイズは矢印 <code>h-4</code>（小文脈 <code>h-3.5</code>）・chevron <code>h-3.5</code>・電話 <code>h-6/h-7</code>、色クラス保持。段落テキスト内の「○○を見る →」もアイコン付き <span> に変換。</p>
+
+<h2>2. 確認結果（独立検証）</h2>
+<ul>
+  <li>対象ファイルの action系グリフ（<code>→ ☎ ✓ › ↗ ← ★</code>）残存＝<strong>0</strong>。</li>
+  <li>編集16ファイル全てに <code>@/components/common/icons</code> の import あり。</li>
+  <li><code>npm run build</code> 成功・静的生成 <strong>135/135 維持</strong>。</li>
+</ul>
+<div class="ok">
+  <p><strong>影響範囲：</strong>アイコンの字形統一（見た目のみ）。構造・URL・title・価格・式場可否・フォームに変更なし＝SEO影響なし。</p>
+</div>
+
+<h2>3. あえて残したもの</h2>
+<ul>
+  <li><code>app/faq/page.tsx</code> の <code>↑</code>（「カテゴリ一覧に戻る ↑」）＝上矢印アイコンが未整備のため据え置き（必要なら <code>ArrowUpIcon</code> 追加で対応可）。</li>
+  <li><code>app/access/page.tsx</code> の 🚗🚆🚕（交通手段アイコン）＝UI矢印類とは別物。別途デザインの可否を相談。</li>
+  <li>FAQの <code>Q./A./+</code>・装飾の丸ドット・<code>※ 〒</code>・引用符は対象外。</li>
+</ul>
+
+<h2>4. アイコン統一の到達点</h2>
+<ul>
+  <li><span class="tag">完了</span> home / 共通chrome / column / voice / breadcrumb / area / plan / saijo / <strong>hall / case / pet / faq / company / access / sitemap</strong>。</li>
+  <li><span class="tag">残り（要承認）</span> フォーム系（contact / estimate / survey・components/forms/*）＝<code>§19.2</code>。</li>
+</ul>
+
+<footer class="doc">川口典礼サイト 社内作業レポート｜2026-06-16 作成｜非公開（docs/reports/・noindex）｜秘密情報・個人情報なし</footer>
+
+</div>
+</body>
+</html>

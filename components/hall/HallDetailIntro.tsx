@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Breadcrumbs } from "@/components/common/Breadcrumbs";
+import { ArrowRightIcon, PhoneIcon } from "@/components/common/icons";
 import type { Hall } from "@/lib/halls";
 
 export function HallDetailIntro({ hall }: { hall: Hall }) {
@@ -39,7 +40,7 @@ export function HallDetailIntro({ hall }: { hall: Hall }) {
                 href="tel:0120-963-765"
                 className="inline-flex items-center justify-center gap-3 rounded-lg bg-emergency px-5 py-4 text-base font-bold text-white shadow-sm transition hover:bg-emergency-deep"
               >
-                <span aria-hidden>☎</span>
+                <PhoneIcon className="h-4 w-4" />
                 電話で相談する
               </a>
               <a
@@ -47,7 +48,7 @@ export function HallDetailIntro({ hall }: { hall: Hall }) {
                 className="inline-flex items-center justify-center gap-2 rounded-lg bg-brand px-5 py-4 text-base font-bold text-white shadow-sm transition hover:bg-brand-deep"
               >
                 見学を予約する
-                <span aria-hidden>→</span>
+                <ArrowRightIcon className="h-4 w-4" />
               </a>
             </div>
           </div>
@@ -81,7 +82,10 @@ export function HallDetailIntro({ hall }: { hall: Hall }) {
                 〒{hall.postal}　{hall.address}
               </span>
               <a href="#access" className="font-bold text-brand hover:underline">
-                アクセスを見る →
+                <span className="inline-flex items-center gap-1">
+                  アクセスを見る
+                  <ArrowRightIcon className="h-3.5 w-3.5" />
+                </span>
               </a>
             </figcaption>
           </figure>

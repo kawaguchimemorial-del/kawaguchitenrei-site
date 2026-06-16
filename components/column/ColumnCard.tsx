@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { ArrowRightIcon } from "@/components/common/icons";
 import type { ColumnArticle } from "@/lib/columns";
 
 function formatDate(iso: string): string {
@@ -112,7 +113,7 @@ export function ColumnCard({
 
         <p className="mt-auto inline-flex items-center gap-1 text-sm font-bold text-brand group-hover:underline">
           記事を読む
-          <span aria-hidden>→</span>
+          <ArrowRightIcon className="h-4 w-4" />
         </p>
       </div>
     </a>
