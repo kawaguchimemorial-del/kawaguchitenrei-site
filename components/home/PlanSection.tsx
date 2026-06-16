@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { ArrowRightIcon } from "@/components/common/icons";
 
 type PlanPricing =
   | { type: "member-regular"; member: number; regular: number }
@@ -172,7 +173,7 @@ function PlanCard({ plan, delay }: { plan: Plan; delay?: number }) {
           className="inline-flex shrink-0 items-center gap-1 text-xs font-bold text-brand transition hover:text-brand-deep md:text-sm"
         >
           {plan.ctaLabel}
-          <span aria-hidden>→</span>
+          <ArrowRightIcon className="h-4 w-4" />
         </a>
       </div>
     </article>
@@ -216,7 +217,7 @@ export function PlanSection() {
             className="inline-flex items-center justify-center gap-1 rounded-lg border border-ink-deep bg-white px-5 py-3 text-base font-bold text-ink-deep transition hover:bg-paper"
           >
             料金プラン一覧を見る
-            <span aria-hidden>→</span>
+            <ArrowRightIcon className="h-4 w-4" />
           </a>
         </div>
 
@@ -226,14 +227,14 @@ export function PlanSection() {
             className="inline-flex items-center justify-center gap-2 rounded-lg bg-brand px-5 py-3.5 text-base font-bold text-white shadow-sm transition hover:bg-brand-deep"
           >
             事前相談する
-            <span aria-hidden>→</span>
+            <ArrowRightIcon className="h-4 w-4" />
           </a>
           <a
             href="/estimate/"
             className="inline-flex items-center justify-center gap-2 rounded-lg border border-line bg-white px-5 py-3.5 text-base font-bold text-ink-deep transition hover:border-brand hover:text-brand"
           >
             見積りを依頼する
-            <span aria-hidden>→</span>
+            <ArrowRightIcon className="h-4 w-4" />
           </a>
         </div>
       </div>

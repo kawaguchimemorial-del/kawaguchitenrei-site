@@ -1,3 +1,5 @@
+import { ArrowRightIcon, ChevronRightIcon } from "@/components/common/icons";
+
 const HALL_QUERY = "川口メモリアルホール 埼玉県川口市西新井宿440-1";
 const SAIJO_QUERY = "川口市めぐりの森 埼玉県川口市大字新井宿430-1";
 const ROUTE_EMBED_SRC = `https://www.google.com/maps?saddr=${encodeURIComponent(
@@ -67,7 +69,7 @@ export function MeguriSection() {
               className="mt-7 inline-flex items-center gap-2 rounded-lg bg-brand px-6 py-4 text-base font-bold text-white shadow-sm transition hover:bg-brand-deep"
             >
               川口市めぐりの森の葬儀を見る
-              <span aria-hidden>→</span>
+              <ArrowRightIcon className="h-4 w-4" />
             </a>
 
             <p className="mt-5 text-sm leading-7 text-ink-mid md:text-base md:leading-8">
@@ -94,7 +96,7 @@ export function MeguriSection() {
               className="mt-3 inline-flex items-center gap-1 text-sm font-bold text-brand hover:underline"
             >
               Googleマップでルートを見る
-              <span aria-hidden>→</span>
+              <ArrowRightIcon className="h-4 w-4" />
             </a>
 
             <ul className="mt-5 space-y-3">
@@ -112,9 +114,7 @@ export function MeguriSection() {
                         {plan.description}
                       </p>
                     </div>
-                    <span aria-hidden className="text-xl text-ink-soft">
-                      ›
-                    </span>
+                    <ChevronRightIcon className="h-5 w-5 text-ink-soft" />
                   </a>
                 </li>
               ))}

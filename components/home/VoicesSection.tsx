@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { ArrowRightIcon, StarIcon } from "@/components/common/icons";
 import { voices, type Voice } from "@/lib/voices";
 
 function StarRating({ rating }: { rating: number }) {
@@ -8,9 +9,14 @@ function StarRating({ rating }: { rating: number }) {
       aria-label={`5段階中${clamped}の評価`}
       className="flex items-center gap-2"
     >
-      <span aria-hidden className="text-base tracking-[0.18em] text-gold">
-        {"★".repeat(clamped)}
-        <span className="text-gold/30">{"★".repeat(5 - clamped)}</span>
+      <span aria-hidden className="flex items-center gap-0.5 text-gold">
+        {Array.from({ length: 5 }, (_, i) => (
+          <StarIcon
+            key={i}
+            filled={i < clamped}
+            className={i < clamped ? "h-4 w-4" : "h-4 w-4 text-gold/35"}
+          />
+        ))}
       </span>
       <span className="text-xs font-semibold text-ink-soft">
         5段階中 {clamped}
@@ -66,7 +72,7 @@ function VoiceCard({
           <span className="text-ink-soft">{voice.family}</span>
           <span className="inline-flex items-center gap-1 font-bold text-brand group-hover:underline">
             詳しく見る
-            <span aria-hidden>→</span>
+            <ArrowRightIcon className="h-4 w-4" />
           </span>
         </div>
       </div>
@@ -129,7 +135,7 @@ export function VoicesSection() {
             className="inline-flex items-center justify-center gap-2 rounded-lg border border-ink-deep bg-white px-6 py-4 text-base font-bold text-ink-deep shadow-sm transition hover:bg-paper"
           >
             お客様の声をすべて見る
-            <span aria-hidden>→</span>
+            <ArrowRightIcon className="h-4 w-4" />
           </a>
         </div>
       </div>

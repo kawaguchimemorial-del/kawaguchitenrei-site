@@ -1,3 +1,5 @@
+import { PhoneIcon } from "@/components/common/icons";
+
 const emergencySteps = [
   "病院・施設・警察署など、お迎え先をお知らせください。",
   "ご安置場所やご希望を伺い、必要な手続きを整理します。",
@@ -28,7 +30,7 @@ export function EmergencySection() {
               href="tel:0120-963-765"
               className="mt-7 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-emergency px-6 py-4 text-lg font-bold text-white shadow-sm transition hover:bg-emergency-deep sm:w-auto"
             >
-              <span aria-hidden>☎</span>
+              <PhoneIcon className="h-5 w-5" />
               電話で相談する
             </a>
           </div>

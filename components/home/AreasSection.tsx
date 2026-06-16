@@ -1,3 +1,5 @@
+import { ChevronRightIcon } from "@/components/common/icons";
+
 type AreaLink = { name: string; href?: string };
 
 const kawaguchiAreas: AreaLink[] = [
@@ -84,7 +86,7 @@ export function AreasSection() {
                       className="inline-flex items-center gap-1 rounded-full border border-line bg-paper px-4 py-2 text-base font-bold text-ink-deep transition hover:border-brand hover:text-brand"
                     >
                       {area.name}の葬儀
-                      <span aria-hidden>›</span>
+                      <ChevronRightIcon className="h-3.5 w-3.5" />
                     </a>
                   ) : (
                     <span className="inline-flex items-center rounded-full border border-line-soft bg-paper px-4 py-2 text-base font-semibold text-ink-mid">
@@ -105,7 +107,7 @@ export function AreasSection() {
                       className="inline-flex items-center gap-1 rounded-full border border-line bg-paper px-4 py-2 text-base font-bold text-ink-deep transition hover:border-brand hover:text-brand"
                     >
                       {area.name}の葬儀
-                      <span aria-hidden>›</span>
+                      <ChevronRightIcon className="h-3.5 w-3.5" />
                     </a>
                   ) : (
                     <span className="inline-flex items-center rounded-full border border-line-soft bg-paper px-4 py-2 text-base font-semibold text-ink-mid">
@@ -130,7 +132,7 @@ export function AreasSection() {
                       className="inline-flex items-center gap-1 rounded-full border border-line bg-white px-4 py-2 text-base font-bold text-ink-deep transition hover:border-brand hover:text-brand"
                     >
                       {hall.name}
-                      <span aria-hidden>›</span>
+                      <ChevronRightIcon className="h-3.5 w-3.5" />
                     </a>
                   ) : (
                     <span className="inline-flex items-center rounded-full border border-line-soft bg-white px-4 py-2 text-base font-semibold text-ink-mid">

@@ -1,3 +1,5 @@
+import { ArrowRightIcon } from "@/components/common/icons";
+
 const costItems = [
   "葬儀形式と参列人数",
   "式場・火葬場の利用",
@@ -28,7 +30,7 @@ export function CostEstimateSection() {
               className="inline-flex items-center gap-2 rounded-lg bg-brand px-6 py-4 text-base font-bold text-white shadow-sm transition hover:bg-brand-deep"
             >
               料金プランを見る
-              <span aria-hidden>→</span>
+              <ArrowRightIcon className="h-4 w-4" />
             </a>
           </div>
         </div>

@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>デザイン/UX 監査 2026-06-16｜kawaguchitenrei.com（モバイルファースト）</title>
+<style>
+  :root{--ink:#2b2b2b;--soft:#6b6b6b;--line:#e3e0da;--bg:#faf9f7;--accent:#7a6a55;--ok:#2e7d52;--warn:#b8860b;--dng:#c0392b;--p1:#2e7d52;--p2:#b8860b;--p3:#8a8a8a}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;line-height:1.85;font-size:15px}
+  .wrap{max-width:880px;margin:0 auto;padding:40px 22px 80px}
+  header.doc{border-bottom:2px solid var(--line);padding-bottom:18px;margin-bottom:28px}
+  .kicker{font-size:12px;letter-spacing:.12em;color:var(--accent);margin:0 0 6px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:22px;font-weight:600;margin:0 0 10px;line-height:1.5}
+  .meta{font-size:12.5px;color:var(--soft)} .meta span{margin-right:14px}
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:19px;font-weight:600;margin:34px 0 12px;padding-left:11px;border-left:4px solid var(--accent)}
+  h3{font-size:15.5px;font-weight:700;margin:22px 0 6px}
+  p{margin:8px 0}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13.5px;background:#fff}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  th{background:#f3f1ec}
+  code{background:#f1efe9;padding:1px 6px;border-radius:5px;font-size:12px;font-family:ui-monospace,Consolas,monospace}
+  ul,ol{margin:8px 0;padding-left:22px} li{margin:5px 0}
+  .callout{border-left:4px solid var(--accent);background:#f6f3ec;padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0}
+  .ok{border-left:4px solid var(--ok);background:#f3faf5;padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0}
+  .muted{color:var(--soft);font-size:13px}
+  .pill{display:inline-block;font-size:11px;font-weight:700;padding:2px 9px;border-radius:999px;color:#fff}
+  .pill.p1{background:var(--p1)} .pill.p2{background:var(--p2)} .pill.p3{background:var(--p3)}
+  .tag{display:inline-block;font-size:11.5px;padding:2px 9px;border-radius:999px;border:1px solid var(--line);color:var(--soft);background:#fff}
+  footer.doc{margin-top:50px;padding-top:18px;border-top:1px solid var(--line);color:var(--soft);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <p class="kicker">川口典礼サイト ＿ デザイン/UX 監査（社内記録・非公開）</p>
+  <h1>デザイン/UX 監査：現状の弱点マップと優先度（モバイルファースト）</h1>
+  <p class="meta"><span>作成日：2026-06-16</span><span>対象：サイト全体（ホーム＋各テンプレート）</span><span>担当：Claude Code</span></p>
+  <p class="muted">外部Web会社からの「SEOには優しいがレイアウト/デザインはまだまだ」という指摘を受け、改善の出発点として現状を棚卸ししたもの。個人情報・秘密情報なし。</p>
+</header>
+
+<div class="callout">
+  <p><strong>総評：</strong>土台は「素人仕事」ではない。デザイントークン（紙色2段＋深緑3段＋金の差し色＋緊急レッド／墨3階調）、明朝×ゴシックの使い分け、<code>prefers-reduced-motion</code> 対応、グローバルな <code>:focus-visible</code> 指定（<code>globals.css</code> 85–91行）まで揃っている。指摘の「まだまだ」は<strong>土台の崩壊ではなく、最後の1〜2割の詰め</strong>＝アイコン・タイポの統一・写真の質・セクションの緩急に集約される。本監査はそこを優先度づけする。</p>
+</div>
+
+<h2>0. 前提・進め方</h2>
+<ul>
+  <li><strong>既存トーンは維持</strong>（落ち着き・余白・読み物寄り）。コンセプトの作り替えはしない（CLAUDE.md §3）。</li>
+  <li><strong>6/26 の SEO 効果測定までは構造（URL / title / canonical / ページ構成）に触れない。</strong>本監査の対象は「見た目・操作感」で、構造を動かさない範囲＝SEO 再評価に影響しない改善に絞る。</li>
+  <li><strong>共通レイアウト（<code>Header</code> / <code>Footer</code> / <code>MobileBottomCTA</code>）は保護対象</strong>（CLAUDE.md §5）。ここへの変更提案は実装前に承認を取る。</li>
+  <li>1ページ／1テーマずつ、具体案を見比べて合意 → 実装の順で進める。</li>
+</ul>
+
+<h2>1. 優先度つき・改善テーマ一覧</h2>
+<table>
+  <thead><tr><th>#</th><th>テーマ</th><th>優先</th><th>SEO/構造への影響</th><th>承認要否</th></tr></thead>
+  <tbody>
+    <tr><td>A</td><td>絵文字アイコンを実アイコン(SVG)へ統一</td><td><span class="pill p1">P1</span></td><td>なし（見た目のみ）</td><td>自走可</td></tr>
+    <tr><td>B</td><td>タイポのスケール統一（見出し階層の整流）</td><td><span class="pill p1">P1</span></td><td>なし</td><td>自走可</td></tr>
+    <tr><td>C</td><td>星評価の描画をSVGコンポーネント化</td><td><span class="pill p1">P1</span></td><td>なし</td><td>自走可</td></tr>
+    <tr><td>D</td><td>コントラスト/可読性の微調整（淡色テキスト・極小文字）</td><td><span class="pill p2">P2</span></td><td>なし</td><td>共通chrome分は承認要</td></tr>
+    <tr><td>E</td><td>プレースホルダー（斜線ストライプ）の鎮静化</td><td><span class="pill p2">P2</span></td><td>なし</td><td>自走可</td></tr>
+    <tr><td>F</td><td>自動マーキー（Cases/Voices）の速度・操作性</td><td><span class="pill p2">P2</span></td><td>なし</td><td>自走可</td></tr>
+    <tr><td>G</td><td>セクションの「緩急」（背景リズム・余白スケール）整流</td><td><span class="pill p2">P2</span></td><td>なし（複数セクション横断）</td><td>方針合意のうえ着手</td></tr>
+    <tr><td>H</td><td>写真の質（合成FV・式場/ギャラリー写真）</td><td><span class="pill p3">P3</span></td><td>なし（コンテンツ）</td><td>素材準備が必要</td></tr>
+    <tr><td>I</td><td>非対称グリッド比（<code>0.95fr/1.05fr</code> 等）の整理</td><td><span class="pill p3">P3</span></td><td>なし（コード整頓）</td><td>ついで対応</td></tr>
+  </tbody>
+</table>
+
+<h2>2. P1（高効果・低リスク・すぐ着手可）</h2>
+
+<h3>A. 絵文字アイコン → 実アイコン(SVG)へ統一　<span class="tag">最有力の第一手</span></h3>
+<p>現状、UIアイコンに OS 依存の絵文字／記号をそのまま使っている。字形が端末でバラつき、最も「安く・素人っぽく」見える原因。</p>
+<table>
+  <thead><tr><th>記号</th><th>使用箇所（例）</th><th>用途</th></tr></thead>
+  <tbody>
+    <tr><td><code>☎</code></td><td>Hero / Emergency / FinalCta / Header / MobileBottomCTA</td><td>電話CTA</td></tr>
+    <tr><td><code>✓</code></td><td>Hero 信頼ポイント / Plan・Saijo 詳細</td><td>チェック</td></tr>
+    <tr><td><code>→ › ↗</code></td><td>各CTA・エリアタグ・外部リンク（3種混在）</td><td>遷移の矢印</td></tr>
+    <tr><td><code>★</code></td><td>Voices 星評価</td><td>レーティング</td></tr>
+    <tr><td><code>✎ ×　☰</code></td><td>MobileBottomCTA / Header メニュー</td><td>編集・閉じる・ハンバーガー（※共通chrome＝承認要）</td></tr>
+  </tbody>
+</table>
+<p><strong>方針：</strong>依存追加なしのインラインSVGアイコン（電話・チェック・矢印・星・外部リンク）を <code>components/common/icons/</code> に小さく用意し、絵文字を置換。矢印は「主CTA＝→／カテゴリ＝chevron」と役割を1本化し、装飾の矢印は減らす。<em>共通chrome（Header/Mobile CTA）の絵文字だけは保護対象なので別途承認を取る。</em></p>
+<p class="muted">SEO/構造への影響なし。まず公開ページ側（Hero など非保護の home セクション）から着手すれば自走可。</p>
+
+<h3>B. タイポのスケール統一</h3>
+<p>セクション見出しのサイズが揃っていない（多くは <code>text-3xl md:text-[2.4rem]</code> だが、ThreeStrengths/AdvanceConsult は <code>text-2xl md:text-[2.2rem]</code>、MediaLinks は <code>text-lg md:text-xl</code>）。意図的な階層なら良いが、現状は「なんとなくバラついている」印象を与え、全体の整い感を損ねている。</p>
+<p><strong>方針：</strong>見出しの段階を定義（例：セクションh2＝統一サイズ／補助セクション＝1段下）。本文の行間・字間（既に <code>leading-9〜10</code>・<code>palt</code> あり）と合わせ、ジャンプ率の基準を1枚決めて全セクションに適用。</p>
+
+<h3>C. 星評価のSVGコンポーネント化</h3>
+<p>Voices の星は <code>"★".repeat()</code> ＋半透明星でのグリフ連打。半端な星の表現が崩れやすく、金色×紙色で沈む。SVG の★コンポーネント（満/半/空）に置換すると精度と見栄えが両立。Aと同時にやるのが自然。</p>
+
+<h2>3. P2（やや判断を伴う／中効果）</h2>
+
+<h3>D. コントラスト・可読性</h3>
+<p>淡色テキストや極小文字に、WCAG AA 観点で弱い箇所がある（候補）。実測して必要分だけ詰める。</p>
+<ul>
+  <li>Footer の <code>text-white/70</code>・<code>text-white/65</code>（<code>bg-deep</code> 上）</li>
+  <li>Header サブ見出しの <code>text-[11px]</code>（モバイルで小さい）</li>
+  <li>Breadcrumbs / 補足の <code>text-ink-soft</code></li>
+</ul>
+<p class="muted">Footer/Header は保護対象のため、変更は承認後。Breadcrumbs 等の共通外コンポーネントは自走可。</p>
+
+<h3>E. プレースホルダー画像の鎮静化</h3>
+<p>写真未設定時の斜線ストライプ（<code>repeating-linear-gradient(135deg …)</code>：Cases・AreaDetail のプラン枠）が主張しすぎて「未完成」に見える。<code>bg-warm</code> 等の無地＋小さなロゴ/キャプションに置換し、写真が入るまでの見栄えを底上げ。</p>
+
+<h3>F. 自動マーキー（Cases / Voices）の速度・操作性</h3>
+<p><code>animation: marquee 150s linear</code> は遅く、ユーザーが多様な事例/声に到達しにくい。ホバー一時停止はあるがモバイルで効かない。<strong>方針：</strong>速度を体感に合う水準へ調整し、モバイルはスワイプで送れる導線を検討（「すべて見る」への動線は維持）。<code>prefers-reduced-motion</code> 時の静止は現状維持。</p>
+
+<h3>G. セクションの「緩急」（背景リズム・余白）</h3>
+<p>14セクションの縦積みで、背景が <code>paper / warm / white / cool / deep</code> と切り替わる。<code>cool</code>（Cost・Access）や <code>deep</code>（Final CTA）は<strong>意図的なアクセントとして妥当</strong>だが、現状は切替の「理由」がユーザーに伝わりにくく、単調 or 唐突のどちらにも振れる。<strong>方針：</strong>「読み物の章＝paper/white」「情報枠＝warm」「締め＝deep」のように背景の意味を1枚に定義し、余白スケール（<code>py-14/16/24</code> の混在）も段階を決めて適用。<em>複数セクション横断のため、方針合意のうえで着手。</em></p>
+<p class="muted">※調査の過程で出た「cool/deep は壊れている」「Final CTA の深緑は葬儀に不向き」という評価は採用しない。深緑はブランド色で、締めのアクセントとして妥当と判断。</p>
+
+<h2>4. P3（後回し or 素材準備が前提）</h2>
+<ul>
+  <li><strong>H. 写真の質：</strong>合成のFV画像（外観＋祭壇の合成 <code>.png</code>）、式場ギャラリーの質とキャプション。葬儀社は写真の信頼感が大きい。差し替え素材の準備が前提（人間確認必須・§13）。</li>
+  <li><strong>I. 非対称グリッド比：</strong><code>md:grid-cols-[0.95fr_1.05fr]</code> 等は user 体感への影響はほぼ無い。気づいた時に <code>1fr_1fr</code> へ整える程度で良い（単独タスク化は不要）。</li>
+</ul>
+
+<h2>5. 良い点（壊さないもの）</h2>
+<ul>
+  <li>デザイントークン・明朝/ゴシックの使い分け・控えめなモーション設計</li>
+  <li>テンプレート間の一貫性（見出し階層・eyebrowラベル・<code>py-16/24</code>・<code>max-w-6xl</code>・カードのhover）</li>
+  <li>モバイル下部CTA：safe-area対応・適切な z 順・電話/事前相談の2択（§4 準拠）</li>
+  <li>テーブルの <code>overflow-x-auto</code>、<code>scroll-mt-24</code> によるアンカーオフセットなどの実装的な気配り</li>
+</ul>
+
+<div class="ok">
+  <p><strong>推奨の着手順：</strong><strong>A（アイコンSVG化）→ C（星）→ B（タイポ統一）</strong> を最初のひとかたまりで（いずれも低リスク・SEO無影響・自走可）。次に E・F・D（共通chrome以外）、その後 G を方針合意のうえで。H は素材準備、I はついで対応。共通chrome（Header/Footer/Mobile CTA）に関わる分は都度承認を取る。</p>
+</div>
+
+<h2>6. 次アクション</h2>
+<ul>
+  <li><span class="tag">合意待ち</span> 着手順（上記推奨でよいか）と、最初の対象ページ（ホーム想定）。</li>
+  <li><span class="tag">準備</span> A 着手時、SVGアイコンの線の太さ・サイズ感の方向性をサンプルで提示し、見比べて決定。</li>
+  <li><span class="tag">維持</span> 6/26 までは構造（URL/title/canonical）に触れない。デザイン改修は見た目のみに限定。</li>
+</ul>
+
+<footer class="doc">川口典礼サイト 社内デザイン/UX監査｜2026-06-16 作成｜非公開（docs/reports/・noindex）｜秘密情報・個人情報なし</footer>
+
+</div>
+</body>
+</html>

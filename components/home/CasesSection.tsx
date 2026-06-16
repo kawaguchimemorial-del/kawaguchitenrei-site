@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { ArrowRightIcon } from "@/components/common/icons";
 import { cases, type CaseRecord } from "@/lib/cases";
 
 function CaseCard({
@@ -47,7 +48,7 @@ function CaseCard({
         </dl>
         <p className="mt-5 inline-flex items-center gap-1 text-sm font-bold text-brand">
           この事例を見る
-          <span aria-hidden>→</span>
+          <ArrowRightIcon className="h-4 w-4" />
         </p>
       </div>
     </a>

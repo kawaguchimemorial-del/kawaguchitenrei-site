@@ -35,6 +35,26 @@
 
   <ul class="list">
     <li>
+      <span class="date">2026-06-16</span>
+      <a href="./2026-06-16-home-icons-svg.html">ホームの絵文字アイコンを実SVGへ統一＋見出しサイズ統一（A＋C＋B）</a>
+      <span class="desc">デザイン/UX監査の最優先P1を実装。OS依存の絵文字（☎✓→›↗★）をUIアイコンに直接使っていた点を、統一線アイコン（B案・stroke1.75/round）に置換。方向性サンプル3案を提示しユーザーがB案選択。新規 components/common/icons/index.tsx（Phone/Check/ArrowRight/ChevronRight/ExternalLink/Star、依存追加なしインラインSVG・currentColor・aria-hidden）。home 13セクション（Hero/Emergency/FinalCta/Voices/Cases/Areas/Meguri/MediaLinks/Plan/AdvanceConsult/Cost/ThreeStrengths/Hall）の絵文字を全置換。Voicesの★連打はStarIcon×5（filled/outline・C）にSVG化、aria-label維持。共通chrome（Header/Footer/MobileBottomCTA）は保護対象につき未変更＝別途承認予定。FAQの+トグルは対象外。あわせてB（見出しスケール統一）も実施：ThreeStrengths・AdvanceConsultのh2をtext-2xl/[2.2rem]→text-3xl/[2.4rem]に引き上げ、MediaLinksは補足のため据え置き（合意済み）。構造(URL/title/canonical)・価格・式場可否は無変更でSEO無影響。build成功・TypeScriptエラーなし・静的生成135/135維持。未コミット。</span>
+    </li>
+    <li>
+      <span class="date">2026-06-16</span>
+      <a href="./2026-06-16-design-ux-audit.html">デザイン/UX 監査：現状の弱点マップと優先度（モバイルファースト）</a>
+      <span class="desc">外部Web会社の「SEOには優しいがレイアウト/デザインはまだまだ」指摘を受け、改善の出発点として現状を棚卸し。総評は「土台は素人仕事ではない（トークン整理・明朝/ゴシック・reduced-motion・グローバルfocus-visibleまで揃う）。指摘は最後の1〜2割の詰め」。優先度づけ：P1=絵文字アイコン(☎✓→›↗★)の実SVG統一・タイポのスケール統一・星評価のSVG化（いずれも低リスク・SEO無影響・自走可）、P2=コントラスト微調整/プレースホルダー鎮静化/マーキー速度・操作性/セクションの緩急、P3=写真の質・非対称グリッド整理。6/26のSEO測定まで構造(URL/title/canonical)には触れず見た目のみ。共通chrome(Header/Footer/MobileBottomCTA)は保護対象で変更は承認要。調査エージェントの過大評価（focus-ring皆無＝事実誤認、深緑CTAは不向き）は補正・不採用。推奨着手順 A→C→B。サイト未変更（分析のみ）。</span>
+    </li>
+    <li>
+      <span class="date">2026-06-14</span>
+      <a href="./2026-06-14-seo-dashboard-site-verification-fix.html">SEOダッシュボード復旧：403権限不足の診断と所有権確認で解消</a>
+      <span class="desc">前日にトークン再取得まで進めたが /admin/seo/ が再び「データを取得できませんでした」。値を出さない診断で、refresh_tokenは有効（アクセストークン取得成功）だが searchanalytics.query が403。sites.list でアカウント権限が siteUnverifiedUser（未確認ユーザー）と判明＝失効ではなく権限不足。対応として当該アカウントでSearch Consoleの所有権確認（HTMLファイル方式）を実施しOwnerに昇格＝env の有効トークンがそのまま権限を持つためトークン/env更新は不要。Google発行の確認HTMLが public/images/tmp/serch/ に置かれ配信URLがルートにならない問題を、public/直下へ移動して解消（https://kawaguchitenrei.com/google49b5da2b44a51992.html）。build成功・本番200実測確認・ユーザーが所有権確認実行しダッシュボード復旧。確認維持のためファイルは削除せずコミット(d1ea9de)。平文で残っていた tmp/refresh-token.txt・tmp/auth-url.txt はユーザー承認のうえ削除。</span>
+    </li>
+    <li>
+      <span class="date">2026-06-13</span>
+      <a href="./2026-06-13-seo-dashboard-token-recovery.html">SEOダッシュボード復旧：refresh_token失効の診断と本番公開で恒久化</a>
+      <span class="desc">/admin/seo/ が「データを取得できませんでした」（前回も発生・約1週間ごと再発）。値を出さない診断でOAuth=invalid_grant（refresh_token失効）、SA=鍵解析不可を確認。根本原因はOAuth同意画面が「テスト中」のままで、テスト中アプリのrefresh_tokenは7日で自動失効するため。恒久対策として同意画面を本番公開（webmasters.readonlyは未審査でも本番公開可）し再取得する方針。docs/operations/seo-dashboard/README.md の§5.1/§10/§11を訂正（「無期限」記述は誤りだった）。コード変更なし。復旧はユーザー操作（本番公開→get-refresh-token.mjs→env更新→再デプロイ）が必要。</span>
+    </li>
+    <li>
       <span class="date">2026-06-12</span>
       <a href="./2026-06-12-search-console-404-fix.html">Search Console 重大な問題の対応（404×5・リダイレクトエラー×5・重複×1）</a>
       <span class="desc">GSC Coverageの重大な問題を精査・対応。【404×5】/SK/02・/SK/03→/、/maisouhi→/column/sousaihi/を301追加（確認済み）。/plank・/★このページのスラッグは対応不要。【リダイレクトエラー×5】本番curl実測で全て正常（/voice/・/contact/・/estimate/は200、/hall・/case/hanairo-owakarekaiは有限チェーンで200着地）→刷新直後のstaleデータでコード変更不要。【重複×1】/Column_list/nenmastuを明示1:1 301で3→2ホップに短縮（受け皿canonicalは自己参照済み）。既存187件はチェーン・ループ0／転送先64種すべて実在で健全。next.config.tsのみ・build成功135ページ維持。§19.2につきpushは人間承認後。GSCで各「検証」実行が次アクション。</span>

@@ -1,3 +1,5 @@
+import { ExternalLinkIcon } from "@/components/common/icons";
+
 type MediaLink = {
   site: string;
   label: string;
@@ -60,12 +62,7 @@ export function MediaLinksSection() {
                   </span>
                   <span className="mt-1 block">{link.label}</span>
                 </span>
-                <span
-                  aria-hidden
-                  className="mt-0.5 shrink-0 text-base text-ink-soft"
-                >
-                  ↗
-                </span>
+                <ExternalLinkIcon className="mt-0.5 h-4 w-4 shrink-0 text-ink-soft" />
               </a>
             </li>
           ))}

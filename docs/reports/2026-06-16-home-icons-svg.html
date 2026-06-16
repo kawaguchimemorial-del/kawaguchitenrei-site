@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>作業レポート 2026-06-16｜ホームの絵文字アイコンを実SVGへ統一（A＋C）</title>
+<style>
+  :root{--ink:#2b2b2b;--soft:#6b6b6b;--line:#e3e0da;--bg:#faf9f7;--accent:#7a6a55;--ok:#2e7d52}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;line-height:1.85;font-size:15px}
+  .wrap{max-width:860px;margin:0 auto;padding:40px 22px 80px}
+  header.doc{border-bottom:2px solid var(--line);padding-bottom:18px;margin-bottom:28px}
+  .kicker{font-size:12px;letter-spacing:.12em;color:var(--accent);margin:0 0 6px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:22px;font-weight:600;margin:0 0 10px;line-height:1.5}
+  .meta{font-size:12.5px;color:var(--soft)} .meta span{margin-right:14px}
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:19px;font-weight:600;margin:34px 0 12px;padding-left:11px;border-left:4px solid var(--accent)}
+  p{margin:8px 0}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13.5px;background:#fff}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  th{background:#f3f1ec}
+  code{background:#f1efe9;padding:1px 6px;border-radius:5px;font-size:12px;font-family:ui-monospace,Consolas,monospace}
+  ul,ol{margin:8px 0;padding-left:22px} li{margin:5px 0}
+  .ok{border-left:4px solid var(--ok);background:#f3faf5;padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0}
+  .muted{color:var(--soft);font-size:13px}
+  .tag{display:inline-block;font-size:11.5px;padding:2px 9px;border-radius:999px;border:1px solid var(--line);color:var(--soft);background:#fff}
+  footer.doc{margin-top:50px;padding-top:18px;border-top:1px solid var(--line);color:var(--soft);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <p class="kicker">川口典礼サイト ＿ 作業レポート（社内記録・非公開）</p>
+  <h1>ホームの絵文字アイコンを実SVGへ統一＋見出しサイズ統一（A＋C＋B）</h1>
+  <p class="meta"><span>作成日：2026-06-16</span><span>対象：トップページ（home セクション群）</span><span>担当：Claude Code</span></p>
+  <p class="muted">2026-06-16 のデザイン/UX監査の優先度 P1（A：アイコン統一、C：星のSVG化）の実装。個人情報・秘密情報なし。</p>
+</header>
+
+<h2>1. 背景・狙い</h2>
+<p>監査で最優先（P1）とした「OS依存の絵文字（<code>☎ ✓ → › ↗ ★</code>）をそのままUIアイコンに使っている」点を解消。絵文字は端末ごとに字形・太さ・色が揺れ、最も「安く・素人っぽく」見える原因のため、統一された線アイコン（B案：stroke 1.75 / round）へ置換した。方向性は事前にサンプル3案（A/B/C）を提示し、<strong>ユーザーがB案（標準の中線）を選択</strong>。</p>
+
+<h2>2. 変更内容</h2>
+<h3 style="font-size:15px;font-weight:700">新規：共通アイコン</h3>
+<ul>
+  <li><code>components/common/icons/index.tsx</code>（新規）：<code>PhoneIcon / CheckIcon / ArrowRightIcon / ChevronRightIcon / ExternalLinkIcon / StarIcon</code>。依存追加なしのインラインSVG。既定サイズ 1em・<code>currentColor</code> 継承・装飾用途のため <code>aria-hidden</code>。星は <code>filled</code> で塗り／アウトラインを切替。</li>
+</ul>
+<h3 style="font-size:15px;font-weight:700">置換：home セクション（非保護）</h3>
+<table>
+  <thead><tr><th>ファイル</th><th>置換した絵文字 → アイコン</th></tr></thead>
+  <tbody>
+    <tr><td>Hero.tsx</td><td><code>☎</code>×2→Phone、<code>✓</code>→Check、<code>→</code>×3→ArrowRight</td></tr>
+    <tr><td>EmergencySection.tsx</td><td><code>☎</code>→Phone</td></tr>
+    <tr><td>FinalCtaSection.tsx</td><td><code>☎</code>→Phone</td></tr>
+    <tr><td>VoicesSection.tsx</td><td><code>★</code>連打→StarIcon×5（filled/outline・C）、<code>→</code>×2→ArrowRight</td></tr>
+    <tr><td>CasesSection.tsx</td><td><code>→</code>→ArrowRight</td></tr>
+    <tr><td>AreasSection.tsx</td><td><code>›</code>×3→ChevronRight</td></tr>
+    <tr><td>MeguriSection.tsx</td><td><code>→</code>×2→ArrowRight、<code>›</code>→ChevronRight</td></tr>
+    <tr><td>MediaLinksSection.tsx</td><td><code>↗</code>→ExternalLink</td></tr>
+    <tr><td>PlanSection.tsx</td><td><code>→</code>×4→ArrowRight</td></tr>
+    <tr><td>AdvanceConsultSection.tsx</td><td><code>→</code>×2→ArrowRight（hover時の <code>translate-x</code> 演出は維持）</td></tr>
+    <tr><td>CostEstimateSection.tsx</td><td><code>→</code>→ArrowRight</td></tr>
+    <tr><td>ThreeStrengthsSection.tsx</td><td><code>→</code>→ArrowRight</td></tr>
+    <tr><td>HallSection.tsx</td><td><code>→</code>→ArrowRight</td></tr>
+  </tbody>
+</table>
+<p class="muted">星の <code>aria-label="5段階中Nの評価"</code> は維持（読み上げは従来どおり）。各アイコンは装飾でラベルは隣接テキストが担うため <code>aria-hidden</code>。</p>
+
+<h3 style="font-size:15px;font-weight:700">B：見出しのスケール統一</h3>
+<p>セクション見出しのサイズ不揃いを整理。主要セクション見出しを <code>text-3xl md:text-[2.4rem]</code> に統一する方針で、1段下がっていた <code>ThreeStrengthsSection</code> と <code>AdvanceConsultSection</code> の <code>h2</code> を <code>text-2xl md:text-[2.2rem]</code> → <code>text-3xl md:text-[2.4rem]</code> に引き上げ。<code>MediaLinksSection</code>（掲載メディア）は補足セクションのため、あえて小さいまま据え置き（ユーザー合意済み）。余白・行間などサイズ以外は変更なし。</p>
+
+<h2>3. 触っていないもの</h2>
+<ul>
+  <li><strong>共通chrome（<code>Header</code> / <code>Footer</code> / <code>MobileBottomCTA</code>）は未変更</strong>（保護対象・§5）。ここの絵文字（<code>☎ ✎ × ☰</code>）は別途承認のうえ対応予定。</li>
+  <li>FAQ の「+」開閉トグル（<code>rotate-45</code>）は今回対象外（次の磨き込みで検討）。</li>
+  <li>構造（URL / title / canonical / ページ構成）は無変更＝6/26 のSEO効果測定に影響なし。価格・式場利用可否の表記も無変更。</li>
+</ul>
+
+<h2>4. 確認結果</h2>
+<ul>
+  <li><code>npm run build</code> 成功・TypeScript エラーなし。</li>
+  <li>静的生成 <strong>135/135 ページ</strong>・増減なし（ガードレール §19.3 クリア）。</li>
+</ul>
+<div class="ok">
+  <p><strong>影響範囲：</strong>見た目のみ（アイコンの字形統一）。公開URL・SEO・価格・フォーム・共通chrome への影響なし。</p>
+</div>
+
+<h2>5. 今後のアクション</h2>
+<ul>
+  <li><span class="tag">完了</span> B：見出しサイズ統一（ThreeStrengths・AdvanceConsult を標準サイズへ。MediaLinks は据え置き）。</li>
+  <li><span class="tag">要承認</span> 共通chrome（Header / Mobile CTA）の絵文字SVG化。</li>
+  <li><span class="tag">未コミット</span> 本変更はローカル未コミット。preview 確認 → commit/push の要否は指示に従う。</li>
+</ul>
+
+<footer class="doc">川口典礼サイト 社内作業レポート｜2026-06-16 作成｜非公開（docs/reports/・noindex）｜秘密情報・個人情報なし</footer>
+
+</div>
+</body>
+</html>

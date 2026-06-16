@@ -1,3 +1,5 @@
+import { PhoneIcon } from "@/components/common/icons";
+
 export function FinalCtaSection() {
   return (
     <section id="final-cta" className="bg-deep py-16 text-white md:py-24">
@@ -22,9 +24,7 @@ export function FinalCtaSection() {
             href="tel:0120-963-765"
             className="group flex items-center justify-center gap-3 rounded-lg bg-emergency px-5 py-5 text-white shadow-sm transition hover:bg-emergency-deep"
           >
-            <span aria-hidden className="text-2xl">
-              ☎
-            </span>
+            <PhoneIcon className="h-7 w-7" />
             <span className="text-left">
               <span className="block text-lg font-bold leading-tight">
                 電話で相談する

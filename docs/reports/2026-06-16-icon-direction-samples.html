@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>アイコン方向性サンプル｜kawaguchitenrei.com（A案／B案／C案 比較）</title>
+<style>
+  :root{
+    --bg-paper:#faf8f3;--bg-warm:#f1ede2;--ink-deep:#131c18;--ink:#1f2d27;--ink-mid:#4a5b54;--ink-soft:#7a8a82;
+    --brand-deep:#1c3a30;--brand:#2a5145;--brand-soft:#58806f;--brand-tint:#d6e1d8;
+    --gold:#a6864a;--emergency:#b42318;--emergency-deep:#841910;--line:#d3d9d0;--line-soft:#e6ebe3;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:#f4f1ea;color:var(--ink);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;line-height:1.8;font-size:15px}
+  .wrap{max-width:1040px;margin:0 auto;padding:36px 20px 80px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:21px;margin:0 0 6px}
+  .lead{color:var(--ink-mid);font-size:13.5px;margin:0 0 26px}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  @media(max-width:820px){.grid{grid-template-columns:1fr}}
+  .col{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  .col > h2{margin:0;padding:12px 16px;font-size:14px;background:var(--brand);color:#fff;font-weight:700;font-family:inherit}
+  .col .sub{padding:6px 16px 0;font-size:11.5px;color:var(--ink-soft)}
+  .block{padding:14px 16px}
+  .label{font-size:11px;letter-spacing:.08em;color:var(--ink-soft);margin:0 0 6px;text-transform:uppercase}
+  /* icon row */
+  .icons{display:flex;gap:14px;align-items:center;color:var(--brand);flex-wrap:wrap}
+  .icons svg{display:block}
+  /* CTA buttons (本番の意匠を簡略再現) */
+  .cta-phone{display:flex;align-items:center;gap:10px;background:var(--emergency);color:#fff;border-radius:9px;padding:11px 16px;text-decoration:none}
+  .cta-phone .ring{display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:999px;background:rgba(255,255,255,.16)}
+  .cta-phone b{font-size:15px}
+  .cta-phone small{display:block;font-size:10.5px;color:rgba(255,255,255,.85);font-weight:600;letter-spacing:.04em}
+  .cta-ghost{display:flex;align-items:center;justify-content:center;gap:8px;border:1px solid var(--ink-deep);background:#fff;color:var(--ink-deep);border-radius:9px;padding:11px 16px;text-decoration:none;font-weight:700;font-size:14px;margin-top:10px}
+  /* trust list */
+  ul.trust{list-style:none;margin:0;padding:0;font-size:13.5px;font-weight:600;color:var(--ink)}
+  ul.trust li{display:flex;align-items:center;gap:9px;margin:7px 0}
+  ul.trust .chk{flex:none;width:20px;height:20px;border-radius:999px;background:var(--brand);color:#fff;display:flex;align-items:center;justify-content:center}
+  /* chips */
+  .chip{display:inline-flex;align-items:center;gap:5px;border:1px solid var(--line);background:var(--bg-paper);border-radius:999px;padding:5px 11px;font-size:12px;font-weight:600;color:var(--ink-mid);margin:0 6px 6px 0}
+  .chip svg{color:var(--brand-soft)}
+  /* textlink */
+  .tlink{display:inline-flex;align-items:center;gap:5px;color:var(--ink-mid);font-size:13px;font-weight:600;text-decoration:none}
+  /* stars */
+  .stars{display:inline-flex;gap:2px;color:var(--gold)}
+  .note{font-size:11.5px;color:var(--ink-soft);padding:0 16px 14px}
+  .legend{margin:26px 0 0;font-size:13px;color:var(--ink-mid);background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+  .legend b{color:var(--ink)}
+  .cur{background:#fff;border:1px dashed var(--line);border-radius:10px;padding:12px 16px;margin:0 0 22px;font-size:13px;color:var(--ink-mid)}
+  .cur .emoji{font-size:18px;letter-spacing:6px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>アイコン方向性サンプル（A案／B案／C案）</h1>
+  <p class="lead">同じアイコン群（電話・チェック・矢印・chevron・外部リンク・星）を、本番のボタン／リスト／チップの意匠に乗せて比較。線の太さ・トーンだけが違います。実装前の方向決め用。</p>
+
+  <div class="cur">
+    <div class="label" style="margin-bottom:4px">現状（参考）：OS依存の絵文字をそのまま使用</div>
+    <span class="emoji">☎ ✓ → › ↗ ★</span>
+    <div style="margin-top:6px;font-size:12px">→ 端末ごとに字形・太さ・色がバラつき、安く見える原因。これを下の統一SVGに置換する。</div>
+  </div>
+
+  <div class="grid">
+
+    <!-- ================= A案 ================= -->
+    <div class="col">
+      <h2>A案：繊細な細線</h2>
+      <div class="sub">stroke 1.4 ／ round ／ 上品・静謐寄り</div>
+
+      <div class="block">
+        <p class="label">アイコン素</p>
+        <div class="icons">
+          <!-- phone -->
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3.5h3l1.2 3.6-1.7 1.2a12 12 0 0 0 5 5l1.2-1.7 3.6 1.2v3a1.5 1.5 0 0 1-1.6 1.5A15.5 15.5 0 0 1 5 5.1 1.5 1.5 0 0 1 6.5 3.5Z"/></svg>
+          <!-- check -->
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 10 17.5 19 6.5"/></svg>
+          <!-- arrow-right -->
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+          <!-- chevron -->
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+          <!-- external -->
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14 5h5v5M19 5l-8 8M18 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>
+          <!-- star -->
+          <span class="stars">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3.2l2.6 5.3 5.8.8-4.2 4.1 1 5.8L12 16.9 6.8 19.2l1-5.8L3.6 9.3l5.8-.8z"/></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3.2l2.6 5.3 5.8.8-4.2 4.1 1 5.8L12 16.9 6.8 19.2l1-5.8L3.6 9.3l5.8-.8z"/></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M12 3.2l2.6 5.3 5.8.8-4.2 4.1 1 5.8L12 16.9 6.8 19.2l1-5.8L3.6 9.3l5.8-.8z"/></svg>
+          </span>
+        </div>
+      </div>
+
+      <div class="block">
+        <p class="label">CTA（電話・事前相談）</p>
+        <a class="cta-phone" href="#">
+          <span class="ring"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3.5h3l1.2 3.6-1.7 1.2a12 12 0 0 0 5 5l1.2-1.7 3.6 1.2v3a1.5 1.5 0 0 1-1.6 1.5A15.5 15.5 0 0 1 5 5.1 1.5 1.5 0 0 1 6.5 3.5Z"/></svg></span>
+          <span><b>電話する</b><small>24時間365日 受付</small></span>
+        </a>
+        <a class="cta-ghost" href="#">事前相談する
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+
+      <div class="block">
+        <p class="label">信頼ポイント</p>
+        <ul class="trust">
+          <li><span class="chk"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 10 17.5 19 6.5"/></svg></span>川口市めぐりの森まで車で約5分</li>
+          <li><span class="chk"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 10 17.5 19 6.5"/></svg></span>駐車場70台の自社式場</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <p class="label">チップ／テキストリンク</p>
+        <span class="chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>川口市の家族葬</span>
+        <a class="tlink" href="#">事例一覧を見る
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+      <p class="note">最も静か。葬儀社のトーンに最も馴染むが、スマホの小サイズだと細く感じる場面も。</p>
+    </div>
+
+    <!-- ================= B案 ================= -->
+    <div class="col">
+      <h2>B案：標準の中線　（推奨）</h2>
+      <div class="sub">stroke 1.75 ／ round ／ 上品さと視認性の両立</div>
+
+      <div class="block">
+        <p class="label">アイコン素</p>
+        <div class="icons">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3.5h3l1.2 3.6-1.7 1.2a12 12 0 0 0 5 5l1.2-1.7 3.6 1.2v3a1.5 1.5 0 0 1-1.6 1.5A15.5 15.5 0 0 1 5 5.1 1.5 1.5 0 0 1 6.5 3.5Z"/></svg>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 10 17.5 19 6.5"/></svg>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 5h5v5M19 5l-8 8M18 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>
+          <span class="stars">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3.2l2.6 5.3 5.8.8-4.2 4.1 1 5.8L12 16.9 6.8 19.2l1-5.8L3.6 9.3l5.8-.8z"/></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3.2l2.6 5.3 5.8.8-4.2 4.1 1 5.8L12 16.9 6.8 19.2l1-5.8L3.6 9.3l5.8-.8z"/></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"><path d="M12 3.2l2.6 5.3 5.8.8-4.2 4.1 1 5.8L12 16.9 6.8 19.2l1-5.8L3.6 9.3l5.8-.8z"/></svg>
+          </span>
+        </div>
+      </div>
+
+      <div class="block">
+        <p class="label">CTA（電話・事前相談）</p>
+        <a class="cta-phone" href="#">
+          <span class="ring"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3.5h3l1.2 3.6-1.7 1.2a12 12 0 0 0 5 5l1.2-1.7 3.6 1.2v3a1.5 1.5 0 0 1-1.6 1.5A15.5 15.5 0 0 1 5 5.1 1.5 1.5 0 0 1 6.5 3.5Z"/></svg></span>
+          <span><b>電話する</b><small>24時間365日 受付</small></span>
+        </a>
+        <a class="cta-ghost" href="#">事前相談する
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+
+      <div class="block">
+        <p class="label">信頼ポイント</p>
+        <ul class="trust">
+          <li><span class="chk"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 10 17.5 19 6.5"/></svg></span>川口市めぐりの森まで車で約5分</li>
+          <li><span class="chk"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 10 17.5 19 6.5"/></svg></span>駐車場70台の自社式場</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <p class="label">チップ／テキストリンク</p>
+        <span class="chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>川口市の家族葬</span>
+        <a class="tlink" href="#">事例一覧を見る
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+      <p class="note">細線の上品さを保ちつつ、スマホでもくっきり読める。汎用性が高く、最初の統一基準に向く。</p>
+    </div>
+
+    <!-- ================= C案 ================= -->
+    <div class="col">
+      <h2>C案：塗り＋中線のミックス</h2>
+      <div class="sub">面アイコン（電話/チェック/星）＋線アイコン（矢印類）／はっきり</div>
+
+      <div class="block">
+        <p class="label">アイコン素</p>
+        <div class="icons">
+          <!-- phone filled -->
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 3h2.8a1 1 0 0 1 1 .8l.7 3a1 1 0 0 1-.5 1.1l-1.6.9a11 11 0 0 0 4.7 4.7l.9-1.6a1 1 0 0 1 1.1-.5l3 .7a1 1 0 0 1 .8 1v2.8a1.5 1.5 0 0 1-1.6 1.5A15.5 15.5 0 0 1 5.1 5.1 1.5 1.5 0 0 1 6.6 3Z"/></svg>
+          <!-- check filled circle -->
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm-1 14.4-4-4 1.4-1.4 2.6 2.6 5.2-5.2L17.6 9 11 16.4Z"/></svg>
+          <!-- arrow right (line) -->
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+          <!-- chevron (line) -->
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+          <!-- external (line) -->
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 5h5v5M19 5l-8 8M18 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>
+          <span class="stars">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3.2l2.6 5.3 5.8.8-4.2 4.1 1 5.8L12 16.9 6.8 19.2l1-5.8L3.6 9.3l5.8-.8z"/></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3.2l2.6 5.3 5.8.8-4.2 4.1 1 5.8L12 16.9 6.8 19.2l1-5.8L3.6 9.3l5.8-.8z"/></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" opacity=".28"><path d="M12 3.2l2.6 5.3 5.8.8-4.2 4.1 1 5.8L12 16.9 6.8 19.2l1-5.8L3.6 9.3l5.8-.8z"/></svg>
+          </span>
+        </div>
+      </div>
+
+      <div class="block">
+        <p class="label">CTA（電話・事前相談）</p>
+        <a class="cta-phone" href="#">
+          <span class="ring"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 3h2.8a1 1 0 0 1 1 .8l.7 3a1 1 0 0 1-.5 1.1l-1.6.9a11 11 0 0 0 4.7 4.7l.9-1.6a1 1 0 0 1 1.1-.5l3 .7a1 1 0 0 1 .8 1v2.8a1.5 1.5 0 0 1-1.6 1.5A15.5 15.5 0 0 1 5.1 5.1 1.5 1.5 0 0 1 6.6 3Z"/></svg></span>
+          <span><b>電話する</b><small>24時間365日 受付</small></span>
+        </a>
+        <a class="cta-ghost" href="#">事前相談する
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+
+      <div class="block">
+        <p class="label">信頼ポイント</p>
+        <ul class="trust">
+          <li><span class="chk" style="background:transparent;color:var(--brand)"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm-1 14.4-4-4 1.4-1.4 2.6 2.6 5.2-5.2L17.6 9 11 16.4Z"/></svg></span>川口市めぐりの森まで車で約5分</li>
+          <li><span class="chk" style="background:transparent;color:var(--brand)"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm-1 14.4-4-4 1.4-1.4 2.6 2.6 5.2-5.2L17.6 9 11 16.4Z"/></svg></span>駐車場70台の自社式場</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <p class="label">チップ／テキストリンク</p>
+        <span class="chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>川口市の家族葬</span>
+        <a class="tlink" href="#">事例一覧を見る
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+      <p class="note">面アイコンで視認性・存在感が最も高い。ただし葬儀社の静けさよりは「しっかり・実用」寄りの印象。</p>
+    </div>
+
+  </div>
+
+  <div class="legend">
+    <b>見るポイント：</b>① 信頼ポイントの ✓（小サイズでの潰れにくさ）／② 電話CTAの存在感／③ 矢印・chevron の統一感／④ 星のきれいさ。<br>
+    <b>私の推し：</b><b>B案（中線 1.75）</b>。既存の「上品・静謐」を保ちつつ、スマホでの視認性が一番安定します。A案はより繊細、C案はより実用・はっきり。<br>
+    ※これは方向決め用の簡易再現です。実装時は本番のトークン・余白に正確に合わせます。
+  </div>
+
+</div>
+</body>
+</html>

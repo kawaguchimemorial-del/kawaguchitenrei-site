@@ -1,4 +1,9 @@
 import Image from "next/image";
+import {
+  ArrowRightIcon,
+  CheckIcon,
+  PhoneIcon,
+} from "@/components/common/icons";
 
 // 価格は §9 正本のみ・税込明記。割引/最安などの断定はしない（§14）。
 const priceLine = "直葬 139,000円〜（事前相談会員価格・税込）";
@@ -78,9 +83,9 @@ export function Hero() {
               <li key={point} className="flex items-center gap-2.5">
                 <span
                   aria-hidden
-                  className="flex h-5 w-5 flex-none items-center justify-center rounded-full bg-brand text-[11px] font-bold text-white"
+                  className="flex h-5 w-5 flex-none items-center justify-center rounded-full bg-brand text-white"
                 >
-                  ✓
+                  <CheckIcon className="h-3 w-3" strokeWidth={2.4} />
                 </span>
                 <span>{point}</span>
               </li>
@@ -94,9 +99,9 @@ export function Hero() {
             <span className="flex items-center gap-3">
               <span
                 aria-hidden
-                className="flex h-9 w-9 items-center justify-center rounded-full bg-white/15 text-base"
+                className="flex h-9 w-9 items-center justify-center rounded-full bg-white/15"
               >
-                ☎
+                <PhoneIcon className="h-5 w-5" />
               </span>
               <span className="text-left">
                 <span className="block text-base font-bold leading-tight">
@@ -107,9 +112,7 @@ export function Hero() {
                 </span>
               </span>
             </span>
-            <span aria-hidden className="text-lg text-white/80">
-              →
-            </span>
+            <ArrowRightIcon className="h-5 w-5 text-white/80" />
           </a>
           <a
             href="/contact/"
@@ -123,7 +126,7 @@ export function Hero() {
               href="/plan/"
               className="inline-flex items-center gap-1.5 text-sm font-semibold text-ink-mid transition hover:text-brand hover:underline"
             >
-              <span aria-hidden>→</span>
+              <ArrowRightIcon className="h-4 w-4" />
               プラン・費用の目安を見る
             </a>
           </div>
@@ -172,9 +175,10 @@ export function Hero() {
                 </span>
                 <a
                   href="#access"
-                  className="shrink-0 rounded-full bg-white/95 px-4 py-1.5 text-xs font-bold text-ink-deep transition hover:bg-white"
+                  className="inline-flex shrink-0 items-center gap-1 rounded-full bg-white/95 px-4 py-1.5 text-xs font-bold text-ink-deep transition hover:bg-white"
                 >
-                  アクセスを見る →
+                  アクセスを見る
+                  <ArrowRightIcon className="h-3.5 w-3.5" />
                 </a>
               </div>
             </figcaption>
@@ -205,9 +209,9 @@ export function Hero() {
             >
               <span
                 aria-hidden
-                className="flex h-11 w-11 items-center justify-center rounded-full bg-white/15 text-xl"
+                className="flex h-11 w-11 items-center justify-center rounded-full bg-white/15"
               >
-                ☎
+                <PhoneIcon className="h-6 w-6" />
               </span>
               <span className="text-left">
                 <span className="block text-lg font-bold leading-tight">

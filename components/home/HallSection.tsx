@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { ArrowRightIcon } from "@/components/common/icons";
 
 const hallFeatures = [
   "川口市めぐりの森まで車で約5分",
@@ -102,7 +103,7 @@ export function HallSection() {
                 className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-brand px-5 py-4 text-center text-base font-bold text-white shadow-sm transition hover:bg-brand-deep sm:w-auto"
               >
                 ホールの詳細を見る
-                <span aria-hidden>→</span>
+                <ArrowRightIcon className="h-4 w-4" />
               </a>
               <p className="mt-4 text-sm leading-7 text-ink-mid">
                 川口市めぐりの森での葬儀をお考えの方は、

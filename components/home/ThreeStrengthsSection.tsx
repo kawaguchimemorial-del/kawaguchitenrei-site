@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { ArrowRightIcon } from "@/components/common/icons";
 
 type Strength = {
   category: string;
@@ -62,7 +63,7 @@ export function ThreeStrengthsSection() {
           </p>
           <h2
             id="strengths-heading"
-            className="font-serif-jp mt-3 text-2xl font-medium leading-[1.4] text-ink-deep md:text-[2.2rem]"
+            className="font-serif-jp mt-3 text-3xl font-medium leading-[1.4] text-ink-deep md:text-[2.4rem]"
           >
             川口典礼が選ばれる
             <br className="md:hidden" />
@@ -138,7 +139,7 @@ export function ThreeStrengthsSection() {
             className="inline-flex items-center gap-2 rounded-lg border border-ink-deep bg-white px-5 py-3 text-sm font-bold text-ink-deep transition hover:bg-cool md:text-base"
           >
             川口メモリアルホールを詳しく見る
-            <span aria-hidden>→</span>
+            <ArrowRightIcon className="h-4 w-4" />
           </a>
         </div>
       </div>

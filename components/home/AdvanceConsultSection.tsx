@@ -1,3 +1,5 @@
+import { ArrowRightIcon } from "@/components/common/icons";
+
 type ConsultCard = {
   category: string;
   title: string;
@@ -51,7 +53,7 @@ export function AdvanceConsultSection() {
           </p>
           <h2
             id="advance-consult-heading"
-            className="font-serif-jp mt-3 text-2xl font-medium leading-[1.4] text-ink-deep md:text-[2.2rem]"
+            className="font-serif-jp mt-3 text-3xl font-medium leading-[1.4] text-ink-deep md:text-[2.4rem]"
           >
             今すぐではない方も、
             <br className="md:hidden" />
@@ -80,12 +82,7 @@ export function AdvanceConsultSection() {
                 </p>
                 <span className="mt-5 inline-flex items-center gap-1 text-sm font-bold text-brand md:text-base">
                   {c.linkLabel}
-                  <span
-                    aria-hidden
-                    className="transition group-hover:translate-x-0.5"
-                  >
-                    →
-                  </span>
+                  <ArrowRightIcon className="h-4 w-4 transition group-hover:translate-x-0.5" />
                 </span>
               </a>
             </li>
@@ -98,7 +95,7 @@ export function AdvanceConsultSection() {
             className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-brand px-5 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-brand-deep md:w-auto md:text-base"
           >
             事前相談する
-            <span aria-hidden>→</span>
+            <ArrowRightIcon className="h-4 w-4" />
           </a>
           <a
             href="/estimate/"
