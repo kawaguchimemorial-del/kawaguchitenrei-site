@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import {
+  ArrowLeftIcon,
+  ArrowRightIcon,
+  PhoneIcon,
+} from "@/components/common/icons";
 import { PageHero } from "@/components/common/PageHero";
 import { ColumnBody } from "@/components/column/ColumnBody";
 import { ColumnLocalFuneralGuide } from "@/components/column/ColumnLocalFuneralGuide";
@@ -244,7 +249,7 @@ export default async function ColumnDetailPage({ params }: Props) {
                     className="inline-flex items-center justify-center gap-2 rounded-lg bg-brand px-6 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-brand-deep md:text-base"
                   >
                     事前相談する
-                    <span aria-hidden>→</span>
+                    <ArrowRightIcon className="h-4 w-4" />
                   </a>
                   <a
                     href="/estimate/"
@@ -260,7 +265,7 @@ export default async function ColumnDetailPage({ params }: Props) {
                   href="/column/"
                   className="inline-flex items-center gap-1 text-sm font-bold text-brand hover:underline md:text-base"
                 >
-                  <span aria-hidden>←</span>
+                  <ArrowLeftIcon className="h-4 w-4" />
                   コラム一覧へ戻る
                 </a>
               </div>
@@ -295,7 +300,7 @@ export default async function ColumnDetailPage({ params }: Props) {
                     href="tel:0120-963-765"
                     className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-md bg-emergency px-4 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-emergency-deep"
                   >
-                    <span aria-hidden>☎</span>
+                    <PhoneIcon className="h-4 w-4" />
                     0120-963-765
                   </a>
                   <a
@@ -348,9 +353,7 @@ export default async function ColumnDetailPage({ params }: Props) {
               href="tel:0120-963-765"
               className="flex items-center justify-center gap-3 rounded-lg bg-emergency px-5 py-5 text-white shadow-sm transition hover:bg-emergency-deep"
             >
-              <span aria-hidden className="text-2xl">
-                ☎
-              </span>
+              <PhoneIcon className="h-7 w-7" />
               <span className="text-left">
                 <span className="block text-lg font-bold leading-tight">
                   電話で相談する

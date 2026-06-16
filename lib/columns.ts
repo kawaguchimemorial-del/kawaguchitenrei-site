@@ -6,7 +6,7 @@ export type ColumnBlock =
   | { type: "ol"; items: string[] }
   | { type: "image"; src: string; alt: string; caption?: string }
   | { type: "quote"; text: string }
-  | { type: "cta"; label: string; href: string }
+  | { type: "cta"; label: string; href: string; text?: string }
   | { type: "table"; headers: string[]; rows: string[][]; caption?: string };
 
 export type ColumnArticle = {
@@ -1506,6 +1506,7 @@ export const columns: ColumnArticle[] = [
         type: "cta",
         label: "事前相談・お問い合わせ",
         href: "/contact/",
+        text: "葬祭費・埋葬料などの申請の確認や、川口市での葬儀費用のご相談は、川口典礼までお気軽にどうぞ。",
       },
 
       { type: "h2", text: "参考資料(制度確認に使った公的情報)" },
@@ -4589,7 +4590,12 @@ export const columns: ColumnArticle[] = [
           "申請は葬儀の前に。福祉事務所→葬儀社の順で連絡し、制度に沿って進めるのが安心です。",
         ],
       },
-      { type: "cta", label: "事前相談・お問い合わせ", href: "/contact/" },
+      {
+        type: "cta",
+        label: "事前相談・お問い合わせ",
+        href: "/contact/",
+        text: "葬祭扶助を利用したお葬式（火葬中心）のご相談・手配は、川口典礼が制度に沿ってお手伝いします。",
+      },
     ],
     metaDescription:
       "葬祭扶助の対象範囲（火葬中心）、12歳以上／12歳未満の上限金額目安（級地差あり）、申請順序（葬儀の前に福祉事務所→葬儀社）、川口市の葬祭費5万円・協会けんぽ埋葬料5万円との関係まで川口典礼が整理。",
@@ -6191,7 +6197,12 @@ export const columns: ColumnArticle[] = [
         type: "p",
         text: "川口典礼でも、川口市周辺でのご葬儀について事前相談・見積りを承っています。お電話または事前相談フォームでお気軽にお問い合わせください。",
       },
-      { type: "cta", label: "事前相談する", href: "/contact/" },
+      {
+        type: "cta",
+        label: "事前相談する",
+        href: "/contact/",
+        text: "互助会の解約や積立金を活かした葬儀のご相談、見積りの比較も、川口典礼で承ります。",
+      },
     ],
     metaDescription:
       "互助会に加入している方へ、葬儀費用や見積りを確認する際の注意点、解約や積立金の考え方、葬儀社選びのポイントを中立的に整理。川口典礼では、互助会加入中の方の葬儀相談や見積り比較もお手伝いしています。",

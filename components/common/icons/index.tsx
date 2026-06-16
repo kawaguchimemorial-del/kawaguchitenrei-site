@@ -73,6 +73,20 @@ export function ArrowRightIcon(props: IconProps) {
   );
 }
 
+export function ArrowLeftIcon(props: IconProps) {
+  return (
+    <svg
+      {...baseProps(props)}
+      fill="none"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M20 12H5M11 6l-6 6 6 6" />
+    </svg>
+  );
+}
+
 export function ChevronRightIcon(props: IconProps) {
   return (
     <svg

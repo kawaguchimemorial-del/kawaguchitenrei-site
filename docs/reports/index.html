@@ -36,6 +36,11 @@
   <ul class="list">
     <li>
       <span class="date">2026-06-16</span>
+      <a href="./2026-06-16-column-contextual-cta.html">高intentコラムの文脈CTA対応（funnel強化）</a>
+      <span class="desc">競合指摘の記事→相談funnelを調査した結果、導線は既に充実（テンプレの記事末CTA/サイドバー固定/最下部深緑CTA＋本文中ctaブロックが44記事に計58個）。量は不足なし。唯一の汎用部分＝本文中CTAの説明文が全記事固定だった点を改善：cta ブロックに任意 text?:string を追加(型拡張)、ColumnBody で block.text ?? 既定文 に。高intent3記事(補助金hojokin/葬祭扶助sousai-fujo/互助会解約gojokai-kaiyaku)の主要CTAに文脈文を追加。煽り/競合名/価格追加なし(§11/§15/§9)。build成功135/135維持。あわせてコラム詳細ページ(app/column/[slug]/page.tsx)の絵文字☎→←もSVG化(PhoneIcon/ArrowRight/ArrowLeftIcon追加)＝アイコン統一の取りこぼし解消。未コミット。</span>
+    </li>
+    <li>
+      <span class="date">2026-06-16</span>
       <a href="./2026-06-16-fv-real-photo-review-badge.html">FVを合成→実物最適化写真へ＋口コミ総合評価バッジ（競合2大ギャップ解消）</a>
       <span class="desc">競合分析で最大ギャップだった「合成ヒーロー」「社会的証明の不在」を同時解消。①FV：合成FV(外観+宙に浮く祭壇)を不使用にし、手持ち実写 建物.png を sharp で最適化(AI生成でなく実物の補正＝右端トリミング/明るさ+3%・彩度+7%/mozjpeg q84で2.5MB PNG→285KB JPEG・1578×880)。PC/モバイル共通画像にし、モバイル比率を9/16→4/3に。建物はAIで作り変えない方針(§13)。②口コミバッジ：実データ(Google26件4.7/各種口コミサイト2社96件4.6・198件4.7/自社アンケート250件4.8/総合570件★約4.7)を出典明記・誇張なしでFV直下に。表示は総合★4.7(570件)+内訳Google★4.7・アンケート★4.8。データはlib/reviews.ts管理、星は部分塗りメーター。最安/100%不使用(§11)・ポータル名非公開(§15)。aggregateRating JSON-LDは§19.2と複数出典混在不可のため見える化のみ。変更:hall-exterior-hero.jpg/Hero.tsx/lib/reviews.ts/ReviewBadge.tsx/page.tsx。build成功135/135維持。ページ描画は実機未確認(dev推奨)。未コミット。</span>
     </li>

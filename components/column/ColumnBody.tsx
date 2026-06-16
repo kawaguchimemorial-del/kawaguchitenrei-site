@@ -132,7 +132,8 @@ export function ColumnBody({ body }: { body: ColumnBlock[] }) {
                   Next Step
                 </p>
                 <p className="mt-2 text-base text-ink-mid md:text-lg">
-                  詳しい内容や費用感は、川口典礼までお気軽にご相談ください。
+                  {block.text ??
+                    "詳しい内容や費用感は、川口典礼までお気軽にご相談ください。"}
                 </p>
                 <a
                   href={block.href}

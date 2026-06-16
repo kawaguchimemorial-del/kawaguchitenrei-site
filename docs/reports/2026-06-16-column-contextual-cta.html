@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>作業レポート 2026-06-16｜高intentコラムの文脈CTA（funnel強化）</title>
+<style>
+  :root{--ink:#2b2b2b;--soft:#6b6b6b;--line:#e3e0da;--bg:#faf9f7;--accent:#7a6a55;--ok:#2e7d52}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;line-height:1.85;font-size:15px}
+  .wrap{max-width:860px;margin:0 auto;padding:40px 22px 80px}
+  header.doc{border-bottom:2px solid var(--line);padding-bottom:18px;margin-bottom:28px}
+  .kicker{font-size:12px;letter-spacing:.12em;color:var(--accent);margin:0 0 6px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:22px;font-weight:600;margin:0 0 10px;line-height:1.5}
+  .meta{font-size:12.5px;color:var(--soft)} .meta span{margin-right:14px}
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:19px;font-weight:600;margin:34px 0 12px;padding-left:11px;border-left:4px solid var(--accent)}
+  p{margin:8px 0}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13.5px;background:#fff}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  th{background:#f3f1ec}
+  code{background:#f1efe9;padding:1px 6px;border-radius:5px;font-size:12px;font-family:ui-monospace,Consolas,monospace}
+  ul,ol{margin:8px 0;padding-left:22px} li{margin:5px 0}
+  .ok{border-left:4px solid var(--ok);background:#f3faf5;padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0}
+  .muted{color:var(--soft);font-size:13px}
+  .tag{display:inline-block;font-size:11.5px;padding:2px 9px;border-radius:999px;border:1px solid var(--line);color:var(--soft);background:#fff}
+  footer.doc{margin-top:50px;padding-top:18px;border-top:1px solid var(--line);color:var(--soft);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <p class="kicker">川口典礼サイト ＿ 作業レポート（社内記録・非公開）</p>
+  <h1>高intentコラムの「文脈に沿ったCTA」対応（funnel強化）</h1>
+  <p class="meta"><span>作成日：2026-06-16</span><span>対象：コラム CTA</span><span>担当：Claude Code</span></p>
+  <p class="muted">競合分析の指摘（記事→相談の funnel）を受けた改善。個人情報・秘密情報なし。</p>
+</header>
+
+<h2>1. 前提：funnel は既に強い</h2>
+<p>調査の結果、コラムの導線は<strong>すでに充実</strong>していた：</p>
+<ul>
+  <li>テンプレ側：記事末CTA（事前相談＋見積り）／PCサイドバー固定の電話・事前相談／関連記事／最下部の深緑CTA（<code>#consultation</code>）。</li>
+  <li>記事側：本文中CTA（<code>cta</code>ブロック）が<strong>44記事に計58個</strong>。ラベルも「家族葬プランの詳細を見る」「概算見積りを依頼する」等、ある程度文脈化済み。</li>
+</ul>
+<p>＝<strong>量は不足していない。</strong>唯一の汎用部分は、本文中CTAの“説明文”が全記事固定（「詳しい内容や費用感は…ご相談ください」）だった点。</p>
+
+<h2>2. 変更内容（文脈テキスト対応）</h2>
+<ul>
+  <li><code>lib/columns.ts</code>：<code>cta</code>ブロックに任意の <code>text?: string</code> を追加（型拡張）。</li>
+  <li><code>components/column/ColumnBody.tsx</code>：cta の説明文を <code>block.text ?? 既定文</code> に。未指定の記事は従来どおり。</li>
+  <li>高intent 3記事の主要CTAに文脈文を追加：
+    <table>
+      <thead><tr><th>記事</th><th>追加した文脈文</th></tr></thead>
+      <tbody>
+        <tr><td>補助金（hojokin）</td><td>葬祭費・埋葬料などの申請の確認や、川口市での葬儀費用のご相談は、川口典礼までお気軽にどうぞ。</td></tr>
+        <tr><td>葬祭扶助（sousai-fujo）</td><td>葬祭扶助を利用したお葬式（火葬中心）のご相談・手配は、川口典礼が制度に沿ってお手伝いします。</td></tr>
+        <tr><td>互助会解約（gojokai-kaiyaku）</td><td>互助会の解約や積立金を活かした葬儀のご相談、見積りの比較も、川口典礼で承ります。</td></tr>
+      </tbody>
+    </table>
+  </li>
+</ul>
+<p class="muted">断定・煽り（最安/必ず 等）なし・§11／競合名なし・§15／価格は §9 正本のみ（具体金額は本文の既存記述に準拠、今回は追加せず）。</p>
+
+<h2>3. 確認結果</h2>
+<ul>
+  <li><code>npm run build</code> 成功・TypeScript エラーなし・静的生成 <strong>135/135 維持</strong>。</li>
+</ul>
+<div class="ok">
+  <p><strong>影響範囲：</strong>コラム本文中CTAの説明文（高intent 3記事）。構造・価格・式場可否・フォーム・共通chrome に変更なし＝SEO 影響なし（むしろ高intent記事の相談導線が文脈化）。</p>
+</div>
+
+<h2>4. 今後のアクション</h2>
+<ul>
+  <li><span class="tag">任意</span> 他の高intent記事（費用 hiyou/sousaihi、家族葬 kazokusou 系）にも文脈文を展開可能。</li>
+  <li><span class="tag">対応済み</span> コラム詳細ページ（<code>app/column/[slug]/page.tsx</code>）の絵文字 <code>☎ → ←</code> をSVG化（<code>PhoneIcon/ArrowRightIcon/ArrowLeftIcon</code>。<code>ArrowLeftIcon</code> を共通アイコンに追加）。アイコン統一の取りこぼしを解消。</li>
+  <li><span class="tag">後回し</span> FV写真の本格レタッチ（Canva）は費用対効果低めのため保留。</li>
+</ul>
+
+<footer class="doc">川口典礼サイト 社内作業レポート｜2026-06-16 作成｜非公開（docs/reports/・noindex）｜秘密情報・個人情報なし</footer>
+
+</div>
+</body>
+</html>
