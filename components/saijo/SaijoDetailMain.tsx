@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { ArrowRightIcon, CheckIcon } from "@/components/common/icons";
 import type { Saijo } from "@/lib/saijo";
 import { plans } from "@/lib/plans";
 
@@ -117,7 +118,7 @@ export function SaijoFeatures({ saijo }: { saijo: Saijo }) {
                 aria-hidden
                 className="mt-1.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand text-xs font-bold text-white"
               >
-                ✓
+                <CheckIcon className="h-4 w-4" />
               </span>
               <span className="text-base leading-7 text-ink">{feature}</span>
             </li>
@@ -160,7 +161,7 @@ export function SaijoOurSupport({ saijo }: { saijo: Saijo }) {
                   aria-hidden
                   className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-tint font-serif-jp text-sm font-medium text-brand"
                 >
-                  →
+                  <ArrowRightIcon className="h-4 w-4" />
                 </span>
                 <p className="text-base leading-8 text-ink md:text-lg">
                   {item}
@@ -227,7 +228,7 @@ export function SaijoAvailablePlans({ saijo }: { saijo: Saijo }) {
                   </p>
                   <p className="mt-5 inline-flex items-center gap-1 text-sm font-bold text-brand group-hover:underline">
                     詳細を見る
-                    <span aria-hidden>→</span>
+                    <ArrowRightIcon className="h-4 w-4" />
                   </p>
                 </div>
               </a>
@@ -242,7 +243,7 @@ export function SaijoAvailablePlans({ saijo }: { saijo: Saijo }) {
             className="ml-2 inline-flex items-center gap-1 font-bold text-brand hover:underline"
           >
             川口典礼へご相談
-            <span aria-hidden>→</span>
+            <ArrowRightIcon className="h-4 w-4" />
           </a>
         </p>
       </div>
@@ -516,9 +517,14 @@ export function SaijoHallRooms({ saijo }: { saijo: Saijo }) {
                     </p>
                   )}
                   <p className="mt-auto pt-4 text-xs text-ink-soft">
-                    {room.detailHref
-                      ? "式場の詳細を見る →"
-                      : "詳細は事前相談時にご案内"}
+                    {room.detailHref ? (
+                      <span className="inline-flex items-center gap-1">
+                        式場の詳細を見る
+                        <ArrowRightIcon className="h-3.5 w-3.5" />
+                      </span>
+                    ) : (
+                      "詳細は事前相談時にご案内"
+                    )}
                   </p>
                 </div>
               </>

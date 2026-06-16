@@ -16,6 +16,7 @@ import {
   SaijoFaq,
   SaijoMidCta,
 } from "@/components/saijo/SaijoDetailExtras";
+import { ArrowRightIcon } from "@/components/common/icons";
 import { saijoMegurinomori } from "@/lib/saijo";
 
 const SITE_URL = "https://kawaguchitenrei.com";
@@ -240,7 +241,7 @@ export default function MegurinomoriPage() {
                 className="inline-flex items-center gap-2 rounded-lg border border-ink-deep bg-white px-5 py-3 text-sm font-bold text-ink-deep transition hover:bg-cool md:text-base"
               >
                 川口メモリアルホールを見る
-                <span aria-hidden>→</span>
+                <ArrowRightIcon className="h-4 w-4" />
               </a>
             </div>
           </div>
@@ -290,7 +291,7 @@ export default function MegurinomoriPage() {
                   </p>
                   <p className="mt-auto pt-4 inline-flex items-center gap-1 text-sm font-bold text-brand group-hover:underline">
                     詳しく見る
-                    <span aria-hidden>→</span>
+                    <ArrowRightIcon className="h-4 w-4" />
                   </p>
                 </a>
               </li>

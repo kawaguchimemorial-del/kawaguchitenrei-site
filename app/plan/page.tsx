@@ -2,6 +2,11 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { PageHero } from "@/components/common/PageHero";
 import { CostBreakdownTable } from "@/components/common/CostBreakdownTable";
+import {
+  ArrowRightIcon,
+  ChevronRightIcon,
+  PhoneIcon,
+} from "@/components/common/icons";
 
 const SITE_URL = "https://kawaguchitenrei.com";
 
@@ -456,7 +461,7 @@ export default function PlanIndexPage() {
                       className="mt-6 inline-flex items-center justify-center gap-1 rounded-lg border border-ink-deep bg-white px-5 py-3 text-base font-bold text-ink-deep transition hover:bg-cool"
                     >
                       {plan.ctaLabel}
-                      <span aria-hidden>→</span>
+                      <ArrowRightIcon className="h-4 w-4" />
                     </a>
                   </div>
                 </article>
@@ -503,7 +508,7 @@ export default function PlanIndexPage() {
                           className="inline-flex items-center gap-1 rounded-full border border-brand bg-white px-4 py-2 text-sm font-bold text-brand transition hover:bg-brand hover:text-white"
                         >
                           {planName}
-                          <span aria-hidden>›</span>
+                          <ChevronRightIcon className="h-3.5 w-3.5" />
                         </a>
                       </li>
                     );
@@ -533,7 +538,7 @@ export default function PlanIndexPage() {
                 className="inline-flex items-center gap-2 rounded-lg border border-ink-deep bg-white px-5 py-3 text-sm font-bold text-ink-deep transition hover:bg-cool md:text-base"
               >
                 川口市・近隣で利用できる葬儀場一覧
-                <span aria-hidden>→</span>
+                <ArrowRightIcon className="h-4 w-4" />
               </a>
             </div>
           </div>
@@ -558,7 +563,7 @@ export default function PlanIndexPage() {
                 className="inline-flex items-center gap-2 rounded-lg border border-ink-deep bg-white px-5 py-3 text-sm font-bold text-ink-deep transition hover:bg-cool md:text-base"
               >
                 無宗教葬の相談を見る
-                <span aria-hidden>→</span>
+                <ArrowRightIcon className="h-4 w-4" />
               </a>
             </div>
           </div>
@@ -613,9 +618,7 @@ export default function PlanIndexPage() {
               href="tel:0120-963-765"
               className="flex items-center justify-center gap-3 rounded-lg bg-emergency px-5 py-5 text-white shadow-sm transition hover:bg-emergency-deep"
             >
-              <span aria-hidden className="text-2xl">
-                ☎
-              </span>
+              <PhoneIcon className="h-7 w-7" />
               <span className="text-left">
                 <span className="block text-lg font-bold leading-tight">
                   電話で相談する

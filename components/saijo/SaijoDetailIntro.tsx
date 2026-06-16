@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Breadcrumbs } from "@/components/common/Breadcrumbs";
+import { PhoneIcon } from "@/components/common/icons";
 import type { Saijo } from "@/lib/saijo";
 
 export function SaijoDetailIntro({ saijo }: { saijo: Saijo }) {
@@ -52,7 +53,7 @@ export function SaijoDetailIntro({ saijo }: { saijo: Saijo }) {
                 href="tel:0120-963-765"
                 className="inline-flex items-center justify-center gap-3 rounded-lg bg-emergency px-5 py-4 text-base font-bold text-white shadow-sm transition hover:bg-emergency-deep"
               >
-                <span aria-hidden>☎</span>
+                <PhoneIcon className="h-4 w-4" />
                 電話で相談する
               </a>
               <a

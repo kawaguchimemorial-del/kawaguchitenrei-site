@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { Breadcrumbs } from "@/components/common/Breadcrumbs";
+import { ArrowRightIcon, ExternalLinkIcon } from "@/components/common/icons";
 
 const SITE_URL = "https://kawaguchitenrei.com";
 const pageUrl = `${SITE_URL}/saijo/`;
@@ -467,14 +468,14 @@ export default function SaijoIndexPage() {
               className="inline-flex items-center justify-center gap-2 rounded-lg bg-brand px-6 py-4 text-base font-bold text-white shadow-sm transition hover:bg-brand-deep"
             >
               葬儀場について相談する
-              <span aria-hidden>→</span>
+              <ArrowRightIcon className="h-4 w-4" />
             </a>
             <a
               href="/estimate/"
               className="inline-flex items-center justify-center gap-2 rounded-lg border border-ink-deep bg-white px-6 py-4 text-base font-bold text-ink-deep transition hover:bg-cool"
             >
               費用の見積りを依頼する
-              <span aria-hidden>→</span>
+              <ArrowRightIcon className="h-4 w-4" />
             </a>
           </div>
         </div>
@@ -583,7 +584,7 @@ export default function SaijoIndexPage() {
                   className="inline-flex items-center justify-center gap-2 rounded-lg bg-brand px-6 py-4 text-base font-bold text-white shadow-sm transition hover:bg-brand-deep"
                 >
                   詳しく見る
-                  <span aria-hidden>→</span>
+                  <ArrowRightIcon className="h-4 w-4" />
                 </a>
                 <a
                   href="/contact/"
@@ -662,7 +663,7 @@ export default function SaijoIndexPage() {
                         className="inline-flex items-center justify-center gap-2 rounded-lg bg-brand px-4 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-brand-deep"
                       >
                         詳しく見る
-                        <span aria-hidden>→</span>
+                        <ArrowRightIcon className="h-4 w-4" />
                       </a>
                       <a
                         href="/contact/"
@@ -811,7 +812,7 @@ export default function SaijoIndexPage() {
                             className="inline-flex flex-1 items-center justify-center gap-2 rounded-lg border border-ink-deep bg-white px-4 py-3 text-sm font-bold text-ink-deep transition hover:bg-cool"
                           >
                             Googleマップで見る
-                            <span aria-hidden>↗</span>
+                            <ExternalLinkIcon className="h-4 w-4" />
                           </a>
                           <a
                             href="/contact/"
@@ -837,7 +838,7 @@ export default function SaijoIndexPage() {
                         className="inline-flex items-center gap-1 font-bold text-brand hover:underline"
                       >
                         {link.label}
-                        <span aria-hidden>→</span>
+                        <ArrowRightIcon className="h-4 w-4" />
                       </a>
                     ))}
                   </div>
@@ -904,14 +905,14 @@ export default function SaijoIndexPage() {
                 className="inline-flex items-center justify-center gap-2 rounded-lg bg-brand px-6 py-4 text-base font-bold text-white shadow-sm transition hover:bg-brand-deep"
               >
                 葬儀場について相談する
-                <span aria-hidden>→</span>
+                <ArrowRightIcon className="h-4 w-4" />
               </a>
               <a
                 href="/estimate/"
                 className="inline-flex items-center justify-center gap-2 rounded-lg border border-ink-deep bg-white px-6 py-4 text-base font-bold text-ink-deep transition hover:bg-cool"
               >
                 費用の見積りを依頼する
-                <span aria-hidden>→</span>
+                <ArrowRightIcon className="h-4 w-4" />
               </a>
             </div>
           </div>

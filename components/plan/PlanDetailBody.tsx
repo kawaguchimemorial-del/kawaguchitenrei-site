@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { ArrowRightIcon, CheckIcon, PhoneIcon } from "@/components/common/icons";
 import type { Plan } from "@/lib/plans";
 
 export function PlanInclusions({ plan }: { plan: Plan }) {
@@ -30,7 +31,7 @@ export function PlanInclusions({ plan }: { plan: Plan }) {
                 aria-hidden
                 className="mt-1.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand text-xs font-bold text-white"
               >
-                ✓
+                <CheckIcon className="h-4 w-4" />
               </span>
               <span className="text-base leading-7 text-ink">{item}</span>
             </li>
@@ -332,7 +333,7 @@ export function PlanCostGuide({ plan }: { plan: Plan }) {
               className="inline-flex items-center justify-center gap-2 rounded-lg border border-ink-deep bg-white px-6 py-4 text-base font-bold text-ink-deep transition hover:bg-paper"
             >
               費用の概算を依頼する
-              <span aria-hidden>→</span>
+              <ArrowRightIcon className="h-4 w-4" />
             </a>
             <a
               href="/contact/"
@@ -383,7 +384,7 @@ export function PlanCompatibleHalls({ plan }: { plan: Plan }) {
                 </p>
                 <p className="mt-auto inline-flex items-center gap-1 text-sm font-bold text-brand">
                   詳しく見る
-                  <span aria-hidden>→</span>
+                  <ArrowRightIcon className="h-4 w-4" />
                 </p>
               </div>
             );
@@ -484,9 +485,7 @@ export function PlanCta({ plan }: { plan: Plan }) {
             href="tel:0120-963-765"
             className="flex items-center justify-center gap-3 rounded-lg bg-emergency px-5 py-5 text-white shadow-sm transition hover:bg-emergency-deep"
           >
-            <span aria-hidden className="text-2xl">
-              ☎
-            </span>
+            <PhoneIcon className="h-7 w-7" />
             <span className="text-left">
               <span className="block text-lg font-bold leading-tight">
                 電話で相談する
@@ -707,7 +706,7 @@ export function PlanCitizenFuneralBody({ plan }: { plan: Plan }) {
                   aria-hidden
                   className="mt-1.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand text-xs font-bold text-white"
                 >
-                  ✓
+                  <CheckIcon className="h-4 w-4" />
                 </span>
                 <span className="text-base leading-7 text-ink">{item}</span>
               </li>
@@ -831,7 +830,7 @@ export function PlanCitizenFuneralBody({ plan }: { plan: Plan }) {
                     aria-hidden
                     className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-tint font-serif-jp text-sm font-medium text-brand"
                   >
-                    →
+                    <ArrowRightIcon className="h-4 w-4" />
                   </span>
                   <p className="text-base leading-8 text-ink md:text-lg">
                     {item}
@@ -863,9 +862,7 @@ export function PlanCitizenFuneralBody({ plan }: { plan: Plan }) {
                 href="tel:0120-963-765"
                 className="flex items-center justify-center gap-3 rounded-lg bg-emergency px-5 py-4 text-white shadow-sm transition hover:bg-emergency-deep"
               >
-                <span aria-hidden className="text-xl">
-                  ☎
-                </span>
+                <PhoneIcon className="h-6 w-6" />
                 <span className="text-left">
                   <span className="block text-base font-bold leading-tight md:text-lg">
                     電話で相談する
@@ -973,7 +970,7 @@ export function PlanCitizenFuneralBody({ plan }: { plan: Plan }) {
                   </p>
                   <p className="mt-auto pt-4 inline-flex items-center gap-1 text-sm font-bold text-brand group-hover:underline">
                     詳しく見る
-                    <span aria-hidden>→</span>
+                    <ArrowRightIcon className="h-4 w-4" />
                   </p>
                 </a>
               </li>
@@ -1152,7 +1149,7 @@ export function PlanNonReligiousBody({ plan }: { plan: Plan }) {
                   className="inline-flex items-center gap-2 rounded-lg border border-ink-deep bg-white px-5 py-3 text-sm font-bold text-ink-deep transition hover:bg-cool md:text-base"
                 >
                   川口メモリアルホールを見る
-                  <span aria-hidden>→</span>
+                  <ArrowRightIcon className="h-4 w-4" />
                 </a>
               </div>
             </div>
@@ -1167,7 +1164,7 @@ export function PlanNonReligiousBody({ plan }: { plan: Plan }) {
                     aria-hidden
                     className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-tint font-serif-jp text-sm font-medium text-brand"
                   >
-                    →
+                    <ArrowRightIcon className="h-4 w-4" />
                   </span>
                   <p className="text-base leading-8 text-ink md:text-lg">{point}</p>
                 </li>
@@ -1192,7 +1189,7 @@ export function PlanNonReligiousBody({ plan }: { plan: Plan }) {
               className="inline-flex items-center gap-2 rounded-lg border border-ink-deep bg-white px-5 py-3 text-sm font-bold text-ink-deep transition hover:bg-cool md:text-base"
             >
               川口市めぐりの森を見る
-              <span aria-hidden>→</span>
+              <ArrowRightIcon className="h-4 w-4" />
             </a>
           </div>
         </div>
@@ -1319,9 +1316,7 @@ export function PlanNonReligiousBody({ plan }: { plan: Plan }) {
                 href="tel:0120-963-765"
                 className="flex items-center justify-center gap-3 rounded-lg bg-emergency px-5 py-4 text-white shadow-sm transition hover:bg-emergency-deep"
               >
-                <span aria-hidden className="text-xl">
-                  ☎
-                </span>
+                <PhoneIcon className="h-6 w-6" />
                 <span className="text-left">
                   <span className="block text-base font-bold leading-tight md:text-lg">
                     電話で相談する
@@ -1437,7 +1432,7 @@ export function PlanNonReligiousBody({ plan }: { plan: Plan }) {
                   </p>
                   <p className="mt-auto pt-4 inline-flex items-center gap-1 text-sm font-bold text-brand group-hover:underline">
                     詳しく見る
-                    <span aria-hidden>→</span>
+                    <ArrowRightIcon className="h-4 w-4" />
                   </p>
                 </a>
               </li>
@@ -1562,7 +1557,7 @@ export function PlanFormatGuide({ plan }: { plan: Plan }) {
                   aria-hidden
                   className="mt-1.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand text-xs font-bold text-white"
                 >
-                  ✓
+                  <CheckIcon className="h-4 w-4" />
                 </span>
                 <span>{item}</span>
               </li>
@@ -1612,7 +1607,7 @@ export function PlanRelated({ plan }: { plan: Plan }) {
                 </p>
                 <p className="mt-auto pt-4 inline-flex items-center gap-1 text-sm font-bold text-brand group-hover:underline">
                   詳しく見る
-                  <span aria-hidden>→</span>
+                  <ArrowRightIcon className="h-4 w-4" />
                 </p>
               </a>
             </li>

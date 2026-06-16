@@ -16,6 +16,7 @@ import {
   SaijoFaq,
   SaijoMidCta,
 } from "@/components/saijo/SaijoDetailExtras";
+import { ArrowRightIcon } from "@/components/common/icons";
 import { saijoMachiya } from "@/lib/saijo";
 
 const SITE_URL = "https://kawaguchitenrei.com";
@@ -206,7 +207,7 @@ export default function MachiyaSaijoPage() {
                   </p>
                   <p className="mt-auto pt-4 inline-flex items-center gap-1 text-sm font-bold text-brand group-hover:underline">
                     詳しく見る
-                    <span aria-hidden>→</span>
+                    <ArrowRightIcon className="h-4 w-4" />
                   </p>
                 </a>
               </li>
