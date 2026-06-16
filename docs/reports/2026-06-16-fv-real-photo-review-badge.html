@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>作業レポート 2026-06-16｜FV実写化（合成→実物最適化）＋口コミバッジ</title>
+<style>
+  :root{--ink:#2b2b2b;--soft:#6b6b6b;--line:#e3e0da;--bg:#faf9f7;--accent:#7a6a55;--ok:#2e7d52;--warn:#b8860b}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;line-height:1.85;font-size:15px}
+  .wrap{max-width:860px;margin:0 auto;padding:40px 22px 80px}
+  header.doc{border-bottom:2px solid var(--line);padding-bottom:18px;margin-bottom:28px}
+  .kicker{font-size:12px;letter-spacing:.12em;color:var(--accent);margin:0 0 6px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:22px;font-weight:600;margin:0 0 10px;line-height:1.5}
+  .meta{font-size:12.5px;color:var(--soft)} .meta span{margin-right:14px}
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:19px;font-weight:600;margin:34px 0 12px;padding-left:11px;border-left:4px solid var(--accent)}
+  p{margin:8px 0}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13.5px;background:#fff}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  th{background:#f3f1ec}
+  code{background:#f1efe9;padding:1px 6px;border-radius:5px;font-size:12px;font-family:ui-monospace,Consolas,monospace}
+  ul,ol{margin:8px 0;padding-left:22px} li{margin:5px 0}
+  .ok{border-left:4px solid var(--ok);background:#f3faf5;padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0}
+  .warn{border-left:4px solid var(--warn);background:#fdfaf0;padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0}
+  .muted{color:var(--soft);font-size:13px}
+  .tag{display:inline-block;font-size:11.5px;padding:2px 9px;border-radius:999px;border:1px solid var(--line);color:var(--soft);background:#fff}
+  footer.doc{margin-top:50px;padding-top:18px;border-top:1px solid var(--line);color:var(--soft);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <p class="kicker">川口典礼サイト ＿ 作業レポート（社内記録・非公開）</p>
+  <h1>FVを合成画像から「実物の最適化写真」へ＋口コミ総合評価バッジ</h1>
+  <p class="meta"><span>作成日：2026-06-16</span><span>対象：トップ FV / 口コミバッジ</span><span>担当：Claude Code</span></p>
+  <p class="muted">競合FV/UX分析で最大ギャップだった「合成ヒーロー」と「社会的証明の不在」を同時に解消。個人情報・秘密情報なし。</p>
+</header>
+
+<h2>1. FV：合成 → 実物の最適化写真（PC・モバイル共通）</h2>
+<ul>
+  <li>従来の合成FV（外観＋宙に浮く祭壇 <code>hall-fv-pc.png</code> / <code>hall-fv-mobile.png</code>）は<strong>合成感が出て競合水準を下回る</strong>ため不使用に。</li>
+  <li>手持ちの実写 <code>建物.png</code>（川口メモリアルホール外観）を <strong>sharp で最適化</strong>（AI生成ではなく実物の補正）：右端の雑多をトリミング／明るさ+3%・彩度+7%・軽いコントラスト／<code>mozjpeg q84</code> で <strong>2.5MB PNG → 285KB JPEG</strong>（1578×880）。看板「川口メモリアルホール」がくっきり。</li>
+  <li>出力を <code>public/images/home/hero/hall-exterior-hero.jpg</code> に配置し、<strong>PC・モバイル同一画像</strong>に。</li>
+  <li>モバイルFVの比率を <code>aspect-[9/16]</code>（縦長）→ <code>aspect-[4/3]</code>（横向き寄り）に変更し、横位置の建物写真が1枚で両対応できるように。alt も実態に統一。</li>
+</ul>
+<div class="warn">
+  <p><strong>方針メモ：</strong>葬儀社の建物はAIで作り変えない（実在の式場であることに価値・§13）。今回は“実物の補正”に限定。電線除去等の本格レタッチは未実施（必要なら別途）。</p>
+</div>
+
+<h2>2. 口コミ総合評価バッジ（FV直下「安心の根拠」帯）</h2>
+<p>競合が多用する社会的証明を、<strong>実データ・出典明記・誇張なし</strong>で導入。価格ではなく評価・実績で差別化（価格前面化は御社の正直な料金設計と逆になるため不採用）。</p>
+<table>
+  <thead><tr><th>出典</th><th>件数</th><th>★</th></tr></thead>
+  <tbody>
+    <tr><td>Google口コミ</td><td>26</td><td>4.7</td></tr>
+    <tr><td>各種葬儀口コミサイト（名称非公開・2社）</td><td>96 / 198</td><td>4.6 / 4.7</td></tr>
+    <tr><td>ご利用後アンケート（自社）</td><td>250</td><td>4.8</td></tr>
+    <tr><td><strong>総合（加重平均）</strong></td><td><strong>570</strong></td><td><strong>約4.7</strong></td></tr>
+  </tbody>
+</table>
+<ul>
+  <li>表示：総合 <strong>★4.7（570件）</strong>＋内訳 <strong>Google ★4.7（26件）／ご利用後アンケート ★4.8（250件）</strong>＋出典注記。</li>
+  <li>データは <code>lib/reviews.ts</code> 1か所で管理（更新が容易）。星は部分塗り対応のメーターで4.7を正確に表現。</li>
+  <li><strong>「最安」「100%」は不使用</strong>（§11）。ポータル名は出さず「各種葬儀口コミサイト」（§15）。</li>
+</ul>
+<div class="warn">
+  <p><strong>構造化データは未実施：</strong><code>aggregateRating</code>/<code>Review</code> の JSON-LD は §19.2（push承認要）＋複数ポータル混在はGoogle非推奨のため、<strong>見える化バッジ（HTML）のみ</strong>。構造化データ化するなら単一出典（自社アンケート or Google）に限定して別途承認のうえ。</p>
+</div>
+
+<h2>3. 変更ファイル</h2>
+<ul>
+  <li><code>public/images/home/hero/hall-exterior-hero.jpg</code>（新規・最適化済み実写）</li>
+  <li><code>components/home/Hero.tsx</code>（合成→実写1枚・モバイル比率 9/16→4/3・alt）</li>
+  <li><code>lib/reviews.ts</code>（新規・口コミ集計データ）</li>
+  <li><code>components/home/ReviewBadge.tsx</code>（新規・総合評価バッジ＋星メーター）</li>
+  <li><code>app/page.tsx</code>（Hero 直下に <code>&lt;ReviewBadge /&gt;</code>）</li>
+</ul>
+
+<h2>4. 確認結果</h2>
+<ul>
+  <li><code>npm run build</code> 成功・TypeScript エラーなし・静的生成 <strong>135/135 維持</strong>。</li>
+  <li>生成画像は目視で良好（看板・建物くっきり、色自然）。</li>
+  <li><strong>未確認：</strong>ページ描画（FVの被せ文字・星メーターの見え方）は実機未確認。<code>npm run dev</code> での確認推奨。</li>
+</ul>
+<div class="ok">
+  <p><strong>狙い：</strong>競合分析の2大ギャップ「実写ヒーロー」「社会的証明」を一度に解消。構造・価格・式場可否・フォーム・共通chrome は無変更＝SEO 影響なし。</p>
+</div>
+
+<h2>5. 今後のアクション</h2>
+<ul>
+  <li><span class="tag">確認</span> 実機で FV（特にモバイル 4/3 の被せ文字）と星メーターの見え方をチェック。</li>
+  <li><span class="tag">任意</span> 電線除去などの本格レタッチ（Canva 等）／縦向きの追加撮影。</li>
+  <li><span class="tag">任意</span> 口コミ構造化データ（単一出典・§19.2 承認後）。</li>
+  <li><span class="tag">未コミット時</span> 旧合成FV（<code>hall-fv-*.png</code>）は未参照で残置（削除は別途）。</li>
+</ul>
+
+<footer class="doc">川口典礼サイト 社内作業レポート｜2026-06-16 作成｜非公開（docs/reports/・noindex）｜秘密情報・個人情報なし</footer>
+
+</div>
+</body>
+</html>

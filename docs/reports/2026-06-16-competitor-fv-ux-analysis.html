@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>競合FV/UX分析 2026-06-16｜川口エリア葬儀サイト上位群 vs kawaguchitenrei.com</title>
+<style>
+  :root{--ink:#2b2b2b;--soft:#6b6b6b;--line:#e3e0da;--bg:#faf9f7;--accent:#7a6a55;--ok:#2e7d52;--p1:#2e7d52;--p2:#b8860b;--p3:#8a8a8a;--dng:#c0392b}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;line-height:1.85;font-size:15px}
+  .wrap{max-width:900px;margin:0 auto;padding:40px 22px 80px}
+  header.doc{border-bottom:2px solid var(--line);padding-bottom:18px;margin-bottom:28px}
+  .kicker{font-size:12px;letter-spacing:.12em;color:var(--accent);margin:0 0 6px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:22px;font-weight:600;margin:0 0 10px;line-height:1.5}
+  .meta{font-size:12.5px;color:var(--soft)} .meta span{margin-right:14px}
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:19px;font-weight:600;margin:34px 0 12px;padding-left:11px;border-left:4px solid var(--accent)}
+  h3{font-size:15.5px;font-weight:700;margin:20px 0 6px}
+  p{margin:8px 0}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13px;background:#fff}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  th{background:#f3f1ec}
+  code{background:#f1efe9;padding:1px 6px;border-radius:5px;font-size:12px;font-family:ui-monospace,Consolas,monospace}
+  ul,ol{margin:8px 0;padding-left:22px} li{margin:5px 0}
+  .callout{border-left:4px solid var(--accent);background:#f6f3ec;padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0}
+  .ok{border-left:4px solid var(--ok);background:#f3faf5;padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0}
+  .warn{border-left:4px solid var(--dng);background:#fdf2f2;padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0}
+  .muted{color:var(--soft);font-size:13px}
+  .pill{display:inline-block;font-size:11px;font-weight:700;padding:2px 9px;border-radius:999px;color:#fff}
+  .pill.p1{background:var(--p1)} .pill.p2{background:var(--p2)} .pill.p3{background:var(--p3)}
+  footer.doc{margin-top:50px;padding-top:18px;border-top:1px solid var(--line);color:var(--soft);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <p class="kicker">川口典礼サイト ＿ 競合FV/UX分析（社内記録・非公開）</p>
+  <h1>川口エリア 上位葬儀サイトの FV/UX 分析と、kawaguchitenrei.com に足りないもの</h1>
+  <p class="meta"><span>作成日：2026-06-16</span><span>対象：競合・ポータル約20サイト</span><span>担当：Claude Code</span></p>
+  <p class="muted">「川口 葬儀」関連で kawaguchitenrei.com より上位に出る競合群の FV（ファーストビュー）と UX を調査し、自社の不足点を抽出。個人情報・秘密情報なし。</p>
+</header>
+
+<div class="callout">
+  <p><strong>調査方法と限界：</strong>ポータル/チェーン/地場の約20サイトを4分担で取得・分析。個別の数値・年数・キャッチコピーには取得時の誤差があり得る（一部はJSレンダリングで本文未取得）。<strong>ただし20サイト横断で一致したパターンは信頼度が高い</strong>ため、本レポートは「個社の数字」ではなく「共通パターン」を根拠に結論を出す。</p>
+</div>
+
+<h2>1. 上位サイトが“ほぼ全社”やっている FV/UX パターン</h2>
+<table>
+  <thead><tr><th>パターン</th><th>具体（複数社で一致）</th></tr></thead>
+  <tbody>
+    <tr><td><strong>実写ヒーロー（建物/室内・暖色）</strong></td><td>柳崎ホール=式場実写、ともしび/あゆみ/南彩=暖色の室内・お別れ場面、福祉葬祭=PC/SP別の実写MV。<strong>合成やイラストは少数派</strong>（白備・川口家族葬窓口・山﨑典礼はイラスト/テキスト主体＝視覚的に弱いと評価）</td></tr>
+    <tr><td><strong>24時間 ＋ 緊急導線の“分離”</strong></td><td>「ご危篤・ご搬送 お急ぎの方はこちら」を通常CTAと別枠で（福祉葬祭・くらしの友・はじまりの杜・柳崎）。研究段階と危機段階を出し分け</td></tr>
+    <tr><td><strong>料金の即時提示（最低価格＋階層）</strong></td><td>ティア10.1万〜、よりそう7.6万〜、あゆみ9.5万〜、南彩9.9万〜（4プランカード）。多くが上部で価格を見せる</td></tr>
+    <tr><td><strong>FV内の社会的証明</strong></td><td>よりそう「総合満足度95%」、光彩「Google口コミ件数No.1」、福祉葬祭「週刊ダイヤモンド埼玉1位」、あゆみ「満足度97%・3,000件超」、小さなお葬式「4.7★」</td></tr>
+    <tr><td><strong>地名の前面化</strong></td><td>H1/パンくず/小見出しに「川口市」。駅近サイトは「川口駅徒歩5分」を先頭に（花ぜん・柳崎）</td></tr>
+    <tr><td><strong>多チャネル接点＋固定CTA</strong></td><td>電話（固定ヘッダー）＋資料請求＋LINE。スマホは固定フッターCTA。「45秒/1分で資料請求」の摩擦低減コピー</td></tr>
+    <tr><td><strong>高intent SEO記事→相談 funnel</strong></td><td>相模典礼「川口市で受け取れる葬儀補助金3選」等の記事で集客し、本文中に電話/フォーム/LINEを多数配置</td></tr>
+  </tbody>
+</table>
+
+<h2>2. kawaguchitenrei.com が“すでに競合と同等以上”の点</h2>
+<div class="ok">
+  <p>不足だけでなく、<strong>すでに強い部分</strong>を明確化する（むやみに真似て崩さないため）。</p>
+</div>
+<ul>
+  <li><strong>所有トラスト指標が厚い</strong>：創業20年／年間約260件／駐車場70台／めぐりの森 車5分／葬祭ディレクター在籍／市民葬登録 ＝ 多くの地場競合より情報量が多い。</li>
+  <li><strong>価格は提示済み</strong>：直葬 139,000円〜（PCの信頼ポイント）。プラン5種は会員/通常の二段で透明。</li>
+  <li><strong>自社式場＋駐車場70台</strong>：駐車場を持たない競合に対する明確な差別化（地名・車移動が中心の立地と整合）。</li>
+  <li><strong>お客様の声（アンケート画像＋星）・施行事例</strong>：社会的証明の“素材”は保有（FVへの集約が弱いだけ）。</li>
+  <li><strong>エリアページSEOの厚み</strong>：<code>/area/*</code> 多数。多くの地場競合より地域ロングテール構造が強い。</li>
+  <li><strong>落ち着いた作り込み</strong>：今回のP1/P2でアイコン・タイポ・余白を統一済。イラスト/テキスト主体の競合より“読み物”の質は上。</li>
+</ul>
+
+<h2>3. 足りないもの（FV起点・優先度つき）</h2>
+<table>
+  <thead><tr><th>#</th><th>不足点</th><th>競合</th><th>自社現状</th><th>優先</th><th>制約・注意</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td><strong>FVが合成画像</strong>（外観＋宙に浮く祭壇）</td><td>大半が実写（建物/暖色室内）</td><td>合成PNG</td><td><span class="pill p1">P1</span></td><td>手持ちに実写あり（<code>建物.png</code>・室内各種）。即改善可・見た目のみ</td></tr>
+    <tr><td>2</td><td><strong>FVに社会的証明（満足度/口コミ/星）が無い</strong></td><td>満足度95-97%・Google口コミNo.1・件数</td><td>件数/年数はあるが評価系バッジ無し</td><td><span class="pill p2">P2</span></td><td><strong>実データ＋プライバシー確認必須・捏造禁止</strong>。Review/aggregateRating の JSON-LD は §19.2 で push 承認要。Google口コミ件数や“声”の件数なら表示余地</td></tr>
+    <tr><td>3</td><td><strong>緊急導線の分離が弱い</strong></td><td>「ご危篤・ご搬送 お急ぎの方」独立枠</td><td>電話CTAはあるが“お急ぎ専用”枠ではない（EmergencySは下部）</td><td><span class="pill p2">P2</span></td><td>下部固定CTAは電話＋事前相談のまま（§4）。ヒーロー内に「ご危篤・お急ぎの方へ」一文/小リンク追加は可</td></tr>
+    <tr><td>4</td><td>料金の“見せ場”が弱い</td><td>3-4プラン価格を上部カードで</td><td>直葬13.9万〜は表示も控えめ／プラン詳細は下部</td><td><span class="pill p3">P3</span></td><td>§9正本のみ。FV直下に「直葬13.9万〜／家族葬52.8万〜」の小ストリップ追加は容易</td></tr>
+    <tr><td>5</td><td>資料請求（冊子）導線が弱い</td><td>「45秒/1分で資料請求」</td><td>事前相談/見積はあるが資料請求は薄い</td><td><span class="pill p3">P3</span></td><td>任意。フォーム改修は §19.2 確認要</td></tr>
+    <tr><td>6</td><td>高intentローカルSEO記事の funnel 強化</td><td>相模典礼「川口市 補助金3選」等</td><td>columnあり（補助金記事も）だがCTA funnel弱い</td><td><span class="pill p2">P2</span></td><td>SEO中心軸（§10）と合致・自走可。記事末/中のCTA整備</td></tr>
+    <tr><td>7</td><td>LINE導線</td><td>多くが設置</td><td>意図的に不採用（§4）</td><td>—</td><td><strong>方針として今は追加しない</strong>（将来検討の余地のみ）</td></tr>
+  </tbody>
+</table>
+
+<h2>4. 結論（FV まわりの打ち手）</h2>
+<ol>
+  <li><strong>FVを実写に置換（P1）</strong>＝最優先。合成は競合水準を下回る。手持ちの <code>建物.png</code>（PC）＋暖色室内（モバイル）で即解消できる。<em>＝今まさに検討中の施策が、競合分析でも“最大の差”として裏づけられた。</em></li>
+  <li><strong>FV直下に「結論先出しの帯」</strong>：価格の最低ライン＋実績（年数/件数）＋（あれば）口コミ評価を、結論先出しで1列に。素材は保有しているので“集約”するだけ。</li>
+  <li><strong>「ご危篤・お急ぎの方へ」の一文</strong>をヒーロー内に（電話の近く）。危機段階のユーザーへの配慮（§8）と整合。</li>
+</ol>
+<div class="warn">
+  <p><strong>やってはいけない真似：</strong>満足度%・★・口コミ件数は<strong>実データが無いまま載せない</strong>（禁止表現・捏造）。Review/aggregateRating の構造化データは §19.2（push 承認要）。価格は §9 正本のみ。煽り（最安/必ず 等）は §11 で禁止。競合が多用する「最安」訴求には追随しない。</p>
+</div>
+
+<h2>5. 次アクション候補</h2>
+<ul>
+  <li><span class="pill p1">P1</span> FV 実写化のプロトタイプ（PC=建物.png／モバイル=室内 or 4:5比率）。Before/After 提示。</li>
+  <li><span class="pill p2">P2</span> FV直下「結論帯」（価格最低ライン＋創業20年＋年間260件）。実データのある“声”の件数があれば併記。</li>
+  <li><span class="pill p2">P2</span> 既存 column の CTA funnel 強化（特に川口市×補助金/費用相場/手続き）。</li>
+  <li><span class="pill p3">P3</span> 料金ミニストリップ／資料請求導線（フォーム改修は承認後）。</li>
+</ul>
+
+<footer class="doc">川口典礼サイト 社内 競合FV/UX分析｜2026-06-16 作成｜非公開（docs/reports/・noindex）｜秘密情報・個人情報なし。競合の数値はWeb取得時点の参考値で誤差を含む。</footer>
+
+</div>
+</body>
+</html>

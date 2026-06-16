@@ -33,10 +33,8 @@ const eeatBadges = [
   "めぐりの森 車5分",
 ];
 
-// スマホFV用（縦・外観＋祭壇の合成）
-const heroImage = "/images/home/hero/hall-fv-mobile.png";
-// PC FV用（全幅・横・外観＋祭壇の合成）
-const heroWideImage = "/images/home/hero/hall-fv-pc.png";
+// FV画像：PC・モバイル共通の実写（川口メモリアルホール外観・最適化済み）
+const heroImage = "/images/home/hero/hall-exterior-hero.jpg";
 
 export function Hero() {
   return (
@@ -44,10 +42,10 @@ export function Hero() {
       {/* スマホ用FV：画像先行型（現状維持） */}
       <div className="md:hidden">
         <div className="relative">
-          <div className="relative aspect-[9/16] overflow-hidden bg-warm">
+          <div className="relative aspect-[4/3] overflow-hidden bg-warm">
             <Image
               src={heroImage}
-              alt="川口メモリアルホールの外観と式場・祭壇（川口市西新井宿）"
+              alt="川口メモリアルホールの外観（埼玉県川口市西新井宿）"
               fill
               sizes="100vw"
               priority
@@ -157,12 +155,12 @@ export function Hero() {
         <figure className="relative w-full">
           <div className="relative h-[clamp(260px,42vh,460px)] w-full overflow-hidden bg-warm">
             <Image
-              src={heroWideImage}
-              alt="川口メモリアルホールの外観と式場・祭壇（埼玉県川口市西新井宿）"
+              src={heroImage}
+              alt="川口メモリアルホールの外観（埼玉県川口市西新井宿）"
               fill
               sizes="100vw"
               priority
-              className="hero-image-fade object-cover object-[center_40%]"
+              className="hero-image-fade object-cover object-[center_45%]"
             />
             <div
               aria-hidden

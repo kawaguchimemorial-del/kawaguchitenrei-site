@@ -12,6 +12,7 @@ import { Hero } from "@/components/home/Hero";
 import { MediaLinksSection } from "@/components/home/MediaLinksSection";
 import { MeguriSection } from "@/components/home/MeguriSection";
 import { PlanSection } from "@/components/home/PlanSection";
+import { ReviewBadge } from "@/components/home/ReviewBadge";
 import { ThreeStrengthsSection } from "@/components/home/ThreeStrengthsSection";
 import { VoicesSection } from "@/components/home/VoicesSection";
 import { getHomeFaqs } from "@/lib/faqs";
@@ -105,6 +106,7 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
       <Hero />
+      <ReviewBadge />
       <AdvanceConsultSection />
       <ThreeStrengthsSection />
       <EmergencySection />
