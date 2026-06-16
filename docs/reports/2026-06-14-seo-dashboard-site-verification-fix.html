@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>作業レポート 2026-06-14｜SEOダッシュボード復旧（403 権限不足・所有権確認で解消）</title>
+<style>
+  :root{--ink:#2b2b2b;--soft:#6b6b6b;--line:#e3e0da;--bg:#faf9f7;--accent:#7a6a55;--ok:#2e7d52;--dng:#c0392b}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;line-height:1.85;font-size:15px}
+  .wrap{max-width:860px;margin:0 auto;padding:40px 22px 80px}
+  header.doc{border-bottom:2px solid var(--line);padding-bottom:18px;margin-bottom:28px}
+  .kicker{font-size:12px;letter-spacing:.12em;color:var(--accent);margin:0 0 6px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:22px;font-weight:600;margin:0 0 10px;line-height:1.5}
+  .meta{font-size:12.5px;color:var(--soft)} .meta span{margin-right:14px}
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:19px;font-weight:600;margin:34px 0 12px;padding-left:11px;border-left:4px solid var(--accent)}
+  p{margin:8px 0}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13.5px;background:#fff}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  code{background:#f1efe9;padding:1px 6px;border-radius:5px;font-size:12.5px;font-family:ui-monospace,Consolas,monospace}
+  ul,ol{margin:8px 0;padding-left:22px} li{margin:5px 0}
+  .callout{border-left:4px solid var(--dng);background:#fdf2f2;padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0}
+  .ok{border-left:4px solid var(--ok);background:#f3faf5;padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0}
+  .muted{color:var(--soft);font-size:13px}
+  .tag{display:inline-block;font-size:11.5px;padding:2px 9px;border-radius:999px;border:1px solid var(--line);color:var(--soft);background:#fff}
+  footer.doc{margin-top:50px;padding-top:18px;border-top:1px solid var(--line);color:var(--soft);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <p class="kicker">川口典礼サイト ＿ 作業レポート（社内記録・非公開）</p>
+  <h1>SEO ダッシュボード復旧：403 権限不足の診断と所有権確認による解消</h1>
+  <p class="meta"><span>作成日：2026-06-14</span><span>対象：/admin/seo/</span><span>担当：Claude Code</span></p>
+  <p class="muted">社内記録（Web非公開・<code>noindex</code>）。秘密情報（トークン値・鍵・メールアドレス）は一切記載していません。</p>
+</header>
+
+<div class="callout">
+  <p><strong>事象：</strong>前日（6/13）にトークン再取得まで進めたが、<code>/admin/seo/?range=7d</code> が再び「データを取得できませんでした」。前回の <code>invalid_grant</code>（失効）とは別原因。</p>
+</div>
+
+<h2>1. 診断（秘密情報を出さない一時スクリプト・実行後削除）</h2>
+<p>値を一切出力しない診断スクリプトを <code>tmp/</code> に作成し、refresh_token の生死とアカウント権限を検証した（実行後に削除）。</p>
+<table>
+  <thead><tr><th>検証項目</th><th>結果</th><th>解釈</th></tr></thead>
+  <tbody>
+    <tr><td>refresh_token でアクセストークン取得</td><td><strong>成功</strong></td><td>トークンは有効。前日の再取得は成立していた（＝失効ではない）</td></tr>
+    <tr><td><code>searchanalytics.query</code></td><td><code>403 forbidden</code></td><td>「User does not have sufficient permission for site」</td></tr>
+    <tr><td><code>sites.list</code>（アカウントが見えるプロパティ）</td><td><code>https://kawaguchitenrei.com/</code> ＝ <code>siteUnverifiedUser</code></td><td>権限レベルが「未確認ユーザー」。GSC API はこの権限ではデータ照会不可</td></tr>
+  </tbody>
+</table>
+
+<h2>2. 根本原因</h2>
+<p>前日トークンを再取得した際、OAuth 同意画面で承認したアカウントが、対象プロパティ（URLプレフィックス型 <code>https://kawaguchitenrei.com/</code>）の <strong>正規ユーザーではなく「未確認ユーザー（<code>siteUnverifiedUser</code>）」</strong>だった。Search Console API でデータ照会するには Owner / Full / Restricted のいずれかが必要で、未確認ユーザーは <code>403</code> になる。トークンの問題ではなく <strong>アカウントのプロパティ権限の問題</strong>。</p>
+
+<h2>3. 対応（所有権確認＝B案より直接的な解決）</h2>
+<p>当該アカウントで Search Console の<strong>所有権確認（HTMLファイル方式）</strong>を行い、Owner に昇格させる方針を採用。Owner になれば、現在 env にある（有効な）refresh_token がそのまま権限を持つため、トークン再取得や env / Vercel の更新は不要。</p>
+<ul>
+  <li>Google 発行の確認用 HTML（<code>google49b5da2b44a51992.html</code>）は、当初 <code>public/images/tmp/serch/</code> に置かれていたため、配信 URL がルートにならず確認できない状態だった。</li>
+  <li>Next.js は <code>public/</code> をサイトルートに配信するため、ファイルを <strong><code>public/</code> 直下へ移動</strong>し、<code>https://kawaguchitenrei.com/google49b5da2b44a51992.html</code> で配信されるようにした。</li>
+  <li>確認状態維持のため、このファイルは<strong>削除せずコミットして本番に残す</strong>（Google の指示どおり）。</li>
+</ul>
+
+<h2>4. 変更内容</h2>
+<table>
+  <thead><tr><th>ファイル</th><th>変更</th></tr></thead>
+  <tbody>
+    <tr><td><code>public/google49b5da2b44a51992.html</code></td><td>新規（<code>public/images/tmp/serch/</code> から移動）。GSC 所有権確認ファイル。コミット <code>d1ea9de</code></td></tr>
+    <tr><td><code>public/images/tmp/serch/</code></td><td>空になったため削除</td></tr>
+  </tbody>
+</table>
+<p>コード・公開ページ本体への変更なし。認証方式は OAuth 継続（<code>lib/search-console/*</code> 無変更）。</p>
+
+<h2>5. 確認結果</h2>
+<ul>
+  <li><code>npm run build</code> 成功（エラーなし・従来どおりのルート構成）。</li>
+  <li>本番配信を実測確認：<code>https://kawaguchitenrei.com/google49b5da2b44a51992.html</code> がデプロイ後 <code>HTTP 200</code> ＋ <code>google-site-verification</code> を返すことを確認。</li>
+  <li>ユーザーが Search Console で所有権確認を実行 → <strong>ダッシュボード復旧（データ表示）を確認</strong>。</li>
+</ul>
+<div class="ok">
+  <p><strong>後片付け：</strong>前日のトークン再取得で生成され平文で残っていた <code>tmp/refresh-token.txt</code>（refresh_token の平文）と <code>tmp/auth-url.txt</code> を、ユーザー承認のうえ削除。秘密情報は診断・レポートとも一切出力・保存していない（診断スクリプトは実行後削除）。</p>
+</div>
+
+<h2>6. 今後のアクション・メモ</h2>
+<ul>
+  <li><span class="tag">完了</span> ダッシュボード復旧。</li>
+  <li><span class="tag">維持</span> <code>public/google49b5da2b44a51992.html</code> は所有権確認の維持のため<strong>削除しない</strong>。</li>
+  <li><span class="tag">参考</span> 今回は「失効」ではなく「権限不足」。今後ダッシュボードが落ちたら、まず①トークン失効（<code>invalid_grant</code>）か②権限不足（<code>403 / siteUnverifiedUser</code>）かを切り分ける。トークン再取得時は<strong>必ず GSC で Owner/Full 権限を持つアカウント</strong>で承認すること。</li>
+  <li><span class="tag">将来</span> refresh_token の 7 日失効を避ける恒久対策（OAuth 同意画面の本番公開）は前日レポート参照。</li>
+</ul>
+
+<footer class="doc">川口典礼サイト 社内作業レポート｜2026-06-14 作成｜非公開（docs/reports/・noindex）｜秘密情報・個人情報なし</footer>
+
+</div>
+</body>
+</html>

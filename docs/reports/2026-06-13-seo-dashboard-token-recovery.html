@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>作業レポート 2026-06-13｜SEOダッシュボード復旧（refresh_token失効・本番公開で恒久化）</title>
+<style>
+  :root{--ink:#2b2b2b;--soft:#6b6b6b;--line:#e3e0da;--bg:#faf9f7;--accent:#7a6a55;--ok:#2e7d52;--dng:#c0392b}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;line-height:1.85;font-size:15px}
+  .wrap{max-width:860px;margin:0 auto;padding:40px 22px 80px}
+  header.doc{border-bottom:2px solid var(--line);padding-bottom:18px;margin-bottom:28px}
+  .kicker{font-size:12px;letter-spacing:.12em;color:var(--accent);margin:0 0 6px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:22px;font-weight:600;margin:0 0 10px;line-height:1.5}
+  .meta{font-size:12.5px;color:var(--soft)} .meta span{margin-right:14px}
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:19px;font-weight:600;margin:34px 0 12px;padding-left:11px;border-left:4px solid var(--accent)}
+  p{margin:8px 0}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13.5px;background:#fff}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  code{background:#f1efe9;padding:1px 6px;border-radius:5px;font-size:12.5px;font-family:ui-monospace,Consolas,monospace}
+  ul,ol{margin:8px 0;padding-left:22px} li{margin:5px 0}
+  .callout{border-left:4px solid var(--dng);background:#fdf2f2;padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0}
+  .ok{border-left:4px solid var(--ok);background:#f3faf5;padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0}
+  .muted{color:var(--soft);font-size:13px}
+  .tag{display:inline-block;font-size:11.5px;padding:2px 9px;border-radius:999px;border:1px solid var(--line);color:var(--soft);background:#fff}
+  footer.doc{margin-top:50px;padding-top:18px;border-top:1px solid var(--line);color:var(--soft);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <p class="kicker">川口典礼サイト ＿ 作業レポート（社内記録・非公開）</p>
+  <h1>SEO ダッシュボード復旧：refresh_token 失効の診断と恒久対策</h1>
+  <p class="meta"><span>作成日：2026-06-13</span><span>対象：/admin/seo/</span><span>担当：Claude Code</span></p>
+  <p class="muted">社内記録（Web非公開・<code>noindex</code>）。秘密情報（トークン値・鍵）は一切記載していません。</p>
+</header>
+
+<div class="callout">
+  <p><strong>事象：</strong><code>/admin/seo/?range=7d</code> で「データを取得できませんでした」。前回も同様に発生（約 1 週間ごとの再発）。</p>
+</div>
+
+<h2>1. 診断（秘密情報を出さずに検証）</h2>
+<p>OAuth とサービスアカウントの両認証を、値を一切出力しない診断スクリプトで検証（実行後に削除）。</p>
+<table>
+  <thead><tr><th>認証方式</th><th>結果</th><th>解釈</th></tr></thead>
+  <tbody>
+    <tr><td>OAuth refresh_token（現行コードが使用）</td><td><code>invalid_grant</code></td><td><strong>リフレッシュトークン失効</strong>。これが取得失敗の直接原因</td></tr>
+    <tr><td>サービスアカウント（env に存在・未使用）</td><td><code>ERR_OSSL_UNSUPPORTED</code></td><td>env の秘密鍵が Node で解析不可。代替に使えない（過去経緯：SA は GSC 側でユーザー追加不可だった）</td></tr>
+  </tbody>
+</table>
+<p><code>lib/search-console/client.ts</code> は OAuth トークンのみ使用。失効で <code>loadDashboardData</code> が throw → <code>data.ok=false</code> → 当該表示。</p>
+
+<h2>2. 根本原因（再発する理由）</h2>
+<p>Google OAuth 同意画面が<strong>「テスト中」公開ステータス</strong>のままだと、発行される refresh_token は <strong>7 日で自動失効</strong>する（Google 仕様）。約 1 週間ごとに落ちるのはこのため。既存 Runbook §10 の「refresh_token は無期限」という記述は、テスト中ステータスでは誤り。</p>
+
+<h2>3. 恒久対策（ユーザー選択：本番公開で恒久化）</h2>
+<ul>
+  <li>OAuth 同意画面を<strong>「本番（In production）」に公開</strong>すると refresh_token は実質無期限になる。</li>
+  <li><code>webmasters.readonly</code> は機密スコープだが、<strong>本番公開に Google の審査は必須でない</strong>（未審査でも公開可。同意時に「確認されていません」警告が出るのみ、社内 1 ユーザーなら通過で問題なし）。</li>
+  <li>本番公開<strong>後に</strong> refresh_token を取り直す（テスト中発行の旧トークンは 7 日失効対象のまま）。</li>
+</ul>
+
+<h2>4. 今回の変更（ドキュメント）</h2>
+<ul>
+  <li><code>docs/operations/seo-dashboard/README.md</code> を修正：
+    <ul>
+      <li>§5.1 公開ステータスの記述を「テスト中＝7 日失効／本番公開で恒久化（未審査でも可）」に全面改訂</li>
+      <li>§10 の「refresh_token は無期限」を公開ステータス依存の正しい記述に訂正</li>
+      <li>§11 トラブルシュートの <code>invalid_grant</code> 行に「週次再発＝テスト中。本番公開で恒久解決」を追記</li>
+    </ul>
+  </li>
+  <li>コード変更なし（認証方式は OAuth 継続。client.ts 等は無変更）。</li>
+</ul>
+
+<h2>5. 復旧手順（ユーザー操作・要対応）</h2>
+<ol>
+  <li><strong>本番公開</strong>：<code>console.cloud.google.com/apis/credentials/consent</code> →「アプリを公開 / PUBLISH APP」→ 確認。</li>
+  <li><strong>トークン再取得</strong>：<code>node --env-file=.env.local scripts/get-refresh-token.mjs</code> を実行 → <code>tmp/auth-url.txt</code> の URL をブラウザで開き、GSC 閲覧権限のある Google アカウントで承認（「確認されていません」警告は[詳細]→[移動]で通過）→ <code>tmp/refresh-token.txt</code> に新トークンが出力。</li>
+  <li><strong>env 更新</strong>：新トークンを <code>.env.local</code> と Vercel（Production/Preview/Development）の <code>GOOGLE_OAUTH_REFRESH_TOKEN</code> に設定。</li>
+  <li><strong>反映</strong>：Vercel 再デプロイ → <code>/admin/seo/</code> で表示確認。<code>tmp/auth-url.txt</code>・<code>tmp/refresh-token.txt</code> を削除。</li>
+</ol>
+
+<div class="ok">
+  <p><strong>確認結果：</strong>ドキュメント修正のみ。秘密情報は診断・レポートとも一切出力・保存していない（診断スクリプトは実行後削除）。コード・公開サイトへの影響なし。</p>
+</div>
+
+<h2>6. 残課題</h2>
+<ul>
+  <li><span class="tag">要対応</span> ユーザーによる本番公開＋トークン再取得＋env 更新（上記 §5）。完了後にダッシュボード復旧。</li>
+  <li><span class="tag">将来</span> サービスアカウント方式は現状の鍵が解析不可・GSC 追加不可の経緯あり。恒久運用は OAuth 本番公開で十分。</li>
+</ul>
+
+<footer class="doc">川口典礼サイト 社内作業レポート｜2026-06-13 作成｜非公開（docs/reports/・noindex）｜秘密情報・個人情報なし</footer>
+
+</div>
+</body>
+</html>

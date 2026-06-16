@@ -86,9 +86,12 @@
 1. https://console.cloud.google.com/apis/credentials/consent を開く
 2. アプリ名・サポートメール・デベロッパー連絡先を入力
 3. スコープに `.../auth/webmasters.readonly` を追加
-4. **テストユーザー**として、Search Console を閲覧できる Google アカウントを追加
-   - 「テスト中」公開ステータスなら、テストユーザーのみが利用可（個人運用なら十分）
-   - 「本番」公開ステータスにする場合は審査が必要（個人利用なら推奨しない）
+4. **公開ステータス（重要・再発防止の要）**
+   - **「テスト中」のままにしない。** テスト中ステータスの OAuth アプリが発行する refresh_token は **7 日で自動失効**する（Google の仕様）。これがダッシュボードが約 1 週間ごとに「データを取得できませんでした」になる根本原因。
+   - **対策：同意画面を「本番（In production / PUBLISH APP）」に切り替える。** 本番ステータスなら refresh_token は実質無期限（取り消し・6か月以上未使用を除く）。
+   - `webmasters.readonly` は「機密スコープ」だが、**本番公開に Google の審査（verification）は必須ではない**。未審査のまま本番公開でき、同意時に「このアプリは Google で確認されていません」警告が出るだけ（[詳細]→[移動（安全ではないページ）] で続行）。社内 1 ユーザー運用なら警告通過で問題なし（未審査アプリは 100 ユーザー上限があるが 1 名運用には影響なし）。
+   - 切替手順：https://console.cloud.google.com/apis/credentials/consent →「アプリを公開」/「PUBLISH APP」→ 確認ダイアログで公開。
+   - 本番公開後に **必ず refresh_token を取り直す**（§6）。テスト中に発行済みの古いトークンは 7 日失効の対象のままのため。
 
 ### 5.2 OAuth 2.0 クライアント ID の作成
 
@@ -186,7 +189,10 @@ npm run dev
 - API クォータは 1 分 1200 リクエスト程度。キャッシュで十分回避できる
 - 重要キーワードは `lib/search-console/keywords.ts` の配列で管理
 - 期間切替・デバイス切替は URL クエリ（`?range=...&device=...`）で行う
-- refresh_token は無期限（ただし、Google 側で取り消されたり、6 か月以上未使用で失効する場合あり）
+- **refresh_token の寿命は OAuth 同意画面の公開ステータスに依存する**：
+  - 「テスト中」ステータス → refresh_token は **7 日で失効**（約 1 週間ごとにダッシュボードが落ちる原因）
+  - 「本番（In production）」ステータス → 実質無期限（Google 側の取り消し・6 か月以上未使用を除く）
+  - **恒久対策は §5.1 のとおり同意画面を「本番」公開にすること。** トークン再取得だけではテスト中のままなのでまた 7 日で失効する。
 - 失効時は `scripts/get-refresh-token.mjs` を再度実行して新しい refresh_token を取得
 
 ---
@@ -199,7 +205,7 @@ npm run dev
 | 「データを取得できませんでした」 | dev サーバログの `[search-console] *failed:` 行で原因を確認 |
 | `User does not have sufficient permission` (403) | 認証に使った Google アカウントが Search Console プロパティの権限を持っていない。プロパティのユーザー一覧を確認 |
 | `Request contains an invalid argument` (400) | `SEARCH_CONSOLE_SITE_URL` の形式違反。`sc-domain:...` または `https://....../`（末尾スラッシュ）で指定 |
-| `invalid_grant` | refresh_token 失効。スクリプトで再取得 |
+| `invalid_grant` | refresh_token 失効。`scripts/get-refresh-token.mjs` で再取得。**約 1 週間ごとに再発する場合は OAuth 同意画面が「テスト中」のまま（7 日失効）。§5.1 のとおり「本番」公開にして再取得すれば恒久解決** |
 | 一部キーワードが「—」 | GSC のプライバシー閾値未満（正常） |
 | データが古い | キャッシュ 6時間。手動再取得は再デプロイで反映、または `revalidateTag("search-console")` |
 
