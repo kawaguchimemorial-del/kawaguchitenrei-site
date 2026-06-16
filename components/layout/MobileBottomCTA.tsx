@@ -1,5 +1,7 @@
 "use client";
 
+import { PencilIcon, PhoneIcon } from "@/components/common/icons";
+
 export function MobileBottomCTA() {
   return (
     <div className="fixed inset-x-0 bottom-0 z-50 border-t border-line-soft bg-white/95 px-3 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] shadow-[0_-10px_30px_rgba(21,32,28,0.16)] backdrop-blur md:hidden">
@@ -8,9 +10,7 @@ export function MobileBottomCTA() {
           href="tel:0120-963-765"
           className="flex min-h-16 items-center justify-center gap-2 rounded-lg bg-emergency px-3 text-center text-white shadow-sm transition active:bg-emergency-deep"
         >
-          <span aria-hidden className="text-xl">
-            ☎
-          </span>
+          <PhoneIcon className="h-6 w-6" />
           <span className="text-left leading-tight">
             <span className="block text-base font-bold">電話する</span>
             <span className="mt-0.5 block text-[10px] font-semibold text-white/90">
@@ -30,9 +30,7 @@ export function MobileBottomCTA() {
           }}
           className="flex min-h-16 items-center justify-center gap-2 rounded-lg bg-brand px-3 text-center text-white shadow-sm transition active:bg-brand-deep"
         >
-          <span aria-hidden className="text-lg">
-            ✎
-          </span>
+          <PencilIcon className="h-5 w-5" />
           <span className="text-left leading-tight">
             <span className="block text-base font-bold">相談する</span>
             <span className="mt-0.5 block text-[10px] font-semibold text-white/90">

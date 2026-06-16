@@ -63,7 +63,7 @@ export function Footer() {
           </div>
 
           <div className="mt-6 rounded-lg border border-white/15 bg-white/5 p-4">
-            <p className="text-[11px] font-semibold tracking-widest text-white/70 uppercase">
+            <p className="text-[11px] font-semibold tracking-widest text-white/80 uppercase">
               24時間365日 受付
             </p>
             <a
@@ -72,7 +72,7 @@ export function Footer() {
             >
               0120-963-765
             </a>
-            <p className="mt-2 text-xs leading-6 text-white/70">
+            <p className="mt-2 text-xs leading-6 text-white/80">
               深夜・早朝のご相談、病院・施設・ご自宅へのお迎えにも対応します。
             </p>
           </div>
@@ -100,7 +100,7 @@ export function Footer() {
       </div>
 
       <div className="border-t border-white/10">
-        <div className="mx-auto flex max-w-6xl flex-col gap-4 px-5 py-5 text-xs text-white/65 md:flex-row md:items-center md:justify-between md:px-8">
+        <div className="mx-auto flex max-w-6xl flex-col gap-4 px-5 py-5 text-xs text-white/80 md:flex-row md:items-center md:justify-between md:px-8">
           <ul className="flex flex-wrap gap-x-5 gap-y-2">
             {policyLinks.map((link) => (
               <li key={link.href}>

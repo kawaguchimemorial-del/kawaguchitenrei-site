@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { CloseIcon, MenuIcon, PhoneIcon } from "@/components/common/icons";
 
 const navItems = [
   { label: "葬儀プラン", href: "/#plans" },
@@ -50,7 +51,7 @@ export function Header() {
         <div className="flex items-center gap-2">
           <div className="hidden items-center gap-2 md:flex">
             <div className="flex flex-col items-end leading-tight">
-              <span className="text-[10px] font-semibold tracking-widest text-ink-soft uppercase">
+              <span className="text-[10px] font-semibold tracking-widest text-ink-mid uppercase">
                 24h365日 受付
               </span>
               <a
@@ -64,7 +65,7 @@ export function Header() {
               href="tel:0120-963-765"
               className="inline-flex items-center gap-2 rounded-lg bg-emergency px-4 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-emergency-deep md:px-5"
             >
-              <span aria-hidden>☎</span>
+              <PhoneIcon className="h-4 w-4" />
               電話する
             </a>
           </div>
@@ -75,9 +76,13 @@ export function Header() {
             aria-expanded={isOpen}
             aria-controls="mobile-nav-panel"
             onClick={() => setIsOpen((prev) => !prev)}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-line text-lg text-ink-deep transition hover:border-brand hover:text-brand lg:hidden"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-line text-ink-deep transition hover:border-brand hover:text-brand lg:hidden"
           >
-            <span aria-hidden>{isOpen ? "×" : "☰"}</span>
+            {isOpen ? (
+              <CloseIcon className="h-5 w-5" />
+            ) : (
+              <MenuIcon className="h-5 w-5" />
+            )}
           </button>
         </div>
       </div>
