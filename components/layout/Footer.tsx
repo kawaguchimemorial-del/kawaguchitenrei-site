@@ -6,7 +6,7 @@ const footerColumns = [
       { label: "直葬プラン", href: "/plan/direct-funeral/" },
       { label: "花入れお別れプラン", href: "/plan/hanaire-owakare/" },
       { label: "一日葬プラン", href: "/plan/oneday-funeral/" },
-      { label: "家族葬プラン", href: "/plan/family-funeral/" },
+      { label: "川口市の家族葬", href: "/plan/family-funeral/" },
       { label: "市民葬プラン", href: "/plan/kawaguchi-shimin/" },
       { label: "ペット火葬のご相談", href: "/pet/" },
       { label: "よくある質問", href: "/faq/" },
@@ -27,7 +27,7 @@ const footerColumns = [
     title: "対応エリア",
     items: [
       { label: "対応エリア一覧", href: "/area/" },
-      { label: "川口市", href: "/area/kawaguchi/" },
+      { label: "川口市の葬儀ガイド", href: "/area/kawaguchi/" },
       { label: "川口駅周辺", href: "/area/kawaguchi-ekimae/" },
       { label: "新井宿", href: "/area/araijuku/" },
       { label: "鳩ヶ谷", href: "/area/hatogaya/" },

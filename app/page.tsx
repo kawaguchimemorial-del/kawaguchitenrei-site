@@ -16,8 +16,8 @@ import { ReviewBadge } from "@/components/home/ReviewBadge";
 import { ThreeStrengthsSection } from "@/components/home/ThreeStrengthsSection";
 import { VoicesSection } from "@/components/home/VoicesSection";
 import { getHomeFaqs } from "@/lib/faqs";
+import { getLocalBusinessJsonLd } from "@/lib/company";
 
-const SITE_URL = "https://kawaguchitenrei.com";
 const pageTitle =
   "川口典礼 | 川口市・新井宿の葬儀・家族葬 | 川口メモリアルホール";
 const pageDescription =
@@ -43,43 +43,7 @@ export const metadata: Metadata = {
   },
 };
 
-const organizationJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "FuneralHome",
-  name: "川口典礼",
-  url: `${SITE_URL}/`,
-  telephone: "0120-963-765",
-  image: `${SITE_URL}/images/home/hall/hall-exterior.jpg`,
-  address: {
-    "@type": "PostalAddress",
-    postalCode: "333-0833",
-    addressCountry: "JP",
-    addressRegion: "埼玉県",
-    addressLocality: "川口市",
-    streetAddress: "西新井宿440-1",
-  },
-  areaServed: [
-    { "@type": "City", name: "川口市" },
-    { "@type": "AdministrativeArea", name: "新井宿" },
-    { "@type": "AdministrativeArea", name: "埼玉県南部" },
-  ],
-  description:
-    "川口市・新井宿の地域密着葬儀社。家族葬・一日葬・直葬・市民葬、川口市めぐりの森・戸田葬祭場・谷塚斎場の利用相談に対応。24時間365日受付。",
-  openingHoursSpecification: {
-    "@type": "OpeningHoursSpecification",
-    dayOfWeek: [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-      "Sunday",
-    ],
-    opens: "00:00",
-    closes: "23:59",
-  },
-};
+const organizationJsonLd = getLocalBusinessJsonLd();
 
 const faqJsonLd = {
   "@context": "https://schema.org",

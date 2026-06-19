@@ -21,7 +21,7 @@ const meguriPlans = [
     href: "/plan/oneday-funeral/",
   },
   {
-    name: "家族葬",
+    name: "川口市の家族葬",
     description: "ご家族中心で、落ち着いてお見送りしたい方へ",
     href: "/plan/family-funeral/",
   },

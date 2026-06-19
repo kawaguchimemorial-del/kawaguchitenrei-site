@@ -61,12 +61,13 @@ const plans: Plan[] = [
   {
     slug: "family-funeral",
     detailHref: "/plan/family-funeral/",
-    ctaLabel: "詳しく見る",
-    name: "家族葬プラン",
-    description: "親しい方だけで、ゆっくりお見送り。",
+    ctaLabel: "プランを見る",
+    name: "川口市の家族葬",
+    subtitle: "家族葬プラン",
+    description: "川口メモリアルホールで、ご家族中心にゆっくりお見送り。",
     image: {
       src: "/images/home/plans/plan-ichinichiso-kazokuso.png",
-      alt: "家族葬プランのイメージ",
+      alt: "川口市の家族葬プランのイメージ",
     },
     pricing: { type: "member-regular", member: 528000, regular: 628000 },
     highlights: ["2日", "10〜30名", "通夜・告別式"],

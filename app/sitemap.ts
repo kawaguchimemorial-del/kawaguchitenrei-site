@@ -232,7 +232,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: `${SITE_URL}/plan/${p.slug}/`,
     lastModified: now,
     changeFrequency: "monthly",
-    priority: 0.7,
+    priority: p.slug === "family-funeral" ? 0.9 : 0.7,
   }));
 
   const casePages: MetadataRoute.Sitemap = cases.map((c) => ({

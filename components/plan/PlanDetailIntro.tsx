@@ -41,7 +41,7 @@ export function PlanDetailIntro({ plan }: { plan: Plan }) {
               {plan.subtitle ?? "葬儀プラン"}
             </p>
             <h1 className="font-serif-jp mt-4 text-[2.4rem] font-medium leading-[1.3] text-ink-deep md:text-[3rem]">
-              {plan.name}
+              {plan.heroTitle ?? plan.name}
             </h1>
             <p className="mt-6 text-base leading-9 text-ink-mid md:text-lg md:leading-10">
               {plan.long}

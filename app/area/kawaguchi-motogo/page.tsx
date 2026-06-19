@@ -102,8 +102,8 @@ const funeralHomeJsonLd = {
 
 const relatedLinks = [
   {
-    label: "川口市の葬儀・家族葬",
-    description: "川口市全体の葬儀・対応エリアのご案内",
+    label: "川口市の葬儀ガイド",
+    description: "川口市で葬儀を行う場合の流れ・式場・制度のご案内",
     href: "/area/kawaguchi/",
   },
   {
@@ -132,7 +132,7 @@ const relatedLinks = [
     href: "/saijo/#motogo-ryoke",
   },
   {
-    label: "家族葬プラン",
+    label: "川口市の家族葬",
     description: "ご家族中心のお別れ・528,000円(税込)〜",
     href: "/plan/family-funeral/",
   },

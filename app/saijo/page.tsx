@@ -459,7 +459,11 @@ export default function SaijoIndexPage() {
             葬儀場一覧
           </h1>
           <p className="mt-6 max-w-3xl text-base leading-9 text-ink-mid md:text-lg md:leading-10">
-            川口典礼では、自社式場「川口メモリアルホール」をはじめ、川口市めぐりの森、戸田葬祭場、谷塚斎場、川口市内の寺院会館・民営式場など、ご希望や地域に合わせた葬儀場のご相談に対応しています。川口の斎場・葬儀場は、地域別にもまとめてご紹介しています。
+            川口典礼では、自社式場「川口メモリアルホール」をはじめ、川口市めぐりの森、戸田葬祭場、谷塚斎場、川口市内の寺院会館・民営式場など、ご希望や地域に合わせた葬儀場のご相談に対応しています。川口の斎場・葬儀場は、
+            <a href="/area/kawaguchi/" className="font-bold text-brand hover:underline">
+              川口市の葬儀ガイド
+            </a>
+            でも地域別にまとめてご紹介しています。
           </p>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">

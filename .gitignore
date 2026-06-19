@@ -42,6 +42,7 @@ next-env.d.ts
 
 # local scratch
 /tmp/
+/public/images/tmp/
 
 # Claude Code local settings (per-user)
 .claude/settings.local.json

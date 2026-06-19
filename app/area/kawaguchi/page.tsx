@@ -231,7 +231,7 @@ export default function KawaguchiAreaPage() {
 
       <AreaDetailIntro area={areaKawaguchi} />
 
-      {/* 結論先出し：川口・川口市の葬儀・家族葬・葬儀社の基本情報（AIO向け） */}
+      {/* 結論先出し：川口・川口市の葬儀・葬儀社の基本情報（AIO向け） */}
       <section className="bg-cool py-14 md:py-20">
         <div className="mx-auto max-w-6xl px-5 md:px-8">
           <div className="rounded-lg border border-line bg-white p-6 shadow-sm md:p-9">
@@ -239,10 +239,10 @@ export default function KawaguchiAreaPage() {
               Conclusion
             </p>
             <h2 className="font-serif-jp mt-3 text-2xl font-medium leading-[1.4] text-ink-deep md:text-[2rem]">
-              川口・川口市で葬儀・家族葬をお探しの方へ。
+              川口・川口市で葬儀をお探しの方へ。
             </h2>
             <p className="mt-5 text-base leading-9 text-ink-mid md:text-lg md:leading-10">
-              川口典礼は、川口市西新井宿に自社式場「川口メモリアルホール」を構える地域密着の葬儀社です。川口で葬儀・家族葬を検討しているご家族へ、川口市めぐりの森まで車で約5分・駐車場70台のホールから、家族葬・一日葬・直葬・火葬式から最大200名規模の一般葬・川口市民葬まで24時間365日対応します。創業20年・年間約260件の施行実績で、急なご逝去にも迅速にお迎えに伺います。事前相談・お見積りは無料です。
+              川口典礼は、川口市西新井宿に自社式場「川口メモリアルホール」を構える地域密着の葬儀社です。川口で葬儀を検討しているご家族へ、川口市めぐりの森まで車で約5分・駐車場70台のホールから、家族葬・一日葬・直葬・火葬式から最大200名規模の一般葬・川口市民葬まで24時間365日対応します。創業20年・年間約260件の施行実績で、急なご逝去にも迅速にお迎えに伺います。事前相談・お見積りは無料です。
             </p>
 
             <dl className="mt-7 grid gap-x-8 gap-y-4 border-t border-line-soft pt-7 sm:grid-cols-2">
@@ -315,7 +315,7 @@ export default function KawaguchiAreaPage() {
               { name: "直葬プラン", price: "139,000円〜", note: "火葬を中心としたシンプルなお別れ", href: "/plan/direct-funeral/" },
               { name: "花入れお別れプラン", price: "229,000円〜", note: "火葬前にお花を手向けるお別れ", href: "/plan/hanaire-owakare/" },
               { name: "一日葬プラン", price: "396,000円〜", note: "通夜を行わず1日で執り行う形式", href: "/plan/oneday-funeral/" },
-              { name: "家族葬プラン", price: "528,000円〜", note: "ご家族や親しい方を中心としたお別れ", href: "/plan/family-funeral/" },
+              { name: "川口市の家族葬プラン", price: "528,000円〜", note: "ご家族や親しい方を中心としたお別れ", href: "/plan/family-funeral/" },
               { name: "川口市民葬プラン", price: "231,000円", note: "川口市民の方の市民葬制度に対応", href: "/plan/kawaguchi-shimin/" },
             ].map((row) => (
               <li

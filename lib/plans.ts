@@ -121,6 +121,7 @@ export type Plan = {
   slug: string;
   name: string;
   subtitle?: string;
+  heroTitle?: string;
   short: string;
   long: string;
   price: string;
@@ -162,13 +163,15 @@ export const plans: Plan[] = [
   {
     slug: "family-funeral",
     name: "家族葬プラン",
+    subtitle: "川口市の家族葬",
+    heroTitle: "川口市の家族葬プラン",
     short: "親しい方だけで、ゆっくりお見送り。",
-    long: "家族葬は、ご家族や親しい方を中心に、ゆっくりとお別れの時間を取ることができる葬儀形式です。一般的な葬儀と同じく通夜・告別式を行いながら、限られた参列者で式を進めるため、ご家族の心情に寄り添ったお見送りができます。",
+    long: "川口市で家族葬を検討している方へ。川口典礼では、川口メモリアルホールでのお別れから川口市めぐりの森での火葬まで、ご家族や親しい方を中心に落ち着いて見送る葬儀をご相談いただけます。一般的な葬儀と同じく通夜・告別式を行いながら、参列範囲や人数を整理して進めます。",
     price: "528,000円（税込）〜",
     pricing: { type: "member-regular", member: 528000, regular: 628000 },
     image: {
       src: "/images/home/plans/plan-ichinichiso-kazokuso.png",
-      alt: "家族葬プランのイメージ",
+      alt: "川口市の家族葬プランのイメージ",
     },
     people: "10〜30名",
     days: "2日",
@@ -255,9 +258,9 @@ export const plans: Plan[] = [
     metaDescription:
       "川口市で家族葬をご検討の方へ。川口典礼では、ご家族や親しい方を中心とした葬儀のご相談を承ります。1日1組貸切の川口メモリアルホールでのお別れから、川口市めぐりの森での火葬まで一貫してサポート。事前相談会員価格528,000円(税込)〜。24時間365日対応。",
     conclusionBox: {
-      heading: "川口市の家族葬について。",
+      heading: "川口市で家族葬を検討している方へ。",
       intro:
-        "家族葬は、ご家族や親しい方を中心に、通夜・告別式を行ってお別れする葬儀形式です。",
+        "川口市で家族葬を行う場合は、式場・火葬場・参列人数・別途費用を先に整理しておくと検討しやすくなります。",
       points: [
         "川口典礼では、川口メモリアルホール(川口市西新井宿、1日1組貸切)でのお別れから、川口市めぐりの森での火葬まで一貫してご相談いただけます。",
         "参列人数の目安は10〜30名程度です。ご家族のみで進める形、親族・親しい方を含める形、一般参列の方を含める形のいずれもご相談いただけます。",
@@ -322,8 +325,8 @@ export const plans: Plan[] = [
         href: "/plan/non-religious-funeral/",
       },
       {
-        label: "川口市の葬儀・家族葬",
-        description: "川口市全体の葬儀・対応エリアのご案内",
+        label: "川口市の葬儀ガイド",
+        description: "川口市で葬儀を行う場合の流れ・式場・制度のご案内",
         href: "/area/kawaguchi/",
       },
       {
@@ -468,7 +471,7 @@ export const plans: Plan[] = [
         href: "/saijo/megurinomori/",
       },
       {
-        label: "家族葬プラン",
+        label: "川口市の家族葬",
         description: "ご家族中心のお別れ・528,000円(税込)〜",
         href: "/plan/family-funeral/",
       },
@@ -493,8 +496,8 @@ export const plans: Plan[] = [
         href: "/plan/non-religious-funeral/",
       },
       {
-        label: "川口市の葬儀・対応エリア",
-        description: "川口市全体の葬儀・対応エリアのご案内",
+        label: "川口市の葬儀ガイド",
+        description: "川口市で葬儀を行う場合の流れ・式場・制度のご案内",
         href: "/area/kawaguchi/",
       },
       {
@@ -636,7 +639,7 @@ export const plans: Plan[] = [
         href: "/plan/oneday-funeral/",
       },
       {
-        label: "家族葬プラン",
+        label: "川口市の家族葬",
         description: "ご家族中心のお別れ・528,000円(税込)〜",
         href: "/plan/family-funeral/",
       },
@@ -646,8 +649,8 @@ export const plans: Plan[] = [
         href: "/plan/non-religious-funeral/",
       },
       {
-        label: "川口市の葬儀・対応エリア",
-        description: "川口市全体の葬儀・対応エリアのご案内",
+        label: "川口市の葬儀ガイド",
+        description: "川口市で葬儀を行う場合の流れ・式場・制度のご案内",
         href: "/area/kawaguchi/",
       },
       {
@@ -796,7 +799,7 @@ export const plans: Plan[] = [
         href: "/plan/oneday-funeral/",
       },
       {
-        label: "家族葬プラン",
+        label: "川口市の家族葬",
         description: "ご家族中心のお別れ・528,000円(税込)〜",
         href: "/plan/family-funeral/",
       },
@@ -811,8 +814,8 @@ export const plans: Plan[] = [
         href: "/plan/non-religious-funeral/",
       },
       {
-        label: "川口市の葬儀・対応エリア",
-        description: "川口市全体の葬儀・対応エリアのご案内",
+        label: "川口市の葬儀ガイド",
+        description: "川口市で葬儀を行う場合の流れ・式場・制度のご案内",
         href: "/area/kawaguchi/",
       },
       {
@@ -1344,7 +1347,7 @@ export const plans: Plan[] = [
           href: "/saijo/megurinomori/",
         },
         {
-          label: "家族葬プラン",
+          label: "川口市の家族葬",
           description: "ご家族中心のお別れ・528,000円(税込)〜",
           href: "/plan/family-funeral/",
         },
@@ -1359,8 +1362,8 @@ export const plans: Plan[] = [
           href: "/plan/direct-funeral/",
         },
         {
-          label: "川口市の葬儀・家族葬",
-          description: "川口市全体の葬儀・対応エリアのご案内",
+          label: "川口市の葬儀ガイド",
+          description: "川口市で葬儀を行う場合の流れ・式場・制度のご案内",
           href: "/area/kawaguchi/",
         },
         {

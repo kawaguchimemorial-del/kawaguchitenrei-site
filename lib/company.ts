@@ -95,14 +95,24 @@ export const company: CompanyInfo = {
   maxFuneralScale: "最大200名規模の一般葬まで対応",
 };
 
+const SITE_URL = "https://kawaguchitenrei.com";
+const HALL_IMAGE_URL = `${SITE_URL}/images/home/hall/hall-exterior.jpg`;
+const LOGO_URL = `${SITE_URL}/icon.png`;
+
 // LocalBusiness (FuneralHome) 構造化データ
 // schema.org: https://schema.org/FuneralHome
 export function getLocalBusinessJsonLd() {
   const tel = company.phone.replace(/-/g, "");
+  const internationalTel = `+81-${tel.startsWith("0") ? tel.slice(1) : tel}`;
+
   return {
     "@context": "https://schema.org",
     "@type": "FuneralHome",
     name: company.name,
+    alternateName: company.hallName,
+    url: `${SITE_URL}/`,
+    image: HALL_IMAGE_URL,
+    logo: LOGO_URL,
     description: company.shortDescription,
     foundingDate: String(company.foundedYear),
     address: {
@@ -113,7 +123,16 @@ export function getLocalBusinessJsonLd() {
       addressLocality: company.addressLocality,
       streetAddress: company.streetAddress,
     },
-    telephone: `+81-${tel.startsWith("0") ? tel.slice(1) : tel}`,
+    telephone: internationalTel,
+    email: company.email,
+    priceRange: "正式なお見積りでご案内",
+    contactPoint: {
+      "@type": "ContactPoint",
+      telephone: internationalTel,
+      contactType: "customer service",
+      availableLanguage: "ja",
+      areaServed: "JP",
+    },
     knowsAbout: [
       "家族葬",
       "一日葬",

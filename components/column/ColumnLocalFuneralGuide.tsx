@@ -14,7 +14,7 @@ type LocalPlanLink = {
 const LOCAL_FACILITY_LINKS: { label: string; href: string }[] = [
   { label: "川口市めぐりの森（火葬場）", href: "/saijo/megurinomori/" },
   { label: "川口市・近隣の葬儀場一覧", href: "/saijo/" },
-  { label: "川口市の対応エリア", href: "/area/kawaguchi/" },
+  { label: "川口市の葬儀ガイド", href: "/area/kawaguchi/" },
 ];
 
 const LOCAL_PLAN_LINKS: LocalPlanLink[] = [

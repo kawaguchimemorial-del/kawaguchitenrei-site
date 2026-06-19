@@ -55,14 +55,14 @@ export function AreasSection() {
               href="/area/kawaguchi/"
               className="font-bold text-brand hover:underline"
             >
-              川口市の葬儀・家族葬の総合案内
+              川口市の葬儀ガイド
             </a>
             と
             <a
               href="/plan/family-funeral/"
               className="font-bold text-brand hover:underline"
             >
-              家族葬プラン
+              川口市の家族葬
             </a>
             からご覧いただくと、費用や流れが分かりやすくご確認いただけます。
           </p>
