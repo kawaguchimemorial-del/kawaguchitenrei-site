@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>/area/kawaguchi/ 結論先出しボックス＋葬儀社FAQ追加｜川口典礼サイト（社内・非公開）</title>
+<style>
+  :root{--ink:#2b2b2b;--soft:#6b6b6b;--line:#e3e0da;--bg:#faf9f7;--accent:#7a6a55}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;line-height:1.85;font-size:15px}
+  .wrap{max-width:820px;margin:0 auto;padding:44px 22px 80px}
+  .kicker{font-size:12px;letter-spacing:.12em;color:var(--accent);margin:0 0 6px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:23px;font-weight:600;margin:0 0 10px}
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:18px;font-weight:600;margin:30px 0 8px;border-left:4px solid var(--accent);padding-left:10px}
+  .meta{color:var(--soft);font-size:13px;border-bottom:2px solid var(--line);padding-bottom:16px;margin-bottom:8px}
+  code{background:#f1efe9;padding:1px 6px;border-radius:5px;font-size:12.5px;font-family:ui-monospace,Consolas,monospace}
+  table{border-collapse:collapse;width:100%;margin:10px 0;font-size:13.5px}
+  th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+  th{background:#f1efe9;white-space:nowrap}
+  ul{padding-left:1.2em}
+  .tag{display:inline-block;font-size:11px;padding:1px 8px;border-radius:10px;background:#e8efe6;color:#3c5a3c;margin-left:6px}
+  .tag.todo{background:#f3e8d8;color:#7a5a2a}
+  footer{margin-top:40px;border-top:1px solid var(--line);padding-top:16px;color:var(--soft);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="kicker">川口典礼サイト ＿ 社内記録</p>
+  <h1>/area/kawaguchi/ に結論先出しボックス＋「葬儀社」FAQを追加（川口・川口市KWの受け皿No.2強化）</h1>
+  <p class="meta">
+    作成日：2026-06-19｜対象データ期間：直近のGSC（判定予定 2026-06-26 の7日前時点）｜担当：Claude Code（作業者承認のうえ実施）
+  </p>
+
+  <h2>サマリ</h2>
+  <ul>
+    <li>主要KW「川口市 葬儀／川口市 家族葬／川口市 葬儀社」の着地ページをGSCのページ別データで確認し、受け皿No.2である <code>/area/kawaguchi/</code> を強化 <span class="tag">完了</span></li>
+    <li><code>app/area/kawaguchi/page.tsx</code> に結論先出しボックス（基本情報表つき・AIO向け）を新規追加。市なしの「川口 葬儀」「川口 家族葬」も自然に拾えるよう、見出しと本文を <code>川口・川口市</code> 軸に調整 <span class="tag">完了</span></li>
+    <li><code>lib/areas.ts</code> の <code>areaKawaguchi.faqs</code> に「川口市で葬儀社を選ぶときのポイント」FAQを1件追加し、既存の家族葬FAQも「川口で家族葬」文脈へ微調整（FAQ JSON-LDに自動反映） <span class="tag">完了</span></li>
+    <li>加点のみ・URL不変・共通テンプレ（AreaDetailIntro）不変＝他14エリアへの巻き込みなし <span class="tag">完了</span></li>
+  </ul>
+
+  <h2>背景・なぜ直したか</h2>
+  <p>
+    SEO判定（予定 2026-06-26）まで7日の時点で、主要KWの着地ページをGSCの「ページ」タブで確認した。結果、いずれもホーム（<code>/</code>）が主役で、<code>/area/kawaguchi/</code> が一貫して受け皿No.2であることが判明した。
+  </p>
+  <table>
+    <tr><th>キーワード</th><th>主な着地ページ（表示回数）</th></tr>
+    <tr><td>川口市 葬儀</td><td>/（263） ＞ /area/kawaguchi/（49） ＞ /access/（24） ＞ /saijo/（16）</td></tr>
+    <tr><td>川口 葬儀</td><td>/（118） ＞ /saijo/（5） ＞ /area/・/area/kawaguchi/（各3）</td></tr>
+    <tr><td>川口市 家族葬</td><td>/（121） ＞ /area/kawaguchi/（27） ＞ /plan/family-funeral/（16）＝分散（カニバリ）</td></tr>
+    <tr><td>川口市 葬儀社</td><td>/（49）のみ</td></tr>
+  </table>
+  <p>
+    判定7日前のため、URL変更・大改造は変動リスクから避ける方針で合意済み。加点のみ（既存ページへの安全な追加）に絞った。<code>/area/kawaguchi/</code> は既に費用目安・公的制度・relatedLinks(23本) などを備え作り込まれていたが、<strong>AIO向けの結論先出しボックスが欠けており</strong>、「葬儀社」語を可視の見出し・FAQで扱っていなかった。また、市なしの「川口 葬儀」「川口 家族葬」に対しても可視テキスト上の受けが弱かったため、この点も最小限の文言調整で補った。
+  </p>
+
+  <h2>変更内容</h2>
+  <table>
+    <tr><th>ファイル</th><th>変更</th></tr>
+    <tr>
+      <td>app/area/kawaguchi/page.tsx</td>
+      <td><code>&lt;AreaDetailIntro&gt;</code> 直後に結論先出しボックス（<code>section</code>）を新規追加。結論文＋基本情報表（対応エリア／自社式場／火葬場／対応形式／費用目安／受付）。見出しは「川口・川口市で葬儀・家族葬をお探しの方へ。」として、川口市KWと市なしKWの両方を自然に受ける。既存デザイントークン（brandラベル・font-serif-jp見出し・line/ink系・rounded box）に準拠。</td>
+    </tr>
+    <tr>
+      <td>lib/areas.ts</td>
+      <td><code>areaKawaguchi.faqs</code> 末尾に「川口市で葬儀社を選ぶときのポイントはありますか？」を1件追加。式場〜火葬場の距離・駐車場・費用説明・24時間体制を観点に、地域密着の葬儀社として事前相談へ接続。既存の家族葬FAQも「川口で家族葬」文脈へ調整。FAQ JSON-LD（FAQPage）にも自動反映。</td>
+    </tr>
+  </table>
+  <p>
+    価格は §9 プラン正本のみ（直葬139,000円〜／家族葬528,000円〜・事前相談会員価格・税込）。禁止表現（最安／必ず／絶対 等）なし。施設の利用可否・宗派条件の新規断定なし。個人情報・秘密情報の記載なし。
+  </p>
+
+  <h2>確認結果</h2>
+  <ul>
+    <li><code>npm run build</code>：成功・エラー/警告なし</li>
+    <li>静的生成ページ数：従来構成を維持（減少なし）</li>
+    <li>URL／title／canonical：不変</li>
+    <li>共通コンポーネント <code>AreaDetailIntro</code>：不変（他エリアへの巻き込みなし）</li>
+    <li>確認URL：<code>http://localhost:3000/area/kawaguchi/</code></li>
+  </ul>
+
+  <h2>今後のアクション</h2>
+  <ul>
+    <li>2026-06-26 の判定でGSC数値を再確認（移動平均のため今回の加点は判定時点では十分に反映されない可能性が高い点に留意） <span class="tag todo">予定</span></li>
+    <li>判定後、効果を見て <code>/area/kawaguchi/</code> 以外の受け皿（plan/family-funeral 等）への内部リンク集約や、ホーム着地の整理を検討 <span class="tag todo">未着手</span></li>
+    <li>「川口 家族葬」のカニバリ（home／area／plan の3分散）は、判定後に内部リンクの向き先を集約して解消を図る <span class="tag todo">未着手</span></li>
+  </ul>
+
+  <footer>川口典礼サイト 社内作業レポート｜非公開（noindex）｜個人情報・秘密情報なし</footer>
+</div>
+</body>
+</html>

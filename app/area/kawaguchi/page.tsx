@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { AreaDetailIntro } from "@/components/area/AreaDetailIntro";
 import {
   AreaFeatures,
@@ -229,6 +230,63 @@ export default function KawaguchiAreaPage() {
       />
 
       <AreaDetailIntro area={areaKawaguchi} />
+
+      {/* 結論先出し：川口・川口市の葬儀・家族葬・葬儀社の基本情報（AIO向け） */}
+      <section className="bg-cool py-14 md:py-20">
+        <div className="mx-auto max-w-6xl px-5 md:px-8">
+          <div className="rounded-lg border border-line bg-white p-6 shadow-sm md:p-9">
+            <p className="text-sm font-semibold tracking-[0.18em] text-brand uppercase">
+              Conclusion
+            </p>
+            <h2 className="font-serif-jp mt-3 text-2xl font-medium leading-[1.4] text-ink-deep md:text-[2rem]">
+              川口・川口市で葬儀・家族葬をお探しの方へ。
+            </h2>
+            <p className="mt-5 text-base leading-9 text-ink-mid md:text-lg md:leading-10">
+              川口典礼は、川口市西新井宿に自社式場「川口メモリアルホール」を構える地域密着の葬儀社です。川口で葬儀・家族葬を検討しているご家族へ、川口市めぐりの森まで車で約5分・駐車場70台のホールから、家族葬・一日葬・直葬・火葬式から最大200名規模の一般葬・川口市民葬まで24時間365日対応します。創業20年・年間約260件の施行実績で、急なご逝去にも迅速にお迎えに伺います。事前相談・お見積りは無料です。
+            </p>
+
+            <dl className="mt-7 grid gap-x-8 gap-y-4 border-t border-line-soft pt-7 sm:grid-cols-2">
+              <div className="border-b border-line-soft pb-4 sm:border-b-0 sm:pb-0">
+                <dt className="text-sm font-semibold text-ink-soft">対応エリア</dt>
+                <dd className="mt-1 text-sm leading-7 text-ink-deep md:text-base">
+                  川口市全域・近隣地域
+                </dd>
+              </div>
+              <div className="border-b border-line-soft pb-4 sm:border-b-0 sm:pb-0">
+                <dt className="text-sm font-semibold text-ink-soft">自社式場</dt>
+                <dd className="mt-1 text-sm leading-7 text-ink-deep md:text-base">
+                  川口メモリアルホール（川口市西新井宿・駐車場70台）
+                </dd>
+              </div>
+              <div className="border-b border-line-soft pb-4 sm:border-b-0 sm:pb-0">
+                <dt className="text-sm font-semibold text-ink-soft">火葬場</dt>
+                <dd className="mt-1 text-sm leading-7 text-ink-deep md:text-base">
+                  川口市めぐりの森まで車で約5分
+                </dd>
+              </div>
+              <div className="border-b border-line-soft pb-4 sm:border-b-0 sm:pb-0">
+                <dt className="text-sm font-semibold text-ink-soft">対応形式</dt>
+                <dd className="mt-1 text-sm leading-7 text-ink-deep md:text-base">
+                  家族葬・一日葬・直葬・火葬式・一般葬・市民葬
+                </dd>
+              </div>
+              <div className="border-b border-line-soft pb-4 sm:border-b-0 sm:pb-0">
+                <dt className="text-sm font-semibold text-ink-soft">費用目安</dt>
+                <dd className="mt-1 text-sm leading-7 text-ink-deep md:text-base">
+                  直葬139,000円〜／家族葬528,000円〜（事前相談会員価格・税込）
+                </dd>
+              </div>
+              <div>
+                <dt className="text-sm font-semibold text-ink-soft">受付</dt>
+                <dd className="mt-1 text-sm leading-7 text-ink-deep md:text-base">
+                  24時間365日（0120-963-765）
+                </dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </section>
+
       <AreaFeatures area={areaKawaguchi} />
       <AreaPlans area={areaKawaguchi} />
 
@@ -298,13 +356,13 @@ export default function KawaguchiAreaPage() {
             ※ 上記は事前相談会員価格・税込の目安です。内容・人数・式場・火葬場などにより総額は変わります。正式なお見積りで総額の目安をご案内します。
           </p>
           <div className="mt-5">
-            <a
+            <Link
               href="/plan/"
               className="inline-flex items-center gap-1 text-sm font-bold text-brand hover:underline md:text-base"
             >
               プラン・費用の詳細を見る
               <ArrowRightIcon className="h-4 w-4" />
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -338,13 +396,13 @@ export default function KawaguchiAreaPage() {
                 川口市民の方を対象とした葬祭事業（市民葬）の制度に対応したプランをご用意しています（市民葬プラン 231,000円・税込ほか）。対象や含まれる内容は条件により異なるため、事前のご相談で確認のうえご案内します。
               </p>
               <div className="mt-auto pt-4">
-                <a
+                <Link
                   href="/plan/kawaguchi-shimin/"
                   className="inline-flex items-center gap-1 text-sm font-bold text-brand hover:underline"
                 >
                   川口市民葬プランを見る
                   <ArrowRightIcon className="h-4 w-4" />
-                </a>
+                </Link>
               </div>
             </div>
 
