@@ -16,7 +16,6 @@ export type ContactFormState = {
 const REQUIRED_FIELDS: { name: string; label: string }[] = [
   { name: "name", label: "お名前" },
   { name: "phone", label: "電話番号" },
-  { name: "email", label: "メールアドレス" },
   { name: "purpose", label: "お問い合わせ種別" },
   { name: "preferredContact", label: "ご希望連絡方法" },
   { name: "message", label: "お問い合わせ内容" },

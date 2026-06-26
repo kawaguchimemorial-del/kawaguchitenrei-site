@@ -191,7 +191,10 @@ export function ContactForm() {
           <div>
             <label htmlFor="email" className="block">
               <span className="text-sm font-bold text-ink-deep">
-                メールアドレス<Required />
+                メールアドレス
+                <span className="ml-2 text-xs font-semibold text-ink-soft">
+                  (任意)
+                </span>
               </span>
             </label>
             <input
@@ -200,7 +203,6 @@ export function ContactForm() {
               type="email"
               inputMode="email"
               autoComplete="email"
-              required
               aria-invalid={Boolean(errors.email)}
               aria-describedby={errors.email ? "email-error" : undefined}
               placeholder="例: yamada@example.com"
