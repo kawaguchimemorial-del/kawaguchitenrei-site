@@ -104,6 +104,10 @@ export function AdvanceConsultSection() {
             見積りを依頼する
           </a>
         </div>
+
+        <p className="mt-5 text-center text-sm leading-7 text-ink-mid md:text-base">
+          事前相談・お見積りは無料です。無理な勧誘はいたしませんので、お気軽にご相談ください。
+        </p>
       </div>
     </section>
   );

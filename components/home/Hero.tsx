@@ -119,6 +119,10 @@ export function Hero() {
             事前相談する
           </a>
 
+          <p className="mt-3 text-center text-[12px] leading-5 text-ink-mid">
+            ご相談・お見積りは無料です。お見積りだけでも、無理な勧誘はいたしません。
+          </p>
+
           <div className="mt-4 text-center">
             <a
               href="/plan/"
@@ -227,6 +231,9 @@ export function Hero() {
               事前相談する
             </a>
           </div>
+          <p className="mt-4 text-center text-sm leading-6 text-ink-mid">
+            ご相談・お見積りは無料です。お見積りだけでも、無理な勧誘はいたしません。
+          </p>
         </div>
       </div>
 

@@ -33,6 +33,9 @@ export function EmergencySection() {
               <PhoneIcon className="h-5 w-5" />
               電話で相談する
             </a>
+            <p className="mt-4 text-sm leading-7 text-ink-mid md:text-base md:leading-8">
+              「まだ何も決めていない」「費用の概算だけ知りたい」というご相談でも構いません。無理な勧誘はいたしませんので、ご安心ください。
+            </p>
           </div>
 
           <div className="mt-9 space-y-4 md:mt-0">
