@@ -148,9 +148,16 @@ export function HallFaq({ hall }: { hall: Hall }) {
 
         <div className="mt-10 rounded-lg border border-line bg-paper p-6 shadow-sm md:p-8">
           <p className="text-base leading-8 text-ink-mid md:text-lg md:leading-9">
-            川口メモリアルホール以外の葬儀場をご希望の場合も、川口典礼でご相談いただけます。
+            川口市での葬儀の費用や流れ、葬儀形式の選び方は、川口市の葬儀ガイドでまとめてご確認いただけます。川口メモリアルホール以外の葬儀場をご希望の場合も、川口典礼でご相談いただけます。
           </p>
-          <div className="mt-5">
+          <div className="mt-5 flex flex-wrap gap-3">
+            <a
+              href="/area/kawaguchi/"
+              className="inline-flex items-center gap-2 rounded-lg border border-ink-deep bg-white px-5 py-3 text-sm font-bold text-ink-deep transition hover:bg-cool md:text-base"
+            >
+              川口市の葬儀ガイドを見る
+              <ArrowRightIcon className="h-4 w-4" />
+            </a>
             <a
               href="/saijo/"
               className="inline-flex items-center gap-2 rounded-lg border border-ink-deep bg-white px-5 py-3 text-sm font-bold text-ink-deep transition hover:bg-cool md:text-base"
