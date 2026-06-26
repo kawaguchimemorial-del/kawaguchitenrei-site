@@ -7,7 +7,12 @@ export type ColumnBlock =
   | { type: "image"; src: string; alt: string; caption?: string }
   | { type: "quote"; text: string }
   | { type: "cta"; label: string; href: string; text?: string }
-  | { type: "table"; headers: string[]; rows: string[][]; caption?: string };
+  | { type: "table"; headers: string[]; rows: string[][]; caption?: string }
+  | {
+      type: "relatedlinks";
+      title?: string;
+      links: { label: string; href: string }[];
+    };
 
 export type ColumnArticle = {
   slug: string;
@@ -351,6 +356,15 @@ export const columns: ColumnArticle[] = [
         text: "川口市の公営火葬場「めぐりの森」は、緑に囲まれた静かな環境で火葬を行える人気施設ですが、あくまでも“火葬専用”の施設です。通夜・告別式を現地で行うことはできません。そのため、式典は近隣の寺院会館や葬儀専門会館で執り行い、各会場から霊柩車・ご家族の車でめぐりの森へ移動するという流れが一般的です。",
       },
 
+      {
+        type: "relatedlinks",
+        title: "川口市めぐりの森での葬儀のご相談（関連情報）",
+        links: [
+          { label: "川口市めぐりの森（火葬場）", href: "/saijo/megurinomori/" },
+          { label: "川口市の家族葬", href: "/plan/family-funeral/" },
+          { label: "川口市の葬儀ガイド", href: "/area/kawaguchi/" },
+        ],
+      },
       { type: "h2", text: "めぐりの森の基本情報" },
       {
         type: "ul",
@@ -3107,6 +3121,14 @@ export const columns: ColumnArticle[] = [
     heroImage: { src: "/images/column/shinsiki/cover.jpg", alt: "神式葬儀のマナーに関する記事イメージ" },
     body: [
       { type: "quote", text: "この記事でわかること:神道葬儀(神葬祭)における香典=玉串料の扱い方／不祝儀袋の選び方・書き方・包み方／参列時の服装・言葉遣い・玉串奉奠など独特の作法を整理。" },
+      {
+        type: "relatedlinks",
+        title: "川口市で葬儀をご検討の方へ（関連情報）",
+        links: [
+          { label: "川口市の葬儀ガイド", href: "/area/kawaguchi/" },
+          { label: "川口市の家族葬", href: "/plan/family-funeral/" },
+        ],
+      },
       { type: "h2", text: "神式の葬儀と香典の基本知識" },
       { type: "p", text: "神道に則った葬儀は神葬祭(しんそうさい)と呼ばれ、故人を“家の守護神”として祀り上げる儀礼です。死は“穢れ”とされるため、神社ではなく自宅や斎場で執り行うのが一般的。参列者が持参する金銭は香典ではなく玉串料(たまぐしりょう)という名称で渡します。" },
       { type: "h2", text: "仏式と神式の違い" },
@@ -3210,6 +3232,14 @@ export const columns: ColumnArticle[] = [
     heroImage: { src: "/images/column/fuhou/cover.jpg", alt: "訃報メールの書き方に関する記事イメージ" },
     body: [
       { type: "quote", text: "訃報メールは「いつ・だれに・どのように」送るかで相手の受け取り方が大きく変わります。本記事では訃報メールの正しい書き方と、届いたときの返信マナーを、社内・社外・友人向けの例文付きで解説します。葬儀後に訃報を知った場合の対応まで網羅しています。" },
+      {
+        type: "relatedlinks",
+        title: "川口市で葬儀をご検討の方へ（関連情報）",
+        links: [
+          { label: "川口市の葬儀ガイド", href: "/area/kawaguchi/" },
+          { label: "川口市の家族葬", href: "/plan/family-funeral/" },
+        ],
+      },
       { type: "h2", text: "訃報連絡にメールを使うケースが増えている理由" },
       { type: "ul", items: [
         "短時間で一斉連絡できる:電話よりも早く多人数へ届けられる",
@@ -4738,6 +4768,15 @@ export const columns: ColumnArticle[] = [
     body: [
       { type: "p", text: "自宅や施設など、病院以外で亡くなられた場合、警察が介入して「検視（けんし）」が行われることがあります。突然のことで気が動転する中でも、遺体が警察に安置されている間に「何を準備すればいいのか」を知っておくと、その後の段取りが大きく変わります。" },
       { type: "p", text: "この記事では、検視の基本・期間の目安・費用の考え方・検視が終わるまでにやっておくべきことを、川口市周辺（火葬場：めぐりの森）での実務感に寄せて分かりやすくまとめます。" },
+      {
+        type: "relatedlinks",
+        title: "検視後のお見送り・火葬についての関連情報",
+        links: [
+          { label: "川口市の直葬", href: "/plan/direct-funeral/" },
+          { label: "川口市の火葬式", href: "/plan/cremation/" },
+          { label: "川口市めぐりの森（火葬場）", href: "/saijo/megurinomori/" },
+        ],
+      },
       { type: "h2", text: "この記事の要点" },
       {
         type: "ul",
@@ -5285,6 +5324,14 @@ export const columns: ColumnArticle[] = [
       {
         type: "p",
         text: "本記事では、川口市で葬儀をご検討の方に向けて、死亡届の提出方法・必要書類・提出期限・葬儀社がサポートできる範囲を、川口典礼の視点で整理します。",
+      },
+      {
+        type: "relatedlinks",
+        title: "火葬許可後のお見送りについての関連情報",
+        links: [
+          { label: "川口市めぐりの森（火葬場）", href: "/saijo/megurinomori/" },
+          { label: "川口市の直葬", href: "/plan/direct-funeral/" },
+        ],
       },
       { type: "h2", text: "この記事の要点" },
       {

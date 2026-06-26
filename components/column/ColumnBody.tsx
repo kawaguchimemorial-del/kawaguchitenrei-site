@@ -144,6 +144,31 @@ export function ColumnBody({ body }: { body: ColumnBlock[] }) {
                 </a>
               </div>
             );
+          case "relatedlinks":
+            return (
+              <nav
+                key={i}
+                aria-label="関連する川口市の葬儀情報"
+                className="my-8 rounded-lg border border-line bg-paper px-5 py-5 md:px-6 md:py-6"
+              >
+                <p className="text-sm font-semibold text-ink-deep">
+                  {block.title ?? "関連する川口市の葬儀情報"}
+                </p>
+                <ul className="mt-3 flex flex-col gap-2">
+                  {block.links.map((link) => (
+                    <li key={link.href}>
+                      <a
+                        href={link.href}
+                        className="inline-flex items-center gap-1.5 text-[15px] font-bold text-brand hover:underline md:text-base"
+                      >
+                        {link.label}
+                        <span aria-hidden>→</span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            );
           case "table":
             return (
               <figure key={i} className="my-4">
