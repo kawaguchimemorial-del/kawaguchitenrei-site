@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>川口典礼サイト SEO/AIO分析用データ取得手順書｜2026-06-26</title>
+<style>
+  :root{
+    --navy:#1F3864; --blue:#2E75B6; --blue-l:#E7F0FB; --line:#d0d7e2;
+    --warn-bg:#FDECEA; --warn-bd:#E5534B; --note-bg:#FFF7E6; --note-bd:#E0A100;
+    --ok-bg:#EAF6EC; --ok-bd:#3B873E; --ink:#222; --mut:#5a6472;
+  }
+  *{box-sizing:border-box;}
+  body{font-family:"Yu Gothic","Hiragino Kaku Gothic ProN","Meiryo",sans-serif;color:var(--ink);
+    line-height:1.7;margin:0;background:#f4f6f9;padding:24px;}
+  .wrap{max-width:980px;margin:0 auto;}
+  header.head{background:var(--navy);color:#fff;border-radius:12px;padding:22px 26px;margin-bottom:18px;}
+  header.head h1{font-size:21px;margin:0 0 6px;}
+  header.head .meta{font-size:13px;opacity:.92;}
+  .badge{display:inline-block;background:#fff;color:var(--navy);font-size:11px;font-weight:700;
+    border-radius:20px;padding:3px 10px;margin-right:6px;}
+  .toc{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 20px;margin-bottom:18px;font-size:13.5px;}
+  .toc ol{margin:6px 0 0;padding-left:20px;columns:2;}
+  .toc a{color:var(--blue);text-decoration:none;}
+  section.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px 24px;margin-bottom:16px;}
+  section.card>h2{font-size:17px;color:var(--navy);margin:0 0 12px;border-bottom:2px solid var(--blue);padding-bottom:8px;}
+  h3{font-size:14.5px;color:var(--blue);margin:18px 0 8px;}
+  h4{font-size:13.5px;margin:14px 0 6px;}
+  p,li{font-size:13.5px;}
+  table{border-collapse:collapse;width:100%;font-size:12.5px;margin:8px 0 12px;}
+  th,td{border:1px solid var(--line);padding:7px 9px;vertical-align:top;text-align:left;}
+  th{background:var(--navy);color:#fff;font-weight:700;}
+  tr:nth-child(even) td{background:#f7f9fc;}
+  .pri-high{color:#C00000;font-weight:700;} .pri-mid{color:#BF8F00;font-weight:700;} .pri-low{color:#5a6472;}
+  code,.code{font-family:"Consolas","SF Mono",monospace;background:#0f1a2b;color:#e6edf3;
+    border-radius:6px;padding:2px 7px;font-size:12px;}
+  pre.code{display:block;padding:12px 14px;white-space:pre-wrap;line-height:1.5;}
+  .warn,.note,.ok{border-radius:10px;padding:12px 16px;margin:12px 0;font-size:13px;}
+  .warn{background:var(--warn-bg);border:1px solid var(--warn-bd);}
+  .warn b{color:var(--warn-bd);}
+  .note{background:var(--note-bg);border:1px solid var(--note-bd);}
+  .ok{background:var(--ok-bg);border:1px solid var(--ok-bd);}
+  ol.steps{counter-reset:s;list-style:none;padding-left:0;margin:6px 0;}
+  ol.steps>li{counter-increment:s;position:relative;padding:6px 0 6px 38px;border-bottom:1px dashed #e3e8f0;}
+  ol.steps>li:before{content:counter(s);position:absolute;left:0;top:6px;width:26px;height:26px;
+    background:var(--blue);color:#fff;border-radius:50%;text-align:center;line-height:26px;font-size:12px;font-weight:700;}
+  ul.check{list-style:none;padding-left:0;}
+  ul.check li{padding:5px 0 5px 28px;position:relative;font-size:13px;border-bottom:1px solid #eef1f6;}
+  ul.check li:before{content:"☐";position:absolute;left:4px;top:4px;font-size:16px;color:var(--blue);}
+  .grid{display:flex;flex-wrap:wrap;gap:12px;}
+  .grid .mini{flex:1 1 280px;border:1px solid var(--line);border-radius:10px;padding:12px 14px;background:#fbfcfe;}
+  .grid .mini h4{margin-top:0;color:var(--navy);}
+  .kw{display:inline-block;background:var(--blue-l);border:1px solid #b9d3ee;border-radius:6px;
+    padding:1px 8px;margin:2px 3px;font-size:12px;}
+  .map{display:inline-block;background:#eef6ee;border:1px solid #bfe0bf;border-radius:6px;padding:1px 8px;margin:2px 3px;font-size:12px;}
+  .small{font-size:12px;color:var(--mut);}
+  footer{font-size:12px;color:var(--mut);text-align:center;margin:24px 0 8px;}
+  @media (max-width:640px){ .toc ol{columns:1;} body{padding:12px;} section.card{padding:16px;} }
+  @media print{
+    body{background:#fff;padding:0;font-size:11px;} .wrap{max-width:none;}
+    section.card,.toc,header.head{break-inside:avoid;box-shadow:none;}
+    h2{break-after:avoid;} table,ol.steps,ul.check{break-inside:auto;} tr,li{break-inside:avoid;}
+    .code{background:#eee;color:#000;border:1px solid #ccc;}
+    a{color:#000;text-decoration:none;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="head">
+  <div><span class="badge">社内用・非公開</span><span class="badge">取得手順書</span><span class="badge">2026-06-26</span></div>
+  <h1>川口典礼サイト SEO/AIO分析用データ取得手順書</h1>
+  <div class="meta">対象サイト：https://kawaguchitenrei.com/　／　作成日：2026-06-26<br>
+  本書は「手作業で取得すべきデータと取得手順」をまとめた手順書です。分析・実装・commit/push はまだ行いません。</div>
+</header>
+
+<div class="warn">
+  <b>この資料の取り扱い（重要）</b><br>
+  ・本書は社内確認用の<b>非公開資料</b>です（<code>&lt;meta robots noindex&gt;</code> 付き）。<br>
+  ・Search Console / GA4 / GTM の<b>元データ（CSV・Excel・スクショ・コンテナJSON）は public 配下に置かない／commitしない</b>。<br>
+  ・<b>個人情報・問い合わせ内容・氏名・故人名・喪主名はレポートに含めない</b>。<br>
+  ・本書作成時点で <b>git の変更（add/commit/push）は行いません</b>。
+</div>
+
+<nav class="toc">
+  <b>目次</b>
+  <ol>
+    <li><a href="#s1">今日集めるデータ一覧</a></li>
+    <li><a href="#s2">保存先ルール</a></li>
+    <li><a href="#s3">Search Consoleで取得するデータ</a></li>
+    <li><a href="#s4">GA4で取得するデータ</a></li>
+    <li><a href="#s5">GTMで取得・確認するデータ</a></li>
+    <li><a href="#s6">Vercel Analytics確認</a></li>
+    <li><a href="#s7">手動SERP確認</a></li>
+    <li><a href="#s8">Googleビジネスプロフィール確認</a></li>
+    <li><a href="#s9">データ提出チェックリスト</a></li>
+    <li><a href="#s10">データ取得後に実施する分析内容</a></li>
+  </ol>
+</nav>
+
+<!-- 前提情報 -->
+<section class="card" id="pre">
+  <h2>前提情報</h2>
+  <p><b>サイト：</b>https://kawaguchitenrei.com/</p>
+  <h4>今回の重要KW（14語）</h4>
+  <div>
+    <span class="kw">川口典礼</span><span class="kw">川口 葬儀</span><span class="kw">川口市 葬儀</span>
+    <span class="kw">川口 家族葬</span><span class="kw">川口市 家族葬</span><span class="kw">川口 直葬</span>
+    <span class="kw">川口市 直葬</span><span class="kw">川口 一日葬</span><span class="kw">川口市 一日葬</span>
+    <span class="kw">川口 火葬式</span><span class="kw">川口市 火葬式</span><span class="kw">めぐりの森 葬儀</span>
+    <span class="kw">めぐりの森 家族葬</span><span class="kw">めぐりの森 火葬式</span>
+  </div>
+  <h4>主受け皿ページ（KW集約の確認対象）</h4>
+  <table>
+    <tr><th>重要KW</th><th>主受け皿URL</th></tr>
+    <tr><td>川口典礼</td><td><code>/</code>（トップ）</td></tr>
+    <tr><td>川口 葬儀 / 川口市 葬儀</td><td><code>/area/kawaguchi/</code></td></tr>
+    <tr><td>川口 家族葬 / 川口市 家族葬</td><td><code>/plan/family-funeral/</code></td></tr>
+  </table>
+  <h4>直近の重要SEO/AIO改善（初期確認の起点）</h4>
+  <ul>
+    <li>commit hash：<code>c37aac6</code>（push済み）</li>
+    <li>主要URLのインデックス登録リクエスト済み：
+      <code>/</code>　<code>/area/kawaguchi/</code>　<code>/plan/family-funeral/</code></li>
+    <li>改善反映の目安：2026-06-19頃</li>
+  </ul>
+  <div class="note">
+    <b>本書の目的：</b>上記改善の<b>初期確認</b>として、①「川口典礼」がトップに集約されているか ②「川口(市) 葬儀」が
+    <code>/area/kawaguchi/</code> に集約されているか ③「川口(市) 家族葬」が <code>/plan/family-funeral/</code> に集約されているか
+    ④GSCの表示回数・順位・CTR・クリックの変化 ⑤GA4の閲覧・流入・デバイス・問い合わせ導線 ⑥GTM/タグの発火 ⑦インデックス状況 を見るためのデータを集める。
+  </div>
+</section>
+
+<!-- 1 -->
+<section class="card" id="s1">
+  <h2>1. 今日集めるデータ一覧</h2>
+  <table>
+    <tr>
+      <th>ツール</th><th>取得するデータ</th><th>目的</th><th>推奨期間</th><th>出力形式</th><th>保存先</th><th>優先度</th>
+    </tr>
+    <tr>
+      <td>Google Search Console</td>
+      <td>検索パフォーマンス全体（比較）</td>
+      <td>改善前後の表示回数・順位・CTR・クリックの変化</td>
+      <td>06/19–06/24 vs 06/13–06/18 ほか</td>
+      <td>Excel / CSV</td>
+      <td><code>tmp/searchconsole/</code></td>
+      <td class="pri-high">高</td>
+    </tr>
+    <tr>
+      <td>Google Search Console</td>
+      <td>クエリ別データ（重要KW）</td>
+      <td>KW単位のクリック・表示・CTR・順位</td>
+      <td>同上</td>
+      <td>Excel / CSV</td>
+      <td><code>tmp/searchconsole/</code></td>
+      <td class="pri-high">高</td>
+    </tr>
+    <tr>
+      <td>Google Search Console</td>
+      <td>KWごとの表示URL（クエリ→ページ）</td>
+      <td>受け皿ページに評価が集約されているか<b>（最重要）</b></td>
+      <td>直近取得可能まで</td>
+      <td>Excel + スクショ</td>
+      <td><code>tmp/searchconsole/</code><br><code>tmp/screenshots/searchconsole/</code></td>
+      <td class="pri-high">高</td>
+    </tr>
+    <tr>
+      <td>Google Search Console</td>
+      <td>ページ別データ</td>
+      <td>受け皿ページの伸び・CTR低下・順位悪化の有無</td>
+      <td>直近取得可能まで</td>
+      <td>Excel / CSV</td>
+      <td><code>tmp/searchconsole/</code></td>
+      <td class="pri-mid">中</td>
+    </tr>
+    <tr>
+      <td>Google Search Console</td>
+      <td>インデックス状況・サイトマップ・URL検査</td>
+      <td>登録状況・正規URL・クロール日の確認</td>
+      <td>現時点</td>
+      <td>スクショ</td>
+      <td><code>tmp/screenshots/searchconsole/</code></td>
+      <td class="pri-high">高</td>
+    </tr>
+    <tr>
+      <td>Google Analytics 4</td>
+      <td>集客（トラフィック獲得・ユーザー獲得）</td>
+      <td>流入チャネルとエンゲージメント</td>
+      <td>06/19–06/25 vs 06/12–06/18</td>
+      <td>CSV / スプレッドシート + スクショ</td>
+      <td><code>tmp/ga4/</code></td>
+      <td class="pri-high">高</td>
+    </tr>
+    <tr>
+      <td>Google Analytics 4</td>
+      <td>ページとスクリーン / ランディングページ</td>
+      <td>実閲覧ページ・LP流入の偏り確認</td>
+      <td>同上</td>
+      <td>CSV + スクショ</td>
+      <td><code>tmp/ga4/</code></td>
+      <td class="pri-high">高</td>
+    </tr>
+    <tr>
+      <td>Google Analytics 4</td>
+      <td>イベント / キーイベント設定</td>
+      <td>CV導線（電話・相談・フォーム）が計測されているか</td>
+      <td>同上</td>
+      <td>CSV + スクショ</td>
+      <td><code>tmp/ga4/</code></td>
+      <td class="pri-high">高</td>
+    </tr>
+    <tr>
+      <td>Google Tag Manager</td>
+      <td>コンテナ基本情報・タグ/トリガー/変数・プレビュー発火</td>
+      <td>計測タグの発火・二重発火・欠落確認</td>
+      <td>現時点</td>
+      <td>スクショ（JSONは任意・非commit）</td>
+      <td><code>tmp/gtm/</code><br><code>tmp/screenshots/gtm/</code></td>
+      <td class="pri-mid">中</td>
+    </tr>
+    <tr>
+      <td>Vercel Analytics</td>
+      <td>導入有無・上位ページ・参照元・デバイス</td>
+      <td>GA4の補助・導入確認</td>
+      <td>現時点</td>
+      <td>スクショ / 手動メモ</td>
+      <td><code>tmp/screenshots/</code></td>
+      <td class="pri-low">低</td>
+    </tr>
+    <tr>
+      <td>手動確認スクリーンショット</td>
+      <td>SERP（検索結果）の見え方</td>
+      <td>タイトル/説明/URL/競合/GBP/サイトリンク</td>
+      <td>現時点（シークレット）</td>
+      <td>スクショ</td>
+      <td><code>tmp/screenshots/serp/</code></td>
+      <td class="pri-mid">中</td>
+    </tr>
+  </table>
+  <p class="small">※ 優先度「高」から着手してください。GA4/GTM/Vercel が未導入・管理外の場合は、その旨を「確認不能／対象外」と記録すればOKです。</p>
+</section>
+
+<!-- 2 -->
+<section class="card" id="s2">
+  <h2>2. 保存先ルール</h2>
+  <h4>使用する保存先（リポジトリ直下の <code>tmp/</code> 配下）</h4>
+  <pre class="code">tmp/searchconsole/
+tmp/ga4/
+tmp/gtm/
+tmp/screenshots/
+tmp/seo-analysis-2026-06-26/</pre>
+  <p class="small">スクショは用途別に <code>tmp/screenshots/searchconsole/</code>・<code>tmp/screenshots/gtm/</code>・<code>tmp/screenshots/serp/</code> のサブフォルダに分けると後で探しやすいです。</p>
+
+  <div class="warn">
+    <b>禁止事項</b>
+    <ul style="margin:6px 0 0;">
+      <li><code>public/</code> 配下に置かない</li>
+      <li><code>public/images/tmp/</code> に置かない</li>
+      <li>Search Console / GA4 の元CSV・Excelを<b>commitしない</b></li>
+      <li>GTMコンテナJSONを<b>commitしない</b></li>
+      <li>個人情報・問い合わせ内容・氏名・故人名・喪主名をレポートに含めない</li>
+    </ul>
+  </div>
+
+  <h4>.gitignore の確認案内</h4>
+  <p>元データを誤ってコミットしないため、<code>.gitignore</code> に <code>tmp/</code> が入っているか確認してください。確認だけで、<b>本書作成時点ではgitの変更は行いません</b>。</p>
+  <ol class="steps">
+    <li>リポジトリ直下の <code>.gitignore</code> を開く</li>
+    <li><code>tmp/</code> の行があるか目視する</li>
+    <li>無ければ「未設定」とメモしておく（追記対応は後日、別タスクで相談）</li>
+    <li><code>git status</code> で <code>tmp/</code> 配下が追跡対象に出ていないかだけ確認（変更はしない）</li>
+  </ol>
+  <div class="note">念のため：データ取得作業そのものはローカルのファイル保存だけです。サイトやリポジトリのコードには触れません。</div>
+</section>
+
+<!-- 3 -->
+<section class="card" id="s3">
+  <h2>3. Search Consoleで取得するデータ</h2>
+  <p class="small">URL：<code>https://search.google.com/search-console</code>　／　プロパティ：<code>https://kawaguchitenrei.com/</code></p>
+  <div class="note"><b>共通の注意：</b>Search Consoleのデータは<b>2〜3日遅延</b>します。直近日は数値が未確定なことがあるため、「取得できた最新日」を必ずメモしてください。</div>
+
+  <h3>3-1. 検索パフォーマンス全体データ</h3>
+  <ol class="steps">
+    <li>Search Console を開く</li>
+    <li>左上でプロパティ <code>https://kawaguchitenrei.com/</code> を選択</li>
+    <li>左メニュー「検索パフォーマンス」（=「検索結果」）を開く</li>
+    <li>上部の指標カード「合計クリック数／合計表示回数／平均CTR／平均掲載順位」を<b>4つともON</b>にする</li>
+    <li>上部「日付」をクリックし、下記の期間を設定する（比較する場合は「比較」タブ）</li>
+    <li>右上「エクスポート」→ Excel（または CSV）で保存</li>
+  </ol>
+  <h4>推奨期間（3パターン取得）</h4>
+  <table>
+    <tr><th>用途</th><th>期間設定</th><th>ファイル名例</th></tr>
+    <tr>
+      <td>A. 改善後の初期確認（前後比較）</td>
+      <td>改善後 2026-06-19〜06-24　／　比較前 2026-06-13〜06-18<br><span class="small">※06/24まで出ていなければ取得可能な最新日まで</span></td>
+      <td><code>gsc-performance-compare-20260613-20260624.xlsx</code></td>
+    </tr>
+    <tr>
+      <td>B. リニューアル後の継続確認</td>
+      <td>2026-05-19〜2026-06-24（最新日まで）</td>
+      <td><code>gsc-performance-after-renewal-20260519-20260624.xlsx</code></td>
+    </tr>
+    <tr>
+      <td>C. 前回比較の継続確認</td>
+      <td>2026-04-27〜2026-05-18　と　2026-05-19〜2026-06-24<br><span class="small">※日数差が出る場合はメモに明記</span></td>
+      <td><code>gsc-performance-prev-compare.xlsx</code></td>
+    </tr>
+  </table>
+  <p class="small">保存先：<code>tmp/searchconsole/</code>　／　出力：できればExcel、CSVでも可。</p>
+
+  <h3>3-2. クエリ別データ</h3>
+  <ol class="steps">
+    <li>「検索パフォーマンス」を開いた状態で、表の下部にある<b>「クエリ」タブ</b>を選ぶ</li>
+    <li>期間は 3-1.A と同じ前後比較にする（「比較」を使うと差分列が出る）</li>
+    <li>右上「エクスポート」→ Excel で保存</li>
+  </ol>
+  <h4>取得したい内容</h4>
+  <p>クリック／表示回数／CTR／平均掲載順位／<b>前期間との差分</b></p>
+  <h4>対象KW（エクスポート後に絞り込み確認）</h4>
+  <div>
+    <span class="kw">川口典礼</span><span class="kw">川口 葬儀</span><span class="kw">川口市 葬儀</span>
+    <span class="kw">川口 家族葬</span><span class="kw">川口市 家族葬</span><span class="kw">川口 直葬</span>
+    <span class="kw">川口市 直葬</span><span class="kw">川口 一日葬</span><span class="kw">川口市 一日葬</span>
+    <span class="kw">川口 火葬式</span><span class="kw">川口市 火葬式</span><span class="kw">めぐりの森 葬儀</span>
+    <span class="kw">めぐりの森 家族葬</span><span class="kw">めぐりの森 火葬式</span>
+  </div>
+  <p class="small">ファイル名例：<code>gsc-queries-compare-20260613-20260624.xlsx</code>　／　保存先：<code>tmp/searchconsole/</code></p>
+
+  <h3>3-3. キーワードごとの表示URL確認 <span style="color:#C00000;">（今回最重要）</span></h3>
+  <p>各重要KWで実際にどのURLが検索結果に出ているかを確認し、<b>受け皿ページに集約できているか</b>を見ます。</p>
+  <ol class="steps">
+    <li>「検索パフォーマンス」を開く</li>
+    <li>上部「＋新規」→「検索キーワード（クエリ）」を選ぶ</li>
+    <li>「正確に一致するクエリ」を選び、例として <code>川口市 葬儀</code> を入力</li>
+    <li>「適用」を押す</li>
+    <li>表の下部で<b>「ページ」タブ</b>に切り替える</li>
+    <li>表示されているURL（どのページがそのKWで出ているか）を確認</li>
+    <li>右上「エクスポート」で保存</li>
+    <li><b>画面のスクリーンショット</b>も保存（クエリ名が分かる状態で）</li>
+    <li>KWを変えて 3〜8 を繰り返す</li>
+  </ol>
+  <h4>確認したい組み合わせ（期待値）</h4>
+  <table>
+    <tr><th>KW（正確一致）</th><th>期待される表示URL</th><th>保存ファイル名例</th></tr>
+    <tr><td>川口典礼</td><td><code>/</code></td><td><code>gsc-query-page-kawaguchitenrei.xlsx</code></td></tr>
+    <tr><td>川口 葬儀</td><td><code>/area/kawaguchi/</code></td><td><code>gsc-query-page-kawaguchi-sougi.xlsx</code></td></tr>
+    <tr><td>川口市 葬儀</td><td><code>/area/kawaguchi/</code></td><td><code>gsc-query-page-kawaguchishi-sougi.xlsx</code></td></tr>
+    <tr><td>川口 家族葬</td><td><code>/plan/family-funeral/</code></td><td><code>gsc-query-page-kawaguchi-kazokusou.xlsx</code></td></tr>
+    <tr><td>川口市 家族葬</td><td><code>/plan/family-funeral/</code></td><td><code>gsc-query-page-kawaguchishi-kazokusou.xlsx</code></td></tr>
+  </table>
+  <p class="small">Excel保存先：<code>tmp/searchconsole/</code>　／　スクショ保存先：<code>tmp/screenshots/searchconsole/</code></p>
+  <div class="note">余力があれば 直葬・一日葬・火葬式・めぐりの森系 のKWでも同じ手順で「ページ」タブを確認すると、機会のあるKWが見えます（任意）。</div>
+
+  <h3>3-4. ページ別データ</h3>
+  <ol class="steps">
+    <li>「検索パフォーマンス」で、3-1.A と同じ前後比較期間にする</li>
+    <li>表下部の<b>「ページ」タブ</b>を選ぶ</li>
+    <li>右上「エクスポート」で保存</li>
+    <li>必要に応じ、各URLを「＋新規」→「ページ」→「正確なURL」で個別フィルタして確認</li>
+  </ol>
+  <h4>対象URL</h4>
+  <ul>
+    <li><code>https://kawaguchitenrei.com/</code></li>
+    <li><code>https://kawaguchitenrei.com/area/kawaguchi/</code></li>
+    <li><code>https://kawaguchitenrei.com/plan/family-funeral/</code></li>
+    <li><code>https://kawaguchitenrei.com/plan/direct-funeral/</code></li>
+    <li><code>https://kawaguchitenrei.com/plan/oneday-funeral/</code></li>
+    <li><code>https://kawaguchitenrei.com/saijo/megurinomori/</code></li>
+    <li><code>https://kawaguchitenrei.com/hall/kawaguchi-memorial-hall/</code></li>
+  </ul>
+  <h4>確認したいこと</h4>
+  <ul>
+    <li>どのページの表示回数が増えているか</li>
+    <li>どのページでCTRが低いか</li>
+    <li>平均順位が悪化していないか</li>
+    <li>重要KWの受け皿ページが増えているか</li>
+  </ul>
+  <p class="small">ファイル名例：<code>gsc-pages-compare-20260613-20260624.xlsx</code>　／　保存先：<code>tmp/searchconsole/</code></p>
+
+  <h3>3-5. インデックス状況</h3>
+  <h4>(a) ページのインデックス登録</h4>
+  <ol class="steps">
+    <li>左メニュー「ページ」（インデックス作成 &gt; ページ）を開く</li>
+    <li>「登録済み」「未登録」の件数と、未登録の理由内訳を確認</li>
+    <li>特に<b>「検出 - インデックス未登録」「クロール済み - インデックス未登録」</b>の有無を確認</li>
+    <li>スクリーンショットを保存</li>
+  </ol>
+  <h4>(b) URL検査（主要URL）</h4>
+  <ol class="steps">
+    <li>画面上部の検索バー（URL検査）に対象URLを貼り付けてEnter</li>
+    <li>「URLはGoogleに登録されています」になっているか確認</li>
+    <li>「前回のクロール」日付を確認</li>
+    <li>「ユーザーが指定した正規URL」「Googleが選択した正規URL」が一致しているか確認</li>
+    <li>スクリーンショットを保存</li>
+    <li>各URLで繰り返す</li>
+  </ol>
+  <h4>(c) サイトマップ</h4>
+  <ol class="steps">
+    <li>左メニュー「サイトマップ」を開く</li>
+    <li><code>sitemap.xml</code> の送信状況・「取得できました」・検出URL数を確認</li>
+    <li>スクリーンショットを保存</li>
+  </ol>
+  <h4>確認URL</h4>
+  <ul>
+    <li><code>https://kawaguchitenrei.com/</code></li>
+    <li><code>https://kawaguchitenrei.com/area/kawaguchi/</code></li>
+    <li><code>https://kawaguchitenrei.com/plan/family-funeral/</code></li>
+    <li><code>https://kawaguchitenrei.com/sitemap.xml</code></li>
+  </ul>
+  <h4>確認項目（チェック）</h4>
+  <ul class="check">
+    <li>「Googleに登録されています」になっているか</li>
+    <li>前回のクロール日</li>
+    <li>ユーザーが指定した正規URL</li>
+    <li>Googleが選択した正規URL</li>
+    <li>サイトマップ送信状況</li>
+    <li>検出 - インデックス未登録 の有無</li>
+    <li>クロール済み - インデックス未登録 の有無</li>
+  </ul>
+  <p class="small">スクショ保存先：<code>tmp/screenshots/searchconsole/</code></p>
+</section>
+
+<!-- 4 -->
+<section class="card" id="s4">
+  <h2>4. GA4で取得するデータ</h2>
+  <p class="small">URL：<code>https://analytics.google.com</code>　／　対象プロパティ：川口典礼サイトのGA4</p>
+  <div class="warn"><b>GA4が未導入・データ不足の場合：</b>無理に作らず「確認不能」と記録してください。それ自体が「計測が入っていない」という重要な分析結果になります。</div>
+  <h4>推奨期間</h4>
+  <ul>
+    <li>メイン：2026-06-19〜2026-06-25</li>
+    <li>比較：2026-06-12〜2026-06-18</li>
+    <li>当日データが不安定なら前日までにする（取得範囲をメモ）</li>
+  </ul>
+
+  <h3>4-1. レポート：集客</h3>
+  <ol class="steps">
+    <li>左メニュー「レポート」→「集客」→「トラフィック獲得」を開く</li>
+    <li>右上の期間を上記に設定（比較もON）</li>
+    <li>表を確認し、右上の共有/ダウンロードでCSV（またはスプレッドシート）出力</li>
+    <li>「ユーザー獲得」も同様に取得</li>
+    <li>スクリーンショットも保存</li>
+  </ol>
+  <h4>確認項目</h4>
+  <table>
+    <tr><th>チャネル</th><th>指標</th></tr>
+    <tr><td>Organic Search / Direct / Referral / Organic Social /（あれば）Paid Search</td>
+        <td>セッション／エンゲージメント率／平均エンゲージメント時間／コンバージョン（キーイベント）</td></tr>
+  </table>
+  <p class="small">出力：CSV または スプレッドシート＋スクショ　／　保存先：<code>tmp/ga4/</code></p>
+
+  <h3>4-2. レポート：ページとスクリーン</h3>
+  <ol class="steps">
+    <li>「レポート」→「エンゲージメント」→「ページとスクリーン」を開く</li>
+    <li>期間を設定し、必要なら「ページパスとスクリーンクラス」で表示</li>
+    <li>CSV出力＋スクショ</li>
+  </ol>
+  <h4>確認対象ページ</h4>
+  <ul>
+    <li><code>/</code>　<code>/area/kawaguchi/</code>　<code>/plan/family-funeral/</code>　<code>/plan/direct-funeral/</code></li>
+    <li><code>/plan/oneday-funeral/</code>　<code>/saijo/megurinomori/</code>　<code>/hall/kawaguchi-memorial-hall/</code></li>
+    <li><code>/contact/</code>　<code>/thanks/</code>（あれば）</li>
+  </ul>
+  <h4>確認したいこと</h4>
+  <p>表示回数／ユーザー／平均エンゲージメント時間／イベント数／キーイベント／離脱が多そうなページ</p>
+
+  <h3>4-3. レポート：ランディングページ</h3>
+  <ol class="steps">
+    <li>「レポート」→「エンゲージメント」→「ランディングページ」を開く（無ければ探索で代替）</li>
+    <li>期間設定し、CSV出力＋スクショ</li>
+  </ol>
+  <h4>確認したいこと</h4>
+  <ul>
+    <li>Organic Search から最初に入っているページ</li>
+    <li><code>/area/kawaguchi/</code> に流入があるか</li>
+    <li><code>/plan/family-funeral/</code> に流入があるか</li>
+    <li>トップページだけに偏っていないか</li>
+  </ul>
+
+  <h3>4-4. レポート：イベント</h3>
+  <ol class="steps">
+    <li>「レポート」→「エンゲージメント」→「イベント」を開く</li>
+    <li>表示されているイベント名と件数を確認し、CSV出力＋スクショ</li>
+  </ol>
+  <h4>確認したいイベント（実際の名称を記録）</h4>
+  <div>
+    <span class="kw">page_view</span><span class="kw">scroll</span><span class="kw">click</span>
+    <span class="kw">form_start</span><span class="kw">form_submit</span><span class="kw">generate_lead</span>
+    <span class="kw">phone_click</span><span class="kw">tel_click</span><span class="kw">contact_click</span>
+    <span class="kw">consultation_click</span><span class="kw">line_click（あれば要確認）</span>
+  </div>
+  <div class="note"><b>注意：</b>イベント名は実装により異なります。<b>実際に表示されている名前そのまま</b>を記録してください。<code>line_click</code> 系は現方針では使っていないはずなので、もし発火していたら要確認としてメモ。</div>
+
+  <h3>4-5. コンバージョン / キーイベント</h3>
+  <ol class="steps">
+    <li>左下「管理」→「キーイベント」（旧：コンバージョン）を開く</li>
+    <li>キーイベントとして登録されているものを確認</li>
+    <li>スクリーンショットを保存</li>
+  </ol>
+  <h4>確認したいこと</h4>
+  <ul class="check">
+    <li>問い合わせ完了がキーイベントになっているか</li>
+    <li>電話クリックがキーイベントになっているか</li>
+    <li>事前相談クリックがキーイベントになっているか</li>
+    <li>未設定なら「未設定」と記録</li>
+  </ul>
+</section>
+
+<!-- 5 -->
+<section class="card" id="s5">
+  <h2>5. GTMで取得・確認するデータ</h2>
+  <p class="small">URL：<code>https://tagmanager.google.com</code></p>
+  <div class="warn"><b>GTMが未導入・管理外の場合：</b>「対象外」と記録してください（タグがGTM経由でなく直書きの可能性もあるため、その場合もメモ）。</div>
+
+  <h3>5-1. コンテナ基本情報</h3>
+  <ol class="steps">
+    <li>対象アカウント／コンテナを開く</li>
+    <li><b>コンテナID</b>（<code>GTM-XXXXXX</code>）を控える</li>
+    <li>「バージョン」から<b>公開中バージョン</b>と<b>最終公開日</b>を確認</li>
+    <li>左メニューで<b>タグ／トリガー／変数</b>の一覧をスクショ</li>
+    <li>（任意）「管理」→「コンテナをエクスポート」でJSON取得</li>
+  </ol>
+  <h4>取得する内容</h4>
+  <p>コンテナID／公開中バージョン／最終公開日／タグ一覧／トリガー一覧／変数一覧</p>
+  <div class="warn"><b>GTMコンテナJSONは commitしない。</b> 取得する場合も保存は <code>tmp/gtm/</code> のみ。</div>
+
+  <h3>5-2. プレビュー確認（タグの発火）</h3>
+  <ol class="steps">
+    <li>GTM右上「プレビュー」を押す</li>
+    <li>Tag Assistant で対象URLを入力して接続</li>
+    <li>下記URL・アクションを順に実行し、発火タグを確認</li>
+    <li>各アクションでスクリーンショットを保存</li>
+  </ol>
+  <h4>対象URL</h4>
+  <ul>
+    <li><code>https://kawaguchitenrei.com/</code></li>
+    <li><code>https://kawaguchitenrei.com/area/kawaguchi/</code></li>
+    <li><code>https://kawaguchitenrei.com/plan/family-funeral/</code></li>
+    <li><code>https://kawaguchitenrei.com/contact/</code></li>
+  </ul>
+  <h4>確認アクション</h4>
+  <div>
+    <span class="map">ページ表示</span><span class="map">電話ボタンクリック</span><span class="map">事前相談ボタンクリック</span>
+    <span class="map">問い合わせフォーム開始</span><span class="map">問い合わせフォーム送信</span>
+    <span class="map">固定CTAクリック</span><span class="map">ヘッダー電話クリック</span><span class="map">フッター電話クリック</span>
+  </div>
+  <h4>確認項目</h4>
+  <ul class="check">
+    <li>どのタグが発火したか</li>
+    <li>どのタグが発火しなかったか</li>
+    <li>GA4にイベントが送られているか</li>
+    <li>同じイベントが二重発火していないか</li>
+  </ul>
+  <h4>保存するもの</h4>
+  <p>スクリーンショット／発火したイベント名のメモ／発火しなかったタグのメモ</p>
+  <p class="small">保存先：<code>tmp/screenshots/gtm/</code>（メモは <code>tmp/gtm/</code>）</p>
+</section>
+
+<!-- 6 -->
+<section class="card" id="s6">
+  <h2>6. Vercel Analytics確認</h2>
+  <p>Vercel に本プロジェクトのダッシュボードがある場合、Analytics タブを確認します。未導入なら「未導入」と記録。</p>
+  <h4>確認項目</h4>
+  <ul class="check">
+    <li>Analyticsが有効か</li>
+    <li>計測が始まっているか</li>
+    <li>上位ページ</li>
+    <li>Referrer（参照元）</li>
+    <li>デバイス</li>
+    <li>国 / 地域</li>
+    <li>404や異常なページがないか</li>
+  </ul>
+  <p class="small">保存：スクリーンショット／必要なら手動メモ　→　<code>tmp/screenshots/</code></p>
+</section>
+
+<!-- 7 -->
+<section class="card" id="s7">
+  <h2>7. 手動SERP確認</h2>
+  <div class="warn"><b>順位の正式判定には使わない。</b> Google検索結果はパーソナライズ・地域・端末で差が出ます。<b>手動順位は参考値</b>として扱い、必ず「地域・端末・ログイン状態」をメモしてください。</div>
+  <h4>確認方法</h4>
+  <ol class="steps">
+    <li><b>シークレットウィンドウ</b>を開く（ログアウト状態）</li>
+    <li>検索地域・端末差があることを前提に検索する</li>
+    <li>結果のスクリーンショットを保存（検索KWが分かる状態で）</li>
+  </ol>
+  <h4>確認KW</h4>
+  <div>
+    <span class="kw">川口典礼</span><span class="kw">川口 葬儀</span><span class="kw">川口市 葬儀</span>
+    <span class="kw">川口 家族葬</span><span class="kw">川口市 家族葬</span>
+  </div>
+  <h4>確認項目</h4>
+  <ul class="check">
+    <li>タイトル表示</li>
+    <li>ディスクリプション表示</li>
+    <li>表示URL</li>
+    <li>競合（どこが上位か）</li>
+    <li>Googleビジネスプロフィールの表示</li>
+    <li>サイトリンクが出ているか</li>
+  </ul>
+  <p class="small">スクショ保存先：<code>tmp/screenshots/serp/</code></p>
+</section>
+
+<!-- 8 -->
+<section class="card" id="s8">
+  <h2>8. Googleビジネスプロフィールで確認してほしいこと</h2>
+  <p>コード外の作業です。<b>確認のみ</b>で、内容の変更は人間確認後に別途行います（本書では変更しない）。</p>
+  <h4>確認項目</h4>
+  <ul class="check">
+    <li>会社名表記</li>
+    <li>住所</li>
+    <li>電話番号</li>
+    <li>公式サイトURL</li>
+    <li>カテゴリ</li>
+    <li>営業時間</li>
+    <li>口コミ（件数・評価）</li>
+    <li>写真</li>
+    <li>サービス</li>
+    <li>投稿</li>
+    <li>川口典礼サイトとのNAP（名称・住所・電話）一致</li>
+  </ul>
+  <div class="note"><b>NAP一致が特に重要：</b>サイト・GBP・各ポータルで「名称／住所／電話」が完全一致しているとローカル評価・AI引用の精度が上がります。差異があればメモ。</div>
+</section>
+
+<!-- 9 -->
+<section class="card" id="s9">
+  <h2>9. データ提出チェックリスト</h2>
+  <div class="grid">
+    <div class="mini">
+      <h4>Search Console</h4>
+      <ul class="check">
+        <li>全体比較データ</li>
+        <li>クエリ別データ</li>
+        <li>KWごとのページ確認データ</li>
+        <li>ページ別データ</li>
+        <li>インデックス状況スクリーンショット</li>
+        <li>サイトマップ状況スクリーンショット</li>
+      </ul>
+    </div>
+    <div class="mini">
+      <h4>GA4</h4>
+      <ul class="check">
+        <li>トラフィック獲得</li>
+        <li>ユーザー獲得</li>
+        <li>ページとスクリーン</li>
+        <li>ランディングページ</li>
+        <li>イベント</li>
+        <li>キーイベント</li>
+      </ul>
+    </div>
+    <div class="mini">
+      <h4>GTM</h4>
+      <ul class="check">
+        <li>コンテナ基本情報</li>
+        <li>タグ一覧</li>
+        <li>トリガー一覧</li>
+        <li>プレビュー確認</li>
+        <li>電話CTAクリック</li>
+        <li>事前相談CTAクリック</li>
+        <li>フォーム送信</li>
+      </ul>
+    </div>
+    <div class="mini">
+      <h4>その他</h4>
+      <ul class="check">
+        <li>Vercel Analytics</li>
+        <li>SERPスクリーンショット</li>
+        <li>Googleビジネスプロフィール確認</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 10 -->
+<section class="card" id="s10">
+  <h2>10. データ取得後に実施する分析内容</h2>
+  <p>データが揃ったら、次の分析を行います（本書時点では未実施）。</p>
+  <ol>
+    <li>重要KWごとの順位・表示回数・CTR・クリックの<b>前後比較</b></li>
+    <li>重要KWごとの<b>表示URL確認</b>（受け皿への集約状況）</li>
+    <li>主受け皿ページに評価が集約されているか（<code>/</code>・<code>/area/kawaguchi/</code>・<code>/plan/family-funeral/</code>）</li>
+    <li><code>/area/kawaguchi/</code> と <code>/plan/family-funeral/</code> の伸び</li>
+    <li>ブランド名「川口典礼」の1位化状況</li>
+    <li>家族葬KWの回復状況</li>
+    <li>直葬・一日葬・火葬式KWの機会</li>
+    <li>めぐりの森KWの表示有無（現状ゼロからの変化）</li>
+    <li>GA4でCV導線（電話・相談・フォーム）が見えているか</li>
+    <li>GTMイベントの欠落や二重発火</li>
+    <li>次に実装すべきSEO/AIO施策の洗い出し</li>
+    <li>追加で必要なGSCエクスポートの特定</li>
+  </ol>
+  <div class="ok">
+    <b>このあとの私（分析担当）の動き：</b>上記データが <code>tmp/</code> 配下にそろった時点で、突き合わせ分析→所見→次の施策案、の順にまとめます。
+    分析結果のレポート（実データを含まない要約）は <code>docs/eval/records/</code> や <code>docs/reports/</code> に残す想定です。
+  </div>
+</section>
+
+<footer>
+  川口典礼サイト SEO/AIO分析用データ取得手順書｜2026-06-26｜社内非公開資料｜本書時点で git 変更なし
+</footer>
+
+</div>
+</body>
+</html>

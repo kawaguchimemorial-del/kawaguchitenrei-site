@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>c37aac6 改善後 初期分析（GSC × GA4）｜2026-06-26</title>
+<style>
+  :root{--navy:#1F3864;--blue:#2E75B6;--blue-l:#E7F0FB;--line:#d0d7e2;
+    --warn-bg:#FDECEA;--warn-bd:#E5534B;--note-bg:#FFF7E6;--note-bd:#E0A100;
+    --ok-bg:#EAF6EC;--ok-bd:#3B873E;--ink:#222;--mut:#5a6472;}
+  *{box-sizing:border-box;}
+  body{font-family:"Yu Gothic","Hiragino Kaku Gothic ProN","Meiryo",sans-serif;color:var(--ink);
+    line-height:1.7;margin:0;background:#f4f6f9;padding:24px;}
+  .wrap{max-width:1000px;margin:0 auto;}
+  header.head{background:var(--navy);color:#fff;border-radius:12px;padding:22px 26px;margin-bottom:18px;}
+  header.head h1{font-size:20px;margin:0 0 6px;}
+  header.head .meta{font-size:13px;opacity:.92;}
+  .badge{display:inline-block;background:#fff;color:var(--navy);font-size:11px;font-weight:700;border-radius:20px;padding:3px 10px;margin-right:6px;}
+  section.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px 24px;margin-bottom:16px;}
+  section.card>h2{font-size:17px;color:var(--navy);margin:0 0 12px;border-bottom:2px solid var(--blue);padding-bottom:8px;}
+  h3{font-size:14.5px;color:var(--blue);margin:16px 0 8px;}
+  p,li{font-size:13.5px;}
+  table{border-collapse:collapse;width:100%;font-size:12.5px;margin:8px 0 12px;}
+  th,td{border:1px solid var(--line);padding:7px 9px;vertical-align:top;text-align:left;}
+  th{background:var(--navy);color:#fff;}
+  tr:nth-child(even) td{background:#f7f9fc;}
+  td.num{text-align:right;white-space:nowrap;}
+  .up{color:#1a7f37;font-weight:700;} .down{color:#b3261e;font-weight:700;} .flat{color:var(--mut);}
+  code{font-family:"Consolas",monospace;background:#0f1a2b;color:#e6edf3;border-radius:5px;padding:1px 6px;font-size:12px;}
+  .warn,.note,.ok{border-radius:10px;padding:12px 16px;margin:12px 0;font-size:13px;}
+  .warn{background:var(--warn-bg);border:1px solid var(--warn-bd);} .warn b{color:var(--warn-bd);}
+  .note{background:var(--note-bg);border:1px solid var(--note-bd);}
+  .ok{background:var(--ok-bg);border:1px solid var(--ok-bd);}
+  ol.concl{counter-reset:c;list-style:none;padding-left:0;}
+  ol.concl>li{counter-increment:c;position:relative;padding:10px 12px 10px 46px;margin:8px 0;background:#fbfcfe;border:1px solid var(--line);border-radius:8px;}
+  ol.concl>li:before{content:counter(c);position:absolute;left:10px;top:10px;width:26px;height:26px;background:var(--blue);color:#fff;border-radius:50%;text-align:center;line-height:26px;font-weight:700;}
+  .cards{display:flex;flex-wrap:wrap;gap:12px;margin:10px 0;}
+  .card3{flex:1 1 200px;border:1px solid var(--line);border-radius:10px;padding:12px 14px;background:#fbfcfe;}
+  .card3 .v{font-size:18px;font-weight:bold;color:var(--navy);} .card3 .l{font-size:12px;color:var(--mut);}
+  .opt{border:1px solid var(--line);border-radius:10px;padding:12px 16px;margin:8px 0;}
+  .opt h4{margin:0 0 6px;color:var(--navy);}
+  footer{font-size:12px;color:var(--mut);text-align:center;margin:24px 0 8px;}
+  @media print{body{background:#fff;padding:0;font-size:11px;}.wrap{max-width:none;}
+    section.card,header.head{break-inside:avoid;} h2{break-after:avoid;} tr,li{break-inside:avoid;}
+    code{background:#eee;color:#000;border:1px solid #ccc;} a{color:#000;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="head">
+  <div><span class="badge">社内用・非公開</span><span class="badge">初期分析</span><span class="badge">2026-06-26</span></div>
+  <h1>c37aac6 改善後 初期分析｜Search Console × GA4 突き合わせ</h1>
+  <div class="meta">対象：本体サイト kawaguchitenrei.com ／ 重要KV向けSEO/AIO改善（commit c37aac6、反映目安 2026-06-19）の初期効果確認<br>
+  データ：GSC API・GA4 Data API 自動取得（生データは tmp/ 配下・非commit）</div>
+</header>
+
+<section class="card">
+  <h2>分析の前提と注意</h2>
+  <table>
+    <tr><th>項目</th><th>内容</th></tr>
+    <tr><td>GSC 期間</td><td>AFTER 2026-06-19〜06-23（<b>5日</b>／最新日が06-23のためクランプ）・BEFORE 2026-06-13〜06-18（<b>6日</b>）</td></tr>
+    <tr><td>GA4 期間</td><td>AFTER 2026-06-19〜06-25（7日）・BEFORE 2026-06-12〜06-18（7日）</td></tr>
+  </table>
+  <div class="warn"><b>読み方の注意：</b>GSCは AFTER 5日 vs BEFORE 6日で<b>日数が不揃い</b>。表示回数・クリックの「減少」は日数差の影響を含むため、絶対値の増減は割り引いて見る。<b>平均順位は日数差の影響を受けないため信頼できる</b>。GA4は小規模サイトでサンプルが小さい。</div>
+</section>
+
+<section class="card">
+  <h2>結論（先出し）</h2>
+  <ol class="concl">
+    <li><b>順位は改善している（改善は効いている）。</b>重要KWの平均順位が軒並み上昇。</li>
+    <li><b>しかし「KW→受け皿ページ」への集約は起きていない。</b>「川口(市) 葬儀／家族葬」はいずれも<b>トップ <code>/</code> が表示され続け</b>、狙った <code>/area/kawaguchi/</code>・<code>/plan/family-funeral/</code> は低順位（27〜62位）でほぼ表示されていない。</li>
+    <li><b>情報コラムの表示が急増</b>（<code>/column/fuhou/</code> +569）。地域×サービスKWの受け皿への内部導線づくりの好機。</li>
+    <li><b>CV計測は正常</b>（電話・フォーム・相談CTAの発火を確認）だが<b>母数が極小</b>で、トラフィックはトップとコラムに偏在。</li>
+  </ol>
+</section>
+
+<section class="card">
+  <h2>1. 重要KWの順位（信頼指標）— 改善は効いている</h2>
+  <table>
+    <tr><th>KW</th><th>平均順位 BEFORE→AFTER</th><th>表示KW主URL(AFTER)</th></tr>
+    <tr><td>川口市 葬儀</td><td><span class="up">13.3 → 7.48 ⤴大幅改善</span></td><td><code>/</code>（トップ）</td></tr>
+    <tr><td>川口 葬儀</td><td><span class="up">14.4 → 10.03 ⤴改善</span></td><td><code>/</code></td></tr>
+    <tr><td>川口 家族葬</td><td><span class="up">27.8 → 13.51 ⤴大幅改善</span></td><td><code>/</code></td></tr>
+    <tr><td>川口市 家族葬</td><td><span class="up">21.2 → 13.47 ⤴改善</span></td><td><code>/</code></td></tr>
+    <tr><td>川口典礼（指名）</td><td>2.1 → 1.94（トップ）／<code>/company/</code> は1位</td><td>指名は複数ページに分散</td></tr>
+  </table>
+  <div class="ok">c37aac6 改善後、<b>主要KWの順位は確実に上昇</b>。特に「川口市 葬儀」は2ページ目→1ページ目上位（7.5位）へ。</div>
+</section>
+
+<section class="card">
+  <h2>2. 集約の検証（今回最重要）— 受け皿に乗っていない</h2>
+  <p>GSC query×page で、各KWがどのURLで表示されているか：</p>
+  <table>
+    <tr><th>KW</th><th>期待受け皿</th><th>実際にimpを集めているURL（AFTER）</th><th>状態</th></tr>
+    <tr><td>川口 葬儀</td><td><code>/area/kawaguchi/</code></td><td><code>/</code>=86imp(10位) ／ 受け皿=2imp(<b>74位</b>)</td><td><span class="down">⚠️未集約</span></td></tr>
+    <tr><td>川口市 葬儀</td><td><code>/area/kawaguchi/</code></td><td><code>/</code>=257imp(7.5位) ／ 受け皿=12imp(<b>62位</b>)</td><td><span class="down">⚠️未集約</span></td></tr>
+    <tr><td>川口 家族葬</td><td><code>/plan/family-funeral/</code></td><td><code>/</code>=35imp(13位) ／ 受け皿=1imp(66位)</td><td><span class="down">⚠️未集約</span></td></tr>
+    <tr><td>川口市 家族葬</td><td><code>/plan/family-funeral/</code></td><td><code>/</code>=55imp(13位) ／ 受け皿≒0</td><td><span class="down">⚠️未集約</span></td></tr>
+  </table>
+  <div class="warn"><b>Googleは依然トップ <code>/</code> をこれらKWの代表ページと判断</b>している。受け皿ページは低順位で表示機会をほぼ得ていない。</div>
+  <div class="note"><b>補足：</b>受け皿ページ単体の順位は改善（<code>/plan/family-funeral/</code> 10.6→<b>4.73</b>、<code>/plan/direct-funeral/</code> 9.5→7.15、<code>/hall/kawaguchi-memorial-hall/</code> 11.7→9.96、<code>/saijo/megurinomori/</code> で初クリック2件）。<b>ページの実力は上がっているが、肝心の「川口×葬儀／家族葬」クエリではトップに評価が集中</b>している状態。</div>
+</section>
+
+<section class="card">
+  <h2>3. 表示が伸びているページ（情報コラム優勢）</h2>
+  <table>
+    <tr><th>ページ</th><th>imp BEFORE→AFTER</th></tr>
+    <tr><td><code>/column/fuhou/</code>（訃報返信）</td><td><span class="up">515 → 1084（+569）</span></td></tr>
+    <tr><td><code>/column/kenshi-nagare/</code>（検死の流れ）</td><td><span class="up">414 → 540（+126）</span></td></tr>
+    <tr><td><code>/column/shinsiki/</code></td><td>100 → 152</td></tr>
+    <tr><td><code>/column/shibou-todoke/</code></td><td>116 → 141</td></tr>
+    <tr><td><code>/</code>（トップ）</td><td>1264 → 1032（※5日換算）｜<span class="up">順位 15.05→12.71</span></td></tr>
+  </table>
+  <p>情報系コラムが表示を大きく伸ばしている（LLMO観測の「情報コンテンツが強み」と一致）。</p>
+</section>
+
+<section class="card">
+  <h2>4. GA4：流入とCV導線</h2>
+  <h3>チャネル別 sessions（7日 vs 7日）</h3>
+  <table>
+    <tr><th>チャネル</th><th class="num">BEFORE</th><th class="num">AFTER</th><th class="num">keyEvents(後)</th></tr>
+    <tr><td>Organic Search</td><td class="num">89</td><td class="num">76</td><td class="num">6</td></tr>
+    <tr><td>Direct</td><td class="num">60</td><td class="num">23</td><td class="num">2</td></tr>
+    <tr><td>Referral</td><td class="num">29</td><td class="num">25</td><td class="num">0</td></tr>
+    <tr><td>Unassigned</td><td class="num">0</td><td class="num">8</td><td class="num">1</td></tr>
+  </table>
+  <p class="flat">全体は微減〜減（小規模・週変動の範囲）。</p>
+
+  <h3>ランディングページ（AFTER 上位）</h3>
+  <div class="cards">
+    <div class="card3"><div class="v">46</div><div class="l">/（トップ）</div></div>
+    <div class="card3"><div class="v">16</div><div class="l">/column/fuhou/</div></div>
+    <div class="card3"><div class="v">8</div><div class="l">/column/kenshi-nagare/</div></div>
+    <div class="card3"><div class="v">6</div><div class="l">/contact/</div></div>
+    <div class="card3"><div class="v">3</div><div class="l">/saijo/megurinomori/</div></div>
+  </div>
+  <div class="warn"><b><code>/area/kawaguchi/</code>・<code>/plan/family-funeral/</code> への着地はほぼゼロ</b>（GSCの未集約と整合）。※<code>/admin/seo/</code> への着地は社内ダッシュボード閲覧で分析対象外。</div>
+
+  <h3>CV系イベント（keyEvents）BEFORE→AFTER</h3>
+  <table>
+    <tr><th>イベント</th><th class="num">前</th><th class="num">後</th><th>意味</th></tr>
+    <tr><td><code>click_contact_cta</code></td><td class="num">3</td><td class="num">4</td><td>問い合わせCTA</td></tr>
+    <tr><td><code>generate_lead</code></td><td class="num">2</td><td class="num">3</td><td>フォーム送信完了</td></tr>
+    <tr><td><code>form_start</code></td><td class="num">2</td><td class="num">4</td><td>フォーム開始</td></tr>
+    <tr><td><code>click_tel</code></td><td class="num">6</td><td class="num">2</td><td>電話クリック（やや減）</td></tr>
+    <tr><td><code>click_estimate_cta</code></td><td class="num">3</td><td class="num">0</td><td>見積CTA</td></tr>
+  </table>
+  <div class="note"><b>計測は正常だが母数が極小。</b>「事前相談」専用イベントは未定義 → <code>click_contact_cta</code>/<code>click_estimate_cta</code> に内包の可能性。イベント設計の確認余地。</div>
+</section>
+
+<section class="card">
+  <h2>所見まとめ（3軸判断）</h2>
+  <table>
+    <tr><th>軸</th><th>評価</th><th>コメント</th></tr>
+    <tr><td>検索される</td><td><b>◎</b></td><td>順位は改善。ただし受け皿分散で「狙ったページが伸びる」形になっていない。</td></tr>
+    <tr><td>AIに引用される</td><td><b>○</b></td><td>情報コラムの表示急増は追い風。地域×サービスは依然トップ集中。</td></tr>
+    <tr><td>問い合わせにつながる</td><td><b>△</b></td><td>CV計測は健全だが母数極小。受け皿・コラムからCV導線への橋渡しが弱い。</td></tr>
+  </table>
+</section>
+
+<section class="card">
+  <h2>次の施策候補（要相談・未着手）</h2>
+  <div class="opt">
+    <h4>1. 受け皿集約をどうするか（最重要・方針判断が必要）</h4>
+    <p><b>案A：</b>トップ <code>/</code> が評価を集めている現実を受け入れ、トップ内の「川口の葬儀／家族葬」セクションを強化し、受け皿ページへ明確に内部リンク。</p>
+    <p><b>案B：</b><code>/area/kawaguchi/</code>・<code>/plan/family-funeral/</code> の地域×サービス網羅性を上げ、トップ・コラムから内部リンクを集中させ評価を移す。</p>
+    <p class="flat">※どちらも本文・内部リンクの変更を伴うため、着手前に方針合意。</p>
+  </div>
+  <div class="opt"><h4>2. 強いコラム → 受け皿ページへの内部リンク橋渡し</h4>
+    <p><code>/column/fuhou/</code>・<code>/column/kenshi-nagare/</code> から地域・プラン・めぐりの森ページへ誘導。</p></div>
+  <div class="opt"><h4>3. めぐりの森KWは依然GSC表示ゼロ</h4>
+    <p>LLMO観測と一致。<code>/column/meguri/</code> は微増。めぐりの森コンテンツ強化の継続検討。</p></div>
+  <div class="opt"><h4>4. GA4イベント設計の確認</h4>
+    <p>事前相談の専用計測有無、電話クリック減の要因（LP/導線）確認。</p></div>
+</section>
+
+<section class="card">
+  <h2>データ出典（生データは非commit / tmp配下）</h2>
+  <ul>
+    <li><code>tmp/seo-analysis-2026-06-26/gsc-query-compare.csv</code> / <code>gsc-page-compare.csv</code> / <code>gsc-query-page-compare.csv</code> / <code>gsc-date-compare.csv</code> / <code>gsc-important-keywords-summary.md</code></li>
+    <li><code>tmp/seo-analysis-2026-06-26/ga4-traffic.csv</code> / <code>ga4-landing-pages.csv</code> / <code>ga4-pages.csv</code> / <code>ga4-events.csv</code> / <code>ga4-date.csv</code> / <code>ga4-export-summary.md</code></li>
+  </ul>
+</section>
+
+<footer>c37aac6 改善後 初期分析（GSC × GA4）｜2026-06-26｜社内非公開資料｜実データの生値は非掲載</footer>
+
+</div>
+</body>
+</html>
