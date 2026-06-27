@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { ArrowRightIcon, PhoneIcon } from "@/components/common/icons";
 import { PageHero } from "@/components/common/PageHero";
 import { VoiceFilterList } from "@/components/voice/VoiceFilterList";
+import { company } from "@/lib/company";
 import { voices } from "@/lib/voices";
 
 const SITE_URL = "https://kawaguchitenrei.com";
@@ -102,6 +103,23 @@ export default function VoiceIndexPage() {
       <section className="bg-paper py-16 md:py-24">
         <div className="mx-auto max-w-6xl px-5 md:px-8">
           <VoiceFilterList />
+
+          {company.googleReviewsUrl && (
+            <div className="mt-10 rounded-lg border border-line bg-paper px-5 py-6 text-center md:px-8">
+              <p className="text-sm leading-7 text-ink-mid md:text-base">
+                Googleマップにも、ご利用いただいた方の口コミが寄せられています。第三者の口コミもあわせてご確認いただけます。
+              </p>
+              <a
+                href={company.googleReviewsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 inline-flex items-center justify-center gap-2 rounded-lg border border-ink-deep bg-white px-5 py-3 text-sm font-bold text-ink-deep transition hover:bg-cool md:text-base"
+              >
+                Googleマップの口コミを見る
+                <ArrowRightIcon className="h-4 w-4" />
+              </a>
+            </div>
+          )}
         </div>
       </section>
 

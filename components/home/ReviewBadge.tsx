@@ -1,4 +1,5 @@
-import { StarIcon } from "@/components/common/icons";
+import { ArrowRightIcon, StarIcon } from "@/components/common/icons";
+import { company } from "@/lib/company";
 import { reviewSummary } from "@/lib/reviews";
 
 /**
@@ -67,6 +68,17 @@ export function ReviewBadge() {
             <p className="mt-2.5 text-[11px] leading-5 text-ink-soft">
               ※ {basis}（{asOf}）。掲載は実際にいただいた評価です。
             </p>
+            {company.googleReviewsUrl && (
+              <a
+                href={company.googleReviewsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-2 inline-flex items-center gap-1 text-xs font-bold text-brand hover:underline"
+              >
+                Googleマップの口コミを見る
+                <ArrowRightIcon className="h-3.5 w-3.5" />
+              </a>
+            )}
           </div>
         </div>
       </div>

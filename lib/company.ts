@@ -11,6 +11,8 @@ export type CompanyInfo = {
   phoneTelLink: string;
   email: string;
   hours: string;
+  // Googleマップの口コミ（第三者検証用リンク）
+  googleReviewsUrl?: string;
   representative?: string;
   founded: string;
   foundedYear: number;
@@ -45,6 +47,7 @@ export const company: CompanyInfo = {
   phoneTelLink: "tel:0120-963-765",
   email: "kawaguchi.memorial@gmail.com",
   hours: "24時間365日 受付",
+  googleReviewsUrl: "https://www.google.com/maps?cid=8136740303180194415",
   founded: "2006年(創業20年)",
   foundedYear: 2006,
   yearsInBusiness: 20,
