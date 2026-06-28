@@ -164,7 +164,10 @@ export function ContactForm() {
           <div>
             <label htmlFor="phone" className="block">
               <span className="text-sm font-bold text-ink-deep">
-                電話番号<Required />
+                電話番号
+                <span className="ml-2 text-xs font-semibold text-ink-soft">
+                  (電話・メールのどちらか)
+                </span>
               </span>
             </label>
             <input
@@ -173,7 +176,6 @@ export function ContactForm() {
               type="tel"
               inputMode="tel"
               autoComplete="tel"
-              required
               aria-invalid={Boolean(errors.phone)}
               aria-describedby={errors.phone ? "phone-error" : undefined}
               placeholder="例: 090-1234-5678"
@@ -193,7 +195,7 @@ export function ContactForm() {
               <span className="text-sm font-bold text-ink-deep">
                 メールアドレス
                 <span className="ml-2 text-xs font-semibold text-ink-soft">
-                  (任意)
+                  (電話・メールのどちらか)
                 </span>
               </span>
             </label>
@@ -217,6 +219,10 @@ export function ContactForm() {
             )}
           </div>
         </div>
+
+        <p className="text-xs leading-6 text-ink-soft">
+          ※ ご連絡先として、電話番号またはメールアドレスのいずれか一方は必ずご入力ください。
+        </p>
 
         <fieldset>
           <legend className="text-sm font-bold text-ink-deep">

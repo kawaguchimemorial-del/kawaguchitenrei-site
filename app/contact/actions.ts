@@ -15,7 +15,6 @@ export type ContactFormState = {
 
 const REQUIRED_FIELDS: { name: string; label: string }[] = [
   { name: "name", label: "お名前" },
-  { name: "phone", label: "電話番号" },
   { name: "purpose", label: "お問い合わせ種別" },
   { name: "preferredContact", label: "ご希望連絡方法" },
   { name: "message", label: "お問い合わせ内容" },
@@ -43,12 +42,22 @@ export async function submitContact(
   }
 
   const email = formData.get("email");
-  if (email && !isEmail(String(email))) {
+  const phone = formData.get("phone");
+  const hasEmail = Boolean(email && String(email).trim() !== "");
+  const hasPhone = Boolean(phone && String(phone).trim() !== "");
+
+  if (!hasPhone && !hasEmail) {
+    const contactMethodMessage =
+      "電話番号またはメールアドレスのいずれかをご入力ください";
+    errors.phone = contactMethodMessage;
+    errors.email = contactMethodMessage;
+  }
+
+  if (hasEmail && !isEmail(String(email))) {
     errors.email = "メールアドレスの形式を確認してください";
   }
 
-  const phone = formData.get("phone");
-  if (phone && !isPhone(String(phone))) {
+  if (hasPhone && !isPhone(String(phone))) {
     errors.phone = "電話番号の形式を確認してください";
   }
 
