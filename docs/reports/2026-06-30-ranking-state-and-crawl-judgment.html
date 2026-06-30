@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>kawaguchitenrei.com ランキング現状分析＋クロール要否判断（2026-06-30）｜社内・非公開</title>
+<style>
+  :root{--ink:#2b2b2b;--soft:#6b6b6b;--line:#e3e0da;--bg:#faf9f7;--accent:#7a6a55;--box:#f4f1ea}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;line-height:1.85;font-size:15px}
+  .wrap{max-width:880px;margin:0 auto;padding:44px 22px 90px}
+  .kicker{font-size:12px;letter-spacing:.12em;color:var(--accent);margin:0 0 6px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:24px;font-weight:600;margin:0 0 10px;line-height:1.5}
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:20px;font-weight:600;margin:40px 0 12px;padding-bottom:6px;border-bottom:2px solid var(--line)}
+  h3{font-size:16px;font-weight:600;margin:22px 0 8px;color:#3a3a3a}
+  .meta{color:var(--soft);font-size:13px;border-bottom:2px solid var(--line);padding-bottom:18px;margin-bottom:8px}
+  .meta b{color:var(--ink)}
+  code{background:#f1efe9;padding:1px 6px;border-radius:5px;font-size:12.5px;font-family:ui-monospace,Consolas,monospace}
+  ul,ol{padding-left:22px;margin:8px 0}
+  li{margin:5px 0}
+  .box{background:var(--box);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:8px;padding:14px 18px;margin:16px 0}
+  .box .lead{font-weight:600;margin:0 0 6px}
+  table{border-collapse:collapse;width:100%;margin:14px 0;font-size:13px;background:#fff}
+  th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+  th{background:#f1efe9;font-weight:600}
+  td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+  .up{color:#356b35;font-weight:600}.down{color:#a23b3b;font-weight:600}.flat{color:var(--soft)}
+  .tag{display:inline-block;font-size:11px;padding:1px 8px;border-radius:10px;margin-left:4px}
+  .t-good{background:#e3efe3;color:#356b35}
+  .t-warn{background:#f3ead9;color:#8a6a2a}
+  .t-bad{background:#f3dede;color:#a23b3b}
+  .t-info{background:#e6ecf5;color:#3a5a8a}
+  footer{margin-top:48px;border-top:1px solid var(--line);padding-top:16px;color:var(--soft);font-size:12px}
+  .disc{font-size:12px;color:var(--soft);background:#fbfaf8;border:1px dashed var(--line);border-radius:8px;padding:10px 14px;margin:16px 0}
+  .verdict{font-size:16px;font-weight:600}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="kicker">川口典礼サイト ＿ 社内記録 / 実データ分析</p>
+  <h1>kawaguchitenrei.com<br>検索ランキング現状分析 ＋ サイト全体クロール要否の判断</h1>
+  <p class="meta">
+    <b>作成日：</b>2026-06-30　／　<b>担当：</b>Claude Code　／　<b>種別：</b>分析のみ（サイト実変更なし）<br>
+    <b>データ：</b>Search Console（取得 2026-06-30 実行・GSC最新確定日 <b>2026-06-26</b>）／ GA4（取得 2026-06-26）<br>
+    <b>対象期間：</b>AFTER 2026-06-19〜06-24 ／ BEFORE 2026-06-13〜06-18（前後比較）　／　<b>取得元：</b><code>/admin/seo/</code> と同じGSC/GA4 API
+  </p>
+
+  <div class="disc">
+    GSCは2〜3日遅延のため「今日まで」ではなく確定済み最新（6/26）までのデータです。数値はクリック/表示/CTR/平均掲載順位。<code>/admin/seo/</code> ダッシュボードと同一データ源・同一の重要KW定義（<code>lib/search-console/keywords.ts</code>）で算出。秘密情報・個人情報は含みません。
+  </div>
+
+  <h2>0. 結論（3点）</h2>
+  <div class="box">
+    <p class="lead">① 指名（川口典礼）は盤石。② お金になる地域KWは「1〜2ページ目で足踏み」が継続。③ サイト全体の技術クロール対策は<u>急務ではない</u>。</p>
+    <ul>
+      <li><b>指名「川口典礼」</b>：平均順位 <span class="up">1.8位</span>・CTR 18.9%。問題なし。<span class="tag t-good">良好</span></li>
+      <li><b>主力「川口市 葬儀」</b>：表示311回・平均 <span class="up">7.5位</span>（前期13.3位から大幅改善）。あと一歩で1ページ目下部→上位。ただしCTR 0.64%・着地が <code>/</code> に集中。<span class="tag t-warn">伸ばし所</span></li>
+      <li><b>「川口 家族葬／川口市 家族葬」</b>：21〜25位＝2ページ目で停滞。クリックほぼ0。<span class="tag t-bad">弱い</span></li>
+      <li><b>「めぐりの森」系</b>：表示0＝事実上ランクインせず。柱の一つだが検索需要が極小＋競合（公営斎場名）で取りにくい。<span class="tag t-warn">需要小</span></li>
+      <li><b>流入実態</b>：表示は伸びているがクリックは低調（サイト全体CTR約1%・平均13〜15位）。表示の多くは「訃報返信・検視・死亡届」等の<u>情報コラム</u>で、葬儀依頼に直結しないクエリ。</li>
+      <li><b>クロール対策の要否</b>：サイトは約135ページ・構造化データ/内部リンク整備済み・<code>robots.txt</code>正常・<code>/admin</code>のみ遮断。<b>技術的クロール障害は見当たらず、全ページ再クロール対策は優先度低</b>。ボトルネックは技術ではなく<b>順位（権威性）と着地ページの最適化</b>。</li>
+    </ul>
+  </div>
+
+  <h2>1. 指名・ブランド系</h2>
+  <table>
+    <tr><th>KW</th><th class="n">表示(後)</th><th class="n">CTR</th><th class="n">順位(後)</th><th class="n">順位(前)</th><th>着地</th></tr>
+    <tr><td>川口典礼</td><td class="n">37</td><td class="n">18.9%</td><td class="n up">1.8</td><td class="n">2.1</td><td>/company/</td></tr>
+  </table>
+  <p>ブランド認知は確立。クリックの大半をここで獲得。会社情報ページが着地で適切。<b>課題なし</b>。</p>
+
+  <h2>2. 主力「地域 × 葬儀形式」KW（収益直結）</h2>
+  <table>
+    <tr><th>重要KW</th><th class="n">表示(後)</th><th class="n">CTR</th><th class="n">順位(後)</th><th class="n">順位(前)</th><th>主な着地</th><th>本来の受け皿</th></tr>
+    <tr><td>川口市 葬儀</td><td class="n">311</td><td class="n">0.64%</td><td class="n up">7.5</td><td class="n">13.3</td><td>/</td><td>/area/kawaguchi/</td></tr>
+    <tr><td>川口 葬儀</td><td class="n">110</td><td class="n">0%</td><td class="n">13.2</td><td class="n">14.4</td><td>/</td><td>/area/kawaguchi/</td></tr>
+    <tr><td>川口市 葬儀社</td><td class="n">40</td><td class="n">0%</td><td class="n">—</td><td class="n">—</td><td>/</td><td>/area/kawaguchi/</td></tr>
+    <tr><td>川口市 家族葬</td><td class="n">87</td><td class="n">0%</td><td class="n down">21.4</td><td class="n">21.2</td><td>/</td><td>/plan/family-funeral/</td></tr>
+    <tr><td>川口 家族葬</td><td class="n">50</td><td class="n">2.0%</td><td class="n down">25.1</td><td class="n">27.8</td><td>/</td><td>/plan/family-funeral/</td></tr>
+    <tr><td>川口市 直葬</td><td class="n">12</td><td class="n">0%</td><td class="n">13.8</td><td class="n">19.2</td><td>/</td><td>/plan/direct-funeral/</td></tr>
+    <tr><td>川口市 一日葬</td><td class="n">18</td><td class="n">0%</td><td class="n">16.6</td><td class="n">20.4</td><td>/</td><td>—</td></tr>
+    <tr><td>川口市 火葬式</td><td class="n">9</td><td class="n">0%</td><td class="n">24.7</td><td class="n">24.3</td><td>/plan/direct-funeral/</td><td>—</td></tr>
+    <tr><td>めぐりの森 葬儀/家族葬/火葬式</td><td class="n">0</td><td class="n">—</td><td class="n">—</td><td class="n">—</td><td>—</td><td>/saijo/megurinomori/</td></tr>
+  </table>
+  <div class="box">
+    <p class="lead">読み取れること</p>
+    <ul>
+      <li><b>順位は全体的に「改善傾向」</b>。特に「川口市 葬儀」は前期13.3→7.5位と大きく前進。直近の area/kawaguchi 強化（結論先出し・FAQ・内部リンク）が効き始めた可能性。</li>
+      <li><b>しかしクリックがほぼ0</b>。理由は2つ。(1) 多くがまだ7〜25位＝1ページ目上部に届いていない、(2) 着地が <code>/</code>（トップ）に集中し、専用の area/plan ページが上位を取れていない＝<b>集約のズレ（aggregation mismatch）</b>。</li>
+      <li><b>家族葬KWだけ微悪化〜停滞（21〜25位）</b>。<code>/plan/family-funeral/</code> がこの語の受け皿として弱い。</li>
+      <li><b>めぐりの森系は表示0</b>。検索需要が極小（公営斎場名での葬儀社探しは少ない）＋公式・自治体ページが強く、費用対効果は低い。柱ではあるが優先度は下げてよい。</li>
+    </ul>
+  </div>
+
+  <h2>3. 表示は多いがCV非直結のクエリ（情報コラム）</h2>
+  <p>表示数の上位は、葬儀依頼ではなく「知りたい」情報検索が占める。コラムが拾えている＝コンテンツ資産としては有効だが、問い合わせには繋がりにくい。</p>
+  <table>
+    <tr><th>クエリ</th><th class="n">表示(後)</th><th class="n">順位</th><th>着地（主）</th><th>性質</th></tr>
+    <tr><td>訃報 返信 ／ 訃報メール 返信 等</td><td class="n">620+</td><td class="n">10〜11</td><td>/column/fuhou/</td><td>情報・マナー</td></tr>
+    <tr><td>検視 ／ 検視とは</td><td class="n">230+</td><td class="n">10〜12</td><td>/column/kenshi-nagare/</td><td>情報</td></tr>
+    <tr><td>死亡届 ／ 死亡届 提出先</td><td class="n">95+</td><td class="n">11〜13</td><td>/column/shibou-todoke/</td><td>手続き</td></tr>
+    <tr><td>友人葬 ／ 友人葬とは</td><td class="n">50+</td><td class="n">13〜18</td><td>/column/yujinso-sokagakkai/</td><td>情報</td></tr>
+    <tr><td>家族葬 10人 費用 等</td><td class="n">33</td><td class="n">18.7</td><td>/column/kazokusou/</td><td>準・商用</td></tr>
+  </table>
+  <p class="flat">→ コラムは「川口」を含まない全国情報クエリで表示が出ており、地域CVには直結しにくい。ただし<b>サイト全体の権威性・回遊の土台</b>として価値はある。コラムから area/plan への内部リンク誘導を効かせれば間接貢献は可能。</p>
+
+  <h2>4. ページ別・流入実態（GSC / GA4）</h2>
+  <h3>4-1. 表示を稼ぐページ（GSC）</h3>
+  <p>トップ <code>/</code>（1,253表示）とコラム（fuhou 1,246・kenshi 711）が二大柱。<b>収益ページ（area/plan/saijo）の表示は相対的に小さい</b>：/area/kawaguchi/ 72表示・28位、/plan/family-funeral/ 75表示・5.4位、/saijo/megurinomori/ 160表示・18.6位。</p>
+  <h3>4-2. 流入チャネル（GA4・後期）</h3>
+  <table>
+    <tr><th>チャネル</th><th class="n">セッション</th><th class="n">主要CV(keyEvents)</th></tr>
+    <tr><td>Organic（Google）</td><td class="n">52</td><td class="n">3</td></tr>
+    <tr><td>Direct</td><td class="n">23</td><td class="n">2</td></tr>
+    <tr><td>Organic（Yahoo）</td><td class="n">17</td><td class="n">1</td></tr>
+    <tr><td>Organic（Bing）</td><td class="n">7</td><td class="n">2</td></tr>
+    <tr><td>Referral（自社ホール他）</td><td class="n">20+</td><td class="n">0</td></tr>
+  </table>
+  <p class="flat">小規模サイトのため母数は小さい（自然検索 週50前後）。計測イベント（<code>click_tel</code> / <code>click_contact_cta</code> / <code>generate_lead</code>）は正常稼働。CV導線の計測自体は問題なし。<b>課題は流入量＝順位</b>。</p>
+
+  <h2>5. サイト全体クロール対策は必要か？ — 判断</h2>
+  <div class="box">
+    <p class="verdict">判断：<span class="up">全ページの技術クロール是正は「不要〜低優先」</span>。やるべきは技術ではなく「順位を上げる施策」。</p>
+  </div>
+  <h3>5-1. 技術面は概ね健全（クロール障害の兆候なし）</h3>
+  <ul>
+    <li><b>robots.txt</b>：<code>allow:/</code>、<code>/admin</code> のみ disallow、sitemap 宣言あり＝正常。<span class="tag t-good">OK</span></li>
+    <li><b>規模</b>：約135ページの小規模サイト。Googleは全URLを問題なく巡回できる規模。インデックス由来の取りこぼしリスクは低い。<span class="tag t-good">OK</span></li>
+    <li><b>構造化データ/内部リンク</b>：LocalBusiness / FAQPage / BreadcrumbList・area/plan/saijo 間の相互リンク整備済み（過去レポート群で実装確認）。<span class="tag t-good">OK</span></li>
+    <li><b>表示が出ている＝インデックスされている</b>：主要KWで表示回数が立っており、「インデックスされず圏外」ではない。問題は順位であって被クロールではない。<span class="tag t-info">論拠</span></li>
+  </ul>
+  <h3>5-2. ただし軽い点検はしておく価値あり（全面クロールは不要）</h3>
+  <ul>
+    <li><b>sitemap のエントリ数 vs 実ページ数の整合</b>：135ページに対しsitemap生成が網羅できているか1度確認（漏れがあれば追加）。<span class="tag t-warn">点検</span></li>
+    <li><b>GSC「ページのインデックス登録」レポート</b>で「未登録」「重複」「代替ページ」が増えていないか目視（数分）。<span class="tag t-warn">点検</span></li>
+    <li><b>Core Web Vitals（CrUX）</b>のモバイル LCP/INP を一度確認（Next/Image・SSG済みのため大きな問題は想定しにくい）。<span class="tag t-info">任意</span></li>
+  </ul>
+  <p class="flat">→ これらは「全ページを総ざらいするクロール対策」ではなく、<b>数分の健康診断</b>。異常がなければそれで終了でよい。Screaming Frog 等での全面クロールに工数を割く局面ではない。</p>
+
+  <h2>6. 本当のボトルネックと打ち手（優先順）</h2>
+  <ol>
+    <li><b>着地ズレの解消（最優先）</b>：主力KWの着地が <code>/</code> に集中。area/kawaguchi・plan/family-funeral を各KWの受け皿として明確化（h1・title・本文の語の一致、トップから該当ページへの内部リンク文言強化）。「川口市 葬儀」は7.5位まで来ており、専用ページを押し上げれば1ページ目上位＝クリック獲得が現実的。<span class="tag t-bad">高</span></li>
+    <li><b>家族葬の強化</b>：21〜25位で停滞。<code>/plan/family-funeral/</code> の内容拡充（費用内訳・事例・FAQ・川口/川口市の地域語）と、area/kawaguchi からの誘導。<span class="tag t-bad">高</span></li>
+    <li><b>コラム→収益ページの送客</b>：訃報返信・検視・死亡届など高表示コラムから、文脈に合う area/plan/saijo・問い合わせへの自然な内部リンクを設置。情報流入を間接CVへ。<span class="tag t-warn">中</span></li>
+    <li><b>外部・権威性（off-page）</b>：順位停滞の根因は被リンク/サイテーション等の外部評価不足の可能性。実競合（花ぜんセレモニー等）との差はオンページより外部要因。Googleビジネスプロフィール・地域サイテーション整備。<span class="tag t-warn">中</span></li>
+    <li><b>めぐりの森系は深追いしない</b>：需要0。柱として残しつつ、新規工数は最小限に。<span class="tag t-info">低</span></li>
+  </ol>
+
+  <h2>7. 次アクション（提案）</h2>
+  <ul>
+    <li>GSC「ページのインデックス」＋sitemap網羅性を点検（数分）。異常があれば別タスク化。</li>
+    <li>「川口市 葬儀」「川口市 家族葬」の着地最適化を §19.1 の範囲（既存トーン維持の文言/内部リンク/FAQ/JSON-LD）で実施 → 効果測定。</li>
+    <li>再測定：<b>2026-07-14</b> を目安に同スクリプトで前後比較し、着地ズレ・順位の動きを確認。</li>
+  </ul>
+
+  <div class="disc">
+    使用スクリプト：<code>tmp/seo-analysis-2026-06-30/fetch_gsc.mjs</code>（GSC再取得）／ GA4は <code>tmp/seo-analysis-2026-06-26/</code> の既存エクスポートを参照。重要KW定義：<code>lib/search-console/keywords.ts</code>。本レポートは分析のみで、サイトのコード・コンテンツは変更していません。
+  </div>
+
+  <footer>
+    川口典礼サイト 社内レポート（<code>docs/reports/</code>）。Web非公開・<code>noindex</code>。順位・表示はGSC実測（確定最新6/26）。価格・実績の自社記載は CLAUDE.md §9 正本に準拠。断定・煽り表現なし。
+  </footer>
+</div>
+</body>
+</html>

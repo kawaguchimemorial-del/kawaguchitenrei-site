@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>対策1〜4 実装レポート（着地ズレ解消・家族葬強化・コラム送客・オフページ支援）2026-06-30｜社内・非公開</title>
+<style>
+  :root{--ink:#2b2b2b;--soft:#6b6b6b;--line:#e3e0da;--bg:#faf9f7;--accent:#7a6a55;--box:#f4f1ea}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;line-height:1.85;font-size:15px}
+  .wrap{max-width:880px;margin:0 auto;padding:44px 22px 90px}
+  .kicker{font-size:12px;letter-spacing:.12em;color:var(--accent);margin:0 0 6px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:23px;font-weight:600;margin:0 0 10px;line-height:1.5}
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:19px;font-weight:600;margin:38px 0 12px;padding-bottom:6px;border-bottom:2px solid var(--line)}
+  h3{font-size:15px;font-weight:600;margin:20px 0 6px;color:#3a3a3a}
+  .meta{color:var(--soft);font-size:13px;border-bottom:2px solid var(--line);padding-bottom:18px;margin-bottom:8px}
+  .meta b{color:var(--ink)}
+  code{background:#f1efe9;padding:1px 6px;border-radius:5px;font-size:12px;font-family:ui-monospace,Consolas,monospace}
+  ul,ol{padding-left:22px;margin:8px 0}li{margin:5px 0}
+  .box{background:var(--box);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:8px;padding:14px 18px;margin:16px 0}
+  .box .lead{font-weight:600;margin:0 0 6px}
+  table{border-collapse:collapse;width:100%;margin:14px 0;font-size:13px;background:#fff}
+  th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+  th{background:#f1efe9;font-weight:600}
+  .tag{display:inline-block;font-size:11px;padding:1px 8px;border-radius:10px;margin-left:4px}
+  .t-done{background:#e3efe3;color:#356b35}.t-hold{background:#f3ead9;color:#8a6a2a}.t-info{background:#e6ecf5;color:#3a5a8a}
+  footer{margin-top:46px;border-top:1px solid var(--line);padding-top:16px;color:var(--soft);font-size:12px}
+  .disc{font-size:12px;color:var(--soft);background:#fbfaf8;border:1px dashed var(--line);border-radius:8px;padding:10px 14px;margin:16px 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="kicker">川口典礼サイト ＿ 社内記録 / 実装</p>
+  <h1>対策1〜4 実装レポート<br>着地ズレ解消・家族葬ページ強化・コラム送客・オフページ支援</h1>
+  <p class="meta">
+    <b>作成日：</b>2026-06-30　／　<b>担当：</b>Claude Code（7名の専門家パネルの知見を反映）<br>
+    <b>前提分析：</b><code>2026-06-30-ranking-state-and-crawl-judgment.html</code>（GSC/GA4実データ）<br>
+    <b>進め方：</b>7観点（着地最適化／家族葬コンテンツ／コラム送客／オフページ／構造化データAIO／トーン校閲／テクニカルQA）で並列分析→合意点のみを最小差分で実装。
+  </p>
+
+  <div class="disc">
+    本実装は CLAUDE.md §19.1（SEO/AIO改善・内部リンク・FAQ・Review系を含まない構造化データは自走可）の範囲。価格は §9 正本のみ使用。禁止表現（最安/必ず/絶対/追加費用なし 等）の新規混入なし。共通レイアウト（Header/Footer/MobileBottomCTA）・フォーム・Webhook・価格データ・funeral-system は未変更。
+  </div>
+
+  <h2>0. サマリ</h2>
+  <div class="box">
+    <p class="lead">主力KWの「着地ズレ」是正と家族葬の受け皿強化を中心に、合計6ファイルを最小差分で改善。ビルド135/135ページ維持・エラーなし。</p>
+    <ul>
+      <li><b>対策1 着地ズレ解消</b>：トップから <code>/area/kawaguchi/</code>・<code>/plan/family-funeral/</code> へのアンカーをKW一致化。<span class="tag t-done">完了</span></li>
+      <li><b>対策2 家族葬ページ強化</b>：FAQ5問追加・導入文の地域語補強・結論点/判断材料追加（FAQはFAQPage構造化データへ自動反映）。<span class="tag t-done">完了</span></li>
+      <li><b>対策3 コラム送客</b>：内部リンクが薄い高表示コラム3本に関連リンクを追加（押し売り回避・各最小限）。<span class="tag t-done">完了</span></li>
+      <li><b>対策4 オフページ支援（オンサイト分）</b>：LocalBusiness JSON-LD に <code>sameAs</code>(GBP)・<code>@id</code> を追加。コード外のGBP/サイテーション施策はアクションプラン化。<span class="tag t-done">完了（onsite）</span><span class="tag t-info">offsite=運用</span></li>
+    </ul>
+  </div>
+
+  <h2>1. 対策1：着地ズレ解消（トップ→area/plan のアンカー最適化）</h2>
+  <p>「川口市 葬儀」(311表示・7.5位)等が着地 <code>/</code> に集中し、専用ページが上位を取れていない問題への対応。トップから受け皿ページへ、KW一致のアンカーで評価を渡す。</p>
+  <table>
+    <tr><th>ファイル</th><th>変更</th></tr>
+    <tr><td><code>components/home/AreasSection.tsx</code></td><td>導入リンクのアンカー「川口市の葬儀ガイド」→「<b>川口市の葬儀・葬儀社のご案内</b>」（主力第3KW「川口市 葬儀社」を内部リンクで受ける）</td></tr>
+    <tr><td><code>components/home/PlanSection.tsx</code></td><td>家族葬カードCTA「プランを見る」→「<b>川口市の家族葬を見る</b>」（KW一致）。リード文に <code>/area/kawaguchi/</code> への文脈リンク（アンカー「川口市の葬儀」）を1本追加</td></tr>
+  </table>
+  <p class="box"><b>主軸の役割分担（QA助言）：</b>「川口市 葬儀」純粋地域検索の主軸は地域ハブ <code>/area/kawaguchi/</code> に寄せ、トップは指名（川口典礼）＋家族葬・直葬のブランド軸を維持。トップの h1 は変更せず、内部リンクで area を権威化する方針。内部カニバリ回避。</p>
+
+  <h2>2. 対策2：家族葬ページ強化（/plan/family-funeral/）</h2>
+  <p>「川口 家族葬」25.1位・「川口市 家族葬」21.4位の2ページ目停滞への対応。受け皿の内容を厚くし、検索意図（費用に何が含まれる／地域から相談できる／形式の選び方）に結論先出しで応える。すべて <code>lib/plans.ts</code> の <code>slug:"family-funeral"</code> オブジェクト内に閉じて実装（共通テンプレ無変更＝他プラン非巻き込み）。</p>
+  <h3>追加・変更</h3>
+  <ul>
+    <li><b>FAQ 5問追加</b>（<code>faqs</code>）：「528,000円に何が含まれるか」「事前相談会員価格と通常価格の違い」「新井宿・鳩ヶ谷から相談できるか」「他形式との選び方」「参列人数による費用差」。→ <code>app/plan/[slug]/page.tsx</code> 経由で <b>FAQPage 構造化データに自動反映</b>（AIO引用に有効）。</li>
+    <li><b>導入文 <code>long</code> 差し替え</b>：「川口市西新井宿の自社式場」「新井宿・鳩ヶ谷など川口市内・近隣」を自然に追加（連呼は回避・各1回程度）。</li>
+    <li><b>結論ボックス <code>conclusionBox.points</code> に1点追加</b>：近隣エリアからの相談・お迎え/火葬場段取りの一括相談。</li>
+    <li><b>判断材料 <code>formatGuide.suitedFor</code> に1項目追加</b>：参列範囲の整理。</li>
+  </ul>
+  <p class="disc">価格は §9 正本（家族葬 会員528,000円／通常628,000円・税込）のみ使用。施設利用可否の新規断定なし。</p>
+
+  <h2>3. 対策3：コラム→収益ページ送客</h2>
+  <p>点検の結果、高表示コラムの多くは既に関連リンク/CTAを保有（<code>fuhou</code>=area/family-funeralリンク＋contact、<code>kenshi-nagare</code>=直葬/火葬式/めぐりの森、<code>kazokusou</code>=family-funeral/見積り 等）。<b>不足していた箇所のみ</b>、<code>lib/columns.ts</code> の <code>relatedlinks</code> ブロックで最小限に補強（既存レンダラ <code>ColumnBody.tsx</code> がそのまま描画・新規コンポーネント不要）。</p>
+  <table>
+    <tr><th>コラム</th><th>追加した関連リンク</th><th>意図</th></tr>
+    <tr><td><code>/column/yujinso-sokagakkai/</code>（友人葬）<br>※5本中最も内部リンクが薄かった</td><td>「川口市での葬儀・式場について」＝川口市の家族葬プラン／川口市の葬儀ガイド</td><td>式場の話題に沿った自然な受け皿。宗教儀礼を伴う形式のため無宗教葬へのリンクは混同回避で入れない。</td></tr>
+    <tr><td><code>/column/kazokusou/</code>（家族葬10人費用）</td><td>「家族葬以外の葬儀形式」表の直後に＝直葬／一日葬／川口市の葬儀ガイド</td><td>費用クエリで来た読者の比較検討に応える。既存の末尾CTA（family-funeral/見積り）は維持。</td></tr>
+    <tr><td><code>/column/shibou-todoke/</code>（死亡届）</td><td>本文がプレーンテキストで参照していた「検視の流れ」を関連リンク化</td><td>取りこぼしていた相互リンクの回収（本文の言及をクリック可能に）。</td></tr>
+  </table>
+  <p class="box"><b>設計方針（トーン校閲）：</b>マナー記事に費用・見積りCTAを増設しない。送客は「関連コラム」「地域ガイド」中心、収益プランは費用・形式の比較文脈にのみ。各コラムへの新規追加は最小限・リンク濫立を回避。</p>
+
+  <h2>4. 対策4：オフページ支援</h2>
+  <h3>4-1. オンサイト（実装済）</h3>
+  <ul>
+    <li><code>lib/company.ts</code> の LocalBusiness(FuneralHome) JSON-LD に <b><code>sameAs</code>（GBP）と <code>@id</code></b> を追加。GBPのURLは既存実値（<code>company.googleReviewsUrl</code>）を使用＝推測URLは入れない。<br>→ 「このサイト＝このGBP」の名寄せシグナルを付与。被リンク・サイテーション評価がサイトに還流しやすくなる土台。トップ／会社／アクセスの各ページに一括反映。</li>
+  </ul>
+  <h3>4-2. オフサイト（運用アクションプラン・未実装）</h3>
+  <ol>
+    <li><b>GBP最適化</b>：営業時間24時間・サービス（家族葬/一日葬/直葬/一般葬/市民葬）登録・式場/駐車場の実写真・ピン位置確認。NAPは <code>川口典礼</code>／<code>〒333-0833 埼玉県川口市西新井宿440-1</code>／<code>0120-963-765</code> に一字一句統一。</li>
+    <li><b>外部ポータルの誤価格是正</b>（火葬式8.8万円の誤掲載等を運営者として修正依頼）。</li>
+    <li><b>主要ローカルサイテーションのNAP統一</b>（新規乱立せず正確な少数）。</li>
+    <li><b>Googleレビュー獲得の仕組み化</b>（個人名・故人名を出さない範囲）。実競合との差は口コミ量の可能性。</li>
+  </ol>
+  <p class="disc"><b>人間承認必須（未実施）：</b>Review / aggregateRating / ratingValue を含む JSON-LD の新規追加（CLAUDE.md §19.2）。レビューが実在・検証可能になった段階で別途。電話番号フォーマットの国際(<code>+81-120</code>)／国内(<code>0120</code>)統一は NAP 軽微事項のため今回見送り（フリーダイヤルは国内表記推奨）。</p>
+
+  <h2>5. 変更ファイルと確認</h2>
+  <ul>
+    <li><code>components/home/AreasSection.tsx</code>（アンカーKW一致）</li>
+    <li><code>components/home/PlanSection.tsx</code>（CTA文言＋area文脈リンク）</li>
+    <li><code>lib/plans.ts</code>（family-funeral：FAQ5問・long・conclusionBox・suitedFor）</li>
+    <li><code>lib/columns.ts</code>（yujinso-sokagakkai／kazokusou／shibou-todoke の関連リンク）</li>
+    <li><code>lib/company.ts</code>（sameAs＋@id）</li>
+  </ul>
+  <h3>確認結果</h3>
+  <ul>
+    <li><code>npm run build</code>：<b>✓ Compiled successfully</b>／<b>静的生成 135/135 ページ維持</b>／型エラー・警告なし。</li>
+    <li>禁止表現スキャン：追加行に混入なし（既存コラム本文の「必ず質問」等はヒットするが今回の変更外）。</li>
+    <li><code>git status</code>：意図した6ファイルのみ。共通テンプレ <code>AreaDetailMain.tsx</code>／<code>PlanDetail*.tsx</code> に差分なし（巻き込みなし）。</li>
+  </ul>
+  <h3>確認URL</h3>
+  <ul>
+    <li><code>http://localhost:3000/</code>（トップのアンカー・着地先）</li>
+    <li><code>http://localhost:3000/plan/family-funeral</code>（FAQ・導入文・結論）</li>
+    <li><code>http://localhost:3000/column/yujinso-sokagakkai</code> ／ <code>/column/kazokusou</code> ／ <code>/column/shibou-todoke</code>（関連リンク）</li>
+    <li><code>http://localhost:3000/area/kawaguchi</code>（受け皿ハブ）</li>
+  </ul>
+
+  <h2>6. 今後のアクション</h2>
+  <ul>
+    <li><b>オフサイト施策の実行</b>（GBP最適化・誤価格是正・サイテーションNAP統一）＝運用側タスク。</li>
+    <li><b>再測定 2026-07-14</b>：同スクリプトで前後比較。着地が <code>/</code> から area/plan へ移ったか、「川口市 葬儀」1ページ目上位化・家族葬KWの順位を確認。</li>
+    <li><b>要承認の保留分</b>：Review系JSON-LD、電話表記統一、トップ h1 への「葬儀社」追加（任意）。</li>
+  </ul>
+
+  <footer>
+    川口典礼サイト 社内レポート（<code>docs/reports/</code>）。Web非公開・<code>noindex</code>。価格は §9 正本準拠。断定・煽り表現なし。コミット/プッシュは別途の指示に従う。
+  </footer>
+</div>
+</body>
+</html>

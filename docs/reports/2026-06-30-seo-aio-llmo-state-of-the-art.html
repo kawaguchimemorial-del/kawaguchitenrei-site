@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2026年6月時点 Google SEO・AIO・LLMO の現状レポート｜川口典礼サイト（社内・非公開）</title>
+<style>
+  :root{--ink:#2b2b2b;--soft:#6b6b6b;--line:#e3e0da;--bg:#faf9f7;--accent:#7a6a55;--box:#f4f1ea}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;line-height:1.85;font-size:15px}
+  .wrap{max-width:860px;margin:0 auto;padding:44px 22px 90px}
+  .kicker{font-size:12px;letter-spacing:.12em;color:var(--accent);margin:0 0 6px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:25px;font-weight:600;margin:0 0 10px;line-height:1.5}
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:20px;font-weight:600;margin:40px 0 12px;padding-bottom:6px;border-bottom:2px solid var(--line)}
+  h3{font-size:16px;font-weight:600;margin:24px 0 8px;color:#3a3a3a}
+  .meta{color:var(--soft);font-size:13px;border-bottom:2px solid var(--line);padding-bottom:18px;margin-bottom:8px}
+  .meta b{color:var(--ink)}
+  code{background:#f1efe9;padding:1px 6px;border-radius:5px;font-size:12.5px;font-family:ui-monospace,Consolas,monospace}
+  ul,ol{padding-left:22px;margin:8px 0}
+  li{margin:5px 0}
+  .box{background:var(--box);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:8px;padding:14px 18px;margin:16px 0}
+  .box .lead{font-weight:600;margin:0 0 6px}
+  table{border-collapse:collapse;width:100%;margin:14px 0;font-size:13.5px;background:#fff}
+  th,td{border:1px solid var(--line);padding:9px 11px;text-align:left;vertical-align:top}
+  th{background:#f1efe9;font-weight:600}
+  .tag{display:inline-block;font-size:11px;padding:1px 8px;border-radius:10px;margin-left:6px;vertical-align:middle}
+  .t-done{background:#e3efe3;color:#356b35}
+  .t-todo{background:#f3ead9;color:#8a6a2a}
+  .t-watch{background:#e6ecf5;color:#3a5a8a}
+  .num{font-variant-numeric:tabular-nums;font-weight:600;color:var(--accent)}
+  .src{font-size:12px;color:var(--soft)}
+  .src a{color:#3a5a8a}
+  footer{margin-top:48px;border-top:1px solid var(--line);padding-top:16px;color:var(--soft);font-size:12px}
+  .disc{font-size:12px;color:var(--soft);background:#fbfaf8;border:1px dashed var(--line);border-radius:8px;padding:10px 14px;margin:18px 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="kicker">川口典礼サイト ＿ 社内記録 / 業界動向リサーチ</p>
+  <h1>2026年6月時点<br>Google SEO・AIO・LLMO の現状レポート</h1>
+  <p class="meta">
+    <b>作成日：</b>2026-06-30（絶対日付）　／　<b>担当：</b>Claude Code　／　<b>種別：</b>業界動向の調査メモ（サイト実変更なし）<br>
+    <b>用途：</b>今後の SEO/AIO 施策の判断材料。CLAUDE.md §10（5つの柱）・§19 の方針と照らして使う。
+  </p>
+
+  <div class="disc">
+    本レポートは公開情報（2026年5〜6月の各種解説記事・Google公式発表）に基づく要約です。数値は出典元が示す調査値で、業界・規模により差があります。断定ではなく「目安・傾向」としてお読みください。秘密情報・個人情報・自社の未公開数値は含みません。
+  </div>
+
+  <h2>0. 3分サマリ（結論先出し）</h2>
+  <div class="box">
+    <p class="lead">いま起きていること＝「検索結果でクリックを取り合う」から「AIの回答に引用されるかどうか」への移行。</p>
+    <ul>
+      <li><b>Google AI Mode が標準化</b>（2026 I/O 発表）。従来の青リンク一覧より、Gemini ベースの会話型回答が前面に。<span class="tag t-watch">注視</span></li>
+      <li><b>AI Overviews は全クエリの約48%に表示</b>（2025年12月の34.5%から約3か月で急増）。表示クエリでは <b>1位のCTRが約58%低下</b> という調査も。<span class="tag t-watch">注視</span></li>
+      <li><b>Google公式は「AEO/GEO も結局SEO」</b>と整理。<code>llms.txt</code> や AI専用スキーマ・特別な作り込みは「Googleの生成AI機能には不要」と明言。<span class="tag t-done">方針一致</span></li>
+      <li><b>ChatGPT/Perplexity 等のAI検索からの流入は「数は少ないが質が高い」</b>（コンバージョン率が桁違いという調査も）。<span class="tag t-todo">計測整備</span></li>
+      <li><b>当サイトの取るべき姿勢：</b>既存の方針（結論先出し・基本情報表・FAQ・構造化データ・地域×サービス語）を続けることが、SEOにもAIO/LLMOにも同時に効く。新しい奇策は不要。<span class="tag t-done">継続</span></li>
+    </ul>
+  </div>
+
+  <h2>1. 用語の整理（SEO / AIO / LLMO / GEO / AEO）</h2>
+  <p>2026年は呼び方が乱立しているが、指している中身は重なる。当サイトの文脈で噛み砕くと次の通り。</p>
+  <table>
+    <tr><th>略語</th><th>正式</th><th>ねらい</th><th>当サイトでの実体</th></tr>
+    <tr><td><b>SEO</b></td><td>検索エンジン最適化</td><td>Googleの「青リンク」「地図枠」で上位に出る</td><td>title/h見出し/内部リンク/地域KW/表示速度</td></tr>
+    <tr><td><b>AIO</b></td><td>AI Optimization</td><td>Google AI Overviews / AI Mode の回答に拾われる</td><td>結論先出しボックス・基本情報表・FAQ</td></tr>
+    <tr><td><b>LLMO</b></td><td>LLM Optimization</td><td>ChatGPT/Gemini/Claude/Perplexity に引用される</td><td>明快な一問一答・出典になりうる事実の明記</td></tr>
+    <tr><td><b>GEO</b></td><td>Generative Engine Opt.</td><td>生成AIエンジン全般での可視性（LLMOとほぼ同義）</td><td>同上</td></tr>
+    <tr><td><b>AEO</b></td><td>Answer Engine Opt.</td><td>「答え」を直接返す枠で選ばれる</td><td>FAQ・端的な定義文</td></tr>
+  </table>
+  <div class="box">
+    <p class="lead">実務上の要点：これらは別々の作業ではない。</p>
+    Google自身が2026年に「AEO・GEO も <i>still SEO</i>（結局はSEO）」とガイドで明言。良質で構造化された、結論が明快なページは、4つすべてに同時に効く。当サイトが §10 で定めた「結論先出し・基本情報表・FAQ・構造化データ」路線は、この潮流とそのまま一致している。
+  </div>
+
+  <h2>2. Google SEO の現状（2026年6月）</h2>
+  <h3>2-1. AI Mode の標準化</h3>
+  <ul>
+    <li>2026年 I/O で、AI Mode（Gemini 3.5 Flash ベースの会話型検索）が<b>例外的タブから標準体験へ</b>。長い会話文・画像・文書・タブ添付に対応。</li>
+    <li>検索の評価軸が「順位」から「引用されたか」へシフト。AI Overviews 内で引用されたサイトは、通常1位より<b>多くのクリックを得る</b>という調査もある（＝引用が新しい1位）。</li>
+  </ul>
+  <h3>2-2. クリック率（CTR）への影響</h3>
+  <ul>
+    <li>AI Overviews 表示時、<b>1位CTRが約58%低下</b>（Ahrefs/30万KW分析）という報告。情報取得目的の検索ほど顕著。</li>
+    <li>一方、<b>来店・問い合わせ前提のローカル検索（葬儀社など）は「クリックして確認したい」需要が残りやすい</b>。葬儀は人生の重大事で、電話番号・式場・対応エリアを自分の目で確かめたいニーズが強く、ゼロクリック化の影響は情報系クエリより穏やか、と考えられる。</li>
+  </ul>
+  <h3>2-3. Search Console の新しい操作</h3>
+  <ul>
+    <li>自社ページを AI Overviews / AI Mode に<b>出すか出さないかを切り替えるトグル</b>がGSCに追加（英国先行、CMA対応で2026-06-17発効）。日本展開時期は要注視。<span class="tag t-watch">注視</span></li>
+    <li>当面は「出す（既定）」のままで問題なし。引用されること自体が露出機会のため、わざわざ外す理由はない。</li>
+  </ul>
+
+  <h2>3. AIO（Google AI Overviews / AI Mode）対策の現状</h2>
+  <div class="box">
+    <p class="lead">Google公式の立場：特別な細工は不要。良いSEOがそのままAIOになる。</p>
+    Googleは「<code>llms.txt</code>・コンテンツのチャンク化・AI専用の書き換え・特別スキーマは、Googleの生成AI機能には<b>不要</b>」と明言。つまりAIO対策＝従来の良質なSEO＋構造化データの徹底。
+  </div>
+  <h3>引用されやすいページの特徴（当サイトに当てはめて）</h3>
+  <ul>
+    <li><b>結論が冒頭にある</b>：「川口市の葬儀は…」と最初の数行で答える。当サイトの結論先出しボックスはこの形。<span class="tag t-done">実装済</span></li>
+    <li><b>基本情報が表で整理</b>：対応エリア／自社式場／火葬場までの距離／対応形式／費用目安／受付時間。area系で導入済み。<span class="tag t-done">実装済</span></li>
+    <li><b>FAQ で一問一答</b>：「川口で家族葬の費用は？」等。FAQ JSON-LD と併用。<span class="tag t-done">実装済</span></li>
+    <li><b>事実が具体的</b>：創業20年・年間約260件・駐車場70台・めぐりの森まで車で約5分。AIは検証可能な固有数値を好む。<span class="tag t-done">実装済</span></li>
+    <li><b>構造化データ</b>：LocalBusiness / FAQPage / BreadcrumbList。※Review・aggregateRating の新規追加は §19.2 で人間承認必須。<span class="tag t-watch">承認要</span></li>
+  </ul>
+
+  <h2>4. LLMO（ChatGPT・Gemini・Claude・Perplexity）の現状</h2>
+  <h3>4-1. 流入の質</h3>
+  <ul>
+    <li>AI検索経由の流入は<b>絶対数は小さいが、目的が明確で成約に近い</b>傾向（一部調査ではChatGPT経由のCVRがGoogleオーガニックの数倍）。葬儀のように「信頼できる地元の1社を探している」検索と相性が良い。</li>
+    <li>ただし葬儀領域は<b>YMYL（人生・お金に関わる重要分野）</b>。AIは慎重に、出典の確かな・運営主体が明確な情報を選ぶ。会社情報・実績・所在地が明快なことが効く。</li>
+  </ul>
+  <h3>4-2. 引用されるための実務ポイント</h3>
+  <ul>
+    <li><b>最初の300字で直接答える</b>：見出しを質問形にし、その直後に40〜80字の端的な答えを置く構成が引用されやすいとの報告。</li>
+    <li><b>運営主体・E-E-A-T を明示</b>：会社名・所在地・電話・創業・実績。当サイトのE-E-A-T強化（会社実績セクション等）はLLMOにも直結。<span class="tag t-done">実装済</span></li>
+    <li><b>第三者の裏取り</b>：GoogleマップのクチコミへのリンクなどでAIが事実確認しやすくする（直近コミットで対応済）。<span class="tag t-done">実装済</span></li>
+    <li><code>llms.txt</code> について：<b>Google向けには不要</b>とGoogleが明言。ChatGPT/Perplexity 等への効果は賛否あり「あって損はないが必須ではない」段階。当サイトは費用対効果を見て後回しで可。<span class="tag t-todo">保留</span></li>
+  </ul>
+
+  <h2>5. 計測（やっておくべきこと）</h2>
+  <ul>
+    <li><b>AI流入の可視化</b>：GA4 で参照元 <code>chatgpt.com</code> / <code>perplexity.ai</code> / <code>gemini.google.com</code> 等を確認できる設定。既存のGA4基盤に絞り込みを足すだけで把握可能。<span class="tag t-todo">整備候補</span></li>
+    <li><b>指名検索の伸び</b>：「川口典礼」での検索数（GSC）。AIに名前を覚えられると指名検索が増える＝LLMO効果の代理指標。<span class="tag t-watch">定点観測</span></li>
+    <li><b>AI Overviews 表示の有無</b>：主要KW（川口 葬儀／川口 家族葬 等）でAI回答が出るか・自社が引用されるかを定期目視。<span class="tag t-watch">定点観測</span></li>
+  </ul>
+
+  <h2>6. 当サイトへの示唆（やること／やらないこと）</h2>
+  <table>
+    <tr><th>方針</th><th>内容</th></tr>
+    <tr><td><b>続ける</b></td><td>結論先出し・基本情報表・FAQ・構造化データ・地域×サービス語の自然配置。これが今のSEO/AIO/LLMOの王道で、§10の軸と完全一致。</td></tr>
+    <tr><td><b>強める</b></td><td>検証可能な固有事実（実績件数・距離・台数・対応エリア）の明記。AIが引用する「裏取りできる情報」を増やす。</td></tr>
+    <tr><td><b>計測を足す</b></td><td>GA4でAI流入の参照元を見える化。指名検索・AI Overview表示を定点観測。</td></tr>
+    <tr><td><b>急がない</b></td><td><code>llms.txt</code>・AI専用の作り込み。Google公式が不要と明言、他AIへの効果も未確定。費用対効果待ち。</td></tr>
+    <tr><td><b>やらない</b></td><td>キーワード連呼・煽り表現・断定（最安/必ず 等）。AIは低品質・誇大表現を引用しない。§11の禁止表現と一致。</td></tr>
+    <tr><td><b>承認の上で</b></td><td>Review/aggregateRating を含むJSON-LD追加・GSCのAI表示トグル操作（日本展開時）は §19.2 に従い人間承認後。</td></tr>
+  </table>
+
+  <h2>7. 今後のアクション（提案）</h2>
+  <ol>
+    <li><b>GA4 にAI参照元の確認手段を整備</b>（chatgpt/perplexity/gemini）。<span class="tag t-todo">提案</span></li>
+    <li><b>主要9KWでAI Overview/AI Modeの表示・引用状況を月次目視</b>し、記録を <code>docs/eval/records/</code> に残す。<span class="tag t-todo">提案</span></li>
+    <li><b>area/plan/saijo 各ページの「冒頭40〜80字の直接回答」を点検</b>。質問形見出し直後に端的な答えがあるか。<span class="tag t-todo">提案</span></li>
+    <li><b>次回見直し：2026-09-30 を目安に再調査</b>（AI Mode日本での標準化進度・GSCトグルの日本展開を確認）。<span class="tag t-watch">予定</span></li>
+  </ol>
+
+  <h2>8. 出典</h2>
+  <p class="src">
+    主要参照（2026年5〜6月公開の解説・Google公式整理）：<br>
+    ・<a href="https://www.searchenginejournal.com/googles-new-ai-search-guide-calls-aeo-and-geo-still-seo/575026/">Search Engine Journal — Google's New AI Search Guide Calls AEO And GEO 'Still SEO'</a><br>
+    ・<a href="https://authoritytech.io/blog/google-io-2026-ai-search-changes-seo-brand-impact">AuthorityTech — Google I/O 2026 AI Search Changes</a><br>
+    ・<a href="https://eseospace.com/blog/how-ai-overviews-impact-seo-2026/">eSEOspace — How AI Overviews Impact SEO 2026</a><br>
+    ・<a href="https://www.digitalapplied.com/blog/google-search-console-ai-overviews-mode-controls-2026-guide">DigitalApplied — GSC AI Overviews & AI Mode Controls 2026</a><br>
+    ・<a href="https://www.ailead.app/blog/ai-search-citation-optimization-b2b-saas-guide-2026">ailead — AI検索引用最適化（LLMO）完全ガイド 2026</a><br>
+    ・<a href="https://aiosoken.com/insights/aio_1/">AIO総研 — AIOとは？LLMO/GEO/AEOとの違い（2026年5月）</a>
+  </p>
+
+  <footer>
+    川口典礼サイト 社内レポート（<code>docs/reports/</code>）。Web非公開・<code>noindex</code>。本レポートは業界動向の要約であり、数値は各出典の調査値です。価格・実績等の自社記載は CLAUDE.md §9 正本に準拠。
+  </footer>
+</div>
+</body>
+</html>

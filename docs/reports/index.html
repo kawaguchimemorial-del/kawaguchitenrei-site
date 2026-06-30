@@ -35,6 +35,21 @@
 
   <ul class="list">
     <li>
+      <span class="date">2026-06-30</span>
+      <a href="./2026-06-30-countermeasures-1-4-landing-family-columns-offpage.html">対策1〜4 実装（着地ズレ解消・家族葬ページ強化・コラム送客・オフページ支援｜7専門家パネル反映）</a>
+      <span class="desc">ランキング分析(同日)を受け、7観点の並列専門家パネル(着地最適化/家族葬コンテンツ/コラム送客/オフページ/構造化データAIO/トーン校閲/テクニカルQA)の合意点を最小差分で実装。①着地ズレ解消=トップ→area/kawaguchi・plan/family-funeralのアンカーをKW一致化(AreasSection「川口市の葬儀・葬儀社のご案内」/PlanSection CTA「川口市の家族葬を見る」＋area文脈リンク)。主軸は地域ハブに寄せトップh1は不変でカニバリ回避。②家族葬強化=lib/plans.tsのfamily-funeral内にFAQ5問追加(528,000円の内訳/会員・通常価格差/新井宿・鳩ヶ谷から相談/形式の選び方/人数別費用、FAQPageへ自動反映)・long地域語補強・conclusionBox/suitedFor追加(共通テンプレ無変更=他プラン非巻き込み)。③コラム送客=既存リンクが薄いyujinso-sokagakkai/kazokusou/shibou-todokeにrelatedlinksを最小限追加(押し売り回避、マナー記事に費用CTA増設せず)。④オフページ=company.tsのLocalBusiness JSON-LDにsameAs(GBP実値)＋@id追加で名寄せシグナル付与、コード外のGBP/誤価格是正/サイテーションはアクションプラン化。build✓135/135維持・型エラーなし・禁止表現混入なし・git差分は意図した6ファイルのみ(共通コンポーネント無傷)。Review系JSON-LD・電話表記統一・h1葬儀社追加は要承認で保留。再測定7/14。</span>
+    </li>
+    <li>
+      <span class="date">2026-06-30</span>
+      <a href="./2026-06-30-ranking-state-and-crawl-judgment.html">kawaguchitenrei.com 検索ランキング現状分析＋サイト全体クロール要否の判断（GSC/GA4実データ）</a>
+      <span class="desc">/admin/seo/ と同一データ源(GSC/GA4 API・重要KW定義lib/search-console/keywords.ts)で2026-06-30に再取得し分析。確定最新6/26、AFTER6/19-24 vs BEFORE6/13-18。結論=①指名「川口典礼」1.8位・CTR18.9%で盤石、②主力「川口市 葬儀」は前期13.3→7.5位へ大幅改善も着地が/(トップ)集中・CTR0.64%で集約ズレ、「川口/川口市 家族葬」21〜25位で停滞、めぐりの森系は表示0(需要極小)、③表示上位は訃報返信620/検視230/死亡届等の情報コラムでCV非直結。GA4自然検索週50前後・計測イベント(click_tel等)正常。クロール判断=robots正常・約135ページ小規模・構造化データ/内部リンク整備済み・主要KWで表示が立つ=被クロール障害なし→全面クロール対策は不要〜低優先、sitemap網羅性とGSCインデックスの数分点検のみ推奨。真のボトルネック=着地ズレ解消(area/kawaguchi・plan/family-funeral)・家族葬強化・コラム→収益ページ送客・off-page権威性。再測定7/14。分析のみ実変更なし。</span>
+    </li>
+    <li>
+      <span class="date">2026-06-30</span>
+      <a href="./2026-06-30-seo-aio-llmo-state-of-the-art.html">2026年6月時点 Google SEO・AIO・LLMO の現状レポート（業界動向リサーチ）</a>
+      <span class="desc">「検索でクリックを取り合う」から「AIの回答に引用されるか」への移行を整理。①Google AI Mode 標準化(2026 I/O)・AI Overviews 全クエリの約48%表示・1位CTR約58%低下の調査。②Google公式が「AEO/GEOも結局SEO」「llms.txt・AI専用スキーマは不要」と明言。③ChatGPT/Perplexity流入は数は少ないが質が高い傾向。④用語整理(SEO/AIO/LLMO/GEO/AEO)＋引用されるページの条件(結論先出し/基本情報表/FAQ/固有事実/構造化データ)を当サイト実装状況に対応づけ。⑤示唆=既存の§10路線を継続強化が王道、llms.txtは急がない、Review系JSON-LD・GSCのAI表示トグルは§19.2で承認後。⑥提案=GA4でAI参照元可視化・主要9KWのAI Overview目視を月次でdocs/eval/records/へ・冒頭40〜80字直接回答の点検・次回見直し2026-09-30。サイト実変更なしの調査メモ。noindex。</span>
+    </li>
+    <li>
       <span class="date">2026-06-19</span>
       <a href="./2026-06-19-area-kawaguchi-conclusion-box.html">/area/kawaguchi/ に結論先出しボックス＋「葬儀社」FAQ追加（川口・川口市KWの受け皿No.2強化）</a>
       <span class="desc">SEO判定(予定6/26)7日前に、主要KWの着地ページをGSCの「ページ」タブで確認。川口市 葬儀=/(263)＞/area/kawaguchi/(49)、川口市 家族葬=/(121)＞/area/kawaguchi/(27)＞/plan/family-funeral/(16)＝分散、川口 葬儀=/(118)＞/saijo/(5)＞/area/・/area/kawaguchi/(各3)、川口市 葬儀社=/(49)のみ＝ホームが主役でarea/kawaguchiが一貫して受け皿No.2と判明。判定直前のためURL変更・大改造は避け加点のみで合意。area/kawaguchiは既に費用目安/公的制度/relatedLinks(23本)等で作り込み済みだが、AIO向けの結論先出しボックスが欠落し「葬儀社」語を可視見出し/FAQで未対応、市なしの「川口 葬儀」「川口 家族葬」も可視テキスト上の受けがやや弱かったため補強。①app/area/kawaguchi/page.tsx の AreaDetailIntro 直後に結論先出しボックス(結論文＋基本情報表=対応エリア/自社式場/火葬場/対応形式/費用目安/受付)を新規追加し、見出し/本文を川口・川口市軸へ調整。②lib/areas.ts の areaKawaguchi.faqs に「川口市で葬儀社を選ぶときのポイント」を1件追加し、既存家族葬FAQも「川口で家族葬」文脈へ微調整(FAQ JSON-LD反映)。価格は§9正本のみ・禁止表現/新規断定なし。共通テンプレAreaDetailIntroは不変=他14エリア巻き込みなし。URL/title/canonical不変。build成功・ページ数維持。</span>

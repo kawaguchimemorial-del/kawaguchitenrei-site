@@ -111,6 +111,7 @@ export function getLocalBusinessJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "FuneralHome",
+    "@id": `${SITE_URL}/#funeralhome`,
     name: company.name,
     alternateName: company.hallName,
     url: `${SITE_URL}/`,
@@ -118,6 +119,8 @@ export function getLocalBusinessJsonLd() {
     logo: LOGO_URL,
     description: company.shortDescription,
     foundingDate: String(company.foundedYear),
+    // 同一事業者の名寄せ用。実値が確認できているもののみ記載（推測URLは追加しない）
+    sameAs: company.googleReviewsUrl ? [company.googleReviewsUrl] : undefined,
     address: {
       "@type": "PostalAddress",
       postalCode: company.postal,

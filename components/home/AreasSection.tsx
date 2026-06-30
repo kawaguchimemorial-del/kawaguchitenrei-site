@@ -55,7 +55,7 @@ export function AreasSection() {
               href="/area/kawaguchi/"
               className="font-bold text-brand hover:underline"
             >
-              川口市の葬儀ガイド
+              川口市の葬儀・葬儀社のご案内
             </a>
             と
             <a

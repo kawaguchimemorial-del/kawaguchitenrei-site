@@ -61,7 +61,7 @@ const plans: Plan[] = [
   {
     slug: "family-funeral",
     detailHref: "/plan/family-funeral/",
-    ctaLabel: "プランを見る",
+    ctaLabel: "川口市の家族葬を見る",
     name: "川口市の家族葬",
     subtitle: "家族葬プラン",
     description: "川口メモリアルホールで、ご家族中心にゆっくりお見送り。",
@@ -196,6 +196,16 @@ export function PlanSection() {
           </h2>
           <p className="mt-5 text-base leading-9 text-ink-mid md:text-lg">
             川口市で、直葬・花入れお別れ・一日葬・家族葬・市民葬まで、ご家族の状況やご希望に合わせて葬儀の形式をお選びいただけます。費用や追加項目もあわせてご確認いただけます。
+          </p>
+          <p className="mt-3 text-base leading-9 text-ink-mid md:text-lg">
+            葬儀全体の流れや費用の考え方は、
+            <a
+              href="/area/kawaguchi/"
+              className="font-bold text-brand hover:underline"
+            >
+              川口市の葬儀
+            </a>
+            のページでもご案内しています。
           </p>
         </div>
 

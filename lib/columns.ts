@@ -2144,6 +2144,15 @@ export const columns: ColumnArticle[] = [
           ["一日葬", "通夜を行わず、1日で告別式と火葬を行う。遠方の参列者にも優しい。"],
         ],
       },
+      {
+        type: "relatedlinks",
+        title: "他の葬儀形式の費用も比較する",
+        links: [
+          { label: "川口市の直葬プラン", href: "/plan/direct-funeral/" },
+          { label: "川口市の一日葬プラン", href: "/plan/oneday-funeral/" },
+          { label: "川口市の葬儀ガイド（地域情報）", href: "/area/kawaguchi/" },
+        ],
+      },
 
       { type: "h2", text: "まとめ" },
       {
@@ -5443,6 +5452,17 @@ export const columns: ColumnArticle[] = [
         type: "p",
         text: "いずれも医師の作成が前提のため、ご家族側で右半分を記入することはありません。死体検案書については、別記事「検視の流れ｜遺体が警察に安置されたら家族がやるべきこと」もあわせてご覧ください。",
       },
+      {
+        type: "relatedlinks",
+        title: "検視・死体検案書について詳しく",
+        links: [
+          {
+            label:
+              "検視の流れ｜遺体が警察に安置されたら家族がやるべきこと",
+            href: "/column/kenshi-nagare/",
+          },
+        ],
+      },
       { type: "h2", text: "火葬許可証の交付までの流れ" },
       {
         type: "p",
@@ -5690,6 +5710,14 @@ export const columns: ColumnArticle[] = [
           "祭壇・供花・しきみの準備",
           "進行・受付などの運営サポート",
           "学会の地域組織との連絡調整",
+        ],
+      },
+      {
+        type: "relatedlinks",
+        title: "川口市での葬儀・式場について",
+        links: [
+          { label: "川口市の家族葬プラン", href: "/plan/family-funeral/" },
+          { label: "川口市の葬儀ガイド（地域情報）", href: "/area/kawaguchi/" },
         ],
       },
       {
