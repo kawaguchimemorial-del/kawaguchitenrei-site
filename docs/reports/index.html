@@ -35,6 +35,16 @@
 
   <ul class="list">
     <li>
+      <span class="date">2026-07-02</span>
+      <a href="./2026-07-02-family-funeral-cannibalization-fix.html">家族葬KWのカニバリ解消（area共通カードの「川口市の家族葬」重複を集約）</a>
+      <span class="desc">前段の分析(確定最新6/29)で判明した「川口市 家族葬」の自社内カニバリを解消。原因=area共通テンプレAreaDetailMain.tsxのplanCardsで家族葬カードだけが「川口市の家族葬」と地名付き(直葬/一日葬/一般葬は地名なし)→全15エリアでh3「川口市の家族葬」＋CTAを量産し各エリアページが同一KWの競合になっていた(トップ11.9位に対しarea/aoki48.6・area/58.3等が分散)。対応=カード名「川口市の家族葬」→「家族葬」、altも同様に地名除去。href:/plan/family-funeral/・price528,000円は不変。集約シグナルはトップAreasSection・各areaのrelatedLinks・コラムに残る地名付き内部アンカーで維持するため失われない。狙いは主役を専用ページ(当面はトップ)に集約。build135/135維持・型エラーなし・差分はAreaDetailMain.tsx＋docsのみ(共通JSX/他プラン/価格不変)。効果測定7/14。GSC取得スクリプトも日付ハードコードを動的検出に修正済(確定最新を自動追従)。</span>
+    </li>
+    <li>
+      <span class="date">2026-07-02</span>
+      <a href="./2026-07-02-family-funeral-ranking-why-not-rising.html">「川口 家族葬／川口市 家族葬」が上がらない理由 — GSC実データ＋上位サイト比較</a>
+      <span class="desc">「20位台」の内訳をGSCクエリ×ページで分解し、上位競合を実地確認。核心=①平均約21位は見かけで、実際に「川口市 家族葬」で出ているのは主にトップ11.9位(確定最新6/29)、そこへarea/aoki(48.6)・area/(58.3)等の弱URLが混じり平均を押し下げる自社内カニバリゼーション。②受け皿の/plan/family-funeral/は非指名KWでほぼ表面化せず(指名時のみ3.08位)、評価がトップに集中し専用ページに集約できていない。③SERP上位=大手ポータル(いい葬儀/小さなお葬式/soogi/価格.com/マイベスト)＋地元強豪(あゆみ葬祭:実績3,000件超・満足度97%・家族葬38万円〜、川口市民葬祭:3,600件超・98%・28.6万円〜)。当社はオンページ(FAQ/費用表/事例)はむしろ充実だが、実績の可視化(年間約260件表示)・口コミ/満足度の構造化なし・表示価格52.8万円が高めで、E-E-A-Tと費用の見せ方で差。上がらない根本=カニバリ(最重要・内部)＞専用ページ権威不足＞オフページ評価差(13位の壁)＞E-E-A-T可視化＞費用の見せ方。次策=家族葬KWの主役をfamily-funeralに一本化・area側の家族葬主張を弱める・実績/口コミ可視化(Review系は要承認)・GBP/口コミ獲得。7/14効果測定。分析のみ実変更なし。</span>
+    </li>
+    <li>
       <span class="date">2026-06-30</span>
       <a href="./2026-06-30-countermeasures-1-4-landing-family-columns-offpage.html">対策1〜4 実装（着地ズレ解消・家族葬ページ強化・コラム送客・オフページ支援｜7専門家パネル反映）</a>
       <span class="desc">ランキング分析(同日)を受け、7観点の並列専門家パネル(着地最適化/家族葬コンテンツ/コラム送客/オフページ/構造化データAIO/トーン校閲/テクニカルQA)の合意点を最小差分で実装。①着地ズレ解消=トップ→area/kawaguchi・plan/family-funeralのアンカーをKW一致化(AreasSection「川口市の葬儀・葬儀社のご案内」/PlanSection CTA「川口市の家族葬を見る」＋area文脈リンク)。主軸は地域ハブに寄せトップh1は不変でカニバリ回避。②家族葬強化=lib/plans.tsのfamily-funeral内にFAQ5問追加(528,000円の内訳/会員・通常価格差/新井宿・鳩ヶ谷から相談/形式の選び方/人数別費用、FAQPageへ自動反映)・long地域語補強・conclusionBox/suitedFor追加(共通テンプレ無変更=他プラン非巻き込み)。③コラム送客=既存リンクが薄いyujinso-sokagakkai/kazokusou/shibou-todokeにrelatedlinksを最小限追加(押し売り回避、マナー記事に費用CTA増設せず)。④オフページ=company.tsのLocalBusiness JSON-LDにsameAs(GBP実値)＋@id追加で名寄せシグナル付与、コード外のGBP/誤価格是正/サイテーションはアクションプラン化。build✓135/135維持・型エラーなし・禁止表現混入なし・git差分は意図した6ファイルのみ(共通コンポーネント無傷)。Review系JSON-LD・電話表記統一・h1葬儀社追加は要承認で保留。再測定7/14。</span>

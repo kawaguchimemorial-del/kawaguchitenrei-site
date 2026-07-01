@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>家族葬KWのカニバリ解消（area共通カードの地名重複を集約）2026-07-02｜社内・非公開</title>
+<style>
+  :root{--ink:#2b2b2b;--soft:#6b6b6b;--line:#e3e0da;--bg:#faf9f7;--accent:#7a6a55;--box:#f4f1ea}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;line-height:1.85;font-size:15px}
+  .wrap{max-width:860px;margin:0 auto;padding:44px 22px 90px}
+  .kicker{font-size:12px;letter-spacing:.12em;color:var(--accent);margin:0 0 6px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:22px;font-weight:600;margin:0 0 10px;line-height:1.5}
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:19px;font-weight:600;margin:36px 0 12px;padding-bottom:6px;border-bottom:2px solid var(--line)}
+  .meta{color:var(--soft);font-size:13px;border-bottom:2px solid var(--line);padding-bottom:18px;margin-bottom:8px}
+  .meta b{color:var(--ink)}
+  code{background:#f1efe9;padding:1px 6px;border-radius:5px;font-size:12px;font-family:ui-monospace,Consolas,monospace}
+  ul,ol{padding-left:22px;margin:8px 0}li{margin:5px 0}
+  .box{background:var(--box);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:8px;padding:14px 18px;margin:16px 0}
+  .box .lead{font-weight:600;margin:0 0 6px}
+  table{border-collapse:collapse;width:100%;margin:14px 0;font-size:13px;background:#fff}
+  th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+  th{background:#f1efe9;font-weight:600}
+  .tag{display:inline-block;font-size:11px;padding:1px 8px;border-radius:10px;margin-left:4px}
+  .t-done{background:#e3efe3;color:#356b35}.t-hold{background:#f3ead9;color:#8a6a2a}.t-info{background:#e6ecf5;color:#3a5a8a}
+  .disc{font-size:12px;color:var(--soft);background:#fbfaf8;border:1px dashed var(--line);border-radius:8px;padding:10px 14px;margin:16px 0}
+  footer{margin-top:44px;border-top:1px solid var(--line);padding-top:16px;color:var(--soft);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="kicker">川口典礼サイト ＿ 社内記録 / 実装</p>
+  <h1>家族葬KWのカニバリゼーション解消<br>— area共通カードの「川口市の家族葬」重複を集約 —</h1>
+  <p class="meta">
+    <b>作成日：</b>2026-07-02　／　<b>担当：</b>Claude Code<br>
+    <b>前提分析：</b><code>2026-07-02-family-funeral-ranking-why-not-rising.html</code>（GSC確定最新6/29）<br>
+    <b>ねらい：</b>「川口市 家族葬」の自社内カニバリを止め、評価を分散させない。
+  </p>
+
+  <div class="disc">
+    CLAUDE.md §19.1（SEO/AIO改善・内部リンクの範囲）で実施。価格は §9 正本のみ。禁止表現なし。共通レイアウト（Header/Footer/MobileBottomCTA）・フォーム・価格データ・funeral-system は未変更。今回変更は共通テンプレのデータ1箇所のみ（構造/JSX不変）。
+  </div>
+
+  <h2>0. サマリ</h2>
+  <div class="box">
+    <p class="lead">全15エリアページが共通テンプレで <code>&lt;h3&gt;川口市の家族葬&lt;/h3&gt;</code> を出力していた＝「川口市 家族葬」で15ページが自社競合していた。カードのラベルから地名を外し、兄弟プラン（直葬/一日葬/一般葬＝地名なし）と揃えて集約。</p>
+    <ul>
+      <li>変更：<code>components/area/AreaDetailMain.tsx</code> の <code>planCards</code> 家族葬カード名「川口市の家族葬」→「<b>家族葬</b>」（alt も同様）。<span class="tag t-done">完了</span></li>
+      <li>リンク先 <code>/plan/family-funeral/</code> は維持。家族葬への<b>地名付き内部アンカーは残す</b>（トップ AreasSection・各areaの relatedLinks）ので、専用ページへの集約シグナルは失わない。<span class="tag t-info">維持</span></li>
+      <li>build 135/135 維持・エラーなし。<span class="tag t-done">確認</span></li>
+    </ul>
+  </div>
+
+  <h2>1. 背景（カニバリの発生源）</h2>
+  <p>GSCのクエリ×ページ分解（確定最新6/29）で、「川口市 家族葬」に自社の複数URLがぶつかっていた：</p>
+  <ul>
+    <li>トップ <code>/</code>：76表示・<b>11.9位</b>（実質の主役）</li>
+    <li><code>/area/aoki/</code>：11表示・48.6位、<code>/area/</code>：7表示・58.3位、<code>/area/higashikawaguchi/</code>・<code>/area/shingo/</code> 等が薄く競合</li>
+  </ul>
+  <p>原因を辿ると、area 共通テンプレ <code>AreaPlans</code> の <code>planCards</code> で<b>家族葬カードだけが「川口市の家族葬」と地名付き</b>（直葬・一日葬・一般葬は地名なし）。これが全15エリアで <code>&lt;h3&gt;川口市の家族葬&lt;/h3&gt;</code> ＋「川口市の家族葬の詳細を見る」を量産し、各エリアページが「川口市 家族葬」の競合ページになっていた。</p>
+
+  <h2>2. 変更内容</h2>
+  <table>
+    <tr><th>ファイル</th><th>変更</th></tr>
+    <tr><td><code>components/area/AreaDetailMain.tsx</code>（planCards）</td><td>家族葬カードの <code>name</code>「川口市の家族葬」→「家族葬」／ 画像 <code>alt</code>「川口市の家族葬プランのイメージ」→「家族葬プランのイメージ」。<code>href:/plan/family-funeral/</code>・<code>price:528,000円(税込)〜</code> は不変。</td></tr>
+  </table>
+  <p>効果：全エリアページの見出し <code>h3</code> とCTAから「川口市の家族葬」表記が消え、<b>15ページが同一KWで競合する状態を解消</b>。兄弟カード（直葬/一日葬/一般葬）と表記粒度も統一。</p>
+
+  <h2>3. なぜ集約シグナルは失われないか</h2>
+  <p>area カードから地名を外しても、<code>/plan/family-funeral/</code> への<b>地名付き内部アンカーは他所に残す</b>設計：</p>
+  <ul>
+    <li>トップ <code>components/home/AreasSection.tsx</code>：「川口市の家族葬」→ <code>/plan/family-funeral/</code>（前回実装）</li>
+    <li>各エリアの <code>relatedLinks</code>（<code>lib/areas.ts</code>）：「川口市の家族葬」→ <code>/plan/family-funeral/</code></li>
+    <li>コラム（kazokusou/yujinso 等）の関連リンク（前回実装）</li>
+  </ul>
+  <p>＝ area ページ自身が「川口市 家族葬」で<u>競合しない</u>ようにしつつ、専用ページへの<u>キーワード付き被リンクは維持</u>。狙いは「主役を <code>/plan/family-funeral/</code>（と、当面はトップ）に集約」。</p>
+
+  <h2>4. 確認</h2>
+  <ul>
+    <li><code>npm run build</code>：✓ Compiled successfully／静的生成 135/135 維持／型エラー・警告なし。</li>
+    <li><code>git status</code>：<code>components/area/AreaDetailMain.tsx</code> ＋ docs のみ。共通JSX構造・他プラン・価格に差分なし。</li>
+    <li>確認URL：<code>/area/kawaguchi</code>・<code>/area/aoki</code>・<code>/area/higashikawaguchi</code>（カード表記が「家族葬」に／リンク先が family-funeral のまま）、<code>/plan/family-funeral</code>。</li>
+  </ul>
+
+  <h2>5. 今後</h2>
+  <ul>
+    <li><b>効果測定 2026-07-14</b>：area系が「川口市 家族葬」から抜け、トップ／専用ページに集約されたか、平均順位が20台→改善したかを同スクリプト（動的日付・確定最新自動検出済み）で確認。</li>
+    <li>残課題：専用ページ <code>/plan/family-funeral/</code> をトップに代わる代表URLへ育てる（内部被リンクの比重調整）／E-E-A-T可視化（実績・口コミ、Review系は §19.2 承認必須）／オフページ（GBP・口コミ・サイテーション）。</li>
+  </ul>
+
+  <footer>
+    川口典礼サイト 社内レポート（<code>docs/reports/</code>）。Web非公開・<code>noindex</code>。価格は §9 正本準拠。断定・煽りなし。
+  </footer>
+</div>
+</body>
+</html>

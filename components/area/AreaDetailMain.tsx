@@ -75,13 +75,13 @@ const planCards: PlanCardEntry[] = [
     },
   },
   {
-    name: "川口市の家族葬",
+    name: "家族葬",
     short: "ご家族や親しい方を中心に、落ち着いてお見送りする葬儀です。",
     price: "528,000円(税込)〜",
     href: "/plan/family-funeral/",
     image: {
       src: "/images/home/plans/plan-ichinichiso-kazokuso.png",
-      alt: "川口市の家族葬プランのイメージ",
+      alt: "家族葬プランのイメージ",
     },
   },
   {
