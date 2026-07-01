@@ -18,6 +18,13 @@ export type CompanyInfo = {
   foundedYear: number;
   yearsInBusiness: number;
   annualCases: string;
+  // 累計施行件数（確定事実・推測しない）
+  cumulativeCases: string;
+  // アンケートに基づく満足度（実在の集計・保守的表記）
+  satisfactionRate: string;
+  // Google クチコミ（実在値。件数は変動するため目安）
+  reviewRating: number;
+  reviewCount: number;
   // 川口市の葬祭事業（市民葬）登録店かどうか（確定事実）
   citizenFuneralRegistered: boolean;
   // 実績数値の可視化用（すべて確定事実・誇張しない §11）
@@ -52,6 +59,10 @@ export const company: CompanyInfo = {
   foundedYear: 2006,
   yearsInBusiness: 20,
   annualCases: "年間約260件",
+  cumulativeCases: "4,600件以上",
+  satisfactionRate: "97%以上",
+  reviewRating: 4.5,
+  reviewCount: 27,
   citizenFuneralRegistered: true,
   trackRecord: [
     {
@@ -60,9 +71,19 @@ export const company: CompanyInfo = {
       note: "2006年〜、川口市・新井宿でお見送りをお手伝い",
     },
     {
+      value: "4,600件以上",
+      label: "累計の施行実績",
+      note: "創業から川口市・近隣で重ねてきたお見送りの累計",
+    },
+    {
       value: "約260件",
       label: "年間の施行実績",
       note: "家族葬・一日葬・直葬・一般葬・市民葬まで",
+    },
+    {
+      value: "97%以上",
+      label: "アンケート満足度",
+      note: "ご葬儀後にお答えいただいたアンケートの満足度",
     },
     {
       value: "登録店",
@@ -121,6 +142,14 @@ export function getLocalBusinessJsonLd() {
     foundingDate: String(company.foundedYear),
     // 同一事業者の名寄せ用。実値が確認できているもののみ記載（推測URLは追加しない）
     sameAs: company.googleReviewsUrl ? [company.googleReviewsUrl] : undefined,
+    // Google クチコミの実在集計（人間承認済み・実値のみ。件数は変動する目安）
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: company.reviewRating,
+      reviewCount: company.reviewCount,
+      bestRating: 5,
+      worstRating: 1,
+    },
     address: {
       "@type": "PostalAddress",
       postalCode: company.postal,

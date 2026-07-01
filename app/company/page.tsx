@@ -141,7 +141,7 @@ export default function CompanyPage() {
           </dl>
 
           <p className="mt-6 text-xs leading-6 text-ink-soft md:text-sm">
-            ※ 施行件数は年間のおおよその目安です。創業年・登録区分は確定の事実に基づき記載しています。
+            ※ 年間施行件数はおおよその目安、累計件数は創業からの実績です。満足度はご葬儀後のアンケート集計に基づく数値です。創業年・登録区分は確定の事実に基づき記載しています。
           </p>
         </div>
       </section>

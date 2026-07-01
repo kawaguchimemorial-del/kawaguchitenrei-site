@@ -36,6 +36,11 @@
   <ul class="list">
     <li>
       <span class="date">2026-07-02</span>
+      <a href="./2026-07-02-eeat-visibility-and-aggregaterating.html">E-E-A-T可視化（累計4,600件・満足度97%以上・Google★4.5/27件の構造化）※承認済</a>
+      <span class="desc">競合(あゆみ葬祭3,000件超・97%／川口市民葬祭3,600件超・98%)に対し弱かった信頼シグナルを、実在値のみで可視化。ユーザー提供の確定値=累計施行4,600件以上／アンケート満足度97%以上／Googleクチコミ★4.5・27件。①lib/company.tsにcumulativeCases/satisfactionRate/reviewRating/reviewCountを追加、trackRecordに「累計4,600件以上」「アンケート満足度97%以上」を追加表示、getLocalBusinessJsonLdにaggregateRating(★4.5・27件・単一出典=Google)を追加(§19.2ユーザー承認済)。②app/company/page.tsxの注記を累計/満足度の出典明示に更新。③lib/reviews.tsのGoogle値を最新化(26件★4.7→27件★4.5・合計571件・2026年7月時点)しホーム口コミバッジの可視表示と構造化データを一致(Googleは可視値と一致を要求)。満足度は保守的な下限「97%以上」を採用しアンケート集計と明記。数値は実在値のみ・推測/水増しなし(§19.3)。build135/135維持・生成HTMLにaggregateRating出力確認。今後:リッチリザルトテスト・件数の定期更新(company.ts/reviews.ts単一導線)・7/14効果測定。</span>
+    </li>
+    <li>
+      <span class="date">2026-07-02</span>
       <a href="./2026-07-02-family-funeral-cannibalization-fix.html">家族葬KWのカニバリ解消（area共通カードの「川口市の家族葬」重複を集約）</a>
       <span class="desc">前段の分析(確定最新6/29)で判明した「川口市 家族葬」の自社内カニバリを解消。原因=area共通テンプレAreaDetailMain.tsxのplanCardsで家族葬カードだけが「川口市の家族葬」と地名付き(直葬/一日葬/一般葬は地名なし)→全15エリアでh3「川口市の家族葬」＋CTAを量産し各エリアページが同一KWの競合になっていた(トップ11.9位に対しarea/aoki48.6・area/58.3等が分散)。対応=カード名「川口市の家族葬」→「家族葬」、altも同様に地名除去。href:/plan/family-funeral/・price528,000円は不変。集約シグナルはトップAreasSection・各areaのrelatedLinks・コラムに残る地名付き内部アンカーで維持するため失われない。狙いは主役を専用ページ(当面はトップ)に集約。build135/135維持・型エラーなし・差分はAreaDetailMain.tsx＋docsのみ(共通JSX/他プラン/価格不変)。効果測定7/14。GSC取得スクリプトも日付ハードコードを動的検出に修正済(確定最新を自動追従)。</span>
     </li>

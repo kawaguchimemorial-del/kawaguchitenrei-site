@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>E-E-A-T可視化（累計実績・満足度・Google評価の構造化）2026-07-02｜社内・非公開</title>
+<style>
+  :root{--ink:#2b2b2b;--soft:#6b6b6b;--line:#e3e0da;--bg:#faf9f7;--accent:#7a6a55;--box:#f4f1ea}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;line-height:1.85;font-size:15px}
+  .wrap{max-width:860px;margin:0 auto;padding:44px 22px 90px}
+  .kicker{font-size:12px;letter-spacing:.12em;color:var(--accent);margin:0 0 6px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:22px;font-weight:600;margin:0 0 10px;line-height:1.5}
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:19px;font-weight:600;margin:36px 0 12px;padding-bottom:6px;border-bottom:2px solid var(--line)}
+  .meta{color:var(--soft);font-size:13px;border-bottom:2px solid var(--line);padding-bottom:18px;margin-bottom:8px}
+  .meta b{color:var(--ink)}
+  code{background:#f1efe9;padding:1px 6px;border-radius:5px;font-size:12px;font-family:ui-monospace,Consolas,monospace}
+  ul,ol{padding-left:22px;margin:8px 0}li{margin:5px 0}
+  .box{background:var(--box);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:8px;padding:14px 18px;margin:16px 0}
+  .box .lead{font-weight:600;margin:0 0 6px}
+  table{border-collapse:collapse;width:100%;margin:14px 0;font-size:13px;background:#fff}
+  th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+  th{background:#f1efe9;font-weight:600}
+  .tag{display:inline-block;font-size:11px;padding:1px 8px;border-radius:10px;margin-left:4px}
+  .t-done{background:#e3efe3;color:#356b35}.t-info{background:#e6ecf5;color:#3a5a8a}
+  .disc{font-size:12px;color:var(--soft);background:#fbfaf8;border:1px dashed var(--line);border-radius:8px;padding:10px 14px;margin:16px 0}
+  footer{margin-top:44px;border-top:1px solid var(--line);padding-top:16px;color:var(--soft);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="kicker">川口典礼サイト ＿ 社内記録 / 実装（承認済み）</p>
+  <h1>E-E-A-T の可視化<br>— 累計実績・アンケート満足度・Google評価の構造化 —</h1>
+  <p class="meta">
+    <b>作成日：</b>2026-07-02　／　<b>担当：</b>Claude Code<br>
+    <b>承認：</b>ユーザー承認済み（Review/aggregateRating の新規追加＝CLAUDE.md §19.2）。数値はすべて<b>実在・検証可能な値のみ</b>（推測・捏造なし §19.3）。<br>
+    <b>提供値：</b>累計施行 4,600件以上／アンケート満足度 97%以上／Googleクチコミ ★4.5・27件（ユーザー確認）
+  </p>
+
+  <div class="disc">
+    競合（あゆみ葬祭：実績3,000件超・満足度97%／川口市民葬祭：3,600件超・98%）が前面に出す信頼シグナルに対し、当社は実績・満足度・口コミの可視化が弱かった（前レポート参照）。本対応でその差を、<b>実在値の範囲で</b>埋める。価格は §9 正本のみ。断定・煽り・競合誹謗なし。</p>
+
+  <h2>0. サマリ</h2>
+  <div class="box">
+    <p class="lead">実在値のみで E-E-A-T を可視化。会社概要の実績に「累計4,600件以上」「アンケート満足度97%以上」を追加し、Googleクチコミ（★4.5・27件）を <code>aggregateRating</code> 構造化データ化。表示値と構造化データを一致させた。</p>
+    <ul>
+      <li>会社概要 実績セクションに <b>累計4,600件以上</b>・<b>アンケート満足度97%以上</b> を追加表示。<span class="tag t-done">完了</span></li>
+      <li>LocalBusiness(FuneralHome) JSON-LD に <b>aggregateRating（★4.5・27件・単一出典=Google）</b> を追加。<span class="tag t-done">完了（承認済）</span></li>
+      <li>既存の口コミバッジ（ホーム）の Google値を最新（★4.5・27件）へ更新し、<b>可視表示と構造化データを一致</b>。<span class="tag t-done">整合</span></li>
+      <li>build 135/135 維持・生成HTMLに aggregateRating 出力を確認。<span class="tag t-done">確認</span></li>
+    </ul>
+  </div>
+
+  <h2>1. 変更内容</h2>
+  <table>
+    <tr><th>ファイル</th><th>変更</th></tr>
+    <tr><td><code>lib/company.ts</code></td><td>型・データに <code>cumulativeCases:"4,600件以上"</code>／<code>satisfactionRate:"97%以上"</code>／<code>reviewRating:4.5</code>／<code>reviewCount:27</code> を追加。<code>trackRecord</code> に「累計の施行実績 4,600件以上」「アンケート満足度 97%以上」の2項目を追加。<code>getLocalBusinessJsonLd</code> に <code>aggregateRating</code>（ratingValue 4.5／reviewCount 27／bestRating 5）を追加。</td></tr>
+    <tr><td><code>app/company/page.tsx</code></td><td>実績セクションの注記を更新（累計＝創業からの実績／満足度＝アンケート集計に基づく旨を明記）。表示は既存 <code>trackRecord.map</code> がそのまま5項目に。</td></tr>
+    <tr><td><code>lib/reviews.ts</code></td><td>Googleクチコミの内訳を最新化（26件★4.7 → <b>27件★4.5</b>）、合計571件、時点表記を2026年7月に更新。ホームの口コミバッジ表示が構造化データと一致。</td></tr>
+  </table>
+
+  <h2>2. なぜこの形にしたか（品質・ガイドライン）</h2>
+  <ul>
+    <li><b>実在値のみ</b>：累計4,600件・満足度97%以上・★4.5/27件はいずれもユーザー確認済みの実データ。推測（例：年間260件×20年で概算）や競合対抗の水増しはしない（§19.3）。</li>
+    <li><b>表示と構造化データの一致</b>：Googleは <code>aggregateRating</code> がページ上の可視内容と一致することを求める。ホームの口コミバッジ（Google ★4.5・27件）と JSON-LD を同一値に統一。<code>reviews.ts</code> が単一の更新点。</li>
+    <li><b>単一出典に限定</b>：<code>aggregateRating</code> は多出典の総合（571件）ではなく、検証可能な<b>Google単一出典（27件・★4.5）</b>に限定（<code>reviews.ts</code> の運用ルールに準拠）。</li>
+    <li><b>満足度の表記</b>：「97%または98%」のうち保守的な下限「<b>97%以上</b>」を採用し、注記で「ご葬儀後のアンケート集計」と出典を明示。</li>
+    <li><b>件数は変動する目安</b>：Googleクチコミ件数は増減するため、更新は <code>company.ts</code>／<code>reviews.ts</code> の値を差し替えるだけで表示・構造化データ両方に反映される単一導線。</li>
+  </ul>
+
+  <h2>3. 期待効果</h2>
+  <ul>
+    <li><b>信頼シグナルの底上げ</b>：累計4,600件・満足度97%以上を可視化し、競合の「3,000〜3,600件超・97〜98%」と並ぶ土俵に。</li>
+    <li><b>リッチリザルト／AIO</b>：<code>aggregateRating</code> により星評価がリッチリザルト候補に。AI回答でも「評価の高い地元葬儀社」として引用されやすく。</li>
+    <li><b>家族葬KWの後押し</b>：家族葬ページ強化・カニバリ解消（別レポート）と合わせ、E-E-A-Tで順位の“権威の壁”を押し上げる補強。</li>
+  </ul>
+
+  <h2>4. 確認</h2>
+  <ul>
+    <li><code>npm run build</code>：✓ 成功／静的生成 135/135 維持／型エラー・警告なし。</li>
+    <li>生成HTML：<code>"aggregateRating":{"@type":"AggregateRating","ratingValue":4.5,"reviewCount":27,...}</code> を出力確認。</li>
+    <li>確認URL：<code>/company</code>（累計・満足度の実績表示）、<code>/</code>（口コミバッジ ★4.5・27件／リッチリザルトテストで aggregateRating 検証推奨）。</li>
+    <li>禁止表現・競合誹謗なし。価格は §9 正本のみ。</li>
+  </ul>
+
+  <h2>5. 今後</h2>
+  <ul>
+    <li><b>Google リッチリザルト テスト</b>で aggregateRating の警告有無を確認（本番URL）。</li>
+    <li><b>クチコミ件数の定期更新</b>：件数が動いたら <code>lib/company.ts</code>（reviewCount/reviewRating）と <code>lib/reviews.ts</code> を更新。</li>
+    <li>効果測定 <b>2026-07-14</b>：家族葬KWの順位・リッチリザルト表示・CTRの変化を確認。</li>
+    <li>オフページ（GBPでのクチコミ獲得継続）で件数・評価そのものを育てる。</li>
+  </ul>
+
+  <footer>
+    川口典礼サイト 社内レポート（<code>docs/reports/</code>）。Web非公開・<code>noindex</code>。数値は実在値（Google件数は目安・変動あり）。価格は §9 正本準拠。aggregateRating はユーザー承認のうえ実装（§19.2）。
+  </footer>
+</div>
+</body>
+</html>
