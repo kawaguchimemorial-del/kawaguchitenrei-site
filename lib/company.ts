@@ -131,7 +131,10 @@ export function getLocalBusinessJsonLd() {
 
   return {
     "@context": "https://schema.org",
-    "@type": "FuneralHome",
+    // Google のレビュースニペットは LocalBusiness を親型として認識するが、
+    // サブタイプの FuneralHome 単独では aggregateRating の親型として無効判定になる。
+    // 配列で LocalBusiness を併記し、リッチリザルト要件を満たす。
+    "@type": ["FuneralHome", "LocalBusiness"],
     "@id": `${SITE_URL}/#funeralhome`,
     name: company.name,
     alternateName: company.hallName,
