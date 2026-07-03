@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>トップページ レビュースニペット parent_node 型エラー修正｜川口典礼サイト（社内・非公開）</title>
+<style>
+  :root{--ink:#2b2b2b;--soft:#6b6b6b;--line:#e3e0da;--bg:#faf9f7;--accent:#7a6a55;--card:#fff}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;line-height:1.85;font-size:15px}
+  .wrap{max-width:820px;margin:0 auto;padding:44px 22px 80px}
+  .kicker{font-size:12px;letter-spacing:.12em;color:var(--accent);margin:0 0 6px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:23px;font-weight:600;margin:0 0 10px;line-height:1.5}
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:18px;font-weight:600;margin:30px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+  .meta{color:var(--soft);font-size:13px;border-bottom:2px solid var(--line);padding-bottom:16px;margin-bottom:8px}
+  .meta span{display:inline-block;margin-right:16px}
+  code{background:#f1efe9;padding:1px 6px;border-radius:5px;font-size:12.5px;font-family:ui-monospace,Consolas,monospace}
+  pre{background:#f6f4ef;border:1px solid var(--line);border-radius:8px;padding:12px 14px;overflow-x:auto;font-size:12.5px;line-height:1.6}
+  ul{padding-left:1.2em}
+  li{margin:5px 0}
+  .tag{display:inline-block;font-size:11px;padding:1px 8px;border-radius:999px;margin-left:6px;vertical-align:middle}
+  .done{background:#e5efe5;color:#2e6b2e}
+  .todo{background:#f3ecd8;color:#8a6a1f}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 20px;margin:14px 0}
+  table{border-collapse:collapse;width:100%;font-size:13.5px;margin:8px 0}
+  th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+  th{background:#f3f1ec}
+  footer{margin-top:44px;border-top:1px solid var(--line);padding-top:16px;color:var(--soft);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="kicker">川口典礼サイト ＿ 社内記録</p>
+  <h1>トップページ レビュースニペット「項目『&lt;parent_node&gt;』のオブジェクトタイプが無効です」エラー修正</h1>
+  <p class="meta">
+    <span><strong>作成日：</strong>2026-07-03</span>
+    <span><strong>対象：</strong>https://kawaguchitenrei.com/（トップ）</span>
+    <span><strong>担当：</strong>Claude Code</span>
+  </p>
+
+  <h2>サマリ</h2>
+  <ul>
+    <li>Search Console のリッチリザルト（レビュースニペット）で発生していた「項目『&lt;parent_node&gt;』のオブジェクトタイプが無効です」エラーを修正 <span class="tag done">完了</span></li>
+    <li>トップページの <code>FuneralHome</code> 構造化データの <code>@type</code> を配列化し、Google がサポートする親型 <code>LocalBusiness</code> を併記 <span class="tag done">完了</span></li>
+    <li>commit → push 済み（<code>4a40229</code>・ユーザー承認のうえ §19.2 に沿って実施） <span class="tag done">完了</span></li>
+    <li>本番反映後のリッチリザルトテスト確認・Search Console「修正を検証」 <span class="tag todo">未・要対応</span></li>
+    <li>自社レビューの star 表示適格性（Google ポリシー）の様子見 <span class="tag todo">経過観察</span></li>
+  </ul>
+
+  <h2>背景・原因</h2>
+  <p>
+    Search Console のリッチリザルト レポートで、<code>https://kawaguchitenrei.com/</code> に対し
+    <strong>「項目『&lt;parent_node&gt;』のオブジェクトタイプが無効です」</strong>（初検出 2026-07-03・該当1件）が報告された。
+  </p>
+  <p>
+    原因は、トップページの構造化データ（<code>lib/company.ts</code> の <code>getLocalBusinessJsonLd()</code>）で
+    <code>aggregateRating</code>（★4.5・27件）を <strong><code>@type: "FuneralHome"</code> 単独のノード</strong>に付与していたこと。
+    Google のレビュースニペットは <code>aggregateRating</code> の親型として <code>LocalBusiness</code> などの
+    <strong>限定された型のみを認識</strong>する。<code>FuneralHome</code> は Schema.org 上は <code>LocalBusiness</code> のサブタイプで技術的には妥当だが、
+    Google のリッチリザルト判定では単独では有効な親型として認識されず、「&lt;parent_node&gt;（親ノード）のオブジェクトタイプが無効」と判定された。
+  </p>
+  <p>
+    これは 2026-06-12 に voice 詳細ページで対応した
+    <code>itemReviewed</code> の型エラー（<code>FuneralHome</code> 単独 → 配列化で解消）と<strong>同種の問題</strong>であり、同じ方針で解消できる。
+  </p>
+
+  <h2>変更内容</h2>
+  <table>
+    <tr><th>ファイル</th><th>変更</th></tr>
+    <tr>
+      <td><code>lib/company.ts</code></td>
+      <td><code>getLocalBusinessJsonLd()</code> の <code>@type</code> を <code>"FuneralHome"</code> → <code>["FuneralHome", "LocalBusiness"]</code> に変更。Google がサポート対象の <code>LocalBusiness</code> として親ノードを認識できるようにしつつ、地域密着の <code>FuneralHome</code> の具体性も保持。</td>
+    </tr>
+  </table>
+  <div class="card">
+    <strong>差分（該当箇所）</strong>
+<pre>  "@context": "https://schema.org",
+- "@type": "FuneralHome",
++ // Google のレビュースニペットは LocalBusiness を親型として認識するが、
++ // サブタイプの FuneralHome 単独では aggregateRating の親型として無効判定になる。
++ // 配列で LocalBusiness を併記し、リッチリザルト要件を満たす。
++ "@type": ["FuneralHome", "LocalBusiness"],
+  "@id": `${SITE_URL}/#funeralhome`,</pre>
+  </div>
+  <p>
+    <code>aggregateRating</code> の値（★4.5・27件）・住所・電話・営業時間など他のプロパティは<strong>一切変更なし</strong>。
+    価格（§9 正本）・式場利用可否・フォーム・Webhook にも影響しない。
+  </p>
+
+  <h2>確認結果</h2>
+  <ul>
+    <li><code>npm run build</code>：成功。TypeScript エラーなし。静的生成ページ数の減少なし（維持）。</li>
+    <li>変更は <code>lib/company.ts</code> の1ファイルのみ。共通レイアウト（Header/Footer/MobileBottomCTA）・フォーム系は無変更。</li>
+    <li>commit <code>4a40229</code>・push 済み（<code>ab7491e..4a40229</code>）。<code>aggregateRating</code> を含む JSON-LD 変更のため §19.2 に基づきユーザー承認を得て push。</li>
+  </ul>
+
+  <h2>今後のアクション</h2>
+  <ul>
+    <li>Vercel デプロイ完了後、Google <a href="https://search.google.com/test/rich-results">リッチリザルトテスト</a>で <code>https://kawaguchitenrei.com/</code> を検査し、<code>&lt;parent_node&gt;</code> エラーが消えていることを確認。</li>
+    <li>Search Console のエラー画面で「修正を検証」を実行。</li>
+    <li>
+      <strong>要留意（ポリシー）：</strong>Google は「自社が管理するページで自社自身についてのレビュー（<code>aggregateRating</code>）を掲載している場合、star レビュー表示の対象外」としている。
+      今回の ★4.5・27件は Google マップの実在クチコミだが、<strong>自社サイト上に自社の <code>aggregateRating</code> を置く形式</strong>のため、検証エラーが解消しても Google が星を表示しない可能性がある（これは検証エラーとは別の「適格性」の問題）。今回の型修正でエラー解消を進めたうえで、星が出るかを経過観察する。
+    </li>
+  </ul>
+
+  <footer>川口典礼サイト 社内作業レポート｜非公開（noindex）｜個人情報・秘密情報なし</footer>
+</div>
+</body>
+</html>

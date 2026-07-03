@@ -35,6 +35,11 @@
 
   <ul class="list">
     <li>
+      <span class="date">2026-07-03</span>
+      <a href="./2026-07-03-homepage-review-snippet-parent-node-type-fix.html">トップの構造化データ「&lt;parent_node&gt;のオブジェクトタイプが無効」エラー修正（レビュースニペット）※承認済push</a>
+      <span class="desc">Search Consoleのリッチリザルトで https://kawaguchitenrei.com/ に「項目『&lt;parent_node&gt;』のオブジェクトタイプが無効です」error(初検出2026-07-03・1件)。原因=トップのFuneralHome構造化データ(lib/company.tsのgetLocalBusinessJsonLd)にaggregateRating(★4.5・27件)をFuneralHome単独ノードで付与していたが、GoogleのレビュースニペットはaggregateRatingの親型としてLocalBusiness等の限定型のみ認識し、サブタイプのFuneralHome単独では親ノードが無効判定になるため(Schema.org的には妥当だがGoogleのリッチリザルト要件はより厳格)。2026-06-12のvoice詳細itemReviewed型エラー(FuneralHome単独→配列化で解消)と同種。対応=@typeを"FuneralHome"→["FuneralHome","LocalBusiness"]に配列化し、Googleがサポート対象のLocalBusinessとして親ノードを認識できるようにしつつFuneralHomeの具体性も保持。aggregateRatingの値・住所・電話・営業時間等は不変、価格/式場可否/フォーム/Webhook無影響。変更はlib/company.ts 1ファイルのみ・共通レイアウト無変更。build成功・型エラーなし・静的生成ページ数維持。§19.2(aggregateRating含むJSON-LD)につきユーザー承認を得てcommit→push(4a40229)。今後=デプロイ後にリッチリザルトテストで&lt;parent_node&gt;エラー消失を確認しSCで「修正を検証」。留意=Googleの自社レビュー方針により、エラー解消しても自社サイト上の自社aggregateRatingは星表示対象外の可能性あり(検証エラーとは別の適格性問題)→経過観察。</span>
+    </li>
+    <li>
       <span class="date">2026-07-02</span>
       <a href="./2026-07-02-eeat-visibility-and-aggregaterating.html">E-E-A-T可視化（累計4,600件・満足度97%以上・Google★4.5/27件の構造化）※承認済</a>
       <span class="desc">競合(あゆみ葬祭3,000件超・97%／川口市民葬祭3,600件超・98%)に対し弱かった信頼シグナルを、実在値のみで可視化。ユーザー提供の確定値=累計施行4,600件以上／アンケート満足度97%以上／Googleクチコミ★4.5・27件。①lib/company.tsにcumulativeCases/satisfactionRate/reviewRating/reviewCountを追加、trackRecordに「累計4,600件以上」「アンケート満足度97%以上」を追加表示、getLocalBusinessJsonLdにaggregateRating(★4.5・27件・単一出典=Google)を追加(§19.2ユーザー承認済)。②app/company/page.tsxの注記を累計/満足度の出典明示に更新。③lib/reviews.tsのGoogle値を最新化(26件★4.7→27件★4.5・合計571件・2026年7月時点)しホーム口コミバッジの可視表示と構造化データを一致(Googleは可視値と一致を要求)。満足度は保守的な下限「97%以上」を採用しアンケート集計と明記。数値は実在値のみ・推測/水増しなし(§19.3)。build135/135維持・生成HTMLにaggregateRating出力確認。今後:リッチリザルトテスト・件数の定期更新(company.ts/reviews.ts単一導線)・7/14効果測定。</span>
