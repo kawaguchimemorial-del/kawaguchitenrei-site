@@ -19,9 +19,9 @@ import { getHomeFaqs } from "@/lib/faqs";
 import { getLocalBusinessJsonLd } from "@/lib/company";
 
 const pageTitle =
-  "川口典礼 | 川口市・新井宿の葬儀・家族葬 | 川口メモリアルホール";
+  "川口市の葬儀・家族葬 | 24時間対応の葬儀社 | 川口典礼";
 const pageDescription =
-  "川口市・新井宿の地域密着葬儀社。川口メモリアルホールを中心に、家族葬・一日葬・直葬・市民葬まで対応。川口市めぐりの森、戸田葬祭場、谷塚斎場での火葬・葬儀相談も24時間365日承ります。";
+  "川口市・新井宿で葬儀・家族葬なら、創業20年・年間約260件の川口典礼。24時間365日受付。自社式場・川口メモリアルホール(駐車場70台)から川口市めぐりの森まで車で約5分。直葬は事前相談会員価格139,000円(税込)〜、一日葬・火葬式・市民葬までご相談を承ります。";
 
 export const metadata: Metadata = {
   title: pageTitle,
