@@ -35,6 +35,11 @@
 
   <ul class="list">
     <li>
+      <span class="date">2026-07-05</span>
+      <a href="./2026-07-05-title-meta-ctr-improvement.html">重要KWの低CTR対策：タイトル/説明文を「検索意図語先頭」に再構成（トップ/area/家族葬）</a>
+      <span class="desc">ユーザー提供のGSC重要KW(固定20件)で低CTRの原因を分析し対策。CTRを統計的に語れるのは川口市 葬儀(407表示・平均7.4位・CTR0.25%)・川口 葬儀(152・10.0位・0%)のみで、他13語は表示1〜23回で判断不能と整理。平均7位でCTR0.25%(期待値の約1/10)の原因=①SERP構造(広告＋マップ枠＋大手ポータルが上部占有しオーガニック7位はスマホで折返し下・最大要因)②ローカルパック未勝利(GBP＋口コミの別戦場が天井を規定)③素の見た目(★非表示・aggregateRatingは7/3まで型エラー・自社レビューは方針上星が出ない可能性)④タイトルが無名社名先頭。家族葬(約20位)・火葬/火葬式(22〜40位)・市民葬(15.8位)の0%はCTRでなく順位問題と切り分け(対象外)。④に対応=トップapp/page.tsxのtitleを「川口典礼|…」→「川口市の葬儀・家族葬|24時間対応の葬儀社|川口典礼」に社名後方化し葬儀社語/24時間を先頭へ、descは創業20年・年間約260件/自社式場/車5分/直葬139,000円(会員価格税込)の費用アンカーを前方配置。area/kawaguchi(lib/areas.ts)はトップと頭語カニバリのため「川口市の葬儀ガイド|費用の目安・市民葬・式場と流れ」へ差別化(葬儀社語はdescに残置)。family-funeral(lib/plans.ts)はtitleに1日1組貸切フック、desc先頭にE-E-A-T。その他プランは地名先頭済み＆課題は順位のため不変(§6 churn回避)。価格は§9正本・会員価格/税込明記・禁止表現なし。build 135/135維持。§19.1で自走push(e47cc34)。効果判定は数日〜数週間、7/14効果測定で確認。本丸は②GBP＋口コミ(別タスク)。</span>
+    </li>
+    <li>
       <span class="date">2026-07-03</span>
       <a href="./2026-07-03-homepage-review-snippet-parent-node-type-fix.html">トップの構造化データ「&lt;parent_node&gt;のオブジェクトタイプが無効」エラー修正（レビュースニペット）※承認済push</a>
       <span class="desc">Search Consoleのリッチリザルトで https://kawaguchitenrei.com/ に「項目『&lt;parent_node&gt;』のオブジェクトタイプが無効です」error(初検出2026-07-03・1件)。原因=トップのFuneralHome構造化データ(lib/company.tsのgetLocalBusinessJsonLd)にaggregateRating(★4.5・27件)をFuneralHome単独ノードで付与していたが、GoogleのレビュースニペットはaggregateRatingの親型としてLocalBusiness等の限定型のみ認識し、サブタイプのFuneralHome単独では親ノードが無効判定になるため(Schema.org的には妥当だがGoogleのリッチリザルト要件はより厳格)。2026-06-12のvoice詳細itemReviewed型エラー(FuneralHome単独→配列化で解消)と同種。対応=@typeを"FuneralHome"→["FuneralHome","LocalBusiness"]に配列化し、Googleがサポート対象のLocalBusinessとして親ノードを認識できるようにしつつFuneralHomeの具体性も保持。aggregateRatingの値・住所・電話・営業時間等は不変、価格/式場可否/フォーム/Webhook無影響。変更はlib/company.ts 1ファイルのみ・共通レイアウト無変更。build成功・型エラーなし・静的生成ページ数維持。§19.2(aggregateRating含むJSON-LD)につきユーザー承認を得てcommit→push(4a40229)。今後=デプロイ後にリッチリザルトテストで&lt;parent_node&gt;エラー消失を確認しSCで「修正を検証」。留意=Googleの自社レビュー方針により、エラー解消しても自社サイト上の自社aggregateRatingは星表示対象外の可能性あり(検証エラーとは別の適格性問題)→経過観察。</span>

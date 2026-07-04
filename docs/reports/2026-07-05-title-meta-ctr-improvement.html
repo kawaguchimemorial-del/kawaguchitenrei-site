@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>低CTR対策：トップ等のタイトル/説明文を検索意図語先頭に｜川口典礼サイト（社内・非公開）</title>
+<style>
+  :root{--ink:#2b2b2b;--soft:#6b6b6b;--line:#e3e0da;--bg:#faf9f7;--accent:#7a6a55;--card:#fff}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;line-height:1.85;font-size:15px}
+  .wrap{max-width:860px;margin:0 auto;padding:44px 22px 80px}
+  .kicker{font-size:12px;letter-spacing:.12em;color:var(--accent);margin:0 0 6px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:23px;font-weight:600;margin:0 0 10px;line-height:1.5}
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:18px;font-weight:600;margin:30px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+  .meta{color:var(--soft);font-size:13px;border-bottom:2px solid var(--line);padding-bottom:16px;margin-bottom:8px}
+  .meta span{display:inline-block;margin-right:16px}
+  code{background:#f1efe9;padding:1px 6px;border-radius:5px;font-size:12.5px;font-family:ui-monospace,Consolas,monospace}
+  ul{padding-left:1.2em} li{margin:5px 0}
+  .tag{display:inline-block;font-size:11px;padding:1px 8px;border-radius:999px;margin-left:6px;vertical-align:middle}
+  .done{background:#e5efe5;color:#2e6b2e} .todo{background:#f3ecd8;color:#8a6a1f}
+  table{border-collapse:collapse;width:100%;font-size:13px;margin:10px 0}
+  th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+  th{background:#f3f1ec}
+  .ba{font-size:12.5px}
+  .before{color:#8a4b4b} .after{color:#2e6b2e;font-weight:600}
+  footer{margin-top:44px;border-top:1px solid var(--line);padding-top:16px;color:var(--soft);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="kicker">川口典礼サイト ＿ 社内記録</p>
+  <h1>重要KWの低CTR対策：タイトル/説明文を「検索意図語先頭」に再構成</h1>
+  <p class="meta">
+    <span><strong>作成日：</strong>2026-07-05</span>
+    <span><strong>対象：</strong>/ ・ /area/kawaguchi/ ・ /plan/family-funeral/</span>
+    <span><strong>担当：</strong>Claude Code</span>
+  </p>
+
+  <h2>サマリ</h2>
+  <ul>
+    <li>ユーザー提供のGSC重要KW（固定20件）で判明した低CTRの原因分析を実施 <span class="tag done">完了</span></li>
+    <li>CTR問題の本体はすべてトップページ（川口市 葬儀ほか）と特定 <span class="tag done">完了</span></li>
+    <li>トップ・area/kawaguchi・family-funeral のタイトル/説明文を検索意図語先頭に再構成 <span class="tag done">完了</span></li>
+    <li>commit → push 済み（<code>e47cc34</code>・§19.1 自走可範囲） <span class="tag done">完了</span></li>
+    <li>反映・効果判定は数日〜数週間。2026-07-14の効果測定で確認 <span class="tag todo">経過観察</span></li>
+  </ul>
+
+  <h2>背景・原因分析</h2>
+  <p>
+    ユーザーがブラウザ実測でなくGSCの重要KW（固定20件）データを提示。分析の結果、CTRを統計的に語れるのは
+    表示回数の多い <strong>川口市 葬儀（407表示・平均7.4位・CTR0.25%）</strong> と 川口 葬儀（152表示・10.0位・0%）に限られ、
+    他13語は表示1〜23回で判断不能と整理した。
+  </p>
+  <p>平均7位でCTR0.25%＝期待値の約1/10という異常値の原因（影響度順）：</p>
+  <ul>
+    <li><strong>①SERP構造：</strong>「川口 葬儀」系は広告＋Googleマップ枠（ローカルパック）＋大手ポータルが上部を占有し、オーガニック7位は特にスマホで折り返しの下。表示はされるが目に入らない（最大要因）。</li>
+    <li><strong>②ローカルパックで未勝利：</strong>葬儀の地域検索のクリックは★つき地図3件に集中。GBP＋口コミの別戦場で、サイトSEOの天井を規定。</li>
+    <li><strong>③素の見た目：</strong>★非表示（aggregateRatingは7/3まで型エラーで無効。自社レビューは方針上そもそも星が出ない可能性）。</li>
+    <li><strong>④タイトルが無名社名先頭：</strong>非指名検索の目に最初に入るのが未知の社名「川口典礼」。検索意図語・便益が前に出ていない。</li>
+  </ul>
+  <p>
+    一方、川口/川口市 家族葬（約20位）・火葬/火葬式（22〜40位）・市民葬（15.8位）の0%は
+    <strong>CTRでなく順位の問題</strong>（2〜4ページ目）で、今回のタイトル対策の対象外と切り分けた。
+    CTR改善で動くのは着地がトップの4語（川口市 葬儀・川口 葬儀・川口市 葬儀社・川口 葬儀社）に集中する。
+  </p>
+
+  <h2>変更内容（④への対応）</h2>
+
+  <p><strong>トップ <code>/</code>（app/page.tsx）— CTR問題の本体</strong></p>
+  <table class="ba">
+    <tr><th>要素</th><th>Before → After</th></tr>
+    <tr><td>title</td>
+      <td><span class="before">川口典礼 | 川口市・新井宿の葬儀・家族葬 | 川口メモリアルホール</span><br>
+      <span class="after">川口市の葬儀・家族葬 | 24時間対応の葬儀社 | 川口典礼</span><br>
+      社名を後方へ、検索意図語（葬儀・家族葬・<strong>葬儀社</strong>）＋24時間を先頭に。「川口市 葬儀社」「川口 葬儀社」もタイトルで受ける。</td></tr>
+    <tr><td>description</td>
+      <td>先頭を「川口市・新井宿で葬儀・家族葬なら、創業20年・年間約260件の川口典礼。」に。24時間365日・自社式場・車5分・<strong>直葬139,000円(事前相談会員価格・税込)〜</strong>の費用アンカーを前方配置。</td></tr>
+  </table>
+
+  <p><strong>/area/kawaguchi/（lib/areas.ts）— カニバリ解消</strong></p>
+  <table class="ba">
+    <tr><th>要素</th><th>Before → After</th></tr>
+    <tr><td>title</td>
+      <td><span class="before">川口市の葬儀・葬儀社 | 川口で葬儀をお考えの方へ | 川口典礼</span><br>
+      <span class="after">川口市の葬儀ガイド | 費用の目安・市民葬・式場と流れ | 川口典礼</span><br>
+      トップと頭語「川口市の葬儀」が競合していたため、情報ガイド角度へ差別化（過去レポートの集約方針に一致）。葬儀社語は説明文側に残し受け皿は維持。</td></tr>
+  </table>
+
+  <p><strong>/plan/family-funeral/（lib/plans.ts）</strong></p>
+  <table class="ba">
+    <tr><th>要素</th><th>Before → After</th></tr>
+    <tr><td>title</td>
+      <td><span class="before">川口市の家族葬 | 川口メモリアルホールでの少人数葬 | 川口典礼</span><br>
+      <span class="after">川口市の家族葬 | 1日1組貸切の川口メモリアルホール | 川口典礼</span><br>
+      差別化フック（1日1組貸切）を明示。</td></tr>
+    <tr><td>description</td>
+      <td>先頭に「創業20年・年間約260件」、参列10〜30名の目安を追加してE-E-A-Tを前方に。事前相談会員価格528,000円(税込)〜は維持。</td></tr>
+  </table>
+
+  <p>
+    その他プラン（一日葬/火葬式/直葬/市民葬）は既に地名先頭で、かつ課題がCTRでなく順位のため今回は変更せず（§6・churn回避）。
+  </p>
+
+  <h2>確認結果</h2>
+  <ul>
+    <li><code>npm run build</code>：成功。TypeScriptエラーなし。静的生成 135/135 ページ維持。</li>
+    <li>価格は §9 正本のみ・会員価格/税込を明記。禁止表現（最安/必ず/絶対 等）なし。</li>
+    <li>変更3ファイル（app/page.tsx・lib/areas.ts・lib/plans.ts）。共通レイアウト・フォーム無変更。</li>
+    <li>commit <code>e47cc34</code>・push 済み（title/metaDescription改善＝§19.1 自走可）。</li>
+  </ul>
+
+  <h2>今後のアクション</h2>
+  <ul>
+    <li>Google はタイトルを書き換える場合があり、反映・効果判定には数日〜数週間かかる。2026-07-14 の効果測定で川口市 葬儀 の CTR 推移を確認。</li>
+    <li><strong>本丸は②ローカルパック（GBP＋口コミ）。</strong>サイト側改善の天井を上げるため、別タスクでGBP最適化・口コミ獲得の方針整理を推奨。</li>
+    <li>家族葬・火葬系は順位を上げる施策（別タスク）。</li>
+    <li>文言の微調整（例：トップに「費用」語を追加）は要望に応じて対応。</li>
+  </ul>
+
+  <footer>川口典礼サイト 社内作業レポート｜非公開（noindex）｜個人情報・秘密情報なし</footer>
+</div>
+</body>
+</html>
