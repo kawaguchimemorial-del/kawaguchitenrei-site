@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>6KW上位化 実装ログ（loop）｜川口典礼サイト（社内・非公開）</title>
+<style>
+  :root{--ink:#2b2b2b;--soft:#6b6b6b;--line:#e3e0da;--bg:#faf9f7;--accent:#7a6a55}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;line-height:1.85;font-size:15px}
+  .wrap{max-width:900px;margin:0 auto;padding:44px 22px 90px}
+  .kicker{font-size:12px;letter-spacing:.12em;color:var(--accent);margin:0 0 6px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:22px;font-weight:600;margin:0 0 10px;line-height:1.5}
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:17px;font-weight:600;margin:28px 0 8px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+  .meta{color:var(--soft);font-size:13px;border-bottom:2px solid var(--line);padding-bottom:16px;margin-bottom:8px}
+  code{background:#f1efe9;padding:1px 6px;border-radius:5px;font-size:12px;font-family:ui-monospace,Consolas,monospace}
+  ul{padding-left:1.2em} li{margin:6px 0}
+  table{border-collapse:collapse;width:100%;font-size:12.5px;margin:10px 0}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  th{background:#f3f1ec}
+  .done{color:#2e6b2e;font-weight:700} .wip{color:#8a6a1f;font-weight:700} .block{color:#8a2f2f;font-weight:700}
+  .note{background:#fbf3e6;border:1px solid #e6d4a8;border-radius:10px;padding:12px 16px;margin:14px 0;font-size:13.5px}
+  footer{margin-top:44px;border-top:1px solid var(--line);padding-top:16px;color:var(--soft);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="kicker">川口典礼サイト ＿ 社内記録｜実装ログ（自走loop・随時更新）</p>
+  <h1>6重要KW（川口/川口市 葬儀・家族葬）上位化 — 実装ログ</h1>
+  <p class="meta">
+    <span><strong>開始：</strong>2026-07-05</span>
+    <span><strong>根拠：</strong>8専門家パネル・ロードマップ（<code>2026-07-05-six-kw-seo-aio-llmo-8expert-roadmap.html</code>）</span>
+    <span><strong>担当：</strong>Claude Code（自走loop）</span>
+  </p>
+
+  <div class="note">
+    <strong>方針：</strong>ユーザー承認のもと loop で自走実装。各周回で<strong>安全（§19.1自走可・パネルのゲート未抵触）なコード側から実装</strong>し build 検証。<strong>私が単独実行できない領域（Phase0のGSC URL検査、Phase3のGBP/口コミ/被リンク、実在確認が要る外部プロフィールURL）はブロックとして明示し成果物・手順を用意</strong>する。価格・Review系・共通レイアウト・フォームは変更しない。
+  </div>
+
+  <h2>進捗サマリ（フェーズ別）</h2>
+  <table>
+    <tr><th>フェーズ</th><th>状態</th><th>メモ</th></tr>
+    <tr><td>Phase 0 確定・計測</td><td class="block">ブロック（ユーザー操作要）</td><td>GSC URL検査・AIO発火マップ・競合ベースラインは私が単独実行不可。手順書を用意予定。</td></tr>
+    <tr><td>Phase 1 エンティティ衛生</td><td class="wip">一部着手</td><td>Organization/WebSiteノード分離は次周回。sameAs複数化は実在URLの提供待ち（推測URL禁止）。</td></tr>
+    <tr><td>Phase 2 受け皿一本化</td><td class="block">代表URL確定待ち</td><td>16エリアの家族葬デターゲティングはPhase0ゲート。先行減量は自己損傷ゆえ保留。</td></tr>
+    <tr><td>Phase 3 off-page</td><td class="block">コード外運用</td><td>GBP・口コミ・サイテーション・被リンク。チェックリストを用意予定。</td></tr>
+    <tr><td>Phase 4 抽出適性の微調整</td><td class="wip">着手中</td><td>llms.txt 実装済。AIO定義パッセージ・市民葬table化は次周回。</td></tr>
+  </table>
+
+  <h2>周回ログ</h2>
+
+  <h3>#1（2026-07-05）Phase 4: <code>public/llms.txt</code> 新設</h3>
+  <ul>
+    <li><span class="done">実装完了</span>：AIクローラ向けエンティティ・インデックス <code>public/llms.txt</code> を新設。社名/所在地/電話/24時間/式場（川口メモリアルホール・駐車場70台）/近隣火葬場（めぐりの森・非運営明記）/対応形式/§9正本の料金の目安（会員価格・税込・別途費用注記）/主要ページURL/補足（非運営施設・変更可能性）。</li>
+    <li>robots は AIクローラを許可済み（<code>/admin</code> のみ disallow）を確認。</li>
+    <li>禁止表現なし・価格は§9正本のみ・確定事実のみ・個人情報なし。</li>
+    <li>build 成功・135/135 維持。commit <code>b497a62</code>・push 済み（§19.1）。</li>
+  </ul>
+
+  <h2>ブロック中（ユーザー入力・運用が必要）</h2>
+  <ul>
+    <li><strong>Phase 0 GSC URL検査</strong>：6クエリのGoogle-selected canonical確定。→ 家族葬championの確定に必須。手順書を用意します。</li>
+    <li><strong>sameAs 複数化</strong>：GBPプレイスURL・各ポータルの自社プロフィールURL・自治体系ページ等、<strong>実在確認できるURL</strong>のご提供が必要（推測URLは§19.3で追加不可）。</li>
+    <li><strong>Phase 3 off-page</strong>：GBP本格運用・口コミ導線・NAP/誤価格是正・被リンクはコード外運用（GBPオーナー主体）。</li>
+  </ul>
+
+  <footer>川口典礼サイト 社内作業レポート｜非公開（noindex）｜個人情報・秘密情報なし｜自走loop 実装ログ</footer>
+</div>
+</body>
+</html>
