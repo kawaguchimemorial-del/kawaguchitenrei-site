@@ -131,11 +131,17 @@ export function getLocalBusinessJsonLd() {
 
   return {
     "@context": "https://schema.org",
-    // Google のレビュースニペットは LocalBusiness を親型として認識するが、
-    // サブタイプの FuneralHome 単独では aggregateRating の親型として無効判定になる。
-    // 配列で LocalBusiness を併記し、リッチリザルト要件を満たす。
+    // エンティティ名寄せ用に @graph でノードを分離:
+    // FuneralHome(実店舗/式場) ・ Organization(事業者=川口典礼) ・ WebSite。
+    // @id で相互リンクし、LLM/AI の名寄せと知識グラフ整合を高める。
+    "@graph": [
+      {
+    // FuneralHome(実店舗/式場エンティティ)。aggregateRating はこのノードに保持。
+    // Google のレビュースニペットは LocalBusiness を親型として認識するため
+    // FuneralHome 単独でなく LocalBusiness を併記して無効判定を避ける。
     "@type": ["FuneralHome", "LocalBusiness"],
     "@id": `${SITE_URL}/#funeralhome`,
+    parentOrganization: { "@id": `${SITE_URL}/#organization` },
     name: company.name,
     alternateName: company.hallName,
     url: `${SITE_URL}/`,
@@ -212,6 +218,40 @@ export function getLocalBusinessJsonLd() {
         "@type": "LocationFeatureSpecification",
         name: "近隣火葬場",
         value: "川口市めぐりの森まで車で約5分",
+      },
+    ],
+      },
+      {
+        // Organization(事業者エンティティ=川口典礼)。社名の名寄せを明確化。
+        "@type": "Organization",
+        "@id": `${SITE_URL}/#organization`,
+        name: company.name,
+        url: `${SITE_URL}/`,
+        logo: LOGO_URL,
+        image: HALL_IMAGE_URL,
+        description: company.shortDescription,
+        foundingDate: String(company.foundedYear),
+        telephone: internationalTel,
+        email: company.email,
+        address: {
+          "@type": "PostalAddress",
+          postalCode: company.postal,
+          addressCountry: "JP",
+          addressRegion: company.addressRegion,
+          addressLocality: company.addressLocality,
+          streetAddress: company.streetAddress,
+        },
+        // 実値が確認できているもののみ(推測URLは追加しない)
+        sameAs: company.googleReviewsUrl ? [company.googleReviewsUrl] : undefined,
+      },
+      {
+        // WebSite(サイトエンティティ)。publisher を Organization に紐付け。
+        "@type": "WebSite",
+        "@id": `${SITE_URL}/#website`,
+        url: `${SITE_URL}/`,
+        name: company.name,
+        inLanguage: "ja",
+        publisher: { "@id": `${SITE_URL}/#organization` },
       },
     ],
   };
