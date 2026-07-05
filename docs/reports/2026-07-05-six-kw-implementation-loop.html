@@ -41,10 +41,10 @@
   <h2>進捗サマリ（フェーズ別）</h2>
   <table>
     <tr><th>フェーズ</th><th>状態</th><th>メモ</th></tr>
-    <tr><td>Phase 0 確定・計測</td><td class="block">ブロック（ユーザー操作要）</td><td>GSC URL検査・AIO発火マップ・競合ベースラインは私が単独実行不可。手順書を用意予定。</td></tr>
+    <tr><td>Phase 0 確定・計測</td><td class="block">ブロック（ユーザー操作要・手順書提供済）</td><td>GSC URL検査 手順書を提供（#3）。ユーザーが実行し家族葬champion確定 → Phase 2 解除。</td></tr>
     <tr><td>Phase 1 エンティティ衛生</td><td class="wip">一部完了</td><td>Organization/WebSiteノード分離＝完了（#2）。sameAs複数化は実在URLの提供待ち（推測URL禁止）。外部誤価格/NAP是正はコード外運用。</td></tr>
     <tr><td>Phase 2 受け皿一本化</td><td class="block">代表URL確定待ち</td><td>16エリアの家族葬デターゲティングはPhase0ゲート。先行減量は自己損傷ゆえ保留。</td></tr>
-    <tr><td>Phase 3 off-page</td><td class="block">コード外運用</td><td>GBP・口コミ・サイテーション・被リンク。チェックリストを用意予定。</td></tr>
+    <tr><td>Phase 3 off-page</td><td class="block">コード外運用・チェックリスト提供済</td><td>GBP/口コミ/NAP/サイテーション/被リンクのチェックリストを提供（#3）。GBPオーナー主体で実行。</td></tr>
     <tr><td>Phase 4 抽出適性の微調整</td><td class="wip">着手中</td><td>llms.txt 実装済。AIO定義パッセージ・市民葬table化は次周回。</td></tr>
   </table>
 
@@ -64,6 +64,14 @@
     <li><strong>aggregateRating は FuneralHome ノードに同一のまま（新 @id へ再連結せず）＝§19.1 自走可</strong>。alternateName（川口メモリアルホール）は削除せず保持（指名検索の名寄せエイリアス）。</li>
     <li>適用範囲：ヘルパーを使うトップ・<code>/company/</code>・<code>/access/</code> の3ページ。</li>
     <li>build 成功・135/135 維持。commit <code>0149582</code>・push 済み。</li>
+  </ul>
+
+  <h3>#3（2026-07-05）ブロック解除用の実務成果物を提供 → loop 一旦休止</h3>
+  <ul>
+    <li><span class="done">提供完了</span>：<code>docs/operations/search-console/2026-07-05-url-inspection-6kw-champion.md</code> — Phase 0 の GSC URL検査手順書（6クエリの主表示URL・Google選択canonicalの確認手順＋champion決定ルール）。</li>
+    <li><span class="done">提供完了</span>：<code>docs/operations/gbp/2026-07-05-offpage-checklist.md</code> — Phase 3 の off-page チェックリスト（NAP正本・GBP最適化・口コミ仕組み化・サイテーション・被リンク・計測）。</li>
+    <li><strong>安全・オンゴール（葬儀・家族葬）なコード側の高価値項目は #1〜#2 で完了</strong>。残る主レバー Phase 2 は champion 確定ゲート待ちのため、低ROI/soft-duplicate な追加は行わず（whatNotToDo 準拠）、loop を一旦休止。</li>
+    <li>再開条件：①家族葬champion の一言（トップ/専用）→ Phase 2 実装、または ②sameAs 用の実在URL → Phase 1 完了。</li>
   </ul>
 
   <h2>ブロック中（ユーザー入力・運用が必要）</h2>
