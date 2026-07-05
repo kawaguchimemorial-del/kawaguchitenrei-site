@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>家族葬KWが上がらない原因：8専門家パネル（相互反論つき）結論｜川口典礼サイト（社内・非公開）</title>
+<style>
+  :root{--ink:#2b2b2b;--soft:#6b6b6b;--line:#e3e0da;--bg:#faf9f7;--accent:#7a6a55;--card:#fff}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;line-height:1.85;font-size:15px}
+  .wrap{max-width:900px;margin:0 auto;padding:44px 22px 90px}
+  .kicker{font-size:12px;letter-spacing:.12em;color:var(--accent);margin:0 0 6px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:23px;font-weight:600;margin:0 0 10px;line-height:1.5}
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:18px;font-weight:600;margin:32px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+  h3{font-size:15px;margin:20px 0 6px}
+  .meta{color:var(--soft);font-size:13px;border-bottom:2px solid var(--line);padding-bottom:16px;margin-bottom:8px}
+  .meta span{display:inline-block;margin-right:16px}
+  code{background:#f1efe9;padding:1px 6px;border-radius:5px;font-size:12.5px;font-family:ui-monospace,Consolas,monospace}
+  ul{padding-left:1.2em} li{margin:6px 0}
+  table{border-collapse:collapse;width:100%;font-size:13px;margin:10px 0}
+  th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+  th{background:#f3f1ec}
+  .p1{color:#a8451f;font-weight:700} .p2{color:#8a6a1f;font-weight:700} .p3{color:#5a6a55;font-weight:700}
+  .tag{display:inline-block;font-size:11px;padding:1px 8px;border-radius:999px;margin-left:4px}
+  .appr{background:#f3d8d8;color:#8a2f2f} .auto{background:#e5efe5;color:#2e6b2e}
+  .callout{background:#fbf3e6;border:1px solid #e6d4a8;border-radius:10px;padding:14px 18px;margin:16px 0}
+  .verdict{background:#f6ecec;border:1px solid #e0c4c4;border-radius:10px;padding:14px 18px;margin:16px 0;font-weight:600}
+  .u{color:#2e6b2e;font-weight:700} .m{color:#8a6a1f;font-weight:700}
+  footer{margin-top:44px;border-top:1px solid var(--line);padding-top:16px;color:var(--soft);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="kicker">川口典礼サイト ＿ 社内記録｜分析のみ・サイト未変更</p>
+  <h1>「川口 家族葬／川口市 家族葬」が上がらない原因 — 8専門家パネル（各自が他7名を反論）→統合結論</h1>
+  <p class="meta">
+    <span><strong>作成日：</strong>2026-07-05</span>
+    <span><strong>手法：</strong>8専門家の並列診断 → 相互反論 → 主任統合（17エージェント）</span>
+    <span><strong>担当：</strong>Claude Code</span>
+  </p>
+
+  <div class="verdict">
+    結論（既実施対策の判定）：<span style="color:#a8451f">不十分（追加必須）</span><br>
+    診断ドキュメント群（6/26〜7/02）は真因を正しく言語化しているが、<strong>実装が診断に追いついていない</strong>。順位を動かすドライバーが現在の差分に存在しない。
+  </div>
+
+  <h2>1. 8専門家のレンズ</h2>
+  <p>①テクニカル/インデックス ②オンページ/E-E-A-T ③SXO/検索意図・ページタイプ ④アーキテクチャ/カニバリ ⑤ローカルSEO/GBP ⑥オフページ/被リンク ⑦AIO/GEO ⑧費用の見せ方。各自が診断後、他7名の甘い前提・過大評価・因果の誤りを反論し、統合した。</p>
+
+  <h2>2. 反論後に生き残った合意（＝原因）</h2>
+  <table>
+    <tr><th>合意度</th><th>原因</th></tr>
+    <tr><td><span class="u">全会一致</span></td>
+      <td><strong>アグリゲーション・ミスマッチ（受け皿の二重化）</strong>。Googleは「川口(市) 家族葬」の代表URLに<strong>トップ(実測約12位)</strong>を選び、専用ページ <code>/plan/family-funeral/</code> は非指名で圏外。同一ドメイン内でURL差が出る＝ドメイン権威やインデックス欠陥ではなく<strong>URL選択と内部集約の問題</strong>。技術面（インデックス済み・canonical正・sitemap登録・内部リンク潤沢）は健全という点も合意。</td></tr>
+    <tr><td><span class="u">全会一致</span></td>
+      <td><strong>2026-07-05のCTR対策でトップtitle先頭に『家族葬』を再追加した点が、専用ページ集約方針と矛盾する回帰</strong>（<code>app/page.tsx</code> で実在確認）。受け皿の一貫性を損ねている。※後述のとおり「どのURLを主役にするか」の決定で評価が反転する論点。</td></tr>
+    <tr><td><span class="u">全会一致</span></td>
+      <td><strong>off-page が『計画文書化』止まりで未実行・未計測</strong>。GBP実最適化・Google口コミ継続獲得・外部ポータル誤価格/NAP是正・地域被リンクが着手されていない。<code>sameAs</code> もクチコミURL1件のみでエンティティ名寄せが薄い。1ページ目突破の主レバーが未着手。</td></tr>
+    <tr><td><span class="m">多数</span></td>
+      <td><strong>2ステップ律速モデル</strong>。「平均20位→約12位」は内部要因（受け皿二重化＋14エリアの家族葬自己競合）で今すぐ動かせる／「約12位→1ページ目」は off-page（GBP・口コミ・NAP・被リンク）が最終レバー。</td></tr>
+    <tr><td><span class="m">多数</span></td>
+      <td><strong>2026-07-02のカニバリ是正が浅い</strong>。AreaDetailMain のプランカード h3 ラベル1点のみで、本体である<strong>14エリアの metaTitle・本文h2・FAQ の家族葬強ターゲティングは温存</strong>（<code>lib/areas.ts</code> で家族葬パターン146件確認）。受け皿一本化は事実上未達。</td></tr>
+    <tr><td><span class="m">多数</span></td>
+      <td><strong>専用ページが準重複（soft-duplicate）</strong>。direct/oneday等と同一テンプレ・同一文体で、川口の一次情報（実例・遺族の声・監修/経験）と独自性を欠く。ただし「第一主因」とする主張は反論で格下げ＝受け皿確定後の後工程。</td></tr>
+  </table>
+
+  <h2>3. 決着しなかった論点（要・人間判断）</h2>
+  <ul>
+    <li><strong>受け皿URLをどれに確定するか：</strong>技術/カニバリ＝短期はトップ（内部リンク権威集中）を正とし専用ページは差別化補完／SXO＝トップor再構成した比較ハブ／GEO＝aggregateRating連結しやすい専用ページ。多数派は<strong>短期トップ</strong>。</li>
+    <li><strong>off-pageの主レバーは被リンクか、GBP/口コミか：</strong>オフページ＝典型的なドメイン権威(被リンク)の壁／ローカル・費用＝葬儀ローカルは地元も被リンク薄く、GBPカテゴリ・口コミ数×鮮度・近接・NAP一貫性で決まる。両者とも「現状データ皆無→競合比ベースライン計測で確定」には合意。</li>
+    <li><strong>14エリアの家族葬デターゲティングの是非と程度：</strong>カニバリ/SXO＝ハブへ集約すべき／技術＝§7最優先資産の地域SEO(新井宿・鳩ヶ谷ロングテール)を毀損するリスク。<strong>「適度に薄める」の程度設計は未決着</strong>。</li>
+    <li><strong>当該クエリはローカルパック(地図3枠)を伴うか：</strong>ローカル＝地図枠がクリックの大半／技術・カニバリ＝GSCのposはオーガニック青リンク順位。切り分けは2026-07-14計測でローカルパック表示有無を突合予定。</li>
+    <li><strong>E-E-A-T実例加筆の優先度：</strong>E-E-A-T＝最優先／他＝20位圏外ページの本文を磨いても読まれない、受け皿確定後の後工程（多数派）。</li>
+  </ul>
+
+  <div class="callout">
+    <strong>⚠️ 正直な自己申告：</strong>直近 2026-07-05 に私がトップ title 先頭へ「家族葬」を足した変更を、パネルは全会一致で「集約方針との矛盾」と指摘しました。<strong>ただしパネルの推奨（短期はトップを受け皿に一本化）に照らすと、この変更はむしろ整合的</strong>です。矛盾するのは「専用ページを主役にする」という<em>以前の</em>方針に対してのみ。<strong>最初のP1（GSC URL検査＋受け皿確定）で、トップを主役にするなら現状維持でOK、専用ページを主役にするなら巻き戻し、と決まります。</strong>ここは私の一存で戻さず、ご判断を仰ぎます。
+  </div>
+
+  <h2>4. 推奨アクション（実行順・承認要否つき）</h2>
+  <table>
+    <tr><th>優先</th><th>アクション</th><th>工数/効果</th><th>承認</th></tr>
+    <tr><td class="p1">P1</td><td><strong>GSC URL検査</strong>で「川口市 家族葬」のGoogle-selected canonical と重複判定（『Googleは別のページを正規と判断』）を確定。全ての受け皿意思決定の前提。</td><td>低 / 高</td><td><span class="tag auto">自走可</span></td></tr>
+    <tr><td class="p1">P1</td><td><strong>受け皿URLを1つに確定</strong>（短期はトップを正・専用ページは『川口メモリアルホールの家族葬プラン/費用』へ差別化補完）。それに合わせ 2026-07-05 のトップtitle『家族葬』の扱いを是正/追認。</td><td>低 / 高</td><td><span class="tag appr">承認要</span></td></tr>
+    <tr><td class="p1">P1</td><td><strong>off-page を実行フェーズへ</strong>：GBP実最適化（主カテゴリ『葬儀社』確定・§9正本価格の商品/サービス登録・実写真・24時間受付属性・投稿更新）＋施行後の口コミ獲得の仕組み化（QR/カード・故人名/喪主名を出さず全件返信）＋外部ポータル誤価格/NAP是正。月次記録。</td><td>高 / 高</td><td><span class="tag auto">運用(コード外)</span></td></tr>
+    <tr><td class="p1">P1</td><td><strong>被リンク・参照ドメインの競合比ベースライン計測</strong>（自社 vs 花ぜん/あゆみ/市民葬祭）。「壁がリンク差かGBP差か」を数値で確定。</td><td>低 / 中</td><td><span class="tag auto">自走可</span></td></tr>
+    <tr><td class="p2">P2</td><td><strong>14エリアの家族葬過剰ターゲティングを『適度に』薄める</strong>：metaTitle/h2/FAQ を地域の一般葬儀文脈へ、area→area アンカーを「〇〇の葬儀」へ、各エリアから受け皿へ地域KWアンカー1本を集約（ハブ&スポーク化）。一律全撤去はしない。</td><td>中 / 中</td><td><span class="tag auto">程度は事前合意推奨</span></td></tr>
+    <tr><td class="p2">P2</td><td><strong>確定した受け皿にSERP期待のページタイプ要素</strong>：形式横断比較表・葬儀社を選ぶ確認チェックリスト・事例と声のon-page抜粋（個人名/故人名/喪主名/遺影なし）・累計4,600件以上/満足度97%以上のE-E-A-T可視化。</td><td>中 / 中</td><td><span class="tag auto">自走可</span></td></tr>
+    <tr><td class="p3">P3</td><td>費用透明化3点（別途費用の前提と他社低表示価格との土俵差の中立注記／価格の隣に累計・満足度・★4.5／価格ラダー可視化）。値下げせず§9正本維持。</td><td>低 / 低</td><td><span class="tag auto">自走可</span></td></tr>
+    <tr><td class="p3">P3</td><td>AI引用向け構造化（conclusionBoxを費用内訳表・基本情報表としてHTML table化）。受け皿URLへ配置。</td><td>低 / 低</td><td><span class="tag auto">自走可</span></td></tr>
+    <tr><td class="p3">P3</td><td>受け皿URLへの aggregateRating付きLocalBusiness/Reviewスキーマ連結。順位が付いた後の後工程。</td><td>低 / 低</td><td><span class="tag appr">承認要(§19.2)</span></td></tr>
+    <tr><td class="p3">P3</td><td>2026-07-14効果測定のKPI再設計（平均順位でなく『1KWあたり露出URL数』『受け皿ページ表示比率』『参照ドメイン数・GBP口コミ件数・ローカルパック表示有無』）。</td><td>低 / 中</td><td><span class="tag auto">自走可</span></td></tr>
+  </table>
+
+  <h2>5. やってはいけないこと</h2>
+  <ul>
+    <li>専用ページを「川口(市) 家族葬」の主役に据え続ける／トップと専用ページの二重受け皿を放置（シグナル割れの温存）。</li>
+    <li><code>/area/kawaguchi/</code> を第3の受け皿ハブとして新設する（三つ巴で分散悪化）。</li>
+    <li>14エリアの家族葬ターゲティングを一律・全撤去（§7の地域SEO資産＝新井宿・鳩ヶ谷ロングテールを毀損）。あくまで「適度に薄める」。</li>
+    <li>受け皿が未確定のまま専用ページに aggregateRating/Review を複製emit（カニバリ強化＋同一集計値の複数URL散布＋§19.2抵触）。</li>
+    <li>禁止表現（最安/必ず/絶対/追加費用なし/総額確定/標準価格/いつでも利用/空きがあります/確実に手配 等）・§9正本外の価格・値下げ。</li>
+    <li>クリック0・pos20の段階で metaDescription 語順やFVマイクロコピー調整に工数集中（発火条件＝1ページ目到達が未達でROIほぼゼロ）。</li>
+    <li>順位が付く前にGEO構造化を最優先へ格上げ（低工数の並行は可、主レバーに優先させない）。</li>
+    <li>Header/Footer/MobileBottomCTA/funeral-system/package.json を触る／LINE導線追加（§4・§5）。</li>
+    <li>被リンク計測を「順位を動かす施策」と誤認し、GBP最適化・口コミ獲得の実行より先に計測工数を大きく取る。</li>
+  </ul>
+
+  <h2>6. 総括（bottom line）</h2>
+  <p>
+    「川口(市) 家族葬」が2ページ目で止まる原因は技術欠陥でもオンページ不足でもなく、<strong>(A) 代表URLのアグリゲーション・ミスマッチ</strong>（Googleはトップを選好し専用ページは圏外。7/05のトップtitle家族葬追加がこれに関与）という内部要因で平均20位が作られ、<strong>(B) GBPプロミネンス・口コミ量・NAPサイテーション・被リンクという off-page 権威の競合劣位</strong>で約12位の天井が生まれる、という<strong>2段構造</strong>にある。既実施の診断は的確だが実装はカニバリ本体(14エリア)未着手・受け皿未確定・off-page未実行で<strong>不十分</strong>。
+  </p>
+  <p>
+    <strong>最短経路：</strong>①GSC URL検査で代表URLを確定 → ②短期はトップを受け皿に一本化し title 矛盾を是正 → ③14エリアの家族葬を適度に薄めてハブへ集約（ここまでで <strong>20→12</strong> を狙う）。並行して④GBP最適化・口コミ獲得・誤価格/NAP是正・被リンクベースライン計測を実行フェーズへ（<strong>12→1ページ目</strong>）。E-E-A-T加筆・比較表・GEO構造化・費用透明化・Review系スキーマは<strong>受け皿確定後にその受け皿へ集約する後工程</strong>。価格変更・第3ハブ新設・エリア一律デターゲティング・承認未取得のReviewスキーマ複製は行わない。
+  </p>
+
+  <footer>川口典礼サイト 社内作業レポート｜非公開（noindex）｜個人情報・秘密情報なし｜分析のみ・サイト未変更</footer>
+</div>
+</body>
+</html>
