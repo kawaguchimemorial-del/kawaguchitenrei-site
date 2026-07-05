@@ -43,7 +43,7 @@
     <tr><th>フェーズ</th><th>状態</th><th>メモ</th></tr>
     <tr><td>Phase 0 確定・計測</td><td class="block">ブロック（ユーザー操作要・手順書提供済）</td><td>GSC URL検査 手順書を提供（#3）。ユーザーが実行し家族葬champion確定 → Phase 2 解除。</td></tr>
     <tr><td>Phase 1 エンティティ衛生</td><td class="wip">一部完了</td><td>Organization/WebSiteノード分離＝完了（#2）。sameAs複数化は実在URLの提供待ち（推測URL禁止）。外部誤価格/NAP是正はコード外運用。</td></tr>
-    <tr><td>Phase 2 受け皿一本化</td><td class="block">代表URL確定待ち</td><td>16エリアの家族葬デターゲティングはPhase0ゲート。先行減量は自己損傷ゆえ保留。</td></tr>
+    <tr><td>Phase 2 受け皿一本化</td><td class="done">champion=トップで確定・調査完了</td><td>家族葬champion＝トップに確定。ただしエリアtitle一括書換は evidence 上不要かつ有害と判明（#4）。generic「川口市 家族葬」テキストは areas に0件＝2026-07-02修正で除去済。地名ロングテールのみ残存ゆえ書換せず。</td></tr>
     <tr><td>Phase 3 off-page</td><td class="block">コード外運用・チェックリスト提供済</td><td>GBP/口コミ/NAP/サイテーション/被リンクのチェックリストを提供（#3）。GBPオーナー主体で実行。</td></tr>
     <tr><td>Phase 4 抽出適性の微調整</td><td class="wip">着手中</td><td>llms.txt 実装済。AIO定義パッセージ・市民葬table化は次周回。</td></tr>
   </table>
@@ -72,6 +72,15 @@
     <li><span class="done">提供完了</span>：<code>docs/operations/gbp/2026-07-05-offpage-checklist.md</code> — Phase 3 の off-page チェックリスト（NAP正本・GBP最適化・口コミ仕組み化・サイテーション・被リンク・計測）。</li>
     <li><strong>安全・オンゴール（葬儀・家族葬）なコード側の高価値項目は #1〜#2 で完了</strong>。残る主レバー Phase 2 は champion 確定ゲート待ちのため、低ROI/soft-duplicate な追加は行わず（whatNotToDo 準拠）、loop を一旦休止。</li>
     <li>再開条件：①家族葬champion の一言（トップ/専用）→ Phase 2 実装、または ②sameAs 用の実在URL → Phase 1 完了。</li>
+  </ul>
+
+  <h3>#4（2026-07-05）Phase 2 調査 → 家族葬champion=トップ確定・エリアtitle書換は「実施しない」判断</h3>
+  <ul>
+    <li>ユーザー判断で <strong>家族葬 champion＝トップに確定</strong>（2026-07-05 のトップtitle「家族葬」は追認）。</li>
+    <li><span class="done">調査完了</span>：<code>lib/areas.ts</code> の14エリア metaTitle は全て「〇〇の葬儀・家族葬 | 川口市〇〇周辺…」＝<strong>地名+家族葬のロングテール（§7保護資産）</strong>で、champion（川口市の…）とは地名で差別化済み。</li>
+    <li><span class="done">grep 実測</span>：エリアに generic「川口市の家族葬／川口市 家族葬」テキストは<strong>0件</strong>。2026-07-02 のカニバリ修正（プランカード名変更）で generic 表現は既に除去済み。</li>
+    <li><strong>判断：エリア title の一括書換は実施しない</strong>。残るのは地名ロングテールのみで、書換は§7資産を毀損し得るものが乏しい（パネルも「一律撤去しない／内部整理だけで20→12は保証されない」と留保）。根拠なき破壊はしない。</li>
+    <li>帰結：<strong>家族葬の残る主レバーは Phase 3（off-page＝GBP/口コミ/NAP/被リンク・ユーザー側運用）に集約</strong>。コード側で家族葬順位を安全に動かす未実施の高価値項目は実質なし。</li>
   </ul>
 
   <h2>ブロック中（ユーザー入力・運用が必要）</h2>
