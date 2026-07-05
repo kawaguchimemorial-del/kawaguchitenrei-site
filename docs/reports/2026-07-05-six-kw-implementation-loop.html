@@ -42,7 +42,7 @@
   <table>
     <tr><th>フェーズ</th><th>状態</th><th>メモ</th></tr>
     <tr><td>Phase 0 確定・計測</td><td class="block">ブロック（ユーザー操作要）</td><td>GSC URL検査・AIO発火マップ・競合ベースラインは私が単独実行不可。手順書を用意予定。</td></tr>
-    <tr><td>Phase 1 エンティティ衛生</td><td class="wip">一部着手</td><td>Organization/WebSiteノード分離は次周回。sameAs複数化は実在URLの提供待ち（推測URL禁止）。</td></tr>
+    <tr><td>Phase 1 エンティティ衛生</td><td class="wip">一部完了</td><td>Organization/WebSiteノード分離＝完了（#2）。sameAs複数化は実在URLの提供待ち（推測URL禁止）。外部誤価格/NAP是正はコード外運用。</td></tr>
     <tr><td>Phase 2 受け皿一本化</td><td class="block">代表URL確定待ち</td><td>16エリアの家族葬デターゲティングはPhase0ゲート。先行減量は自己損傷ゆえ保留。</td></tr>
     <tr><td>Phase 3 off-page</td><td class="block">コード外運用</td><td>GBP・口コミ・サイテーション・被リンク。チェックリストを用意予定。</td></tr>
     <tr><td>Phase 4 抽出適性の微調整</td><td class="wip">着手中</td><td>llms.txt 実装済。AIO定義パッセージ・市民葬table化は次周回。</td></tr>
@@ -56,6 +56,14 @@
     <li>robots は AIクローラを許可済み（<code>/admin</code> のみ disallow）を確認。</li>
     <li>禁止表現なし・価格は§9正本のみ・確定事実のみ・個人情報なし。</li>
     <li>build 成功・135/135 維持。commit <code>b497a62</code>・push 済み（§19.1）。</li>
+  </ul>
+
+  <h3>#2（2026-07-05）Phase 1: JSON-LD を @graph 化しエンティティノード分離</h3>
+  <ul>
+    <li><span class="done">実装完了</span>：<code>lib/company.ts</code> の <code>getLocalBusinessJsonLd()</code> を <code>@graph</code> 化。<strong>FuneralHome（実店舗/式場）・Organization（事業者=川口典礼）・WebSite</strong> の3ノードに分離し <code>@id</code> で相互リンク（<code>parentOrganization</code> / <code>publisher</code>）。社名と式場名の境界を明確化し LLM/AI の名寄せを改善。</li>
+    <li><strong>aggregateRating は FuneralHome ノードに同一のまま（新 @id へ再連結せず）＝§19.1 自走可</strong>。alternateName（川口メモリアルホール）は削除せず保持（指名検索の名寄せエイリアス）。</li>
+    <li>適用範囲：ヘルパーを使うトップ・<code>/company/</code>・<code>/access/</code> の3ページ。</li>
+    <li>build 成功・135/135 維持。commit <code>0149582</code>・push 済み。</li>
   </ul>
 
   <h2>ブロック中（ユーザー入力・運用が必要）</h2>
