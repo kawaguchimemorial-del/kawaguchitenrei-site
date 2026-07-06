@@ -227,8 +227,10 @@ export default function PostPrintPage() {
           }
           body { visibility: hidden; }
           #envelope, #envelope * { visibility: visible; }
+          /* fixed は印刷時に各ページへ複製描画されるため absolute にする。
+             祖先(html/body/main)に position/transform が無いので用紙原点に固定される。 */
           #envelope {
-            position: fixed !important; top: 0 !important; left: 0 !important;
+            position: absolute !important; top: 0 !important; left: 0 !important;
             margin: 0 !important;
             box-shadow: none !important; border: none !important;
           }

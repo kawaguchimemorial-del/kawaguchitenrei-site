@@ -133,6 +133,12 @@
     <li>build 137/137。</li>
   </ul>
 
+  <h2>更新10（2026-07-06）：同内容が2ページ複製される不具合を修正</h2>
+  <ul>
+    <li><strong>原因</strong>：<code>#envelope</code> を <code>position:fixed</code> にしていたため、印刷時に fixed 要素が各ページへ複製描画され「同じ封筒が2ページ」出力されていた。</li>
+    <li><strong>修正</strong>：<code>position:absolute!important</code> に変更（複製されない）。<code>app/layout.tsx</code> の html/body/main に position/transform が無いことを確認済みで、absolute は用紙原点に固定される。<code>html,body{height:235mm;overflow:hidden}</code> のクランプと併せて必ず1ページに収束。build 137/137。</li>
+  </ul>
+
   <h2>今後の調整候補（必要なら）</h2>
   <ul>
     <li>宛名の縦書き対応、フォントサイズ・余白の微調整（プリンタ・封筒差の吸収）。</li>
