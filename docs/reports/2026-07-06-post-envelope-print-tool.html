@@ -139,6 +139,12 @@
     <li><strong>修正</strong>：<code>position:absolute!important</code> に変更（複製されない）。<code>app/layout.tsx</code> の html/body/main に position/transform が無いことを確認済みで、absolute は用紙原点に固定される。<code>html,body{height:235mm;overflow:hidden}</code> のクランプと併せて必ず1ページに収束。build 137/137。</li>
   </ul>
 
+  <h2>更新11（2026-07-06）：印刷プレビューの2枚目（白紙）を除去</h2>
+  <ul>
+    <li><strong>原因</strong>：共通レイアウト（Header/Footer/MobileBottomCTA 等）は <code>main</code> の外の兄弟要素で、<code>visibility:hidden</code> では高さが残り、フロー総高が用紙を超えて2枚目（白紙）を生んでいた。<code>overflow:hidden</code> のクランプだけでは印刷のページ分割を抑えきれていなかった。</li>
+    <li><strong>修正</strong>：印刷CSSに <code>body &gt; *:not(main){ display:none!important }</code> を追加し、<code>main</code> 以外の body 直下要素をフローから完全除去（封筒は main の中なので影響なし）。body 下パディングも除去済み。→ 白紙2枚目が消え1ページのみ。共通コンポーネントのコードは不変（印刷時に隠すだけ）。build 137/137。</li>
+  </ul>
+
   <h2>今後の調整候補（必要なら）</h2>
   <ul>
     <li>宛名の縦書き対応、フォントサイズ・余白の微調整（プリンタ・封筒差の吸収）。</li>

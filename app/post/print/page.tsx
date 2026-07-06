@@ -225,6 +225,10 @@ export default function PostPrintPage() {
             width: 120mm !important; height: 235mm !important;
             margin: 0 !important; padding: 0 !important; overflow: hidden !important;
           }
+          /* 共通レイアウト(Header/Footer/MobileBottomCTA 等)は main の外の兄弟。
+             visibility:hidden では高さが残り2枚目を生むため、印刷時は display:none で
+             フローから完全に除去する（封筒は main の中なので影響しない）。 */
+          body > *:not(main) { display: none !important; }
           body { visibility: hidden; }
           #envelope, #envelope * { visibility: visible; }
           /* fixed は印刷時に各ページへ複製描画されるため absolute にする。
