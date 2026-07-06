@@ -75,6 +75,7 @@ export default function PostPrintPage() {
   // 宛名(縦書き)の自動縮小: 長い会社名でも下ロゴ帯(上175mm)を侵さないよう
   // 実測ベースでフォントサイズを決める。既定30pt、収まらないときだけ縮小。
   const nameRef = useRef<HTMLDivElement>(null);
+  const nameBandRef = useRef<HTMLDivElement>(null);
   const [nameFontPt, setNameFontPt] = useState(30);
 
   useEffect(() => {
@@ -117,12 +118,8 @@ export default function PostPrintPage() {
     const MIN = 13;
     const measure = () => {
       const el = nameRef.current;
-      if (!el || orientation !== "vertical" || !data?.name) {
-        setNameFontPt(MAX);
-        return;
-      }
-      const container = el.parentElement;
-      if (!container) {
+      const container = nameBandRef.current;
+      if (!el || !container || orientation !== "vertical" || !data?.name) {
         setNameFontPt(MAX);
         return;
       }
@@ -156,7 +153,7 @@ export default function PostPrintPage() {
       cancelled = true;
       window.removeEventListener("beforeprint", onBeforePrint);
     };
-  }, [data?.name, data?.honorific, orientation]);
+  }, [data?.name, data?.contactName, data?.recipientType, orientation]);
 
   if (loaded && !data) {
     return (
@@ -195,6 +192,25 @@ export default function PostPrintPage() {
           Math.max(ADDR_MIN, Math.floor(ADDR_AVAIL_MM / (addrChars * 0.37))),
         )
       : ADDR_MAX;
+
+  // 宛先種別に応じた主宛名・敬称・会社名2列表示の決定。
+  const isCompany = data?.recipientType === "company";
+  const contactName = (data?.contactName ?? "").trim();
+  const hasContact = isCompany && contactName.length > 0;
+  // 主宛名（中央・大きく）: 個人→氏名 / 会社(担当者あり)→担当者名 / 会社(担当者なし)→会社名
+  const mainName = isCompany
+    ? hasContact
+      ? contactName
+      : (data?.name ?? "")
+    : (data?.name ?? "");
+  // 敬称: 個人→様 / 会社(担当者あり)→担当者に様 / 会社(担当者なし)→会社名に御中
+  const honorific = isCompany ? (hasContact ? "様" : "御中") : "様";
+  // 2列表示する会社名（担当者ありのときのみ・右側・小さめ）
+  const companyChars = hasContact ? [...(data?.name ?? "")].length : 0;
+  const companyPt =
+    companyChars > 0
+      ? Math.min(16, Math.max(10, Math.floor(115 / (companyChars * 0.37))))
+      : 16;
 
   const setField = (k: keyof PostalCalib, v: number) =>
     setCalib((c) => ({ ...c, [k]: v }));
@@ -550,8 +566,10 @@ export default function PostPrintPage() {
                 )}
               </div>
 
-              {/* 宛名（中央に大きく縦書き）＋敬称。下60mm(ロゴ帯)を避け 55〜175mm の領域に中央寄せ */}
+              {/* 宛名（中央）。会社+担当者は2列（会社名=右・小、担当者+様=中央・大）。
+                  会社(担当者なし)は会社名+御中、個人は氏名+様。下60mm(ロゴ帯)を避け 55〜175mm に中央寄せ */}
               <div
+                ref={nameBandRef}
                 style={{
                   position: "absolute",
                   top: "55mm",
@@ -564,23 +582,47 @@ export default function PostPrintPage() {
                 }}
               >
                 <div
-                  ref={nameRef}
                   style={{
-                    writingMode: "vertical-rl",
-                    fontSize: `${nameFontPt}pt`,
-                    letterSpacing: "0.12em",
-                    maxHeight: "120mm",
-                    // 単列固定＋クリップ。自動縮小が効くので通常は切れないが、極端に長い場合の最終保険。
-                    whiteSpace: "nowrap",
-                    overflow: "hidden",
+                    display: "flex",
+                    flexDirection: "row-reverse",
+                    alignItems: "flex-start",
+                    gap: "3mm",
                   }}
                 >
-                  {data?.name}
-                  {data?.name && (
-                    <span style={{ marginTop: "0.6em", display: "inline" }}>
-                      　{data.honorific}
-                    </span>
+                  {/* 会社名（担当者ありのときのみ・右側・小さめ） */}
+                  {hasContact && (
+                    <div
+                      style={{
+                        writingMode: "vertical-rl",
+                        fontSize: `${companyPt}pt`,
+                        letterSpacing: "0.08em",
+                        maxHeight: "120mm",
+                        overflow: "hidden",
+                      }}
+                    >
+                      {data?.name}
+                    </div>
                   )}
+                  {/* 主宛名（大きく）＋敬称 */}
+                  <div
+                    ref={nameRef}
+                    style={{
+                      writingMode: "vertical-rl",
+                      fontSize: `${nameFontPt}pt`,
+                      letterSpacing: "0.12em",
+                      maxHeight: "120mm",
+                      // 単列固定＋クリップ。自動縮小が効くので通常は切れないが最終保険。
+                      whiteSpace: "nowrap",
+                      overflow: "hidden",
+                    }}
+                  >
+                    {mainName}
+                    {mainName && (
+                      <span style={{ marginTop: "0.6em", display: "inline" }}>
+                        　{honorific}
+                      </span>
+                    )}
+                  </div>
                 </div>
               </div>
             </>
@@ -607,14 +649,19 @@ export default function PostPrintPage() {
                   left: "10mm",
                   right: "10mm",
                   textAlign: "center",
-                  fontSize: "24pt",
-                  letterSpacing: "0.14em",
                 }}
               >
-                <span>{data?.name}</span>
-                {data?.name && (
-                  <span style={{ marginLeft: "0.4em" }}>{data.honorific}</span>
+                {hasContact && (
+                  <div style={{ fontSize: "14pt", marginBottom: "2mm" }}>
+                    {data?.name}
+                  </div>
                 )}
+                <div style={{ fontSize: "24pt", letterSpacing: "0.14em" }}>
+                  <span>{mainName}</span>
+                  {mainName && (
+                    <span style={{ marginLeft: "0.4em" }}>{honorific}</span>
+                  )}
+                </div>
               </div>
             </>
           )}

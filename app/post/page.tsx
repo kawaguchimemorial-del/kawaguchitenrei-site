@@ -3,12 +3,14 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
+export type RecipientType = "individual" | "company";
 export type EnvelopeData = {
   postal: string;
   address1: string;
   address2: string;
-  name: string;
-  honorific: "様" | "御中";
+  recipientType: RecipientType;
+  name: string; // 個人名 または 会社名
+  contactName: string; // 会社の担当者名（任意）
 };
 
 const STORAGE_KEY = "post-print-envelope";
@@ -61,7 +63,9 @@ export default function PostPage() {
   const [address1, setAddress1] = useState("");
   const [address2, setAddress2] = useState("");
   const [name, setName] = useState("");
-  const [honorific, setHonorific] = useState<"様" | "御中">("様");
+  const [recipientType, setRecipientType] =
+    useState<RecipientType>("individual");
+  const [contactName, setContactName] = useState("");
   const [lookupState, setLookupState] = useState<
     "idle" | "loading" | "notfound" | "error"
   >("idle");
@@ -112,8 +116,9 @@ export default function PostPage() {
       postal: postal.replace(/[^0-9]/g, ""),
       address1: address1.trim(),
       address2: address2.trim(),
+      recipientType,
       name: name.trim(),
-      honorific,
+      contactName: recipientType === "company" ? contactName.trim() : "",
     };
     sessionStorage.setItem(STORAGE_KEY, JSON.stringify(data));
     router.push("/post/print/");
@@ -220,39 +225,69 @@ export default function PostPage() {
           />
         </div>
 
-        {/* 宛名 + 敬称 */}
+        {/* 宛先種別（個人/会社）＋ 宛名/会社名 */}
         <div>
           <label
             htmlFor="name"
             className="block text-sm font-medium text-neutral-700"
           >
-            宛名
+            {recipientType === "company" ? "会社名" : "宛名（お名前）"}
           </label>
           <div className="mt-1 flex items-center gap-2">
+            <select
+              aria-label="宛先の種別"
+              value={recipientType}
+              onChange={(e) =>
+                setRecipientType(e.target.value as RecipientType)
+              }
+              className="rounded-md border border-neutral-300 px-3 py-2 text-sm focus:border-neutral-500 focus:outline-none"
+            >
+              <option value="individual">個人</option>
+              <option value="company">会社</option>
+            </select>
             <input
               id="name"
               autoComplete="off"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              placeholder="川口 太郎 / 株式会社○○"
+              placeholder={
+                recipientType === "company" ? "株式会社○○" : "川口 太郎"
+              }
               className="flex-1 rounded-md border border-neutral-300 px-3 py-2 text-sm focus:border-neutral-500 focus:outline-none"
             />
-            <select
-              aria-label="敬称"
-              value={honorific}
-              onChange={(e) =>
-                setHonorific(e.target.value as "様" | "御中")
-              }
-              className="rounded-md border border-neutral-300 px-3 py-2 text-sm focus:border-neutral-500 focus:outline-none"
-            >
-              <option value="様">様</option>
-              <option value="御中">御中</option>
-            </select>
           </div>
           <p className="mt-1 text-xs text-neutral-500">
-            会社・部署宛は「御中」、個人宛は「様」を選択してください。
+            {recipientType === "company"
+              ? "会社宛です。担当者名が空欄なら会社名に「御中」が付きます。"
+              : "個人宛です。印刷では「様」が付きます。"}
           </p>
         </div>
+
+        {/* 担当者名（会社のときのみ） */}
+        {recipientType === "company" && (
+          <div>
+            <label
+              htmlFor="contactName"
+              className="block text-sm font-medium text-neutral-700"
+            >
+              担当者名
+              <span className="ml-1 text-xs font-normal text-neutral-400">
+                任意
+              </span>
+            </label>
+            <input
+              id="contactName"
+              autoComplete="off"
+              value={contactName}
+              onChange={(e) => setContactName(e.target.value)}
+              placeholder="川口 花子"
+              className="mt-1 w-full rounded-md border border-neutral-300 px-3 py-2 text-sm focus:border-neutral-500 focus:outline-none"
+            />
+            <p className="mt-1 text-xs text-neutral-500">
+              入力すると担当者名に「様」が付き、会社名と2列で印刷されます。
+            </p>
+          </div>
+        )}
 
         <div className="pt-2">
           <button

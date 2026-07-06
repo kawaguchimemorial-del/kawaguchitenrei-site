@@ -145,6 +145,14 @@
     <li><strong>修正</strong>：印刷CSSに <code>body &gt; *:not(main){ display:none!important }</code> を追加し、<code>main</code> 以外の body 直下要素をフローから完全除去（封筒は main の中なので影響なし）。body 下パディングも除去済み。→ 白紙2枚目が消え1ページのみ。共通コンポーネントのコードは不変（印刷時に隠すだけ）。build 137/137。</li>
   </ul>
 
+  <h2>更新12（2026-07-06）：宛先「個人／会社」選択と会社2列表示（御中／様の自動判定）</h2>
+  <ul>
+    <li><strong>フォーム</strong>（<code>app/post/page.tsx</code>）：宛名入力の横に<strong>種別プルダウン（個人／会社）</strong>を追加。会社選択時は<strong>担当者名フィールド（任意）</strong>を表示。敬称は自動判定に変更（旧・様/御中セレクタは廃止）。</li>
+    <li><strong>敬称の自動判定</strong>：個人→様／会社(担当者あり)→担当者名に様／会社(担当者なし)→会社名に御中。</li>
+    <li><strong>印刷レイアウト</strong>（<code>app/post/print/page.tsx</code>）：会社+担当者は<strong>2列表示</strong>（会社名＝右・小さめ、担当者名＋様＝中央・大きめ）。会社(担当者なし)は会社名＋御中、個人は氏名＋様。横書きモードも会社名の副行に対応。</li>
+    <li>データ型を <code>recipientType/name/contactName</code> に拡張。自動縮小の測定基準を専用 ref（<code>nameBand</code>=120mm帯）に変更し、2列化後も正しく効くよう修正。build 137/137。</li>
+  </ul>
+
   <h2>今後の調整候補（必要なら）</h2>
   <ul>
     <li>宛名の縦書き対応、フォントサイズ・余白の微調整（プリンタ・封筒差の吸収）。</li>
