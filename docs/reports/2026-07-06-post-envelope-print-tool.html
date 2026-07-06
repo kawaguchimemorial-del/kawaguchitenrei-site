@@ -109,6 +109,15 @@
   </ul>
   <p><strong>運用</strong>：初回のみ無地紙に1枚テスト印刷→封筒に重ねて矢印で枠に合わせて保存→以後は自動で同じ位置。機体・封筒を替えたら再調整。</p>
 
+  <h2>更新7（2026-07-06）：空白ページ追加＋長い宛名の下ロゴ帯はみ出しを修正（4人パネル）</h2>
+  <p>PDF出力で「3ページ（2枚は空白）」＋「長い会社名（例：株式会社川口商事 御中）が下ロゴ帯にはみ出す」不具合を、4専門家パネル（相互反論つき）で分析して修正。</p>
+  <ul>
+    <li><strong>空白ページの真因</strong>：①<code>#envelope</code> のインライン <code>position:relative</code> が印刷CSS（!important無し）に勝ち封筒がフロー残留、加えて②<strong>共通レイアウト（Header/Footer/MobileBottomCTA＋本文下パディング）が <code>visibility:hidden</code> でも高さを保持</strong>し用紙高を超過。→ 印刷CSSで <code>#envelope{position:fixed!important}</code>＋<strong><code>html,body{width:120mm;height:235mm;overflow:hidden!important}</code> で総高を用紙実寸に物理クランプ</strong>し1ページに収束。<code>.envelope-wrap</code> で外側 pb-16 も無効化。</li>
+    <li><strong>はみ出しの修正</strong>：宛名（縦書き）を<strong>実測ベースで自動縮小</strong>（参照30ptで <code>scrollHeight</code> を測り、利用可高さに比例縮小・最小13pt・単列 <code>nowrap</code>＋<code>maxHeight120mm/overflow hidden</code> を最終保険）。<code>document.fonts.ready</code> 後と <code>beforeprint</code> にも再測定し、Webフォント遅延ロードや Ctrl+P 印刷でのズレを防止。短い個人名は30pt維持。</li>
+    <li>住所・郵便番号キャリブレーション・toZenkaku・縦書き基本設計は不変。build 137/137・型エラーなし。</li>
+    <li>残課題（許容仕様）：20グリフ超の極端に長い宛名は13pt下限＋クリップで末尾が切れる場合がある／長い建物名の住所側も将来同様の自動縮小を横展開予定。</li>
+  </ul>
+
   <h2>今後の調整候補（必要なら）</h2>
   <ul>
     <li>宛名の縦書き対応、フォントサイズ・余白の微調整（プリンタ・封筒差の吸収）。</li>

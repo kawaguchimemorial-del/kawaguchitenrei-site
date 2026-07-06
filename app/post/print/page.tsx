@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { EnvelopeData } from "../page";
 
 const STORAGE_KEY = "post-print-envelope";
@@ -72,6 +72,10 @@ export default function PostPrintPage() {
   const [calib, setCalib] = useState<PostalCalib>(DEFAULT_CALIB);
   const [showGuide, setShowGuide] = useState(false);
   const [importText, setImportText] = useState("");
+  // 宛名(縦書き)の自動縮小: 長い会社名でも下ロゴ帯(上175mm)を侵さないよう
+  // 実測ベースでフォントサイズを決める。既定30pt、収まらないときだけ縮小。
+  const nameRef = useRef<HTMLDivElement>(null);
+  const [nameFontPt, setNameFontPt] = useState(30);
 
   useEffect(() => {
     try {
@@ -103,6 +107,56 @@ export default function PostPrintPage() {
       /* 保存失敗は無視 */
     }
   }, [calib, loaded]);
+
+  // 宛名の自動縮小（縦書き時）。参照フォント30ptで実測し、
+  // 収まらなければ利用可能高さに比例して縮小する（最小13pt、以降はクリップ）。
+  // フォント確定後(fonts.ready)と印刷直前(beforeprint)にも再測定して、
+  // Web フォント遅延ロードや Ctrl+P 印刷でのズレを防ぐ。
+  useEffect(() => {
+    const MAX = 30;
+    const MIN = 13;
+    const measure = () => {
+      const el = nameRef.current;
+      if (!el || orientation !== "vertical" || !data?.name) {
+        setNameFontPt(MAX);
+        return;
+      }
+      const container = el.parentElement;
+      if (!container) {
+        setNameFontPt(MAX);
+        return;
+      }
+      const prev = el.style.fontSize;
+      el.style.fontSize = `${MAX}pt`;
+      // 縦書きでは行(列)が物理的な「高さ」方向に伸びるため scrollHeight を測る
+      const content = el.scrollHeight;
+      const avail = container.clientHeight;
+      el.style.fontSize = prev;
+      if (!avail || !content || content <= avail) {
+        setNameFontPt(MAX);
+        return;
+      }
+      const scaled = MAX * (avail / content);
+      // 端数と測定誤差の安全マージンとして 0.3pt 引く
+      setNameFontPt(Math.max(MIN, Math.floor(scaled * 10) / 10 - 0.3));
+    };
+
+    measure();
+    let cancelled = false;
+    const fonts = (document as unknown as { fonts?: { ready?: Promise<unknown> } })
+      .fonts;
+    if (fonts?.ready) {
+      fonts.ready.then(() => {
+        if (!cancelled) measure();
+      });
+    }
+    const onBeforePrint = () => measure();
+    window.addEventListener("beforeprint", onBeforePrint);
+    return () => {
+      cancelled = true;
+      window.removeEventListener("beforeprint", onBeforePrint);
+    };
+  }, [data?.name, data?.honorific, orientation]);
 
   if (loaded && !data) {
     return (
@@ -145,12 +199,23 @@ export default function PostPrintPage() {
       <style>{`
         @media print {
           @page { size: 120mm 235mm; margin: 0; }
-          html, body { margin: 0 !important; padding: 0 !important; }
+          /* 共通レイアウト(Header/Footer/MobileBottomCTA/本文下パディング)は
+             visibility:hidden でも高さを残し、余剰ページを生む。用紙実寸に
+             物理クランプして必ず1ページに収める。 */
+          html, body {
+            width: 120mm !important; height: 235mm !important;
+            margin: 0 !important; padding: 0 !important; overflow: hidden !important;
+          }
           body { visibility: hidden; }
           #envelope, #envelope * { visibility: visible; }
           #envelope {
-            position: absolute; top: 0; left: 0;
+            position: fixed !important; top: 0 !important; left: 0 !important;
+            margin: 0 !important;
             box-shadow: none !important; border: none !important;
+          }
+          /* 封筒の外側ラッパの余白(pb-16 等)が用紙高を超えて追加ページを生むのを防ぐ */
+          .envelope-wrap {
+            padding: 0 !important; margin: 0 !important; display: block !important;
           }
           .no-print { display: none !important; }
           .postal-cell { outline: none !important; }
@@ -361,7 +426,7 @@ export default function PostPrintPage() {
       </div>
 
       {/* 長形3号の封筒レイアウト */}
-      <div className="flex justify-center px-5 pb-16">
+      <div className="envelope-wrap flex justify-center px-5 pb-16">
         <div
           id="envelope"
           style={{
@@ -474,11 +539,14 @@ export default function PostPrintPage() {
                 }}
               >
                 <div
+                  ref={nameRef}
                   style={{
                     writingMode: "vertical-rl",
-                    fontSize: "30pt",
+                    fontSize: `${nameFontPt}pt`,
                     letterSpacing: "0.12em",
                     maxHeight: "120mm",
+                    // 単列固定＋クリップ。自動縮小が効くので通常は切れないが、極端に長い場合の最終保険。
+                    whiteSpace: "nowrap",
                     overflow: "hidden",
                   }}
                 >
