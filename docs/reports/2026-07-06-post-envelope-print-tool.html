@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>封筒宛名印刷ツール /post 新設（社内用）｜川口典礼サイト（社内・非公開）</title>
+<style>
+  :root{--ink:#2b2b2b;--soft:#6b6b6b;--line:#e3e0da;--bg:#faf9f7;--accent:#7a6a55}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;line-height:1.85;font-size:15px}
+  .wrap{max-width:820px;margin:0 auto;padding:44px 22px 80px}
+  .kicker{font-size:12px;letter-spacing:.12em;color:var(--accent);margin:0 0 6px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:22px;font-weight:600;margin:0 0 10px;line-height:1.5}
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:17px;font-weight:600;margin:28px 0 8px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+  .meta{color:var(--soft);font-size:13px;border-bottom:2px solid var(--line);padding-bottom:16px;margin-bottom:8px}
+  .meta span{display:inline-block;margin-right:16px}
+  code{background:#f1efe9;padding:1px 6px;border-radius:5px;font-size:12px;font-family:ui-monospace,Consolas,monospace}
+  ul{padding-left:1.2em} li{margin:6px 0}
+  .note{background:#fbf3e6;border:1px solid #e6d4a8;border-radius:10px;padding:12px 16px;margin:14px 0;font-size:13.5px}
+  footer{margin-top:44px;border-top:1px solid var(--line);padding-top:16px;color:var(--soft);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="kicker">川口典礼サイト ＿ 社内記録</p>
+  <h1>封筒宛名印刷ツール <code>/post</code> 新設（社内用・検索非公開）</h1>
+  <p class="meta">
+    <span><strong>作成日：</strong>2026-07-06</span>
+    <span><strong>対象：</strong>/post ・ /post/print（社内用）</span>
+    <span><strong>担当：</strong>Claude Code</span>
+  </p>
+
+  <h2>目的</h2>
+  <p>長形3号（120×235mm）封筒に宛名を印刷する<strong>社内専用ツール</strong>。宛先を入力して「印刷確定」で印刷ページへ移動し印刷する。検索・Google 検索には出さない。</p>
+
+  <h2>実装内容</h2>
+  <ul>
+    <li><code>app/post/layout.tsx</code>（新規・server）：<code>robots: index:false / follow:false / nocache / googleBot 無効</code> を付与し <code>/post</code> 配下を検索除外。</li>
+    <li><code>app/post/page.tsx</code>（新規・client）：入力フォーム。
+      <ul>
+        <li><strong>郵便番号</strong>→ zipcloud API（<code>zipcloud.acknowledge.jp</code>・キー不要）で都道府県+市区町村+町域を自動入力（7桁で onBlur 自動＋「住所を自動入力」ボタン）。番地・建物は手入力。取得失敗時は手入力にフォールバック。</li>
+        <li><strong>住所</strong>／<strong>住所2</strong>（建物名・部屋番号・任意）／<strong>宛名</strong>／<strong>敬称</strong>（様・御中の選択）。</li>
+        <li>「印刷確定」で入力を <code>sessionStorage</code> に保存し <code>/post/print/</code> へ遷移（宛名未入力時は不可）。</li>
+      </ul>
+    </li>
+    <li><code>app/post/print/page.tsx</code>（新規・client）：長形3号レイアウトを描画。「印刷する」で <code>window.print()</code>。
+      <ul>
+        <li>印刷CSS：<code>@page { size: 120mm 235mm; margin: 0 }</code>、印刷時は封筒（<code>#envelope</code>）以外を非表示（ヘッダー等も隠れる）。</li>
+        <li>横書き配置：郵便番号（〒 000-0000）→ 住所/住所2 → 宛名+敬称（中央・大きめ）。</li>
+        <li>データが無い場合は入力ページへ戻る導線を表示。</li>
+      </ul>
+    </li>
+    <li><code>app/robots.ts</code>：<code>disallow</code> に <code>/post/</code>・<code>/post</code> を追加（noindex と二重で検索除外）。sitemap には未追加（手動管理のため元から含まれない）。</li>
+  </ul>
+
+  <div class="note">
+    <strong>プライバシー：</strong>宛先（住所・氏名）は<strong>ブラウザ内（sessionStorage）でのみ保持</strong>し、Webhook・API・サーバへ<strong>送信/ログ出力しない</strong>。外部通信は郵便番号→住所の zipcloud 参照のみ（郵便番号だけを送る）。保護ファイル（Header/Footer/MobileBottomCTA・package.json）は未変更。依存追加なし。
+  </div>
+
+  <h2>確認結果</h2>
+  <ul>
+    <li><code>npm run build</code> 成功。静的生成 135→<strong>137</strong>（/post・/post/print を追加、いずれも static・noindex）。TypeScript エラーなし。</li>
+    <li>実機動作（郵便番号自動入力・印刷レイアウト）は <code>npm run dev</code> → <code>http://localhost:3000/post/</code> でご確認ください（zipcloud 参照と <code>window.print()</code> はブラウザ実行のため）。</li>
+    <li>禁止表現・価格・個人情報の記載なし。</li>
+  </ul>
+
+  <h2>今後の調整候補（必要なら）</h2>
+  <ul>
+    <li>宛名の縦書き対応、フォントサイズ・余白の微調整（プリンタ・封筒差の吸収）。</li>
+    <li>差出人（自社）の印字、複数宛先の連続印刷。</li>
+  </ul>
+
+  <footer>川口典礼サイト 社内作業レポート｜非公開（noindex）｜個人情報・秘密情報なし</footer>
+</div>
+</body>
+</html>

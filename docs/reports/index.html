@@ -35,6 +35,11 @@
 
   <ul class="list">
     <li>
+      <span class="date">2026-07-06</span>
+      <a href="./2026-07-06-post-envelope-print-tool.html">封筒宛名印刷ツール /post 新設（社内用・検索非公開）</a>
+      <span class="desc">長形3号(120×235mm)封筒に宛名を印刷する社内専用ツールを新設。app/post/layout.tsx(server・robots noindex/nofollow/nocache/googleBot無効)で/post配下を検索除外。app/post/page.tsx(client)=郵便番号→zipcloud API(キー不要)で都道府県+市区町村+町域を自動入力(7桁onBlur＋ボタン・失敗時手入力フォールバック)、住所/住所2(建物・部屋番号・任意)/宛名/敬称(様・御中選択)、印刷確定でsessionStorage保存し/post/print/へ遷移。app/post/print/page.tsx(client)=長形3号レイアウト描画・window.print()・@page size120mm 235mm margin0・印刷時は封筒(#envelope)以外非表示(ヘッダ等も隠す)・横書きで〒郵便番号→住所→宛名+敬称(中央大きめ)・データ無時は入力へ戻る導線。app/robots.tsのdisallowに/post追加(noindexと二重除外)。プライバシー=宛先(住所氏名)はブラウザ内sessionStorageのみ保持しWebhook/API/サーバへ送信・ログ出力しない、外部通信は郵便番号→住所のzipcloud参照のみ。保護ファイル(Header/Footer/MobileBottomCTA/package.json)未変更・依存追加なし。build成功135→137(いずれもstatic・noindex)・型エラーなし。実機動作(自動入力・印刷)はnpm run dev→/post/で確認。</span>
+    </li>
+    <li>
       <span class="date">2026-07-05</span>
       <a href="./2026-07-05-six-kw-implementation-loop.html">6KW上位化 実装ログ（自走loop・随時更新）｜#1 public/llms.txt 新設</a>
       <span class="desc">8専門家ロードマップに沿い、ユーザー承認のもとloopで自走実装する記録(随時更新)。方針=各周回で安全(§19.1自走可・ゲート未抵触)なコード側から実装しbuild検証、私が単独実行できない領域(Phase0 GSC URL検査・Phase3 GBP/口コミ/被リンク・実在確認要の外部プロフィールURL)はブロック明示し成果物・手順を用意。価格/Review系/共通レイアウト/フォームは不変。周回#1(2026-07-05)=Phase4のpublic/llms.txt新設(社名/所在地/電話/24時間/式場川口メモリアルホール駐車場70台/近隣火葬場めぐりの森・非運営明記/対応形式/§9正本料金の目安・会員価格税込・別途費用注記/主要ページURL/非運営施設補足)。robotsはAIクローラ許可(/adminのみdisallow)確認済。禁止表現なし・確定事実のみ・個人情報なし。build135/135維持・commit b497a62・push済。ブロック中=Phase0 GSC URL検査(家族葬champion確定に必須・手順書用意予定)/sameAs複数化(実在確認できるURLの提供待ち・推測URL禁止§19.3)/Phase3 off-page(コード外運用)。次周回=Organization/WebSiteノード分離・AIO定義パッセージ・市民葬table化。</span>
