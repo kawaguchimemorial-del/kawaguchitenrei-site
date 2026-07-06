@@ -130,18 +130,31 @@ export default function PostPrintPage() {
             overflow: "hidden",
           }}
         >
-          {/* 郵便番号（上部・横並び。封筒の郵便番号枠に合わせる想定） */}
+          {/* 郵便番号（上部・封筒の郵便番号枠に各桁を合わせる。3桁＋間隔＋4桁） */}
           {postal && (
             <div
               style={{
                 position: "absolute",
-                top: "12mm",
-                right: "17mm",
-                fontSize: "14pt",
-                letterSpacing: "0.42em",
+                top: "11.2mm",
+                right: "6mm",
+                display: "flex",
+                fontSize: "15pt",
               }}
             >
-              {postal}
+              {postal.split("").map((d, i) => (
+                <span
+                  key={i}
+                  style={{
+                    display: "inline-block",
+                    width: "7mm",
+                    textAlign: "center",
+                    // 3桁目と4桁目の間（郵便番号の区切り）に間隔を空ける
+                    marginLeft: i === 3 ? "3mm" : 0,
+                  }}
+                >
+                  {d}
+                </span>
+              ))}
             </div>
           )}
 
