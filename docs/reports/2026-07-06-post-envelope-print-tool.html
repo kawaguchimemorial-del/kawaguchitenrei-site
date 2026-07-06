@@ -71,6 +71,17 @@
   <h2>更新2（2026-07-06）：住所APIの多重化（zipcloud ダウン対応）</h2>
   <p>JSONP に変えても失敗が続いたため調査。サーバ側 <code>curl</code> で <strong>zipcloud が空応答＝ダウン</strong>と判明。CORS 対応（<code>Access-Control-Allow-Origin: *</code> 確認済）の <code>api.zipaddress.net</code> を<strong>第1候補</strong>（通常 fetch・<code>data.fullAddress</code>）、zipcloud(JSONP) を<strong>予備</strong>にする二段構えへ変更。334-0001→「埼玉県川口市桜町」取得を実証。build 137/137。</p>
 
+  <h2>更新3（2026-07-06）：印刷版面を封筒作法（縦書き）に作り直し</h2>
+  <p>「封筒に印刷するレイアウトになっていない」との指摘を受け、印刷ページ（<code>app/post/print/page.tsx</code>）を全面改訂。</p>
+  <ul>
+    <li><strong>版面＝封筒実寸</strong>：<code>@page { size:120mm 235mm; margin:0 }</code>、<code>html,body</code> の余白も0に。封筒面の絶対座標に印字。</li>
+    <li><strong>縦書きを既定</strong>：郵便番号=上部横並び（枠に合わせる想定）、住所=右側に縦書き（2列目の建物名は一段下げ）、宛名=中央に大きく縦書き＋敬称（様／御中）。</li>
+    <li><strong>数字を全角変換</strong>して縦書きで正立（440-1 が横倒しにならない）。</li>
+    <li><strong>縦書き／横書きトグル</strong>を操作バーに追加（横書きは社内簡易用）。</li>
+    <li>プリンタ側は「長形3号（手差し）」設定が前提。build 137/137。</li>
+  </ul>
+  <p>※印字位置（郵便番号枠・住所・宛名の mm 座標）は実機で刷ってからの微調整前提。ズレ方向を教えていただければ座標を詰めます。</p>
+
   <h2>今後の調整候補（必要なら）</h2>
   <ul>
     <li>宛名の縦書き対応、フォントサイズ・余白の微調整（プリンタ・封筒差の吸収）。</li>
