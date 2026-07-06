@@ -74,6 +74,24 @@ export default function PostPage() {
       return;
     }
     setLookupState("loading");
+
+    // 1) zipaddress.net（CORS 対応の通常 fetch）を第1候補にする。
+    try {
+      const res = await fetch(`https://api.zipaddress.net/?zipcode=${zip}`);
+      const json = (await res.json()) as {
+        code?: number;
+        data?: { fullAddress?: string };
+      };
+      if (json?.code === 200 && json.data?.fullAddress) {
+        setAddress1(json.data.fullAddress);
+        setLookupState("idle");
+        return;
+      }
+    } catch {
+      // 続けて zipcloud を試す
+    }
+
+    // 2) 予備: zipcloud（JSONP）
     try {
       const json = await jsonpZipcloud(zip);
       const r = json?.results?.[0];
