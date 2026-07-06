@@ -130,6 +130,28 @@ export default function PostPrintPage() {
             overflow: "hidden",
           }}
         >
+          {/* 下60mm=ロゴ帯の目安（画面のみ・印刷されない） */}
+          <div
+            className="no-print"
+            style={{
+              position: "absolute",
+              left: 0,
+              right: 0,
+              bottom: 0,
+              height: "60mm",
+              backgroundColor: "rgba(0,0,0,0.04)",
+              borderTop: "1px dashed #bbb",
+              display: "flex",
+              alignItems: "flex-start",
+              justifyContent: "center",
+              paddingTop: "2mm",
+              fontSize: "9pt",
+              color: "#999",
+            }}
+          >
+            ロゴ帯（この範囲には印刷しません）
+          </div>
+
           {/* 郵便番号（上部・封筒の郵便番号枠に各桁を合わせる。3桁＋間隔＋4桁） */}
           {postal && (
             <div
@@ -166,7 +188,9 @@ export default function PostPrintPage() {
                   position: "absolute",
                   top: "30mm",
                   right: "13mm",
-                  maxHeight: "150mm",
+                  // 下60mm(ロゴ帯)を避け、上175mm以内に収める（30+145=175）
+                  maxHeight: "145mm",
+                  overflow: "hidden",
                   writingMode: "vertical-rl",
                   fontSize: "13.5pt",
                   lineHeight: 1.55,
@@ -180,15 +204,17 @@ export default function PostPrintPage() {
                 )}
               </div>
 
-              {/* 宛名（中央に大きく縦書き）＋敬称 */}
+              {/* 宛名（中央に大きく縦書き）＋敬称。下60mm(ロゴ帯)を避け 55〜175mm の領域に中央寄せ */}
               <div
                 style={{
                   position: "absolute",
-                  top: "60mm",
+                  top: "55mm",
                   left: 0,
                   right: 0,
+                  height: "120mm",
                   display: "flex",
                   justifyContent: "center",
+                  alignItems: "center",
                 }}
               >
                 <div
@@ -196,6 +222,8 @@ export default function PostPrintPage() {
                     writingMode: "vertical-rl",
                     fontSize: "30pt",
                     letterSpacing: "0.12em",
+                    maxHeight: "120mm",
+                    overflow: "hidden",
                   }}
                 >
                   {data?.name}
