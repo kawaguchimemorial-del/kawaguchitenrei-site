@@ -5,6 +5,52 @@ import { useEffect, useState } from "react";
 import type { EnvelopeData } from "../page";
 
 const STORAGE_KEY = "post-print-envelope";
+const CAL_KEY = "post-print-postal-calib-cho3-v1";
+
+// 郵便番号の位置合わせ（キャリブレーション）
+// 規格由来のジオメトリ(firstCenter/pitch/midGap/boxTop)＋機体依存の並進(offsetX/offsetY)を分離。
+// mm はプリンタの不定オフセットで物理mmと1:1にならないため、機体ごとに一度合わせて localStorage に保存する。
+type PostalCalib = {
+  offsetX: number; // 機体ズレ補正（右+/左-）mm
+  offsetY: number; // 機体ズレ補正（下+/上-）mm
+  firstCenter: number; // 1枠目中心の左端からの距離 mm
+  pitch: number; // 枠ピッチ mm
+  midGap: number; // 3桁目と4桁目の間の追加間隔 mm
+  boxTop: number; // 枠の上端 top mm
+  fontSize: number; // 文字サイズ pt
+};
+
+const DEFAULT_CALIB: PostalCalib = {
+  offsetX: 0,
+  offsetY: 0,
+  firstCenter: 65,
+  pitch: 7.6,
+  midGap: 2.5,
+  boxTop: 11.2,
+  fontSize: 15,
+};
+
+function clamp(v: number, min: number, max: number): number {
+  if (!Number.isFinite(v)) return min;
+  return Math.min(max, Math.max(min, v));
+}
+function round1(v: number): number {
+  return Math.round(v * 10) / 10;
+}
+function sanitizeCalib(input: unknown): PostalCalib {
+  const o = (input ?? {}) as Record<string, unknown>;
+  const num = (k: keyof PostalCalib, def: number) =>
+    Number.isFinite(o[k]) ? (o[k] as number) : def;
+  return {
+    offsetX: clamp(num("offsetX", 0), -20, 20),
+    offsetY: clamp(num("offsetY", 0), -30, 30),
+    firstCenter: clamp(num("firstCenter", 65), 55, 80),
+    pitch: clamp(num("pitch", 7.6), 6.5, 8.5),
+    midGap: clamp(num("midGap", 2.5), 0, 5),
+    boxTop: clamp(num("boxTop", 11.2), 0, 30),
+    fontSize: clamp(num("fontSize", 15), 10, 20),
+  };
+}
 
 function formatPostalDigits(postal: string): string {
   return postal.replace(/[^0-9]/g, "").slice(0, 7);
@@ -23,6 +69,9 @@ export default function PostPrintPage() {
   const [orientation, setOrientation] = useState<"vertical" | "horizontal">(
     "vertical",
   );
+  const [calib, setCalib] = useState<PostalCalib>(DEFAULT_CALIB);
+  const [showGuide, setShowGuide] = useState(false);
+  const [importText, setImportText] = useState("");
 
   useEffect(() => {
     try {
@@ -31,8 +80,29 @@ export default function PostPrintPage() {
     } catch {
       setData(null);
     }
+    // 保存済みのキャリブレーション値を読む
+    try {
+      if (typeof window !== "undefined") {
+        const c = localStorage.getItem(CAL_KEY);
+        if (c) setCalib(sanitizeCalib(JSON.parse(c)));
+      }
+    } catch {
+      /* 既定値のまま */
+    }
     setLoaded(true);
   }, []);
+
+  // 変更のたび保存
+  useEffect(() => {
+    if (!loaded) return;
+    try {
+      if (typeof window !== "undefined") {
+        localStorage.setItem(CAL_KEY, JSON.stringify(calib));
+      }
+    } catch {
+      /* 保存失敗は無視 */
+    }
+  }, [calib, loaded]);
 
   if (loaded && !data) {
     return (
@@ -53,9 +123,25 @@ export default function PostPrintPage() {
   const postal = data ? formatPostalDigits(data.postal) : "";
   const vertical = orientation === "vertical";
 
+  const setField = (k: keyof PostalCalib, v: number) =>
+    setCalib((c) => ({ ...c, [k]: v }));
+  const nudge = (k: "offsetX" | "offsetY", delta: number) =>
+    setCalib((c) => ({
+      ...c,
+      [k]: clamp(round1(c[k] + delta), k === "offsetY" ? -30 : -20, k === "offsetY" ? 30 : 20),
+    }));
+
+  // 各桁の中心X(mm)。3+4分割なので index2 と 3 の間に midGap。
+  const cx = (i: number) =>
+    calib.firstCenter + i * calib.pitch + (i >= 3 ? calib.midGap : 0);
+
+  const nudgeBtn =
+    "rounded border border-neutral-300 bg-white px-3 py-1 text-sm text-neutral-700 hover:bg-neutral-50";
+  const numInput =
+    "w-20 rounded border border-neutral-300 px-2 py-1 text-sm";
+
   return (
     <>
-      {/* 印刷時は封筒(#envelope)以外を隠し、用紙サイズを長形3号にする */}
       <style>{`
         @media print {
           @page { size: 120mm 235mm; margin: 0; }
@@ -67,51 +153,211 @@ export default function PostPrintPage() {
             box-shadow: none !important; border: none !important;
           }
           .no-print { display: none !important; }
+          .postal-cell { outline: none !important; }
         }
+        /* 画面プレビュー用: 郵便番号セルの当たりを薄く表示（印刷はされない） */
+        .postal-cell { outline: 0.2mm dashed rgba(200,0,0,0.35); }
       `}</style>
 
       {/* 画面用の操作バー（印刷されない） */}
-      <div className="no-print mx-auto flex max-w-2xl flex-wrap items-center gap-3 px-5 py-6">
-        <button
-          type="button"
-          onClick={() => window.print()}
-          className="rounded-md bg-neutral-800 px-5 py-2 text-sm font-medium text-white hover:bg-neutral-700"
-        >
-          印刷する
-        </button>
-        <Link
-          href="/post/"
-          className="rounded-md border border-neutral-300 px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-50"
-        >
-          入力に戻る
-        </Link>
-        <div className="inline-flex overflow-hidden rounded-md border border-neutral-300">
+      <div className="no-print mx-auto max-w-2xl px-5 py-6">
+        <div className="flex flex-wrap items-center gap-3">
           <button
             type="button"
-            onClick={() => setOrientation("vertical")}
-            className={`px-4 py-2 text-sm ${
-              vertical
-                ? "bg-neutral-800 text-white"
-                : "bg-white text-neutral-700 hover:bg-neutral-50"
-            }`}
+            onClick={() => window.print()}
+            className="rounded-md bg-neutral-800 px-5 py-2 text-sm font-medium text-white hover:bg-neutral-700"
           >
-            縦書き
+            印刷する
           </button>
-          <button
-            type="button"
-            onClick={() => setOrientation("horizontal")}
-            className={`px-4 py-2 text-sm ${
-              !vertical
-                ? "bg-neutral-800 text-white"
-                : "bg-white text-neutral-700 hover:bg-neutral-50"
-            }`}
+          <Link
+            href="/post/"
+            className="rounded-md border border-neutral-300 px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-50"
           >
-            横書き
-          </button>
+            入力に戻る
+          </Link>
+          <div className="inline-flex overflow-hidden rounded-md border border-neutral-300">
+            <button
+              type="button"
+              onClick={() => setOrientation("vertical")}
+              className={`px-4 py-2 text-sm ${
+                vertical
+                  ? "bg-neutral-800 text-white"
+                  : "bg-white text-neutral-700 hover:bg-neutral-50"
+              }`}
+            >
+              縦書き
+            </button>
+            <button
+              type="button"
+              onClick={() => setOrientation("horizontal")}
+              className={`px-4 py-2 text-sm ${
+                !vertical
+                  ? "bg-neutral-800 text-white"
+                  : "bg-white text-neutral-700 hover:bg-neutral-50"
+              }`}
+            >
+              横書き
+            </button>
+          </div>
+          <span className="w-full text-xs text-neutral-400 sm:w-auto">
+            長形3号（120×235mm）。用紙は「長形3号（手差し）」に設定。
+          </span>
         </div>
-        <span className="w-full text-xs text-neutral-400 sm:w-auto">
-          長形3号（120×235mm）。プリンタの用紙を「長形3号（手差し）」に設定してください。
-        </span>
+
+        {/* 郵便番号の位置合わせ（キャリブレーション） */}
+        <details className="mt-4 rounded-md border border-neutral-200 bg-neutral-50 p-4">
+          <summary className="cursor-pointer text-sm font-medium text-neutral-700">
+            郵便番号の位置合わせ
+          </summary>
+
+          <p className="mt-3 text-xs text-red-600">
+            印刷は「倍率100%・用紙に合わせるOFF・ブラウザズーム100%」で。最終確認は無地紙に1枚テスト印刷し、封筒に重ねて透かして矢印で合わせ、保存してください（保存はこの端末に残ります）。
+          </p>
+
+          <div className="mt-4 flex flex-wrap items-center gap-6">
+            <div className="flex items-center gap-2">
+              <span className="text-sm text-neutral-600">左右</span>
+              <button type="button" className={nudgeBtn} onClick={() => nudge("offsetX", -0.5)}>
+                ◀ 左へ
+              </button>
+              <span className="w-16 text-center text-sm tabular-nums">
+                X {calib.offsetX > 0 ? "+" : ""}
+                {calib.offsetX.toFixed(1)}mm
+              </span>
+              <button type="button" className={nudgeBtn} onClick={() => nudge("offsetX", 0.5)}>
+                右へ ▶
+              </button>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-sm text-neutral-600">上下</span>
+              <button type="button" className={nudgeBtn} onClick={() => nudge("offsetY", -0.5)}>
+                ▲ 上へ
+              </button>
+              <span className="w-16 text-center text-sm tabular-nums">
+                Y {calib.offsetY > 0 ? "+" : ""}
+                {calib.offsetY.toFixed(1)}mm
+              </span>
+              <button type="button" className={nudgeBtn} onClick={() => nudge("offsetY", 0.5)}>
+                下へ ▼
+              </button>
+            </div>
+            <button
+              type="button"
+              className={nudgeBtn}
+              onClick={() => setCalib((c) => ({ ...c, offsetX: 0, offsetY: 0 }))}
+            >
+              位置を既定に戻す
+            </button>
+            <label className="flex items-center gap-2 text-sm text-neutral-600">
+              <input
+                type="checkbox"
+                checked={showGuide}
+                onChange={(e) => setShowGuide(e.target.checked)}
+              />
+              ガイド枠を印字（枠が無い封筒用）
+            </label>
+          </div>
+
+          {/* 詳細設定（初回のみ） */}
+          <details className="mt-4">
+            <summary className="cursor-pointer text-xs text-neutral-500">
+              詳細設定（初回のみ・枠のピッチ等）
+            </summary>
+            <div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-3">
+              <label className="text-xs text-neutral-600">
+                1枠目中心(mm)
+                <input
+                  type="number"
+                  step={0.5}
+                  value={calib.firstCenter}
+                  onChange={(e) => setField("firstCenter", clamp(parseFloat(e.target.value), 55, 80))}
+                  className={numInput}
+                />
+              </label>
+              <label className="text-xs text-neutral-600">
+                枠ピッチ(mm)
+                <input
+                  type="number"
+                  step={0.1}
+                  value={calib.pitch}
+                  onChange={(e) => setField("pitch", clamp(parseFloat(e.target.value), 6.5, 8.5))}
+                  className={numInput}
+                />
+              </label>
+              <label className="text-xs text-neutral-600">
+                中央間隔(mm)
+                <input
+                  type="number"
+                  step={0.1}
+                  value={calib.midGap}
+                  onChange={(e) => setField("midGap", clamp(parseFloat(e.target.value), 0, 5))}
+                  className={numInput}
+                />
+              </label>
+              <label className="text-xs text-neutral-600">
+                枠上端(mm)
+                <input
+                  type="number"
+                  step={0.5}
+                  value={calib.boxTop}
+                  onChange={(e) => setField("boxTop", clamp(parseFloat(e.target.value), 0, 30))}
+                  className={numInput}
+                />
+              </label>
+              <label className="text-xs text-neutral-600">
+                文字サイズ(pt)
+                <input
+                  type="number"
+                  step={1}
+                  value={calib.fontSize}
+                  onChange={(e) => setField("fontSize", clamp(parseFloat(e.target.value), 10, 20))}
+                  className={numInput}
+                />
+              </label>
+            </div>
+
+            <div className="mt-4">
+              <p className="text-xs text-neutral-500">
+                設定値（別端末へ引き継ぐ場合はコピー / 貼り付けて「適用」）
+              </p>
+              <textarea
+                readOnly
+                value={JSON.stringify(calib)}
+                rows={2}
+                className="mt-1 w-full rounded border border-neutral-300 p-2 text-xs"
+              />
+              <div className="mt-2 flex gap-2">
+                <textarea
+                  placeholder="ここに設定JSONを貼り付け"
+                  value={importText}
+                  onChange={(e) => setImportText(e.target.value)}
+                  rows={2}
+                  className="flex-1 rounded border border-neutral-300 p-2 text-xs"
+                />
+                <button
+                  type="button"
+                  className={nudgeBtn}
+                  onClick={() => {
+                    try {
+                      setCalib(sanitizeCalib(JSON.parse(importText)));
+                    } catch {
+                      /* 無効なJSONは無視 */
+                    }
+                  }}
+                >
+                  適用
+                </button>
+              </div>
+              <button
+                type="button"
+                className={`${nudgeBtn} mt-2`}
+                onClick={() => setCalib(DEFAULT_CALIB)}
+              >
+                すべて既定値に戻す
+              </button>
+            </div>
+          </details>
+        </details>
       </div>
 
       {/* 長形3号の封筒レイアウト */}
@@ -152,30 +398,40 @@ export default function PostPrintPage() {
             ロゴ帯（この範囲には印刷しません）
           </div>
 
-          {/* 郵便番号（上部・封筒の郵便番号枠に各桁を合わせる。3桁＋間隔＋4桁） */}
+          {/* 郵便番号：左端原点の各桁絶対配置＋ラッパで機体オフセット補正 */}
           {postal && (
             <div
               style={{
                 position: "absolute",
-                top: "11.2mm",
-                right: "6mm",
-                display: "flex",
-                fontSize: "15pt",
+                top: 0,
+                left: 0,
+                transform: `translate(${calib.offsetX}mm, ${calib.offsetY}mm)`,
               }}
             >
               {postal.split("").map((d, i) => (
-                <span
+                <div
                   key={i}
+                  className="postal-cell"
                   style={{
-                    display: "inline-block",
-                    width: "7mm",
-                    textAlign: "center",
-                    // 3桁目と4桁目の間（郵便番号の区切り）に間隔を空ける
-                    marginLeft: i === 3 ? "3mm" : 0,
+                    position: "absolute",
+                    left: `${cx(i)}mm`,
+                    top: `${calib.boxTop}mm`,
+                    transform: "translateX(-50%)",
+                    width: `${calib.pitch}mm`,
+                    height: "8mm",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontSize: `${calib.fontSize}pt`,
+                    fontFamily:
+                      'ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace',
+                    fontVariantNumeric: "tabular-nums",
+                    // 枠が無い封筒のときだけ実印字するガイド枠
+                    border: showGuide ? "0.3mm solid #888" : undefined,
                   }}
                 >
                   {d}
-                </span>
+                </div>
               ))}
             </div>
           )}
