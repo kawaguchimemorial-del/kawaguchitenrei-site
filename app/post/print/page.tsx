@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import type { EnvelopeData } from "../page";
 
 const STORAGE_KEY = "post-print-envelope";
-const CAL_KEY = "post-print-postal-calib-cho3-v1";
+const CAL_KEY = "post-print-postal-calib-cho3-v2";
 
 // 郵便番号の位置合わせ（キャリブレーション）
 // 規格由来のジオメトリ(firstCenter/pitch/midGap/boxTop)＋機体依存の並進(offsetX/offsetY)を分離。
@@ -25,8 +25,8 @@ const DEFAULT_CALIB: PostalCalib = {
   offsetY: 0,
   firstCenter: 65,
   pitch: 7.6,
-  midGap: 2.5,
-  boxTop: 11.2,
+  midGap: 2.2,
+  boxTop: 34.2,
   fontSize: 15,
 };
 
@@ -46,8 +46,8 @@ function sanitizeCalib(input: unknown): PostalCalib {
     offsetY: clamp(num("offsetY", 0), -30, 30),
     firstCenter: clamp(num("firstCenter", 65), 55, 80),
     pitch: clamp(num("pitch", 7.6), 6.5, 8.5),
-    midGap: clamp(num("midGap", 2.5), 0, 5),
-    boxTop: clamp(num("boxTop", 11.2), 0, 30),
+    midGap: clamp(num("midGap", 2.2), 0, 5),
+    boxTop: clamp(num("boxTop", 34.2), 0, 60),
     fontSize: clamp(num("fontSize", 15), 10, 20),
   };
 }
@@ -365,7 +365,7 @@ export default function PostPrintPage() {
                   type="number"
                   step={0.5}
                   value={calib.boxTop}
-                  onChange={(e) => setField("boxTop", clamp(parseFloat(e.target.value), 0, 30))}
+                  onChange={(e) => setField("boxTop", clamp(parseFloat(e.target.value), 0, 60))}
                   className={numInput}
                 />
               </label>
@@ -507,10 +507,10 @@ export default function PostPrintPage() {
               <div
                 style={{
                   position: "absolute",
-                  top: "30mm",
+                  top: "50mm",
                   right: "13mm",
-                  // 下60mm(ロゴ帯)を避け、上175mm以内に収める（30+145=175）
-                  maxHeight: "145mm",
+                  // 下60mm(ロゴ帯)を避け、上175mm以内に収める（50+125=175）
+                  maxHeight: "125mm",
                   overflow: "hidden",
                   writingMode: "vertical-rl",
                   fontSize: "13.5pt",
