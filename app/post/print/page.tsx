@@ -177,6 +177,25 @@ export default function PostPrintPage() {
   const postal = data ? formatPostalDigits(data.postal) : "";
   const vertical = orientation === "vertical";
 
+  // 住所フォント: 大きめ(17pt)を基準に、入りきらないときだけ字数に応じて縮小。
+  // 住所は文字構成が安定しているため字数ベースで十分（最小10pt）。
+  const ADDR_MAX = 17;
+  const ADDR_MIN = 10;
+  const ADDR_AVAIL_MM = 118; // top50mm + 125mm = 175mm(ロゴ帯上端)に収める余裕
+  const addrChars = data
+    ? Math.max(
+        [...data.address1].length,
+        data.address2 ? [...data.address2].length + 2 : 0,
+      )
+    : 0;
+  const addressFontPt =
+    addrChars > 0
+      ? Math.min(
+          ADDR_MAX,
+          Math.max(ADDR_MIN, Math.floor(ADDR_AVAIL_MM / (addrChars * 0.37))),
+        )
+      : ADDR_MAX;
+
   const setField = (k: keyof PostalCalib, v: number) =>
     setCalib((c) => ({ ...c, [k]: v }));
   const nudge = (k: "offsetX" | "offsetY", delta: number) =>
@@ -513,7 +532,7 @@ export default function PostPrintPage() {
                   maxHeight: "125mm",
                   overflow: "hidden",
                   writingMode: "vertical-rl",
-                  fontSize: "13.5pt",
+                  fontSize: `${addressFontPt}pt`,
                   lineHeight: 1.55,
                 }}
               >
