@@ -13,6 +13,48 @@ export type EnvelopeData = {
 
 const STORAGE_KEY = "post-print-envelope";
 
+type ZipcloudResult = {
+  address1: string;
+  address2: string;
+  address3: string;
+};
+type ZipcloudResponse = { results: ZipcloudResult[] | null };
+
+// zipcloud は通常の fetch を CORS 許可しないため JSONP（script タグ）で呼び出す。
+function jsonpZipcloud(zip: string): Promise<ZipcloudResponse> {
+  return new Promise((resolve, reject) => {
+    const cb = `__zipcloud_cb_${Math.floor(Math.random() * 1e9)}`;
+    const script = document.createElement("script");
+    let done = false;
+    const cleanup = () => {
+      done = true;
+      delete (window as unknown as Record<string, unknown>)[cb];
+      script.remove();
+      clearTimeout(timer);
+    };
+    const timer = setTimeout(() => {
+      if (!done) {
+        cleanup();
+        reject(new Error("timeout"));
+      }
+    }, 8000);
+    (window as unknown as Record<string, unknown>)[cb] = (
+      data: ZipcloudResponse,
+    ) => {
+      if (done) return;
+      cleanup();
+      resolve(data);
+    };
+    script.onerror = () => {
+      if (done) return;
+      cleanup();
+      reject(new Error("script error"));
+    };
+    script.src = `https://zipcloud.acknowledge.jp/api/search?zipcode=${zip}&callback=${cb}`;
+    document.body.appendChild(script);
+  });
+}
+
 export default function PostPage() {
   const router = useRouter();
   const [postal, setPostal] = useState("");
@@ -33,10 +75,7 @@ export default function PostPage() {
     }
     setLookupState("loading");
     try {
-      const res = await fetch(
-        `https://zipcloud.acknowledge.jp/api/search?zipcode=${zip}`,
-      );
-      const json = await res.json();
+      const json = await jsonpZipcloud(zip);
       const r = json?.results?.[0];
       if (r) {
         setAddress1(`${r.address1}${r.address2}${r.address3}`);
