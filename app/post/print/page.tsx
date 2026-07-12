@@ -179,10 +179,13 @@ export default function PostPrintPage() {
   const ADDR_MAX = 17;
   const ADDR_MIN = 10;
   const ADDR_AVAIL_MM = 118; // top50mm + 125mm = 175mm(ロゴ帯上端)に収める余裕
+  // 主住所＝住所1(都道府県・市区町村)＋住所2(番地) を1列、住所3(建物名)を2列目に。
+  const addrMain = data ? `${data.address1}${data.address2 ?? ""}` : "";
+  const addrBuilding = data?.address3 ?? "";
   const addrChars = data
     ? Math.max(
-        [...data.address1].length,
-        data.address2 ? [...data.address2].length + 2 : 0,
+        [...addrMain].length,
+        addrBuilding ? [...addrBuilding].length + 2 : 0,
       )
     : 0;
   const addressFontPt =
@@ -205,12 +208,19 @@ export default function PostPrintPage() {
     : (data?.name ?? "");
   // 敬称: 個人→様 / 会社(担当者あり)→担当者に様 / 会社(担当者なし)→会社名に御中
   const honorific = isCompany ? (hasContact ? "様" : "御中") : "様";
-  // 2列表示する会社名（担当者ありのときのみ・右側・小さめ）
+  // 2列表示する会社名（担当者ありのとき・右側）。
+  // 会社名は担当者名と同等〜やや大きめに揃える。長い社名は列の高さ(120mm)に
+  // 収まる上限で頭打ちにする（字数ベースの実測近似）。
   const companyChars = hasContact ? [...(data?.name ?? "")].length : 0;
   const companyPt =
     companyChars > 0
-      ? Math.min(16, Math.max(10, Math.floor(115 / (companyChars * 0.37))))
+      ? Math.min(30, Math.max(13, Math.floor(120 / (companyChars * 0.4))))
       : 16;
+  // 担当者名の表示サイズ。担当者ありのときは会社名よりわずかに小さく揃える
+  // （＝会社名がやや大きめ）。単独表示（個人/会社御中）のときは従来の自動縮小。
+  const contactPt = hasContact
+    ? Math.max(13, Math.min(nameFontPt, companyPt - 1))
+    : nameFontPt;
 
   const setField = (k: keyof PostalCalib, v: number) =>
     setCalib((c) => ({ ...c, [k]: v }));
@@ -558,10 +568,10 @@ export default function PostPrintPage() {
                   lineHeight: 1.55,
                 }}
               >
-                <div>{data && toZenkaku(data.address1)}</div>
-                {data?.address2 && (
+                <div>{toZenkaku(addrMain)}</div>
+                {addrBuilding && (
                   <div style={{ paddingTop: "8mm" }}>
-                    {toZenkaku(data.address2)}
+                    {toZenkaku(addrBuilding)}
                   </div>
                 )}
               </div>
@@ -589,7 +599,7 @@ export default function PostPrintPage() {
                     gap: "3mm",
                   }}
                 >
-                  {/* 会社名（担当者ありのときのみ・右側・小さめ） */}
+                  {/* 会社名（担当者ありのときのみ・右側・担当者名と同等〜やや大きめ） */}
                   {hasContact && (
                     <div
                       style={{
@@ -603,12 +613,12 @@ export default function PostPrintPage() {
                       {data?.name}
                     </div>
                   )}
-                  {/* 主宛名（大きく）＋敬称 */}
+                  {/* 主宛名＋敬称（担当者ありのときは会社名とバランスを揃える） */}
                   <div
                     ref={nameRef}
                     style={{
                       writingMode: "vertical-rl",
-                      fontSize: `${nameFontPt}pt`,
+                      fontSize: `${contactPt}pt`,
                       letterSpacing: "0.12em",
                       maxHeight: "120mm",
                       // 単列固定＋クリップ。自動縮小が効くので通常は切れないが最終保険。
@@ -639,8 +649,8 @@ export default function PostPrintPage() {
                   lineHeight: 1.7,
                 }}
               >
-                <div>{data?.address1}</div>
-                {data?.address2 && <div>{data.address2}</div>}
+                <div>{addrMain}</div>
+                {addrBuilding && <div>{addrBuilding}</div>}
               </div>
               <div
                 style={{

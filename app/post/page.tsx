@@ -6,8 +6,9 @@ import { useState } from "react";
 export type RecipientType = "individual" | "company";
 export type EnvelopeData = {
   postal: string;
-  address1: string;
-  address2: string;
+  address1: string; // 都道府県・市区町村（郵便番号から自動入力）
+  address2: string; // 番地
+  address3: string; // 建物名・部屋番号（任意）
   recipientType: RecipientType;
   name: string; // 個人名 または 会社名
   contactName: string; // 会社の担当者名（任意）
@@ -15,53 +16,12 @@ export type EnvelopeData = {
 
 const STORAGE_KEY = "post-print-envelope";
 
-type ZipcloudResult = {
-  address1: string;
-  address2: string;
-  address3: string;
-};
-type ZipcloudResponse = { results: ZipcloudResult[] | null };
-
-// zipcloud は通常の fetch を CORS 許可しないため JSONP（script タグ）で呼び出す。
-function jsonpZipcloud(zip: string): Promise<ZipcloudResponse> {
-  return new Promise((resolve, reject) => {
-    const cb = `__zipcloud_cb_${Math.floor(Math.random() * 1e9)}`;
-    const script = document.createElement("script");
-    let done = false;
-    const cleanup = () => {
-      done = true;
-      delete (window as unknown as Record<string, unknown>)[cb];
-      script.remove();
-      clearTimeout(timer);
-    };
-    const timer = setTimeout(() => {
-      if (!done) {
-        cleanup();
-        reject(new Error("timeout"));
-      }
-    }, 8000);
-    (window as unknown as Record<string, unknown>)[cb] = (
-      data: ZipcloudResponse,
-    ) => {
-      if (done) return;
-      cleanup();
-      resolve(data);
-    };
-    script.onerror = () => {
-      if (done) return;
-      cleanup();
-      reject(new Error("script error"));
-    };
-    script.src = `https://zipcloud.acknowledge.jp/api/search?zipcode=${zip}&callback=${cb}`;
-    document.body.appendChild(script);
-  });
-}
-
 export default function PostPage() {
   const router = useRouter();
   const [postal, setPostal] = useState("");
   const [address1, setAddress1] = useState("");
   const [address2, setAddress2] = useState("");
+  const [address3, setAddress3] = useState("");
   const [name, setName] = useState("");
   const [recipientType, setRecipientType] =
     useState<RecipientType>("individual");
@@ -69,8 +29,12 @@ export default function PostPage() {
   const [lookupState, setLookupState] = useState<
     "idle" | "loading" | "notfound" | "error"
   >("idle");
+  const [reverseState, setReverseState] = useState<
+    "idle" | "loading" | "notfound" | "error"
+  >("idle");
 
-  // 郵便番号から住所（都道府県+市区町村+町域）を自動入力する。番地・建物は手入力。
+  // 郵便番号 → 住所。ブラウザから外部APIを直接叩くと CORS 等で失敗するため、
+  // 同一オリジンのサーバAPI(/api/postal/lookup)経由で取得する。
   async function lookupPostal() {
     const zip = postal.replace(/[^0-9]/g, "");
     if (zip.length !== 7) {
@@ -78,29 +42,13 @@ export default function PostPage() {
       return;
     }
     setLookupState("loading");
-
-    // 1) zipaddress.net（CORS 対応の通常 fetch）を第1候補にする。
     try {
-      const res = await fetch(`https://api.zipaddress.net/?zipcode=${zip}`);
-      const json = (await res.json()) as {
-        code?: number;
-        data?: { fullAddress?: string };
-      };
-      if (json?.code === 200 && json.data?.fullAddress) {
-        setAddress1(json.data.fullAddress);
-        setLookupState("idle");
-        return;
-      }
-    } catch {
-      // 続けて zipcloud を試す
-    }
-
-    // 2) 予備: zipcloud（JSONP）
-    try {
-      const json = await jsonpZipcloud(zip);
-      const r = json?.results?.[0];
-      if (r) {
-        setAddress1(`${r.address1}${r.address2}${r.address3}`);
+      const res = await fetch(`/api/postal/lookup?zip=${zip}`);
+      const json = (await res.json()) as
+        | { ok: true; address: string }
+        | { ok: false; reason: string };
+      if (json.ok && json.address) {
+        setAddress1(json.address);
         setLookupState("idle");
       } else {
         setLookupState("notfound");
@@ -110,12 +58,39 @@ export default function PostPage() {
     }
   }
 
+  // 住所 → 郵便番号（逆引き）。入力済みの住所から郵便番号を推定して補完する。
+  async function reverseLookup() {
+    const q = address1.trim();
+    if (q.length < 4) {
+      setReverseState("notfound");
+      return;
+    }
+    setReverseState("loading");
+    try {
+      const res = await fetch(
+        `/api/postal/reverse?q=${encodeURIComponent(q)}`,
+      );
+      const json = (await res.json()) as
+        | { ok: true; zip: string }
+        | { ok: false; reason: string };
+      if (json.ok && json.zip) {
+        setPostal(json.zip.replace(/[^0-9]/g, "").slice(0, 7));
+        setReverseState("idle");
+      } else {
+        setReverseState("notfound");
+      }
+    } catch {
+      setReverseState("error");
+    }
+  }
+
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     const data: EnvelopeData = {
       postal: postal.replace(/[^0-9]/g, ""),
       address1: address1.trim(),
       address2: address2.trim(),
+      address3: address3.trim(),
       recipientType,
       name: name.trim(),
       contactName: recipientType === "company" ? contactName.trim() : "",
@@ -153,11 +128,21 @@ export default function PostPage() {
               inputMode="numeric"
               autoComplete="off"
               value={postal}
-              onChange={(e) => setPostal(e.target.value)}
+              maxLength={8}
+              onChange={(e) => {
+                // 数字のみ・最大7桁に制限（全角数字は半角化）
+                const digits = e.target.value
+                  .replace(/[０-９]/g, (c) =>
+                    String.fromCharCode(c.charCodeAt(0) - 0xfee0),
+                  )
+                  .replace(/[^0-9]/g, "")
+                  .slice(0, 7);
+                setPostal(digits);
+              }}
               onBlur={() => {
                 if (postal.replace(/[^0-9]/g, "").length === 7) lookupPostal();
               }}
-              placeholder="1000001（ハイフンなし可）"
+              placeholder="1000001（ハイフンなし7桁）"
               className="w-40 rounded-md border border-neutral-300 px-3 py-2 text-sm focus:border-neutral-500 focus:outline-none"
             />
             <button
@@ -166,6 +151,14 @@ export default function PostPage() {
               className="rounded-md border border-neutral-300 bg-neutral-50 px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-100"
             >
               住所を自動入力
+            </button>
+            <button
+              type="button"
+              onClick={reverseLookup}
+              title="下の住所欄から郵便番号を逆引きします"
+              className="rounded-md border border-neutral-300 bg-neutral-50 px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-100"
+            >
+              住所→郵便番号
             </button>
           </div>
           {lookupState === "loading" && (
@@ -181,45 +174,78 @@ export default function PostPage() {
               住所の取得に失敗しました。住所を手入力してください。
             </p>
           )}
+          {reverseState === "loading" && (
+            <p className="mt-1 text-xs text-neutral-500">
+              郵便番号を逆引き中…
+            </p>
+          )}
+          {reverseState === "notfound" && (
+            <p className="mt-1 text-xs text-amber-600">
+              郵便番号が特定できませんでした。下の住所欄に「都道府県＋市区町村＋町名」まで入力してお試しください。
+            </p>
+          )}
+          {reverseState === "error" && (
+            <p className="mt-1 text-xs text-amber-600">
+              郵便番号の逆引きに失敗しました。時間をおいてお試しください。
+            </p>
+          )}
         </div>
 
-        {/* 住所 */}
+        {/* 住所1（都道府県・市区町村） */}
         <div>
           <label
             htmlFor="address1"
             className="block text-sm font-medium text-neutral-700"
           >
-            住所（都道府県・市区町村・番地）
+            住所1（都道府県・市区町村）
           </label>
           <input
             id="address1"
             autoComplete="off"
             value={address1}
             onChange={(e) => setAddress1(e.target.value)}
-            placeholder="埼玉県川口市西新井宿440-1"
+            placeholder="埼玉県川口市西新井宿"
             className="mt-1 w-full rounded-md border border-neutral-300 px-3 py-2 text-sm focus:border-neutral-500 focus:outline-none"
           />
           <p className="mt-1 text-xs text-neutral-500">
-            郵便番号から町域まで自動入力されます。番地はご入力ください。
+            郵便番号から町域まで自動入力されます。逆に、住所1を入力して「住所→郵便番号」を押すと郵便番号を補完できます。
           </p>
         </div>
 
-        {/* 住所2 */}
+        {/* 住所2（番地） */}
         <div>
           <label
             htmlFor="address2"
             className="block text-sm font-medium text-neutral-700"
           >
-            住所2（建物名・部屋番号）
-            <span className="ml-1 text-xs font-normal text-neutral-400">
-              任意
-            </span>
+            住所2（番地）
           </label>
           <input
             id="address2"
             autoComplete="off"
             value={address2}
             onChange={(e) => setAddress2(e.target.value)}
+            placeholder="440-1"
+            className="mt-1 w-full rounded-md border border-neutral-300 px-3 py-2 text-sm focus:border-neutral-500 focus:outline-none"
+          />
+        </div>
+
+        {/* 住所3（建物名・部屋番号） */}
+        <div>
+          <label
+            htmlFor="address3"
+            className="block text-sm font-medium text-neutral-700"
+          >
+            住所3（建物名・部屋番号）
+            <span className="ml-1 text-xs font-normal text-neutral-400">
+              任意
+            </span>
+          </label>
+          <input
+            id="address3"
+            autoComplete="off"
+            value={address3}
+            onChange={(e) => setAddress3(e.target.value)}
             placeholder="○○マンション 101号室"
             className="mt-1 w-full rounded-md border border-neutral-300 px-3 py-2 text-sm focus:border-neutral-500 focus:outline-none"
           />
