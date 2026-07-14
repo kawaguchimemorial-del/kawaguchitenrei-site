@@ -35,6 +35,21 @@
 
   <ul class="list">
     <li>
+      <span class="date">2026-07-14</span>
+      <a href="./2026-07-14-seo-cannibalization-10expert-fix.html">SEO打ち手 10専門家パネル→実装（カニバリ解消：トップtitle差別化）</a>
+      <span class="desc">7/14測定の打ち手を10専門家が各々他9名に反論し議論→「6日窓で核ページを乱いじりせず、構造的に確実な一手だけ実装」で収束。核心=カニバリ解消：トップtitle「川口市の葬儀・家族葬」が/plan/family-funeral(title「川口市の家族葬」)と同語競合しGoogleがトップ優先→専用ページが上がらず「川口 家族葬」9→22位下落。実装(M1)=app/page.tsxのtitleを「川口市の葬儀・葬儀社なら川口典礼｜創業20年・24時間365日対応」に変更し家族葬完全一致を専用ページへ譲渡・川口市葬儀7位は維持・CTR訴求付加。M2(コラム商用回遊)=訃報/検視は既存リンク十分・香典は参列者向けで押し売りせず=検証のみ。M3(受け皿語所有)=family/area とも完全一致titleを既所有=検証のみ。build成功・型エラーなし。off-page(GBP/MEO/本物の口コミ)と次回GSCでのM1単独効果測定は人手の宿題として分離。※実装はtitle1点(§19.1・未push)。</span>
+    </li>
+    <li>
+      <span class="date">2026-07-14</span>
+      <a href="./2026-07-14-seo-gsc-measurement-report.html">SEO効果測定レポート（GSC実データ・7/6–7/11 vs 6/30–7/5）</a>
+      <span class="desc">GSC自動取得(確定最新7/11)による成果測定。全体=表示1,200〜1,750/日に対しクリック4〜23/日・平均順位10〜13位・CTR0.3〜1.7%（露出はあるが上位一歩手前）。重要KW：川口典礼1.8→1.0(指名盤石)、川口市 葬儀 表示350/7.0位/クリック1、川口 葬儀 135/11.7/0、川口市 家族葬 98/20.2/0、川口 家族葬 表示37で9.2→22.1と大幅下落。所見①クリック上位は情報系コラム(訃報返信658・検視262・香典)が牽引＝商用と乖離、②商用ローカルKWは表示されるのに1ページ上位に届かずクリック0、③家族葬含む主要商用KWが直近下落、④受け皿ズレ(川口葬儀/家族葬でトップが表示され専用ページ/area/plan不表示)。改善面=めぐりの森25.1・川口市葬儀場9.3・ロングテール(急な葬儀対応2.4位)。打ち手優先=①川口家族葬の下落原因調査②受け皿ズレ是正③あと一歩KWの上位化(off-page/GBP/口コミ)④CTR最適化⑤コラム集客の商用回遊。※分析のみ・コード変更なし。出力=tmp/seo-analysis-2026-07-14/。</span>
+    </li>
+    <li>
+      <span class="date">2026-07-12</span>
+      <a href="./2026-07-12-seo-aio-llmo-midterm-check.html">SEO/AIO/LLMO 中間チェック（7/14効果測定の2日前・実装状況スナップショット）</a>
+      <span class="desc">リポジトリ実装の静的監査。SEO=A（44ページ/metadata41/canonical41/OG34/JSON-LD35・エリア15・sitemap/robots動的）、AIO=A−（FAQPage25・結論先出し・基本情報表・BreadcrumbList33・FuneralHome18/Offer5・個別Review）、LLMO=A（public/llms.txt完備「運営者確認の事実のみ」・エンティティ/料金/誤認注記明記・robots*でAIクローラ許可、/post・/admin除外）。off-page/運用=C+が今後の主戦場。特記：aggregateRatingは現行コードでサイト全体出力なし（個別Reviewのみ・安全側で妥当、過去メモの★4.5/27件は現状未出力）。禁止表現の混入なし。成果値（順位/表示回数/AI引用）は含まず7/14にGSC/GA4/AI目視で取得予定。※分析のみ・コード変更なし。</span>
+    </li>
+    <li>
       <span class="date">2026-07-06</span>
       <a href="./2026-07-06-post-envelope-print-tool.html">封筒宛名印刷ツール /post 新設（社内用・検索非公開）</a>
       <span class="desc">長形3号(120×235mm)封筒に宛名を印刷する社内専用ツールを新設。app/post/layout.tsx(server・robots noindex/nofollow/nocache/googleBot無効)で/post配下を検索除外。app/post/page.tsx(client)=郵便番号→zipcloud API(キー不要)で都道府県+市区町村+町域を自動入力(7桁onBlur＋ボタン・失敗時手入力フォールバック)、住所/住所2(建物・部屋番号・任意)/宛名/敬称(様・御中選択)、印刷確定でsessionStorage保存し/post/print/へ遷移。app/post/print/page.tsx(client)=長形3号レイアウト描画・window.print()・@page size120mm 235mm margin0・印刷時は封筒(#envelope)以外非表示(ヘッダ等も隠す)・横書きで〒郵便番号→住所→宛名+敬称(中央大きめ)・データ無時は入力へ戻る導線。app/robots.tsのdisallowに/post追加(noindexと二重除外)。プライバシー=宛先(住所氏名)はブラウザ内sessionStorageのみ保持しWebhook/API/サーバへ送信・ログ出力しない、外部通信は郵便番号→住所のzipcloud参照のみ。保護ファイル(Header/Footer/MobileBottomCTA/package.json)未変更・依存追加なし。build成功135→137(いずれもstatic・noindex)・型エラーなし。実機動作(自動入力・印刷)はnpm run dev→/post/で確認。</span>

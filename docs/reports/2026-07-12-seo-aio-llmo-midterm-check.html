@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SEO / AIO / LLMO 中間チェック（2026-07-12）</title>
+<style>
+  :root{--ink:#23201c;--sub:#6b645c;--line:#e4ddd3;--bg:#fbf9f5;--accent:#7a5c3e;--warn:#a3402f;--good:#3d6b4a;--card:#fff;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;line-height:1.85;font-size:15px}
+  .wrap{max-width:960px;margin:0 auto;padding:32px 22px 80px}
+  header.doc{border-bottom:3px solid var(--accent);padding-bottom:18px;margin-bottom:24px}
+  header.doc .tag{color:var(--accent);font-weight:700;letter-spacing:.12em;font-size:12px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:24px;margin:6px 0 4px;font-weight:700}
+  .meta{color:var(--sub);font-size:13px}
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:20px;margin:34px 0 12px;padding-left:12px;border-left:5px solid var(--accent)}
+  h3{font-size:16px;margin:18px 0 6px}
+  p{margin:8px 0}
+  .lead{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px 20px;margin:16px 0}
+  .cards{display:flex;flex-wrap:wrap;gap:12px;margin:16px 0}
+  .card{flex:1 1 200px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+  .card .grade{font-size:30px;font-weight:800}
+  .card .name{font-size:13px;color:var(--sub);letter-spacing:.05em}
+  .g-a{color:#2c7a4b}.g-b{color:#6b7a2c}.g-c{color:#a3402f}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13.5px;background:#fff}
+  th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+  th{background:#f2ece2}
+  td.n{text-align:right;white-space:nowrap}
+  .ok{color:var(--good);font-weight:700}.gap{color:var(--warn);font-weight:700}
+  ul{margin:8px 0 8px 1.2em;padding:0}li{margin:5px 0}
+  .verdict{background:#2b2620;color:#f5efe6;border-radius:12px;padding:22px 26px;margin:24px 0}
+  .verdict h2{color:#fff;border-left-color:#c9a978;margin-top:0}
+  .badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:4px;font-weight:700}
+  .b-do{background:#d9ead0;color:#2c5233}.b-hold{background:#f6e2b8;color:#7a5a12}.b-stop{background:#f3ccc4;color:#8a2c1d}
+  .note{font-size:12.5px;color:var(--sub)}
+  .foot{margin-top:36px;border-top:1px solid var(--line);padding-top:14px;color:var(--sub);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <div class="tag">社内レポート（docs/reports・非公開/noindex）</div>
+  <h1>SEO / AIO / LLMO 中間チェック</h1>
+  <div class="meta">作成：2026-07-12 ／ 効果測定（7/14）の2日前時点の実装状況スナップショット</div>
+</header>
+
+<div class="lead">
+  本レポートは、コード（リポジトリ）から検証できる<strong>「実装の状態」</strong>の中間チェック。順位・表示回数・AI引用回数などの<strong>成果指標は外部データ（GSC/GA4／AI検索の目視）</strong>が必要で、これは7/14の効果測定でまとめて取得する。<br>
+  結論：<strong>on-page SEO・AIO・LLMO の"土台"は高水準で完成している</strong>。伸ばす余地は主に「off-page（被リンク・口コミ・MEO）」と「継続運用（KW除外・データ検証）」側にある。
+</div>
+
+<div class="cards">
+  <div class="card"><div class="name">SEO（技術・on-page）</div><div class="grade g-a">A</div><div class="note">構造化・メタ・sitemap・内部リンクが網羅的</div></div>
+  <div class="card"><div class="name">AIO（AI検索/AI Overviews）</div><div class="grade g-a">A−</div><div class="note">FAQ・結論先出し・基本情報表が整備</div></div>
+  <div class="card"><div class="name">LLMO（LLM最適化）</div><div class="grade g-a">A</div><div class="note">llms.txt完備・事実の構造化・クローラ許可</div></div>
+  <div class="card"><div class="name">off-page / 運用</div><div class="grade g-c">C+</div><div class="note">被リンク・口コミ・継続KW運用が今後の主戦場</div></div>
+</div>
+
+<h2>1. SEO（技術・オンページ）＝ 完成度が高い</h2>
+<table>
+  <thead><tr><th>項目</th><th>状態</th><th>数値</th></tr></thead>
+  <tbody>
+    <tr><td>ページ数（page.tsx）</td><td class="ok">十分</td><td class="n">44</td></tr>
+    <tr><td>metadata（title/description）</td><td class="ok">ほぼ全ページ</td><td class="n">41 / 44</td></tr>
+    <tr><td>canonical 指定</td><td class="ok">網羅</td><td class="n">41</td></tr>
+    <tr><td>OGP（openGraph）</td><td class="ok">網羅</td><td class="n">34</td></tr>
+    <tr><td>構造化データ（JSON-LD）搭載</td><td class="ok">主要ページ全般</td><td class="n">35</td></tr>
+    <tr><td>sitemap.ts / robots.ts</td><td class="ok">動的生成・整備</td><td class="n">✓</td></tr>
+    <tr><td>エリアページ（地域SEO）</td><td class="ok">川口市内を面で網羅</td><td class="n">15</td></tr>
+    <tr><td>コンテンツ在庫（プラン/事例/コラム/声）</td><td class="ok">厚い</td><td class="n">9 / 13 / 46 / 32</td></tr>
+  </tbody>
+</table>
+<p class="note">metadata未設定の3ページ＝/admin/seo・/post・/post/print（いずれも社内用でnoindex。正しく除外済み）。</p>
+<h3>強み</h3>
+<ul>
+  <li>タイトル/説明文/canonical/OG が全公開ページで整い、<strong>技術SEOの抜けがほぼ無い</strong>。</li>
+  <li>エリア15ページで<strong>川口市内のロングテール（地名×サービス語）を面で押さえている</strong>（CLAUDE.md最優先の/area/*方針に合致）。</li>
+</ul>
+<h3>伸びしろ（gap）</h3>
+<ul>
+  <li class="gap">off-page（被リンク・サイテーション）：技術は満点でも、外部評価が伴わないと上位化が頭打ち。ここが今後の主戦場。</li>
+  <li>listing側の教訓（"川口 葬儀"等の主戦KW）を、自然検索でも取り切れているかは7/14のGSCで要確認。</li>
+</ul>
+
+<h2>2. AIO（AI検索・AI Overviews 最適化）＝ 良好</h2>
+<table>
+  <thead><tr><th>AIOの要件</th><th>実装</th></tr></thead>
+  <tbody>
+    <tr><td>FAQ 構造化（FAQPage/Question/Answer）</td><td class="ok">25ページに搭載（Question/Answer 各25）</td></tr>
+    <tr><td>結論先出し（要点ボックス）</td><td class="ok">プラン・エリア・事例・コラム・めぐりの森 等に配置</td></tr>
+    <tr><td>基本情報の明示（住所/電話/料金/対応エリア）</td><td class="ok">llms.txt・各ページで表・箇条書き化</td></tr>
+    <tr><td>パンくず（BreadcrumbList）</td><td class="ok">33ページ</td></tr>
+    <tr><td>施設・サービスの構造化（FuneralHome/Offer/Service）</td><td class="ok">FuneralHome 18・Offer 5・Service 2</td></tr>
+    <tr><td>お客様の声（Review：個別）</td><td class="ok">voice個別ページにReview/Rating</td></tr>
+  </tbody>
+</table>
+<h3>強み</h3>
+<ul>
+  <li>AIが回答生成時に拾いやすい<strong>「結論先出し＋FAQ＋基本情報表＋構造化データ」</strong>が揃っている。</li>
+  <li>料金は「目安・別途あり・正式見積りで確認」を併記した誠実な書式で、AIに正確に引用されやすい。</li>
+</ul>
+<h3>伸びしろ（gap）</h3>
+<ul>
+  <li class="gap"><strong>aggregateRating（サイト全体の星評価）は現在サイトに出していない</strong>（コード上も「出さない」明記／個別Reviewのみ）。§19.2の慎重扱いと整合しており妥当だが、E-E-A-Tの"見え方"を上げるなら、本物の口コミ件数・満足度を<strong>本文の事実として</strong>増やす方向が安全。</li>
+  <li>AI Overviews / ChatGPT / Perplexity で実際に「川口 葬儀／家族葬」等がどう引用されるかは<strong>目視チェック未実施</strong>（7/14に実施推奨）。</li>
+</ul>
+
+<h2>3. LLMO（LLM最適化）＝ 高水準</h2>
+<table>
+  <thead><tr><th>LLMOの要件</th><th>実装</th></tr></thead>
+  <tbody>
+    <tr><td>llms.txt</td><td class="ok">完備（基本情報・料金・主要ページURLを網羅した良質版）</td></tr>
+    <tr><td>エンティティの明確化</td><td class="ok">名称/所在地/電話/エリア/式場/火葬場の関係を明記</td></tr>
+    <tr><td>事実の構造化（料金表・対応形式）</td><td class="ok">税込・別途・会員/通常価格を明示</td></tr>
+    <tr><td>誤認防止の注記</td><td class="ok">「めぐりの森は川口市営・当社運営ではない」等を明記</td></tr>
+    <tr><td>AIクローラのアクセス許可</td><td class="ok">robots は * 許可（GPTBot/ClaudeBot/Google-Extended等ブロックなし）／社内の/post・/adminのみ除外</td></tr>
+  </tbody>
+</table>
+<h3>強み</h3>
+<ul>
+  <li>llms.txt が<strong>「運営者が確認した事実のみ」</strong>という明記付きで、LLMが安心して引用できる作り。競合で整備している所は少なく、<strong>先行者優位</strong>。</li>
+  <li>誤認を招きやすい「火葬場の運営主体」を能動的に打ち消しており、AIの誤引用リスクが低い。</li>
+</ul>
+<h3>伸びしろ（gap）</h3>
+<ul>
+  <li>llms.txt は"存在＝勝ち"の段階だが、<strong>主要ページ本文も「結論→根拠→事実表」の順を徹底</strong>すると引用率がさらに上がる（多くは実施済み・継続で可）。</li>
+  <li>LLMが参照する<strong>外部の一次情報（GBP・第三者の言及）</strong>が薄いと、サイト単独では信頼補強に限界。off-pageと連動が要る。</li>
+</ul>
+
+<h2>4. 特記事項・整合性チェック</h2>
+<ul>
+  <li><strong>記憶との差分：</strong>過去メモに「aggregateRating ★4.5・27件を可視化」とあったが、<strong>現行コードはサイト全体のaggregateRatingを出力していない</strong>（個別Reviewのみ）。安全側の判断として妥当。過去に一時導入→撤去された可能性。<span class="note">※事実は現行コード基準。</span></li>
+  <li>robots は社内ツール（/post・/admin）を正しく除外。誤ってAIクローラを弾いていない（LLMOに有利）。</li>
+  <li>禁止表現（最安・必ず・追加費用なし 等）の混入は、料金表記の書式上は見当たらず（llms.txt/主要ページは「目安・別途・正式見積り」で統一）。</li>
+</ul>
+
+<div class="verdict">
+  <h2>5. 中間結論と、7/14でやること</h2>
+  <p style="margin:0 0 8px"><strong>on-page（SEO/AIO/LLMO）の土台は"ほぼ完成"。ここからの伸びは off-page と継続運用で決まる。</strong>技術追加より、外部評価と検証にシフトする局面。</p>
+  <ol>
+    <li><span class="badge b-do">7/14測定</span> <strong>GSC</strong>で6重要KW（川口/川口市 × 葬儀・家族葬・市民葬 ほか）の表示回数・順位・CTRを取得し、6月からの推移を確認。</li>
+    <li><span class="badge b-do">7/14測定</span> <strong>GA4</strong>で自然検索の流入・問い合わせ導線（電話タップ/フォーム）を確認。</li>
+    <li><span class="badge b-do">7/14測定</span> <strong>AI目視</strong>：Google AI Overviews / ChatGPT / Perplexity で「川口 家族葬」等を検索し、当社が引用されるか・内容が正確かを記録。</li>
+    <li><span class="badge b-hold">off-page</span> <strong>GBP/MEO・本物の口コミ・地域サイテーション</strong>の強化を次の主テーマに（リスティングの結論とも一致）。</li>
+    <li><span class="badge b-hold">継続</span> リスティングで判明した<strong>いらないKWの除外・"明朗料金/地元/実績"訴求</strong>を、自然検索コンテンツにも反映。</li>
+  </ol>
+</div>
+
+<div class="foot">
+  本レポートはリポジトリ実装の静的監査（2026-07-12時点）。順位・表示回数・AI引用等の成果値は含まず、7/14の外部データ取得で補完する。docs/reports 配下は非公開・noindex。個人情報・秘匿情報は含まない。
+</div>
+
+</div>
+</body>
+</html>

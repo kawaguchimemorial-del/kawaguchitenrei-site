@@ -19,7 +19,7 @@ import { getHomeFaqs } from "@/lib/faqs";
 import { getLocalBusinessJsonLd } from "@/lib/company";
 
 const pageTitle =
-  "川口市の葬儀・家族葬 | 24時間対応の葬儀社 | 川口典礼";
+  "川口市の葬儀・葬儀社なら川口典礼 | 創業20年・24時間365日対応";
 const pageDescription =
   "川口市・新井宿で葬儀・家族葬なら、創業20年・年間約260件の川口典礼。24時間365日受付。自社式場・川口メモリアルホール(駐車場70台)から川口市めぐりの森まで車で約5分。直葬は事前相談会員価格139,000円(税込)〜、一日葬・火葬式・市民葬までご相談を承ります。";
 

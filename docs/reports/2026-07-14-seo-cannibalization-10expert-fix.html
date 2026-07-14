@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SEO打ち手 10専門家パネル→実装（2026-07-14）</title>
+<style>
+  :root{--ink:#23201c;--sub:#6b645c;--line:#e4ddd3;--bg:#fbf9f5;--accent:#7a5c3e;--warn:#a3402f;--good:#3d6b4a;--card:#fff;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;line-height:1.8;font-size:15px}
+  .wrap{max-width:980px;margin:0 auto;padding:32px 22px 80px}
+  header.doc{border-bottom:3px solid var(--accent);padding-bottom:18px;margin-bottom:24px}
+  header.doc .tag{color:var(--accent);font-weight:700;letter-spacing:.12em;font-size:12px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:23px;margin:6px 0 4px;font-weight:700}
+  .meta{color:var(--sub);font-size:13px}
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:20px;margin:32px 0 12px;padding-left:12px;border-left:5px solid var(--accent)}
+  p{margin:8px 0}
+  .lead{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px 20px;margin:16px 0}
+  .expert{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 18px;margin:12px 0}
+  .expert h3{margin:0 0 6px;font-size:15px;display:flex;gap:8px;align-items:baseline}
+  .expert .role{font-size:11px;color:#fff;background:var(--accent);padding:2px 8px;border-radius:20px;font-weight:700}
+  .expert .say{margin:4px 0}
+  .expert .reb{font-size:13px;color:var(--sub);margin-top:4px}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13.5px;background:#fff}
+  th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+  thead th{background:#f2ece2}
+  .verdict{background:#2b2620;color:#f5efe6;border-radius:12px;padding:22px 26px;margin:22px 0}
+  .verdict h2{color:#fff;border-left-color:#c9a978;margin-top:0}
+  .badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:4px;font-weight:700}
+  .b-done{background:#d9ead0;color:#2c5233}.b-verify{background:#e2ecf6;color:#1f4b7a}.b-human{background:#f6e2b8;color:#7a5a12}
+  .note{font-size:12.5px;color:var(--sub)}
+  code{background:#f2ece2;padding:1px 5px;border-radius:4px;font-size:13px}
+  .foot{margin-top:34px;border-top:1px solid var(--line);padding-top:14px;color:var(--sub);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <div class="tag">社内レポート（docs/reports・非公開/noindex）</div>
+  <h1>SEO打ち手：10専門家パネル → 実装ログ</h1>
+  <div class="meta">作成：2026-07-14 ／ 前提：同日のGSC効果測定レポート（受け皿ズレ・家族葬下落・CTR）</div>
+</header>
+
+<div class="lead">
+  7/14の測定で判明した打ち手を、10名の専門家が各々他9名に反論しながら議論。<strong>「6日窓の短期データで核ページを乱いじりしない。構造的に確実な一手だけを実装し、残りは監視・off-pageへ」</strong>で収束。<br>
+  <strong>核心の一手＝カニバリ解消</strong>：トップtitle「川口市の葬儀・<u>家族葬</u>」が専用ページ /plan/family-funeral（title「川口市の家族葬」）と同語で競合し、Googleがトップを優先→専用ページが上がらず「川口 家族葬」が9→22位に下落。これを実装で解消した。
+</div>
+
+<h2>1. 10専門家の議論（各自が他9名に反論）</h2>
+
+<div class="expert"><h3><span class="role">①テクニカルSEO</span></h3>
+  <div class="say">主張：下落と受け皿ズレの主因は<strong>タイトルのカニバリ</strong>。トップと専用ページが同じ「川口市＋家族葬」で競合。トップの家族葬を外し専用ページに譲れ。</div>
+  <div class="reb">反論：⑤の「CTRから直せ」は順序が逆——上位に出る土台（カニバリ解消）が先。⑨の「トップは触るな」に対しては、触るのは1行のtitleで可逆、放置こそ損失。</div></div>
+
+<div class="expert"><h3><span class="role">②コンテンツSEO</span></h3>
+  <div class="say">主張：専用ページの本文網羅性を上げれば自然に勝てる。title調整だけでは不十分。</div>
+  <div class="reb">反論：③④は「本文はもう十分厚い（7/12監査でA）」と指摘。①に同意しつつ、まずカニバリ、本文増強は次段でよい。</div></div>
+
+<div class="expert"><h3><span class="role">③ローカル/MEO</span></h3>
+  <div class="say">主張：本丸はGBP・地図・口コミ。on-pageをどう弄っても、地元の外部評価が無いと1〜5位は取れない。</div>
+  <div class="reb">反論：①⑥へ——それは正しいが<strong>コードで実装できない</strong>。今日のコード対策とは分離し、人手のoff-page施策として別建てにすべき（混ぜると"やった気"になる）。</div></div>
+
+<div class="expert"><h3><span class="role">④データアナリスト</span></h3>
+  <div class="say">主張：AFTER/BEFOREは<strong>各6日</strong>。家族葬9→22も統計ノイズの可能性。乱いじり厳禁、変更は最小限に。</div>
+  <div class="reb">反論：①へ——ただしカニバリは"数値"でなく"構造"（同語タイトル重複）なので、ノイズ論の例外。構造欠陥の是正は短期データでも妥当。⑧の大規模改変には反対。</div></div>
+
+<div class="expert"><h3><span class="role">⑤CRO/CTR</span></h3>
+  <div class="say">主張：表示350・7位でクリック1。<strong>タイトル/説明文の訴求（明朗料金・地元20年・24時間）</strong>でCTRを取りに行くのが即効。</div>
+  <div class="reb">反論：①に同意しつつ、CTR改善はカニバリ解消と<strong>同じtitle編集で同時に達成</strong>できる（トレードオフでない）。②の本文増強より費用対効果が高い。</div></div>
+
+<div class="expert"><h3><span class="role">⑥情報設計/内部リンク</span></h3>
+  <div class="say">主張：専用ページへ完全一致アンカーの内部リンクを増やしオーソリティを集約せよ。</div>
+  <div class="reb">反論：調査の結果<strong>内部リンクは既に充実</strong>（footer・areas・columns から "川口市の家族葬" 等で多数）。追加より、トップの競合を外す①が効く。過剰な内部リンク追加は逆効果。</div></div>
+
+<div class="expert"><h3><span class="role">⑦リスク管理</span></h3>
+  <div class="say">主張：トップは全体の要。titleを変えて他KW（川口市 葬儀=7位）を落とすリスクを最小化せよ。</div>
+  <div class="reb">反論：①⑤へ——だから「川口市の葬儀」は<strong>残す</strong>設計にする。外すのは"家族葬の完全一致だけ"。可逆・限定的なら容認。</div></div>
+
+<div class="expert"><h3><span class="role">⑧AIO/LLMO</span></h3>
+  <div class="say">主張：情報系コラム（訃報返信・検視・香典）が集客の主。ここから商用ページへ回遊させ、AI引用の入口にも。</div>
+  <div class="reb">反論：⑩の調査で<strong>訃報・検視は既に商用回遊リンクあり</strong>。香典は参列者向けで強い商用誘導は⑨のトーン規約（押し売り禁止）に反する。追加は最小に。</div></div>
+
+<div class="expert"><h3><span class="role">⑨事業/トーン</span></h3>
+  <div class="say">主張：葬儀サイトは信頼第一。SEO都合で煽り・押し売り・核ページの乱造をしない。</div>
+  <div class="reb">反論：①⑤の範囲（title差別化＋誠実な信頼訴求）は規約内。③のoff-pageも"本物の口コミ"路線なら合致。⑧の香典CTA強化には反対。</div></div>
+
+<div class="expert"><h3><span class="role">⑩運用/監視</span></h3>
+  <div class="say">主張：変更は1つずつ入れて効果を測れ。同時多発の改変は原因の切り分け不能にする。</div>
+  <div class="reb">反論：全員へ——今回は<strong>カニバリ解消(title)の1点だけを実装</strong>し、他は現状十分/人手案件と切り分けるのが最も検証しやすい。次回GSCで単独効果を測る。</div></div>
+
+<h2>2. パネルの収束点</h2>
+<ul>
+  <li><strong>実装するのはカニバリ解消（トップtitle差別化＋CTR）の1点のみ</strong>。構造欠陥ゆえ短期データでも妥当、かつ可逆。</li>
+  <li>内部リンク・受け皿ページのtitle所有・情報系コラムの商用回遊は<strong>調査の結果すでに十分</strong>→無理な追加はしない（ノイズ・押し売りを避ける）。</li>
+  <li>1〜5位への押し上げは<strong>off-page（GBP/MEO・被リンク・本物の口コミ）＝人手</strong>。コードの範囲外として明確に分離。</li>
+</ul>
+
+<h2>3. 実装ログ（本日実施）</h2>
+<table>
+  <thead><tr><th>対策</th><th>内容</th><th>状態</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>M1 カニバリ解消＋CTR</td>
+      <td>トップ <code>app/page.tsx</code> のtitleを変更。<br>旧：<code>川口市の葬儀・家族葬 | 24時間対応の葬儀社 | 川口典礼</code><br>新：<code>川口市の葬儀・葬儀社なら川口典礼 | 創業20年・24時間365日対応</code><br>→「川口市の葬儀」「葬儀社」＋ブランド＋信頼(CTR)を保持し、<strong>「家族葬」完全一致は専用ページ /plan/family-funeral へ譲渡</strong>。「川口市 葬儀(7位)」は維持設計。</td>
+      <td><span class="badge b-done">実装済</span></td>
+    </tr>
+    <tr>
+      <td>M2 コラム→商用回遊</td>
+      <td>訃報返信(fuhou)＝/area/kawaguchi・/plan/family-funeral・/contact、検視(kenshi-nagare)＝/plan/cremation・/plan/direct-funeral・/contact へ<strong>既にリンクあり</strong>。香典(kouden_souba)は参列者向けのため強い商用誘導はしない（トーン優先）。</td>
+      <td><span class="badge b-verify">検証・十分</span></td>
+    </tr>
+    <tr>
+      <td>M3 受け皿の語所有</td>
+      <td>/plan/family-funeral title「川口市の家族葬 | …」・H1「川口市の家族葬プラン」／ /area/kawaguchi metaTitle「川口市の葬儀ガイド | …」で<strong>各自の完全一致語を既に所有</strong>。M1で競合を外し勝てる状態に。</td>
+      <td><span class="badge b-verify">検証・十分</span></td>
+    </tr>
+    <tr>
+      <td>ビルド検証</td>
+      <td><code>npm run build</code> 成功・型エラーなし・静的生成維持。</td>
+      <td><span class="badge b-done">OK</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="verdict">
+  <h2>4. 結論：コード対策は完了（goal）／残りは人手のoff-page</h2>
+  <p style="margin:0 0 8px"><strong>コードで実装すべき対策はすべて完了。</strong>今回入れた変更は「トップtitleのカニバリ解消＋CTR」の1点（他は調査の結果すでに十分で、乱いじりを避けた）。</p>
+  <p style="margin:0 0 6px"><strong>コードでは解決できない＝人手の宿題（loop外・要ご対応）：</strong></p>
+  <ul style="margin:0">
+    <li><span class="badge b-human">人手</span> GBP/MEO（地図・写真・投稿）、地域サイテーション、<strong>施行後の本物の口コミ依頼</strong>——1〜5位への押し上げの本命。</li>
+    <li><span class="badge b-human">監視</span> 次回GSC（7/21頃）で<strong>M1単独の効果</strong>を測定：川口 家族葬の順位回復／専用ページが表示URLになるか／川口市 葬儀のCTR。</li>
+  </ul>
+</div>
+
+<div class="foot">
+  変更ファイル：app/page.tsx（トップtitleのみ）。M2/M3は検証のみ（コード変更なし）。判断は同日GSC測定（6日窓＝傾向値）に基づき、核ページの改変は可逆な1点に限定。§19.1のtitle/metaDescription改善に該当（auto-push可・本レポートでは未push）。個人情報・秘匿情報なし。
+</div>
+
+</div>
+</body>
+</html>

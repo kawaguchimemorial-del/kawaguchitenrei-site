@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SEO効果測定レポート（GSC実データ・2026-07-14）</title>
+<style>
+  :root{--ink:#23201c;--sub:#6b645c;--line:#e4ddd3;--bg:#fbf9f5;--accent:#7a5c3e;--warn:#a3402f;--good:#3d6b4a;--card:#fff;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;line-height:1.8;font-size:15px}
+  .wrap{max-width:980px;margin:0 auto;padding:32px 22px 80px}
+  header.doc{border-bottom:3px solid var(--accent);padding-bottom:18px;margin-bottom:24px}
+  header.doc .tag{color:var(--accent);font-weight:700;letter-spacing:.12em;font-size:12px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:24px;margin:6px 0 4px;font-weight:700}
+  .meta{color:var(--sub);font-size:13px}
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:20px;margin:34px 0 12px;padding-left:12px;border-left:5px solid var(--accent)}
+  h3{font-size:16px;margin:18px 0 6px}
+  p{margin:8px 0}
+  .lead{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px 20px;margin:16px 0}
+  .fact{background:#fbf1ef;border:1px solid #e6c9c0;border-radius:10px;padding:14px 18px;margin:14px 0}
+  .good-box{background:#eef7ef;border:1px solid #cfe6d3;border-radius:10px;padding:14px 18px;margin:14px 0}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13px;background:#fff}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:right;vertical-align:top}
+  th:first-child,td:first-child{text-align:left}
+  thead th{background:#f2ece2}
+  tr.bad td{background:#fbf1ef}tr.good td{background:#eef7ef}
+  .up{color:var(--good);font-weight:700}.down{color:var(--warn);font-weight:700}
+  .verdict{background:#2b2620;color:#f5efe6;border-radius:12px;padding:22px 26px;margin:24px 0}
+  .verdict h2{color:#fff;border-left-color:#c9a978;margin-top:0}
+  .badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:4px;font-weight:700}
+  .b-do{background:#d9ead0;color:#2c5233}.b-hold{background:#f6e2b8;color:#7a5a12}.b-stop{background:#f3ccc4;color:#8a2c1d}
+  .note{font-size:12.5px;color:var(--sub)}
+  ul{margin:8px 0 8px 1.2em}li{margin:5px 0}
+  .foot{margin-top:36px;border-top:1px solid var(--line);padding-top:14px;color:var(--sub);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <div class="tag">社内レポート（docs/reports・非公開/noindex）</div>
+  <h1>SEO 効果測定レポート（GSC実データ）</h1>
+  <div class="meta">作成：2026-07-14 ／ データ：Google Search Console（自動取得）／ 確定最新日 2026-07-11<br>比較：AFTER 7/6–7/11 vs BEFORE 6/30–7/5（各6日）</div>
+</header>
+
+<div class="lead">
+  7/12の実装監査（on-page＝A評価）に続く、<strong>実データによる成果測定</strong>。結論を先に：<br>
+  <strong>①構造は完成しているが、商用ローカルKW（川口 葬儀／家族葬 等）は"表示はされるのに1ページ目上位に届かずクリック0"。②直近、主要商用KW（特に「川口 家族葬」）が順位下落。③クリックの大半は情報系コラム（訃報返信・検視・香典＝全国的な情報検索）が牽引し、商用に繋がりにくい。</strong><br>
+  ＝ <strong>「作りは満点、集客の中身が商用とズレ、勝負KWは上位一歩手前で足踏み＆一部下落」</strong>という状態。
+</div>
+
+<h2>1. 全体推移（日別・直近12日）</h2>
+<table>
+  <thead><tr><th>指標</th><th>値</th><th>コメント</th></tr></thead>
+  <tbody>
+    <tr><td>表示回数/日</td><td>約1,200〜1,750</td><td>安定して露出はある</td></tr>
+    <tr><td>クリック/日</td><td class="down">4〜23</td><td>露出の割に少ない</td></tr>
+    <tr><td>平均順位</td><td>約10〜13位</td><td>1ページ目下部〜2ページ目</td></tr>
+    <tr><td>CTR</td><td class="down">約0.3〜1.7%</td><td>上位に入れずクリック取れず</td></tr>
+  </tbody>
+</table>
+<p class="note">※露出（表示）は十分あるのに、順位が10位前後＝1ページ目の下〜2ページ目に多く、クリックに結びついていない。</p>
+
+<h2>2. 重要キーワードの状態（GSC実測）</h2>
+<table>
+  <thead><tr><th>重要KW</th><th>表示(後)</th><th>順位(後)</th><th>順位(前)</th><th>クリック</th><th>表示URL</th></tr></thead>
+  <tbody>
+    <tr class="good"><td>川口典礼（指名）</td><td>59</td><td class="up">1.0</td><td>1.8</td><td>7</td><td>/（正）</td></tr>
+    <tr class="bad"><td>川口市 葬儀</td><td>350</td><td>7.0</td><td>7.5</td><td>1</td><td>⚠ トップ</td></tr>
+    <tr class="bad"><td>川口 葬儀</td><td>135</td><td class="down">11.7</td><td>9.1</td><td>0</td><td>⚠ トップ</td></tr>
+    <tr class="bad"><td>川口市 家族葬</td><td>98</td><td>20.2</td><td>20.2</td><td>0</td><td>⚠ トップ</td></tr>
+    <tr class="bad"><td>川口 家族葬</td><td>37</td><td class="down">22.1</td><td>9.2</td><td>0</td><td>⚠ トップ</td></tr>
+    <tr><td>川口市 直葬</td><td>22</td><td class="down">11.3</td><td>7.4</td><td>0</td><td>—</td></tr>
+    <tr><td>川口市 一日葬</td><td>19</td><td>11.4</td><td>12.8</td><td>0</td><td>—</td></tr>
+    <tr><td>川口市 火葬式</td><td>12</td><td>20.0</td><td>18.8</td><td>0</td><td>direct-funeral</td></tr>
+    <tr><td>めぐりの森 葬儀/家族葬/火葬式</td><td>0</td><td>—</td><td>—</td><td>0</td><td>未表示</td></tr>
+  </tbody>
+</table>
+<p class="note">⚠＝本来の専用ページ（/area/kawaguchi/・/plan/family-funeral/）ではなく<strong>トップページが表示</strong>されている＝受け皿ズレ。</p>
+
+<h2>3. 重大所見</h2>
+
+<h3>所見① クリックの大半が「情報系コラム」＝商用と乖離</h3>
+<div class="fact">
+  表示回数・クリックの上位は、商用の川口KWではなく<strong>情報系コラムのキーワード</strong>が占める：<br>
+  ・<strong>訃報 返信</strong>（表示658・最大）／訃報の返信（244）／訃報 メール 返信 ビジネス 例文 …<br>
+  ・<strong>検視</strong>（262）／検視とは（145）<br>
+  ・<strong>50日祭 香典</strong>（97）／神道50日祭 香典／創価学会 香典 …<br>
+  これらは「訃報メールの返信文例」「検視とは」等を調べる<strong>全国的な情報検索</strong>で、川口で葬儀社を探す人ではない。＝<strong>アクセスは稼ぐが受注に繋がりにくい</strong>。
+</div>
+
+<h3>所見② 商用ローカルKWは「表示されるのにクリック0」（上位一歩手前）</h3>
+<div class="fact">
+  ・川口市 葬儀：表示<strong>350</strong>・順位<strong>7.0</strong>・クリック1（CTR0.29%）<br>
+  ・川口 葬儀：表示135・順位11.7・クリック0<br>
+  ・葬儀 川口市：表示109・順位8.7・クリック0<br>
+  ・川口市 家族葬：表示98・順位20.2・クリック0<br>
+  <strong>勝負KWで露出はあるのに、1ページ目上位（1〜5位）に入れず、クリックが取れていない。</strong>あと数ランクの押し上げが課題。
+</div>
+
+<h3>所見③ 主要商用KWが直近で順位下落（特に家族葬）</h3>
+<table>
+  <thead><tr><th>KW</th><th>前→後（順位）</th><th>変化</th></tr></thead>
+  <tbody>
+    <tr class="bad"><td>川口 家族葬</td><td>9.2 → 22.1</td><td class="down">▼12.8 大幅下落</td></tr>
+    <tr class="bad"><td>川口 葬式</td><td>8.3 → 15.4</td><td class="down">▼7.0</td></tr>
+    <tr class="bad"><td>川口市 直葬</td><td>7.4 → 11.3</td><td class="down">▼3.9</td></tr>
+    <tr class="bad"><td>川口 葬儀</td><td>9.1 → 11.7</td><td class="down">▼2.6</td></tr>
+  </tbody>
+</table>
+<p><strong>6月に注力した「家族葬」強化が、順位改善に繋がっていない</strong>どころか、「川口 家族葬」は1ページ目圏内（9位）から2〜3ページ（22位）へ転落。7/2「家族葬が上がらない」レポートの続報として、<strong>要因の再調査が必要</strong>（カニバリ／内部リンク／直近変更／受け皿ズレ）。</p>
+
+<h3>所見④ 受け皿ズレ（専用ページでなくトップが表示）</h3>
+<p>「川口 葬儀」「川口市 葬儀」「川口 家族葬」「川口市 家族葬」いずれも、Googleが表示するURLが<strong>トップ（/）</strong>で、狙った専用ページ（/area/kawaguchi/・/plan/family-funeral/）ではない。トップに薄く広く当たり、専用ページに関連性・オーソリティが集約されていない。<strong>これが上位化を妨げている可能性。</strong></p>
+
+<h2>4. 改善している面（前向き材料）</h2>
+<div class="good-box">
+  <ul>
+    <li><strong>指名「川口典礼」：1.8 → 1.0位</strong>（CTR11.9%）。ブランドは盤石。</li>
+    <li>川口市めぐりの森：31.9 → 25.1（▲6.8改善／ただし低順位）</li>
+    <li>川口市 葬儀場：11.5 → 9.3（1ページ目入り）</li>
+    <li>ロングテールが好位置：<strong>川口市 急な葬儀 対応 葬儀社 2.4位</strong>／川口市 一日葬 直葬 対応 3.3位／川口市 大手 葬儀社 5.8位</li>
+    <li>川口市 市民葬 14.2→12.8／川口市民葬祭 12.0→10.7（微改善）</li>
+  </ul>
+  <span class="note">＝具体的な「川口市＋状況・比較」ロングテールでは上位を取れている。強みが効く領域は存在する。</span>
+</div>
+
+<div class="verdict">
+  <h2>5. 総合診断と打ち手（優先順）</h2>
+  <p style="margin:0 0 8px"><strong>作り（on-page）は完成。だが商用ローカルKWは"上位一歩手前で足踏み＋一部下落"、集客の中身は情報系コラム偏重。ここからは「上位1〜5位への押し上げ」と「受け皿是正」「off-page」が主戦場。</strong></p>
+  <ol>
+    <li><span class="badge b-stop">最優先</span> <strong>「川口 家族葬」下落の原因調査</strong>（9→22）。カニバリ・内部リンク・直近変更・受け皿ズレを点検。家族葬は注力KWだけに放置不可。</li>
+    <li><span class="badge b-do">是正</span> <strong>受け皿ズレの解消</strong>：川口 葬儀→/area/kawaguchi/、川口(市) 家族葬→/plan/family-funeral/ が表示されるよう、内部リンク・タイトル・見出し・canonical で専用ページの主題を明確化し、トップへの集中を専用ページへ寄せる。</li>
+    <li><span class="badge b-do">押し上げ</span> <strong>「あと一歩」KWを1ページ上位へ</strong>：川口市 葬儀(7位)・葬儀 川口市(8.7位)・川口 葬儀(11.7位)。コンテンツ深掘り＋<strong>off-page（GBP/MEO・被リンク・本物の口コミ）</strong>の合わせ技（7/12監査＝off-page主戦場と一致）。</li>
+    <li><span class="badge b-do">CTR</span> <strong>表示URL（現状トップ）のタイトル/説明文を、ローカル意図＋明朗料金・地元20年・24時間・電話で最適化</strong>し、表示だけで終わらせない。</li>
+    <li><span class="badge b-hold">回遊</span> <strong>情報系コラム（訃報返信・検視・香典）の集客を、内部リンクで商用ページへ誘導</strong>。入口としては維持しつつ、商用KWの主戦力ではないと認識する。</li>
+  </ol>
+</div>
+
+<div class="foot">
+  データ：Google Search Console 自動取得（OAuth／秘密情報は非表示・非commit）。確定最新日 2026-07-11。比較窓は各6日と短いため、順位は傾向として扱う（特に低表示KWは変動大）。出力CSV：tmp/seo-analysis-2026-07-14/（gsc-query-compare 他）。個人情報・秘匿情報は含まない。
+</div>
+
+</div>
+</body>
+</html>
