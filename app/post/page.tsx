@@ -1,20 +1,19 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import {
+  CSV_TEMPLATE,
+  decodeCsvBuffer,
+  parseEnvelopeCsv,
+  type EnvelopeData,
+  type RecipientType,
+} from "@/lib/post-csv";
 
-export type RecipientType = "individual" | "company";
-export type EnvelopeData = {
-  postal: string;
-  address1: string; // 都道府県・市区町村（郵便番号から自動入力）
-  address2: string; // 番地
-  address3: string; // 建物名・部屋番号（任意）
-  recipientType: RecipientType;
-  name: string; // 個人名 または 会社名
-  contactName: string; // 会社の担当者名（任意）
-};
+export type { EnvelopeData, RecipientType };
 
 const STORAGE_KEY = "post-print-envelope";
+const LIST_KEY = "post-print-envelope-list";
 
 export default function PostPage() {
   const router = useRouter();
@@ -32,6 +31,80 @@ export default function PostPage() {
   const [reverseState, setReverseState] = useState<
     "idle" | "loading" | "notfound" | "error"
   >("idle");
+  // CSV 読み込み（複数件）。個人情報を含むため、解析はすべてブラウザ内で完結させ、
+  // サーバへの送信・ログ出力は行わない。
+  const fileRef = useRef<HTMLInputElement>(null);
+  const [list, setList] = useState<EnvelopeData[]>([]);
+  const [csvName, setCsvName] = useState("");
+  const [csvNotes, setCsvNotes] = useState<string[]>([]);
+  const [csvError, setCsvError] = useState("");
+
+  async function handleCsvFile(file: File) {
+    setCsvError("");
+    setCsvNotes([]);
+    try {
+      const text = decodeCsvBuffer(await file.arrayBuffer());
+      const result = parseEnvelopeCsv(text);
+      if (result.warning) {
+        setCsvError(result.warning);
+        setList([]);
+        setCsvName("");
+        return;
+      }
+      if (result.items.length === 0) {
+        setCsvError("取り込める行がありませんでした。");
+        setList([]);
+        setCsvName("");
+        return;
+      }
+      setList(result.items);
+      setCsvName(file.name);
+      setCsvNotes(result.skipped);
+    } catch {
+      setCsvError(
+        "CSVの読み込みに失敗しました。ファイル形式・文字コードをご確認ください。",
+      );
+    }
+  }
+
+  function openList() {
+    sessionStorage.setItem(LIST_KEY, JSON.stringify(list));
+    sessionStorage.removeItem(STORAGE_KEY);
+    router.push("/post/print/");
+  }
+
+  function clearList() {
+    setList([]);
+    setCsvName("");
+    setCsvNotes([]);
+    setCsvError("");
+    sessionStorage.removeItem(LIST_KEY);
+    if (fileRef.current) fileRef.current.value = "";
+  }
+
+  // 一覧の1件をフォームへ流し込み、個別に修正できるようにする
+  function editRow(item: EnvelopeData) {
+    setPostal(item.postal);
+    setAddress1(item.address1);
+    setAddress2(item.address2);
+    setAddress3(item.address3);
+    setRecipientType(item.recipientType);
+    setName(item.name);
+    setContactName(item.contactName);
+  }
+
+  function downloadTemplate() {
+    // Excel（日本語版）でそのまま開けるよう UTF-8 BOM 付きで出力する
+    const blob = new Blob(["﻿" + CSV_TEMPLATE], {
+      type: "text/csv;charset=utf-8",
+    });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "封筒宛名テンプレート.csv";
+    a.click();
+    URL.revokeObjectURL(url);
+  }
 
   // 郵便番号 → 住所。ブラウザから外部APIを直接叩くと CORS 等で失敗するため、
   // 同一オリジンのサーバAPI(/api/postal/lookup)経由で取得する。
@@ -96,6 +169,8 @@ export default function PostPage() {
       contactName: recipientType === "company" ? contactName.trim() : "",
     };
     sessionStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    // 単票印刷では一覧ナビゲーションを出さない
+    sessionStorage.removeItem(LIST_KEY);
     router.push("/post/print/");
   }
 
@@ -112,6 +187,135 @@ export default function PostPage() {
           宛先を入力し「印刷確定」を押すと、長形3号（120×235mm）の印刷ページへ移動します。
         </p>
       </header>
+
+      {/* CSV 読み込み（複数件をまとめて印刷する場合） */}
+      <section className="mb-8 rounded-md border border-neutral-200 bg-neutral-50 p-4">
+        <h2 className="text-sm font-medium text-neutral-700">
+          CSVから読み込む（複数件）
+        </h2>
+        <p className="mt-1 text-xs text-neutral-500">
+          一覧をCSVで読み込むと、印刷ページで「次へ／戻る」で1件ずつ選んで印刷できます。
+          ファイルはこのブラウザ内でのみ処理され、サーバーには送信されません。
+        </p>
+
+        <div className="mt-3 flex flex-wrap items-center gap-2">
+          <input
+            ref={fileRef}
+            type="file"
+            accept=".csv,text/csv"
+            onChange={(e) => {
+              const f = e.target.files?.[0];
+              if (f) handleCsvFile(f);
+            }}
+            className="hidden"
+            id="csvFile"
+          />
+          <button
+            type="button"
+            onClick={() => fileRef.current?.click()}
+            className="rounded-md border border-neutral-300 bg-white px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-100"
+          >
+            CSVを読み込む
+          </button>
+          <button
+            type="button"
+            onClick={downloadTemplate}
+            className="rounded-md border border-neutral-300 bg-white px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-100"
+          >
+            テンプレートCSVをダウンロード
+          </button>
+          {list.length > 0 && (
+            <button
+              type="button"
+              onClick={clearList}
+              className="rounded-md border border-neutral-300 bg-white px-4 py-2 text-sm text-neutral-500 hover:bg-neutral-100"
+            >
+              読み込みを取り消す
+            </button>
+          )}
+        </div>
+
+        {csvError && (
+          <p className="mt-2 text-xs text-amber-600">{csvError}</p>
+        )}
+
+        {list.length > 0 && (
+          <div className="mt-4">
+            <p className="text-xs text-neutral-600">
+              <span className="font-medium">{csvName}</span> から{" "}
+              <span className="font-medium">{list.length}件</span>
+              を読み込みました。
+            </p>
+            {csvNotes.length > 0 && (
+              <ul className="mt-1 list-disc pl-5 text-xs text-amber-600">
+                {csvNotes.map((n, i) => (
+                  <li key={i}>{n}</li>
+                ))}
+              </ul>
+            )}
+
+            <div className="mt-3 max-h-64 overflow-y-auto rounded border border-neutral-200 bg-white">
+              <table className="w-full text-left text-xs">
+                <thead className="sticky top-0 bg-neutral-100 text-neutral-600">
+                  <tr>
+                    <th className="px-2 py-1.5 font-medium">#</th>
+                    <th className="px-2 py-1.5 font-medium">宛名</th>
+                    <th className="px-2 py-1.5 font-medium">住所</th>
+                    <th className="px-2 py-1.5 font-medium">種別</th>
+                    <th className="px-2 py-1.5" />
+                  </tr>
+                </thead>
+                <tbody>
+                  {list.map((item, i) => (
+                    <tr key={i} className="border-t border-neutral-100">
+                      <td className="px-2 py-1.5 text-neutral-400">{i + 1}</td>
+                      <td className="px-2 py-1.5 text-neutral-800">
+                        {item.name}
+                        {item.contactName && (
+                          <span className="text-neutral-400">
+                            {" "}
+                            / {item.contactName}
+                          </span>
+                        )}
+                      </td>
+                      <td className="px-2 py-1.5 text-neutral-500">
+                        {item.postal && `〒${item.postal} `}
+                        {item.address1}
+                        {item.address2}
+                        {item.address3 && ` ${item.address3}`}
+                      </td>
+                      <td className="px-2 py-1.5 text-neutral-500">
+                        {item.recipientType === "company" ? "会社" : "個人"}
+                      </td>
+                      <td className="px-2 py-1.5 text-right">
+                        <button
+                          type="button"
+                          onClick={() => editRow(item)}
+                          className="text-neutral-500 underline hover:text-neutral-800"
+                        >
+                          フォームへ
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            <button
+              type="button"
+              onClick={openList}
+              className="mt-3 rounded-md bg-neutral-800 px-5 py-2 text-sm font-medium text-white hover:bg-neutral-700"
+            >
+              この一覧を印刷ページで開く（{list.length}件）
+            </button>
+            <p className="mt-2 text-xs text-neutral-500">
+              種別（個人／会社）は「種別」列があればその値を、無ければ宛名から推定します。
+              間違っている行は「フォームへ」で修正してから単票で印刷してください。
+            </p>
+          </div>
+        )}
+      </section>
 
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* 郵便番号 */}

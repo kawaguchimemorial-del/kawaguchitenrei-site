@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import type { EnvelopeData } from "../page";
 
 const STORAGE_KEY = "post-print-envelope";
+const LIST_KEY = "post-print-envelope-list";
 const CAL_KEY = "post-print-postal-calib-cho3-v2";
 
 // 郵便番号の位置合わせ（キャリブレーション）
@@ -64,7 +65,10 @@ function toZenkaku(s: string): string {
 }
 
 export default function PostPrintPage() {
-  const [data, setData] = useState<EnvelopeData | null>(null);
+  const [single, setSingle] = useState<EnvelopeData | null>(null);
+  // CSV から読み込んだ一覧。1件以上あるときだけ「次へ／戻る」を表示する。
+  const [list, setList] = useState<EnvelopeData[]>([]);
+  const [index, setIndex] = useState(0);
   const [loaded, setLoaded] = useState(false);
   const [orientation, setOrientation] = useState<"vertical" | "horizontal">(
     "vertical",
@@ -79,11 +83,18 @@ export default function PostPrintPage() {
   const [nameFontPt, setNameFontPt] = useState(30);
 
   useEffect(() => {
+    // 一覧（CSV読み込み）を優先し、無ければ単票データを読む
     try {
+      const rawList = sessionStorage.getItem(LIST_KEY);
+      if (rawList) {
+        const parsed = JSON.parse(rawList) as EnvelopeData[];
+        if (Array.isArray(parsed) && parsed.length > 0) setList(parsed);
+      }
       const raw = sessionStorage.getItem(STORAGE_KEY);
-      if (raw) setData(JSON.parse(raw) as EnvelopeData);
+      if (raw) setSingle(JSON.parse(raw) as EnvelopeData);
     } catch {
-      setData(null);
+      setList([]);
+      setSingle(null);
     }
     // 保存済みのキャリブレーション値を読む
     try {
@@ -96,6 +107,10 @@ export default function PostPrintPage() {
     }
     setLoaded(true);
   }, []);
+
+  // 表示中の1件。一覧があればその index、無ければ単票。
+  const hasList = list.length > 0;
+  const data: EnvelopeData | null = hasList ? (list[index] ?? null) : single;
 
   // 変更のたび保存
   useEffect(() => {
@@ -277,6 +292,48 @@ export default function PostPrintPage() {
 
       {/* 画面用の操作バー（印刷されない） */}
       <div className="no-print mx-auto max-w-2xl px-5 py-6">
+        {/* CSVから一覧を読み込んだときだけ表示する、印刷する封筒の切り替え */}
+        {hasList && (
+          <div className="mb-4 flex flex-wrap items-center gap-3 rounded-md border border-neutral-200 bg-neutral-50 px-4 py-3">
+            <button
+              type="button"
+              onClick={() => setIndex((i) => Math.max(0, i - 1))}
+              disabled={index === 0}
+              className="rounded-md border border-neutral-300 bg-white px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-100 disabled:cursor-not-allowed disabled:text-neutral-300"
+            >
+              ◀ 戻る
+            </button>
+            <span className="text-sm tabular-nums text-neutral-700">
+              {index + 1} / {list.length} 件目
+            </span>
+            <button
+              type="button"
+              onClick={() =>
+                setIndex((i) => Math.min(list.length - 1, i + 1))
+              }
+              disabled={index >= list.length - 1}
+              className="rounded-md border border-neutral-300 bg-white px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-100 disabled:cursor-not-allowed disabled:text-neutral-300"
+            >
+              次へ ▶
+            </button>
+            <select
+              aria-label="印刷する宛先を選ぶ"
+              value={index}
+              onChange={(e) => setIndex(Number(e.target.value))}
+              className="max-w-[16rem] rounded-md border border-neutral-300 bg-white px-3 py-2 text-sm text-neutral-700"
+            >
+              {list.map((item, i) => (
+                <option key={i} value={i}>
+                  {i + 1}. {item.name}
+                </option>
+              ))}
+            </select>
+            <span className="w-full text-xs text-neutral-500">
+              封筒を1枚ずつ差し替えながら、「次へ」で送って印刷してください。
+            </span>
+          </div>
+        )}
+
         <div className="flex flex-wrap items-center gap-3">
           <button
             type="button"

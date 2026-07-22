@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>封筒宛名印刷：CSV読み込み対応（2026-07-22）</title>
+<style>
+  :root{--ink:#23201c;--sub:#6b645c;--line:#e4ddd3;--bg:#fbf9f5;--accent:#7a5c3e;--warn:#a3402f;--good:#3d6b4a;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;line-height:1.8;font-size:15px}
+  .wrap{max-width:960px;margin:0 auto;padding:32px 22px 80px}
+  header.doc{border-bottom:3px solid var(--accent);padding-bottom:18px;margin-bottom:24px}
+  header.doc .tag{color:var(--accent);font-weight:700;letter-spacing:.12em;font-size:12px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:24px;margin:6px 0 4px;font-weight:700}
+  .meta{color:var(--sub);font-size:13px}
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:20px;margin:34px 0 12px;padding-left:12px;border-left:5px solid var(--accent)}
+  .lead{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px 20px;margin:16px 0}
+  .warn-box{background:#fbf1ef;border:1px solid #e6c9c0;border-radius:10px;padding:14px 18px;margin:14px 0}
+  .good-box{background:#eef7ef;border:1px solid #cfe6d3;border-radius:10px;padding:14px 18px;margin:14px 0}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13px;background:#fff}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  thead th{background:#f2ece2}
+  code{background:#f1efe9;padding:1px 6px;border-radius:5px;font-size:12.5px;font-family:ui-monospace,Consolas,monospace}
+  ul{margin:8px 0 8px 1.2em}li{margin:5px 0}
+  .foot{margin-top:36px;border-top:1px solid var(--line);padding-top:14px;color:var(--sub);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <div class="tag">社内レポート（docs/reports・非公開/noindex）</div>
+  <h1>封筒宛名印刷ツール：CSV読み込み＋一覧ナビゲーション対応</h1>
+  <div class="meta">作成：2026-07-22 ／ 対象：<code>/post/</code>（社内用ツール・長形3号）</div>
+</header>
+
+<div class="lead">
+  CSVで宛先一覧を読み込み、<strong>印刷ページで「次へ／戻る」で1件ずつ封筒を選んで印刷</strong>できるようにした。
+  ナビゲーションは<strong>CSVを読み込んだときだけ表示</strong>し、従来の単票入力の動作は変えていない。
+</div>
+
+<h2>1. 追加した機能</h2>
+<table>
+  <thead><tr><th>場所</th><th>内容</th></tr></thead>
+  <tbody>
+    <tr><td><code>/post/</code></td><td>「CSVを読み込む」ボタン。読み込むと件数・宛名・住所・種別の一覧を表示</td></tr>
+    <tr><td><code>/post/</code></td><td>「テンプレートCSVをダウンロード」ボタン（UTF-8 BOM付きでExcelがそのまま開ける）</td></tr>
+    <tr><td><code>/post/</code></td><td>一覧の各行「フォームへ」＝1件をフォームに流し込んで個別修正</td></tr>
+    <tr><td><code>/post/print/</code></td><td><strong>「◀ 戻る」「次へ ▶」＋「n / N 件目」＋宛先プルダウン</strong>。CSV読み込み時のみ表示</td></tr>
+  </tbody>
+</table>
+
+<h2>2. CSVの形式</h2>
+<p>1行目を見出しとして<strong>列名で対応付ける</strong>（列の順番には依存しない）。テンプレートの見出しは次のとおり。</p>
+<p><code>種別,郵便番号,住所1,住所2,住所3,宛名,担当者名</code></p>
+<div class="good-box">
+  <strong>既存の社内CSVもそのまま読める。</strong>列名の別名表を持たせ、現場にある2種類の実ファイルで動作を確認した。
+  <ul>
+    <li><code>請求書一括CSVフォーマット.csv</code>（50列）→ <strong>9件を正しく取り込み</strong>。郵便番号・都道府県・市区町村・番地・請求先名を自動対応</li>
+    <li><code>20260725 当日参列時支払いリスト.csv</code>（12列）→ <strong>2件を正しく取り込み</strong>。住所欄に埋まった「〒110-0004」を郵便番号として切り出し、住所側からは除去</li>
+  </ul>
+</div>
+<p>実装中に見つかって直した点：</p>
+<ul>
+  <li><strong>空の列を掴んでしまう問題</strong>：請求書フォーマットは「宛名」列が空で「請求先名」に値が入る。当初は先に一致した列で固定していたため0件になった。→ 該当列を<strong>優先順の候補として全部保持し、行ごとに最初の非空セルを採用</strong>する方式に変更。</li>
+  <li><strong>住所欄に郵便番号が同居する一覧</strong>：郵便番号列が無い表に対応するため、住所から <code>〒000-0000</code> を抽出するようにした。</li>
+</ul>
+
+<h2>3. 個人情報の取り扱い（CLAUDE.md §12）</h2>
+<div class="warn-box">
+  CSVは氏名・住所を含むため、<strong>解析はすべてブラウザ内で完結</strong>させている。
+  <ul>
+    <li>ファイルのサーバー送信は行わない（<code>fetch</code>／アップロードなし）</li>
+    <li>コンソール・サーバーログへの出力なし</li>
+    <li>一覧の保持は <code>sessionStorage</code>（タブを閉じれば消える）。<code>localStorage</code> には保存しない</li>
+    <li>「読み込みを取り消す」で明示的に消去可能</li>
+    <li>本レポートおよびリポジトリに実データ（氏名・住所）は一切含めていない</li>
+  </ul>
+</div>
+<p>文字コードは UTF-8（BOM有無）と CP932 を自動判定。Excel（日本語版）の既定保存でも読めるようにした。</p>
+
+<h2>4. 種別（個人／会社）の判定</h2>
+<p>敬称が変わるため重要。優先順位は次のとおり。</p>
+<ol>
+  <li>「会社名」列に値 → 会社／「氏名・お名前」列に値 → 個人</li>
+  <li>「種別」列の値（個人／会社）</li>
+  <li>どちらも無い場合は宛名から推定（株式会社・有限会社・センター・商店・工業・組合 等の語を含めば会社）</li>
+</ol>
+<p>推定は完全ではないため、画面に「誤っている行は『フォームへ』で修正してから単票で印刷」と明記した。</p>
+
+<h2>5. 作成したファイル（リポジトリ外）</h2>
+<table>
+  <thead><tr><th>ファイル</th><th>内容</th></tr></thead>
+  <tbody>
+    <tr><td><code>…\外部供花請求\封筒宛名テンプレート.csv</code></td><td>見出し＋記入例3行（UTF-8 BOM）</td></tr>
+    <tr><td><code>…\外部供花請求\封筒宛名テンプレート_使い方.txt</code></td><td>手順・列の説明・取り扱い注意</td></tr>
+  </tbody>
+</table>
+<p class="note">配置先は OneDrive（<code>遺影写真\20260725 ソウ家\外部供花請求\</code>）。既存ファイルの上書きはしていない。</p>
+
+<h2>6. 検証</h2>
+<table>
+  <tbody>
+    <tr><td><code>npx tsc --noEmit</code></td><td>型エラーなし</td></tr>
+    <tr><td><code>npm run build</code></td><td>✓ Compiled successfully・警告なし</td></tr>
+    <tr><td>静的生成ページ数</td><td>137ページ（増減なし）</td></tr>
+    <tr><td>パーサ単体テスト</td><td>実ファイル2種＋テンプレートで期待どおりの取り込みを確認</td></tr>
+  </tbody>
+</table>
+
+<div class="foot">
+  変更ファイル：<code>lib/post-csv.ts</code>（新規）／<code>app/post/page.tsx</code>／<code>app/post/print/page.tsx</code>。<br>
+  印刷レイアウト・キャリブレーション処理には手を触れていない。<strong>commit・push は未実行</strong>。
+</div>
+
+</div>
+</body>
+</html>
