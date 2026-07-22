@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>対策A/B/D/F 実装レポート（2026-07-22）</title>
+<style>
+  :root{--ink:#23201c;--sub:#6b645c;--line:#e4ddd3;--bg:#fbf9f5;--accent:#7a5c3e;--warn:#a3402f;--good:#3d6b4a;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;line-height:1.8;font-size:15px}
+  .wrap{max-width:1000px;margin:0 auto;padding:32px 22px 80px}
+  header.doc{border-bottom:3px solid var(--accent);padding-bottom:18px;margin-bottom:24px}
+  header.doc .tag{color:var(--accent);font-weight:700;letter-spacing:.12em;font-size:12px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:24px;margin:6px 0 4px;font-weight:700}
+  .meta{color:var(--sub);font-size:13px}
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:20px;margin:34px 0 12px;padding-left:12px;border-left:5px solid var(--accent)}
+  h3{font-size:15.5px;margin:20px 0 6px}
+  .lead{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px 20px;margin:16px 0}
+  .good-box{background:#eef7ef;border:1px solid #cfe6d3;border-radius:10px;padding:14px 18px;margin:14px 0}
+  .info-box{background:#f2f4f8;border:1px solid #d4dbe6;border-radius:10px;padding:14px 18px;margin:14px 0}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13px;background:#fff}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  thead th{background:#f2ece2}
+  code{background:#f1efe9;padding:1px 6px;border-radius:5px;font-size:12.5px;font-family:ui-monospace,Consolas,monospace}
+  .old{color:var(--warn)}.new{color:var(--good);font-weight:600}
+  ul{margin:8px 0 8px 1.2em}li{margin:5px 0}
+  .foot{margin-top:36px;border-top:1px solid var(--line);padding-top:14px;color:var(--sub);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <div class="tag">社内レポート（docs/reports・非公開/noindex）</div>
+  <h1>対策 A / B / D / F 実装レポート</h1>
+  <div class="meta">
+    作成：2026-07-22 ／ 根拠：<a href="./2026-07-22-seo-full-analysis-and-actions.html">SEO 総合分析・対策レポート（同日）</a><br>
+    区分：CLAUDE.md §19.1（既存ページの SEO/AIO 改善・relatedLinks）＝自走可範囲のみ
+  </div>
+</header>
+
+<div class="lead">
+  分析で確定した「<strong>ヘッドKWの受け皿はトップページ一本足であり、<code>/area/kawaguchi/</code>(64.7位)・<code>/plan/family-funeral/</code>(71.6位) はGoogleに候補視されていない</strong>」という事実を前提に、
+  <strong>ページの役割を競合から分業へ組み替えた</strong>。7.2位のトップページ資産には手を触れず（title 据え置き）、下層2ページを別インテントへ退避させ、情報コラムの導線を整流した。
+</div>
+
+<h2>A-1. トップページ＝ヘッドKWの受け皿として確定（title 据え置き）</h2>
+<p>
+「川口市 葬儀」7.2位・「川口 葬儀」9.8位・「川口市 家族葬」11.8位を実際に受けているのはトップページ。<strong>title は現行の資産をそのまま維持</strong>し、変更は description のみに限定した（順位への副作用を避けるため）。
+</p>
+
+<h2>B. トップページ description を CTR 特化に（<code>app/page.tsx</code>）</h2>
+<p>7位前後＝スクロール後に読まれる位置のため、決め手となる事実を先頭へ前倒しした。</p>
+<table>
+  <thead><tr><th>　</th><th>内容</th></tr></thead>
+  <tbody>
+    <tr><td class="old">変更前</td><td>川口市・新井宿で葬儀・家族葬なら、創業20年・年間約260件の川口典礼。24時間365日受付。自社式場・川口メモリアルホール(駐車場70台)から川口市めぐりの森まで車で約5分。直葬は事前相談会員価格139,000円(税込)〜、一日葬・火葬式・市民葬までご相談を承ります。</td></tr>
+    <tr><td class="new">変更後</td><td>川口市めぐりの森まで車で約5分、駐車場70台の自社式場・川口メモリアルホール。直葬は事前相談会員価格139,000円(税込)〜、家族葬は528,000円(税込)〜。創業20年・年間約260件の川口典礼が、川口市・新井宿・鳩ヶ谷の葬儀を24時間365日受け付けています。一日葬・火葬式・川口市民葬もご相談ください。</td></tr>
+  </tbody>
+</table>
+<p>先頭80字に「めぐりの森5分」「駐車場70台の自社式場」「139,000円〜」が入る構成。金額は CLAUDE.md §9 の正本のみ、いずれも事前相談会員価格である旨を明記。断定・最上級表現は不使用。</p>
+
+<h2>A-2. <code>/area/kawaguchi/</code> を商用競合から情報型へ退避（<code>lib/areas.ts</code>）</h2>
+<p>トップページと同一意図で競合していたため、<strong>「費用・手続き・制度・式場選び」の情報型</strong>へ振り直した。h1（heroTitle）も含めて意図を揃えている。</p>
+<table>
+  <thead><tr><th>項目</th><th>変更前</th><th>変更後</th></tr></thead>
+  <tbody>
+    <tr><td>metaTitle</td><td class="old">川口市の葬儀ガイド | 費用の目安・市民葬・式場と流れ | 川口典礼</td><td class="new">川口市の葬儀ガイド | 費用の目安・市民葬・手続きと式場の選び方 | 川口典礼</td></tr>
+    <tr><td>metaDescription</td><td class="old">川口市で葬儀・<strong>葬儀社をお探しの方へ</strong>。費用の目安、川口市民葬…</td><td class="new">川口市で葬儀を行うときの費用の目安、川口市民葬(葬祭事業)などの公的制度、死亡届などの手続き、川口市めぐりの森での火葬までの流れと式場の選び方を…（商用訴求語を除去）</td></tr>
+    <tr><td>heroTitle（h1）</td><td class="old">川口市で葬儀を<br>お考えの方へ</td><td class="new">川口市の葬儀<br>費用と手続きのご案内</td></tr>
+    <tr><td>heroLead</td><td class="old">川口で葬儀をお考えの方へ。川口市めぐりの森まで車5分・駐車場70台の…葬儀をお手伝いします。（＝トップと同じ商用訴求）</td><td class="new">川口市で葬儀を行うときに必要になる費用の目安、届出などの手続き、式場と火葬場の選び方を…地域の実情に沿って整理しました。</td></tr>
+    <tr><td>heroDescription</td><td class="old">家族葬・一日葬・直葬から…幅広く対応。（サービス訴求）</td><td class="new">公的制度・死亡届から火葬許可までの手続き・費用の目安と別途費用の考え方をご案内。（情報提供）</td></tr>
+  </tbody>
+</table>
+<p class="note">相談導線は削っていない（末尾に「24時間365日受付・事前相談無料」を残置）。押し売りにならない範囲で維持。</p>
+
+<h2>A-3. <code>/plan/family-funeral/</code> を費用・人数軸へ（<code>lib/plans.ts</code>）</h2>
+<p>地域ヘッド（川口市 家族葬＝トップが11.8位で受領済み）を追うのをやめ、実データで需要が確認できた<strong>費用・人数クエリ</strong>（「家族葬 10人 費用」126imp・17.6位 等）に狙いを移した。</p>
+<table>
+  <thead><tr><th>項目</th><th>変更前</th><th>変更後</th></tr></thead>
+  <tbody>
+    <tr><td>metaTitle</td><td class="old">川口市の家族葬 | 1日1組貸切の川口メモリアルホール | 川口典礼</td><td class="new">家族葬の費用と人数の目安 | 川口市の家族葬プラン | 川口典礼</td></tr>
+    <tr><td>metaDescription</td><td class="old">川口市で家族葬をお考えなら…事前相談会員価格528,000円(税込)〜</td><td class="new">家族葬の費用と人数の目安を整理しました。…参列10〜30名が目安で、事前相談会員価格528,000円(税込)・通常価格628,000円(税込)。基本費用は参列人数では変わらず、お料理・返礼品や式場使用料は別途かかります。…</td></tr>
+  </tbody>
+</table>
+<p>
+<strong>価格表記の扱い（§9・§14 準拠）：</strong>変更前は「528,000円(税込)〜」と会員価格のみ・波ダッシュ付きで、通常価格が読み取れなかった。変更後は<strong>会員価格・通常価格の両方を併記</strong>し、「基本費用は参列人数では変わらない／お料理・返礼品・式場使用料は別途」と<strong>別途費用の存在を明示</strong>。§9 正本以外の数字は追加していない。h1（heroTitle「川口市の家族葬プラン」）は据え置き。
+</p>
+
+<h2>D. 情報コラムの導線整流（<code>lib/columns.ts</code>）</h2>
+<p>
+問題は「コラムが集客しているのにCVが0」ではなく、<strong>導線の置き場所</strong>だった。<code>/column/fuhou/</code>・<code>/column/shinsiki/</code>・<code>/column/kenshi-nagare/</code>・<code>/column/shibou-todoke/</code> の4記事は、
+<strong>記事の11〜14%地点（＝本文が始まる前）で商用ページへの関連リンクを提示</strong>していた。訃報の返信文例を探して来た読者に、読む前から式場・プランを提示する形になっており、CLAUDE.md §11「押し売り禁止」の趣旨からも外れる。GA4 の scroll イベント −33% とも整合する。
+</p>
+<div class="good-box">
+  <strong>実施内容：</strong>4記事とも冒頭の関連リンクブロックを削除し、<strong>本文末尾（まとめの直後・最終CTAの直前）へ移設</strong>。あわせて「情報 → 情報 → 地域」の順に並べ替えた。
+  <ul>
+    <li><code>/column/fuhou/</code>（10,907imp）→ 続けて読む：死亡届 → 川口市の葬儀ガイド</li>
+    <li><code>/column/kenshi-nagare/</code>（6,084imp）→ 死亡届 → めぐりの森 → 直葬 → 火葬式</li>
+    <li><code>/column/shibou-todoke/</code>（1,227imp）→ 川口市の葬儀ガイド → めぐりの森 → 直葬</li>
+    <li><code>/column/shinsiki/</code>（1,967imp）→ 川口市の葬儀ガイド → 家族葬の費用と人数の目安</li>
+  </ul>
+  既に末尾配置だった <code>/column/yujinso-sokagakkai/</code>（92%地点）はその配置を正とし、ラベルのみ統一。CTAは従来どおり末尾1箇所で、追加・増設はしていない。
+</div>
+
+<h2>F. 内部リンクのアンカーテキスト統一（<code>lib/columns.ts</code>）</h2>
+<p>語順違いロングテール（「家族葬 川口市」31.1位・−8.5 等）で受け皿が割れていた原因のひとつが、同一URLに対する表記ゆれ。新しい役割定義に合わせて統一した。</p>
+<table>
+  <thead><tr><th>リンク先</th><th>統一前（混在）</th><th>統一後</th></tr></thead>
+  <tbody>
+    <tr><td><code>/area/kawaguchi/</code></td><td class="old">「川口市の葬儀ガイド」／「川口市の葬儀ガイド（地域情報）」</td><td class="new">川口市の葬儀ガイド｜費用の目安・手続き・式場の選び方</td></tr>
+    <tr><td><code>/plan/family-funeral/</code></td><td class="old">「川口市の家族葬」／「川口市の家族葬プラン」</td><td class="new">家族葬の費用と人数の目安</td></tr>
+  </tbody>
+</table>
+<p class="note">ボタン型CTAのラベル（「川口市の家族葬プランを見る」）は行動喚起として機能しているため変更していない。</p>
+
+<h2>ビルド・検証結果</h2>
+<table>
+  <thead><tr><th>確認項目</th><th>結果</th></tr></thead>
+  <tbody>
+    <tr><td><code>npm run build</code></td><td>✓ Compiled successfully（エラー・警告なし）</td></tr>
+    <tr><td>静的生成ページ数</td><td>137ページ（前回と増減なし）</td></tr>
+    <tr><td>TypeScript 型エラー</td><td>なし</td></tr>
+    <tr><td>出力HTMLの title/description</td><td>トップ・<code>/area/kawaguchi/</code>・<code>/plan/family-funeral/</code> の3ページで意図どおり反映を確認</td></tr>
+    <tr><td>コラムの関連リンク位置</td><td><code>/column/fuhou/</code> の出力HTMLで、本文h2が「続けて読む」より前に来ることを確認（＝末尾移設が反映）</td></tr>
+    <tr><td>禁止表現の混入</td><td>なし（最安／必ず／絶対／追加費用なし／総額確定 等を不使用）</td></tr>
+    <tr><td>価格の新規追加</td><td>なし（§9 正本の範囲内。家族葬の通常価格628,000円は正本に記載済みの数値）</td></tr>
+  </tbody>
+</table>
+
+<h2>未実施（承認待ち・別トラック）</h2>
+<table>
+  <thead><tr><th>項目</th><th>理由</th></tr></thead>
+  <tbody>
+    <tr><td>C. GBP／ローカルパック最適化</td><td>サイト外の運用作業。<code>docs/operations/gbp/</code> 側で継続</td></tr>
+    <tr><td>E. フォーム離脱の解消（form_start 19→41 に対し generate_lead 16→11）</td><td><code>app/contact/**</code>・<code>app/api/**</code> は §19.2 push前確認必須。まず計測パラメータでの切り分けを行う</td></tr>
+    <tr><td>CLAUDE.md §10.2 重要KWリストの更新（「めぐりの森 葬儀/家族葬/火葬式」＝28日で表示0の3語を棄却）</td><td>ルール文書の変更のため要承認</td></tr>
+    <tr><td>GA4 内部トラフィック除外（<code>/admin/seo/</code> が21セッション混入）</td><td>GA4 管理画面側の設定作業</td></tr>
+  </tbody>
+</table>
+
+<div class="info-box">
+  <strong>効果測定の注意：</strong>今回の変更は title/description/h1/内部リンクが中心で、Google の再クロール・再評価に2〜4週間かかる。
+  次回測定は <strong>2026-08-19 前後</strong>（28日窓が入れ替わるタイミング）が妥当。
+  測定時の主KPIは全体クリック数ではなく、<strong>地域クエリのクリック数</strong>と <strong><code>/area/kawaguchi/</code>・<code>/plan/family-funeral/</code> の順位が60〜70位帯から動くか</strong>の2点。
+</div>
+
+<div class="foot">
+  変更ファイル：<code>app/page.tsx</code> / <code>lib/areas.ts</code> / <code>lib/plans.ts</code> / <code>lib/columns.ts</code>。<br>
+  <strong>commit・push は未実行</strong>（明示指示待ち）。個人情報・認証情報の記載なし。
+</div>
+
+</div>
+</body>
+</html>
