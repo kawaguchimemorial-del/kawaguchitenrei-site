@@ -76,6 +76,22 @@ const planList: PlanListItem[] = [
     forWhom: "負担を抑えつつ、きちんと式を行いたい方",
   },
   {
+    slug: "yugure-kazokuso",
+    detailHref: "/plan/yugure-kazokuso/",
+    ctaLabel: "詳しく見る",
+    name: "夕暮れ家族葬",
+    subtitle: "夕方から行う一日葬",
+    description: "夕方から夜にお別れし、火葬は翌日。日中は難しい方にも。",
+    image: {
+      src: "/images/home/plans/plan-yugure-kazokuso.png",
+      alt: "川口メモリアルホールの式場に設えた夕暮れ家族葬の生花祭壇",
+    },
+    pricing: { type: "member-regular", member: 451000, regular: 551000 },
+    people: "ご家族・ご親族・ごく親しいご友人",
+    days: "式は1日（火葬は翌日）",
+    forWhom: "日中はお仕事やご都合で集まりにくいご家族・ご親族と、ゆっくりお別れしたい方",
+  },
+  {
     slug: "family-funeral",
     detailHref: "/plan/family-funeral/",
     ctaLabel: "プランを見る",

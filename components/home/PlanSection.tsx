@@ -59,6 +59,20 @@ const plans: Plan[] = [
     highlights: ["1日", "5〜30名", "通夜なし"],
   },
   {
+    slug: "yugure-kazokuso",
+    detailHref: "/plan/yugure-kazokuso/",
+    ctaLabel: "夕暮れ家族葬を見る",
+    name: "夕暮れ家族葬",
+    subtitle: "新プラン｜夕方から行う一日葬",
+    description: "夕方から夜にお別れし、火葬は翌日。日中は難しい方にも。",
+    image: {
+      src: "/images/home/plans/plan-yugure-kazokuso.png",
+      alt: "川口メモリアルホールの式場に設えた夕暮れ家族葬の生花祭壇",
+    },
+    pricing: { type: "member-regular", member: 451000, regular: 551000 },
+    highlights: ["夕方開式", "火葬は翌日", "日中に集まりにくい方へ"],
+  },
+  {
     slug: "family-funeral",
     detailHref: "/plan/family-funeral/",
     ctaLabel: "川口市の家族葬を見る",
@@ -192,10 +206,10 @@ export function PlanSection() {
           <h2 className="font-serif-jp mt-3 text-3xl font-medium leading-[1.35] text-ink-deep md:text-[2.4rem]">
             ご希望とご予算に合わせて選べる、
             <br className="md:hidden" />
-            5つの葬儀形式。
+            6つの葬儀形式。
           </h2>
           <p className="mt-5 text-base leading-9 text-ink-mid md:text-lg">
-            川口市で、直葬・花入れお別れ・一日葬・家族葬・市民葬まで、ご家族の状況やご希望に合わせて葬儀の形式をお選びいただけます。費用や追加項目もあわせてご確認いただけます。
+            川口市で、直葬・花入れお別れ・一日葬・夕暮れ家族葬・家族葬・市民葬まで、ご家族の状況やご希望に合わせて葬儀の形式をお選びいただけます。費用や追加項目もあわせてご確認いただけます。
           </p>
           <p className="mt-3 text-base leading-9 text-ink-mid md:text-lg">
             葬儀全体の流れや費用の考え方は、

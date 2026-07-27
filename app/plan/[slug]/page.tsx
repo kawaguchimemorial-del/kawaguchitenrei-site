@@ -16,6 +16,11 @@ import {
   PlanRelated,
   PlanSimpleAlternative,
 } from "@/components/plan/PlanDetailBody";
+import {
+  PlanYugureBody,
+  YugureComparison,
+  YugureCta,
+} from "@/components/plan/PlanYugureBody";
 import { getAllPlanSlugs, getPlan, type Plan } from "@/lib/plans";
 
 const SITE_URL = "https://kawaguchitenrei.com";
@@ -204,7 +209,15 @@ export default async function PlanDetailPage({ params }: Props) {
       )}
 
       <PlanDetailIntro plan={plan} />
-      {plan.nonReligiousInfo ? (
+      {plan.yugureInfo ? (
+        <>
+          <PlanYugureBody plan={plan} />
+          <PlanFaq plan={plan} />
+          <YugureComparison plan={plan} />
+          <YugureCta plan={plan} />
+          <PlanRelated plan={plan} />
+        </>
+      ) : plan.nonReligiousInfo ? (
         <PlanNonReligiousBody plan={plan} />
       ) : plan.citizenFuneralInfo ? (
         <PlanCitizenFuneralBody plan={plan} />
@@ -222,7 +235,7 @@ export default async function PlanDetailPage({ params }: Props) {
           <PlanRelated plan={plan} />
         </>
       )}
-      <PlanCta plan={plan} />
+      {!plan.yugureInfo && <PlanCta plan={plan} />}
     </>
   );
 }

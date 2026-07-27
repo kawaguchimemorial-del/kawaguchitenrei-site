@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>新商品「夕暮れ家族葬」プランページ新設（2026-07-27）</title>
+<style>
+  :root{--ink:#23201c;--sub:#6b645c;--line:#e4ddd3;--bg:#fbf9f5;--accent:#7a5c3e;--warn:#a3402f;--good:#3d6b4a;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;line-height:1.8;font-size:15px}
+  .wrap{max-width:960px;margin:0 auto;padding:32px 22px 80px}
+  header.doc{border-bottom:3px solid var(--accent);padding-bottom:18px;margin-bottom:24px}
+  header.doc .tag{color:var(--accent);font-weight:700;letter-spacing:.12em;font-size:12px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:23px;margin:6px 0 4px;font-weight:700}
+  .meta{color:var(--sub);font-size:13px}
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:19px;margin:32px 0 12px;padding-left:12px;border-left:5px solid var(--accent)}
+  h3{font-size:15px;margin:20px 0 8px}
+  .status{display:inline-block;background:#fdf3e7;border:1px solid #eccfa6;color:#8a5a1d;border-radius:999px;padding:4px 14px;font-weight:700;font-size:14px}
+  .lead{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px 20px;margin:16px 0}
+  .info-box{background:#f2f4f8;border:1px solid #d4dbe6;border-radius:10px;padding:14px 18px;margin:14px 0}
+  .warn-box{background:#fdf1ef;border:1px solid #e8c4bc;border-radius:10px;padding:14px 18px;margin:14px 0}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13px;background:#fff}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  thead th{background:#f2ece2}
+  code{background:#f1efe9;padding:1px 6px;border-radius:5px;font-size:12.5px;font-family:ui-monospace,Consolas,monospace}
+  ul{margin:8px 0 8px 1.2em}li{margin:5px 0}
+  .foot{margin-top:36px;border-top:1px solid var(--line);padding-top:14px;color:var(--sub);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <div class="tag">社内レポート（docs/reports・非公開/noindex）</div>
+  <h1>新商品「夕暮れ家族葬」プランページ新設とトップページ導線追加</h1>
+  <div class="meta">
+    作成：2026-07-27 ／ 実装：Claude Code ／ 依頼：松澤<br>
+    出典：社内チラシ・パンフレット（<code>public/images/tmp/夕暮れ家族葬/</code>）
+  </div>
+</header>
+
+<div class="lead">
+  <span class="status">🟠 実装完了・build成功／push は人間承認待ち</span><br>
+  新プラン「夕暮れ家族葬」（告別式を夕方から夜に行い、翌日に火葬場へお集まりいただく一日葬・事前相談会員価格451,000円／通常価格551,000円・いずれも税込）の専用ページ <code>/plan/yugure-kazokuso/</code> を新設し、トップページのプラン一覧・料金プラン一覧・llms.txt・sitemap に導線を追加した。
+  <strong>新規価格データの追加を含むため CLAUDE.md §19.2 により push は承認後</strong>。会議が挙げた公開ブロッカー4件は 2026-07-27 に松澤より回答を得て確定・反映済み（後述）。
+</div>
+
+<h2>1. 設計プロセス（8専門家会議）</h2>
+<p>依頼に基づき、8つの専門役割で独立に意見を出させ、相互反論を経て議長が裁定する会議を実施（計17エージェント）。</p>
+<table>
+  <thead><tr><th>役割</th><th>主な裁定結果</th></tr></thead>
+  <tbody>
+    <tr><td>SEO戦略</td><td>slug を <code>yugure-kazokuso</code> に固定（既存 <code>hanaire-owakare</code> の長音落とし表記に統一）。一次KWは時間帯クエリではなく、既存プラン閲覧者からの内部導線を本体とする</td></tr>
+    <tr><td>AIO/LLMO</td><td>結論先出しボックスに自己完結した定義文。「通夜ではない」を明示的に否定形で書き、AIの誤要約を防ぐ</td></tr>
+    <tr><td>構造化データ</td><td>会員価格の有無が未確定だったため一旦 <code>regular-only</code> を新設したが、会員価格確定に伴い既存 <code>member-regular</code> に戻して当該分岐は削除済み。<code>hasOfferCatalog</code>／<code>ItemList</code>／<code>@graph</code> 化は不採用（含有項目だけ構造化すると別途費用が落ちて非対称）</td></tr>
+    <tr><td>UX/情報設計</td><td>タイムライン比較はモバイル縦積み2カード → <code>md:</code> で2カラム。価格はヒーローではなくタイムライン直後（差分理解の後）</td></tr>
+    <tr><td>コピー</td><td>見出しは否定形「仕事を休めない」ではなく肯定形「日中に集まりにくいご家族へ」。当事者を責める響きを避ける</td></tr>
+    <tr><td>CRO</td><td>不安の先回り（夜の式は失礼か／僧侶は来るか／翌日の負担）をFAQと専用セクションで解除</td></tr>
+    <tr><td>実務・コンプラ</td><td>翌日火葬の確約・火葬場の空き・夕方の僧侶手配の断定はすべて禁止。体験談の創作は全面削除</td></tr>
+    <tr><td>価格・比較</td><td>差額の明示は不採用（プラン料金差≠総額差の有利誤認）。「一日葬と家族葬の間の価格帯」という事実文のみ（会員価格・通常価格それぞれ同士で比較）</td></tr>
+  </tbody>
+</table>
+
+<h2>2. ページ構成（/plan/yugure-kazokuso/）</h2>
+<ol>
+  <li>パンくず・ヒーロー（h1・リード・電話/事前相談CTA。<strong>価格は置かない</strong>）</li>
+  <li>結論先出しボックス「夕暮れ家族葬とは」（AI引用狙いの自己完結定義文）</li>
+  <li>通常の一日葬とのちがい（進行の一例）— 2カード比較＋散文サマリ＋CTA</li>
+  <li>費用について — 事前相談会員価格451,000円／通常価格551,000円（いずれも税込）＋会員価格の注記＋位置づけ1文</li>
+  <li>このプランが生まれた理由（引用ブロック。件数・開始時期は書かない）</li>
+  <li>夕暮れ家族葬が選ばれる理由 ×4</li>
+  <li>三日間の流れ</li>
+  <li>翌日のご参列について（ご負担への配慮）</li>
+  <li>プラン料金に含まれる主な内容（9項目カード＋<code>&lt;details&gt;</code>に全24項目）</li>
+  <li>別途必要になるもの（<strong>折りたたまず常時表示</strong>・金額は書かない）</li>
+  <li>川口メモリアルホールについて ／ 翌日の火葬について</li>
+  <li>よくあるご質問 14問（FAQPage JSON-LD）</li>
+  <li>他のプランとのちがい（<strong>価格列を持たない</strong>日数・時間帯・お集まりやすさの3軸表）</li>
+  <li>ご相談・お問い合わせ</li>
+  <li>関連リンク</li>
+</ol>
+
+<h3>title / metaDescription</h3>
+<table>
+  <tbody>
+    <tr><th>title</th><td>夕暮れ家族葬｜夕方から行う一日葬｜川口典礼</td></tr>
+    <tr><th>description</th><td>夕暮れ家族葬は、告別式を夕方から夜にかけて行い、翌日に火葬場へお集まりいただく川口典礼オリジナルの一日葬です。（以下略）事前相談会員価格451,000円（税込）／通常価格551,000円（税込）。</td></tr>
+  </tbody>
+</table>
+
+<h2>3. 表現上のガードレール（意図的に書かなかったこと）</h2>
+<div class="warn-box">
+  <ul>
+    <li><strong>事前相談会員価格は451,000円（税込）と確定</strong>（2026-07-27 松澤回答）。他プランと同じ「事前相談会員価格／通常価格」の2段表記に統一。</li>
+    <li><strong>差額77,000円は書いていない</strong>。プラン料金差と総額差は一致しないため。</li>
+    <li><strong>翌日火葬の確約・火葬場の空き状況の断定はしていない</strong>。「予約制」「日程を調整させていただくことがあります」に留めた。火葬場は川口市の施設であり自社運営でない旨も明記。</li>
+    <li><strong>夕方の僧侶手配は断定していない</strong>。「ご紹介できる場合がございます」に留めた。</li>
+    <li><strong>体験談・お客様の声は一切作っていない</strong>。</li>
+    <li>タイムラインは全時刻に「（例）」を付与し、型（<code>YugureTimeline.note</code>）で「一例」注記を必須化した。</li>
+    <li>19:00「会食」行には「（お料理は別料金）」を行内注記。お料理代が別料金であることはFAQでも明記。</li>
+  </ul>
+</div>
+
+<h2>4. 変更ファイル</h2>
+<table>
+  <thead><tr><th>ファイル</th><th>変更内容</th></tr></thead>
+  <tbody>
+    <tr><td><code>lib/plans.ts</code></td><td><code>YugureTimeline</code>・<code>YugureInfo</code> 型追加／夕暮れ家族葬エントリ追加（<code>pricing</code> は既存 <code>member-regular</code>：会員451,000／通常551,000）</td></tr>
+    <tr><td><code>components/plan/PlanYugureBody.tsx</code></td><td>新規。専用セクション9種＋比較表＋CTA</td></tr>
+    <tr><td><code>app/plan/[slug]/page.tsx</code></td><td>yugure 用レンダリング分岐（Offer は既存 <code>member-regular</code> 経路をそのまま利用）</td></tr>
+    <tr><td><code>app/plan/page.tsx</code></td><td><code>planList</code> に追加（一日葬と家族葬の間）</td></tr>
+    <tr><td><code>components/home/PlanSection.tsx</code></td><td>トップ導線。カード追加（「新プラン｜夕方から行う一日葬」）＋見出し「5つ→6つの葬儀形式」</td></tr>
+    <tr><td><code>public/llms.txt</code></td><td>プラン料金一覧に1行、主要ページ一覧に1行を追加</td></tr>
+    <tr><td><code>public/images/home/plans/plan-yugure-kazokuso.png</code></td><td>新規。自社ホールの祭壇写真（社内提供素材・遺影は無地で個人情報なし）</td></tr>
+    <tr><td><code>app/sitemap.ts</code></td><td>変更なし（<code>plans</code> から自動生成されるため新URLは自動追加）</td></tr>
+  </tbody>
+</table>
+
+<h2>5. 検証結果</h2>
+<table>
+  <thead><tr><th>項目</th><th>結果</th></tr></thead>
+  <tbody>
+    <tr><td><code>npm run build</code></td><td>✅ 成功（Compiled successfully）</td></tr>
+    <tr><td>静的生成ページ数</td><td>✅ 138ページ（新規1ページ増・減少なし）／<code>/plan/yugure-kazokuso</code> 生成確認（会員価格反映後も138ページで再確認）</td></tr>
+    <tr><td><code>npx tsc --noEmit</code></td><td>✅ エラーなし</td></tr>
+    <tr><td>禁止表現 grep</td><td>✅ ヒットゼロ（最安／必ず／絶対／追加費用なし／総額確定／いつでも／空きがあり／確実に手配／唯一／他社にはない ほか）</td></tr>
+    <tr><td>指示外ファイルへの巻き込み</td><td>✅ なし（<code>Header/Footer/MobileBottomCTA</code>・<code>funeral-system/</code>・<code>.env*</code>・<code>public/images/tmp/tmp.txt</code> いずれも未接触）</td></tr>
+  </tbody>
+</table>
+
+<h2>6. 公開ブロッカー4件（2026-07-27 松澤回答により確定・反映済み）</h2>
+<table>
+  <thead><tr><th>論点</th><th>回答</th><th>反映内容</th></tr></thead>
+  <tbody>
+    <tr><td>事前相談会員価格の設定有無</td><td>451,000円（税込）</td><td><code>member-regular</code>（会員451,000／通常551,000）に確定。<code>regular-only</code> 型と各ファイルの分岐は削除。FAQに「事前相談会員価格と通常価格の違い」を追加</td></tr>
+    <tr><td>19:00「会食」の含否</td><td>お料理は別料金</td><td>タイムライン行内注記を「（お料理は別料金）」に。別途費用に「お食事・お飲み物」を掲載、FAQを1問追加</td></tr>
+    <tr><td>安置・ドライアイスの日数</td><td>式当日と翌日分を含む</td><td>含有項目を「ご安置（式当日・翌日分）」「ドライアイス（式当日・翌日分）」に修正。別途費用は「式当日・翌日を超えてご安置日数が延びた場合」に限定、FAQを1問追加</td></tr>
+    <tr><td>翌日の火葬場への移動手段</td><td>故人様の搬送であり会葬者は移動しない</td><td>含有項目を「故人様の火葬場までのご搬送（20kmまで）」に明示。「翌日のご参列について」に送迎が含まれない旨を追記、別途費用にご参列者の交通費を追加、FAQを1問追加</td></tr>
+  </tbody>
+</table>
+
+<h3>確認が望ましい論点</h3>
+<ul>
+  <li>三日間フロー2日目の式の正式名称（資料は「納棺→通夜式→(告別式)→出棺」で通夜との境界が曖昧）</li>
+  <li>夜間時間帯の式場使用に関する割増の有無（資料になく、「割増はありません」とも書けない）</li>
+  <li>夕方開式時の宗教者手配の実運用（自社紹介先が夕方対応可能か）</li>
+  <li><code>/plan/oneday-funeral/</code> 側からの相互リンク追加（今回は夕暮れ側からの片方向のみ実装）</li>
+  <li><code>/estimate/</code>・問い合わせフォームのプラン選択肢追加は §19.2 のフォーム改修に該当するため本リリースから除外</li>
+  <li>CLAUDE.md §9「料金・プラン名の正本」への夕暮れ家族葬（会員451,000円／通常551,000円）の追記</li>
+</ul>
+
+<h2>7. 技術的負債（記録）</h2>
+<div class="info-box">
+  プラン配列が <code>lib/plans.ts</code>／<code>app/plan/page.tsx</code>／<code>components/home/PlanSection.tsx</code> の3箇所に重複保持されている（後2者は <code>lib/plans.ts</code> を import せずローカル再定義）。今回も451,000円／551,000円を3箇所に記述している。将来の価格変更時に不整合を起こすリスクがあるため、単一ソース化は別タスクとして起票を推奨。
+</div>
+
+<h2>8. 確認コマンド・URL</h2>
+<ul>
+  <li><code>npm run dev</code> ／ <code>npm run build</code></li>
+  <li>http://localhost:3000/plan/yugure-kazokuso/</li>
+  <li>http://localhost:3000/plan/ （一覧での並び順：一日葬 → 夕暮れ家族葬 → 家族葬）</li>
+  <li>http://localhost:3000/ （トップのプラン一覧セクション）</li>
+</ul>
+
+<div class="foot">
+  本レポートは社内向け（noindex）。コミット・push は未実施。§19.2 により push は人間承認後。
+</div>
+
+</div>
+</body>
+</html>
