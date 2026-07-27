@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex,nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>メインサイト SEOチェック（2026-07-28）</title>
+<title>メインサイト SEOチェック（2026-07-28・訂正済）</title>
 <style>
   :root{--ink:#23201c;--sub:#6b645c;--line:#e4ddd3;--bg:#fbf9f5;--accent:#7a5c3e;--warn:#a3402f;--good:#3d6b4a;}
   *{box-sizing:border-box}
@@ -48,7 +48,8 @@
   <span class="status">🟠 数字は好調・ただし中身に構造的な問題</span><br>
   全体はクリック <strong>+100%</strong>、表示 <strong>+131%</strong>、平均順位 <strong>16.3→11.5</strong> と大きく伸びた。
   ただし伸びの<strong>54%が情報系コラム由来</strong>で、葬儀依頼につながる商用クエリのクリックはほぼ増えていない。
-  さらに <strong>7/22 に実施した「受け皿の役割分離」施策が、意図と逆方向に出ている</strong>ことが判明した。
+  <strong>【2026-07-28 訂正】</strong>初版では「7/22の役割分離施策が逆方向に出ている」と結論したが、
+  期間を区切って再取得した結果<strong>この因果推定は誤りだった</strong>。詳細は §3。
 </div>
 
 <h2>1. 全体推移（28日 vs 前28日）</h2>
@@ -93,64 +94,36 @@
 </table>
 </div>
 
-<h2>3. 【重要】7/22施策が逆方向に出ている</h2>
+<h2>3. 【訂正】7/22施策の評価は「まだ判定できない」が正しい</h2>
 
 <div class="warn-box">
-  <strong>結論：商用クエリの受け皿はいまだに全部トップページで、専用ページは順位が下がっている。</strong>
+  <strong>初版の誤り</strong>：「7/22の役割分離で /plan/family-funeral/ と /area/kawaguchi/ の順位が落ちた」と結論したが、
+  <strong>これらのページは変更前からすでに同じ順位帯にいた</strong>。変更が原因ではない。
 </div>
 
-<h3>「川口市 葬儀」（表示1,590・最大の商用KW）</h3>
+<h3>期間を区切った再取得（これが正しい読み方）</h3>
 <div class="tw">
 <table>
-  <thead><tr><th>ページ</th><th>クリック</th><th>表示</th><th>平均順位</th></tr></thead>
+  <thead><tr><th>対象</th><th>A: 6/01–7/13<br>両変更の前</th><th>B: 7/15–7/21<br>カニバリ修正後</th><th>C: 7/23–7/25<br>役割分離後</th></tr></thead>
   <tbody>
-    <tr><td>/（トップ）</td><td>3</td><td>1,586</td><td>7.3</td></tr>
-    <tr><td>/area/kawaguchi/</td><td>0</td><td>20</td><td class="down">64.6</td></tr>
-    <tr><td>/saijo/megurinomori/</td><td>0</td><td>7</td><td>8.6</td></tr>
+    <tr><td>/plan/family-funeral/ ×「家族葬 川口市」</td><td>表示22・<strong>50.7位</strong></td><td>表示0</td><td>表示0</td></tr>
+    <tr><td>/area/kawaguchi/ ×「川口市 葬儀」</td><td>表示43・<strong>67.6位</strong></td><td>表示5・67.4位</td><td>表示1・73.0位</td></tr>
+    <tr><td>/（トップ）×「川口市 葬儀」</td><td>表示1,843・8.8位</td><td>表示375・7.8位</td><td>表示165・8.2位</td></tr>
   </tbody>
 </table>
 </div>
 
-<h3>「家族葬 川口市」</h3>
-<div class="tw">
-<table>
-  <thead><tr><th>ページ</th><th>クリック</th><th>表示</th><th>平均順位</th></tr></thead>
-  <tbody>
-    <tr><td>/（トップ）</td><td>0</td><td>58</td><td>11.6</td></tr>
-    <tr><td>/area/aoki/</td><td>0</td><td>12</td><td>49.3</td></tr>
-    <tr><td>/area/higashikawaguchi/</td><td>0</td><td>8</td><td>57.6</td></tr>
-    <tr><td><strong>/plan/family-funeral/</strong>（本来の受け皿）</td><td>0</td><td>18</td><td class="down">50.7</td></tr>
-  </tbody>
-</table>
-</div>
+<p><strong>読み取れること：</strong></p>
+<ul>
+  <li>/plan/family-funeral/ の「50.7位」は<strong>変更前（A期間）のデータそのもの</strong>。28日窓に A期間が含まれていたため、あたかも現在の順位のように見えていた</li>
+  <li>/area/kawaguchi/ は変更前から67.6位。<strong>もともと商用クエリで戦えていない</strong></li>
+  <li>ヘッドKWの受け皿は変更の前後を通じて一貫してトップページ。これは7/22コミットの説明文（変更前で /area/kawaguchi/ 64.7位・/plan/family-funeral/ 71.6位）とも整合する</li>
+  <li><strong>役割分離の実施は7/22、データ確定は7/25。実質3日分しかない</strong>。効果判定は時期尚早</li>
+</ul>
 
-<div class="warn-box">
-  <strong>家族葬の専用ページが、家族葬のクエリで50位。</strong>代わりにトップと無関係なエリアページが出ている。
-  7/22 の「役割分離・カニバリ解消」で <code>/plan/family-funeral/</code> の title を「家族葬の費用と人数の目安」へ変更したが、
-  <strong>地名（川口市）をtitleの主役から外した結果、地域クエリでの関連性を落とした</strong>可能性が高い。
-</div>
-
-<h3>重点ページの前後比較</h3>
-<div class="tw">
-<table>
-  <thead><tr><th>ページ</th><th>表示 前→後</th><th>順位 前→後</th><th>クリック</th></tr></thead>
-  <tbody>
-    <tr><td>/area/kawaguchi/</td><td class="down">419 → 178</td><td class="down">20.0 → 32.2</td><td>2 → 0</td></tr>
-    <tr><td>/plan/family-funeral/</td><td>276 → 522</td><td>8.2 → 5.7</td><td>0 → 0</td></tr>
-    <tr><td>/plan/oneday-funeral/</td><td>51 → 72</td><td>21.9 → 19.0</td><td>0 → 0</td></tr>
-    <tr><td>/area/hatogaya/</td><td>105 → 161</td><td>34.3 → 30.6</td><td>0 → 0</td></tr>
-    <tr><td>/area/araijuku/</td><td>—</td><td class="down">8.4 → 22.7</td><td>0</td></tr>
-    <tr><td>/plan/kawaguchi-shimin/</td><td>—</td><td class="up">18.1 → 11.6</td><td>1</td></tr>
-    <tr><td>/plan/</td><td>187 → 345</td><td class="up">4.1 → 1.8</td><td>2</td></tr>
-  </tbody>
-</table>
-</div>
-
-<div class="info-box">
-  <strong>誤診を回避した点</strong>：<code>/plan/family-funeral/</code> は「522表示・5.7位なのにクリック0」で一見異常だが、
-  クエリ内訳を見ると <strong>522表示のうち232表示が指名検索「川口典礼」（1.0位）</strong>。
-  指名検索者はトップページをクリックしているため、このページのクリック0は異常ではない。
-  <strong>本当の問題は、家族葬クエリで50.7位にいること</strong>。
+<div class="good-box">
+  <strong>正しい対応</strong>：いま title を再変更すると、7/22施策の効果を測る基準線が失われる。
+  タイトルの短期間での往復は、それ自体が評価を不安定にする。<strong>2026-08-19頃の28日測定まで待つ。</strong>
 </div>
 
 <h2>4. 情報系コラムへの依存</h2>
@@ -174,7 +147,12 @@
 
 <div class="good-box">
   ただしこれは<strong>悪いことではない</strong>。E-E-A-T とドメイン全体の評価を押し上げる資産になっている。
-  問題は「これしか伸びていない」こと。<strong>コラムから商用ページへの内部導線</strong>が機能していない可能性が高い。
+  問題は「これしか伸びていない」こと。<br><br>
+  <strong>【訂正】</strong>初版では「内部導線が弱い可能性」としたが、本番HTMLを実測したところ
+  主要コラム5本はいずれも <code>/plan/</code> へ11〜13本、<code>/contact/</code> へ4本、<code>/area/</code> へ9〜10本のリンクを持つ。
+  <strong>内部導線は既に十分に密で、これは原因ではない</strong>（7/22のコラム導線再構成が効いている）。
+  真因は、対象クエリ（訃報返信・検視・香典など）が<strong>全国区の情報クエリで、川口市の葬儀需要と接点がない</strong>こと。
+  内部リンクを増やしても解決しない性質の問題。
 </div>
 
 <h2>5. 指名検索は非常に強い</h2>
@@ -191,18 +169,63 @@
 </div>
 <p>ブランド認知は機能している。<strong>足りないのは非指名の地域商用クエリ</strong>。</p>
 
-<h2>6. 優先対応（提案）</h2>
+<h2>6. 優先対応（検証後の確定版）</h2>
+
+<div class="info-box">
+  初版で挙げた5項目を1件ずつ実データで検証した結果、<strong>4件が誤った前提に基づいていた</strong>。以下は検証後の結論。
+</div>
+
 <div class="tw">
 <table>
-  <thead><tr><th>優先</th><th style="text-align:left">対応</th><th style="text-align:left">理由</th><th>承認</th></tr></thead>
+  <thead><tr><th>初版の提案</th><th style="text-align:left">検証結果</th><th style="text-align:left">確定した対応</th></tr></thead>
   <tbody>
-    <tr><td>1</td><td style="text-align:left"><code>/plan/family-funeral/</code> の title に「川口市」を戻す</td><td style="text-align:left">家族葬クエリで50.7位。7/22変更で地域関連性を落とした疑いが濃い</td><td>§19.1 自走可</td></tr>
-    <tr><td>2</td><td style="text-align:left"><code>/area/kawaguchi/</code> の立て直し（順位20→32.2・表示-58%）</td><td style="text-align:left">最優先エリアページが後退。7/22変更の影響を検証し必要なら差し戻す</td><td>§19.1 自走可</td></tr>
-    <tr><td>3</td><td style="text-align:left">GBP設定の完遂（プレイブック §12 Day1〜2）</td><td style="text-align:left">「川口市 葬儀」は7.3位・1,586表示でクリック3（CTR 0.19%）。ローカルパックに食われている。<strong>サイト側では取り返せない</strong></td><td>—</td></tr>
-    <tr><td>4</td><td style="text-align:left">コラム→商用ページの内部導線を強化</td><td style="text-align:left">クリックの54%がコラム。訃報・検視系から /plan/ /contact/ への導線が弱い</td><td>§19.1 自走可</td></tr>
-    <tr><td>5</td><td style="text-align:left"><code>/area/araijuku/</code> の順位下落調査（8.4→22.7）</td><td style="text-align:left">自社所在地エリアで下落。近接性で最も勝てるはずの地域</td><td>§19.1 自走可</td></tr>
+    <tr>
+      <td>① family-funeral の title に「川口市」を戻す</td>
+      <td style="text-align:left"><strong>前提が誤り。</strong>50.7位は変更前のデータ。変更後は当該クエリで表示ゼロ（=まだ評価が定まっていない）</td>
+      <td style="text-align:left"><strong>実施しない。</strong>8/19の測定まで待つ</td>
+    </tr>
+    <tr>
+      <td>② /area/kawaguchi/ の立て直し</td>
+      <td style="text-align:left"><strong>前提が誤り。</strong>変更前から67.6位で、もともと商用クエリで戦えていない。情報型への退避は7/22の意図的な設計</td>
+      <td style="text-align:left"><strong>実施しない。</strong>8/19の測定まで待つ</td>
+    </tr>
+    <tr>
+      <td>③ GBP設定の完遂</td>
+      <td style="text-align:left"><strong>妥当。</strong>「川口市 葬儀」はトップが7.3位・表示1,586でクリック3（CTR 0.19%）。1ページ目にいてこの数字はローカルパックに食われている証拠</td>
+      <td style="text-align:left"><strong>最優先。</strong>ただし松澤さんのGUI操作が必要（プレイブック §12）</td>
+    </tr>
+    <tr>
+      <td>④ コラム→商用の内部導線強化</td>
+      <td style="text-align:left"><strong>前提が誤り。</strong>主要コラム5本とも /plan/ へ11〜13本のリンクを保有済み。導線は密</td>
+      <td style="text-align:left"><strong>実施しない。</strong>真因は情報クエリの性質であり導線では解決しない</td>
+    </tr>
+    <tr>
+      <td>⑤ /area/araijuku/ の下落調査</td>
+      <td style="text-align:left"><strong>下落ではなかった。</strong>「新井宿 葬儀」は過去89日で表示15・<strong>順位6.9位</strong>と既に良好。8.4→22.7の変動は、他社名クエリ（新井葬儀店・新井葬祭本家丸忠）の誤マッチによる少数サンプルのノイズ</td>
+      <td style="text-align:left"><strong>対応不要。</strong>検索需要自体が小さい</td>
+    </tr>
   </tbody>
 </table>
+</div>
+
+<h3>検証の副産物：実際に需要がある地域クエリ</h3>
+<p>地域名クエリを89日窓で洗ったところ、<strong>ボリュームがあるのは競合施設の指名検索</strong>だった。</p>
+<div class="tw">
+<table>
+  <thead><tr><th>クエリ</th><th>表示（89日）</th><th>現在の順位</th></tr></thead>
+  <tbody>
+    <tr><td>芝葬斎センター</td><td>76</td><td>27.1</td></tr>
+    <tr><td>ティア鳩ヶ谷</td><td>67</td><td>34.4</td></tr>
+    <tr><td>小さな森の家 川口鳩ヶ谷</td><td>54</td><td>36.0</td></tr>
+    <tr><td>南鳩ヶ谷 葬儀</td><td>21</td><td>43.7</td></tr>
+    <tr><td>南鳩ヶ谷駅 葬儀</td><td>19</td><td>17.8</td></tr>
+    <tr><td>青木葬祭</td><td>18</td><td>25.8</td></tr>
+  </tbody>
+</table>
+</div>
+<div class="warn-box">
+  近隣の式場を探している実需だが、<strong>競合他社の固有名詞を扱うため CLAUDE.md §15 の範囲判断が必要</strong>。
+  事実・公開情報の範囲に限り、誹謗中傷や優劣の断定を行わない前提でも、着手には人間の承認を要する。<strong>本レポートでは提案に留める。</strong>
 </div>
 
 <h2>7. 次回確認</h2>
@@ -213,7 +236,9 @@
 </ul>
 
 <div class="foot">
-  データ取得：Search Console API（OAuth）。分析のみ・サイトコードの変更なし。秘密情報・個人情報は記載していない。
+  データ取得：Search Console API（OAuth）。分析のみ・サイトコードの変更なし。秘密情報・個人情報は記載していない。<br>
+  <strong>2026-07-28 訂正</strong>：初版の §3・§4・§6 は期間を区切らない28日窓の集計から誤った因果を推定していた。
+  期間別の再取得により訂正済み。初版で「実施すべき」とした5項目のうち4項目は、検証の結果<strong>実施しないことが正しい</strong>と判断した。
 </div>
 
 </div>
