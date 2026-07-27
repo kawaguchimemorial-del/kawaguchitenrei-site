@@ -1,0 +1,725 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Google ビジネスプロフィール 徹底設定プレイブック（2026-07-27）</title>
+<style>
+  :root{
+    --ink:#23201c;--sub:#6b645c;--soft:#8b837a;--line:#e4ddd3;--line2:#f0eae1;
+    --bg:#fbf9f5;--card:#fff;--accent:#7a5c3e;--accent2:#a3824f;
+    --warn:#a3402f;--warnbg:#fdf1ef;--warnline:#e8c4bc;
+    --good:#3d6b4a;--goodbg:#eef7ef;--goodline:#cfe6d3;
+    --info:#3a5573;--infobg:#f2f4f8;--infoline:#d4dbe6;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;scroll-padding-top:16px}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;line-height:1.85;font-size:15px}
+
+  .layout{display:flex;gap:32px;max-width:1280px;margin:0 auto;padding:28px 22px 100px;align-items:flex-start}
+
+  /* ---- 目次 ---- */
+  nav.toc{position:sticky;top:20px;flex:0 0 236px;background:var(--card);border:1px solid var(--line);
+    border-radius:12px;padding:16px 14px;font-size:13px;max-height:calc(100vh - 48px);overflow:auto}
+  nav.toc .t{font-weight:700;color:var(--accent);letter-spacing:.1em;font-size:11px;margin-bottom:10px}
+  nav.toc a{display:block;color:var(--sub);text-decoration:none;padding:5px 8px;border-radius:6px;line-height:1.5}
+  nav.toc a:hover{background:var(--bg);color:var(--ink)}
+  nav.toc a.active{background:#f4ede2;color:var(--accent);font-weight:700}
+  .prog{margin-top:14px;padding-top:12px;border-top:1px solid var(--line2)}
+  .prog .bar{height:7px;background:var(--line2);border-radius:99px;overflow:hidden}
+  .prog .bar i{display:block;height:100%;width:0;background:var(--accent2);transition:width .25s}
+  .prog .num{font-size:11px;color:var(--soft);margin-top:6px;display:flex;justify-content:space-between;align-items:center}
+  .prog button{font:inherit;font-size:11px;color:var(--soft);background:none;border:1px solid var(--line);
+    border-radius:6px;padding:2px 7px;cursor:pointer}
+  .prog button:hover{background:var(--bg);color:var(--ink)}
+
+  main{flex:1 1 auto;min-width:0}
+
+  header.doc{border-bottom:3px solid var(--accent);padding-bottom:18px;margin-bottom:22px}
+  header.doc .tag{color:var(--accent);font-weight:700;letter-spacing:.12em;font-size:12px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:25px;margin:6px 0 6px;font-weight:700;line-height:1.4}
+  .meta{color:var(--sub);font-size:13px}
+
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:20px;margin:40px 0 14px;
+    padding-left:12px;border-left:5px solid var(--accent);scroll-margin-top:16px}
+  h3{font-size:15.5px;margin:26px 0 8px;color:var(--accent)}
+
+  p{margin:10px 0}
+  ul,ol{margin:10px 0 10px 1.3em;padding:0}li{margin:6px 0}
+
+  .lead{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin:16px 0}
+  .box{border-radius:10px;padding:14px 18px;margin:16px 0}
+  .box.warn{background:var(--warnbg);border:1px solid var(--warnline)}
+  .box.info{background:var(--infobg);border:1px solid var(--infoline)}
+  .box.good{background:var(--goodbg);border:1px solid var(--goodline)}
+  .box .h{font-weight:700;margin-bottom:6px}
+  .box.warn .h{color:var(--warn)}
+  .box.good .h{color:var(--good)}
+  .box.info .h{color:var(--info)}
+  .box ul{margin-bottom:0}
+
+  .tw{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:14px 0}
+  table{width:100%;min-width:520px;border-collapse:collapse;font-size:13.5px;background:var(--card)}
+  th,td{border:1px solid var(--line);padding:9px 11px;text-align:left;vertical-align:top}
+  thead th{background:#f2ece2;white-space:nowrap}
+  td.num,th.num{text-align:right;white-space:nowrap}
+  tbody tr:nth-child(even){background:#fdfcfa}
+
+  code{background:#f1efe9;padding:1px 6px;border-radius:5px;font-size:12.5px;
+    font-family:ui-monospace,Consolas,monospace;word-break:break-all}
+
+  /* ---- コピー可能ブロック ---- */
+  .copy{position:relative;background:var(--card);border:1px solid var(--line);border-radius:10px;
+    padding:14px 16px 14px;margin:12px 0}
+  .copy .label{font-size:11px;font-weight:700;letter-spacing:.08em;color:var(--accent);margin-bottom:8px;
+    display:flex;justify-content:space-between;align-items:center;gap:10px}
+  .copy .txt{white-space:pre-wrap;font-size:14px;line-height:1.9}
+  .copy .txt.mono{font-family:ui-monospace,Consolas,monospace;font-size:12.5px;line-height:1.8}
+  button.cp{font:inherit;font-size:11.5px;font-weight:700;color:var(--accent);background:#fff;
+    border:1px solid var(--accent2);border-radius:7px;padding:4px 12px;cursor:pointer;white-space:nowrap}
+  button.cp:hover{background:#f7f0e6}
+  button.cp.done{color:var(--good);border-color:var(--goodline);background:var(--goodbg)}
+  .cnt{font-size:11px;color:var(--soft);font-weight:400;letter-spacing:0}
+
+  /* ---- チェックリスト ---- */
+  .ck{list-style:none;margin:12px 0;padding:0}
+  .ck li{margin:0;border-bottom:1px solid var(--line2)}
+  .ck li:last-child{border-bottom:0}
+  .ck label{display:flex;gap:11px;align-items:flex-start;padding:9px 4px;cursor:pointer;border-radius:6px}
+  .ck label:hover{background:#fdfcfa}
+  .ck input{margin:5px 0 0;width:17px;height:17px;flex:0 0 auto;accent-color:var(--accent2);cursor:pointer}
+  .ck input:checked + span{color:var(--soft);text-decoration:line-through;text-decoration-color:var(--line)}
+  .ck .box2{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:4px 14px}
+
+  .pill{display:inline-block;font-size:11px;font-weight:700;border-radius:99px;padding:2px 9px;margin-left:6px;vertical-align:2px}
+  .pill.ng{background:var(--warnbg);color:var(--warn);border:1px solid var(--warnline)}
+  .pill.ok{background:var(--goodbg);color:var(--good);border:1px solid var(--goodline)}
+  .pill.new{background:#f4ede2;color:var(--accent);border:1px solid #e0d0b8}
+
+  .foot{margin-top:44px;border-top:1px solid var(--line);padding-top:14px;color:var(--sub);font-size:12px}
+
+  @media (max-width:900px){
+    .layout{display:block;padding:20px 16px 80px}
+    nav.toc{position:static;width:auto;margin-bottom:20px;max-height:none}
+    nav.toc .links{display:flex;flex-wrap:wrap;gap:4px}
+    nav.toc a{padding:5px 10px;border:1px solid var(--line2);border-radius:99px;font-size:12px}
+    h1{font-size:21px}
+  }
+  @media print{
+    nav.toc,button.cp,.prog{display:none}
+    .layout{display:block;max-width:none;padding:0}
+    body{background:#fff;font-size:11.5pt}
+    h2{page-break-after:avoid}table{page-break-inside:auto}tr{page-break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+<div class="layout">
+
+<nav class="toc">
+  <div class="t">目次</div>
+  <div class="links">
+    <a href="#s0">0. なぜGBPを徹底するのか</a>
+    <a href="#s1">1. NAP 正本</a>
+    <a href="#s2">2. 基本情報の設定</a>
+    <a href="#s3">3. ビジネス説明文</a>
+    <a href="#s4">4. サービス／料金</a>
+    <a href="#s5">5. 写真</a>
+    <a href="#s6">6. Q&amp;A 10問</a>
+    <a href="#s7">7. 週次投稿 12週</a>
+    <a href="#s8">8. 口コミ運用</a>
+    <a href="#s9">9. サイテーション</a>
+    <a href="#s10">10. 月次計測</a>
+    <a href="#s11">11. 禁止事項</a>
+    <a href="#s12">12. 実施順</a>
+  </div>
+  <div class="prog">
+    <div class="bar"><i id="pbar"></i></div>
+    <div class="num"><span id="pnum">0 / 0 完了</span><button id="preset" type="button">リセット</button></div>
+  </div>
+</nav>
+
+<main>
+
+<header class="doc">
+  <div class="tag">社内ドキュメント（非公開 / noindex）</div>
+  <h1>Google ビジネスプロフィール 徹底設定プレイブック</h1>
+  <div class="meta">
+    作成：2026-07-27 ／ 操作者：松澤（オーナー権限で直接操作）<br>
+    元データ：<code>docs/operations/gbp/2026-07-27-gbp-full-setup-playbook.md</code>
+  </div>
+</header>
+
+<div class="lead">
+  <strong>この画面の使い方</strong><br>
+  ・チェックボックスの進捗はこのブラウザに自動保存されます（閉じても残ります）<br>
+  ・<strong>「コピー」ボタン</strong>を押すと、その文面をそのまま管理画面に貼り付けられます<br>
+  ・作業は <a href="#s12">§12 実施順</a> のとおり Day 1 → Day 2 → 週次 の順で進めるのが最短です
+</div>
+
+<!-- =========== 0 =========== -->
+<h2 id="s0">0. なぜGBPを徹底するのか</h2>
+
+<p>葬儀の地域検索は、クリックの大半を<strong>ローカルパック（地図3枠）</strong>が取ります。サイト改善だけでは、この枠には入れません。</p>
+
+<p>Googleがローカルパックを決める3要素は「<strong>近接性・関連性・知名度</strong>」。このうち：</p>
+
+<div class="tw">
+<table>
+  <thead><tr><th>要素</th><th>現状</th><th>動かせるか</th></tr></thead>
+  <tbody>
+    <tr><td>近接性</td><td>鳩ヶ谷 2.45km ／ 東川口 2.66km ／ 川口駅 5.86km（実測）</td><td><strong>動かせない</strong>（座標で固定）</td></tr>
+    <tr><td>関連性</td><td>カテゴリ・説明文・サービス登録・属性で決まる</td><td><strong>動かせる ← 本書の主戦場</strong></td></tr>
+    <tr><td>知名度</td><td>口コミ件数・鮮度・サイテーション・被リンク</td><td><strong>動かせる</strong>（時間がかかる）</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="box good">
+  <div class="h">方針</div>
+  川口駅前の枠を正面から狙うのではなく、<strong>鳩ヶ谷・新井宿・東川口・めぐりの森周辺</strong>で確実に枠を取り、関連性を100%まで詰め切る。
+</div>
+
+<!-- =========== 1 =========== -->
+<h2 id="s1">1. NAP 正本（全項目・全媒体でこの表記に統一）</h2>
+
+<p><strong>1文字でもズレたら知名度シグナルが分散します。必ずコピーして使ってください。</strong></p>
+
+<div class="copy">
+  <div class="label"><span>NAP 正本</span><button class="cp" type="button">コピー</button></div>
+  <div class="txt mono">名称：川口典礼
+郵便番号：333-0833
+住所：埼玉県川口市西新井宿440-1
+電話（主）：0120-963-765
+電話（副）：048-281-1117
+ウェブサイト：https://kawaguchitenrei.com/
+営業時間：24時間営業（年中無休）
+開業日：2006年</div>
+</div>
+
+<div class="box warn">
+  <div class="h">⚠ 表記揺れ禁止</div>
+  番地のハイフン／電話のハイフン／全角半角／「(株)」「株式会社」の有無。既存媒体で揺れているものは <a href="#s9">§9</a> の突合表で潰します。<br><br>
+  名称欄に「川口 葬儀」「家族葬」などのキーワードを足すのは<strong>ガイドライン違反</strong>（停止リスク）。看板・登記どおりの「川口典礼」だけにしてください。
+</div>
+
+<!-- =========== 2 =========== -->
+<h2 id="s2">2. 基本情報の設定</h2>
+
+<h3>2-1. カテゴリ（最重要・関連性の土台）</h3>
+<p>カテゴリ選択で以下を上から順に探して設定します。<strong>候補に出た名称をそのまま選ぶ</strong>こと（下記は候補名なので、画面の表記と完全一致しない場合はそちらに従ってください）。</p>
+
+<ul class="ck"><li class="box2">
+  <label><input type="checkbox" data-ck="cat1"><span><strong>メインカテゴリ＝「葬儀店」（Funeral home）</strong> を設定した</span></label>
+  <label><input type="checkbox" data-ck="cat2"><span>追加カテゴリ「葬儀場 / 斎場」を設定した</span></label>
+  <label><input type="checkbox" data-ck="cat3"><span>追加カテゴリ「葬祭業」を設定した</span></label>
+  <label><input type="checkbox" data-ck="cat4"><span><strong>「火葬場」は選んでいない</strong>ことを確認した<span class="pill ng">必須</span></span></label>
+</li></ul>
+
+<div class="box warn">
+  <div class="h">⚠ 「火葬場」は絶対に選ばない</div>
+  川口市めぐりの森は<strong>川口市営</strong>で自社運営ではないため、火葬場カテゴリを名乗ると実態と乖離します（CLAUDE.md §19.3 の停止条件に該当）。
+</div>
+
+<p>メインカテゴリはローカルパックの関連性に最も効きます。<strong>追加カテゴリを増やしすぎると主軸がぼやける</strong>ので、確信のある3つまでに留めてください。</p>
+
+<h3>2-2. 営業時間</h3>
+<ul class="ck"><li class="box2">
+  <label><input type="checkbox" data-ck="hr1"><span>全曜日を「24時間営業」に設定した</span></label>
+  <label><input type="checkbox" data-ck="hr2"><span>特別営業時間：年末年始も休業日を作っていない（24時間365日受付が事実）</span></label>
+</li></ul>
+
+<h3>2-3. 属性（設定できるものはすべてON）</h3>
+<p>管理画面に出てくるものだけを設定します。<strong>出てこない属性を無理に探さない</strong>でください。</p>
+<ul class="ck"><li class="box2">
+  <label><input type="checkbox" data-ck="at1"><span>駐車場：<strong>あり（無料・敷地内70台）</strong></span></label>
+  <label><input type="checkbox" data-ck="at2"><span>バリアフリー：入口・トイレなど、<strong>実際に該当するもののみ</strong></span></label>
+  <label><input type="checkbox" data-ck="at3"><span>支払い方法：<strong>実際に対応しているもののみ</strong></span></label>
+  <label><input type="checkbox" data-ck="at4"><span>オンライン相談／電話相談：対応可能なら該当項目をON</span></label>
+  <label><input type="checkbox" data-ck="at5"><span>事業者属性（女性経営・LGBTQ+フレンドリー等）：<strong>事実でなければ設定しない</strong></span></label>
+</li></ul>
+
+<h3>2-4. サービス提供地域</h3>
+<p>店舗型（来店あり）なので、<strong>サービス提供地域は設定しない</strong>か、設定する場合も広げすぎないこと。広域に設定すると近接性の判定が薄まる場合があります。設定するなら：</p>
+<div class="copy">
+  <div class="label"><span>サービス提供地域</span><button class="cp" type="button">コピー</button></div>
+  <div class="txt mono">川口市 / 蕨市 / 戸田市 / さいたま市緑区 / 草加市</div>
+</div>
+
+<h3>2-5. ウェブサイト・予約リンク</h3>
+<div class="tw">
+<table>
+  <thead><tr><th>項目</th><th>URL</th></tr></thead>
+  <tbody>
+    <tr><td>ウェブサイト</td><td><code>https://kawaguchitenrei.com/</code></td></tr>
+    <tr><td>予約リンク（事前相談）</td><td><code>https://kawaguchitenrei.com/contact/</code></td></tr>
+    <tr><td>見積もりリンク</td><td><code>https://kawaguchitenrei.com/estimate/</code></td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- =========== 3 =========== -->
+<h2 id="s3">3. ビジネス説明文（750文字以内・そのまま貼り付け可）</h2>
+
+<div class="copy">
+  <div class="label"><span>ビジネス説明文 <span class="cnt" data-count></span></span><button class="cp" type="button">コピー</button></div>
+  <div class="txt">埼玉県川口市西新井宿の葬儀社、川口典礼です。2006年の創業から20年、川口市・新井宿・鳩ヶ谷を中心に、年間約260件のご葬儀をお手伝いしてきました。累計の施行実績は4,600件以上になります。
+
+自社式場「川口メモリアルホール」は、川口市営の火葬場「川口市めぐりの森」まで車で約5分。ご火葬までの移動のご負担を抑えられます。敷地内に無料駐車場を70台ご用意しており、家族葬から200名規模の一般葬まで対応できます。個室の面会室もございます。
+
+直葬・火葬式、花入れお別れ、一日葬、夕暮れ家族葬、家族葬、川口市の市民葬まで、ご希望とご予算に合わせてお選びいただけます。「夕暮れ家族葬」は、告別式を夕方から夜にかけて行い、翌日に火葬場へお集まりいただく当社オリジナルのプランです。日中はお仕事やご都合で集まりにくいご家族・ご親族にも、お別れのお時間をお取りいただけます。
+
+ご相談・お見積りは無料です。事前のご相談も、お急ぎのご連絡も、24時間365日承っています。まだ何も決まっていない段階でも、お気軽にお声がけください。
+
+電話：0120-963-765 ／ 048-281-1117</div>
+</div>
+
+<div class="box good">
+  <div class="h">✅ チェック済みの観点</div>
+  <ul>
+    <li>川口市・新井宿・鳩ヶ谷・めぐりの森・家族葬・一日葬・直葬・市民葬を自然に含む</li>
+    <li>禁止表現（最安・必ず・絶対・追加費用なし）なし</li>
+    <li>めぐりの森を「川口市営」と明示し、自社運営と誤読されない</li>
+    <li>説明文の冒頭で電話番号やURLを羅列していない（宣伝的すぎる判定の回避）</li>
+  </ul>
+</div>
+
+<!-- =========== 4 =========== -->
+<h2 id="s4">4. サービス（商品）登録 — 料金は §9 正本のみ</h2>
+
+<p>「商品」または「サービス」メニューに、以下を<strong>この順で</strong>登録します。価格は CLAUDE.md §9 の正本以外を書かないでください。</p>
+
+<h3>共通の注記（各説明文の末尾に必ず付ける）</h3>
+<div class="copy">
+  <div class="label"><span>共通注記</span><button class="cp" type="button">コピー</button></div>
+  <div class="txt">※表示は事前相談会員価格（税込）です。火葬料、式場使用料、お料理、返礼品、宗教者へのお礼などが別途必要になる場合があります。総額は無料のお見積りでご案内します。</div>
+</div>
+
+<h3>登録内容（8件）</h3>
+
+<div class="copy">
+  <div class="label"><span>1. 直葬プラン ／ 139,000円</span><button class="cp" type="button">コピー</button></div>
+  <div class="txt">通夜・告別式を行わず、ご火葬を中心にシンプルにお見送りするプランです。ごく少人数・1日の日程で承ります。通常価格189,000円（税込）。</div>
+</div>
+
+<div class="copy">
+  <div class="label"><span>2. 花入れお別れプラン ／ 229,000円</span><button class="cp" type="button">コピー</button></div>
+  <div class="txt">ご火葬の前に、お花入れのお別れのお時間を設けるプランです。少人数・1日の日程で承ります。通常価格279,000円（税込）。</div>
+</div>
+
+<div class="copy">
+  <div class="label"><span>3. 一日葬プラン ／ 396,000円</span><button class="cp" type="button">コピー</button></div>
+  <div class="txt">通夜を行わず、告別式とご火葬を1日で執り行うプランです。5〜30名を目安に承ります。通常価格496,000円（税込）。</div>
+</div>
+
+<div class="copy" style="border-color:var(--accent2);background:#fdfaf5">
+  <div class="label"><span>4. 夕暮れ家族葬 ／ 451,000円 <span class="pill new">新プラン</span></span><button class="cp" type="button">コピー</button></div>
+  <div class="txt">告別式を夕方から夜にかけて行い、翌日に火葬場へお集まりいただく川口典礼オリジナルの一日葬です。日中はお仕事やご都合で集まりにくいご家族・ご親族にも、ゆっくりお別れのお時間をお取りいただけます。会場は自社式場の川口メモリアルホール。通常価格551,000円（税込）。</div>
+</div>
+
+<div class="copy">
+  <div class="label"><span>5. 家族葬プラン ／ 528,000円</span><button class="cp" type="button">コピー</button></div>
+  <div class="txt">ご家族や親しい方を中心に、通夜・告別式の2日間でゆっくりお見送りするプランです。10〜30名を目安に承ります。通常価格628,000円（税込）。</div>
+</div>
+
+<div class="copy">
+  <div class="label"><span>6. 川口市民葬プラン ／ 231,000円</span><button class="cp" type="button">コピー</button></div>
+  <div class="txt">川口市の葬祭事業（市民葬）に対応したプランです。ご利用には条件がありますので、まずはご相談ください。川口市民 葬祭事業価格（税込）。</div>
+</div>
+
+<div class="copy">
+  <div class="label"><span>7. 事前相談・お見積り ／ 無料</span><button class="cp" type="button">コピー</button></div>
+  <div class="txt">ご葬儀の流れ、費用の目安、式場のご見学まで無料で承ります。まだ何も決まっていない段階でもご相談いただけます。24時間365日受付。</div>
+</div>
+
+<div class="copy">
+  <div class="label"><span>8. 川口メモリアルホール見学 ／ 無料</span><button class="cp" type="button">コピー</button></div>
+  <div class="txt">川口市西新井宿の自社式場をご見学いただけます。駐車場70台・個室面会室あり。お電話または事前相談フォームよりお申し込みください。</div>
+</div>
+
+<div class="box info">
+  <div class="h">なぜ「夕暮れ家族葬」を4番目に置くか</div>
+  一日葬と家族葬の間という価格の位置づけが、上下の項目から自然に伝わるためです。単独で見せると比較対象がなく高く見えます。
+</div>
+
+<!-- =========== 5 =========== -->
+<h2 id="s5">5. 写真（知名度と滞在の両方に効く）</h2>
+
+<div class="box warn">
+  <div class="h">⚠ 絶対禁止（掲載前に必ず人間が目視確認）</div>
+  <ul>
+    <li>遺影・名札・会葬礼状・芳名帳など、<strong>個人名／故人名／喪主名が写るもの</strong></li>
+    <li>ご遺族・ご参列者の顔が写るもの</li>
+    <li>他社サイト・素材サイトからの転載</li>
+    <li>寺院会館・民営式場・めぐりの森など<strong>自社施設でない建物</strong>を自社施設のように見せる構図</li>
+  </ul>
+</div>
+
+<div class="tw">
+<table>
+  <thead><tr><th>優先</th><th>種別</th><th>内容</th><th class="num">枚数目安</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>ロゴ</td><td>川口典礼のロゴ</td><td class="num">1</td></tr>
+    <tr><td>2</td><td>カバー</td><td>川口メモリアルホール外観（昼・正面）</td><td class="num">1</td></tr>
+    <tr><td>3</td><td>外観</td><td>別角度・入口・看板・夕方の外観</td><td class="num">4〜6</td></tr>
+    <tr><td>4</td><td>内観</td><td>式場（祭壇設営済み・無地の遺影枠）／親族控え室／個室面会室／受付</td><td class="num">8〜12</td></tr>
+    <tr><td>5</td><td>駐車場</td><td>70台の敷地内駐車場が伝わる引きの構図</td><td class="num">2〜3</td></tr>
+    <tr><td>6</td><td>チーム</td><td>スタッフ（本人同意のうえで）</td><td class="num">2〜3</td></tr>
+    <tr><td>7</td><td>商品</td><td>各プランの祭壇設営例（夕暮れ家族葬の生花祭壇1段を含む）</td><td class="num">6〜8</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="box info">
+  <div class="h">運用ルール</div>
+  月2〜4枚を継続追加します。一度に大量投入して以後放置するより、更新の鮮度が評価されます。スマホでそのまま撮った写真で構いません（加工しすぎない）。
+</div>
+
+<!-- =========== 6 =========== -->
+<h2 id="s6">6. Q&amp;A（オーナー自身が質問と回答を投稿してよい）</h2>
+
+<p>GBPの「質問と回答」は、オーナーが自分で質問を立てて回答することが認められています。<strong>AI検索・ローカルパック双方で拾われやすい</strong>ので必ず埋めてください。以下を1問ずつ投稿し、自分のアカウントで回答します。</p>
+
+<div class="copy">
+  <div class="label"><span>Q1. 夜間や早朝でも対応してもらえますか？</span><button class="cp" type="button">回答をコピー</button></div>
+  <div class="txt">はい。24時間365日、お電話を承っています。深夜・早朝のお迎えにも対応しています。0120-963-765</div>
+</div>
+<div class="copy">
+  <div class="label"><span>Q2. 駐車場はありますか？</span><button class="cp" type="button">回答をコピー</button></div>
+  <div class="txt">敷地内に70台分の無料駐車場をご用意しています。ご参列の方もお車でお越しいただけます。</div>
+</div>
+<div class="copy">
+  <div class="label"><span>Q3. 火葬場は近いですか？</span><button class="cp" type="button">回答をコピー</button></div>
+  <div class="txt">川口市営の火葬場「川口市めぐりの森」まで、川口メモリアルホールから車で約5分です。ご火葬までの移動のご負担を抑えられます。</div>
+</div>
+<div class="copy">
+  <div class="label"><span>Q4. 家族葬はいくらくらいですか？</span><button class="cp" type="button">回答をコピー</button></div>
+  <div class="txt">家族葬プランは事前相談会員価格528,000円（税込）、通常価格628,000円（税込）です。火葬料・お料理・返礼品などが別途必要になる場合がありますので、総額は無料のお見積りでご案内します。</div>
+</div>
+<div class="copy">
+  <div class="label"><span>Q5. 夕暮れ家族葬とは何ですか？</span><button class="cp" type="button">回答をコピー</button></div>
+  <div class="txt">告別式を夕方から夜にかけて行い、翌日に火葬場へお集まりいただく川口典礼オリジナルの一日葬です。日中はお仕事やご都合で集まりにくいご家族・ご親族にも、ゆっくりお別れのお時間をお取りいただけます。事前相談会員価格451,000円（税込）。</div>
+</div>
+<div class="copy">
+  <div class="label"><span>Q6. 事前に見学できますか？</span><button class="cp" type="button">回答をコピー</button></div>
+  <div class="txt">はい。川口メモリアルホールはご見学いただけます。ご相談・お見積りは無料です。お電話または当社サイトの事前相談フォームよりお申し込みください。</div>
+</div>
+<div class="copy">
+  <div class="label"><span>Q7. 川口市の市民葬は使えますか？</span><button class="cp" type="button">回答をコピー</button></div>
+  <div class="txt">川口典礼は川口市の葬祭事業（市民葬）の登録店です。ご利用には条件がありますので、まずはご相談ください。</div>
+</div>
+<div class="copy">
+  <div class="label"><span>Q8. 川口市以外からでも相談できますか？</span><button class="cp" type="button">回答をコピー</button></div>
+  <div class="txt">はい。鳩ヶ谷・新井宿はもちろん、蕨市・戸田市・さいたま市緑区・草加市などからもご相談を承っています。</div>
+</div>
+<div class="copy">
+  <div class="label"><span>Q9. まだ亡くなっていませんが相談できますか？</span><button class="cp" type="button">回答をコピー</button></div>
+  <div class="txt">もちろんです。事前のご相談は無料で承っています。まだ何も決まっていない段階でも、お話をうかがうところから始めさせてください。</div>
+</div>
+<div class="copy">
+  <div class="label"><span>Q10. ペットと一緒にお別れできますか？</span><button class="cp" type="button">回答をコピー</button></div>
+  <div class="txt">個室の面会室で、ご家族とご一緒にお過ごしいただけます。詳しくはご相談ください。</div>
+</div>
+
+<!-- =========== 7 =========== -->
+<h2 id="s7">7. 週次運用：投稿（12週分テンプレ）</h2>
+
+<div class="box info">
+  <div class="h">運用ルール</div>
+  <ul>
+    <li><strong>週1回・曜日を固定</strong>（例：毎週火曜の午前）。頻度より継続が効く</li>
+    <li>1投稿150〜300字程度。長文にしない</li>
+    <li>各投稿にボタン（「詳細」→該当ページURL）を付ける</li>
+    <li>❌ 煽り表現（今だけ／お急ぎください／損をします）、断定（必ず・絶対・最安）は使わない</li>
+    <li>❌ 施行の具体的な事例・ご遺族の様子は投稿しない</li>
+  </ul>
+</div>
+
+<div class="copy">
+  <div class="label"><span>第1週｜新プラン告知 → /plan/yugure-kazokuso/</span><button class="cp" type="button">コピー</button></div>
+  <div class="txt">夕方から夜にお別れをする「夕暮れ家族葬」のご案内を始めました。告別式を夕方から行い、翌日に火葬場へお集まりいただくかたちです。日中はお仕事やご都合で集まりにくいご家族・ご親族にも、お別れのお時間をお取りいただけます。</div>
+</div>
+<div class="copy">
+  <div class="label"><span>第2週｜事前相談 → /contact/</span><button class="cp" type="button">コピー</button></div>
+  <div class="txt">事前のご相談は無料で承っています。葬儀の流れ、費用の目安、式場のご見学まで、まだ何も決まっていない段階でもお話をうかがいます。</div>
+</div>
+<div class="copy">
+  <div class="label"><span>第3週｜式場紹介 → /hall/</span><button class="cp" type="button">コピー</button></div>
+  <div class="txt">川口メモリアルホールは、川口市西新井宿にある当社の自社式場です。敷地内に70台の無料駐車場をご用意しています。</div>
+</div>
+<div class="copy">
+  <div class="label"><span>第4週｜費用の考え方 → /plan/</span><button class="cp" type="button">コピー</button></div>
+  <div class="txt">ご葬儀の費用は、プラン料金のほかに火葬料・お料理・返礼品などが加わります。総額の目安は無料のお見積りでご案内しています。</div>
+</div>
+<div class="copy">
+  <div class="label"><span>第5週｜家族葬 → /plan/family-funeral/</span><button class="cp" type="button">コピー</button></div>
+  <div class="txt">ご家族や親しい方を中心に、通夜・告別式の2日間でゆっくりお見送りするかたちです。参列の範囲についてもご一緒に整理させてください。</div>
+</div>
+<div class="copy">
+  <div class="label"><span>第6週｜めぐりの森 → /saijo/megurinomori/</span><button class="cp" type="button">コピー</button></div>
+  <div class="txt">川口市営の火葬場「川口市めぐりの森」まで、当ホールから車で約5分です。火葬場のご予約・お手続きは当社が代行いたします。</div>
+</div>
+<div class="copy">
+  <div class="label"><span>第7週｜一日葬 → /plan/oneday-funeral/</span><button class="cp" type="button">コピー</button></div>
+  <div class="txt">通夜を行わず、告別式とご火葬を1日で執り行うかたちです。ご参列の方のご負担を抑えたい場合にご相談いただいています。</div>
+</div>
+<div class="copy">
+  <div class="label"><span>第8週｜24時間対応 → /contact/</span><button class="cp" type="button">コピー</button></div>
+  <div class="txt">深夜・早朝のご連絡も承っています。何から手をつければよいか分からない段階でも、お電話いただければ順にご案内します。</div>
+</div>
+<div class="copy">
+  <div class="label"><span>第9週｜市民葬 → /plan/kawaguchi-shimin/</span><button class="cp" type="button">コピー</button></div>
+  <div class="txt">川口典礼は川口市の葬祭事業（市民葬）の登録店です。ご利用条件がありますので、まずはご相談ください。</div>
+</div>
+<div class="copy">
+  <div class="label"><span>第10週｜直葬・火葬式 → /plan/direct-funeral/</span><button class="cp" type="button">コピー</button></div>
+  <div class="txt">通夜・告別式を行わず、ご火葬を中心にお見送りするかたちです。ご事情に合わせてご相談ください。</div>
+</div>
+<div class="copy">
+  <div class="label"><span>第11週｜夕暮れ家族葬（再訴求） → /plan/yugure-kazokuso/</span><button class="cp" type="button">コピー</button></div>
+  <div class="txt">「日中は仕事を休めない方が多い」というご相談を重ねてきました。夕暮れ家族葬は、そうしたご事情から正式なプランとしてご案内を始めたものです。</div>
+</div>
+<div class="copy">
+  <div class="label"><span>第12週｜地域 → /area/kawaguchi/</span><button class="cp" type="button">コピー</button></div>
+  <div class="txt">新井宿・鳩ヶ谷を中心に、川口市内および近隣地域でご葬儀のお手伝いをしています。</div>
+</div>
+
+<p>13週目以降は1週目に戻し、季節の話題（お盆・お彼岸・年末年始の受付体制）を差し込みながら回します。</p>
+
+<!-- =========== 8 =========== -->
+<h2 id="s8">8. 口コミ運用（知名度の本丸）</h2>
+
+<h3>8-1. 現状</h3>
+<p>Google口コミ <strong>27件 / ★4.5</strong>。競合は3,000件超の規模があり、件数で正面から追うのは現実的ではありません。→ <strong>件数より「鮮度」と「返信の質」で差をつけます。</strong>毎月コンスタントに数件ずつ積む形を目指してください。</p>
+
+<h3>8-2. 依頼の仕組み化</h3>
+<ul>
+  <li><strong>タイミング</strong>：ご葬儀直後ではなく、四十九日前後など落ち着かれた頃</li>
+  <li><strong>手段</strong>：お礼状やご案内に短縮URL＋QRを1つ添える程度。口頭で強く求めない</li>
+</ul>
+
+<div class="copy">
+  <div class="label"><span>口コミ依頼の文面例</span><button class="cp" type="button">コピー</button></div>
+  <div class="txt">このたびはお世話になりました。もしお気持ちに余裕がございましたら、今後の参考のため、Googleに感想をお寄せいただけますと幸いです。ご無理のない範囲で構いません。</div>
+</div>
+
+<div class="box warn">
+  <div class="h">⚠ 絶対にしない</div>
+  見返り・割引の提供／スタッフや家族による自作自演／低評価だけを書かせない誘導（レビューゲーティング）／業者からの購入。いずれもガイドライン違反で、<strong>プロフィール停止や口コミ一括削除のリスク</strong>があります。
+</div>
+
+<h3>8-3. 返信テンプレ（全件に必ず返信・原則48時間以内）</h3>
+<p><strong>共通の禁止事項：</strong>個人名・故人名・喪主名・葬儀の日程や内容の詳細を返信に書かないこと。</p>
+
+<div class="copy">
+  <div class="label"><span>★5・★4（好意的）</span><button class="cp" type="button">コピー</button></div>
+  <div class="txt">このたびは、大切なお時間の中でお言葉をお寄せいただき、ありがとうございます。お力になれたのであれば何よりです。ご葬儀後のお手続きやご法要のことなど、お困りのことがございましたら、いつでもお声がけください。川口典礼</div>
+</div>
+<div class="copy">
+  <div class="label"><span>★3（中立・改善要望あり）</span><button class="cp" type="button">コピー</button></div>
+  <div class="txt">貴重なご意見をお寄せいただき、ありがとうございます。ご期待に十分に沿えなかった点があったこと、申し訳なく思います。いただいた内容は社内で共有し、改善に努めます。差し支えなければ、詳しいお話をお聞かせいただけますと幸いです（0120-963-765）。川口典礼</div>
+</div>
+<div class="copy">
+  <div class="label"><span>★1・★2（低評価）</span><button class="cp" type="button">コピー</button></div>
+  <div class="txt">このたびはご不快な思いをおかけし、誠に申し訳ございません。いただいたご指摘は真摯に受け止め、社内で確認いたします。お手数ですが、直接お話をうかがえますと幸いです（0120-963-765）。改めてご説明とお詫びをさせていただきます。川口典礼</div>
+</div>
+
+<div class="box warn">
+  <div class="h">⚠ 低評価対応の鉄則</div>
+  返信で<strong>事実関係を公開の場で争わない</strong>。反論・言い訳・ご遺族の状況説明はしない。<strong>電話への誘導までで止める</strong>。
+</div>
+
+<p><strong>内容が事実と異なる／同業者や無関係者と思われる口コミ</strong>：返信はせず（または低評価テンプレで一度だけ返信し）、管理画面から「口コミを報告」します。削除されないケースが多いため、期待しすぎないこと。</p>
+
+<!-- =========== 9 =========== -->
+<h2 id="s9">9. サイテーション（NAP一貫）</h2>
+
+<div class="tw">
+<table>
+  <thead><tr><th>媒体</th><th>状態</th><th>対応</th></tr></thead>
+  <tbody>
+    <tr><td>Yahoo!ロコ</td><td>未確認</td><td>正本に統一</td></tr>
+    <tr><td>Bing プレイス</td><td>未確認</td><td>正本に統一</td></tr>
+    <tr><td>Apple マップ</td><td>未確認</td><td>正本に統一</td></tr>
+    <tr><td>OpenStreetMap</td><td>「川口典礼」は登録あり／<strong>「川口メモリアルホール」は未登録</strong></td><td>別名として追加（Appleマップが部分参照するため）</td></tr>
+    <tr><td>各種葬儀ポータル</td><td>一部に<strong>誤価格の掲載あり</strong>（例：火葬式8.8万円）</td><td>§9 正本で訂正依頼。訂正不可の媒体は記録に残す</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="box info">
+  <div class="h">サイト側への反映</div>
+  実在確認できた自社プロフィールURLは控えておいてください。<strong>サイトの構造化データ <code>sameAs</code> に追加できます</strong>（推測URLは不可）。揃った時点で共有いただければ <code>lib/company.ts</code> に反映します。
+</div>
+
+<!-- =========== 10 =========== -->
+<h2 id="s10">10. 月次計測</h2>
+
+<p>毎月1日に、前月分を以下の表で記録します（記録先：<code>docs/operations/gbp/</code> に月次ログを追加）。</p>
+
+<div class="tw">
+<table>
+  <thead><tr><th>指標</th><th>取得元</th><th>見るポイント</th></tr></thead>
+  <tbody>
+    <tr><td>表示回数（検索／マップ別）</td><td>GBPパフォーマンス</td><td>マップ表示が増えているか＝ローカルパック露出</td></tr>
+    <tr><td><strong>通話数</strong></td><td>GBPパフォーマンス</td><td><strong>最重要KPI。</strong>葬儀は電話が主導線</td></tr>
+    <tr><td>ルート検索数</td><td>GBPパフォーマンス</td><td>来訪意向の代理指標</td></tr>
+    <tr><td>ウェブサイトクリック数</td><td>GBPパフォーマンス</td><td>GA4の参照元と突合</td></tr>
+    <tr><td>口コミ件数・平均★</td><td>GBP</td><td>前月比で<strong>増えているか</strong>（鮮度）</td></tr>
+    <tr><td>口コミ返信率</td><td>GBP</td><td><strong>常に100%を維持</strong></td></tr>
+    <tr><td>ローカルパック順位</td><td>実地SERPで目視</td><td>「川口市 葬儀」「鳩ヶ谷 葬儀」「新井宿 葬儀」を各月同条件で確認</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="box warn">
+  <div class="h">⚠ 目視の注意</div>
+  自分のスマホで検索すると現在地・履歴で結果が歪みます。<strong>シークレットウィンドウ＋位置情報オフ</strong>で確認するか、位置を鳩ヶ谷駅付近に指定して確認してください。
+</div>
+
+<!-- =========== 11 =========== -->
+<h2 id="s11">11. 絶対にやってはいけないこと（アカウント停止リスク）</h2>
+
+<div class="box warn">
+<ul>
+  <li>名称欄へのキーワード詰め込み（「川口典礼 川口市 家族葬」など）</li>
+  <li>実在しない住所・バーチャルオフィスでの複数拠点登録</li>
+  <li><strong>「火葬場」カテゴリの選択</strong>（めぐりの森は川口市営で自社運営ではない）</li>
+  <li>見返りつき／自作自演の口コミ、レビューゲーティング</li>
+  <li>「最安」「必ず」「絶対」「追加費用なし」「総額確定」など断定・誇張表現</li>
+  <li>競合他社の実名を出した比較・批判</li>
+  <li>遺影・名札・故人名・喪主名が写る写真の掲載</li>
+  <li>CLAUDE.md §9 正本にない価格の掲載</li>
+</ul>
+</div>
+
+<!-- =========== 12 =========== -->
+<h2 id="s12">12. 実施順（推奨）</h2>
+
+<ul class="ck"><li class="box2">
+  <label><input type="checkbox" data-ck="d1a"><span><strong>Day 1（60分）</strong>　§1 NAP確認・§2 カテゴリ／営業時間／属性・§3 説明文</span></label>
+  <label><input type="checkbox" data-ck="d1b"><span><strong>Day 1（60分）</strong>　§4 サービス8件登録</span></label>
+  <label><input type="checkbox" data-ck="d2a"><span><strong>Day 2（40分）</strong>　§6 Q&amp;A 10問を投稿・回答</span></label>
+  <label><input type="checkbox" data-ck="d2b"><span><strong>Day 2〜7</strong>　§5 写真の撮影と追加（まずは外観・内観・駐車場）</span></label>
+  <label><input type="checkbox" data-ck="wk"><span><strong>毎週火曜（10分）</strong>　§7 投稿1本</span></label>
+  <label><input type="checkbox" data-ck="rv"><span><strong>随時（5分／件）</strong>　§8 口コミ返信（48時間以内・全件）</span></label>
+  <label><input type="checkbox" data-ck="mo"><span><strong>毎月1日（20分）</strong>　§10 計測記録</span></label>
+</li></ul>
+
+<div class="foot">
+  本書は運用手順であり、サイトコードの変更は含みません。秘密情報・個人情報は記載していません。<br>
+  価格は CLAUDE.md §9 の正本に完全準拠（夕暮れ家族葬：会員451,000円／通常551,000円）。<br>
+  GBPの管理画面は仕様変更が頻繁なため、項目名が一致しない場合は<strong>画面の表記を優先</strong>し、本書を後追いで更新してください。<br>
+  Markdown 版：<code>docs/operations/gbp/2026-07-27-gbp-full-setup-playbook.md</code>
+</div>
+
+</main>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var KEY = "gbp-playbook-2026-07-27";
+
+  /* ---- 進捗の保存・復元 ---- */
+  function load(){
+    try { return JSON.parse(localStorage.getItem(KEY) || "{}"); } catch(e){ return {}; }
+  }
+  function save(state){
+    try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e){ /* file:// 等で不可の場合は無視 */ }
+  }
+
+  var boxes = Array.prototype.slice.call(document.querySelectorAll('input[type=checkbox][data-ck]'));
+  var state = load();
+  var bar = document.getElementById('pbar');
+  var num = document.getElementById('pnum');
+
+  function render(){
+    var done = boxes.filter(function(b){ return b.checked; }).length;
+    var pct = boxes.length ? Math.round(done / boxes.length * 100) : 0;
+    bar.style.width = pct + '%';
+    num.textContent = done + ' / ' + boxes.length + ' 完了';
+  }
+
+  boxes.forEach(function(b){
+    if (state[b.dataset.ck]) b.checked = true;
+    b.addEventListener('change', function(){
+      state[b.dataset.ck] = b.checked;
+      save(state); render();
+    });
+  });
+  render();
+
+  document.getElementById('preset').addEventListener('click', function(){
+    if (!window.confirm('チェックをすべて外します。よろしいですか？')) return;
+    boxes.forEach(function(b){ b.checked = false; });
+    state = {}; save(state); render();
+  });
+
+  /* ---- コピーボタン ---- */
+  function copyText(text){
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard.writeText(text);
+    }
+    return new Promise(function(resolve, reject){
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy') ? resolve() : reject(); }
+      catch(e){ reject(e); }
+      finally { document.body.removeChild(ta); }
+    });
+  }
+
+  document.querySelectorAll('button.cp').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var block = btn.closest('.copy');
+      var el = block && block.querySelector('.txt');
+      if (!el) return;
+      var original = btn.textContent;
+      copyText(el.innerText).then(function(){
+        btn.textContent = 'コピーしました';
+        btn.classList.add('done');
+        setTimeout(function(){ btn.textContent = original; btn.classList.remove('done'); }, 1600);
+      }).catch(function(){
+        btn.textContent = '手動で選択してください';
+        setTimeout(function(){ btn.textContent = original; }, 2400);
+      });
+    });
+  });
+
+  /* ---- 文字数カウント（説明文の750字制限確認用） ---- */
+  document.querySelectorAll('[data-count]').forEach(function(el){
+    var block = el.closest('.copy');
+    var txt = block && block.querySelector('.txt');
+    if (!txt) return;
+    var n = txt.innerText.replace(/\r/g, '').length;
+    el.textContent = '（' + n + ' 文字 / 上限 750）';
+    if (n > 750) el.style.color = 'var(--warn)';
+  });
+
+  /* ---- 目次のスクロール追従 ---- */
+  var links = Array.prototype.slice.call(document.querySelectorAll('nav.toc a'));
+  var targets = links.map(function(a){ return document.querySelector(a.getAttribute('href')); });
+
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (!en.isIntersecting) return;
+        var i = targets.indexOf(en.target);
+        if (i < 0) return;
+        links.forEach(function(a){ a.classList.remove('active'); });
+        links[i].classList.add('active');
+      });
+    }, { rootMargin: '0px 0px -75% 0px' });
+    targets.forEach(function(t){ if (t) io.observe(t); });
+  }
+})();
+</script>
+</body>
+</html>
