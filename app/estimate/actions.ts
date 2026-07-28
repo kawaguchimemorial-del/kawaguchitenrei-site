@@ -1,7 +1,8 @@
 "use server";
 
 import { sendWebhook } from "@/lib/forms/sendWebhook";
-import { assessBot, assessSpam } from "@/lib/forms/antispam";
+import { assessBot, assessSpam, shouldDiscard } from "@/lib/forms/antispam";
+import { isBotSubmission } from "@/lib/forms/botid";
 
 const ESTIMATE_SUCCESS_MESSAGE =
   "ご入力いただいた内容をもとに、ご担当者より概算金額をご連絡します。お急ぎの場合は 0120-963-765 までお電話ください。";
@@ -154,12 +155,18 @@ export async function submitEstimate(
     };
   }
 
-  // bot/営業らしさを評価（ブロックはせず、必ず送信したうえでフラグだけ付ける）。
+  // bot/営業らしさを評価。原則はフラグ付けのみで必ず送信するが、
+  // bot 確定の signal（ハニーポット・ランダム文字列）だけは Webhook に送らず破棄する。
   const bot = assessBot(formData);
   const spam = assessSpam({
     name: formData.get("name"),
     message: formData.get("note"),
   });
+
+  // bot に「弾かれた」と気付かせないため、画面上は通常の完了表示を返す。
+  if (shouldDiscard(spam) || (await isBotSubmission())) {
+    return { ok: true, summary, message: ESTIMATE_SUCCESS_MESSAGE };
+  }
 
   const payload = {
     ...summary,

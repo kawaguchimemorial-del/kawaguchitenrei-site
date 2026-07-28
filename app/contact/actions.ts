@@ -1,7 +1,8 @@
 "use server";
 
 import { sendWebhook } from "@/lib/forms/sendWebhook";
-import { assessBot, assessSpam } from "@/lib/forms/antispam";
+import { assessBot, assessSpam, shouldDiscard } from "@/lib/forms/antispam";
+import { isBotSubmission } from "@/lib/forms/botid";
 
 const CONTACT_SUCCESS_MESSAGE =
   "通常2営業日以内にご担当者よりご連絡します。お急ぎの場合は 0120-963-765 までお電話ください。";
@@ -73,12 +74,20 @@ export async function submitContact(
     };
   }
 
-  // bot/営業らしさを評価（ブロックはせず、必ず送信したうえでフラグだけ付ける）。
+  // bot/営業らしさを評価。原則はフラグ付けのみで必ず送信するが、
+  // bot 確定の signal（ハニーポット・ランダム文字列）だけは Webhook に送らず破棄する。
   const bot = assessBot(formData);
   const spam = assessSpam({
     name: formData.get("name"),
+    nameKana: formData.get("nameKana"),
+    preferredTime: formData.get("preferredTime"),
     message: formData.get("message"),
   });
+
+  // bot に「弾かれた」と気付かせないため、画面上は通常の完了表示を返す。
+  if (shouldDiscard(spam) || (await isBotSubmission())) {
+    return { ok: true, message: CONTACT_SUCCESS_MESSAGE };
+  }
 
   const payload = {
     name: formData.get("name"),
