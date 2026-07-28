@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>作業レポート 2026-07-27｜問い合わせフォームへのbotスパム対策（ランダム文字列判定＋Vercel BotID）</title>
+<style>
+  :root{--ink:#2b2b2b;--soft:#6b6b6b;--line:#e3e0da;--bg:#faf9f7;--accent:#7a6a55;--ok:#2e7d52;--danger:#a83838}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;line-height:1.85;font-size:15px}
+  .wrap{max-width:860px;margin:0 auto;padding:40px 22px 80px}
+  header.doc{border-bottom:2px solid var(--line);padding-bottom:18px;margin-bottom:28px}
+  .kicker{font-size:12px;letter-spacing:.12em;color:var(--accent);margin:0 0 6px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:22px;font-weight:600;margin:0 0 10px;line-height:1.5}
+  .meta{font-size:12.5px;color:var(--soft)} .meta span{margin-right:14px}
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:19px;font-weight:600;margin:34px 0 10px;padding-left:11px;border-left:4px solid var(--accent)}
+  p{margin:8px 0}
+  .card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:14px 0}
+  .tag{display:inline-block;font-size:11.5px;padding:2px 9px;border-radius:999px;border:1px solid var(--line);color:var(--soft);background:#fff}
+  .tag.ok{color:var(--ok);border-color:#bfe0cd}
+  .tag.danger{color:var(--danger);border-color:#e7b9b9}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13px;background:#fff}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  code{background:#f1efe9;padding:1px 6px;border-radius:5px;font-size:12px;font-family:ui-monospace,Consolas,monospace}
+  ul,ol{margin:8px 0;padding-left:22px} li{margin:4px 0}
+  .callout{border-left:4px solid var(--danger);background:#fcf1f1;padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0}
+  .callout p:first-child{margin-top:0}.callout p:last-child{margin-bottom:0}
+  .muted{color:var(--soft);font-size:13px}
+  footer.doc{margin-top:50px;padding-top:18px;border-top:1px solid var(--line);color:var(--soft);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <p class="kicker">川口典礼サイト ＿ 作業レポート（社内記録・非公開）</p>
+  <h1>問い合わせフォームへの bot スパム対策（ランダム文字列判定 ＋ Vercel BotID 導入）</h1>
+  <p class="meta">
+    <span>作成日：2026-07-27</span>
+    <span>担当：Claude Code</span>
+  </p>
+  <p class="muted">社内記録（Web非公開・<code>noindex</code>）。個人情報・秘密情報なし。関連：<a href="./2026-06-07-form-antispam.html">迷惑送信対策（初回実装）</a> / <a href="./2026-06-07-form-antispam-regression-fix.html">同リグレッション修正</a>。</p>
+</header>
+
+<div class="callout">
+  <p><strong>事象：</strong>お問い合わせフォームから、氏名・フリガナ・希望連絡時間帯・本文のすべてが無意味なランダム英字列（例：20文字前後の大小混在アルファベット）で構成された自動送信が届いた。実在しない連絡先が入っており、対応価値はゼロ。</p>
+  <p><strong>原因：</strong>既存の迷惑送信対策（ハニーポット・滞在秒数・営業キーワード）は<strong>「フラグを付けるが必ず送信する」</strong>設計であり、かつ今回の内容は既存ヒューリスティクスのどれにも当たらず <code>spamScore 0</code>（＝検知すらできていない）だった。本文が16文字と短く、「日本語なし」判定の閾値（20文字超）を下回っていたため。</p>
+</div>
+
+<h2>1. サマリ</h2>
+<ul>
+  <li><span class="tag ok">完了</span> ランダム英字列（gibberish）判定を新設し、該当送信は Webhook に送らず破棄（＝メール通知を止める）</li>
+  <li><span class="tag ok">完了</span> Vercel BotID を導入し、<code>/contact</code>・<code>/estimate</code> の Server Action 送信をサーバー側で bot 検証</li>
+  <li><span class="tag ok">完了</span> 実際に届いたスパム4項目 ＋ 実ユーザー想定15サンプルで判定を検証（誤検知ゼロ）</li>
+  <li><span class="tag danger">要対応</span> Vercel ダッシュボードでの <strong>BotID Deep Analysis 有効化</strong>（人手作業）</li>
+  <li><span class="tag danger">要確認</span> <code>package.json</code> / <code>next.config.ts</code> の変更を含むため、push は人間承認後（CLAUDE.md §19.2）</li>
+</ul>
+
+<h2>2. 設計方針（2026-06-07 の障害を踏まえて）</h2>
+<p>2026-06-07 に「bot 判定で実ユーザーの送信を握り潰す」設計が原因の障害を起こしている（ブラウザ自動入力がハニーポットを埋めた）。今回はその教訓を踏まえ、<strong>破棄する条件を「日本語話者の実入力では絶対に発生しない signal」に限定</strong>した。</p>
+<table>
+  <tr><th>signal</th><th>今回の扱い</th><th>理由</th></tr>
+  <tr><td>ハニーポット混入</td><td>フラグのみ（従来どおり・破棄しない）</td><td>自動入力による誤検知の実績があるため、破棄条件に復活させない</td></tr>
+  <tr><td>滞在秒数が短すぎる</td><td>フラグのみ（従来どおり・破棄しない）</td><td>単独では bot 確定と言えない</td></tr>
+  <tr><td>営業キーワード・URL</td><td>フラグのみ（従来どおり・破棄しない）</td><td>人間の営業メールは仕分け対象であって破棄対象ではない</td></tr>
+  <tr><td><strong>ランダム英字列</strong></td><td><strong>破棄</strong></td><td>日本語話者の氏名・フリガナ・本文では発生しない</td></tr>
+  <tr><td><strong>Vercel BotID の bot 判定</strong></td><td><strong>破棄</strong>（判定失敗時は人間扱いの fail-open）</td><td>Vercel 純正の invisible 検知。ユーザーに CAPTCHA 等の負担を与えない</td></tr>
+</table>
+<p>破棄時も画面上は通常どおりの完了表示を返す（bot に「弾かれた」と気付かせ、手口を変えさせないため）。</p>
+
+<h2>3. ランダム文字列判定のロジック</h2>
+<p>誤検知を避けるため、次を<strong>すべて</strong>満たすトークンのみ「ランダム」と判定する（<code>lib/forms/antispam.ts</code> の <code>looksRandomToken</code>）。</p>
+<ol>
+  <li>8文字以上の連続した英字のみ（数字・記号・空白・日本語を含まない）</li>
+  <li>母音比率が 35% 未満（自然言語の英単語・ローマ字表記は通常 35% 以上）</li>
+  <li>先頭以外に大文字が2つ以上（人が書く語・氏名は先頭のみ大文字）</li>
+</ol>
+<p>氏名・フリガナ・希望連絡時間帯・本文の4項目を走査し、1つでも該当すれば破棄する。</p>
+
+<h2>4. Vercel BotID の構成</h2>
+<table>
+  <tr><th>層</th><th>内容</th></tr>
+  <tr><td>設定</td><td><code>next.config.ts</code> を <code>withBotId()</code> でラップ（検証用プロキシの rewrite が追加される）</td></tr>
+  <tr><td>クライアント</td><td><code>instrumentation-client.ts</code> で <code>initBotId()</code>。保護対象は <code>/contact</code>・<code>/estimate</code> の POST（<code>trailingSlash: true</code> のため末尾スラッシュ有無の両方を登録）</td></tr>
+  <tr><td>サーバー</td><td><code>lib/forms/botid.ts</code> の <code>isBotSubmission()</code>。<code>checkBotId()</code> が例外を投げた場合は必ず <code>false</code>（人間扱い）を返す fail-open 設計</td></tr>
+</table>
+<p class="muted">※ ローカル開発（<code>NODE_ENV !== "production"</code>）では BotID は既定でバイパスされるため、<code>npm run dev</code> の送信テストに影響しない。</p>
+
+<h2>5. 変更ファイル</h2>
+<table>
+  <tr><th>ファイル</th><th>変更内容</th></tr>
+  <tr><td><code>lib/forms/antispam.ts</code></td><td><code>looksRandomToken</code> / <code>shouldDiscard</code> を新設。<code>assessSpam</code> に <code>nameKana</code>・<code>preferredTime</code> を追加し <code>gibberishHits</code> を返すよう拡張</td></tr>
+  <tr><td><code>lib/forms/botid.ts</code></td><td>新規。BotID サーバー判定の fail-open ラッパー</td></tr>
+  <tr><td><code>instrumentation-client.ts</code></td><td>新規。BotID クライアント初期化・保護パス定義</td></tr>
+  <tr><td><code>next.config.ts</code></td><td><code>withBotId()</code> でラップ</td></tr>
+  <tr><td><code>app/contact/actions.ts</code></td><td>破棄判定を追加。<code>assessSpam</code> の入力項目を拡張</td></tr>
+  <tr><td><code>app/estimate/actions.ts</code></td><td>破棄判定を追加</td></tr>
+  <tr><td><code>package.json</code> / <code>package-lock.json</code></td><td><code>botid</code> を依存に追加</td></tr>
+</table>
+
+<h2>6. 確認結果</h2>
+<ul>
+  <li><code>npm run build</code>：成功。静的生成 <strong>137ページ</strong>（変更前後で増減なし）。TypeScript エラーなし</li>
+  <li>判定ロジック単体検証：実際に届いたスパム4項目すべてを <code>gibberish:4</code> として破棄。実ユーザー想定15サンプル（漢字氏名・カタカナ・ローマ字氏名・<code>Christopher</code>・<code>MacDonald</code>・<code>TANAKA</code>・英文の問い合わせ・「平日10:00〜17:00」など）は<strong>全件通過（誤検知ゼロ）</strong></li>
+  <li>通常の相談内容（日本語本文）を渡した場合、<code>shouldDiscard</code> は <code>false</code> を返すことを確認</li>
+</ul>
+
+<h2>7. 今後のアクション</h2>
+<ul>
+  <li><strong>2026-07-27 以降：</strong>Vercel ダッシュボード → 該当プロジェクト → Firewall → Configure から <strong>Vercel BotID Deep Analysis を有効化</strong>する（人手作業。未設定でも Basic 検知は動作する）</li>
+  <li><strong>本番反映後：</strong>問い合わせフォーム・見積フォームの両方から実際に送信し、メール／スプレッドシートに正常に届くことを確認する（誤ブロックが起きていないことの確認）</li>
+  <li><strong>2026-08-03 目安：</strong>1週間後にスプレッドシートを確認し、スパム件数の推移と <code>spamReasons</code> の内訳をレビュー。抜けが続く場合は判定条件を追加する</li>
+  <li>今後スパムの手口が変わった場合（日本語混じり・実在しそうな氏名など）は、破棄せずフラグ付けで様子を見る方針を維持する</li>
+</ul>
+
+<footer class="doc">
+  川口典礼サイト 社内作業レポート／Web非公開。秘密情報・個人情報の記載なし。
+</footer>
+
+</div>
+</body>
+</html>
