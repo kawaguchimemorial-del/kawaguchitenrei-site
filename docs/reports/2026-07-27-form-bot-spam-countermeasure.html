@@ -43,6 +43,20 @@
   <p class="muted">社内記録（Web非公開・<code>noindex</code>）。個人情報・秘密情報なし。関連：<a href="./2026-06-07-form-antispam.html">迷惑送信対策（初回実装）</a> / <a href="./2026-06-07-form-antispam-regression-fix.html">同リグレッション修正</a>。</p>
 </header>
 
+<div class="callout" style="border-color:#e8c4bc;background:#fdf1ef">
+  <strong>【2026-07-29 追記：本番反映済み】</strong><br>
+  本レポートの実装は CLAUDE.md §19.2（フォーム改修は push に人間承認が必要）により保留され、
+  <strong>2026-07-29 まで本番に出ていなかった</strong>。その間の 2026-07-28 18:04 に同種のスパムが再着信した。
+  受信内容（氏名 <code>IPKerXkTNGmRQxADxrSUUh</code> ほか）を実装済みロジックで検証したところ、
+  <strong>氏名・フリガナ・希望連絡時間帯・本文の4項目すべてが破棄条件に該当</strong>することを確認。
+  松澤の承認を得て commit <code>24084e5</code> を push し、本番反映を確認した。<br><br>
+  <strong>本番反映の検証方法</strong>：BotID のクライアントコードはミニファイにより <code>botid</code> の文字列が消えるため、
+  HTML やチャンクを <code>botid</code> で grep しても検出できない（初回の判定を誤った）。
+  内部で使用される <code>KPSDK</code> をマーカーとして再検証し、
+  チャンク <code>0syp9j52fzw1g.js</code> に検出。ローカルビルドとハッシュが一致することも確認した。<br><br>
+  <strong>再発防止</strong>：承認待ちで保留する作業は、その場で承認を依頼する。保留のまま次の作業に移らない。
+</div>
+
 <div class="callout">
   <p><strong>事象：</strong>お問い合わせフォームから、氏名・フリガナ・希望連絡時間帯・本文のすべてが無意味なランダム英字列（例：20文字前後の大小混在アルファベット）で構成された自動送信が届いた。実在しない連絡先が入っており、対応価値はゼロ。</p>
   <p><strong>原因：</strong>既存の迷惑送信対策（ハニーポット・滞在秒数・営業キーワード）は<strong>「フラグを付けるが必ず送信する」</strong>設計であり、かつ今回の内容は既存ヒューリスティクスのどれにも当たらず <code>spamScore 0</code>（＝検知すらできていない）だった。本文が16文字と短く、「日本語なし」判定の閾値（20文字超）を下回っていたため。</p>
