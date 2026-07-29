@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>メインサイト SEOチェック（2026-07-30）</title>
+<style>
+  :root{--ink:#23201c;--sub:#6b645c;--line:#e4ddd3;--bg:#fbf9f5;--accent:#7a5c3e;--warn:#a3402f;--good:#3d6b4a;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;line-height:1.8;font-size:15px}
+  .wrap{max-width:1000px;margin:0 auto;padding:32px 22px 80px}
+  header.doc{border-bottom:3px solid var(--accent);padding-bottom:18px;margin-bottom:24px}
+  header.doc .tag{color:var(--accent);font-weight:700;letter-spacing:.12em;font-size:12px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:23px;margin:6px 0 4px;font-weight:700}
+  .meta{color:var(--sub);font-size:13px}
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:19px;margin:34px 0 12px;padding-left:12px;border-left:5px solid var(--accent)}
+  h3{font-size:15px;margin:22px 0 8px;color:var(--accent)}
+  .status{display:inline-block;background:#eef7ef;border:1px solid #cfe6d3;color:#2c5233;border-radius:999px;padding:4px 14px;font-weight:700;font-size:14px}
+  .lead{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px 20px;margin:16px 0}
+  .info-box{background:#f2f4f8;border:1px solid #d4dbe6;border-radius:10px;padding:14px 18px;margin:14px 0}
+  .warn-box{background:#fdf1ef;border:1px solid #e8c4bc;border-radius:10px;padding:14px 18px;margin:14px 0}
+  .good-box{background:#eef7ef;border:1px solid #cfe6d3;border-radius:10px;padding:14px 18px;margin:14px 0}
+  .tw{overflow-x:auto;margin:12px 0}
+  table{width:100%;min-width:520px;border-collapse:collapse;font-size:13px;background:#fff}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:right;vertical-align:top}
+  th:first-child,td:first-child{text-align:left}
+  thead th{background:#f2ece2;text-align:center}
+  .up{color:var(--good);font-weight:700}.down{color:var(--warn);font-weight:700}
+  code{background:#f1efe9;padding:1px 6px;border-radius:5px;font-size:12.5px;font-family:ui-monospace,Consolas,monospace}
+  ul{margin:8px 0 8px 1.2em}li{margin:5px 0}
+  .foot{margin-top:36px;border-top:1px solid var(--line);padding-top:14px;color:var(--sub);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <div class="tag">社内レポート（docs/reports・非公開/noindex）</div>
+  <h1>メインサイト SEOチェック</h1>
+  <div class="meta">
+    実施：2026-07-30 ／ データ：Google Search Console（API直接取得）／ 確定最新日 2026-07-27<br>
+    比較窓：AFTER 6/30–7/27 vs BEFORE 6/02–6/29（各28日）
+  </div>
+</header>
+
+<div class="lead">
+  <span class="status">🟢 良好（緊急対応なし）</span><br>
+  全体はクリック <strong>+112%</strong>、表示 <strong>+121%</strong>、平均順位 <strong>15.8→11.5</strong> と伸長が継続。
+  7/27 公開の <code>/plan/yugure-kazokuso/</code> は<strong>公開当日にインデックスされ 7.0位で表示</strong>を獲得。
+  7/22 の役割分離は5日分のデータが出て、<strong>狙いどおりの方向に動いている</strong>ことが確認できた。
+  一方で「家族葬×川口市」系の受け皿が実質不在という論点が残る（§4）。
+</div>
+
+<h2>1. 全体推移（28日 vs 前28日）</h2>
+<div class="tw">
+<table>
+  <thead><tr><th>指標</th><th>BEFORE<br>6/02–6/29</th><th>AFTER<br>6/30–7/27</th><th>変化</th></tr></thead>
+  <tbody>
+    <tr><td>クリック</td><td>185</td><td>392</td><td class="up">+112%</td></tr>
+    <tr><td>表示回数</td><td>17,625</td><td>38,949</td><td class="up">+121%</td></tr>
+    <tr><td>平均掲載順位</td><td>15.8</td><td>11.5</td><td class="up">+4.3 改善</td></tr>
+    <tr><td>CTR</td><td>1.05%</td><td>1.01%</td><td>-0.04pt</td></tr>
+  </tbody>
+</table>
+</div>
+<p>CTRはほぼ横ばい。前回（7/28実施分）で -0.15pt だった希釈が縮小しており、悪化トレンドではない。</p>
+
+<h3>直近8日の推移</h3>
+<div class="tw">
+<table>
+  <thead><tr><th>日付</th><th>クリック</th><th>表示</th><th>平均順位</th></tr></thead>
+  <tbody>
+    <tr><td>7/20</td><td>17</td><td>1,461</td><td>11.4</td></tr>
+    <tr><td>7/21</td><td>20</td><td>1,348</td><td>11.1</td></tr>
+    <tr><td>7/22</td><td>23</td><td>1,490</td><td>11.7</td></tr>
+    <tr><td>7/23</td><td>14</td><td>1,356</td><td>10.7</td></tr>
+    <tr><td>7/24</td><td>20</td><td>1,276</td><td>10.4</td></tr>
+    <tr><td>7/25</td><td>12</td><td>1,229</td><td>10.8</td></tr>
+    <tr><td>7/26</td><td>15</td><td>1,509</td><td>11.9</td></tr>
+    <tr><td>7/27</td><td>19</td><td>1,682</td><td>12.4</td></tr>
+  </tbody>
+</table>
+</div>
+<p>急落・急伸なし。7/26–27 は表示が増えて平均順位が下がっているが、これは下位表示の増加によるもので順位下落ではない。</p>
+
+<h2>2. 新プランページの立ち上がり（好結果）</h2>
+<div class="good-box">
+  <code>/plan/yugure-kazokuso/</code>（7/27公開）は、<strong>公開当日のデータで表示3回・平均順位7.0位</strong>を記録。
+  Search Console のインデックス登録リクエストを待たずに、sitemap 経由でクロール・インデックスされたことになる。
+  新規ページの立ち上がりとしては速い。
+</div>
+<p>ただし「夕暮れ家族葬」という語自体の検索需要は、7月中はまだ発生していない（該当クエリの表示ゼロ）。
+オリジナル商品名なので当然であり、<strong>認知はチラシ・GBP・現場提案から作る</strong>という当初の位置づけどおり。
+このページのKPIは検索流入ではなく、既存プラン閲覧者からの遷移と相談件数で見る。</p>
+
+<h2>3. 7/22 役割分離の経過（5日分・方向は良好）</h2>
+<p>7/28 のチェック時点では実質3日分で判定不能だった。5日分に増えたため再測定した。</p>
+<div class="tw">
+<table>
+  <thead><tr><th>対象</th><th>変更前 6/01–7/13<br>（日平均表示・順位）</th><th>役割分離後 7/23–7/27<br>（日平均表示・順位）</th><th>評価</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>/（トップ）×「川口市 葬儀」</td>
+      <td>42.9 / 8.8位</td>
+      <td class="up">54.4 / 8.0位</td>
+      <td class="up">狙いどおり</td>
+    </tr>
+    <tr>
+      <td>/area/kawaguchi/ ×「川口市 葬儀」</td>
+      <td>1.0 / 67.6位</td>
+      <td>0.6 / 67.7位</td>
+      <td>意図的な退避（横ばい）</td>
+    </tr>
+    <tr>
+      <td>/plan/family-funeral/ ×「家族葬 川口市」</td>
+      <td>0.5 / 50.7位</td>
+      <td>表示0</td>
+      <td>退避完了</td>
+    </tr>
+    <tr>
+      <td>/（トップ）×「家族葬 川口市」</td>
+      <td>2.4 / 13.6位</td>
+      <td class="down">1.4 / 14.1位</td>
+      <td class="down">要監視（§4）</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="good-box">
+  <strong>ヘッドKW「川口市 葬儀」をトップに集約する設計は機能している。</strong>
+  日平均表示が 42.9 → 54.4（+27%）、順位も 8.8 → 8.0 に改善した。
+  重複していた受け皿を退避させたことで、トップの評価が集中した動きと整合する。
+</div>
+
+<h2>4. 残る論点：「家族葬×川口市」の受け皿が実質不在</h2>
+<div class="warn-box">
+  7/14 のカニバリ修正でトップから家族葬訴求を外し、7/22 の役割分離で <code>/plan/family-funeral/</code> を費用・人数軸へ退避させた結果、
+  <strong>この語で戦うページが誰もいない状態になっている。</strong>
+</div>
+
+<h3>「川口市 家族葬」の受け皿（7/23–7/27）</h3>
+<div class="tw">
+<table>
+  <thead><tr><th>ページ</th><th>表示</th><th>平均順位</th><th>クリック</th></tr></thead>
+  <tbody>
+    <tr><td>/（トップ）</td><td>40</td><td>17.8</td><td>0</td></tr>
+    <tr><td>/area/higashikawaguchi/</td><td>1</td><td>55.0</td><td>0</td></tr>
+    <tr><td>/area/</td><td>2</td><td>80.5</td><td>0</td></tr>
+    <tr><td>/area/angyo/</td><td>4</td><td>76.5</td><td>0</td></tr>
+    <tr><td>/area/kamiaoki/</td><td>4</td><td>89.5</td><td>0</td></tr>
+    <tr><td>/area/aoki/</td><td>3</td><td>95.0</td><td>0</td></tr>
+  </tbody>
+</table>
+</div>
+<p><strong>専用ページ <code>/plan/family-funeral/</code> は表示ゼロ。</strong>
+代わりに 55〜95位のエリアページが断片的に拾われており、受け皿として機能していない。</p>
+
+<div class="info-box">
+  <strong>ただし今回は動かさない。</strong>まだ5日分であり、退避させたページが別の語（「家族葬 費用」「家族葬 人数」など非地域軸）で
+  評価を得る途中の可能性がある。7/28 に一度「title を戻すべき」と誤った判断をしており、
+  <strong>短期データでの往復は最も避けるべき</strong>。8/19頃の28日測定で、
+  <code>/plan/family-funeral/</code> が費用・人数軸で表示を獲得できているかを見て判断する。
+</div>
+
+<h2>5. 技術面ヘルスチェック（すべて正常）</h2>
+<div class="tw">
+<table>
+  <thead><tr><th>項目</th><th style="text-align:left">結果</th></tr></thead>
+  <tbody>
+    <tr><td>主要8ページ HTTP</td><td style="text-align:left">全て 200（/・/plan/・/plan/yugure-kazokuso/・/plan/family-funeral/・/area/kawaguchi/・/contact/・/estimate/・/hall/）</td></tr>
+    <tr><td>sitemap.xml</td><td style="text-align:left">200・129 URL（前回と同数・減少なし）</td></tr>
+    <tr><td>robots.txt / llms.txt</td><td style="text-align:left">ともに 200・正常</td></tr>
+    <tr><td>新祭壇画像（7/29差し替え）</td><td style="text-align:left">✅ 本番反映済み（<code>plan-yugure-kazokuso.png</code> 200・1,975,971 bytes＝新ファイル）</td></tr>
+    <tr><td>フォームbot対策（7/29 push）</td><td style="text-align:left">✅ 稼働中（クライアントチャンクに BotID の <code>KPSDK</code> を検出）</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2>6. 商用KWの現在地</h2>
+<div class="tw">
+<table>
+  <thead><tr><th>クエリ</th><th>クリック</th><th>表示</th><th>順位 前→後</th></tr></thead>
+  <tbody>
+    <tr><td>川口市 葬儀</td><td>3</td><td>1,591</td><td class="up">10.9 → 7.7</td></tr>
+    <tr><td>川口 葬儀</td><td>2</td><td>540</td><td class="up">14.9 → 11.6</td></tr>
+    <tr><td>川口市 葬儀場</td><td>1</td><td>75</td><td>— → 12.0</td></tr>
+  </tbody>
+</table>
+</div>
+<div class="warn-box">
+  <strong>順位は改善しているのにクリックが増えない構造は変わっていない。</strong>
+  「川口市 葬儀」は 7.7位・表示1,591でクリック3（CTR 0.19%）。
+  1ページ目にいてこの数字は、ローカルパック（地図3枠）がクリックを取っているため。
+  <strong>サイト側の施策では取り返せない。GBP の作り込みが唯一の打ち手</strong>であり、
+  プレイブック（<code>docs/operations/gbp/2026-07-27-gbp-full-setup-playbook.html</code>）の完遂が最優先。
+</div>
+
+<h2>7. 今回の結論</h2>
+<ul>
+  <li><strong>サイト側で今日やるべき対応はない。</strong>技術面は全項目正常、直近の3つの実装（新プランページ・bot対策・祭壇画像）はすべて本番反映を確認</li>
+  <li>7/22 の役割分離は<strong>ヘッドKWで狙いどおりに機能</strong>。触らずに測定を続ける</li>
+  <li>「家族葬×川口市」の受け皿不在は<strong>要監視だが今回は動かさない</strong>（8/19判断）</li>
+  <li>最優先は <strong>GBP</strong>。順位改善がクリックに変わらない原因はローカルパックにある</li>
+</ul>
+
+<h2>8. 次回確認</h2>
+<ul>
+  <li><strong>2026-08-05頃</strong>：<code>/plan/yugure-kazokuso/</code> の表示推移（内部導線経由の遷移も GA4 で）</li>
+  <li><strong>2026-08-19頃</strong>：7/22施策の28日測定。<code>/plan/family-funeral/</code> が費用・人数軸で表示を獲得できているか</li>
+  <li><strong>毎月1日</strong>：GBPパフォーマンス（通話数が最重要KPI）</li>
+</ul>
+
+<div class="foot">
+  データ取得：Search Console API（OAuth）。分析のみ・サイトコードの変更なし。秘密情報・個人情報は記載していない。
+</div>
+
+</div>
+</body>
+</html>
