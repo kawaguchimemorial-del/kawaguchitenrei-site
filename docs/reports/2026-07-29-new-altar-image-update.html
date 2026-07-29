@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>新祭壇画像への差し替え（2026-07-29）</title>
+<style>
+  :root{--ink:#23201c;--sub:#6b645c;--line:#e4ddd3;--bg:#fbf9f5;--accent:#7a5c3e;--warn:#a3402f;--good:#3d6b4a;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;line-height:1.8;font-size:15px}
+  .wrap{max-width:960px;margin:0 auto;padding:32px 22px 80px}
+  header.doc{border-bottom:3px solid var(--accent);padding-bottom:18px;margin-bottom:24px}
+  header.doc .tag{color:var(--accent);font-weight:700;letter-spacing:.12em;font-size:12px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:23px;margin:6px 0 4px;font-weight:700}
+  .meta{color:var(--sub);font-size:13px}
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:19px;margin:32px 0 12px;padding-left:12px;border-left:5px solid var(--accent)}
+  .status{display:inline-block;background:#eef7ef;border:1px solid #cfe6d3;color:#2c5233;border-radius:999px;padding:4px 14px;font-weight:700;font-size:14px}
+  .lead{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px 20px;margin:16px 0}
+  .info-box{background:#f2f4f8;border:1px solid #d4dbe6;border-radius:10px;padding:14px 18px;margin:14px 0}
+  .good-box{background:#eef7ef;border:1px solid #cfe6d3;border-radius:10px;padding:14px 18px;margin:14px 0}
+  .tw{overflow-x:auto;margin:12px 0}
+  table{width:100%;min-width:520px;border-collapse:collapse;font-size:13px;background:#fff}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  thead th{background:#f2ece2}
+  code{background:#f1efe9;padding:1px 6px;border-radius:5px;font-size:12.5px;font-family:ui-monospace,Consolas,monospace}
+  ul{margin:8px 0 8px 1.2em}li{margin:5px 0}
+  .foot{margin-top:36px;border-top:1px solid var(--line);padding-top:14px;color:var(--sub);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <div class="tag">社内レポート（docs/reports・非公開/noindex）</div>
+  <h1>新祭壇画像への差し替え（一日葬・家族葬・一般葬・夕暮れ家族葬）</h1>
+  <div class="meta">
+    実施：2026-07-29 ／ 依頼：松澤 ／ 素材：<code>public/images/tmp/新祭壇/新祭壇＿_.jpg</code>（5338×3776）
+  </div>
+</header>
+
+<div class="lead">
+  <span class="status">🟢 完了</span><br>
+  一日葬・家族葬・一般葬・夕暮れ家族葬で共通利用する最新の祭壇画像に、既存3ファイルを差し替えた。
+  ファイル名・配置場所は変更していない（CLAUDE.md §13 リネーム禁止）ため、参照側のコード変更は発生していない。
+</div>
+
+<h2>1. 差し替えたファイル</h2>
+<div class="tw">
+<table>
+  <thead><tr><th>ファイル</th><th>対象プラン</th><th>サイズ</th></tr></thead>
+  <tbody>
+    <tr><td><code>plan-ichinichiso-kazokuso.png</code></td><td>一日葬・家族葬（共用）</td><td>2.4MB → 1.9MB</td></tr>
+    <tr><td><code>plan-ippan.png</code></td><td>一般葬</td><td>2.5MB → 1.9MB</td></tr>
+    <tr><td><code>plan-yugure-kazokuso.png</code></td><td>夕暮れ家族葬</td><td>2.5MB → 1.9MB</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p>いずれも <code>public/images/home/plans/</code> 配下。<strong>コードの変更は0行</strong>（画像の中身のみ差し替え）。</p>
+
+<h2>2. 画像処理</h2>
+<ul>
+  <li>元画像 5338×3776（アスペクト比 1.414）を、既存プラン画像と同じ <strong>4:3・1448×1086</strong> に中央クロップ＋リサイズ</li>
+  <li>クロップ範囲：左右から各151pxを除去（祭壇が中央にあるため、被写体は欠けていない）</li>
+  <li>PNG（optimize）で保存。既存の他プラン画像（1448×1086・2.0〜2.5MB）と規格が揃った状態</li>
+</ul>
+
+<h2>3. 反映される箇所</h2>
+<div class="tw">
+<table>
+  <thead><tr><th>ファイル</th><th>反映先</th></tr></thead>
+  <tbody>
+    <tr><td><code>lib/plans.ts</code></td><td>/plan/oneday-funeral/・/plan/family-funeral/・/plan/yugure-kazokuso/ の各詳細ページ</td></tr>
+    <tr><td><code>app/plan/page.tsx</code></td><td>/plan/ 一覧（表・カード）</td></tr>
+    <tr><td><code>components/home/PlanSection.tsx</code></td><td>トップページのプランセクション</td></tr>
+    <tr><td><code>components/area/AreaDetailMain.tsx</code></td><td>各エリアページのプラン紹介（一般葬を含む）</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2>4. 掲載前の確認（CLAUDE.md §13）</h2>
+<div class="good-box">
+  中央部を高解像度で拡大し、個人情報の写り込みがないことを目視で確認した。
+  <ul>
+    <li>モニター表示：<strong>川口典礼のロゴのみ</strong>（遺影ではない）</li>
+    <li>中央の白木位牌：<strong>無記名</strong>（戒名・俗名の記載なし）</li>
+    <li>名札・会葬礼状・芳名帳：<strong>写り込みなし</strong></li>
+    <li>人物：<strong>写り込みなし</strong></li>
+    <li>棺：閉じられており、故人は見えない</li>
+    <li>撮影場所：自社式場の川口メモリアルホール（他社施設ではない）</li>
+  </ul>
+</div>
+
+<h2>5. 検証</h2>
+<div class="tw">
+<table>
+  <thead><tr><th>項目</th><th>結果</th></tr></thead>
+  <tbody>
+    <tr><td><code>npm run build</code></td><td>✅ 成功</td></tr>
+    <tr><td>静的生成ページ数</td><td>✅ 138ページ（増減なし）</td></tr>
+    <tr><td>変更ファイル</td><td>✅ 画像3点のみ。コード変更なし・指示外ファイルへの巻き込みなし</td></tr>
+    <tr><td>ファイル名・配置</td><td>✅ 変更なし（§13 リネーム禁止を遵守）</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2>6. 申し送り</h2>
+<div class="info-box">
+  <strong>alt テキストは変更していません。</strong>今回の依頼範囲外のため据え置きました。
+  現在は「一日葬プランのイメージ」「一般葬プランのイメージ」等の表記です。
+  §13 は「alt は内容を具体的に記述」としているため、
+  「川口メモリアルホールの式場に設えた生花祭壇」のような具体的な記述に揃えることも可能です。ご指示があれば対応します。<br><br>
+  なお <code>/plan/yugure-kazokuso/</code> の alt は新規作成時に
+  「川口メモリアルホールの式場に設えた夕暮れ家族葬の生花祭壇」としており、こちらは新画像とも整合しています。
+</div>
+
+<div class="foot">
+  旧画像は Git 履歴に保持されているため、差し戻しが必要な場合は復元可能。<br>
+  素材元ファイル <code>public/images/tmp/新祭壇/新祭壇＿_.jpg</code> は tmp 配下のため commit していない。
+</div>
+
+</div>
+</body>
+</html>
