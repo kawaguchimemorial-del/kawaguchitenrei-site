@@ -5,6 +5,7 @@
  * 使い方:
  *   1) .env.local に GOOGLE_OAUTH_CLIENT_ID と GOOGLE_OAUTH_CLIENT_SECRET を設定
  *   2) node --env-file=.env.local scripts/get-refresh-token.mjs
+ *      （スコープを絞る場合: --scope=gsc / --scope=gbp / --scope=all ※既定は all）
  *   3) ターミナルに表示される認証 URL をブラウザで開いて Google アカウントで承認
  *   4) ブラウザが http://localhost:4321/oauth-callback に戻り、ターミナルに refresh_token が
  *      1 回だけ表示される（このスクリプトはファイルやログには何も保存しない）
@@ -26,7 +27,30 @@ import { google } from "googleapis";
 
 const PORT = 4321;
 const REDIRECT_URI = `http://localhost:${PORT}/oauth-callback`;
-const SCOPES = ["https://www.googleapis.com/auth/webmasters.readonly"];
+
+// 取得するスコープは --scope で切り替える。
+//   gsc … Search Console のみ（従来の挙動）
+//   gbp … Google ビジネスプロフィールのみ
+//   all … 両方（既定）。1 本のトークンで両方を扱えるため運用が楽になる
+//
+// 注意: GBP スコープは Google の「Business Profile API アクセス申請」が
+// 承認されていないと、認可自体はできても API 呼び出しが割り当て 0 で失敗する。
+const SCOPE_SETS = {
+  gsc: ["https://www.googleapis.com/auth/webmasters.readonly"],
+  gbp: ["https://www.googleapis.com/auth/business.manage"],
+};
+SCOPE_SETS.all = [...SCOPE_SETS.gsc, ...SCOPE_SETS.gbp];
+
+const scopeArg =
+  process.argv.find((a) => a.startsWith("--scope="))?.split("=")[1] ?? "all";
+const SCOPES = SCOPE_SETS[scopeArg];
+
+if (!SCOPES) {
+  console.error(
+    `ERROR: --scope は ${Object.keys(SCOPE_SETS).join(" / ")} のいずれかを指定してください（指定値: ${scopeArg}）`
+  );
+  process.exit(1);
+}
 
 const clientId = process.env.GOOGLE_OAUTH_CLIENT_ID?.trim();
 const clientSecret = process.env.GOOGLE_OAUTH_CLIENT_SECRET?.trim();
