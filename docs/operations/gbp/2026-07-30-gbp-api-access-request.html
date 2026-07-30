@@ -177,7 +177,7 @@
   Search Console 用に作った既存プロジェクトを流用しても構いません。その場合は新規作成を飛ばして、そのプロジェクトの番号を控えてください。
 </div>
 
-<h2 id="s2"><span class="step">STEP 2</span>8つの API を有効化する（15分）</h2>
+<h2 id="s2"><span class="step">STEP 2</span>API を有効化する（15分）</h2>
 
 <p>プロジェクトを選択した状態で、1つずつ有効化します。<strong>やり方は8つとも同じ</strong>です。</p>
 <ol>
@@ -186,8 +186,16 @@
   <li><strong>「有効にする」</strong>をクリック</li>
 </ol>
 
+<div class="box warn">
+  <div class="h">⚠ 「Google My Business API」が検索に出てこないのは正常です</div>
+  公式ドキュメントに明記されています。<br><br>
+  <em>"The Google My Business API is only visible in the Google API Console to users who submit and receive approval for their Google Account through the access request form."</em><br><br>
+  このAPIは<strong>アクセス申請が承認されたアカウントにだけ表示される</strong>仕様です。
+  見つからないまま <a href="#s3">STEP 3 の申請</a>に進んでください。承認メールが届いたあとに検索すると表示されます。
+</div>
+
+<h3>いま有効化できる7つ</h3>
 <ul class="ck"><li class="box2">
-  <label><input type="checkbox" data-ck="a1"><span>Google My Business API</span></label>
   <label><input type="checkbox" data-ck="a2"><span>My Business Account Management API</span></label>
   <label><input type="checkbox" data-ck="a3"><span>My Business Business Information API</span></label>
   <label><input type="checkbox" data-ck="a4"><span>My Business Q&amp;A API</span></label>
@@ -195,11 +203,23 @@
   <label><input type="checkbox" data-ck="a6"><span>My Business Notifications API</span></label>
   <label><input type="checkbox" data-ck="a7"><span>My Business Verifications API</span></label>
   <label><input type="checkbox" data-ck="a8"><span>My Business Lodging API</span></label>
-  <label><input type="checkbox" data-ck="a9"><span>「API とサービス」→「有効な API とサービス」で8つ並んでいることを確認した</span></label>
+  <label><input type="checkbox" data-ck="a9"><span>「API とサービス」→「有効な API とサービス」で7つ並んでいることを確認した</span></label>
+</li></ul>
+
+<h3>承認後に有効化する1つ</h3>
+<ul class="ck"><li class="box2">
+  <label><input type="checkbox" data-ck="a1"><span>Google My Business API（<strong>承認メールが届いたあとに</strong>検索して有効化）</span></label>
 </li></ul>
 
 <div class="box info">
-  「Lodging（宿泊）」は葬儀業には無関係ですが、<strong>公式ドキュメントで8つすべての有効化が指示されている</strong>ため、指示どおり有効化してください。有効化しただけで費用は発生しません。
+  「Lodging（宿泊）」は葬儀業には無関係ですが、公式ドキュメントで有効化が指示されているため、指示どおり有効化してください。有効化しただけで費用は発生しません。
+</div>
+
+<div class="box good">
+  <div class="h">スクリプトとの関係</div>
+  <code>scripts/gbp/</code> のスクリプトが使うのは<strong>7つの側にある API だけ</strong>です。
+  8つ目の <code>Google My Business API</code>（旧 v4）は写真・投稿・口コミ返信を扱う古い API で、現在のスクリプトでは使っていません。
+  <strong>有効化が承認後になっても当面の作業に影響はありません。</strong>
 </div>
 
 <h2 id="s3"><span class="step">STEP 3</span>アクセス申請を出す（10分）★ここが本番</h2>
@@ -369,10 +389,11 @@ Our website: https://kawaguchitenrei.com/</div>
 <table>
   <thead><tr><th>症状</th><th>原因の候補</th></tr></thead>
   <tbody>
+    <tr><td>「Google My Business API」が検索に出てこない</td><td><strong>正常。</strong>承認済みアカウントにのみ表示される仕様。7つを有効化して申請へ進む</td></tr>
     <tr><td>申請フォームで種類を選べない</td><td>ドロップダウンで「Application for Basic API Access」を探す。無い場合は別の入口のフォームを開いている</td></tr>
     <tr><td>却下された</td><td>申請メールアドレスが GBP のオーナー/管理者でない可能性が高い。確認して再申請</td></tr>
     <tr><td>Quota が 0 のまま</td><td>未承認。フォローアップメールを確認</td></tr>
-    <tr><td><code>dump.mjs</code> が 403</td><td>スクリプトが候補を表示。8API有効化 → 承認 → スコープの順に確認</td></tr>
+    <tr><td><code>dump.mjs</code> が 403</td><td>スクリプトが候補を表示。7API有効化 → 承認 → スコープの順に確認</td></tr>
     <tr><td><code>dump.mjs</code> が 401</td><td>refresh_token の再取得が必要</td></tr>
   </tbody>
 </table>

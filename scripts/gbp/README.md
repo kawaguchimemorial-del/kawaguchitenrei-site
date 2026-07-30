@@ -9,10 +9,11 @@ API の割り当てが 0 のため全スクリプトが 403 で失敗する。�
 
 ## 事前準備（松澤さん側）
 
-### 1. Google Cloud で 8 つの API を有効化
+### 1. Google Cloud で API を有効化
+
+**いま有効化できる 7 つ**
 
 ```
-Google My Business API
 My Business Account Management API
 My Business Business Information API
 My Business Q&A API
@@ -21,6 +22,16 @@ My Business Notifications API
 My Business Verifications API
 My Business Lodging API
 ```
+
+**承認後に有効化する 1 つ**
+
+```
+Google My Business API
+```
+
+> ⚠️ `Google My Business API` は**アクセス申請が承認されるまで Console に表示されない**
+> （公式: *"only visible in the Google API Console to users who submit and receive approval"*）。
+> 見つからないまま申請へ進んでよい。なお本スクリプト群が使うのは 7 つの側の API のみ。
 
 ### 2. アクセス申請を提出（審査あり・数日〜数週間）
 

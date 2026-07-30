@@ -55,7 +55,7 @@
 
 ---
 
-## STEP 2. 8つの API を有効化する（15分）
+## STEP 2. API を有効化する（15分）
 
 プロジェクトを選択した状態で、以下を1つずつ有効化します。
 
@@ -65,9 +65,8 @@
 3. **「有効にする」** ボタンをクリック
 4. 有効化されたら、次の API へ
 
-**有効化する8つ**
+**いま有効化できる7つ**
 
-- [ ] Google My Business API
 - [ ] My Business Account Management API
 - [ ] My Business Business Information API
 - [ ] My Business Q&A API
@@ -76,12 +75,37 @@
 - [ ] My Business Verifications API
 - [ ] My Business Lodging API
 
-> 「Lodging（宿泊）」は葬儀業には関係ありませんが、**公式ドキュメントで8つすべての有効化が指示されている**ため、
+**承認後に有効化する1つ**
+
+- [ ] Google My Business API ← **承認されるまで Console に表示されません（後述）**
+
+> ⚠️ **「Google My Business API」が検索しても出てこないのは正常です。**
+> 公式ドキュメントに次のとおり明記されています。
+>
+> > "The Google My Business API is only visible in the Google API Console to users who
+> > submit and receive approval for their Google Account through the access request form."
+>
+> このAPIは**アクセス申請が承認されたアカウントにだけ表示される**仕様です。
+> 見つからないまま STEP 3 の申請に進んでください。承認メールが届いたあとに検索すると表示されます。
+
+> 「Lodging（宿泊）」は葬儀業には関係ありませんが、公式ドキュメントで有効化が指示されているため、
 > 指示どおり有効化してください。有効化しただけで費用は発生しません。
 
 ### 確認方法
 
-「API とサービス」→「有効な API とサービス」を開き、上記8つが一覧に並んでいればOKです。
+「API とサービス」→「有効な API とサービス」を開き、上記7つが一覧に並んでいればOKです。
+
+### スクリプトとの関係
+
+`scripts/gbp/` のスクリプトが使うのは**7つの側にある API だけ**です。
+
+| スクリプト | 使う API | 7つに含まれるか |
+|---|---|---|
+| `dump.mjs` / `diff.mjs` / `apply.mjs` | Account Management / Business Information / Q&A | ✅ |
+| `performance.mjs` | Business Profile Performance | ✅ |
+
+8つ目の `Google My Business API`（旧 v4）は写真・投稿・口コミ返信を扱う古い API で、
+現在のスクリプトでは使っていません。**有効化が承認後になっても当面の作業に影響はありません。**
 
 ---
 
@@ -241,10 +265,11 @@ API が通った後は、手作業で入れた内容と `scripts/gbp/desired.mjs
 
 | 症状 | 原因の候補 |
 |---|---|
+| 「Google My Business API」が検索に出てこない | **正常。**承認済みアカウントにのみ表示される仕様。7つを有効化して申請へ進む |
 | 申請フォームで種類を選べない | ドロップダウンで「Application for Basic API Access」を探す。無い場合は別の入口のフォームを開いている |
 | 却下された | 申請メールアドレスが GBP のオーナー/管理者でない可能性が高い。確認して再申請 |
 | Quota が 0 のまま | 未承認。フォローアップメールを確認 |
-| `dump.mjs` が 403 | スクリプトが候補を表示します。8API有効化 → 承認 → スコープの順に確認 |
+| `dump.mjs` が 403 | スクリプトが候補を表示します。7API有効化 → 承認 → スコープの順に確認 |
 | `dump.mjs` が 401 | refresh_token の再取得が必要 |
 
 ---
