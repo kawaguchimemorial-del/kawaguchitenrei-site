@@ -9,6 +9,46 @@
 
 ---
 
+## 申請記録（ステータス）
+
+| 項目 | 内容 |
+|---|---|
+| **申請日** | **2026-07-30** |
+| 申請者 | 松澤（GBP オーナー/管理者アカウント） |
+| 申請種類 | Application for Basic API Access |
+| 申請フォーム | https://support.google.com/business/contact/api_default |
+| 「フォームを知った経路」欄 | Google Business Profile API 公式ドキュメント（Prerequisites ページ） |
+| STEP 1 プロジェクト作成 | ✅ 完了 |
+| STEP 2 API 有効化（7つ） | ✅ 完了 |
+| STEP 3 申請提出 | ✅ **完了（2026-07-30）** |
+| STEP 4 承認確認 | ⏳ **2026-08-09 頃に確認予定** |
+| STEP 5 トークン再取得 | 未着手（承認後） |
+
+### 次のアクション：2026-08-09 頃
+
+1. **承認確認**（Google Cloud Console）
+   - 「API とサービス」→「割り当てとシステム上限」→ **My Business Business Information API**
+   - **0 QPM = 未承認 ／ 300 QPM = 承認済み**
+2. 承認メール（フォローアップ）の受信を確認する
+3. **承認されていた場合**
+   - `Google My Business API` を Console で検索して有効化（この時点で初めて表示される）
+   - `node --env-file=.env.local scripts/get-refresh-token.mjs --scope=all` でトークン再取得
+   - `node scripts/gbp/dump.mjs` で読み取り確認 → `diff.mjs` で差分確認
+4. **未承認のままの場合**
+   - フォローアップメールの有無を確認
+   - 却下されていた場合は、申請メールアドレスが GBP のオーナー/管理者かを再確認して再申請
+
+> 自動スケジュールは運用していないため、**この確認は手動で行う**。
+> 2026-08-09 を過ぎても連絡がない場合は、さらに1週間ほど待って再確認する
+> （審査期間は公式に明記されていない）。
+
+### 審査を待つ間
+
+プレイブック `docs/operations/gbp/2026-07-27-gbp-full-setup-playbook.html` の Day 1〜2 を手作業で進める。
+API 承認後に `diff.mjs` で突き合わせられるため、手作業は無駄にならない。
+
+---
+
 ## 0. 事前に確認すること
 
 | 要件（Google 公式） | 川口典礼の状況 |

@@ -101,6 +101,7 @@
 <nav class="toc">
   <div class="t">目次</div>
   <div class="links">
+    <a href="#rec">申請記録・次回確認</a>
     <a href="#s0">0. 事前確認</a>
     <a href="#s1">STEP 1. プロジェクト作成</a>
     <a href="#s2">STEP 2. API 有効化</a>
@@ -131,7 +132,53 @@
   <strong>この画面の使い方</strong><br>
   ・チェックの進捗はこのブラウザに自動保存されます<br>
   ・<strong>「コピー」ボタン</strong>で申請フォームに貼る文面をそのまま取得できます<br>
+  ・<strong>申請は 2026-07-30 に提出済み。次回確認は 2026-08-09 頃</strong>（<a href="#rec">申請記録</a>）<br>
   ・<strong>API の利用は無料です</strong>（公式：<em>"available to registered users at no charge"</em>）。請求先アカウントの登録も不要です
+</div>
+
+<h2 id="rec">申請記録・次回確認</h2>
+
+<div class="box good">
+  <div class="h">✅ 申請提出済み（2026-07-30）</div>
+  次回の確認は <strong>2026-08-09 頃</strong>。自動スケジュールは運用していないため<strong>手動で確認</strong>する。
+</div>
+
+<div class="tw">
+<table>
+  <thead><tr><th>項目</th><th>内容</th></tr></thead>
+  <tbody>
+    <tr><td><strong>申請日</strong></td><td><strong>2026-07-30</strong></td></tr>
+    <tr><td>申請者</td><td>松澤（GBP オーナー/管理者アカウント）</td></tr>
+    <tr><td>申請種類</td><td>Application for Basic API Access</td></tr>
+    <tr><td>「フォームを知った経路」欄</td><td>Google Business Profile API 公式ドキュメント（Prerequisites ページ）</td></tr>
+    <tr><td>STEP 1 プロジェクト作成</td><td>✅ 完了</td></tr>
+    <tr><td>STEP 2 API 有効化（7つ）</td><td>✅ 完了</td></tr>
+    <tr><td>STEP 3 申請提出</td><td>✅ <strong>完了（2026-07-30）</strong></td></tr>
+    <tr><td>STEP 4 承認確認</td><td>⏳ <strong>2026-08-09 頃に確認予定</strong></td></tr>
+    <tr><td>STEP 5 トークン再取得</td><td>未着手（承認後）</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3>2026-08-09 頃にやること</h3>
+<ul class="ck"><li class="box2">
+  <label><input type="checkbox" data-ck="n1"><span><strong>承認確認</strong>：Console →「割り当てとシステム上限」→ My Business Business Information API の QPM を見る（<strong>0=未承認 / 300=承認済み</strong>）</span></label>
+  <label><input type="checkbox" data-ck="n2"><span>承認メール（フォローアップ）の受信を確認した</span></label>
+  <label><input type="checkbox" data-ck="n3"><span>承認済みなら <code>Google My Business API</code> を検索して有効化（この時点で初めて表示される）</span></label>
+  <label><input type="checkbox" data-ck="n4"><span><code>node --env-file=.env.local scripts/get-refresh-token.mjs --scope=all</code> でトークン再取得</span></label>
+  <label><input type="checkbox" data-ck="n5"><span><code>node scripts/gbp/dump.mjs</code> で読み取り確認 → <code>diff.mjs</code> で差分確認</span></label>
+</li></ul>
+
+<div class="box info">
+  <strong>未承認のままだった場合</strong>：フォローアップメールの有無を確認する。却下されていた場合は、
+  申請メールアドレスが GBP のオーナー/管理者かを再確認して再申請する。<br>
+  審査期間は公式に明記されていないため、2026-08-09 を過ぎても連絡がない場合はさらに1週間ほど待って再確認する。
+</div>
+
+<div class="box good">
+  <div class="h">審査を待つ間</div>
+  プレイブック（<code>2026-07-27-gbp-full-setup-playbook.html</code>）の Day 1〜2 を手作業で進める。
+  API 承認後に <code>diff.mjs</code> で突き合わせられるため、<strong>手作業は無駄になりません。</strong>
 </div>
 
 <h2 id="s0">0. 事前確認</h2>
