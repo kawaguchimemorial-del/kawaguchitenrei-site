@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Google Business Profile API アクセス申請 手順書（2026-07-30）</title>
+<style>
+  :root{
+    --ink:#23201c;--sub:#6b645c;--soft:#8b837a;--line:#e4ddd3;--line2:#f0eae1;
+    --bg:#fbf9f5;--card:#fff;--accent:#7a5c3e;--accent2:#a3824f;
+    --warn:#a3402f;--warnbg:#fdf1ef;--warnline:#e8c4bc;
+    --good:#3d6b4a;--goodbg:#eef7ef;--goodline:#cfe6d3;
+    --info:#3a5573;--infobg:#f2f4f8;--infoline:#d4dbe6;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;scroll-padding-top:16px}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;line-height:1.85;font-size:15px}
+  .layout{display:flex;gap:30px;max-width:1240px;margin:0 auto;padding:28px 22px 100px;align-items:flex-start}
+
+  nav.toc{position:sticky;top:20px;flex:0 0 214px;background:var(--card);border:1px solid var(--line);
+    border-radius:12px;padding:16px 14px;font-size:13px}
+  nav.toc .t{font-weight:700;color:var(--accent);letter-spacing:.1em;font-size:11px;margin-bottom:10px}
+  nav.toc a{display:block;color:var(--sub);text-decoration:none;padding:5px 8px;border-radius:6px;line-height:1.5}
+  nav.toc a:hover{background:var(--bg);color:var(--ink)}
+  nav.toc a.active{background:#f4ede2;color:var(--accent);font-weight:700}
+  .prog{margin-top:14px;padding-top:12px;border-top:1px solid var(--line2)}
+  .prog .bar{height:7px;background:var(--line2);border-radius:99px;overflow:hidden}
+  .prog .bar i{display:block;height:100%;width:0;background:var(--accent2);transition:width .25s}
+  .prog .num{font-size:11px;color:var(--soft);margin-top:6px;display:flex;justify-content:space-between;align-items:center}
+  .prog button{font:inherit;font-size:11px;color:var(--soft);background:none;border:1px solid var(--line);
+    border-radius:6px;padding:2px 7px;cursor:pointer}
+
+  main{flex:1 1 auto;min-width:0}
+  header.doc{border-bottom:3px solid var(--accent);padding-bottom:18px;margin-bottom:22px}
+  header.doc .tag{color:var(--accent);font-weight:700;letter-spacing:.12em;font-size:12px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:24px;margin:6px 0 6px;font-weight:700;line-height:1.4}
+  .meta{color:var(--sub);font-size:13px}
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:20px;margin:38px 0 14px;
+    padding-left:12px;border-left:5px solid var(--accent);scroll-margin-top:16px}
+  h3{font-size:15.5px;margin:24px 0 8px;color:var(--accent)}
+  p{margin:10px 0}
+  ul,ol{margin:10px 0 10px 1.35em;padding:0}li{margin:6px 0}
+
+  .lead{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin:16px 0}
+  .box{border-radius:10px;padding:14px 18px;margin:16px 0}
+  .box.warn{background:var(--warnbg);border:1px solid var(--warnline)}
+  .box.info{background:var(--infobg);border:1px solid var(--infoline)}
+  .box.good{background:var(--goodbg);border:1px solid var(--goodline)}
+  .box .h{font-weight:700;margin-bottom:6px}
+  .box.warn .h{color:var(--warn)}.box.good .h{color:var(--good)}.box.info .h{color:var(--info)}
+  .box ul{margin-bottom:0}
+
+  .tw{overflow-x:auto;margin:14px 0}
+  table{width:100%;min-width:480px;border-collapse:collapse;font-size:13.5px;background:var(--card)}
+  th,td{border:1px solid var(--line);padding:9px 11px;text-align:left;vertical-align:top}
+  thead th{background:#f2ece2;white-space:nowrap}
+  tbody tr:nth-child(even){background:#fdfcfa}
+
+  code{background:#f1efe9;padding:1px 6px;border-radius:5px;font-size:12.5px;
+    font-family:ui-monospace,Consolas,monospace;word-break:break-all}
+  a.ext{color:var(--accent);font-weight:700}
+
+  .copy{position:relative;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:12px 0}
+  .copy .label{font-size:11px;font-weight:700;letter-spacing:.08em;color:var(--accent);margin-bottom:8px;
+    display:flex;justify-content:space-between;align-items:center;gap:10px}
+  .copy .txt{white-space:pre-wrap;font-size:13.5px;line-height:1.85}
+  .copy .txt.mono{font-family:ui-monospace,Consolas,monospace;font-size:12.5px}
+  button.cp{font:inherit;font-size:11.5px;font-weight:700;color:var(--accent);background:#fff;
+    border:1px solid var(--accent2);border-radius:7px;padding:4px 12px;cursor:pointer;white-space:nowrap}
+  button.cp:hover{background:#f7f0e6}
+  button.cp.done{color:var(--good);border-color:var(--goodline);background:var(--goodbg)}
+
+  .ck{list-style:none;margin:12px 0;padding:0}
+  .ck li{margin:0;border-bottom:1px solid var(--line2)}
+  .ck li:last-child{border-bottom:0}
+  .ck label{display:flex;gap:11px;align-items:flex-start;padding:9px 4px;cursor:pointer;border-radius:6px}
+  .ck label:hover{background:#fdfcfa}
+  .ck input{margin:5px 0 0;width:17px;height:17px;flex:0 0 auto;accent-color:var(--accent2);cursor:pointer}
+  .ck input:checked + span{color:var(--soft);text-decoration:line-through;text-decoration-color:var(--line)}
+  .ck .box2{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:4px 14px}
+
+  .step{display:inline-block;background:var(--accent);color:#fff;font-size:12px;font-weight:700;
+    border-radius:99px;padding:2px 11px;margin-right:8px;vertical-align:2px}
+  .foot{margin-top:44px;border-top:1px solid var(--line);padding-top:14px;color:var(--sub);font-size:12px}
+
+  @media (max-width:900px){
+    .layout{display:block;padding:20px 16px 80px}
+    nav.toc{position:static;width:auto;margin-bottom:20px}
+    nav.toc .links{display:flex;flex-wrap:wrap;gap:4px}
+    nav.toc a{padding:5px 10px;border:1px solid var(--line2);border-radius:99px;font-size:12px}
+    h1{font-size:20px}
+  }
+  @media print{nav.toc,button.cp,.prog{display:none}.layout{display:block;padding:0}body{background:#fff}}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<nav class="toc">
+  <div class="t">目次</div>
+  <div class="links">
+    <a href="#s0">0. 事前確認</a>
+    <a href="#s1">STEP 1. プロジェクト作成</a>
+    <a href="#s2">STEP 2. API 有効化</a>
+    <a href="#s3">STEP 3. 申請を出す</a>
+    <a href="#s4">STEP 4. 承認確認</a>
+    <a href="#s5">STEP 5. 承認後の準備</a>
+    <a href="#s6">審査を待つ間に</a>
+    <a href="#s7">困ったとき</a>
+  </div>
+  <div class="prog">
+    <div class="bar"><i id="pbar"></i></div>
+    <div class="num"><span id="pnum">0 / 0 完了</span><button id="preset" type="button">リセット</button></div>
+  </div>
+</nav>
+
+<main>
+
+<header class="doc">
+  <div class="tag">社内ドキュメント（非公開 / noindex）</div>
+  <h1>Google Business Profile API アクセス申請 手順書</h1>
+  <div class="meta">
+    作成：2026-07-30 ／ 操作者：松澤 ／ 実作業 30〜45分＋審査待ち<br>
+    関連：<code>scripts/gbp/README.md</code>（承認後に使うスクリプト群）
+  </div>
+</header>
+
+<div class="lead">
+  <strong>この画面の使い方</strong><br>
+  ・チェックの進捗はこのブラウザに自動保存されます<br>
+  ・<strong>「コピー」ボタン</strong>で申請フォームに貼る文面をそのまま取得できます<br>
+  ・<strong>API の利用は無料です</strong>（公式：<em>"available to registered users at no charge"</em>）。請求先アカウントの登録も不要です
+</div>
+
+<h2 id="s0">0. 事前確認</h2>
+
+<div class="tw">
+<table>
+  <thead><tr><th>要件（Google 公式）</th><th>川口典礼の状況</th></tr></thead>
+  <tbody>
+    <tr><td>検証済みかつ<strong>60日以上アクティブ</strong>なビジネスプロフィールを管理している</td><td>✅ 長期運用中</td></tr>
+    <tr><td>プロフィールに登録された<strong>ウェブサイトを保有</strong>している</td><td>✅ https://kawaguchitenrei.com/</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="box warn">
+  <div class="h">⚠ 作業に使う Google アカウント</div>
+  <strong>GBP のオーナーまたは管理者として登録されているアカウント</strong>で作業してください。
+  申請フォームでも「GBP のオーナー/管理者として登録されているメールアドレス」を使うよう指定されています。
+  別アカウントで申請すると却下されます。<strong>却下の最も多い原因はここです。</strong>
+</div>
+
+<h2 id="s1"><span class="step">STEP 1</span>Google Cloud プロジェクトを作る（10分）</h2>
+
+<ul class="ck"><li class="box2">
+  <label><input type="checkbox" data-ck="p1"><span><a class="ext" href="https://console.cloud.google.com/" target="_blank" rel="noreferrer">console.cloud.google.com</a> を開いた</span></label>
+  <label><input type="checkbox" data-ck="p2"><span>画面上部の<strong>プロジェクト選択メニュー</strong>をクリック → 右上の<strong>「新しいプロジェクト」</strong></span></label>
+  <label><input type="checkbox" data-ck="p3"><span>プロジェクト名に <code>kawaguchitenrei-gbp</code> を入力（組織・場所は既定のまま）→「作成」</span></label>
+  <label><input type="checkbox" data-ck="p4"><span>作成後、プロジェクト選択メニューで<strong>作ったプロジェクトに切り替えた</strong></span></label>
+  <label><input type="checkbox" data-ck="p5"><span><strong>プロジェクト番号（12桁の数字）</strong>を控えた</span></label>
+</li></ul>
+
+<div class="box warn">
+  <div class="h">⚠ 必ずメモしてください</div>
+  ダッシュボードの<strong>「プロジェクト情報」カード</strong>に表示されます。
+  <br><br>
+  <code>プロジェクト番号: 123456789012</code> ← 12桁の数字。<strong>申請フォームで必要</strong><br>
+  <code>プロジェクト ID : kawaguchitenrei-gbp-xxxxx</code> ← 文字列。今回は使いません
+  <br><br>
+  <strong>番号（数字）と ID（文字列）は別物です。</strong>フォームで求められるのは番号の方です。
+</div>
+
+<div class="box info">
+  Search Console 用に作った既存プロジェクトを流用しても構いません。その場合は新規作成を飛ばして、そのプロジェクトの番号を控えてください。
+</div>
+
+<h2 id="s2"><span class="step">STEP 2</span>8つの API を有効化する（15分）</h2>
+
+<p>プロジェクトを選択した状態で、1つずつ有効化します。<strong>やり方は8つとも同じ</strong>です。</p>
+<ol>
+  <li>画面上部の検索窓に API 名を入力</li>
+  <li>検索結果に出てきた項目をクリック</li>
+  <li><strong>「有効にする」</strong>をクリック</li>
+</ol>
+
+<ul class="ck"><li class="box2">
+  <label><input type="checkbox" data-ck="a1"><span>Google My Business API</span></label>
+  <label><input type="checkbox" data-ck="a2"><span>My Business Account Management API</span></label>
+  <label><input type="checkbox" data-ck="a3"><span>My Business Business Information API</span></label>
+  <label><input type="checkbox" data-ck="a4"><span>My Business Q&amp;A API</span></label>
+  <label><input type="checkbox" data-ck="a5"><span>My Business Place Actions API</span></label>
+  <label><input type="checkbox" data-ck="a6"><span>My Business Notifications API</span></label>
+  <label><input type="checkbox" data-ck="a7"><span>My Business Verifications API</span></label>
+  <label><input type="checkbox" data-ck="a8"><span>My Business Lodging API</span></label>
+  <label><input type="checkbox" data-ck="a9"><span>「API とサービス」→「有効な API とサービス」で8つ並んでいることを確認した</span></label>
+</li></ul>
+
+<div class="box info">
+  「Lodging（宿泊）」は葬儀業には無関係ですが、<strong>公式ドキュメントで8つすべての有効化が指示されている</strong>ため、指示どおり有効化してください。有効化しただけで費用は発生しません。
+</div>
+
+<h2 id="s3"><span class="step">STEP 3</span>アクセス申請を出す（10分）★ここが本番</h2>
+
+<p>申請フォーム：<a class="ext" href="https://support.google.com/business/contact/api_default" target="_blank" rel="noreferrer">https://support.google.com/business/contact/api_default</a></p>
+
+<div class="tw">
+<table>
+  <thead><tr><th>項目</th><th>入力値</th></tr></thead>
+  <tbody>
+    <tr><td>メールアドレス</td><td><strong>GBP のオーナー/管理者として登録されているアドレス</strong></td></tr>
+    <tr><td>申請種類</td><td>ドロップダウンから <strong>「Application for Basic API Access」</strong></td></tr>
+    <tr><td>プロジェクト番号</td><td>STEP 1 で控えた<strong>12桁の数字</strong></td></tr>
+    <tr><td>会社名</td><td>株式会社 川口典礼</td></tr>
+    <tr><td>ウェブサイト</td><td>https://kawaguchitenrei.com/</td></tr>
+    <tr><td>管理するプロフィール数</td><td>1</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3>用途の説明（英語欄がある場合）</h3>
+<div class="copy">
+  <div class="label"><span>Use case（英語）</span><button class="cp" type="button">コピー</button></div>
+  <div class="txt mono">We operate a single funeral home in Kawaguchi City, Saitama, Japan
+(Kawaguchi Tenrei / Kawaguchi Memorial Hall), and we manage one
+verified Google Business Profile for it.
+
+We would like API access for our own single location only, in order to:
+
+1. Keep our business information consistent with our website
+   (categories, business hours, description, service items).
+2. Post and answer frequently asked questions (Q&amp;A) so that customers
+   can find accurate information about our services and pricing.
+3. Retrieve performance metrics (calls, direction requests, impressions)
+   for our monthly internal reporting.
+
+We do not manage profiles for third parties and we do not intend to
+resell or redistribute any data. All updates are for our own business
+listing only.
+
+Our website: https://kawaguchitenrei.com/</div>
+</div>
+
+<h3>用途の説明（日本語欄の場合）</h3>
+<div class="copy">
+  <div class="label"><span>用途の説明（日本語）</span><button class="cp" type="button">コピー</button></div>
+  <div class="txt">埼玉県川口市で葬儀社（株式会社川口典礼／川口メモリアルホール）を1店舗運営しており、自社の検証済みビジネスプロフィールを1件管理しています。
+
+自社の1拠点のみを対象に、以下の用途で API 利用を希望します。
+
+1. 基本情報（カテゴリ・営業時間・説明文・サービス項目）を自社サイトと一致させ、表記の揺れをなくすため
+2. よくあるご質問（Q&amp;A）を投稿・回答し、料金やサービス内容の正確な情報をお客様に届けるため
+3. パフォーマンス指標（通話数・ルート検索数・表示回数）を取得し、月次の社内レポートに使うため
+
+第三者のプロフィール管理は行いません。データの再販・再配布も行いません。更新対象は自社のビジネスプロフィールのみです。
+
+自社サイト: https://kawaguchitenrei.com/</div>
+</div>
+
+<div class="box warn">
+  <div class="h">⚠ 申請時の注意</div>
+  <ul>
+    <li><strong>「代理店として複数店舗を管理する」と書かないこと。</strong>自社1拠点のみと明記した方が承認されやすいです</li>
+    <li>データの再販・再配布をしないことを明記する</li>
+    <li>送信後、<strong>確認メールが届きます</strong>。審査結果も同じアドレスに届きます</li>
+  </ul>
+</div>
+
+<ul class="ck"><li class="box2">
+  <label><input type="checkbox" data-ck="r1"><span>申請フォームを送信した</span></label>
+  <label><input type="checkbox" data-ck="r2"><span>確認メールが届いたことを確認した</span></label>
+</li></ul>
+
+<h2 id="s4"><span class="step">STEP 4</span>承認されたかを確認する</h2>
+
+<p>Google Cloud Console で確認できます。</p>
+<ol>
+  <li>「API とサービス」→<strong>「割り当てとシステム上限」（Quotas）</strong></li>
+  <li><strong>My Business Business Information API</strong> を選択</li>
+  <li>QPM（1分あたりのリクエスト数）を見る</li>
+</ol>
+
+<div class="tw">
+<table>
+  <thead><tr><th>表示</th><th>意味</th></tr></thead>
+  <tbody>
+    <tr><td><strong>0 QPM</strong></td><td>❌ <strong>未承認</strong>（この状態ではスクリプトは動きません）</td></tr>
+    <tr><td><strong>300 QPM</strong></td><td>✅ <strong>承認済み</strong>（使えます）</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p>審査期間は公式に明記されていません。数日〜数週間を見てください。
+公式には<strong>「レビュー後にフォローアップのメールを送る」</strong>とだけ案内されています。</p>
+
+<h2 id="s5"><span class="step">STEP 5</span>承認後：OAuth 認証情報の準備</h2>
+
+<h3>5-1. OAuth クライアントの確認</h3>
+<p>Search Console 用の OAuth クライアントが既に <code>.env.local</code> にあります。</p>
+<ul>
+  <li><strong>同じ Cloud プロジェクトにある場合</strong> → そのまま流用できます。5-2 へ</li>
+  <li><strong>別プロジェクトの場合</strong> → GBP を有効化したプロジェクトで新規作成します
+    <ol>
+      <li>「認証情報」→「＋ 認証情報を作成」→「OAuth クライアント ID」</li>
+      <li>種類：<strong>デスクトップアプリ</strong>／名前：<code>kawaguchitenrei-gbp-local</code></li>
+      <li>表示されるクライアント ID とシークレットを控える</li>
+      <li>「OAuth 同意画面」でテストユーザーに GBP 管理者のアドレスを追加</li>
+    </ol>
+  </li>
+</ul>
+
+<div class="box warn">
+  <div class="h">⚠ 秘密情報の扱い</div>
+  クライアントシークレット・refresh_token は<strong>チャットに貼らないでください</strong>。<code>.env.local</code>（git 追跡外）にのみ保存します。
+</div>
+
+<h3>5-2. refresh_token を取り直す</h3>
+<p>現在のトークンは Search Console スコープのみです。GBP スコープを含めて再取得します。</p>
+<div class="copy">
+  <div class="label"><span>実行するコマンド</span><button class="cp" type="button">コピー</button></div>
+  <div class="txt mono">node --env-file=.env.local scripts/get-refresh-token.mjs --scope=all</div>
+</div>
+<ol>
+  <li><code>tmp/auth-url.txt</code> の URL をブラウザで開く</li>
+  <li><strong>GBP の管理者アカウント</strong>でログインして承認</li>
+  <li><code>tmp/refresh-token.txt</code> の値を <code>.env.local</code> の <code>GOOGLE_OAUTH_REFRESH_TOKEN=</code> に転記</li>
+  <li><code>tmp/refresh-token.txt</code> と <code>tmp/auth-url.txt</code> を削除</li>
+</ol>
+<div class="box info">
+  既に承認済みのアプリでは refresh_token が再発行されません。その場合は
+  <a class="ext" href="https://myaccount.google.com/permissions" target="_blank" rel="noreferrer">myaccount.google.com/permissions</a>
+  で対象アプリのアクセスを取り消してから再実行してください（スクリプトが同じ案内を表示します）。
+</div>
+
+<h3>5-3. 動作確認</h3>
+<div class="copy">
+  <div class="label"><span>読み取りのみ・何も書き換えません</span><button class="cp" type="button">コピー</button></div>
+  <div class="txt mono">node scripts/gbp/dump.mjs</div>
+</div>
+<p>現在の設定が読み取れれば成功です。403 が出た場合は、スクリプトが原因の候補（API未有効化／未承認／スコープ不足）を表示します。</p>
+
+<h2 id="s6">審査を待つ間にやること</h2>
+
+<div class="box good">
+  <div class="h">審査完了を待つ理由はありません</div>
+  プレイブックの Day 1〜2 を手作業で進めてください。<br>
+  <code>docs/operations/gbp/2026-07-27-gbp-full-setup-playbook.html</code> をブラウザで開くと、貼り付け用のコピーボタン付きで作業できます。
+</div>
+
+<div class="tw">
+<table>
+  <thead><tr><th>優先</th><th>作業</th><th>所要</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>カテゴリ（「火葬場」を選ばない）・営業時間・属性</td><td>30分</td></tr>
+    <tr><td>2</td><td>ビジネス説明文（コピーボタンあり）</td><td>10分</td></tr>
+    <tr><td>3</td><td>サービス8件（夕暮れ家族葬を含む）</td><td>60分</td></tr>
+    <tr><td>4</td><td>Q&amp;A 10問</td><td>40分</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p>API が通った後は、手作業で入れた内容と <code>scripts/gbp/desired.mjs</code> の期待値を
+<code>diff.mjs</code> で突き合わせられます。<strong>手作業が無駄になることはありません。</strong></p>
+
+<h2 id="s7">困ったときの切り分け</h2>
+<div class="tw">
+<table>
+  <thead><tr><th>症状</th><th>原因の候補</th></tr></thead>
+  <tbody>
+    <tr><td>申請フォームで種類を選べない</td><td>ドロップダウンで「Application for Basic API Access」を探す。無い場合は別の入口のフォームを開いている</td></tr>
+    <tr><td>却下された</td><td>申請メールアドレスが GBP のオーナー/管理者でない可能性が高い。確認して再申請</td></tr>
+    <tr><td>Quota が 0 のまま</td><td>未承認。フォローアップメールを確認</td></tr>
+    <tr><td><code>dump.mjs</code> が 403</td><td>スクリプトが候補を表示。8API有効化 → 承認 → スコープの順に確認</td></tr>
+    <tr><td><code>dump.mjs</code> が 401</td><td>refresh_token の再取得が必要</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="foot">
+  API 利用は無料（公式：<em>"The Google My Business API is available to registered users at no charge."</em>）。請求先アカウントの登録は不要。<br>
+  承認後も、実際の書き込みは <code>apply.mjs --confirm</code> を実行するまで発生しません。書き込み前には必ず差分を提示し、承認を得てから実行します。<br>
+  Markdown 版：<code>docs/operations/gbp/2026-07-30-gbp-api-access-request.md</code>
+</div>
+
+</main>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var KEY = "gbp-api-request-2026-07-30";
+  function load(){ try { return JSON.parse(localStorage.getItem(KEY) || "{}"); } catch(e){ return {}; } }
+  function save(s){ try { localStorage.setItem(KEY, JSON.stringify(s)); } catch(e){} }
+
+  var boxes = Array.prototype.slice.call(document.querySelectorAll('input[type=checkbox][data-ck]'));
+  var state = load();
+  var bar = document.getElementById('pbar');
+  var num = document.getElementById('pnum');
+
+  function render(){
+    var done = boxes.filter(function(b){ return b.checked; }).length;
+    bar.style.width = (boxes.length ? Math.round(done / boxes.length * 100) : 0) + '%';
+    num.textContent = done + ' / ' + boxes.length + ' 完了';
+  }
+  boxes.forEach(function(b){
+    if (state[b.dataset.ck]) b.checked = true;
+    b.addEventListener('change', function(){ state[b.dataset.ck] = b.checked; save(state); render(); });
+  });
+  render();
+  document.getElementById('preset').addEventListener('click', function(){
+    if (!window.confirm('チェックをすべて外します。よろしいですか？')) return;
+    boxes.forEach(function(b){ b.checked = false; });
+    state = {}; save(state); render();
+  });
+
+  function copyText(text){
+    if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text);
+    return new Promise(function(resolve, reject){
+      var ta = document.createElement('textarea');
+      ta.value = text; ta.style.position='fixed'; ta.style.opacity='0';
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy') ? resolve() : reject(); }
+      catch(e){ reject(e); } finally { document.body.removeChild(ta); }
+    });
+  }
+  document.querySelectorAll('button.cp').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var el = btn.closest('.copy') && btn.closest('.copy').querySelector('.txt');
+      if (!el) return;
+      var original = btn.textContent;
+      copyText(el.innerText).then(function(){
+        btn.textContent = 'コピーしました'; btn.classList.add('done');
+        setTimeout(function(){ btn.textContent = original; btn.classList.remove('done'); }, 1600);
+      }).catch(function(){
+        btn.textContent = '手動で選択してください';
+        setTimeout(function(){ btn.textContent = original; }, 2400);
+      });
+    });
+  });
+
+  var links = Array.prototype.slice.call(document.querySelectorAll('nav.toc a'));
+  var targets = links.map(function(a){ return document.querySelector(a.getAttribute('href')); });
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (!en.isIntersecting) return;
+        var i = targets.indexOf(en.target);
+        if (i < 0) return;
+        links.forEach(function(a){ a.classList.remove('active'); });
+        links[i].classList.add('active');
+      });
+    }, { rootMargin: '0px 0px -75% 0px' });
+    targets.forEach(function(t){ if (t) io.observe(t); });
+  }
+})();
+</script>
+</body>
+</html>
