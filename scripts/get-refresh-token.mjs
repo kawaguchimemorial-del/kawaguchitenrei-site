@@ -38,8 +38,12 @@ const REDIRECT_URI = `http://localhost:${PORT}/oauth-callback`;
 const SCOPE_SETS = {
   gsc: ["https://www.googleapis.com/auth/webmasters.readonly"],
   gbp: ["https://www.googleapis.com/auth/business.manage"],
+  // gmail … 受信メールの「読み取りのみ」。送信・削除・変更はできない権限。
+  //   GBP API の承認/却下メールなど、特定の用件の確認にだけ使う。
+  gmail: ["https://www.googleapis.com/auth/gmail.readonly"],
 };
 SCOPE_SETS.all = [...SCOPE_SETS.gsc, ...SCOPE_SETS.gbp];
+SCOPE_SETS["all+gmail"] = [...SCOPE_SETS.all, ...SCOPE_SETS.gmail];
 
 const scopeArg =
   process.argv.find((a) => a.startsWith("--scope="))?.split("=")[1] ?? "all";

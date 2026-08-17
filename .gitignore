@@ -46,3 +46,7 @@ next-env.d.ts
 
 # Claude Code local settings (per-user)
 .claude/settings.local.json
+
+# 社内資料（領収書・管理画面スクリーンショット等）。リポジトリに含めない
+/ryousyu/
+/public/images/GBP/
