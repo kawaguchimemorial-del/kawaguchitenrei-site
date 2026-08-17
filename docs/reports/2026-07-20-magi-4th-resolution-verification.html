@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MAGI決議 第4回（Web集客）の受領と一次検証｜川口典礼サイト（社内・非公開）</title>
+<style>
+  :root{--ink:#2b2b2b;--soft:#6b6b6b;--line:#e3e0da;--bg:#faf9f7;--accent:#7a6a55;--warn:#a4442f;--ok:#3f6b4a}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;line-height:1.85;font-size:15px}
+  .wrap{max-width:880px;margin:0 auto;padding:44px 22px 80px}
+  .kicker{font-size:12px;letter-spacing:.12em;color:var(--accent);margin:0 0 6px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:25px;font-weight:600;margin:0 0 10px;line-height:1.5}
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:19px;font-weight:600;
+     margin:38px 0 12px;padding-bottom:7px;border-bottom:2px solid var(--line)}
+  h3{font-size:15.5px;font-weight:600;margin:24px 0 8px;color:#43413c}
+  .meta{color:var(--soft);font-size:13px;border-bottom:2px solid var(--line);padding-bottom:16px;margin-bottom:6px}
+  .meta div{margin:2px 0}
+  code{background:#f1efe9;padding:1px 6px;border-radius:5px;font-size:12.5px;font-family:ui-monospace,Consolas,monospace}
+  table{border-collapse:collapse;width:100%;margin:14px 0;font-size:13.5px;background:#fff}
+  th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+  th{background:#f3f1ec;font-weight:600;white-space:nowrap}
+  .ok{color:var(--ok);font-weight:600}
+  .warn{color:var(--warn);font-weight:600}
+  .box{background:#fff;border:1px solid var(--line);border-left:4px solid var(--accent);
+       border-radius:0 8px 8px 0;padding:14px 18px;margin:16px 0}
+  .box.alert{border-left-color:var(--warn)}
+  .box p{margin:6px 0}
+  ul{padding-left:22px;margin:10px 0}
+  li{margin:6px 0}
+  .tag{display:inline-block;font-size:11px;padding:2px 8px;border-radius:20px;
+       background:#e9e5dc;color:#5c5442;margin-right:6px;vertical-align:2px}
+  .tag.done{background:#dde9df;color:#2f5638}
+  .tag.todo{background:#f0e2dd;color:#8a3d29}
+  .tag.info{background:#dee3ec;color:#33465f}
+  footer{margin-top:44px;border-top:1px solid var(--line);padding-top:16px;color:var(--soft);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="kicker">川口典礼サイト ＿ 社内記録</p>
+  <h1>MAGI決議 第4回（Web集客）の受領と一次検証</h1>
+  <div class="meta">
+    <div><strong>作成日</strong>：2026年7月20日</div>
+    <div><strong>担当</strong>：松澤</div>
+    <div><strong>対象</strong>：別プロジェクト成果物 <code>F:\LP\MAGI\20260720_川口典礼Web集客_MAGI決議_第4回\</code>（MAGI決議_Web集客_第4回.html ／ 00_資料一覧.txt）</div>
+    <div><strong>本レポートの性格</strong>：本サイトのコード変更なし。決議内容の記録と、こちら側で独立に実施した一次検証の記録。</div>
+  </div>
+
+  <h2>1. サマリ</h2>
+  <ul>
+    <li><span class="tag done">検証済</span>決議の中核的事実（LPが価格をPNG画像で掲載・LPドメインの技術的欠落）を <strong>こちらで独立に一次取得して確認</strong>。いずれも決議の記述どおりだった。</li>
+    <li><span class="tag info">追加発見</span>決議が触れていない事実を1件確認 ── <strong>一日葬プランの画像は正本§9と完全一致</strong>している。ズレているのは直葬のみ。</li>
+    <li><span class="tag todo">未着手</span>決議の発効条件 C0（過去6か月の直葬受注の実支払額確認）は社内作業。MAGI側にもこちら側にも手段がない。</li>
+    <li><span class="tag todo">未着手</span>LPドメインの技術是正（canonical / robots / sitemap / title）はコストほぼゼロだが、<strong>本サイトのリポジトリ外</strong>（別ドメイン・制作会社管理）のため本作業では実施していない。</li>
+    <li><span class="tag info">留保</span>「一般KW即時停止」の根拠づけと、成果物の分量について所見を付記（§5）。</li>
+  </ul>
+
+  <h2>2. 決議の内容（要点）</h2>
+  <p>第3回（三賢者のみ・全会一致可決）を、ARTABAN（第四の賢者・議決権なし）を招集して全面再審議したもの。判定は <strong>条件付可決（3/3）</strong>。</p>
+  <table>
+    <tr><th>区分</th><th>内容</th></tr>
+    <tr><td>可決</td><td>一般KW（費用・エリア）の広告停止。即時・無条件で執行可</td></tr>
+    <tr><td>否決</td><td>浮いた月20〜22万の振替先として議案が名指しした3項目（title/description・構造化データ・SXO）</td></tr>
+    <tr><td>議決対象外</td><td>構造化データによる価格リッチリザルト／レビュー鮮度施策（ARTABANの技術的異議。多数決で覆せない扱い）</td></tr>
+  </table>
+  <p>審議の中で三賢者は合計13項目を自ら撤回。第3回の中核的発見「LP本番に価格は一切掲載されていない」は本人（BALTHASAR）が撤回した。原因は <strong>画像で組まれたLPに対して curl+grep を用いた偽陰性</strong>。</p>
+
+  <h3>統合条件の骨子</h3>
+  <ul>
+    <li><strong>C0（発効条件）</strong>：過去6か月の直葬受注のうち、LP・広告経由で来た（事前相談会員でない）方が実際に支払った金額を確認する。88,000円での成約実績があれば正本を改訂、なければ表記を直ちに取り下げる。</li>
+    <li><strong>価格是正</strong>：直葬の最大表記を139,000へ入替／正本の家族葬528,000・628,000をLPに掲載／到達不能価格をヒーロー直下から外す／「お客様の声」イラストアバターを実在口コミ参照へ差替。</li>
+    <li><strong>恒久ルール</strong>：価格の棚卸しは目視またはOCRで行う。grepは使用しない。</li>
+    <li><strong>広告</strong>：一般KW停止。指名・DGは維持。転送番号を導入し通話60秒以上をCV定義にすることを最優先。</li>
+    <li><strong>振替</strong>：既定値は月0円。測定目的に限り月3万円上限。残余は「凍結」（「再申請可能」とは書かない）。</li>
+    <li><strong>口コミ</strong>：総数は27件ではなく346件（Google 27 / いい葬儀 97 / 安心葬儀 222）。sameAsへの外部URL追加と件数・評点の1行表示のみ。本文転載はしない。</li>
+    <li><strong>技術（コストほぼ0）</strong>：2ドメイン競合の解消／旧URLの2ホップを1ホップ化／GBP Insights取得／LPドメインのGSC登録／表示回数を分母に置くKPIの禁止。</li>
+  </ul>
+
+  <h2>3. こちら側で実施した一次検証</h2>
+  <p>2026年7月20日、<code>kawaguchi-memorial-hall.com</code> に対して実取得（curl・画像は実際に開いて目視）。結果は下表のとおりで、<strong>決議の中核的事実はすべて再現した</strong>。</p>
+  <table>
+    <tr><th>決議の主張</th><th>検証結果</th></tr>
+    <tr><td>LPが価格をPNG画像で掲載している</td><td class="ok">✅ <code>src/img/chokusou_plan.png</code> を取得・目視。赤の大文字で「88,000円（税込）〜」＋左に「事前相談会員割引」、下に小さく灰色で「一般価格 139,000円（税込）〜」</td></tr>
+    <tr><td><code>robots.txt</code> が 404</td><td class="ok">✅ HTTP 404</td></tr>
+    <tr><td><code>sitemap.xml</code> が 404</td><td class="ok">✅ HTTP 404</td></tr>
+    <tr><td>canonical なし</td><td class="ok">✅ 出力なし。<strong>noindex も無し＝インデックス可能な第二ドメイン</strong></td></tr>
+    <tr><td>title に指名語が2回</td><td class="ok">✅ <code>川口典礼 | 川口市内で家族葬・市民葬をお探しなら川口典礼</code></td></tr>
+    <tr><td>「お客様の声」がイラストアバター4点</td><td class="ok">✅ <code>voice_item_01〜04.png</code> の存在を確認</td></tr>
+  </table>
+
+  <h3>3.1 決議に無い追加発見 ── ズレているのは直葬のみ</h3>
+  <p>家族葬一日プランの画像（<code>kazokusou_plan.png</code>）も開いて目視した。こちらは <strong>396,000円 ／ 496,000円で正本§9と完全に一致</strong>している。</p>
+  <table>
+    <tr><th>プラン</th><th>LP画像内</th><th>正本 §9</th><th>判定</th></tr>
+    <tr><td>直葬シンプル</td><td>会員割引 88,000〜 ／ 一般 139,000〜</td><td>事前相談会員 139,000 ／ 通常 189,000</td><td class="warn">不一致（一段ずつ下）</td></tr>
+    <tr><td>家族葬一日</td><td>会員割引 396,000〜 ／ 一般 496,000〜</td><td>事前相談会員 396,000 ／ 通常 496,000</td><td class="ok">一致</td></tr>
+    <tr><td>市民葬</td><td>231,000〜</td><td>231,000</td><td class="ok">一致</td></tr>
+    <tr><td>家族葬（本体）</td><td>LPに存在しない</td><td>528,000 ／ 628,000</td><td class="warn">不掲載</td></tr>
+  </table>
+  <div class="box">
+    <p><strong>この形が意味すること。</strong>直葬だけが「LPの一般価格＝正本の会員価格」という形で、きれいに一段ずつ下へずれている。これは「意図的な釣り」よりも <strong>古い価格表のまま差し替えが漏れた</strong>という説明の方が形に合う。</p>
+    <p>緊急度は下がらないが、性格は変わる。決議中の「大手もやっている＝故意性の証拠として返る」という論法は、この一致パターンを踏まえるとやや過重。一方で <strong>「なぜ一日葬だけ更新され、直葬が取り残されたのか」＝入稿物の更新フローに穴がある</strong>という、より再発しやすい問題を指している。C0（実支払額の確認）は、この見立てなら答えが早く出るはず。</p>
+  </div>
+
+  <h2>4. 決議に賛成する部分</h2>
+  <ul>
+    <li><strong>C0を発効条件に置いた設計</strong>。景表法上の論点は「割引が存在するか」ではなく「その価格に到達できるか」であり、CASPERがBALTHASARのS0を「必ずパスする検定」として差し替えた判断は的確。</li>
+    <li><strong>2ドメイン競合の発見</strong>。本件で最も実利が大きい。修復コストほぼ0円で、指名・施設名クエリの受け皿が2つに割れている実害を止められる。GSC未登録のため現状は実害を数値化すらできていない。</li>
+    <li><strong>grep禁止・目視/OCRの恒久ルール化</strong>。画像で組まれたページに対する curl+grep の偽陰性は構造的な問題で、明文化は妥当。本サイト側の作業にも同じルールを適用する。</li>
+    <li><strong>口コミ346件を「転載しない・件数と評点＋外部リンクの1行だけ」に留めた判断</strong>。自社ドメイン外にあることが真正性の担保になる、という整理は正しい。無許諾転載のリスクも同時に避けられる。</li>
+    <li><strong>転送番号によるCV定義の再構築を最優先に置いたこと</strong>。実着信の実数が4回の審議を通じて誰にも測られていない、というのが本件で最も重い未解決事項。</li>
+  </ul>
+
+  <h2>5. 留保・所見</h2>
+
+  <h3>5.1 「一般KW即時停止」の根拠づけ</h3>
+  <p>停止という結論自体は、実CPC「家族葬 川口市」¥13,225・「川口市 火葬場」¥7,198、「川口市 葬儀」の実測CTR 0.32% という独立した根拠で支持できる。</p>
+  <div class="box alert">
+    <p>ただし決議は、MELCHIORの自己論駁により <strong>停止の根拠を「採算計算」から「曝露停止（誤価格ページへ送客しているから）」へ差し替えている</strong>。この根拠だと、曝露は画像1枚の差し替え（数日）で消えるため、停止の理由も数日で消滅する。</p>
+    <p>停止を維持したいのであれば <strong>CPC・CTRの実測を根拠に据える</strong>ほうが、C0完了後の再開判断がぶれない。決議自身が「この区別が失われると再開すべきかの判断根拠が消える」と書いているとおりで、書かれた根拠のほうが先に消える設計になっている。</p>
+  </div>
+
+  <h3>5.2 成果物の分量そのものがリスク</h3>
+  <p>BALTHASARの反対意見「3回連続で費用を審議し、3回とも表示の是正は実行されなかった。基準率は『実行されない』側にある」が、この決議で最も重い指摘。にもかかわらず成果物は約75KBのHTML＋31KBのテキストである。</p>
+  <p><strong>「次の一手」①〜⑤の5行だけを1枚に切り出し、それ以外を読まなくても実行できる形にしないと、4回目も同じ結果になる。</strong></p>
+
+  <h3>5.3 未検証項目を12件残したままの「可決」</h3>
+  <p>特に「実着信の実数」「88,000円の提供実態」「GBPの現状」の3つは、いずれも取得コストがほぼゼロでありながら4回連続で未測定。決議の条件設計はこれらの数字に依存しない形で組まれているが、依存しないということは <strong>取得の動機も生まれない</strong>ということでもある。</p>
+
+  <h3>5.4 本サイト側の口コミ表示との整合</h3>
+  <p>2026-07-12 の中間チェックで、本サイトは <code>aggregateRating</code> をサイト全体としては出力しておらず、個別 <code>Review</code> のみという状態を確認済み（安全側で妥当）。今回判明した「安心葬儀222件・4.7」「いい葬儀97件・4.6」は自社ドメイン外の数値であり、現状の実装と矛盾しない。<strong>sameAs への外部URL追加を検討する場合も、件数・評点をこちらのJSON-LDに取り込むことはしない</strong>（出典が他社ドメインで、こちらで一次検証・鮮度管理ができないため）。なお「いい葬儀97件」は決議側でも2名が独立にHTTP403で一次取得に失敗しており、実機確認が取れるまで掲載対象にしない。</p>
+
+  <h2>6. 変更内容</h2>
+  <p><strong>本サイトのコード変更なし。</strong>本レポートと index への追記のみ。</p>
+  <ul>
+    <li><code>docs/reports/2026-07-20-magi-4th-resolution-verification.html</code>（新規・本ファイル）</li>
+    <li><code>docs/reports/index.html</code>（先頭に1行追記）</li>
+  </ul>
+  <p>検証で取得したLP画像は一時ファイル（スクラッチパッド）に置いたのみで、リポジトリには追加していない。</p>
+
+  <h2>7. 確認結果</h2>
+  <ul>
+    <li>アプリケーションコードに変更がないため <code>npm run build</code> の再実行は不要（静的生成ページ数に影響なし）。</li>
+    <li>LP（<code>kawaguchi-memorial-hall.com</code>）に対する検証は読み取りのみ。当該ドメインへの変更は一切行っていない。</li>
+    <li>本レポートに個人名・故人名・喪主名・受注個票・秘密情報は含まない。</li>
+  </ul>
+
+  <h2>8. 今後のアクション</h2>
+  <table>
+    <tr><th>#</th><th>内容</th><th>担当・場所</th><th>期限</th></tr>
+    <tr><td>1</td><td>プラン画像3枚を社内で開いて確認する（所要5分）</td><td>社内</td><td>2026-07-21</td></tr>
+    <tr><td>2</td><td><strong>C0</strong>：過去6か月の直葬受注のうちLP・広告経由の方の実支払額を確認</td><td>社内</td><td>2026-08-03（決議の14日ライン）</td></tr>
+    <tr><td>3</td><td>2の答えが139,000円以上なら、LP画像の88,000円表記を是正（制作差し替え工数のみ・広告予算不要）</td><td>制作会社</td><td>2026-08-03</td></tr>
+    <tr><td>4</td><td>正本の家族葬 528,000／628,000 をLPに掲載</td><td>制作会社</td><td>2026-08-03</td></tr>
+    <tr><td>5</td><td>一般KW（費用・エリア）の停止。1〜4と独立に執行可</td><td>NEXTUP</td><td>随時</td></tr>
+    <tr><td>6</td><td>LPドメインの技術是正：canonical・robots.txt・sitemap.xml の整備、titleから指名語を落とす。あるいは広告専用としてnoindex化。<strong>いずれにせよ明示的に決める</strong></td><td>制作会社</td><td>2026-08-03</td></tr>
+    <tr><td>7</td><td>LPドメインを Search Console に登録</td><td>社内（コスト0）</td><td>2026-07-27</td></tr>
+    <tr><td>8</td><td>GBP Insights を取得する（最大の未知数・取得コスト0）</td><td>社内</td><td>2026-07-27</td></tr>
+    <tr><td>9</td><td>転送番号を導入し、通話60秒以上をCV定義にする</td><td>社内／NEXTUP</td><td>次回議論の前提</td></tr>
+    <tr><td>10</td><td>「次の一手 ①〜⑤」だけを1枚に切り出した実行チェックリストを作る</td><td>松澤</td><td>2026-07-21</td></tr>
+  </table>
+
+  <div class="box alert">
+    <p><strong>撤退ラインの再掲（裁量を排する）</strong>：C0・価格是正が14日以内（＝2026-08-03）に未完了の場合、LPへの広告送客を全面停止（DG・指名を含む）。反対意見が現実になる兆候は「広告停止だけが実行され、価格是正が14日を過ぎても着手されない」こと。</p>
+  </div>
+
+  <h2>9. 次回への繰り越し（決議より）</h2>
+  <ul>
+    <li>指名キャンペーンの増分効果検証（転送番号稼働後・交互ブロック法8週以上・検出力を事前文書化）</li>
+    <li>DGの増分効果（ビュースルー混入の切り分け）</li>
+    <li>GBP Insights 取得後のGBP施策の規模の再算定（ARTABANが「算定できない」とした唯一の項目）</li>
+    <li>LPの役割の確定（noindex化するか、canonicalを本サイトへ向けるか）</li>
+    <li>代理店体制（手数料20%の妥当性）── 第1回から未決着</li>
+    <li>さいたま市への商圏拡大 ── 第1回から未決着</li>
+  </ul>
+
+  <footer>
+    社内記録（Web非公開・<code>noindex</code>）。作成 2026-07-20。<br>
+    原本：<code>F:\LP\MAGI\20260720_川口典礼Web集客_MAGI決議_第4回\MAGI決議_Web集客_第4回.html</code><br>
+    §3 の検証は 2026-07-20 に <code>kawaguchi-memorial-hall.com</code> から実取得したもの。SERP・順位に関する数値は決議側の記載であり、本レポートでは再検証していない。
+  </footer>
+</div>
+</body>
+</html>

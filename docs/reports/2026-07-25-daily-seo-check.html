@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>日常SEO点検（2026-07-25）</title>
+<style>
+  :root{--ink:#23201c;--sub:#6b645c;--line:#e4ddd3;--bg:#fbf9f5;--accent:#7a5c3e;--warn:#a3402f;--good:#3d6b4a;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;line-height:1.8;font-size:15px}
+  .wrap{max-width:960px;margin:0 auto;padding:32px 22px 80px}
+  header.doc{border-bottom:3px solid var(--accent);padding-bottom:18px;margin-bottom:24px}
+  header.doc .tag{color:var(--accent);font-weight:700;letter-spacing:.12em;font-size:12px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:23px;margin:6px 0 4px;font-weight:700}
+  .meta{color:var(--sub);font-size:13px}
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:19px;margin:32px 0 12px;padding-left:12px;border-left:5px solid var(--accent)}
+  .status{display:inline-block;background:#eef7ef;border:1px solid #cfe6d3;color:#2c5233;border-radius:999px;padding:4px 14px;font-weight:700;font-size:14px}
+  .lead{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px 20px;margin:16px 0}
+  .info-box{background:#f2f4f8;border:1px solid #d4dbe6;border-radius:10px;padding:14px 18px;margin:14px 0}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13px;background:#fff}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:right;vertical-align:top}
+  th:first-child,td:first-child{text-align:left}
+  thead th{background:#f2ece2}
+  .up{color:var(--good);font-weight:700}.down{color:var(--warn);font-weight:700}
+  code{background:#f1efe9;padding:1px 6px;border-radius:5px;font-size:12.5px;font-family:ui-monospace,Consolas,monospace}
+  ul{margin:8px 0 8px 1.2em}li{margin:5px 0}
+  .foot{margin-top:36px;border-top:1px solid var(--line);padding-top:14px;color:var(--sub);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <div class="tag">社内レポート（docs/reports・非公開/noindex）</div>
+  <h1>日常SEO点検</h1>
+  <div class="meta">
+    作成：2026-07-25 ／ データ：Google Search Console（自動取得）／ 確定最新日 2026-07-22<br>
+    比較窓：AFTER 6/25–7/22 vs BEFORE 5/28–6/24（各28日）
+  </div>
+</header>
+
+<div class="lead">
+  <span class="status">🟢 良好（対応不要）</span><br>
+  本日時点で対応が必要な問題はなし。順位は横ばい〜微改善で安定。7/22実装（受け皿の役割分離・トップCTR最適化・コラム導線整流）は本番反映済みだが、効果判定はまだ早い（反映後2〜3日）。予算据え置き・現状維持の方針と整合。
+</div>
+
+<h2>1. 技術面ヘルスチェック（すべて正常）</h2>
+<table>
+  <thead><tr><th>項目</th><th>結果</th></tr></thead>
+  <tbody>
+    <tr><td>主要ページ HTTP ステータス</td><td>/・/area/kawaguchi/・/plan/family-funeral/・/post/ すべて 200</td></tr>
+    <tr><td>7/22変更の本番反映</td><td>反映済み（新title確認：「川口市の葬儀ガイド｜費用の目安・市民葬・手続きと式場の選び方」「家族葬の費用と人数の目安」）</td></tr>
+    <tr><td>sitemap.xml</td><td>200・正常</td></tr>
+    <tr><td>robots.txt</td><td>正常。/admin/・/post/ を Disallow（社内ツールを検索から除外）</td></tr>
+  </tbody>
+</table>
+
+<h2>2. 全体推移（28日 vs 前28日）</h2>
+<table>
+  <thead><tr><th>指標</th><th>AFTER 6/25–7/22</th><th>BEFORE 5/28–6/24</th><th>変化</th></tr></thead>
+  <tbody>
+    <tr><td>表示回数</td><td>36,258</td><td>16,348</td><td class="up">+122%</td></tr>
+    <tr><td>クリック</td><td>333</td><td>183</td><td class="up">+82%</td></tr>
+    <tr><td>CTR</td><td>0.92%</td><td>1.12%</td><td>−0.20pt</td></tr>
+  </tbody>
+</table>
+<p style="font-size:13px;color:#6b645c">
+  直近10日のクリックは 6〜25 で推移し急落なし。CTR低下は下位KWの露出増による見かけ上のもので、悪化ではない（前回7/22点検と同傾向）。
+</p>
+
+<h2>3. 地域商用KW 順位モニタ（全KWで前期比プラス）</h2>
+<table>
+  <thead><tr><th>KW</th><th>表示(後)</th><th>順位(後)</th><th>順位(前)</th></tr></thead>
+  <tbody>
+    <tr><td>川口市 葬儀</td><td>1,596</td><td class="up">7.5</td><td>11.3</td></tr>
+    <tr><td>葬儀 川口市</td><td>382</td><td class="up">8.6</td><td>12.6</td></tr>
+    <tr><td>川口 葬儀</td><td>569</td><td class="up">11.3</td><td>15.2</td></tr>
+    <tr><td>川口市 葬儀社</td><td>163</td><td class="up">10.8</td><td>18.9</td></tr>
+    <tr><td>川口市 直葬</td><td>95</td><td class="up">10.3</td><td>17.8</td></tr>
+    <tr><td>川口市 一日葬</td><td>85</td><td class="up">12.8</td><td>17.7</td></tr>
+    <tr><td>川口市 市民葬</td><td>147</td><td class="up">12.8</td><td>19.5</td></tr>
+    <tr><td>川口市民葬祭</td><td>158</td><td class="up">10.9</td><td>16.0</td></tr>
+    <tr><td>川口市 家族葬</td><td>408</td><td class="up">20.3</td><td>23.9</td></tr>
+  </tbody>
+</table>
+<p style="font-size:13px;color:#6b645c">
+  自社式場ページ <code>/hall/kawaguchi-memorial-hall/</code> が「川口メモリアルホール」で 13.5→8.4位・クリック21件と伸長。良い兆候。
+</p>
+
+<h2>4. 要監視（介入不要・様子見）</h2>
+<ul>
+  <li><strong>7/22施策の効果判定はまだ早い。</strong> 本番反映後2〜3日のため、受け皿の <code>/area/kawaguchi/</code>（川口市 葬儀で64.6位）・<code>/plan/family-funeral/</code>（川口 家族葬で48〜57位）はまだ動いていない。役割分離の効果が出るのは8月中旬以降。</li>
+  <li><strong>軽微な順位下落（優先度低）</strong>
+    <ul>
+      <li>「家族葬 川口市」23.7→31.0位。語順違いロングテールの逆行が前回から継続。役割分離の浸透で吸収を狙う対象。</li>
+      <li>「亡くなった連絡の返信」4.7→10.0位。情報コラム系でCV非直結のため優先度低。</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="info-box">
+  <strong>次の判断ポイント：</strong>7/22実装の効果測定を <strong>2026-08-19 前後</strong>に実施（再クロール期間＋28日窓の入れ替わり）。主KPIは全体クリックではなく、<strong>地域クエリのクリック数</strong>と、<strong>下層2ページ（/area/kawaguchi/・/plan/family-funeral/）が60〜70位帯から動くか</strong>の2点。
+</div>
+
+<div class="foot">
+  データ出典：Google Search Console API（<code>tmp/seo-analysis-2026-07-25/gsc-*.csv</code>・非commit）。個人情報・認証情報の記載なし。本点検でサイトコードの変更は行っていない。
+</div>
+
+</div>
+</body>
+</html>

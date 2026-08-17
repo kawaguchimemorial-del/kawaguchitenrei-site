@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>メインサイト SEOチェック・順位下落の原因分析（2026-08-07）</title>
+<style>
+  :root{--ink:#23201c;--sub:#6b645c;--line:#e4ddd3;--bg:#fbf9f5;--accent:#7a5c3e;--warn:#a3402f;--good:#3d6b4a;--blue:#3a5a7a;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;line-height:1.8;font-size:15px}
+  .wrap{max-width:1040px;margin:0 auto;padding:32px 22px 80px}
+  header.doc{border-bottom:3px solid var(--accent);padding-bottom:18px;margin-bottom:24px}
+  header.doc .tag{color:var(--accent);font-weight:700;letter-spacing:.12em;font-size:12px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:23px;margin:6px 0 4px;font-weight:700}
+  .meta{color:var(--sub);font-size:13px}
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:19px;margin:38px 0 12px;padding-left:12px;border-left:5px solid var(--accent)}
+  h3{font-size:15px;margin:24px 0 8px;color:var(--accent)}
+  .status{display:inline-block;background:#fdf1ef;border:1px solid #e8c4bc;color:#8c3626;border-radius:999px;padding:4px 14px;font-weight:700;font-size:14px}
+  .lead{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px 20px;margin:16px 0}
+  .info-box{background:#f2f4f8;border:1px solid #d4dbe6;border-radius:10px;padding:14px 18px;margin:14px 0}
+  .warn-box{background:#fdf1ef;border:1px solid #e8c4bc;border-radius:10px;padding:14px 18px;margin:14px 0}
+  .good-box{background:#eef7ef;border:1px solid #cfe6d3;border-radius:10px;padding:14px 18px;margin:14px 0}
+  .tw{overflow-x:auto;margin:12px 0}
+  table{width:100%;min-width:560px;border-collapse:collapse;font-size:13px;background:#fff}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:right;vertical-align:top}
+  th:first-child,td:first-child{text-align:left}
+  thead th{background:#f2ece2;text-align:center}
+  .up{color:var(--good);font-weight:700}.down{color:var(--warn);font-weight:700}
+  code{background:#f1efe9;padding:1px 6px;border-radius:5px;font-size:12.5px;font-family:ui-monospace,Consolas,monospace}
+  ul{margin:8px 0 8px 1.2em}li{margin:5px 0}
+  .foot{margin-top:36px;border-top:1px solid var(--line);padding-top:14px;color:var(--sub);font-size:12px}
+  .num{font-variant-numeric:tabular-nums}
+  .cause{background:#fff;border:1px solid var(--line);border-left:5px solid var(--blue);border-radius:8px;padding:14px 18px;margin:16px 0}
+  .cause .rk{font-weight:700;color:var(--blue);font-size:14px;margin-bottom:6px}
+  .cause.no{border-left-color:#9aa39a}
+  .cause.no .rk{color:#5f6b5f}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <div class="tag">社内レポート（docs/reports・非公開/noindex）</div>
+  <h1>メインサイト SEOチェック ─ 順位下落の原因分析</h1>
+  <div class="meta">
+    実施：2026-08-07 ／ データ：Google Search Console（API直接取得）／ 確定最新日 2026-08-04<br>
+    比較窓：①28日 AFTER 7/08–8/04 vs BEFORE 6/10–7/07 ／ ②7日 AFTER 7/29–8/04 vs BEFORE 7/22–7/28<br>
+    取得スクリプト：<code>tmp/seo-analysis-2026-08-07/</code>・<code>tmp/seo-analysis-2026-08-07-w7/</code>
+  </div>
+</header>
+
+<div class="lead">
+  <span class="status">🔴 下落あり・原因を特定</span><br>
+  <strong>順位は下がっています。ただし全体ではなく、下がっているのは「ブランド系」に集中しています。</strong><br>
+  28日比較では依然プラス（クリック 239→373・表示 25,105→38,085・平均順位 13.84→11.43）ですが、
+  <strong>直近7日はクリック 113→66（-42%）</strong>と明確に落ちました。<br>
+  最大の下落は <strong>「川口メモリアルホール」が 3.55位 → 12.88位（-9.3）</strong>。
+  原因を調べた結果、<strong>自社ブランドのサイトが3つのドメインに分かれて、互いに検索枠を奪い合っている</strong>ことが判明しました（§3-①）。
+  <strong>サイト側の技術的な不具合は見つかっていません</strong>（§4）。
+</div>
+
+<h2>1. 全体の推移</h2>
+
+<h3>28日比較 ── まだプラス圏</h3>
+<div class="tw">
+<table>
+  <thead><tr><th>指標</th><th>BEFORE 6/10–7/07</th><th>AFTER 7/08–8/04</th><th>変化</th></tr></thead>
+  <tbody>
+    <tr><td>クリック</td><td class="num">239</td><td class="num">373</td><td class="up">+56%</td></tr>
+    <tr><td>表示回数</td><td class="num">25,105</td><td class="num">38,085</td><td class="up">+52%</td></tr>
+    <tr><td>平均掲載順位</td><td>13.84</td><td>11.43</td><td class="up">2.4 改善</td></tr>
+    <tr><td>CTR</td><td>0.95%</td><td>0.98%</td><td>+0.03pt</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3>週次推移 ── 直近1週で明確に落ちた</h3>
+<div class="tw">
+<table>
+  <thead><tr><th>週</th><th>クリック</th><th>表示</th><th>CTR</th><th>平均順位</th></tr></thead>
+  <tbody>
+    <tr><td>6/10–6/16</td><td class="num">73</td><td class="num">3,641</td><td>2.00%</td><td>18.05</td></tr>
+    <tr><td>6/17–6/23</td><td class="num">47</td><td class="num">5,109</td><td>0.92%</td><td>14.30</td></tr>
+    <tr><td>6/24–6/30</td><td class="num">47</td><td class="num">6,596</td><td>0.71%</td><td>13.99</td></tr>
+    <tr><td>7/01–7/07</td><td class="num">72</td><td class="num">9,759</td><td>0.74%</td><td>11.93</td></tr>
+    <tr><td>7/08–7/14</td><td class="num">90</td><td class="num">10,167</td><td>0.89%</td><td>11.22</td></tr>
+    <tr><td>7/15–7/21</td><td class="num">104</td><td class="num">9,104</td><td>1.14%</td><td>10.95</td></tr>
+    <tr><td>7/22–7/28</td><td class="num">113</td><td class="num">9,894</td><td>1.14%</td><td class="up">11.39</td></tr>
+    <tr><td><strong>7/29–8/04</strong></td><td class="num down"><strong>66</strong></td><td class="num">8,920</td><td class="down">0.74%</td><td class="down">12.19</td></tr>
+  </tbody>
+</table>
+</div>
+<div class="info-box">
+  <strong>読み方</strong>：クリックは -42% だが<strong>表示は -10% しか減っていない</strong>。
+  つまり「表示が減った」のではなく「<strong>クリックされる種類の表示が減った</strong>」。
+  なお 66クリックという水準自体は 7/01–7/07 の 72 と同程度で、<strong>6月より高い</strong>。
+  落ちたのは事実だが、<strong>7月中旬〜下旬のピークからの後退</strong>であって、崩壊ではない。
+</div>
+
+<h2>2. どこが下がったか（7日 vs 前7日）</h2>
+
+<h3>2-1. 下落したページ</h3>
+<div class="tw">
+<table>
+  <thead><tr><th>ページ</th><th>順位 前→後</th><th>変化</th><th>表示 増減</th><th>クリック</th></tr></thead>
+  <tbody>
+    <tr><td>/hall/kawaguchi-memorial-hall/</td><td>3.90 → 8.30</td><td class="down">+4.40</td><td class="num down">-165</td><td>10 → 3</td></tr>
+    <tr><td>/（トップ）</td><td>11.72 → 15.19</td><td class="down">+3.47</td><td class="num down">-486</td><td>—</td></tr>
+    <tr><td>/column/（一覧）</td><td>10.08 → 25.36</td><td class="down">+15.28</td><td class="num">+—</td><td>—</td></tr>
+    <tr><td>/column/shinsiki/（神道）</td><td>9.92 → 11.29</td><td class="down">+1.37</td><td class="num down">-95</td><td>7</td></tr>
+    <tr><td>/saijo/megurinomori/</td><td>14.17 → 15.38</td><td class="down">+1.21</td><td class="num">—</td><td>—</td></tr>
+    <tr><td>/column/yujinso-sokagakkai/</td><td>9.69 → 10.69</td><td class="down">+1.00</td><td class="num">—</td><td>—</td></tr>
+    <tr><td>/plan/family-funeral/</td><td>3.56 → 6.17</td><td class="down">+2.61</td><td class="num down">-47</td><td>1</td></tr>
+    <tr><td>/access/</td><td>5.39 → 8.87</td><td class="down">+3.48</td><td class="num down">-64</td><td>1</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3>2-2. 下落したクエリ</h3>
+<div class="tw">
+<table>
+  <thead><tr><th>クエリ</th><th>順位 前→後</th><th>表示 前→後</th><th>クリック 前→後</th></tr></thead>
+  <tbody>
+    <tr><td><strong>川口メモリアルホール</strong></td><td class="down">3.55 → 12.88（-9.3）</td><td class="num">117 → 58</td><td class="num down">10 → 3</td></tr>
+    <tr><td>川口市 葬儀</td><td class="down">9.01 → 13.35（-4.3）</td><td class="num">—</td><td class="num">—</td></tr>
+    <tr><td>川口 葬儀</td><td class="down">14.11 → 16.51（-2.4）</td><td class="num">92 → 59</td><td class="num">2 → 0</td></tr>
+    <tr><td>創価学会 葬式</td><td class="down">10.27 → 12.40（-2.1）</td><td class="num">—</td><td class="num">—</td></tr>
+    <tr><td>友人葬</td><td class="down">11.65 → 15.71（-4.1）</td><td class="num">—</td><td class="num">—</td></tr>
+    <tr><td>神道 50日祭 香典</td><td class="down">8.40 → 9.86（-1.5）</td><td class="num">—</td><td class="num">—</td></tr>
+    <tr><td>川口典礼（指名）</td><td class="up">1.00 → 1.05（変化なし）</td><td class="num down">64 → 39</td><td class="num down">18 → 8</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3>2-3. なぜクリックが42%も減ったのか</h3>
+<div class="info-box">
+  <strong>減ったのがCTRの高いクエリだったから。</strong>
+  <div class="tw"><table>
+    <thead><tr><th>クエリ種別</th><th>平均順位</th><th>CTR</th><th>クリック 前→後</th></tr></thead>
+    <tbody>
+      <tr><td>川口典礼（指名）</td><td>1.0</td><td class="up">約22%</td><td class="down">18 → 8</td></tr>
+      <tr><td>川口メモリアルホール（自社施設名）</td><td>3.6 → 12.9</td><td>8.5% → 5.2%</td><td class="down">10 → 3</td></tr>
+      <tr><td>訃報 返信（コラム）</td><td>10.9</td><td class="down">0.3%以下</td><td>3 → 0</td></tr>
+      <tr><td>検視（コラム）</td><td>10.6</td><td class="down">0.3%以下</td><td>1 → 0</td></tr>
+    </tbody>
+  </table></div>
+  ブランド系2クエリだけで <strong>クリック28件 → 11件（-17件）</strong>。週全体の減少 -47件の36%がここ。<br>
+  コラム系は<strong>表示は数千あるが平均9〜11位＝1ページ目の最下部</strong>でCTRが0.3%以下のため、
+  <strong>表示がいくらあってもブランド系の減少を埋め合わせられない</strong>。
+  当サイトの<strong>クリックは構造的にブランド系に依存している</strong>——今回はその弱点がそのまま出た形。
+</div>
+
+<h2>3. 原因の分析</h2>
+
+<div class="cause">
+  <div class="rk">① 【最有力・要対応】自社ブランドが3つのドメインに分散し、互いに枠を奪い合っている</div>
+  <p>「川口メモリアルホール」「川口典礼」で検索すると、<strong>自社関連のドメインが3つ出てくる</strong>状態になっている。</p>
+  <div class="tw"><table>
+    <thead><tr><th>ドメイン</th><th>位置づけ</th><th>タイトル</th><th>インデックス制御</th></tr></thead>
+    <tbody>
+      <tr><td><code>kawaguchitenrei.com</code></td><td>メインサイト（SEO対象）</td><td>川口市の葬儀・葬儀社なら川口典礼 | 創業20年・24時間365日対応</td><td>正常</td></tr>
+      <tr><td><code>kawaguchi-memorial-hall.com</code></td><td>広告LP</td><td>川口典礼 | 川口市内で家族葬・市民葬をお探しなら川口典礼</td><td class="down">robots.txt が404／meta robots なし／canonical なし＝<strong>完全にインデックス可能</strong></td></tr>
+      <tr><td><code>www.kawaguchi-tenrei.com</code></td><td class="down">旧サイト（？）</td><td class="down"><strong>【公式】川口メモリアルホール(川口典礼)｜家族葬なら川口市の葬儀屋さん</strong></td><td class="down">http のまま・状態不明</td></tr>
+    </tbody>
+  </table></div>
+  <p><strong>これが「川口メモリアルホール」3.55位→12.88位の最も合理的な説明。</strong></p>
+  <ul>
+    <li>3つ目の <code>www.kawaguchi-tenrei.com</code> は、<strong>タイトルに「川口メモリアルホール」を完全一致で含み、さらに「【公式】」を名乗っている</strong>。
+      検索エンジンから見て、このクエリに対する最適解の候補になってしまう。</li>
+    <li>2つ目の <code>kawaguchi-memorial-hall.com</code> は<strong>ドメイン名そのものが「kawaguchi-memorial-hall」</strong>。
+      広告LPとして作られたはずだが、<strong>インデックスを止める設定が一切入っていない</strong>ため自然検索にも出ている。</li>
+    <li>結果、メインサイトの <code>/hall/kawaguchi-memorial-hall/</code>（4.50位→8.79位）が押し下げられている。</li>
+  </ul>
+  <div class="warn-box" style="margin-top:10px">
+    <strong>あわせて確認が必要な点</strong>：<code>www.kawaguchi-tenrei.com</code> には
+    メインサイトと異なる電話番号（0120-541-710）が掲載されているとの情報があり、
+    ポータルサイト経由では正本と異なる価格帯（一日葬・火葬式13万円〜、家族葬42万円〜、一般葬76万円〜）が流通している。
+    <strong>このサイトが現在も自社の管理下にあるのか</strong>を、まず松澤に確認いただきたい。
+    ※価格・電話番号の出所がこのサイト自体なのかポータル側の独自記載なのかは、現時点では確認できていない（当該サイトは外部からのアクセスが403で拒否されるため）。<strong>断定はしていない。</strong>
+    <strong>→ この点は §3-①追記 で一部訂正した。</strong>
+  </div>
+</div>
+
+<div class="cause" style="border-left-color:#c9a24a;background:#fffdf3">
+  <div class="rk" style="color:#8a6d1e">① 追記・一部訂正【2026-08-07 追加調査】旧サイトは既に機能停止していた／ただし別の緊急案件が判明</div>
+  <p>松澤より「<code>www.kawaguchi-tenrei.com</code> は昔のサイトで、ドメインもパスワードも分からない」との情報を受け、追加調査を行った。
+  <strong>結果、上記①の見立てのうち2点を訂正する。</strong></p>
+
+  <h3 style="margin-top:14px">訂正1：旧サイトは全アクセスに 403 を返しており、実質すでに停止している</h3>
+  <div class="tw"><table>
+    <thead><tr><th>User-Agent</th><th>応答</th></tr></thead>
+    <tbody>
+      <tr><td>一般ブラウザ（iPhone Safari）</td><td class="down">403 Forbidden</td></tr>
+      <tr><td><strong>Googlebot</strong></td><td class="down">403 Forbidden</td></tr>
+      <tr><td>curl</td><td class="down">403 Forbidden</td></tr>
+      <tr><td colspan="2" style="text-align:left">Server: Apache／<code>kawaguchi-tenrei.com</code>・<code>www.</code> ともに 403</td></tr>
+    </tbody>
+  </table></div>
+  <p><strong>Googlebot に対しても 403 を返している</strong>ということは、これは特定UAを弾いているのではなく<strong>サイトそのものが表示できない状態</strong>である。
+  Google検索結果に出ているのは<strong>過去のインデックスが残っているだけ</strong>で、403が続けば時間とともに検索結果からも落ちていく。<br>
+  <strong>したがって、旧サイトを「川口メモリアルホール」下落の主因と見るのは無理がある。</strong>
+  §3-① の主因は <code>kawaguchi-memorial-hall.com</code>（Xserver上で正常稼働・HTTP 200・インデックス制御なし）に絞るのが妥当。
+  旧サイトはSERPの枠を一時的に占めている残骸にすぎない。</p>
+
+  <h3>訂正2：電話番号・価格の件は、ポータル側の独自表記である可能性が高い</h3>
+  <p>ポータル <code>soogi.jp</code> を確認したところ、<strong>公式サイトURLとして正しく <code>https://kawaguchitenrei.com/</code> を掲載</strong>しており、
+  電話番号は <strong>050-5231-1778</strong>——これは<strong>ポータル各社が使う転送・計測用番号</strong>の典型である。
+  0120-541-710 も同種の番号と考えるのが自然で、<strong>旧サイト由来と決めつけるべきではない</strong>。前回の書き方は訂正する。
+  価格帯（13万円〜等）も同様にポータル側の独自記載の可能性が高い。</p>
+
+  <div class="warn-box" style="margin-top:14px">
+    <h3 style="margin-top:0;color:#8c3626">■ 新たに判明した緊急案件：ドメインが 2026-09-03 に失効する</h3>
+    <div class="tw"><table>
+      <thead><tr><th>項目</th><th>内容</th></tr></thead>
+      <tbody>
+        <tr><td>ドメイン</td><td><code>kawaguchi-tenrei.com</code></td></tr>
+        <tr><td>登録日</td><td>2007-09-03（<strong>19年もの</strong>）</td></tr>
+        <tr><td class="down"><strong>有効期限</strong></td><td class="down"><strong>2026-09-03（約4週間後）</strong></td></tr>
+        <tr><td>最終更新</td><td>2025-08-29（毎年8月末〜9月頭に更新されてきた形跡）</td></tr>
+        <tr><td>レジストラ</td><td>株式会社日本レジストリサービス（JPRS）／IANA ID 1485</td></tr>
+        <tr><td>ネームサーバー</td><td><code>mwns1.customer.ne.jp</code> / <code>mwns2.customer.ne.jp</code> ＝ <strong>NTT西日本</strong>のホスティング</td></tr>
+        <tr><td>サーバーIP</td><td>60.43.224.223（NTT西日本）</td></tr>
+        <tr><td>MXレコード</td><td>設定あり（このドメインでメールも運用されていた形跡）</td></tr>
+      </tbody>
+    </table></div>
+    <p style="margin-bottom:6px"><strong>これが本当のリスクである。</strong>現在403で表示できない状態のまま失効すると、
+    <strong>19年もののドメインが第三者に取得される（ドロップキャッチ）</strong>可能性がある。</p>
+    <ul style="margin-bottom:6px">
+      <li>ドメイン名に<strong>「kawaguchi-tenrei」という自社ブランド名</strong>が入っている</li>
+      <li>「【公式】川口メモリアルホール(川口典礼)」という<strong>タイトルで検索結果に出ていた実績</strong>がある</li>
+      <li>葬儀業界は競合が多く、<strong>ブランド名入りの中古ドメインは狙われやすい</strong></li>
+      <li>取得されると、<strong>「公式」を名乗っていた枠がそのまま第三者のものになる</strong></li>
+    </ul>
+    <p style="margin-bottom:0"><strong>「放置して自然に消えるのを待つ」は、この場合むしろ危険な選択肢になりうる。</strong></p>
+  </div>
+</div>
+
+<div class="cause">
+  <div class="rk">② 【併発】指名検索の需要そのものが減っている（季節性）</div>
+  <p>「川口典礼」は<strong>順位が1.00→1.05でほぼ変化していないのに、表示が64→39、クリックが18→8</strong>に減った。
+  <strong>順位で負けたのではなく、検索する人が減った</strong>ということ。</p>
+  <ul>
+    <li>8/1（土）4クリック・8/2（日）2クリック と、週末が構造的に低い</li>
+    <li>8月上旬はお盆前で、葬儀関連の検索需要が動きにくい時期</li>
+  </ul>
+  <p>これは<strong>サイト側で対処できる性質のものではない</strong>。8月後半〜9月の推移で自然に戻るかを確認する。</p>
+</div>
+
+<div class="cause">
+  <div class="rk">③ 【小】コラム系の全般的な微減</div>
+  <p>訃報返信・検視・創価学会・神道系がそろって1〜2位分下がっている（9〜10位 → 10〜12位）。
+  特定ページの問題ではなく<strong>広く薄く下がっている</strong>ため、Googleのアルゴリズム変動の可能性が高い。<br>
+  ただし<strong>もともとCTR 0.3%以下の位置</strong>なので、クリックへの影響はほぼない。
+  この帯は「順位を守る」より「<strong>5位圏内に押し上げる</strong>」以外に改善策がなく、8/3のレポートと同じ結論になる。</p>
+</div>
+
+<h2>4. サイト側の不具合は見つからなかった（否定材料）</h2>
+<div class="good-box">
+  下落の原因としてまず疑うべき技術要因を確認したが、<strong>いずれも問題なし</strong>。
+  <ul>
+    <li><strong>主要ページ全て HTTP 200</strong>（<code>/</code>・<code>/hall/kawaguchi-memorial-hall/</code>・<code>/company/</code>・<code>/access/</code>・<code>/column/</code>）</li>
+    <li><strong>sitemap.xml 129 URL</strong>（8/3時点と同数・減少なし）</li>
+    <li><strong>コード変更は 7/29 の祭壇画像差し替えが最後</strong>。7/30以降のコミットは <code>docs/</code> のみで、ページには一切触れていない</li>
+    <li><strong>画像肥大化の影響もなし</strong>：元PNGは1.9〜2.5MBあるが、Next/Image が正常に効いており<strong>実配信は144KB</strong>。
+      しかも7/29に差し替えた画像（1,975,971B）は<strong>差し替え前より小さい</strong>ため、この変更が原因という線は否定できる</li>
+  </ul>
+  <strong>つまり今回の下落は、当サイトが何かを壊したことによるものではない。</strong>
+</div>
+
+<h2>5. 推奨アクション</h2>
+
+<h3>5-1. 最優先 ── 3ドメイン問題の整理（松澤の判断が必要）</h3>
+<div class="tw">
+<table>
+  <thead><tr><th>#</th><th>対象</th><th>アクション</th><th>備考</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td class="t1"><code>kawaguchi-tenrei.com</code></td><td class="t1"><strong>【期限 9/3・最優先】経理で支払い履歴を確認し、契約者を特定する</strong></td><td><strong>NTT西日本</strong>への支払いを探すのが最短。毎年8月末に更新されているため、直近の請求に出ているはず</td></tr>
+    <tr><td>2</td><td>同上</td><td>NTT西日本に<strong>会社名義で契約照会・ID/パスワード再発行</strong>を依頼</td><td>登記簿謄本・代表者確認書類を準備。正当な契約者であれば通常は再発行に応じてもらえる</td></tr>
+    <tr><td>3</td><td>同上</td><td>当時の<strong>制作会社が契約者になっていないか</strong>確認</td><td>2007年登録。制作会社名義のまま放置されているケースは多い</td></tr>
+    <tr><td>4</td><td>同上（取り戻せた場合）</td><td><code>kawaguchitenrei.com</code> へ <strong>301リダイレクト</strong></td><td>19年もののドメイン評価を引き継げる。削除より301が有利</td></tr>
+    <tr><td>5</td><td>同上（取り戻せない場合）</td><td><strong>失効を前提に、メインサイト側を固める</strong>（下記5-1-2）</td><td>ドロップキャッチ後の悪用に備える</td></tr>
+    <tr><td>6</td><td><code>kawaguchi-memorial-hall.com</code></td><td><strong><code>&lt;meta name="robots" content="noindex"&gt;</code> を追加</strong></td><td>こちらが現在の実質的な競合。広告LPとしての役割は維持したまま、自然検索の枠だけ譲る</td></tr>
+    <tr><td>7</td><td>メインサイト</td><td><code>/hall/kawaguchi-memorial-hall/</code> に施設名を集約</td><td>#6 の後に効果が出る。今やっても押し戻される</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3 id="512">5-1-2. ドメインを取り戻せなかった場合の備え</h3>
+<div class="info-box">
+  取り戻せない場合でも、<strong>自社でできることは残っている</strong>。むしろこちらのほうが確実に効く。
+  <ul>
+    <li><strong>各ポータルの掲載URLを <code>kawaguchitenrei.com</code> に統一する。</strong>
+      確認したところ <code>soogi.jp</code> はすでに正しく <code>https://kawaguchitenrei.com/</code> を掲載していた。
+      <strong>他のポータル（いい葬儀／よりそう／安心葬儀 等）も同様に確認し、旧ドメインを指しているものがあれば変更を依頼する。</strong>
+      旧ドメインへの被リンクを断つことが、ドロップキャッチされた場合の被害を最小化する最も効果的な手段。</li>
+    <li><strong>GBP（Googleビジネスプロフィール）のウェブサイト欄がメインサイトを指しているか確認。</strong>承認待ちのGBP API作業と合わせて実施。</li>
+    <li><strong>メインサイトの <code>/hall/kawaguchi-memorial-hall/</code> を、施設名クエリの唯一の受け皿として強化する。</strong>
+      施設情報・写真・アクセス・駐車場70台・めぐりの森まで車で約5分 を1ページに集約し、<code>LocalBusiness</code>／<code>FuneralHome</code> 構造化データを整える。</li>
+    <li><strong>失効後の挙動を監視する。</strong>9月上旬以降、<code>kawaguchi-tenrei.com</code> が誰の手に渡ったか、
+      および「川口メモリアルホール」の検索結果に変化がないかを毎週確認する。</li>
+  </ul>
+  <strong>なお、失効後にドロップキャッチ業者経由で取得する方法もあるが、費用がかかるうえ確実でもない。</strong>
+  期限前に契約者を特定して更新・移管するほうが、はるかに低コストで確実である。<strong>9/3 まで残り約4週間。</strong>
+</div>
+<div class="info-box">
+  <strong>広告への影響について</strong>：<code>kawaguchi-memorial-hall.com</code> に <code>noindex</code> を入れても、
+  <strong>Google広告の配信・品質スコア・ランディングページの評価には影響しない</strong>（広告のクローラーは自然検索のインデックスとは別系統）。
+  同ドメインのサイトリンクは CV 5.5 とアセット中最上位のため、<strong>LPとしては現状維持</strong>でよい。
+  <strong>止めるのは「自然検索に出ること」だけ。</strong>
+</div>
+<div class="warn-box">
+  <strong>順序を守ること。</strong>3ドメインの整理より先にメインサイト側の <code>/hall/</code> をいじっても、
+  competing する2ドメインが残っている限り押し戻される。<strong>ドメイン整理 → 効果測定 → 必要ならページ改善</strong>の順で進める。
+</div>
+
+<h3>5-2. 動かさないこと</h3>
+<ul>
+  <li><strong>トップページの title / description は触らない。</strong>「川口市 葬儀」の8.36→11.65位は7日間の短期データで、
+    しかも7/22の役割分離から日が浅い。<strong>短期データでの往復が最も避けるべき操作</strong>という8/3の判断は今回も変わらない。</li>
+  <li><strong>コラム系も触らない。</strong>広く薄い下落はアルゴリズム変動の可能性が高く、個別対応の対象ではない。</li>
+  <li><strong>8/19 の28日窓測定まで待つ。</strong>「川口市 家族葬」の受け皿問題（8/3レポート §4）と合わせて判断する。</li>
+</ul>
+
+<h3>5-3. 観察を続ける項目</h3>
+<ul>
+  <li>「川口メモリアルホール」の順位（3ドメイン整理の前後で比較する。整理前の12.88位が基準値）</li>
+  <li>指名「川口典礼」の表示回数（39→回復するかで、季節性か構造問題かが切り分けられる）</li>
+  <li>週次クリック（66 → 8月後半に80以上へ戻るか）</li>
+  <li>GBP API 承認確認（8/9頃）。「川口市 葬儀」のクリックがローカルパックに吸われる構造は依然として最大の課題</li>
+</ul>
+
+<h2 id="5-3">5-3. 【追記】旧ドメインを取り戻せた場合、どちらで運用すべきか</h2>
+<div class="lead">
+  <strong>結論：<code>kawaguchitenrei.com</code> で運用を継続する。旧ドメインは取り戻せても「301で流し込む」か「更新だけして保持する」に留め、サイト本体を移転してはいけない。</strong>
+</div>
+
+<h3>比較</h3>
+<div class="tw">
+<table>
+  <thead><tr><th>項目</th><th>kawaguchitenrei.com（現行）</th><th>kawaguchi-tenrei.com（旧）</th></tr></thead>
+  <tbody>
+    <tr><td>ドメイン登録</td><td>2023-07-10（3年）</td><td class="up">2007-09-03（19年）</td></tr>
+    <tr><td>有効期限</td><td class="up">2029-07-10（6年先まで確保済み）</td><td class="down">2026-09-03（約4週間後）</td></tr>
+    <tr><td>稼働状態</td><td class="up">正常・HTTPS</td><td class="down">403 Forbidden・http のみ（HTTPS非対応）</td></tr>
+    <tr><td>検索での実績（28日）</td><td class="up">クリック380／表示51,329／平均11.43位</td><td class="down">実質ゼロ（インデックスの残骸のみ）</td></tr>
+    <tr><td>表示を獲得しているURL数</td><td class="up">123 URL（sitemap 129URL）</td><td class="down">—</td></tr>
+    <tr><td>指名検索</td><td class="up">「川口典礼」1.0位・CTR 22%</td><td class="down">—</td></tr>
+    <tr><td>ドメイン表記</td><td class="up">ハイフンなし</td><td>ハイフンあり</td></tr>
+    <tr><td>技術基盤</td><td class="up">Next.js / Vercel</td><td>NTT西日本ホスティング</td></tr>
+    <tr><td>各種連携</td><td class="up">GSC・GA4・GBP・広告・構造化データすべて設定済み</td><td class="down">なし</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3>「19年もの」は移転の理由にならない</h3>
+<div class="info-box">
+  旧ドメインの唯一の優位点は登録年数だが、<strong>これは移転を正当化しない</strong>。
+  <ul>
+    <li><strong>ドメイン年齢そのものは、Googleが有意な評価要因ではないと明言している。</strong>
+      実際に効くのは<strong>被リンクと運用実績</strong>であり、旧ドメインは長期間403で停止しているため、その資産は既に減衰している。</li>
+    <li><strong>旧サイトが「【公式】川口メモリアルホール(川口典礼)」で上位に出ていたのは、ドメインが強かったからではない。</strong>
+      <strong>タイトルが検索語と完全一致していたから</strong>。同じことは現行サイトの <code>/hall/kawaguchi-memorial-hall/</code> でも実現できる（実際、直前の週まで3.90位を取れていた）。</li>
+    <li>しかもそのページは<strong>現在403で死んでいる</strong>。「実績のあるドメイン」ではなく「止まって久しいドメイン」というのが実態。</li>
+  </ul>
+</div>
+
+<h3>移転してはいけない理由</h3>
+<ul>
+  <li><strong>タイミングが最悪。</strong>現行サイトは28日比較でクリック +56%・平均順位 2.4改善と<strong>伸びている最中</strong>。
+    サイト移転は必ず一時的な順位変動を伴い、<strong>伸長を自ら止めることになる</strong>。</li>
+  <li><strong>失うものが大きすぎる。</strong>123URLが検索で表示を獲得し、指名検索で1.0位、構造化データ・sitemap・内部リンク・コラム資産がすべて現行ドメインに載っている。
+    これを別ドメインへ移すのは、<strong>1年以上かけて積み上げたものを一度リセットする賭け</strong>になる。</li>
+  <li><strong>周辺すべてが現行ドメイン前提。</strong>GSC・GA4・GBP・Google広告・名刺・パンフレット・ポータル掲載（<code>soogi.jp</code> は既に <code>kawaguchitenrei.com</code> を掲載済み）。
+    移転すればこれら全部の作り直しが発生する。</li>
+  <li><strong>技術面でも現行が優位。</strong>旧はHTTPS非対応・NTT西日本のホスティングで、Next.js / Vercel の現行環境に対して制約が大きい。</li>
+  <li><strong>ブランド表記としても現行が優れる。</strong>ハイフンなしのほうが口頭で伝えやすく、誤入力も起きにくい。葬儀は電話で名前を伝える場面が多い業種であり、これは実務上のメリットになる。</li>
+</ul>
+
+<h3>取り戻せた場合の使い道（2択）</h3>
+<div class="tw">
+<table>
+  <thead><tr><th>案</th><th>内容</th><th>評価</th></tr></thead>
+  <tbody>
+    <tr><td><strong>A. 301リダイレクト</strong>（推奨）</td><td>旧ドメイン全体を <code>https://kawaguchitenrei.com/</code> へ恒久的に転送</td><td class="up">残存する被リンクと指名流入を現行サイトへ集約できる。<strong>最も無駄がない</strong></td></tr>
+    <tr><td><strong>B. 更新のみして保持</strong></td><td>サイトは公開せず、ドメインだけ毎年更新し続ける</td><td>301の設定が技術的に難しい場合の次善策。<strong>第三者に渡らないという防衛価値だけでも年数千円の維持費を上回る</strong></td></tr>
+    <tr><td>C. 旧ドメインへ移転</td><td>サイト本体を旧ドメインへ移す</td><td class="down"><strong>採用しない。</strong>上記の通りリスクだけが大きい</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3>301を設定するときの注意</h3>
+<ul>
+  <li><strong>まず403を解除できる状態にする必要がある。</strong>現状のままでは転送設定そのものが返せない。
+    NTT西日本のサービス上でリダイレクト設定ができない場合は、<strong>ドメインを別のDNS／サーバーへ移管してから転送を設定する</strong>のが確実。
+    ※移管には<strong>認証コード（AuthCode）</strong>が必要で、NTT西日本経由の場合は移管に制限があることもあるため、契約照会時に併せて確認する。</li>
+  <li><strong>ページ単位のマッピングは不要。</strong>旧サイトの個別ページは既に機能していないため、<strong>トップ→トップの一括301でよい</strong>。</li>
+  <li><strong>301は最低1年、できれば恒久的に維持する。</strong>途中で外すと集約した評価が失われる。</li>
+  <li><strong>301後もドメインの更新を止めないこと。</strong>転送元が失効すれば転送も消え、第三者取得のリスクが戻る。</li>
+</ul>
+
+<h2>6. 結論</h2>
+<div class="lead">
+  <ol>
+    <li><strong>順位は下がっている。</strong>直近7日でクリック 113→66（-42%）、平均順位 11.39→12.19。</li>
+    <li><strong>ただし全体崩壊ではない。</strong>28日比較ではクリック +56%・順位 2.4改善で依然プラス圏。66クリックは7月上旬と同水準で6月より高い。<strong>7月中旬〜下旬のピークからの後退</strong>。</li>
+    <li><strong>最大の下落は「川口メモリアルホール」3.55→12.88位。</strong>原因は<strong>自社ブランドが3ドメインに分散して枠を奪い合っていること</strong>。
+      <strong>追加調査により、現在の実質的な競合は <code>kawaguchi-memorial-hall.com</code>（広告LP・HTTP 200・インデックス制御なし）に絞られた</strong>——
+      旧サイト <code>www.kawaguchi-tenrei.com</code> は<strong>Googlebotを含む全アクセスに403を返しており既に機能停止</strong>で、検索結果に残るのは古いインデックスにすぎない。</li>
+    <li class="down"><strong>【9/3期限・別件で緊急】旧ドメイン <code>kawaguchi-tenrei.com</code> が 2026-09-03 に失効する。</strong>
+      2007年登録の19年ものでブランド名を含み、「【公式】」を名乗って検索結果に出ていた実績がある。
+      <strong>放置して失効させると第三者に取得される恐れがあり、この件では「放置」がむしろ危険な選択肢</strong>。
+      ドメインもパスワードも不明とのことなので、<strong>まず経理の支払い履歴からNTT西日本への支払いを探し、契約者を特定する</strong>のが最短経路（§5-1）。</li>
+    <li><strong>クリックが表示以上に落ちたのは、減ったのがCTRの高いブランド系だから。</strong>コラム系は9〜11位でCTR 0.3%以下のため埋め合わせられない。<strong>ブランド系依存という構造的な弱点がそのまま出た。</strong></li>
+    <li><strong>サイト側の不具合はない。</strong>全ページ200・sitemap 129URL・7/30以降のコード変更なし・画像も Next/Image で144KBに最適化済み。</li>
+    <li><strong>今日サイトを触る必要はない。</strong>やるべきは3ドメインの整理で、これは<strong>サイト改修ではなくドメイン管理の判断</strong>。</li>
+  </ol>
+</div>
+
+<div class="foot">
+  作成：Claude Code ／ 2026-08-07 ／ データ取得元：Google Search Console API（<code>tmp/seo-analysis-2026-08-07/</code>・<code>tmp/seo-analysis-2026-08-07-w7/</code>・非コミット）<br>
+  ※7日窓の比較は母数が小さく、単独では判断材料として弱い。28日窓と併読すること。<br>
+  ※<code>www.kawaguchi-tenrei.com</code> の内容は外部アクセスが403で拒否されるため直接確認できていない。記載はGoogle検索結果に表示された情報に基づくもので、<strong>断定はしていない</strong>。<br>
+  ※本レポートは <code>docs/reports/</code> 配下の社内文書で Web には公開されません（<code>noindex</code>）。個人情報・秘密情報は記載していません。<br>
+  ※分析のみ。サイト・広告アカウントいずれも変更していません。
+</div>
+
+</div>
+</body>
+</html>

@@ -9,7 +9,46 @@
 
 ---
 
-## 申請記録（ステータス）
+## ✅ 再申請の記録（2026-08-17）── 現在有効な申請はこちら
+
+| 項目 | 内容 |
+|---|---|
+| **申請日** | **2026-08-17** |
+| **ケース ID** | **`2-1581000041699`** ← Google が画面で発行した受付番号 |
+| **プロジェクト番号** | **`487251905710`**（`.env.local` の OAuth クライアントが属するプロジェクト） |
+| 申請アカウント | kawaguchi.memorial@gmail.com |
+| 申請種類 | Application for Basic API Access |
+| Google 側の案内 | **審査に 7〜10 営業日**（許可リスト登録リクエストが多数のため） |
+| **承認確認の目安** | **2026-08-26（水）〜 2026-08-31（月）** |
+| API 有効化 | ✅ プロジェクト 487251905710 で有効化済み（8/17 に 429 応答で確認） |
+| トークン | ✅ 8/17 に `--scope=all+gmail` で取得済み。**承認後の再取得は不要** |
+
+> **前回（7/30）との決定的な違い**：今回は**画面上でケース ID が発行された**。
+> 7/30 の申請にはケース ID の記録が無く、Gmail 全検索でも受付確認メールが 1 通も存在しなかった。
+> これが「7/30 の申請は送信されていなかった」と判断した根拠。
+> **今後は、申請時に必ずケース ID を控えること。**
+
+### 承認確認の手順（2026-08-26 以降）
+
+```
+node scripts/gbp/dump.mjs
+```
+
+| 結果 | 意味 |
+|---|---|
+| アカウント情報が返る | ✅ **承認済み**。`diff.mjs` → `apply.mjs` に進む |
+| `429 Quota exceeded ... Requests per minute` | 🔴 まだ未承認（割り当て 0） |
+| `has not been used in project ... or it is disabled` | ⚠️ プロジェクト取り違え。再確認が必要 |
+
+Gmail 側の確認（承認・却下メール）は次で行える：
+
+```
+node --env-file=.env.local scripts/gmail-search.mjs --preset=gbp
+```
+
+---
+
+## 旧申請の記録（2026-07-30）── 送信されていなかった可能性が高い
 
 | 項目 | 内容 |
 |---|---|
@@ -21,10 +60,100 @@
 | STEP 1 プロジェクト作成 | ✅ 完了 |
 | STEP 2 API 有効化（7つ） | ✅ 完了 |
 | STEP 3 申請提出 | ✅ **完了（2026-07-30）** |
-| STEP 4 承認確認 | ⏳ **2026-08-09 頃に確認予定** |
+| STEP 4 承認確認 | 🔴 **2026-08-17 に確認 → 0 QPM（未承認）** |
 | STEP 5 トークン再取得 | 未着手（承認後） |
 
-### 次のアクション：2026-08-09 頃
+### 確認記録：2026-08-17（申請から18日経過）
+
+| 確認項目 | 結果 |
+|---|---|
+| My Business Account Management API のステータス | **有効**（API有効化は完了している） |
+| **割り当て `Requests per minute`** | 🔴 **0 = 未承認** |
+| `scripts/gbp/dump.mjs` の実行 | 403 `Request had insufficient authentication scopes`（※トークンに `business.manage` スコープが無いため。承認可否とは無関係） |
+| Cloud の無料トライアル | バナー表示あり。**ただし GBP API は無料・請求先アカウント不要のため無関係。アップグレードはしない** |
+
+---
+
+## 🔴 原因判明（2026-08-17）── 待っても永久に承認されない状態だった
+
+同日、Gmail API と GBP API を実際に叩いて調査した結果、**2つの問題が確定した。**
+
+### 問題1：申請の受付確認メールが1通も存在しない
+
+Gmail を読み取り権限で検索（迷惑メール・ゴミ箱を含む）した結果：
+
+| 検索クエリ | 結果 |
+|---|---|
+| `"Business Profile API"` | **該当なし** |
+| `"Google My Business"` | **該当なし** |
+| `subject:(API AND (access OR approved OR denied OR rejected))` | **該当なし** |
+| `api_default OR "support.google.com/business"` | **該当なし** |
+| `"Basic API Access" OR "API access"` | **該当なし** |
+| `after:2026/07/28 before:2026/08/05`（全40件を目視） | 申請関連なし |
+| `from:google.com (...)` | GBPの定期通知（実績レポート・口コミ・営業時間）のみ |
+
+→ **2026-07-30 の申請は、実際には送信されていなかった可能性が高い。**
+（承認・却下・追加情報依頼のいずれも届いておらず、受付控えも無い）
+
+### 問題2：🔴 プロジェクトが食い違っている（これが決定的）
+
+`scripts/gbp/dump.mjs` を **business.manage スコープ付きのトークン**で実行した結果：
+
+```
+My Business Account Management API has not been used in
+project 487251905710 before or it is disabled.
+```
+
+| 項目 | 所属プロジェクト |
+|---|---|
+| `.env.local` の OAuth クライアント（GSC・GBP・Gmail 共通で使用） | **487251905710** |
+| GBP 系 API を有効化したプロジェクト（8/17 のスクショで「有効」だった方） | **別プロジェクト** |
+
+**割り当て（クォータ）はプロジェクト単位で付与される。**
+そのため、たとえ申請が承認されても、**今の OAuth クライアントからは永久に呼び出せない。**
+
+> つまり 8/17 に確認した「割り当て 0」は、
+> **「審査待ちだから 0」ではなく「そもそも別のプロジェクトを見ていた」**可能性がある。
+
+---
+
+## 次のアクション（2026-08-17 以降）— 再申請が必要
+
+### STEP A. プロジェクト 487251905710 で GBP 系 API を有効化する
+
+以下のリンクはプロジェクト番号を指定済み。開いて「有効にする」を押すだけ。
+
+| API | 有効化リンク |
+|---|---|
+| My Business Account Management | `https://console.developers.google.com/apis/api/mybusinessaccountmanagement.googleapis.com/overview?project=487251905710` |
+| My Business Business Information | `https://console.developers.google.com/apis/api/mybusinessbusinessinformation.googleapis.com/overview?project=487251905710` |
+| My Business Q&A | `https://console.developers.google.com/apis/api/mybusinessqanda.googleapis.com/overview?project=487251905710` |
+| Business Profile Performance | `https://console.developers.google.com/apis/api/businessprofileperformance.googleapis.com/overview?project=487251905710` |
+
+※ `scripts/gbp/` が使うのはこの 4 つ。他（Lodging / Notifications / Place Actions / Verifications）は不要。
+
+### STEP B. **プロジェクト番号 487251905710** で申請し直す
+
+- フォーム：https://support.google.com/business/contact/api_default
+- 申請種類：Application for Basic API Access
+- **プロジェクト番号欄に必ず `487251905710` を入力する**（ここが今回の失敗要因）
+- 申請アカウント：GBP のオーナー/管理者である `kawaguchi.memorial@gmail.com`
+- **送信後、受付確認メールが届くかを必ず確認する**（届かなければ送信できていない）
+
+### STEP C. 承認後
+
+1. `node scripts/gbp/dump.mjs` で読み取り確認（トークンは 8/17 に `all+gmail` で取得済み・再取得不要）
+2. `diff.mjs` で差分確認 → `apply.mjs`
+
+### 補足：不要な作業
+
+- ❌ **Cloud の有料アカウントへのアップグレードは不要**（GBP API は無料・請求先アカウント登録不要）
+- ❌ 認証情報の作り直しは不要（OAuth クライアントは正常に動作している）
+- ❌ トークンの再取得は不要（2026-08-17 に `--scope=all+gmail` で取得済み）
+
+---
+
+### 参考：当初の予定（2026-08-09 頃）
 
 1. **承認確認**（Google Cloud Console）
    - 「API とサービス」→「割り当てとシステム上限」→ **My Business Business Information API**
@@ -157,12 +286,53 @@ API 承認後に `diff.mjs` で突き合わせられるため、手作業は無�
 
 | 項目 | 入力値 |
 |---|---|
-| メールアドレス | **GBP のオーナー/管理者として登録されているアドレス**（kawaguchi.memorial@gmail.com など） |
+| メールアドレス | `kawaguchi.memorial@gmail.com`（GBP のオーナー/管理者アカウント） |
 | 申請種類 | ドロップダウンから **「Application for Basic API Access」** を選択 |
-| プロジェクト番号 | STEP 1 で控えた**12桁の数字** |
+| **プロジェクト番号** | 🔴 **`487251905710`** ← 2026-08-17 に確定。<br>`.env.local` の OAuth クライアントが属するプロジェクト。**ここを間違えると承認されても使えない** |
 | 会社名 | 株式会社 川口典礼 |
 | ウェブサイト | https://kawaguchitenrei.com/ |
 | 管理するプロフィール数 | 1 |
+
+> **プロジェクト番号の根拠（2026-08-17 実測）**：`scripts/gbp/dump.mjs` の実行時に Google が返した
+> `for consumer 'project_number:487251905710'` から確定。推測ではない。
+
+### 記述式の2項目（2026-08-17 追記）
+
+#### 「この API アクセス フォームをどのようにして知りましたか」
+
+```
+Google Business Profile API の公式ドキュメント（Prerequisites ページ）に記載されていたリンクから
+```
+英語欄の場合：`From the official Google Business Profile API documentation (Prerequisites page).`
+
+#### 「アクセスを希望される主な理由をお聞かせください」
+
+```
+自社で運営する葬儀式場1拠点のビジネスプロフィールを、自社ウェブサイトの情報と
+一致させて正確に維持するためです。
+
+具体的には、
+1. 営業時間・カテゴリ・説明文・サービス項目を自社サイトと同じ内容に保つこと
+2. よくあるご質問（Q&A）を投稿・回答し、料金やサービス内容の正確な情報を
+   お客様に届けること
+3. 通話数・ルート検索数・表示回数などのパフォーマンス指標を取得し、
+   月次の社内レポートに使うこと
+
+対象は自社の1拠点のみです。第三者のプロフィール管理は行わず、
+データの再販・再配布も行いません。
+```
+
+> **ドロップダウン（選択式）だった場合**は「自社のビジネス情報を管理するため」系を選ぶ。
+> 「代理店として」「アプリを開発して提供するため」は選ばない（自社1店舗のみの管理のため、
+> 審査が不必要に厳しくなる）。
+
+### 審査で見られる3点（上記文面はすべて満たしている）
+
+| 観点 | 文面での対応 |
+|---|---|
+| 自社の拠点か、第三者管理か | 「自社の1拠点のみ」「第三者のプロフィール管理は行わない」と明記 |
+| 用途が具体的か | 3項目に分けて具体的に記載 |
+| データの再販意図がないか | 「再販・再配布も行いません」と明記 |
 
 ### 用途の説明（英語欄がある場合はこちらを貼り付け）
 

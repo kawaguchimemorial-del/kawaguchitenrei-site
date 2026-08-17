@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>花ぜんセレモニーが上位である理由の分析（2026-08-07）</title>
+<style>
+  :root{--ink:#23201c;--sub:#6b645c;--line:#e4ddd3;--bg:#fbf9f5;--accent:#7a5c3e;--warn:#a3402f;--good:#3d6b4a;--blue:#3a5a7a;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;line-height:1.8;font-size:15px}
+  .wrap{max-width:1040px;margin:0 auto;padding:32px 22px 80px}
+  header.doc{border-bottom:3px solid var(--accent);padding-bottom:18px;margin-bottom:24px}
+  header.doc .tag{color:var(--accent);font-weight:700;letter-spacing:.12em;font-size:12px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:23px;margin:6px 0 4px;font-weight:700}
+  .meta{color:var(--sub);font-size:13px}
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:19px;margin:38px 0 12px;padding-left:12px;border-left:5px solid var(--accent)}
+  h3{font-size:15px;margin:24px 0 8px;color:var(--accent)}
+  .status{display:inline-block;background:#f2f4f8;border:1px solid #d4dbe6;color:#3a5a7a;border-radius:999px;padding:4px 14px;font-weight:700;font-size:14px}
+  .lead{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px 20px;margin:16px 0}
+  .info-box{background:#f2f4f8;border:1px solid #d4dbe6;border-radius:10px;padding:14px 18px;margin:14px 0}
+  .warn-box{background:#fdf1ef;border:1px solid #e8c4bc;border-radius:10px;padding:14px 18px;margin:14px 0}
+  .good-box{background:#eef7ef;border:1px solid #cfe6d3;border-radius:10px;padding:14px 18px;margin:14px 0}
+  .retract{background:#fffdf3;border:2px solid #d9c48a;border-radius:10px;padding:16px 20px;margin:16px 0}
+  .retract .rt{font-weight:700;color:#8a6d1e;font-size:14px;letter-spacing:.06em;margin-bottom:6px}
+  .tw{overflow-x:auto;margin:12px 0}
+  table{width:100%;min-width:560px;border-collapse:collapse;font-size:13px;background:#fff}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  thead th{background:#f2ece2;text-align:center}
+  .up{color:var(--good);font-weight:700}.down{color:var(--warn);font-weight:700}
+  code{background:#f1efe9;padding:1px 6px;border-radius:5px;font-size:12.5px;font-family:ui-monospace,Consolas,monospace}
+  ul{margin:8px 0 8px 1.2em}li{margin:5px 0}
+  .foot{margin-top:36px;border-top:1px solid var(--line);padding-top:14px;color:var(--sub);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <div class="tag">社内レポート（docs/reports・非公開/noindex）</div>
+  <h1>「ドメイン年齢は要因でない」なら、なぜ花ぜんセレモニーが上位なのか</h1>
+  <div class="meta">
+    実施：2026-08-07 ／ 松澤からの指摘を受けた追加分析<br>
+    調査対象：<code>hanazen-ceremony.co.jp</code>（HTML構造・所在地・沿革）／ポータル掲載情報／自社GSCデータ<br>
+    ※分析のみ。サイト・広告いずれも変更していません。
+  </div>
+</header>
+
+<div class="retract">
+  <div class="rt">■ 前回の説明の訂正</div>
+  <p>2026-08-07 のSEOチェック §5-3 で「<strong>ドメイン年齢そのものは、Googleが有意な評価要因ではないと明言している</strong>」と述べた。
+  <strong>この記述自体は誤りではないが、説明として不十分で、誤解を招くものだった。</strong></p>
+  <p>「ドメインが古いこと」と「<strong>会社が古くからそこで営業していること</strong>」は、検索エンジンから見てまったく別のものである。
+  前者は評価要因ではないが、<strong>後者は極めて強く効く</strong>。花ぜんセレモニーが強いのは、まさに後者による。
+  この区別を書かなかったため、「歴史は関係ない」と読める説明になってしまった。訂正する。</p>
+</div>
+
+<div class="lead">
+  <span class="status">分析レポート</span><br>
+  調べた結果、<strong>花ぜんセレモニーはサイトのSEOで勝っているのではない</strong>ことが分かった。
+  同社のサイトは<strong>約20ページの静的HTML・トップページ19KB・sitemap.xml も robots.txt も無い</strong>。
+  技術的な作り込みでは、129URL・構造化データ完備の当サイトが圧倒している。<br>
+  <strong>それでも上位にいる理由は、サイトの外側にある</strong>——具体的には
+  <strong>①創業68年という事業実体 ②川口駅東口 徒歩5分という立地 ③ローカルパック（地図枠）</strong>の3つ。
+  このうち<strong>②はSEOでは覆せない</strong>。したがって取るべき戦略は「駅前で真っ向勝負」ではなく「土俵を変える」ことになる。
+</div>
+
+<h2>1. 両社の比較（実測）</h2>
+<div class="tw">
+<table>
+  <thead><tr><th>項目</th><th>花ぜんセレモニー</th><th>川口典礼</th><th>優劣</th></tr></thead>
+  <tbody>
+    <tr><td>創業</td><td><strong>昭和33年（1958年）＝68年</strong><br>「花輪屋」として創業</td><td>創業20年</td><td class="down">花ぜん</td></tr>
+    <tr><td>所在地</td><td><strong>川口市栄町2-1-22<br>（川口駅東口 徒歩5分）</strong></td><td>川口市西新井宿440-1<br>（市北部・めぐりの森至近）</td><td class="down">花ぜん</td></tr>
+    <tr><td>自社式場</td><td>エフ・リビング（宿泊可・家族葬専用）</td><td>川口メモリアルホール<br><strong>駐車場70台・〜200名対応</strong></td><td class="up">川口典礼</td></tr>
+    <tr><td>火葬場への近さ</td><td>川口駅前のため、めぐりの森からは離れる</td><td><strong>めぐりの森まで車で約5分</strong></td><td class="up">川口典礼</td></tr>
+    <tr><td>市の制度</td><td>川口市営葬指定業者</td><td>川口市葬祭事業登録業者</td><td>同等</td></tr>
+    <tr><td>サイト構成</td><td class="down">静的HTML 約20ページ<br>（<code>.html</code> 直置き）</td><td class="up"><strong>129 URL</strong>（Next.js）</td><td class="up">川口典礼</td></tr>
+    <tr><td>トップページ容量</td><td>19KB</td><td>—</td><td>—</td></tr>
+    <tr><td>sitemap.xml</td><td class="down"><strong>なし（302）</strong></td><td class="up"><strong>あり・129URL</strong></td><td class="up">川口典礼</td></tr>
+    <tr><td>robots.txt</td><td class="down"><strong>なし（302）</strong></td><td class="up">あり</td><td class="up">川口典礼</td></tr>
+    <tr><td>構造化データ</td><td class="down">確認できず</td><td class="up">FuneralHome / FAQ / Breadcrumb 等 実装済み</td><td class="up">川口典礼</td></tr>
+    <tr><td>コラム・読み物</td><td class="down">ほぼなし</td><td class="up">多数（訃報返信・検視・神道 等で月4万表示）</td><td class="up">川口典礼</td></tr>
+    <tr><td>llms.txt（AI検索対応）</td><td class="down">なし</td><td class="up">あり</td><td class="up">川口典礼</td></tr>
+  </tbody>
+</table>
+</div>
+<div class="info-box">
+  <strong>この表が示していること</strong>：<strong>サイトの品質・技術・情報量では、当サイトが明確に上回っている。</strong>
+  <strong>それでも順位で負けているなら、負けている理由はサイトの中にはない。</strong>
+  つまり<strong>「サイトをもっと良くする」では解決しない領域</strong>で差がついている。
+</div>
+
+<h2>2. では何が効いているのか</h2>
+
+<h3>要因① 事業実体としての「68年」（ドメイン年齢とは別物）</h3>
+<div class="info-box">
+  Googleが評価しているのは<strong>ドメインの登録年月日ではなく、事業者としての実在性・継続性・言及のされ方</strong>である。
+  <ul>
+    <li>68年間、同じ地域で同じ社名・同じ住所・同じ電話番号で営業してきた</li>
+    <li>その間に蓄積された<strong>ポータル掲載・地域情報サイト・口コミ・被リンク・言及（サイテーション）</strong></li>
+    <li>「川口 葬儀」という文脈で<strong>繰り返し名前が出てくる</strong>ことによる、エンティティとしての結びつき</li>
+  </ul>
+  <strong>これは「古いドメインを買えば手に入る」ものではない。</strong>
+  逆に言えば、<strong>ドメインを新しくしても失われない</strong>——会社の実体は変わらないからである。
+  <div style="margin-top:10px"><strong>ここが旧ドメイン <code>kawaguchi-tenrei.com</code> の話に直結する。</strong>
+  旧ドメインが19年ものであることと、川口典礼が20年営業してきた実績は<strong>別の資産</strong>で、
+  後者はすでに現行ドメイン・GBP・住所・電話番号・ポータル掲載が引き継いでいる。
+  <strong>403で止まっている19年もののドメインに移っても、花ぜんのような強さは手に入らない。§5-3の結論は変わらない。</strong></div>
+</div>
+
+<h3>要因② 立地 ── これが最大で、かつSEOでは覆せない</h3>
+<div class="warn-box">
+  <strong>花ぜん：川口駅東口 徒歩5分（栄町）／ 川口典礼：西新井宿（市北部）</strong><br><br>
+  「川口 葬儀」「川口市 葬儀」と検索する人の多くは、<strong>川口駅周辺〜市街地から検索している</strong>。
+  Googleのローカル検索は<strong>「検索している人の現在地からの距離」を最重要級の要因として使う</strong>。
+  川口駅前に本社と式場を構えている時点で、この軸では構造的に有利になる。<br><br>
+  <strong>これは、サイトをどれだけ改善しても変えられない。</strong>
+  当サイトが129URL・構造化データ完備でも、住所は動かせない。<br>
+  <strong>「なぜ勝てないのか」の答えの半分以上はここにある</strong>と考えてよい。
+</div>
+
+<h3>要因③ ローカルパック（地図枠）がクリックを持っていく</h3>
+<div class="info-box">
+  当サイトのGSC実測データが、この構造をはっきり示している。
+  <div class="tw"><table>
+    <thead><tr><th>クエリ</th><th>平均順位</th><th>表示</th><th>クリック</th><th>CTR</th></tr></thead>
+    <tbody>
+      <tr><td>川口市 葬儀</td><td>8.7</td><td>1,379</td><td class="down">1</td><td class="down">0.07%</td></tr>
+      <tr><td>川口 葬儀</td><td>12.8</td><td>421</td><td class="down">2</td><td class="down">0.48%</td></tr>
+      <tr><td>葬儀 川口市</td><td>9.1</td><td>335</td><td class="down">0</td><td class="down">0%</td></tr>
+    </tbody>
+  </table></div>
+  <strong>1ページ目（8.7位）にいるのに、表示1,379回でクリックが1回しかない。</strong>
+  これは順位の問題ではなく、<strong>自然検索の1位より上に地図枠があり、そこでクリックが完結している</strong>ことを意味する。<br>
+  <strong>つまり「川口市 葬儀」は、自然検索の順位を上げても勝負がつかないクエリになっている。</strong>
+  ここで勝つには<strong>ローカルパックに入る</strong>しかなく、それを決めるのは<strong>GBP（Googleビジネスプロフィール）と立地と口コミ</strong>である。
+</div>
+
+<h2>3. 勝てる余地はどこにあるか</h2>
+
+<div class="good-box">
+  <strong>朗報：花ぜんの口コミは多くない。</strong>
+  ポータル「安心葬儀」での掲載は<strong>口コミ1件・評価3.0点</strong>。
+  <strong>口コミは、立地と違って後から積み上げられる数少ない要素</strong>であり、しかも当社には
+  <strong>累計4,600件の施行実績・満足度97%以上</strong>という実体がある。<strong>ここは正面から勝ちにいける。</strong>
+  ※各ポータルの口コミ数は媒体ごとに異なるため、Googleビジネスプロフィール上の口コミ数は別途確認が必要。
+</div>
+
+<h3>3-1. 戦う土俵を変える（立地の不利を認める）</h3>
+<ul>
+  <li><strong>川口駅前で真っ向勝負しない。</strong>「川口 葬儀」「川口市 葬儀」のヘッドクエリは、
+    立地とローカルパックで決まる部分が大きく、投資対効果が悪い。</li>
+  <li><strong>自社が近いエリアでローカルパックを取りにいく。</strong>
+    西新井宿・新井宿・鳩ヶ谷・安行・東川口・戸塚——<strong>ここでは距離の有利が当社側にある</strong>。
+    エリアページ群はすでに整備済みなので、あとはGBPと引用を合わせる。</li>
+  <li><strong>「めぐりの森まで車で約5分」は花ぜんには出せない。</strong>
+    駅前立地の同社は火葬場から離れる。<strong>火葬場近接という軸なら当社が構造的に有利</strong>で、
+    しかも川口市の火葬は原則めぐりの森であるため、需要は確実に存在する。</li>
+  <li><strong>駐車場70台。</strong>駅前の式場は駐車場を確保しにくい。
+    <strong>車で参列する高齢のご親族が多い葬儀では、これは実利のある差別化</strong>になる。</li>
+</ul>
+
+<h3>3-2. GBPが最優先である理由が、これで裏付けられた</h3>
+<div class="warn-box">
+  8/3・8/7 のレポートで繰り返し「<strong>GBPが最優先</strong>」と書いてきたが、
+  今回の分析はその根拠を明確にした。
+  <ul>
+    <li>サイトの品質では<strong>すでに勝っている</strong>（129URL vs 20ページ、構造化データ、コラム資産）</li>
+    <li>それでも負けるのは<strong>ローカルパックと立地</strong>という、サイトの外側の要因</li>
+    <li>立地は変えられないが、<strong>GBPは変えられる</strong>——口コミ・写真・投稿・属性・カテゴリ</li>
+  </ul>
+  <strong>つまり、これ以上サイトを磨くことの限界効用は下がっており、次の投資先はGBPである。</strong>
+  承認待ちのGBP APIアクセス（8/9頃に確認予定）が、そのまま最重要施策になる。
+</div>
+
+<h3>3-3. サイト側でまだできること（優先度は下）</h3>
+<ul>
+  <li><strong>指名検索の確実な刈り取り</strong>：「川口典礼」1.0位・CTR22%は維持できている。
+    「川口メモリアルホール」の3ドメイン問題（§8-07レポート §3-①）を解消して、施設名でも同じ状態を作る。</li>
+  <li><strong>ロングテールでの面取り</strong>：コラム資産は月4万表示を生んでおり、花ぜんにはこの層が無い。
+    ただし9〜11位に固まっておりCTR 0.3%以下のため、<strong>5位圏内に押し上げないと売上に効かない</strong>。</li>
+  <li><strong>E-E-A-Tの可視化</strong>：創業20年・累計4,600件・満足度97%以上は、
+    68年の花ぜんに対して<strong>年数では負けるが件数と満足度では戦える</strong>。数字で示す。</li>
+</ul>
+
+<h2>4. 副産物：「川口市民葬祭」は他社の商号だった</h2>
+<div class="warn-box">
+  今回の調査中に、<strong>Google広告レポート（第3版）§4 Tier 5 で保留していた論点の答えが判明した</strong>。<br>
+  <strong>「川口市民葬祭」は実在する他社のサービス名</strong>である。
+  <ul>
+    <li>サイト：<code>https://www.sougi-kawaguchi.jp/</code></li>
+    <li>タイトル：「川口市で葬儀・葬式なら家族葬、火葬プランもある川口市民葬祭」</li>
+    <li>電話番号：0120-419-451（当社とは別番号）</li>
+    <li>サイト内に<strong>川口典礼に関する記載は一切なし</strong></li>
+  </ul>
+  <strong>したがって、Google広告の「川口市民葬祭」（表示37・クリック9・費用¥43,141・CV 0・CPC ¥4,793＝7月の全支出の4.8%）は、
+  Tier 1「競合社名」として即時除外すべき。</strong>想定削減：最大 ¥4.3万／月。<br>
+  ※当社の「川口市民葬プラン」（川口市の葬祭事業）とは別物なので、
+  除外時は<strong>「川口市民葬祭」を完全一致で除外し、「川口市 市民葬」「市民葬」は除外しない</strong>ようフレーズを区別すること。
+  <strong>ここを間違えると、当社の <code>/plan/kawaguchi-shimin/</code>（12.2位まで改善した成功例）への流入を自ら止めてしまう。</strong>
+</div>
+
+<h2>5. 結論</h2>
+<div class="lead">
+  <ol>
+    <li><strong>「ドメイン年齢は評価要因でない」という説明は不十分だった。訂正する。</strong>
+      ドメインの登録年月日は要因ではないが、<strong>事業者としての実在性・継続性・言及の蓄積は強く効く</strong>。花ぜんの強さは後者による。</li>
+    <li><strong>花ぜんはサイトのSEOで勝っているのではない。</strong>
+      同社サイトは約20ページの静的HTML・sitemapもrobots.txtも無し。
+      <strong>サイトの品質では当サイトが明確に上回っている。</strong></li>
+    <li><strong>差がついているのはサイトの外側。</strong>①創業68年の事業実体 ②川口駅東口 徒歩5分という立地 ③ローカルパック。
+      <strong>特に②はSEOでは覆せない。</strong></li>
+    <li><strong>「川口市 葬儀」は8.7位・表示1,379でクリック1（CTR 0.07%）。</strong>
+      順位を上げても勝負がつかないクエリになっており、<strong>ここに投資しても回収できない</strong>。</li>
+    <li><strong>勝ち筋は3つ。</strong>
+      ①自社に近いエリア（西新井宿・新井宿・鳩ヶ谷・安行・東川口）で距離の有利を取る
+      ②火葬場近接（めぐりの森まで車で約5分）と駐車場70台という、駅前立地には出せない強みで差別化する
+      ③<strong>GBPの口コミ・写真・投稿を積む</strong>（花ぜんの口コミは安心葬儀で1件・3.0点。立地と違い後から積める）</li>
+    <li><strong>結果として、次の投資先はサイトではなくGBPである。</strong>
+      サイトの品質ではすでに勝っており、これ以上磨くことの限界効用は下がっている。承認待ちのGBP APIがそのまま最重要施策になる。</li>
+    <li><strong>旧ドメインの結論は変わらない。</strong>19年もののドメインを手に入れても、花ぜんの強さの源泉（事業実体と立地）は買えない。
+      <code>kawaguchitenrei.com</code> で継続し、旧は301か保持に留める。</li>
+  </ol>
+</div>
+
+<div class="foot">
+  作成：Claude Code ／ 2026-08-07 ／ 出典：<code>hanazen-ceremony.co.jp</code>（HTML実測）／ポータル掲載情報（安心葬儀）／自社GSCデータ（<code>tmp/seo-analysis-2026-08-07/</code>）<br>
+  ※日本のSERPにおける各社の実際の掲載順位は、当方から直接測定できていない。本レポートは「花ぜんセレモニーが上位にいる」という前提のもと、<strong>その要因を構造から分析したもの</strong>である。順位そのものを検証したものではない。<br>
+  ※花ぜんセレモニーに関する記載は、同社の公開サイトおよびポータルの公開情報に基づく事実の範囲に限定している（CLAUDE.md §15）。<br>
+  ※本レポートは <code>docs/reports/</code> 配下の社内文書で Web には公開されません（<code>noindex</code>）。<br>
+  ※分析のみ。サイト・広告アカウントいずれも変更していません。
+</div>
+
+</div>
+</body>
+</html>

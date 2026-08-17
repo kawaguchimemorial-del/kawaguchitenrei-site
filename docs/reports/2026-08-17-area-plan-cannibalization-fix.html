@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>エリア・プランページの重複とカニバリ解消（10人専門家会議＋実装）2026-08-17</title>
+<style>
+  :root{--ink:#1c1a17;--sub:#5c564e;--line:#e2ddd4;--bg:#fbfaf8;--accent:#7a5c3e;
+    --red:#a8322a;--amber:#8a6412;--green:#2f6146;--blue:#2d5573;
+    --redbg:#fdf3f2;--amberbg:#fdf9ee;--greenbg:#f1f7f3;--bluebg:#f0f4f8;--box:#fff;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;line-height:1.9;font-size:15px}
+  .wrap{max-width:1000px;margin:0 auto;padding:44px 22px 96px}
+  header.doc{border-bottom:3px solid var(--ink);padding-bottom:18px;margin-bottom:30px}
+  .kicker{font-size:12px;letter-spacing:.14em;color:var(--sub);margin:0}
+  h1{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:25px;line-height:1.5;margin:10px 0 12px;font-weight:600}
+  .meta{font-size:13px;color:var(--sub)}
+  h2{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:20px;margin:54px 0 14px;
+    padding:8px 0 8px 14px;border-left:5px solid var(--accent);font-weight:600;background:#f6f3ee}
+  h3{font-size:16px;margin:32px 0 10px;font-weight:600;border-bottom:1px solid var(--line);padding-bottom:6px}
+  h4{font-size:14px;margin:20px 0 6px;color:var(--accent);font-weight:600}
+  p{margin:0 0 12px}
+  table{border-collapse:collapse;width:100%;font-size:13px;margin:14px 0;background:var(--box)}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:right;vertical-align:top}
+  th{background:#f4f1eb;font-weight:600;text-align:center;white-space:nowrap}
+  td.l,th.l{text-align:left}
+  .scroll{overflow-x:auto}
+  .bad{color:var(--red);font-weight:600}.warn{color:var(--amber);font-weight:600}.good{color:var(--green);font-weight:600}
+  .box{background:var(--box);border:1px solid var(--line);border-radius:6px;padding:18px 20px;margin:18px 0}
+  .box.red{background:var(--redbg);border-color:#e8c4c0}
+  .box.amber{background:var(--amberbg);border-color:#ecdcb4}
+  .box.green{background:var(--greenbg);border-color:#c3ded0}
+  .box.blue{background:var(--bluebg);border-color:#c2d3e0}
+  .box h4{margin-top:0}
+  ul,ol{margin:8px 0 14px;padding-left:1.4em}li{margin-bottom:6px}
+  .note{font-size:12.5px;color:var(--sub);margin-top:6px}
+  code{background:#f2efe9;padding:1px 5px;border-radius:3px;font-size:12.5px}
+  pre{background:#f4f1eb;border:1px solid var(--line);border-radius:5px;padding:12px 14px;
+    overflow-x:auto;font-size:12.5px;line-height:1.7;margin:10px 0}
+  hr{border:0;border-top:1px solid var(--line);margin:44px 0}
+  footer{margin-top:60px;padding-top:18px;border-top:1px solid var(--line);font-size:12px;color:var(--sub)}
+  .exp{margin:16px 0;padding-left:16px;border-left:3px solid var(--line)}
+  .exp .who{font-size:13px;font-weight:600;color:var(--accent);margin-bottom:3px}
+  .before{background:#fdf3f2;border:1px solid #e8c4c0;border-radius:5px;padding:8px 12px;margin:6px 0;font-size:13px}
+  .after{background:#f1f7f3;border:1px solid #c3ded0;border-radius:5px;padding:8px 12px;margin:6px 0;font-size:13px}
+  .verdict{background:#2f3a44;color:#fff;border-radius:6px;padding:20px 24px;margin:20px 0}
+  .verdict h4{color:#e6c88a;margin-top:0;font-size:12px;letter-spacing:.06em}
+  .verdict .big{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:18px;line-height:1.7;margin:6px 0 10px}
+  @media print{body{background:#fff}.wrap{padding:0}h2{page-break-after:avoid}.box,table{page-break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <p class="kicker">社内レポート（docs/reports・非公開/noindex）</p>
+  <h1>エリア・プランページの重複とカニバリ解消<br><span style="font-size:18px">10人専門家会議 ＋ サイト改修の実施記録</span></h1>
+  <div class="meta">
+    実施：2026-08-17 ／ 対象：<code>kawaguchitenrei.com</code>（本サイト）<br>
+    根拠データ：同日のSEOチェック（<a href="./2026-08-17-seo-check.html">2026-08-17-seo-check.html</a>）／GSC確定最新日 2026-08-14<br>
+    <strong>本レポートはサイト変更を伴います（lib/areas.ts・lib/plans.ts）</strong>
+  </div>
+</header>
+
+<div class="verdict">
+  <h4>前提の訂正</h4>
+  <p class="big">8/3・8/9・8/17と3回連続で「様子を見る」と判断してきたが、<strong>その間に「川口市 家族葬」は19.3位→25.3位まで悪化した。</strong></p>
+  <p style="margin-bottom:0;font-size:14px">待つこと自体が判断ミスだった。<strong>7/30を最後にコードを触っていない状態が3週間続いており、「変えないから悪くなっていない」のではなく「変えない間に悪くなっている」。</strong>本日、原因が特定でき勝ちパターンが実証済みの箇所から着手する。</p>
+</div>
+
+<h2>1. 10人の専門家による診断</h2>
+
+<div class="exp">
+  <div class="who">A：検索意図設計</div>
+  <p><strong>同じサイトの中に、勝ちパターンと負けパターンが並んでいる。</strong>これが最大のヒント。</p>
+  <div class="scroll">
+  <table>
+  <tr><th class="l">ページ</th><th class="l">metaTitle</th><th class="l">28日の順位変化</th></tr>
+  <tr><td class="l">/plan/direct-funeral/</td><td class="l good">「<strong>川口市の直葬</strong> | 川口市めぐりの森での火葬まで」</td><td class="l good">川口 直葬 11.1→7.8位<br>川口市 直葬 10.3→9.0位</td></tr>
+  <tr><td class="l">/plan/family-funeral/</td><td class="l bad">「家族葬の費用と人数の目安 | <strong>川口市の家族葬プラン</strong>」</td><td class="l bad">川口市 家族葬 19.3→25.3位</td></tr>
+  </table>
+  </div>
+  <p style="margin-bottom:0"><strong>直葬は「地域＋葬儀形式」をタイトル先頭に置いて改善。家族葬は同じ語が2番目にあり、しかも先頭が「家族葬の費用と人数の目安」という全国区の語。</strong>川口市のクエリで負けるのは当然。</p>
+</div>
+
+<div class="exp">
+  <div class="who">B：カニバリゼーション分析</div>
+  <p>7/27に新設した <code>/plan/yugure-kazokuso/</code> が <code>metaTitle</code> に「<strong>一日葬</strong>」を持ち、本文量も <strong>11,153字 vs 5,549字</strong>と本家の2倍。
+  Googleが「一日葬」の代表ページを迷った結果、本家 <code>/plan/oneday-funeral/</code> が 20.43位→25.79位に降格した。</p>
+  <p style="margin-bottom:0"><strong>夕暮れ家族葬が一日葬の一種であることは事実なので内容は正しい。問題はタイトルでの競合。</strong></p>
+</div>
+
+<div class="exp">
+  <div class="who">C：重複コンテンツ</div>
+  <p><code>lib/areas.ts</code> の15エリアを機械比較したところ、<strong>11本が「選ばれる理由」6項目・FAQ冒頭3問とも、地名を差し替えただけの同一文だった。</strong></p>
+  <pre>西川口：「西川口からの病院・施設搬送に24時間365日対応」
+東川口：「東川口からの病院・施設搬送に24時間365日対応」
+川口元郷：「川口元郷からの病院・施設搬送に24時間365日対応」
+南鳩ヶ谷：「南鳩ヶ谷からの病院・施設搬送に24時間365日対応」
+神根・新郷・芝・安行・上青木・青木・戸塚安行 … 以下同文</pre>
+  <p style="margin-bottom:0"><strong>これは検索エンジンが最も嫌う「地名だけ入れ替えた量産ページ」の典型。25〜78位という順位は、ペナルティではなく正常な評価。</strong></p>
+</div>
+
+<div class="exp">
+  <div class="who">D：内部リンク構造</div>
+  <p style="margin-bottom:0">エリアページへのリンク元がほぼ <code>/saijo/</code> 系に限られる。その <code>/saijo/</code> 自体が<strong>45.2位・307表示・0クリック</strong>。
+  <strong>弱いページから弱いリンクしか流れていない。</strong>エリアページ同士の相互リンクもない。</p>
+</div>
+
+<div class="exp">
+  <div class="who">E：情報設計</div>
+  <p style="margin-bottom:0">西川口ページに「西川口固有の情報」が<strong>駅名以外ゼロ</strong>。
+  「西川口エリアからはお車でご来館いただけます」は、どのエリアにも当てはまる文で差別化にならない。</p>
+</div>
+
+<div class="exp">
+  <div class="who">F：ローカルSEO実態</div>
+  <p style="margin-bottom:0">実体は西新井宿の1ホール。<strong>離れたエリアで「地域密着」を主張しても実体が薄く、順位が付かないのは当然。</strong>
+  ただし8/7分析のとおり、花ぜんに川口駅前の立地で勝てない以上「自社近接エリアで戦う」方針自体は正しい。<strong>方針が正しくても、今の作り方では順位が付かない</strong>という問題。</p>
+</div>
+
+<div class="exp">
+  <div class="who">G：事実検証</div>
+  <p style="margin-bottom:0"><strong>距離・所要時間の捏造は禁止。</strong>「西川口から車で12分」のような数字を作ってはいけない。
+  差別化は<strong>「そのエリアの人が実際に困ること」</strong>で行うべきで、これなら事実を作らずに書ける。</p>
+</div>
+
+<div class="exp">
+  <div class="who">H：地域実態 ─ 鳩ヶ谷の発見</div>
+  <p><strong>旧鳩ヶ谷市は2011年に川口市へ編入されている。</strong>つまり鳩ヶ谷地区の住民にとって
+  <strong>「うちは川口市民葬を使えるのか」は本当に分からない、固有かつ高関心の疑問</strong>。</p>
+  <p style="margin-bottom:0">これは<strong>捏造なしに書ける本物の差別化情報</strong>であり、しかも市民葬プラン（231,000円）という商品に直結する。
+  現在のページには「旧鳩ヶ谷市エリアでも対応してもらえますか？→はい対応します」という中身のないFAQしかない。</p>
+</div>
+
+<div class="exp">
+  <div class="who">I：リスク管理</div>
+  <p style="margin-bottom:0"><strong>15本を一度に書き換えて悪化したら、原因が特定できない。</strong>
+  代表2本で試し、次回チェックで効果を測ってから残りに展開すべき。<strong>削除・noindexは今回行わない</strong>（戻せない操作を最初に選ばない）。</p>
+</div>
+
+<div class="exp">
+  <div class="who">J：事業視点</div>
+  <p style="margin-bottom:0"><strong>「川口市 家族葬」303表示・0クリックが最大の逸失。</strong>家族葬は主力商品（会員528,000円）で、業界平均でも家族葬は96.39万円と単価が最も上昇している領域。
+  <strong>エリアページ15本の議論より先に、ここを直すべき。</strong></p>
+</div>
+
+<div class="box green">
+  <h4>会議の結論</h4>
+  <ol style="margin-bottom:0">
+    <li><strong>最優先は「川口市 家族葬」の受け皿修正。</strong>同一サイト内に勝ちパターン（直葬）があるため、確実性が高い</li>
+    <li><strong>次に一日葬のカニバリ解消。</strong>原因が新設ページと特定できている</li>
+    <li><strong>エリアページは削除せず、代表2本を差別化して測定。</strong>効果が出たら残りに展開</li>
+    <li><strong>距離・時間などの新しい事実は作らない。</strong>差別化は「そのエリアの人が実際に困ること」で行う</li>
+  </ol>
+</div>
+
+<hr>
+
+<h2>2. 実施した変更</h2>
+
+<h3>施策A ── 「川口市 家族葬」の受け皿を、実証済みの勝ちパターンに揃える</h3>
+<p><strong>対象：</strong><code>lib/plans.ts</code> ／ <code>/plan/family-funeral/</code></p>
+<div class="before"><strong>変更前</strong><br>
+metaTitle：家族葬の費用と人数の目安 | 川口市の家族葬プラン | 川口典礼<br>
+metaDescription：<strong>家族葬の費用と人数の目安を整理しました。</strong>川口典礼の家族葬プランは…</div>
+<div class="after"><strong>変更後</strong><br>
+metaTitle：<strong>川口市の家族葬</strong> | 費用と人数の目安・プラン料金 | 川口典礼<br>
+metaDescription：<strong>川口市で家族葬をご検討の方へ。</strong>川口典礼の家族葬プランは参列10〜30名が目安で、事前相談会員価格528,000円(税込)・通常価格628,000円(税込)。…1日1組貸切の川口メモリアルホール<strong>(川口市西新井宿)</strong>でのお別れから、川口市めぐりの森での火葬まで一貫してご相談いただけます。<strong>24時間365日対応。</strong></div>
+<p class="note">※ <code>/plan/direct-funeral/</code> の「川口市の直葬 | …」と同じ構造に揃えた。価格・プラン名は正本のまま変更なし。</p>
+
+<h3>施策B ── 一日葬のカニバリ解消</h3>
+<p><strong>対象：</strong><code>lib/plans.ts</code> ／ <code>/plan/yugure-kazokuso/</code> と <code>/plan/oneday-funeral/</code></p>
+<div class="before"><strong>変更前（夕暮れ家族葬）</strong><br>
+metaTitle：夕暮れ家族葬｜夕方から行う<strong class="bad">一日葬</strong>｜川口典礼<br>
+metaDescription：…川口典礼オリジナルの<strong class="bad">一日葬</strong>です。…</div>
+<div class="after"><strong>変更後（夕暮れ家族葬）</strong><br>
+metaTitle：夕暮れ家族葬｜<strong>夕方から夜にお別れする川口典礼オリジナルプラン</strong>｜川口典礼<br>
+metaDescription：…川口典礼オリジナルの<strong>プラン</strong>です。…</div>
+<div class="after"><strong>変更後（一日葬プラン＝本家を強化）</strong><br>
+metaTitle：川口市の一日葬 | 通夜を行わない葬儀の<strong>費用と流れ</strong> | 川口典礼<br>
+metaDescription：川口市で一日葬をご検討の方へ。通夜を行わず、告別式と火葬を1日で執り行う葬儀形式です。川口典礼の一日葬プランは<strong>事前相談会員価格396,000円(税込)・通常価格496,000円(税込)</strong>。…</div>
+
+<div class="box amber">
+  <p style="margin-bottom:0"><strong>プランの説明そのものは変えていません。</strong>
+  夕暮れ家族葬の <code>subtitle</code>「夕方から行う一日葬」、<code>heroTitle</code>「…川口典礼オリジナルの一日葬」、本文の説明はすべて正本どおり残しています。
+  <strong>変更したのは検索結果に出るタイトル・説明文だけ</strong>で、「夕暮れ家族葬は一日葬である」という事実の記載は維持されています。</p>
+</div>
+
+<h3>施策C ── エリアページの重複解消（代表2本）</h3>
+
+<h4>C-1：鳩ヶ谷 ── 中身のないFAQを、この地域固有の実需要に差し替え</h4>
+<p><strong>対象：</strong><code>lib/areas.ts</code> ／ <code>/area/hatogaya/</code></p>
+<div class="before"><strong>変更前</strong><br>
+Q. 旧鳩ヶ谷市のエリアでも対応してもらえますか？<br>
+A. はい。旧鳩ヶ谷市エリア(現在は川口市鳩ヶ谷地区)からのご相談も多くいただいております。…
+<span class="note" style="display:block">→ 「対応します」としか言っておらず、検索してきた人の疑問に答えていない</span></div>
+<div class="after"><strong>変更後（2問に差し替え・増設）</strong><br>
+<strong>Q. 旧鳩ヶ谷市の住民ですが、川口市民葬は利用できますか？</strong><br>
+A. 鳩ヶ谷市は<strong>2011年に川口市へ編入</strong>されており、現在の鳩ヶ谷地区にお住まいの方は川口市民です。そのため川口市の葬祭事業(市民葬)のご相談が可能で、川口典礼では<strong>市民葬プラン(231,000円・税込)</strong>をご用意しています。対象となる要件や、制度に含まれる範囲・別途かかる費用は条件によって異なりますので、事前のご相談で確認のうえご案内します。<br><br>
+<strong>Q. 鳩ヶ谷地区に葬儀式場はありますか？どこでお別れをすることになりますか？</strong><br>
+A. 川口メモリアルホールは川口市西新井宿にあり、鳩ヶ谷地区からはお車でお越しいただく形になります。1日1組の貸切で、駐車場は70台分。ご自宅でのお別れや菩提寺の寺院式場をご希望の場合もご相談ください。…</div>
+<p class="note">※ 「2011年に川口市へ編入」は公知の事実。市民葬の要件は断定せず「事前のご相談で確認のうえご案内」としています（CLAUDE.md §14 の価格表記ルール準拠）。</p>
+
+<h4>C-2：西川口 ── 同一テンプレート11本の代表として書き分け</h4>
+<p><strong>対象：</strong><code>lib/areas.ts</code> ／ <code>/area/nishikawaguchi/</code></p>
+<div class="before"><strong>変更前（他10エリアと同一文）</strong><br>
+理由：「川口メモリアルホールへの来館もしやすい」<br>
+FAQ：「西川口エリアから川口メモリアルホールは利用できますか？」</div>
+<div class="after"><strong>変更後（西川口固有の状況に）</strong><br>
+<strong>理由：「集合住宅からのお迎え・ご安置のご相談」</strong><br>
+西川口駅周辺はマンション・アパートにお住まいの方が多いエリアです。エレベーターの有無や通路の幅、深夜の搬出など、集合住宅ならではのご事情に配慮してお迎えに伺います。…<br><br>
+<strong>FAQ追加：「マンションやアパートからでも搬送をお願いできますか？」</strong><br>
+エレベーターの有無や通路の幅、階段のみのお部屋、深夜のお時間帯など、建物のご事情に合わせて人員と搬送方法を調整してお伺いします。管理人の方や近隣への配慮が必要な場合も、状況をお伺いしたうえで静かに対応いたします。<br><br>
+<strong>FAQ追加：「自宅にご安置するスペースがない場合はどうなりますか？」</strong><br>
+ご安置の日数によってドライアイスなどの費用が変わるため、火葬の日程の見通しとあわせて総額がどのくらいになるかを事前にご案内します。…</div>
+<p class="note">※ 距離・所要時間などの新しい事実は一切作っていません。「集合住宅が多い」「搬送時の配慮」「安置場所の相談」はいずれも実務として真であり、かつ他エリアの文面と重複しません。</p>
+
+<hr>
+
+<h2>3. 変更ファイルと確認</h2>
+<div class="scroll">
+<table>
+<tr><th class="l">項目</th><th class="l">結果</th></tr>
+<tr><td class="l">変更ファイル</td><td class="l"><code>lib/plans.ts</code>（12行）／<code>lib/areas.ts</code>（22行）<strong>の2ファイルのみ</strong></td></tr>
+<tr><td class="l"><code>npm run build</code></td><td class="l good">✅ 成功。エラー・警告なし（Compiled successfully in 10.1s）</td></tr>
+<tr><td class="l">静的生成ページ数</td><td class="l good">✅ <strong>138ページ</strong>（減少なし）</td></tr>
+<tr><td class="l">.env 系の差分</td><td class="l good">✅ なし</td></tr>
+<tr><td class="l">価格・プラン名</td><td class="l good">✅ 正本（CLAUDE.md §9）から変更なし</td></tr>
+<tr><td class="l">共通レイアウト</td><td class="l good">✅ Header / Footer / MobileBottomCTA は未変更</td></tr>
+<tr><td class="l">トップページ</td><td class="l good">✅ 未変更（8/3の「短期データで往復しない」判断を維持）</td></tr>
+<tr><td class="l">禁止表現の混入</td><td class="l good">✅ なし（最安・必ず・絶対・追加費用なし等）</td></tr>
+</table>
+</div>
+
+<h4>確認コマンド・確認URL</h4>
+<pre>npm run dev
+npm run build</pre>
+<ul>
+  <li><code>http://localhost:3000/plan/family-funeral/</code>（施策A）</li>
+  <li><code>http://localhost:3000/plan/oneday-funeral/</code>・<code>/plan/yugure-kazokuso/</code>（施策B）</li>
+  <li><code>http://localhost:3000/area/hatogaya/</code>（施策C-1）</li>
+  <li><code>http://localhost:3000/area/nishikawaguchi/</code>（施策C-2）</li>
+</ul>
+<p><strong>コミット・pushは未実施</strong>（ご指示があれば実行します）。CLAUDE.md §19.1 では title/metaDescription/FAQ の SEO改善は自走push可の範囲ですが、今回は3週間ぶりのコード変更のため確認をいただいてからにします。</p>
+
+<hr>
+
+<h2>4. 効果測定の設計</h2>
+<div class="box blue">
+  <p><strong>今回の変更は、次回チェック（8/24前後）で以下を見れば効果が判定できます。</strong>
+  インデックス更新には1〜2週間かかるため、8/24で動きがなくても失敗とは判断しません。</p>
+  <div class="scroll">
+  <table>
+  <tr><th class="l">施策</th><th class="l">見る指標</th><th class="l">現在値</th><th class="l">成功の目安</th></tr>
+  <tr><td class="l">A：家族葬</td><td class="l">「川口市 家族葬」の順位と受け皿URL</td><td class="l">25.3位／トップページが受けている</td><td class="l">20位以内、かつ /plan/family-funeral/ が受け皿に変わる</td></tr>
+  <tr><td class="l">A：家族葬</td><td class="l">「川口 家族葬」の順位</td><td class="l">25.9位</td><td class="l">20位以内</td></tr>
+  <tr><td class="l">B：一日葬</td><td class="l">/plan/oneday-funeral/ の「川口市 一日葬」順位</td><td class="l">25.79位</td><td class="l">20位以内、かつ夕暮れとの順位逆転</td></tr>
+  <tr><td class="l">C-1：鳩ヶ谷</td><td class="l">「鳩ヶ谷 葬儀」「鳩ヶ谷 家族葬」の順位</td><td class="l">30.2位（ページ全体）</td><td class="l">25位以内</td></tr>
+  <tr><td class="l">C-2：西川口</td><td class="l">「西川口 葬儀」の順位</td><td class="l">32.4位（ページ全体）</td><td class="l">25位以内</td></tr>
+  </table>
+  </div>
+  <p style="margin-bottom:0"><strong>C-1・C-2で効果が出た場合のみ、残り9〜13本のエリアページに同じ手法を展開します。</strong>
+  効果が出なければ、エリアページは「差別化しても勝てない」ということなので、統合・集約の検討に切り替えます。</p>
+</div>
+
+<hr>
+
+<h2>5. GBP API の承認状況について</h2>
+
+<div class="box red">
+  <h4>現時点では確認できませんでした（理由と対処を記載します）</h4>
+  <p><code>scripts/gbp/dump.mjs</code> を実行した結果：</p>
+  <pre>API エラー (status 403): Request had insufficient authentication scopes.</pre>
+  <p style="margin-bottom:0"><strong>これは「APIが未承認」というエラーではありません。</strong>
+  手元の <code>.env.local</code> にある認証トークンが<strong>Search Console用のスコープしか持っておらず、GBP用のスコープ（<code>business.manage</code>）が含まれていない</strong>ため、
+  そもそもAPIに問い合わせられていない状態です。<strong>承認されているかどうかの判定ができません。</strong></p>
+</div>
+
+<h3>確認方法① いちばん確実 ── 再認証すれば私が判定できます</h3>
+<p>次のコマンドをターミナルで実行してください。Claude Codeのプロンプトで <code>!</code> を先頭に付けると、この会話の中で実行できます。</p>
+<pre>node --env-file=.env.local scripts/get-refresh-token.mjs --scope=all</pre>
+<ol>
+  <li>ブラウザが開くので <strong>kawaguchi.memorial@gmail.com</strong> でログイン</li>
+  <li>「ビジネスプロフィールの管理」の権限を<strong>許可</strong></li>
+  <li>ターミナルに新しいリフレッシュトークンが表示されます</li>
+  <li>それを <code>.env.local</code> の <code>GOOGLE_OAUTH_REFRESH_TOKEN</code> に上書き保存</li>
+</ol>
+<p><strong>そのあと私が <code>node scripts/gbp/dump.mjs</code> を実行すれば、承認済みかどうかを確定的に判定できます。</strong></p>
+<div class="box amber">
+  <p style="margin-bottom:0"><strong>判定の読み方</strong>（再認証後に私が確認します）<br>
+  ・アカウント情報が返ってくる → <span class="good">承認済み</span><br>
+  ・<code>PERMISSION_DENIED</code> ／ <code>The caller does not have permission</code> → <span class="bad">まだ承認されていない</span><br>
+  ・<code>SERVICE_DISABLED</code> → <span class="warn">Cloud Console側でAPIが有効化されていない</span></p>
+</div>
+
+<h3>確認方法② Gmailを検索する（松澤様のお手元で今すぐできます）</h3>
+<p><strong>kawaguchi.memorial@gmail.com</strong> で、次のキーワードで検索してみてください。</p>
+<div class="scroll">
+<table>
+<tr><th class="l">検索キーワード</th><th class="l">探しているもの</th></tr>
+<tr><td class="l"><code>Business Profile API</code></td><td class="l">承認・却下の通知メール本体</td></tr>
+<tr><td class="l"><code>from:google.com Business Profile</code></td><td class="l">Google からの関連通知すべて</td></tr>
+<tr><td class="l"><code>"Google Business Profile APIs"</code></td><td class="l">申請受付・審査結果の定型メール</td></tr>
+<tr><td class="l"><code>quota</code> または <code>Standard Access</code></td><td class="l">アクセス枠の付与通知</td></tr>
+<tr><td class="l">迷惑メール・プロモーションタブも確認</td><td class="l"><strong>この種の通知は振り分けられやすいです</strong></td></tr>
+</table>
+</div>
+<p class="note">申請は2026-07-30に提出済み（<code>docs/operations/gbp/2026-07-30-gbp-api-access-request.md</code>）。審査は通常2〜6週間程度かかるため、まだ結果が出ていない可能性もあります。</p>
+
+<h3>確認方法③ Google Cloud Console で見る（メールが見つからない場合）</h3>
+<ol>
+  <li><a href="https://console.cloud.google.com/">console.cloud.google.com</a> に kawaguchi.memorial@gmail.com でログイン</li>
+  <li>該当プロジェクトを選択</li>
+  <li>左メニュー →「<strong>APIとサービス</strong>」→「<strong>有効なAPIとサービス</strong>」</li>
+  <li>「<strong>Google My Business API</strong>」または「<strong>Business Profile API</strong>」を開く</li>
+  <li>「<strong>割り当て（Quotas）</strong>」タブを見る</li>
+</ol>
+<div class="box">
+  <p style="margin-bottom:0"><strong>読み方</strong>：<br>
+  ・<code>Requests per minute</code> が <strong>0</strong> → <span class="bad">未承認</span>（申請中）<br>
+  ・<code>Requests per minute</code> が <strong>300</strong> など0より大きい → <span class="good">承認済み</span><br>
+  <span class="note">※ 2026-08-09時点では 0/300 QPM で未承認でした。ここが変わっていれば承認されています。</span></p>
+</div>
+<p><strong>この画面のスクリーンショットをいただければ、私が判定します。</strong>数値だけ教えていただく形でも構いません。</p>
+
+<hr>
+
+<h2>6. 次にやること</h2>
+<div class="scroll">
+<table>
+<tr><th>順</th><th class="l">項目</th><th class="l">担当</th><th class="l">期限</th></tr>
+<tr><td class="bad">1</td><td class="l"><strong>旧ドメイン <code>kawaguchi-tenrei.com</code> の契約者特定</strong>（経理の支払い履歴からNTT西日本への支払いを探す）</td><td class="l">松澤様</td><td class="l bad">9/3（残り17日）</td></tr>
+<tr><td class="warn">2</td><td class="l">GBP API：再認証（方法①）またはGmail検索・Cloud Console確認（方法②③）</td><td class="l">松澤様→私が判定</td><td class="l">随時</td></tr>
+<tr><td class="warn">3</td><td class="l">本日の変更のコミット・push可否のご判断</td><td class="l">松澤様</td><td class="l">—</td></tr>
+<tr><td>4</td><td class="l">効果測定（8/24前後のSEOチェック）</td><td class="l">私</td><td class="l">8/24前後</td></tr>
+<tr><td>5</td><td class="l">効果が出れば、残りエリアページ9〜13本へ展開</td><td class="l">私</td><td class="l">8/24以降</td></tr>
+</table>
+</div>
+
+<footer>
+  作成：Claude Code ／ 2026年8月17日<br>
+  根拠データ：Google Search Console API（<code>tmp/seo-analysis-2026-08-17/</code>）確定最新日 2026-08-14。<br>
+  コンテンツ重複の検出：<code>lib/areas.ts</code> の15エリアブロックを機械比較（reasons の title・faqs の q を抽出して照合）。<br>
+  対象は <code>kawaguchitenrei.com</code> のみ。広告LPは対象外（記録は <code>docs/ad-lp/</code>）。<br>
+  <strong>サイト変更あり：<code>lib/plans.ts</code>・<code>lib/areas.ts</code>。ビルド成功・138ページ・コミット未実施。</strong><br>
+  本資料は社内用・Web非公開（noindex）。個人情報・秘密情報は含みません。
+</footer>
+
+</div>
+</body>
+</html>

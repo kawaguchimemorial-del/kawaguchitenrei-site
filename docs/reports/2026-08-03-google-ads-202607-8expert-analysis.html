@@ -1,0 +1,569 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Google広告 2026年7月 速報値 8人専門家会議レポート（第2版・2026-08-03）</title>
+<style>
+  :root{--ink:#23201c;--sub:#6b645c;--line:#e4ddd3;--bg:#fbf9f5;--accent:#7a5c3e;--warn:#a3402f;--good:#3d6b4a;--blue:#3a5a7a;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;line-height:1.8;font-size:15px}
+  .wrap{max-width:1040px;margin:0 auto;padding:32px 22px 80px}
+  header.doc{border-bottom:3px solid var(--accent);padding-bottom:18px;margin-bottom:24px}
+  header.doc .tag{color:var(--accent);font-weight:700;letter-spacing:.12em;font-size:12px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:23px;margin:6px 0 4px;font-weight:700}
+  .meta{color:var(--sub);font-size:13px}
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:19px;margin:38px 0 12px;padding-left:12px;border-left:5px solid var(--accent)}
+  h3{font-size:15px;margin:24px 0 8px;color:var(--accent)}
+  .status{display:inline-block;background:#fdf6e8;border:1px solid #e8d6ae;color:#7a5c1e;border-radius:999px;padding:4px 14px;font-weight:700;font-size:14px}
+  .lead{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px 20px;margin:16px 0}
+  .info-box{background:#f2f4f8;border:1px solid #d4dbe6;border-radius:10px;padding:14px 18px;margin:14px 0}
+  .warn-box{background:#fdf1ef;border:1px solid #e8c4bc;border-radius:10px;padding:14px 18px;margin:14px 0}
+  .good-box{background:#eef7ef;border:1px solid #cfe6d3;border-radius:10px;padding:14px 18px;margin:14px 0}
+  .retract{background:#fffdf3;border:2px solid #d9c48a;border-radius:10px;padding:16px 20px;margin:16px 0}
+  .retract .rt{font-weight:700;color:#8a6d1e;font-size:14px;letter-spacing:.06em;margin-bottom:6px}
+  .tw{overflow-x:auto;margin:12px 0}
+  table{width:100%;min-width:560px;border-collapse:collapse;font-size:13px;background:#fff}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:right;vertical-align:top}
+  th:first-child,td:first-child{text-align:left}
+  thead th{background:#f2ece2;text-align:center}
+  .up{color:var(--good);font-weight:700}.down{color:var(--warn);font-weight:700}
+  code{background:#f1efe9;padding:1px 6px;border-radius:5px;font-size:12.5px;font-family:ui-monospace,Consolas,monospace}
+  ul{margin:8px 0 8px 1.2em}li{margin:5px 0}
+  .foot{margin-top:36px;border-top:1px solid var(--line);padding-top:14px;color:var(--sub);font-size:12px}
+  .exp{background:#fff;border:1px solid var(--line);border-left:5px solid var(--blue);border-radius:8px;padding:14px 18px;margin:16px 0}
+  .exp .who{font-weight:700;color:var(--blue);font-size:14px;margin-bottom:6px}
+  .exp .op{margin:0 0 10px}
+  .exp .dis{background:#fbf6f5;border:1px dashed #d9b8b0;border-radius:6px;padding:9px 13px;font-size:13.5px;color:#7a3a2c;margin-top:8px}
+  .exp .dis b{color:var(--warn)}
+  .verdict{background:#f6f2ea;border:1px solid #ddd0bb;border-radius:8px;padding:12px 16px;margin:14px 0;font-size:14px}
+  .verdict b{color:var(--accent)}
+  .t1{color:#8c3626;font-weight:700}
+  .num{font-variant-numeric:tabular-nums}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <div class="tag">社内レポート（docs/reports・非公開/noindex）</div>
+  <h1>Google広告 2026年7月 速報値 ─ 8人専門家会議レポート【第3版】</h1>
+  <div class="meta">
+    実施：2026-08-03（第1版＝誤判定により撤回／第2版＝再審議／第3版＝松澤の事業判断を反映）／ 対象期間：2026年7月1日〜7月31日<br>
+    元データ：<code>public/images/tmp/リスティング/報告/20250803/202607 Google広告レポート.xlsx</code>（全8シート）<br>
+    追加検証：<code>lib/plans.ts</code>／<code>https://kawaguchitenrei.com/plan/direct-funeral/</code>／広告LP <code>https://kawaguchi-memorial-hall.com/</code>（プラン画像を含む）<br>
+    ※本レポートは分析のみ。広告アカウント・サイトいずれも変更していません。
+  </div>
+</header>
+
+<div class="retract">
+  <div class="rt">■ 第1版の訂正</div>
+  第1版では、広告見出し「<strong>直葬8.8万～、ご負担を最小限に</strong>」について
+  「88,000円のプランは存在せず、景品表示法上の有利誤認のおそれがあるため即時停止すべき」と結論した。<strong>これは誤りである。</strong><br><br>
+  <strong>シンプル直葬プランは実在する。</strong>
+  <code>lib/plans.ts</code>（1210〜1219行）に定義され、
+  <code>/plan/direct-funeral/</code> 下部および広告LPのプラン画像に掲載されている。
+  価格は <strong>事前相談会員価格 88,000円（税込）／～5名／宗教的な物品を含まず、お預かり中の面会なし</strong>。<br><br>
+  <strong>誤判定の原因は分析側の確認不足に加え、価格正本（CLAUDE.md §9）にシンプル直葬プランが記載されていないこと。</strong>
+  正本に載っていないプランを「存在しない」と判定した。<strong>正本の欠落は今回の再審議で最も重要な発見のひとつ</strong>として §3-A で扱う。<br><br>
+  <strong>そして、この訂正のために価格を突き合わせた結果、別の実在する不一致が2件見つかった。</strong>第1版が挙げた架空の問題より、こちらのほうが実務上は重い。
+</div>
+
+<div class="lead">
+  <span class="status">🟡 要対応 2件（表記整合）／要調査 1件</span><br>
+  7月実績は <strong>費用 ¥890,113 / CV 25.5件 / CPA ¥34,906</strong>。
+  <strong>7/13→7/14 に表示回数が 2,395 → 29,413（12.3倍）</strong>へ跳ね CTR が 2.25%→0.37% に崩落したが、
+  同期間で <strong>CPC ¥486→¥308・CPA ¥49,540→¥28,809（42%改善）</strong>であり、単純な悪化ではない。<br>
+  <strong>「直葬8.8万～」は停止する</strong>——ただし第1版が言った「プランが存在しないから」ではなく、
+  <strong>「88,000円で受注しても利益が残らず、獲得したい層ではないから」という事業判断（松澤・§3-D）</strong>による。
+  同じ理由で <strong>「安い」系クエリも除外で確定</strong>（§4 Tier 4）。ただし <code>費用</code> <code>料金</code> <code>相場</code> 単体は除外しない——<strong>7月のクリックの過半がそこから来ている</strong>。<br>
+  あわせて <strong>通常価格が LP 139,000円／メインサイト 138,000円 と食い違っている</strong>（§3-B）。これは実在する要修正点。
+</div>
+
+<h2>1. 全体サマリー（2026年7月）</h2>
+<div class="tw">
+<table>
+  <thead><tr><th>キャンペーン</th><th>表示</th><th>クリック</th><th>CTR</th><th>CPC</th><th>費用</th><th>CV</th><th>CPA</th></tr></thead>
+  <tbody>
+    <tr><td>一般KW（費用、エリア）</td><td class="num">96,398</td><td class="num">1,028</td><td>1.07%</td><td>¥334</td><td class="num">¥343,721</td><td>6.0</td><td class="down">¥57,287</td></tr>
+    <tr><td>指名</td><td class="num">303,538</td><td class="num">713</td><td class="down">0.23%</td><td>¥436</td><td class="num">¥311,058</td><td>12.5</td><td class="up">¥24,885</td></tr>
+    <tr><td>デマンドジェネレーション</td><td class="num">87,522</td><td class="num">708</td><td>0.81%</td><td>¥332</td><td class="num">¥235,334</td><td>7.0</td><td>¥33,619</td></tr>
+    <tr><td><strong>合計</strong></td><td class="num"><strong>487,458</strong></td><td class="num"><strong>2,449</strong></td><td><strong>0.50%</strong></td><td><strong>¥363</strong></td><td class="num"><strong>¥890,113</strong></td><td><strong>25.5</strong></td><td><strong>¥34,906</strong></td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3>月内で構造が変わった（7/13 と 7/14 の断層）</h3>
+<div class="tw">
+<table>
+  <thead><tr><th>期間</th><th>表示</th><th>クリック</th><th>CTR</th><th>CPC</th><th>費用</th><th>CV</th><th>CPA</th></tr></thead>
+  <tbody>
+    <tr><td>7/01–7/13（13日）</td><td class="num">34,073</td><td class="num">765</td><td>2.25%</td><td>¥486</td><td class="num">¥371,549</td><td>7.5</td><td class="down">¥49,540</td></tr>
+    <tr><td>7/14–7/31（18日）</td><td class="num">453,385</td><td class="num">1,684</td><td class="down">0.37%</td><td class="up">¥308</td><td class="num">¥518,564</td><td>18.0</td><td class="up">¥28,809</td></tr>
+  </tbody>
+</table>
+</div>
+<div class="info-box">
+  表示が13倍に膨らみ CTR が6分の1に崩れた一方、<strong>CPCは37%下がり、CPAは42%改善している</strong>。
+  「CTRが落ちた＝悪化」ではない。ここを取り違えると、成果を出している施策を止めてしまう。
+</div>
+
+<h2>2. 8人の専門家による再審議</h2>
+<p>第1版の誤りを共有したうえで、全員が自分の意見を再検討した記録。<strong>前提が崩れた専門家は、どこで判断を誤ったかを自分で述べている。</strong>
+反論はそのまま残してある。</p>
+
+<div class="exp">
+  <div class="who">⑥ 広告表示／景品表示法レビュー ── 前回の主張を撤回</div>
+  <p class="op"><strong>前回の私の結論は誤りだった。撤回する。</strong>シンプル直葬プランは実在し、88,000円は当社の正規の事前相談会員価格である。
+  私は「CLAUDE.md §9 の価格正本に載っていない＝存在しない」と判断したが、<strong>正本のほうが不完全だった</strong>。<br>
+  そのうえで、価格を全数突き合わせた結果として<strong>本当の問題を2件見つけた</strong>ので、そちらを報告する。<br>
+  <strong>(1) 通常価格の不一致</strong>：広告LPのプラン画像は「一般価格 <strong>139,000円</strong>（税込）〜」、メインサイト <code>lib/plans.ts</code> は「<strong>138,000円</strong>（税込）」。<strong>1,000円食い違っている。</strong>
+  しかも 139,000円は<strong>直葬プラン（上位プラン）の会員価格と同額</strong>であり、転記時の取り違えが疑われる。同一社が同一プランについて2つの通常価格を掲示している状態は、金額の大小にかかわらず是正すべき。<br>
+  <strong>(2) 「8.8万～」は会員価格である旨が広告文に無い</strong>：88,000円は<strong>事前相談会員価格</strong>であって、一般価格は138,000／139,000円。
+  「直葬8.8万～」だけを見た人には、その条件が伝わらない。これは停止事由ではなく、<strong>説明文に条件を書けば解消する</strong>（打消し表示の適正化）。</p>
+  <div class="dis"><b>自己批判：</b>前回、私は「費用対効果では判断するな、コンプライアンスだ」と他の専門家を封じた。主張の型としては正しいが、<strong>その強い主張を、一次資料（LP・plans.ts）を見ずに出した</strong>のは誤りだった。今後、価格の指摘は必ず実物を確認してから出す。</div>
+</div>
+
+<div class="exp">
+  <div class="who">⑧ 葬儀業界コピー／遺族心理 ── 評価が正反対に変わった</div>
+  <p class="op">前回、私は⑥に同調して「8.8万は当社のトーンとして出すべきでない」と述べた。<strong>これも撤回する。</strong>
+  数字を見直すと、この訴求は<strong>DG内で最も引きが強い部類</strong>だ。</p>
+  <div class="tw"><table>
+    <thead><tr><th>アセット</th><th>表示</th><th>クリック</th><th>CTR</th><th>CV</th></tr></thead>
+    <tbody>
+      <tr><td>直葬8.8万～、ご負担を最小限に（2バリエーション計）</td><td class="num">2,349</td><td class="num">29</td><td class="up">1.23%</td><td class="down">0</td></tr>
+      <tr><td>DGキャンペーン平均</td><td class="num">87,522</td><td class="num">708</td><td>0.81%</td><td>7.0</td></tr>
+      <tr><td>家族葬・市民葬の相談受付中（DG）</td><td class="num">20,301</td><td class="num">209</td><td>1.03%</td><td>1.0</td></tr>
+      <tr><td>地域密着、川口市で20年の実績（DG）</td><td class="num">23,860</td><td class="num">190</td><td>0.80%</td><td>2.0</td></tr>
+      <tr><td>ご予算別の葬儀プランをご提案（DG）</td><td class="num">376</td><td class="num">3</td><td>0.80%</td><td>0</td></tr>
+    </tbody>
+  </table></div>
+  <p class="op"><strong>DG平均の1.5倍のCTR</strong>。にもかかわらず <strong>CV 0</strong>。つまり<strong>訴求は当たっているのに、着地で落ちている</strong>。
+  この場合の処方箋は「訴求を止める」ではなく「<strong>着地を訴求に合わせる</strong>」だ。
+  なお当社のトーン方針（§11）が禁じているのは<strong>煽り・断定・最安の主張</strong>であって、実在するプランの実在する価格を提示することではない。ここも私が混同していた。</p>
+  <div class="dis"><b>④への注文：</b>着地を直すなら、直葬の情報量を増やすだけでは足りない。8.8万で来た人は「<strong>この金額で本当に見送れるのか</strong>」を確かめに来ている。増やすべきは価格の強調ではなく、<strong>含まれるもの・含まれないもの（宗教的物品なし／面会なし／～5名）を最初に正直に見せること</strong>。ここを曖昧にすると、来館しても成約しない。</div>
+  <div class="dis" style="border-style:solid;border-color:#c9a24a;background:#fffdf3;color:#6b551e"><b>【第3版・追記】松澤判断を受けて：</b>
+  この訴求は停止となった。私の「引きが強い」という評価そのものは数字として正しいが、<strong>何を引いているかを問わなかった</strong>のが浅かった。
+  「8.8万」で反応する方は、<strong>価格が第一の判断基準</strong>である可能性が高い。当社が20年かけて積み上げてきたのは価格競争力ではなく、
+  地域密着と自社式場と対応力だ。<strong>自社の強みが効かない土俵に、広告費を払って自分から降りていた</strong>ことになる。
+  直葬の訴求は「価格」ではなく「<strong>ご家族だけで静かにお見送りする形</strong>」として書き直す。それが当社のトーンとも一致する。</div>
+</div>
+
+<div class="exp">
+  <div class="who">④ LP・導線／CRO ── 「CV 0」の説明がついた</div>
+  <p class="op">⑧の指摘を受けて広告LP（<code>kawaguchi-memorial-hall.com</code>）を実際に見た。<strong>直葬の扱いが極端に薄い。</strong></p>
+  <ul>
+    <li>LPの本文テキスト中の登場回数：<strong>家族葬 7回／市民葬 7回／一日葬 1回／直葬 0回</strong></li>
+    <li>直葬は<strong>プラン画像1枚（<code>chokusou_plan.png</code>）としてのみ存在</strong>し、テキストは1文字もない</li>
+    <li>価格はすべて<strong>画像内に焼き込まれており、テキストとして存在しない</strong></li>
+    <li>LPの見出し・meta description・FAQ・強み訴求はすべて<strong>「家族葬・市民葬」</strong>で構成されている</li>
+  </ul>
+  <p class="op">つまり「直葬8.8万～」に反応してクリックした人が着地すると、<strong>ページ全体は家族葬・市民葬の説明で、直葬は画像1枚だけ</strong>。
+  内容（何が含まれるか）にも、条件（～5名・面会なし）にも、一切たどり着けない。<strong>CTR 1.23%・CV 0 はこれで説明がつく。</strong><br>
+  さらに、価格が画像内テキストであることは<strong>価格改定時に修正漏れが起きる構造</strong>そのものであり、⑥が見つけた「139,000円 vs 138,000円」の食い違いはまさにその症状だと考えられる。</p>
+  <div class="dis"><b>⑦への反論：</b>「CV0だから予算を家族葬へ寄せろ」という判断には反対する。<strong>直葬は当社サイトで最も検索需要のある入口</strong>（自然検索でも「川口市 直葬」9.4位・「直葬費用」で広告クリック20件）。ここを畳むのではなく、着地を作れば取れる。<strong>まだ一度も正しくテストされていない訴求を、成果が出ていないという理由で切らないこと。</strong></div>
+</div>
+
+<div class="exp">
+  <div class="who">① PPCアカウント構造ストラテジスト</div>
+  <p class="op">前回の主要論点は変わらない。<strong>指名キャンペーンが表示303,538回で CTR 0.23%</strong> ——
+  川口市という一自治体で自社ブランド名の検索が月30万回発生することは物理的にあり得ず、表示の大半は<strong>ブランド検索ではない配信面</strong>から来ている。
+  7/14の断層と合わせ、<strong>検索パートナー／ディスプレイ拡張のON</strong>を最有力仮説とする。
+  代理店（NEXTUP）に <strong>7/13〜7/15の変更履歴</strong>を出させるのが第一手であることも変わらない。<br>
+  今回の訂正を踏まえて1点追加する。<strong>「直葬8.8万～」がDG専用アセットであり、検索キャンペーン側に直葬の受け皿が無い</strong>のは構造として不自然だ。
+  検索クエリでは「直葬費用」がクリック20件、「一日葬費用」がクリック7件、「火葬式費用」が発生しているのに、<strong>専用の広告グループが存在しない</strong>。</p>
+  <div class="dis"><b>⑥への注文：</b>前回あなたの「即時停止」提言を、私は構造の話に集中していて検証しなかった。<strong>会議として、価格・法務系の指摘には必ず一次資料の提示を求めるルール</strong>にしたい。今回は幸い実害が出る前に止まったが、指示が出ていれば成果の出ている訴求を消していた。</div>
+</div>
+
+<div class="exp">
+  <div class="who">② キーワード／検索クエリアナリスト</div>
+  <p class="op">クエリ側の結論は第1版から変わらない。検索クエリ237語のうち<strong>費用が発生したのは67語のみ・170語は表示だけ</strong>で、その大半が競合社名と公営火葬場の情報検索。
+  実費でも <strong>「川口火葬場」¥7,809・「川口市めぐりの森」¥6,489・「めぐりの森火葬場」¥4,334 で全てCV 0</strong>。<br>
+  今回の訂正を受けて、私は一度「<strong>8.8万というプランを実際に持っている以上、『安い』系クエリを除外するのは前提が違う</strong>」と結論を変えた。
+  <strong>この修正は、松澤の判断により再度覆された（§4 Tier 4）。</strong><br>
+  <strong>私はこの結論を受け入れる。</strong>私の議論は「提示できる商品があるか」という<em>在庫の話</em>に閉じていて、
+  <strong>「その商品で受注して事業が成り立つか」という採算の話を欠いていた</strong>。
+  88,000円で受注しても利益が残らないのであれば、そこに広告費を払って人を集める理由はどこにもない。
+  <strong>商品として持っていることと、広告で獲りにいくことは別である</strong>——これが正しい整理だ。</p>
+  <div class="dis"><b>自己批判：</b>⑦は第2版の時点で「受注単価が主力の1/5以下でCPAが合わない」と正しく指摘していた。私はそれを「入口として正しい」で流してしまった。<strong>クエリの是非を、検索者の意図だけで判断し、採算で判断しなかった</strong>のが誤り。</div>
+  <div class="dis"><b>⑤への反論（維持）：</b>火葬場系クエリの全面除外反対には引き続き部分的に反対する。ただし「めぐりの森＋葬儀」語を残す点には同意した。切るのは<strong>「予約」「空き状況」「アクセス」「料金」「場所」「写真」「レビュー」を含むもの、および施設名単体</strong>に限定する。</div>
+</div>
+
+<div class="exp">
+  <div class="who">③ アナリティクス／計測設計</div>
+  <p class="op">CV 25.5件という<strong>小数点付きCV</strong>は、Googleのモデル化コンバージョン（推定値）が混ざっていることを意味する。実測ではない分が含まれている。
+  さらに 25.5件のうち <strong>12.5件（49%）が指名キャンペーン</strong>。
+  自然検索側では「川口典礼」がすでに<strong>平均1.0位・CTR 21.2%・月47クリック</strong>を取れている（8/3 SEOチェック）ため、
+  指名広告のCVの相当部分は<strong>広告がなくても取れていたクリックの買い戻し</strong>の可能性がある。¥311,058 の増分価値は現状データでは証明できていない。<br>
+  加えて今回、④の調査で<strong>広告LPの価格がすべて画像</strong>であることが判明した。これは計測面でも問題で、
+  <strong>どのプランが見られているかがイベントとして一切取れない</strong>。8.8万の訴求が着地でどう扱われたかを、今のままでは永久に測れない。</p>
+  <div class="dis"><b>①への反論（維持）：</b>「設定変更が原因」と断定するのは早い。CPCが下がったのは、質の低い在庫が混ざった結果とも、競合の入札が緩んだ結果とも読める。変更履歴を見るまで配信面の話に決め打ちしない。</div>
+  <div class="dis"><b>⑧への反論：</b>「CTR 1.23%だから引きが強い」という評価も、母数2,349表示・クリック29件では<strong>統計的にまだ何も言えない</strong>。方向性としては支持するが、<strong>「最も引きの強い訴求」と断言するのは第1版と同じ誤り</strong>だ。着地を直したうえで、最低でも表示1万・クリック100規模まで回してから評価すべき。</div>
+</div>
+
+<div class="exp">
+  <div class="who">⑤ ローカル／地域戦略（GBP）</div>
+  <p class="op">エリア面の結論は変わらない。<strong>川口市以外に ¥26,385 が流出しCVは0</strong>（緑区 28,366表示・¥21,658・CV0／蕨市 10,165表示・¥4,728・CV0）。
+  検索クエリ側にも「越谷家族葬」「直葬蕨市」「家族葬儀千葉」「新狭山」「幸手」「加須」など商圏外が大量に混入している。<br>
+  今回の訂正に関連して、<strong>広告LPともう1件の不整合</strong>を報告する。
+  LPは「火葬場めぐりの森まで<strong>車で4分</strong>」と書いているが、メインサイトおよび社内基準は「<strong>車で約5分</strong>」。
+  数字としては小さいが、<strong>近接性は当社の中核的な強み（5つの柱の3番目）</strong>であり、媒体ごとに数字が違うのは避けたい。</p>
+  <div class="dis"><b>③への反論（維持）：</b>指名広告を「自然検索で取れるから無駄」と切り捨てるのは危険だ。<strong>「川口典礼」のCPCが ¥1,528〜¥1,743 という異常な高さ</strong>は、他社が当社の社名に入札している強い証拠。降りればその枠は競合に渡る。</div>
+</div>
+
+<div class="exp">
+  <div class="who">⑦ ユニットエコノミクス／財務</div>
+  <p class="op">月 ¥890,113 で CV 25.5件、CPA ¥34,906。ただし<strong>CVは「相談」であって「受注」ではない</strong>。
+  相談→受注率を仮に30%と置けば受注は約8件、受注あたり広告費は約 ¥11.5万。主力プラン単価（39.6万〜62.8万円）に対して<strong>ぎりぎり成立するが余裕はない</strong>。
+  改善余地が最大なのは<strong>一般KWキャンペーンの CPA ¥57,287</strong>（費用¥343,721でCV6件）。<br>
+  今回の訂正で、私は<strong>シンプル直葬プランの位置づけを財務的に問い直したい</strong>。88,000円のプランは<strong>受注単価が主力の1/5以下</strong>で、
+  現在のCPA水準（¥34,906）では<strong>1件受注しても広告費が回収できない可能性が高い</strong>。
+  「引きが強いから伸ばす」という④⑧の方向には、条件を付けたい。</p>
+  <div class="dis"><b>⑧・④への反論：</b>直葬の着地を作り込むことには賛成するが、<strong>目的を「直葬の受注」に置くべきではない</strong>。直葬で問い合わせた方に、内容の説明を通じて<strong>一日葬・家族葬という選択肢もあることを知っていただく</strong>——結果として上位プランを選ばれる方が一定数出る、という設計にしないと、CPAが合わない。<strong>入口としては正しいが、出口を直葬に固定するな。</strong></div>
+  <div class="dis" style="border-style:solid;border-color:#c9a24a;background:#fffdf3;color:#6b551e"><b>【第3版・追記】：</b>
+  松澤判断により「安い」系クエリの除外と 8.8万訴求の停止が確定した。<strong>私の懸念がそのまま採用された形</strong>だが、数字で補足しておく。
+  現在のCPA ¥34,906 に対し、88,000円プランの粗利は<strong>広告費を差し引いた時点でほぼ残らない</strong>。
+  仮に相談→受注率30%とすれば受注1件あたり広告費は約 ¥11.6万で、<strong>プラン価格そのものを上回る</strong>。
+  価格訴求で集めた層は上位プランへの移行率も低いと見るのが妥当で、<strong>この訴求は構造的に赤字だった</strong>。
+  停止による直接の削減額は ¥8,198／月と小さいが、<strong>回避したのは費用ではなく、成立しない受注に費やされる対応工数</strong>である。</div>
+  <div class="dis"><b>⑥への注文：</b>ただし「価格表記を揃えろ」という指摘には全面的に賛成する。<strong>139,000 と 138,000 の食い違いは、金額の問題ではなく管理体制の問題</strong>を示している。価格が画像に焼き込まれていて、正本にも載っていない——これは<strong>次の改定時に必ず事故が起きる構造</strong>だ。</div>
+</div>
+
+<h2>3. 再審議で合意した論点（優先度順）</h2>
+
+<h3 id="a">A. 【最優先】価格正本（CLAUDE.md §9）にシンプル直葬プランが無い</h3>
+<div class="warn-box">
+  <strong>事実</strong>：シンプル直葬プランは <code>lib/plans.ts</code> に定義され、<code>/plan/direct-funeral/</code> と広告LPの双方に掲載されている実在のプラン。
+  しかし <strong>CLAUDE.md §9「料金・プラン名の正本」には記載がない</strong>。<br>
+  <strong>影響</strong>：正本に無いプランは「存在しない」と判定される。今回まさにそれが起き、<strong>成果を出している広告訴求に対して誤った停止提言が出た</strong>。
+  人が介在しなければ、実在するプランの広告を止めていた。<br>
+  <strong>推奨アクション</strong>：
+  <ul>
+    <li>CLAUDE.md §9 に以下を追記（※CLAUDE.md の編集は<strong>松澤の承認が必要</strong>のため、本レポートでは提案に留める）：<br>
+      <code>シンプル直葬プラン：事前相談会員価格 88,000円（税込）／通常価格 ●●●,000円（税込）</code><br>
+      <code>　～5名を目安。宗教的な物品は含まず、お預かり中の面会は不可。</code></li>
+    <li>通常価格は §3-B の確認結果を反映してから確定する</li>
+    <li>あわせて、正本に<strong>「広告・LPで使用しているプラン名の表記ゆれ」</strong>も併記する（§3-C）</li>
+  </ul>
+</div>
+
+<h3 id="b">B. 【要確認・要修正】シンプル直葬プランの通常価格が2つある</h3>
+<div class="warn-box">
+  <div class="tw"><table>
+    <thead><tr><th>掲載場所</th><th>プラン名</th><th>会員価格</th><th>通常価格</th></tr></thead>
+    <tbody>
+      <tr><td>メインサイト <code>lib/plans.ts</code> / <code>/plan/direct-funeral/</code></td><td>シンプル直葬プラン</td><td>88,000円（税込）</td><td class="down">138,000円（税込）</td></tr>
+      <tr><td>広告LP <code>kawaguchi-memorial-hall.com</code>（プラン画像）</td><td>直葬シンプルプラン</td><td>88,000円（税込）〜</td><td class="down">139,000円（税込）〜</td></tr>
+    </tbody>
+  </table></div>
+  <strong>1,000円食い違っている。</strong>しかも <strong>139,000円は直葬プラン（上位プラン）の事前相談会員価格と同額</strong>であり、
+  制作時に隣接する数字を取り違えた可能性が高い。<br>
+  <strong>推奨アクション</strong>：
+  <ul>
+    <li>松澤に<strong>どちらが正しいか確認</strong>（これは推測してはならない項目）</li>
+    <li>正しいほうに統一し、あわせて CLAUDE.md §9 に反映（§3-A）</li>
+    <li>LP側の修正は<strong>画像の作り直しが必要</strong>（価格が画像内に焼き込まれているため）。代理店に依頼</li>
+  </ul>
+  <strong>これが第1版で挙げた架空の問題に代わる、実在の表記リスクである。</strong>ただし緊急停止は不要——どちらの価格も実在の水準であり、有利誤認の性質のものではない。
+</div>
+
+<h3 id="c">C. 【要統一】プラン名の表記ゆれ</h3>
+<div class="tw">
+<table>
+  <thead><tr><th>正本（CLAUDE.md §9）</th><th>メインサイト</th><th>広告LP</th><th>広告アセット</th></tr></thead>
+  <tbody>
+    <tr><td class="down">（記載なし）</td><td>シンプル直葬プラン</td><td class="down">直葬シンプルプラン</td><td>—</td></tr>
+    <tr><td>直葬プラン</td><td>直葬プラン</td><td>—</td><td>直葬シンプルプラン（サイトリンク）</td></tr>
+    <tr><td>一日葬プラン</td><td>一日葬プラン</td><td class="down">家族葬一日プラン</td><td class="down">家族葬1日プラン（サイトリンク）</td></tr>
+  </tbody>
+</table>
+</div>
+<p>「シンプル直葬」と「直葬シンプル」、「一日葬」と「家族葬一日」「家族葬1日」——<strong>同じプランが媒体ごとに違う名前で呼ばれている</strong>。
+検索・AI検索の両面で不利になるうえ、お問い合わせ時にご家族と担当者の間で認識がずれる原因になる。
+<strong>正本で名称を確定し、サイト・LP・広告の全媒体を揃える</strong>ことを推奨する。</p>
+
+<h3 id="d">D. 【方針転換】「直葬8.8万～」は停止ではなく、着地を作る</h3>
+<div class="good-box">
+  <div class="tw"><table>
+    <thead><tr><th>項目</th><th>値</th><th>評価</th></tr></thead>
+    <tbody>
+      <tr><td>表示 / クリック</td><td class="num">2,349 / 29</td><td>—</td></tr>
+      <tr><td>CTR</td><td class="up">1.23%</td><td>DG平均0.81%の1.5倍</td></tr>
+      <tr><td>費用</td><td class="num">¥8,198</td><td>DG費用の3.5%</td></tr>
+      <tr><td>CV</td><td class="down">0</td><td>着地で落ちている疑い</td></tr>
+    </tbody>
+  </table></div>
+  <strong>着地側の状況</strong>（広告LPの実測）：本文テキスト中の登場回数は <strong>家族葬7回・市民葬7回・一日葬1回・直葬0回</strong>。
+  直葬は<strong>プラン画像1枚のみ</strong>で、内容（含まれるもの）にも条件（～5名・宗教的物品なし・面会なし）にもたどり着けない。<br>
+  <strong>CTRは高いがCVが出ないのは、着地の問題である</strong>——第2版ではそう結論した。
+</div>
+
+<div class="retract">
+  <div class="rt">■ 第3版での方針修正（松澤判断・2026-08-03）</div>
+  <strong>§4 Tier 4 で「安い」系クエリを除外すると決めた以上、この訴求だけ残すのは筋が通らない。</strong><br><br>
+  「88,000円で受注しても利益が残らないので、その層は獲得したくない」という判断は、
+  <strong>クエリ側（安いで検索する人を入れない）と、広告文側（8.8万で人を引く）の両方に等しく適用されなければならない</strong>。
+  <strong>「直葬8.8万～、ご負担を最小限に」は、まさに価格の安さで引く訴求そのもの</strong>であり、
+  除外キーワードで弾こうとしている層を、DG側で自ら呼び込んでいることになる。<br><br>
+  <b>したがって推奨を以下に改める：</b>
+  <ol>
+    <li class="t1"><strong>「直葬8.8万～、ご負担を最小限に」アセットを停止する。</strong>
+      第1版とは<strong>結論だけが同じで理由が全く違う</strong>——法令違反だからではなく、
+      <strong>獲得したくない層を集めているから</strong>。CTRが高いことは、この判断ではむしろ停止を後押しする材料になる（引きが強いぶん、望まない層を多く集める）。</li>
+    <li><strong>直葬プラン自体の受け皿整備は継続する。</strong>直葬には価格目的でない正当な検討層（家族のみで静かに見送りたい／ご高齢で参列者が少ない等）が確実に存在し、
+      自然検索でも「川口市 直葬」9.4位・「直葬費用」クリック13件と需要が出ている。<strong>畳むのは「安さ訴求」であって「直葬」ではない。</strong></li>
+    <li><strong>直葬の訴求軸を「価格」から「内容・対応」へ入れ替える。</strong>
+      例：<em>「ご家族だけで静かにお見送りする直葬」「川口市内・24時間ご相談を承ります」「めぐりの森まで車で約5分」</em>。
+      <strong>金額は広告文に出さず、着地ページで正直に提示する</strong>——価格で引かず、内容で選んでいただく形にする。</li>
+    <li><strong>LPに直葬の説明ブロックを追加</strong>。価格より先に「<strong>含まれるもの／含まれないもの</strong>」を置く（⑧の主張は有効）</li>
+    <li><strong>着地先を <code>/plan/direct-funeral/</code> にするテスト</strong>。当該ページには内容・条件・<strong>上位プランへの導線</strong>がすでに揃っている</li>
+    <li><strong>出口を直葬に固定しない。</strong>相談時に一日葬・家族葬という選択肢もご案内できる設計にする（⑦の条件を採用）</li>
+    <li>検索キャンペーン側の<strong>直葬／火葬式の広告グループ新設</strong>も、<strong>「安い」系除外を適用したうえで</strong>実施する</li>
+  </ol>
+  <em>※シンプル直葬プラン自体を廃止・非掲載にするという話ではない。実際にご希望される方には必要なプランであり、サイト上の掲載は維持する。
+  <strong>変えるのは「広告費を使って安さで集めにいくかどうか」だけ</strong>。</em>
+</div>
+
+<h3>E. 【要調査・48時間以内】7/14の配信面激変</h3>
+<div class="info-box">
+  <strong>事実</strong>：7/13→7/14 で表示が 2,395→29,413（12.3倍）。指名キャンペーンが月間表示303,538・CTR 0.23%。<br>
+  <strong>ただし</strong>：同期間で CPC ¥486→¥308、CPA ¥49,540→¥28,809 と<strong>総合成績は改善</strong>。<br>
+  <strong>推奨アクション</strong>：<strong>止めずに、まず情報を取る。</strong>
+  <ul>
+    <li>代理店に <strong>7/13〜7/15 の変更履歴</strong>を提出させる</li>
+    <li><strong>検索パートナー／ディスプレイ拡張のON・OFF状態</strong>を確認</li>
+    <li><strong>CVの定義</strong>（フォーム送信のみか、電話タップ等のマイクロCVを含むか、モデル化CVの比率）を開示させる</li>
+    <li>指名キャンペーンの<strong>実際の検索語句トップ50</strong>を別途出させる（30万表示の中身の確認）</li>
+  </ul>
+</div>
+
+<h3>F. 【即時実行可】0時台の抑制</h3>
+<div class="tw">
+<table>
+  <thead><tr><th>時間帯</th><th>表示</th><th>クリック</th><th>CTR</th><th>費用</th><th>CV</th><th>CPA</th><th>判定</th></tr></thead>
+  <tbody>
+    <tr><td>0時</td><td class="num">165,439</td><td class="num">460</td><td class="down">0.28%</td><td class="num">¥154,680</td><td>1.0</td><td class="down">¥154,680</td><td class="t1">抑制</td></tr>
+    <tr><td>1–4時</td><td class="num">175,010</td><td class="num">811</td><td>0.46%</td><td class="num">¥227,148</td><td>9.0</td><td class="up">¥25,239</td><td>維持</td></tr>
+    <tr><td>5–10時</td><td class="num">39,791</td><td class="num">594</td><td class="up">1.49%</td><td class="num">¥186,811</td><td>5.5</td><td>¥33,966</td><td>強化</td></tr>
+    <tr><td>11–16時</td><td class="num">68,025</td><td class="num">418</td><td>0.61%</td><td class="num">¥247,221</td><td>7.0</td><td>¥35,317</td><td>維持</td></tr>
+    <tr><td>17–23時</td><td class="num">39,193</td><td class="num">166</td><td>0.42%</td><td class="num">¥74,250</td><td>3.0</td><td class="up">¥24,750</td><td>維持</td></tr>
+  </tbody>
+</table>
+</div>
+<p><strong>0時台だけが異常</strong>（表示は全体の34%を占めCVは1件、CPA ¥154,680）。一方 <strong>1–4時は CPA ¥25,239 と全時間帯で最良</strong>——葬儀の深夜需要は実在する。
+したがって「深夜を止める」は誤った処方箋で、<strong>0時ちょうどの時間帯だけが別種の在庫を掴んでいる</strong>と考えるのが自然。<br>
+<strong>推奨</strong>：0時台の入札を <strong>-70%</strong>（完全停止ではなく段階的に）。<strong>想定削減：約 ¥10〜11万／月、失うCVは1件</strong>。</p>
+
+<h3>G. 【即時実行可】エリア外配信の抑制</h3>
+<div class="tw">
+<table>
+  <thead><tr><th>地域</th><th>表示</th><th>クリック</th><th>費用</th><th>CV</th><th>推奨</th></tr></thead>
+  <tbody>
+    <tr><td>川口市</td><td class="num">448,927</td><td class="num">2,377</td><td class="num">¥863,728</td><td>25.5</td><td>維持</td></tr>
+    <tr><td>緑区（さいたま市）</td><td class="num">28,366</td><td class="num">57</td><td class="num">¥21,658</td><td class="down">0</td><td>入札 -50%</td></tr>
+    <tr><td>蕨市</td><td class="num">10,165</td><td class="num">15</td><td class="num">¥4,728</td><td class="down">0</td><td>入札 -50%</td></tr>
+  </tbody>
+</table>
+</div>
+<p>「即除外」案と「入札-50%で様子見」案が対立し、<strong>後者で合意</strong>。緑区・蕨市とも川口メモリアルホールから実際に近く、クリック57件・15件では「効果なし」と断定できないため。<strong>2ヶ月観測して0CVが続けば除外</strong>。</p>
+
+<h3>H. 【要議論】広告LPとメインサイトの分断</h3>
+<div class="warn-box">
+  広告の着地は <code>kawaguchi-memorial-hall.com</code>、SEOを積んでいるのは <code>kawaguchitenrei.com</code>。
+  サイトリンク3本（葬儀プラン／川口メモリアルホール／川口典礼が選ばれる理由）は<strong>CV 5.5 とアセット中最上位</strong>のため成績上の問題はないが、
+  今回の再審議で<strong>実務上の弊害が2つ具体化した</strong>：
+  <ul>
+    <li><strong>価格が画像に焼き込まれている</strong> → 改定時に修正漏れが起き、実際に §3-B の食い違いが発生している</li>
+    <li><strong>プラン閲覧をイベントとして計測できない</strong> → 8.8万の訴求が着地でどう扱われたかを永久に測れない（③の指摘）</li>
+  </ul>
+  <strong>「広告の着地をどちらに寄せるか」は経営判断</strong>として別途議論の場を設けたい。少なくとも<strong>価格をテキスト化すること</strong>は、統合可否と無関係に先に進めるべき。
+</div>
+
+<h2>4. 削除・除外すべき検索クエリ（提言・第2版）</h2>
+<p>「削除」は Google広告では<strong>除外キーワード（negative keyword）の追加</strong>を指す。<strong>第1版から Tier 4 の扱いのみ変更した</strong>（②の再考を反映）。</p>
+
+<h3>Tier 1：競合他社名（フレーズ一致で除外）— 実費 ¥2,956 ＋ 表示のみ約60語</h3>
+<div class="tw">
+<table>
+  <thead><tr><th>クエリ</th><th>表示</th><th>クリック</th><th>費用</th><th>CV</th></tr></thead>
+  <tbody>
+    <tr><td>ja葬式</td><td>1</td><td>1</td><td class="num">¥1,038</td><td>0</td></tr>
+    <tr><td>グローバルケア葬儀</td><td>2</td><td>1</td><td class="num">¥1,019</td><td>0</td></tr>
+    <tr><td>ゲートハウス葬儀</td><td>1</td><td>1</td><td class="num">¥498</td><td>0</td></tr>
+    <tr><td>川口市源永寺</td><td>2</td><td>1</td><td class="num">¥401</td><td>0</td></tr>
+  </tbody>
+</table>
+</div>
+<p>費用は出ていないが表示のみで混入している競合社名が約60語：
+<code>お葬式のむすびす</code> <code>くらしの友新狭山</code> <code>さくら葬祭</code> <code>ひかり葬祭</code> <code>セレモ葬儀</code> <code>セレミューズ</code>
+<code>家族葬のtowani</code> <code>家族葬のそうえん</code> <code>家族葬のつばさ</code> <code>家族葬のゆうか</code> <code>家族葬のウィル</code> <code>家族葬の四季風</code> <code>家族葬の長坂東所沢</code>
+<code>メモリード東松山</code> <code>出雲殿葬儀</code> <code>博全社葬儀</code> <code>日典ラサ</code> <code>山﨑典礼</code> <code>花みずき葬祭</code> <code>花輪式典</code> <code>錦泉閣加須</code>
+<code>プラザオオノ北本</code> <code>富士の華葬儀</code> <code>サンライフのお葬式</code> <code>アークベル家族葬費用</code> <code>タクセル葬儀</code> <code>リベ大ひだまり葬祭</code>
+<code>生協のお葬式</code> <code>コープみらい葬儀</code> <code>パルシステム夕凪葬</code> <code>都道府県民のお葬式</code> <code>青葉ライフサポート</code> <code>愛翔葬祭</code>
+<code>わかば市民葬祭</code> <code>さいたま市民葬祭</code> <code>ファミリーホール</code> <code>ファミリー葬儀社</code> <code>アートエンディング</code> <code>ともしび葬儀</code>
+<code>みつわ家族葬</code> <code>ライフランド家族葬</code> <code>実相寺会館鷲峰殿</code> <code>ピュアワンソエール</code> <code>プリエ浦和</code> <code>はるか武蔵浦和</code>
+<code>ウィルさいたま</code> <code>むさしの村葬儀</code> <code>もがりの森幸手</code> ほか。</p>
+<div class="verdict"><b>実装方法</b>：個別列挙ではなく<strong>共有除外リスト「競合社名」を新規作成</strong>し全キャンペーンに適用。他社名への入札は当社トーン方針（§15）とも整合しないため、費用の多寡にかかわらず除外すべきという点は全員一致。</div>
+
+<h3>Tier 2：公営火葬場の情報検索（施設名のみ／手続き語）— 実費 ¥27,295・CV 0</h3>
+<div class="tw">
+<table>
+  <thead><tr><th>クエリ</th><th>表示</th><th>クリック</th><th>費用</th><th>CV</th></tr></thead>
+  <tbody>
+    <tr><td>川口火葬場</td><td>58</td><td>6</td><td class="num">¥7,809</td><td>0</td></tr>
+    <tr><td>川口市めぐりの森</td><td>231</td><td>11</td><td class="num">¥6,489</td><td>0</td></tr>
+    <tr><td>めぐりの森火葬場</td><td>21</td><td>4</td><td class="num">¥4,334</td><td>0</td></tr>
+    <tr><td>川口市めぐりの森火葬場</td><td>62</td><td>5</td><td class="num">¥2,544</td><td>0</td></tr>
+    <tr><td>めぐりのもり</td><td>3</td><td>1</td><td class="num">¥1,663</td><td>0</td></tr>
+    <tr><td>めぐりの森川口</td><td>87</td><td>2</td><td class="num">¥824</td><td>0</td></tr>
+    <tr><td>川口市火葬場</td><td>36</td><td>1</td><td class="num">¥771</td><td>0</td></tr>
+    <tr><td>川口市めぐりの森予約</td><td>7</td><td>1</td><td class="num">¥668</td><td>0</td></tr>
+    <tr><td>川口めぐりの森料金</td><td>1</td><td>1</td><td class="num">¥610</td><td>0</td></tr>
+    <tr><td>川口めぐりの森</td><td>66</td><td>2</td><td class="num">¥584</td><td>0</td></tr>
+    <tr><td>川口市の火葬場</td><td>6</td><td>1</td><td class="num">¥584</td><td>0</td></tr>
+    <tr><td>めぐりの森</td><td>49</td><td>1</td><td class="num">¥415</td><td>0</td></tr>
+  </tbody>
+</table>
+</div>
+<p>表示のみの混入も多数：<code>川口市火葬場予約</code> <code>川口市火葬場空き状況</code> <code>川口市火葬場料金</code> <code>川口市火葬場場所</code>
+<code>川口めぐりの森アクセス</code> <code>川口市めぐりの森レビュー</code> <code>川口市めぐりの森写真</code> <code>川口市営火葬場</code> <code>川口斎苑</code>
+<code>赤山火葬場</code> <code>新井宿火葬場</code> <code>安行火葬場</code> <code>鳩ヶ谷火葬場</code> <code>東川口火葬場</code> <code>川口焼き場</code> <code>川口市焼き場</code> ほか。</p>
+<div class="verdict">
+  <b>例外</b>：<strong>「めぐりの森」＋「葬儀／家族葬／火葬式」など葬儀語を伴うクエリは除外しない</strong>（検討段階の見込み客で、「めぐりの森まで車で約5分」という当社の強みが最も効く層）。<br>
+  <b>除外対象</b>：<code>予約</code> <code>空き状況</code> <code>アクセス</code> <code>料金</code> <code>場所</code> <code>写真</code> <code>レビュー</code> <code>公園</code> <code>焼き場</code> <code>斎苑</code> を含むもの、および施設名単体。<br>
+  <b>補足</b>：川口市めぐりの森は<strong>当社が運営する施設ではない</strong>。施設の手続き系クエリへの出稿は、費用面だけでなく<strong>運営主体の誤認を招くリスク</strong>の観点からも避けるべき。
+</div>
+
+<h3>Tier 3：商圏外の地名 — 実費 ¥100・表示のみ多数</h3>
+<p><code>家族葬儀千葉</code>（¥100）／表示のみ：<code>直葬蕨市</code> <code>越谷家族葬</code> <code>さいたま市家族葬</code> <code>浦和家族葬ホール</code>
+<code>くらしの友新狭山総合式場</code> <code>プラザオオノ北本</code> <code>花みずき葬祭伊奈町</code> <code>メモリード東松山</code> <code>家族葬の長坂東所沢</code>
+<code>花輪式典朝霞</code> <code>もがりの森幸手</code> <code>錦泉閣加須</code> ほか。<br>
+<strong>地名の共有除外リスト</strong>として、川口市・鳩ヶ谷・新井宿・東川口・西川口・安行・戸塚・芝 以外の地名を機械的に弾く運用にする。</p>
+
+<h3>Tier 4：価格重視（「安い」系）クエリ ── <span class="t1">除外で確定【松澤判断・2026-08-03】</span></h3>
+<div class="warn-box">
+  <b>経緯</b>：第1版「トーンに合わないため除外」→ 第2版「88,000円のプランが実在するので除外を撤回・保留」→
+  <strong>第3版（本項）：松澤の事業判断により<span class="t1">除外で確定</span></strong>。<br><br>
+  <b>判断理由（松澤）</b>：<strong>88,000円で受注しても当社の利益が残らない。</strong>
+  そこに引っかかって問い合わせが増えても、対応工数だけがかかって事業として成立しない。
+  したがって「安い」で探している層は、<strong>そもそも獲得したい相手ではない</strong>。<br><br>
+  これは第2版で⑦（ユニットエコノミクス）が指摘した「<em>88,000円のプランは受注単価が主力の1/5以下で、現在のCPA水準 ¥34,906 では1件受注しても広告費が回収できない可能性が高い</em>」という懸念が、
+  <strong>経営判断として確定したもの</strong>である。②が主張した「提示できる商品がある以上、切るのは前提を誤っている」という反論は、
+  <strong>「商品として存在すること」と「広告で獲りにいくべきこと」は別である</strong>という理由で退けられた。
+</div>
+
+<h3 style="margin-top:18px">除外キーワード（フレーズ一致・部分一致で登録）</h3>
+<div class="tw">
+<table>
+  <thead><tr><th>除外語（この語を含むクエリを弾く）</th><th>7月実績（該当クエリ）</th><th>費用</th><th>CV</th></tr></thead>
+  <tbody>
+    <tr><td><code>安い</code></td><td>葬儀費用安い（クリック7）／家族葬費用安い（2）／葬儀安い／葬儀安いおすすめ／葬式費用安い／安い葬儀／家族葬安い／川口市家族葬安い</td><td class="num">¥1,086</td><td>0</td></tr>
+    <tr><td><code>安く</code></td><td>（7月は発生なし・予防的登録）</td><td>—</td><td>—</td></tr>
+    <tr><td><code>格安</code></td><td>葬式費用格安</td><td class="num">¥0</td><td>0</td></tr>
+    <tr><td><code>激安</code></td><td>（7月は発生なし・予防的登録）</td><td>—</td><td>—</td></tr>
+    <tr><td><code>最安</code></td><td>（7月は発生なし・予防的登録）</td><td>—</td><td>—</td></tr>
+    <tr><td><code>節約</code></td><td>葬儀費用節約</td><td class="num">¥66</td><td>0</td></tr>
+    <tr><td><code>抑える</code></td><td>葬儀費用抑える</td><td class="num">¥0</td><td>0</td></tr>
+    <tr><td><code>小さい</code> / <code>小さな</code></td><td>小さい葬式（大手ポータルの社名でもあるためTier1とも重複）</td><td class="num">¥0</td><td>0</td></tr>
+    <tr><td><code>コスパ</code> / <code>最安値</code> / <code>値段だけ</code></td><td>（7月は発生なし・予防的登録）</td><td>—</td><td>—</td></tr>
+    <tr><td colspan="2"><strong>直接の削減額</strong></td><td class="num"><strong>約 ¥1,152／月</strong></td><td><strong>0</strong></td></tr>
+  </tbody>
+</table>
+</div>
+<div class="verdict">
+  <b>削減額は小さいが、目的は費用削減ではない。</b>「安い」で探している層を<strong>最初から入れない</strong>ことで、
+  問い合わせの質を上げ、対応工数を主力プラン検討層に振り向けることが狙い。効果は広告費ではなく<strong>相談→受注率</strong>に現れる。
+</div>
+<div class="warn-box">
+  <b>【重要】除外してはいけない語 ── 混同注意</b><br>
+  <strong><code>費用</code> <code>料金</code> <code>相場</code> <code>見積もり</code> 単体は絶対に除外しない。</strong>
+  これらは<strong>正当な検討層</strong>であり、7月の主要なクリック源そのものである：<br>
+  <code>家族葬プラン</code>（クリック143・<strong>CV 1</strong>）／<code>家族葬費用</code>（クリック72）／<code>葬儀プラン</code>（48）／
+  <code>家族葬計画</code>（30・<strong>CV 1</strong>）／<code>家族葬</code>（25）／<code>家族葬おすすめ</code>（17）／<code>家族葬儀費用</code>（15）／
+  <code>直葬費用</code>（13）／<code>葬儀見積もり</code>（10）。<br>
+  <strong>切るのは「安さを求める語」であって「費用を調べる語」ではない。</strong>
+  ここを取り違えて「費用」を一括除外すると、<strong>7月のクリックの過半を失う</strong>。代理店への指示時に必ず明記すること。
+</div>
+
+<h3>Tier 5：要確認（判断保留）</h3>
+<div class="warn-box">
+  <strong>「川口市民葬祭」</strong>：KWレポート上で <strong>表示37・クリック9・費用¥43,141・CV 0・CPC ¥4,793</strong> と、
+  <strong>単一キーワードで7月の全支出の4.8%を消費</strong>しながら成果ゼロ。CPC ¥4,793 は他KWの3〜10倍で明らかに異常。<br>
+  この語が「川口市の市民葬制度」を指す一般語なのか、<strong>同名の別事業者名</strong>なのかで判断が真逆になる。
+  自然検索側でも「川口市民葬祭」は月153表示・平均10.7位で拾えている（8/3 SEOチェック）ため、広告を止めても自然検索で受けられる可能性がある。<br>
+  <strong>推奨</strong>：松澤に他社商号かどうかを確認のうえ、<strong>他社商号であれば即除外／一般語であっても入札上限を ¥1,000 に制限</strong>。
+  想定削減：最大 ¥4.3万／月。<span class="t1">単一クエリとしては最大の削減余地。</span><br>
+  <em>※今回の「シンプル直葬プラン」の件と同じ構造の論点である——<strong>社内の事実を確認せずに判断すると逆の結論が出る</strong>。推測で処理しないこと。</em>
+</div>
+
+<h2>5. 今後の戦略</h2>
+
+<h3>5-1. 30日以内（8月中）</h3>
+<div class="tw">
+<table>
+  <thead><tr><th>#</th><th>アクション</th><th>担当</th><th>想定効果</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td class="t1">シンプル直葬プランの通常価格（138,000／139,000）どちらが正しいか確認</td><td>松澤</td><td>表記整合</td></tr>
+    <tr><td>2</td><td class="t1">CLAUDE.md §9 にシンプル直葬プランを追記（承認後）</td><td>松澤承認 → Claude</td><td>再発防止</td></tr>
+    <tr><td>3</td><td>プラン名の表記統一（シンプル直葬／一日葬）を全媒体へ反映</td><td>松澤・代理店</td><td>表記整合</td></tr>
+    <tr><td>4</td><td>「川口市民葬祭」が他社商号か確認 → 除外または入札上限¥1,000</td><td>松澤</td><td>最大 ¥4.3万／月</td></tr>
+    <tr><td>5</td><td>7/13〜7/15の変更履歴・検索パートナー設定・CV定義の開示要求</td><td>代理店</td><td>—（調査）</td></tr>
+    <tr><td>6</td><td>共有除外リスト3本（競合社名／火葬場手続き／商圏外地名）を作成・全CP適用</td><td>代理店</td><td>約 ¥3万／月</td></tr>
+    <tr><td>7</td><td>0時台の入札を -70%</td><td>代理店</td><td>約 ¥10万／月</td></tr>
+    <tr><td>8</td><td>緑区・蕨市の入札を -50%（2ヶ月観測後に除外判断）</td><td>代理店</td><td>約 ¥1.3万／月</td></tr>
+    <tr><td>9</td><td class="t1">「直葬8.8万～、ご負担を最小限に」アセットを停止（獲得したくない層を集めているため）</td><td>代理店</td><td>¥8,198／月＋工数</td></tr>
+    <tr><td>10</td><td class="t1">除外KW「安い／安く／格安／激安／最安／節約／抑える／コスパ／小さい」を全キャンペーンに登録</td><td>代理店</td><td>問い合わせの質向上</td></tr>
+    <tr><td>11</td><td>※「費用／料金／相場／見積もり」単体は<strong>除外しない</strong>ことを代理店に明記</td><td>松澤</td><td>誤除外の防止</td></tr>
+    <tr><td colspan="3"><strong>削減見込み合計</strong></td><td><strong>約 ¥19〜20万／月（支出の21%）</strong></td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3>5-2. 60〜90日</h3>
+<ul>
+  <li><strong>直葬の訴求軸を「価格」から「内容・対応」へ入れ替える</strong>：金額は広告文に出さず、着地ページで正直に提示する。例：「ご家族だけで静かにお見送りする直葬」「川口市内・24時間ご相談を承ります」「めぐりの森まで車で約5分」。<strong>価格で引かず、内容で選んでいただく形にする。</strong></li>
+  <li><strong>直葬の受け皿整備とテスト</strong>：LPに直葬の説明ブロック（含まれるもの／含まれないもの／～5名）を追加 → 着地先を <code>/plan/direct-funeral/</code> にするA/Bテスト。<strong>出口は直葬に固定せず、上位プランもご案内できる設計にする。</strong></li>
+  <li><strong>検索側に直葬／火葬式の広告グループを新設</strong>：「直葬費用」クリック13件・「一日葬費用」7件が受け皿なしで流れている。<strong>ただし「安い」系除外を適用したうえで</strong>実施する。</li>
+  <li><strong>問い合わせの質を測る指標を用意する</strong>：今回の除外の効果は広告費ではなく<strong>相談→受注率</strong>に現れる。CV数だけ見ていると「減った＝悪化」と誤読するため、<strong>相談件数と受注件数を分けて記録する運用</strong>を9月までに整える。</li>
+  <li><strong>広告LPの価格をテキスト化</strong>：現状は全価格が画像内に焼き込まれており、改定漏れ（§3-B）と計測不能（③指摘）の両方を招いている。統合可否の判断と無関係に先行して実施すべき。</li>
+  <li><strong>一般KWキャンペーンの再設計</strong>：CPA ¥57,287 が全体を押し上げている最大要因。削減分をそのまま戻すのではなく、構造を作り直してから。</li>
+  <li><strong>緊急性訴求への比重シフト</strong>：CTR実測で「お急ぎの葬儀相談も電話で対応」5.64%、「24時間365日対応受付中」12.18% が、料金訴求（「事前説明で料金を明確にご案内」0.20%・CV0）を圧倒。ただし煽らないトーンは維持（§11）。</li>
+  <li><strong>指名キャンペーンの増分効果テスト</strong>：自然検索で「川口典礼」は平均1.0位・CTR21.2%。指名予算を段階的に30%削減して2ヶ月観測。全額停止はしない（競合が入札している証拠があるため）。</li>
+  <li><strong>GBPとの役割分担</strong>：自然検索で「川口市 葬儀」は8.1位に到達しながらクリックがローカルパックに吸われている。広告・SEO・GBPを分けず地図枠を含めた設計へ。承認待ちのGBP APIが通り次第（8/9頃）着手。</li>
+</ul>
+
+<h2>6. 再審議の結論</h2>
+<div class="lead">
+  <ol>
+    <li><strong>「直葬8.8万～」は停止する。ただし第1版とは理由が全く違う。</strong>
+      第1版は「プランが存在しない＝景表法違反のおそれ」としたが、これは誤りで撤回済み。
+      <strong>正しい停止理由は「88,000円で受注しても利益が残らず、獲得したい層ではないから」</strong>という事業判断（松澤・§3-D）。
+      DG平均の1.5倍というCTRの高さは、この判断ではむしろ停止を後押しする材料になる——<strong>引きが強いぶん、望まない層を多く集めていた</strong>。</li>
+    <li><strong>「安い」系クエリは除外で確定。</strong>ただし <code>費用</code> <code>料金</code> <code>相場</code> <code>見積もり</code> 単体は<strong>絶対に除外しない</strong>（7月のクリックの過半がここから来ている）。代理店への指示時に必ず区別を明記すること。</li>
+    <li><strong>畳むのは「安さ訴求」であって「直葬」ではない。</strong>直葬には価格目的でない正当な検討層が存在し、シンプル直葬プランのサイト掲載も維持する。変えるのは<strong>広告費を使って安さで集めにいくかどうかだけ</strong>。</li>
+    <li><strong>真の問題は正本側にあった。</strong>CLAUDE.md §9 にシンプル直葬プランの記載がなく、正本に無いプランが「存在しない」と判定された。<strong>正本の整備が最優先。</strong></li>
+    <li><strong>価格を突き合わせた結果、実在の不一致が2件見つかった。</strong>通常価格 138,000／139,000 の食い違いと、プラン名の表記ゆれ。緊急性は低いが確実に是正すべき。</li>
+    <li><strong>7月の成績は「悪化」ではない。</strong>月後半でCPAは42%改善している。表示回数とCTRの見た目に引きずられないこと。</li>
+    <li><strong>ただし明確な無駄が月 ¥18〜19万（支出の20%）分ある。</strong>0時台・エリア外・競合社名・火葬場手続きクエリ・「川口市民葬祭」。失うCVは1件。</li>
+    <li><strong>7/14の激変は原因不明のまま放置しない。</strong>結果が良くても、理由を説明できない状態は再現も改善もできない。</li>
+  </ol>
+</div>
+<div class="info-box">
+  <strong>今回の学び（運用ルールへの反映提案）</strong>：
+  第1版では、価格に関する強い指摘を<strong>一次資料を確認せずに</strong>出し、実在するプランを「存在しない」と断じた。
+  今後、<strong>価格・プラン内容に関する指摘は必ず <code>lib/plans.ts</code> と実ページを確認してから出す</strong>こと、
+  および<strong>正本（CLAUDE.md §9）に載っていない場合は「存在しない」ではなく「正本未記載につき要確認」と報告する</strong>ことを、作業ルールとしたい。
+</div>
+
+<div class="foot">
+  作成：Claude Code ／ 2026-08-03（第2版・第1版を全面差し替え）<br>
+  出典：<code>202607 Google広告レポート.xlsx</code>（全8シート）／<code>lib/plans.ts</code>／<code>/plan/direct-funeral/</code>／<code>kawaguchi-memorial-hall.com</code>（プラン画像を含む）<br>
+  ※CV数に小数が含まれるのはGoogleのモデル化コンバージョン（推定値）が混在するため。受注件数ではなく相談件数ベースの値。<br>
+  ※本レポートは <code>docs/reports/</code> 配下の社内文書で Web には公開されません（<code>noindex</code>）。個人情報・秘密情報は記載していません。<br>
+  ※広告アカウント・サイトいずれも本作業では変更していません。実行には代理店（NEXTUP）への指示、および価格・正本の確認が必要です。
+</div>
+
+</div>
+</body>
+</html>

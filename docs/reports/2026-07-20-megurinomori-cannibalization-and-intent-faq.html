@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>めぐりの森クラスタ：カニバリ解消＋未充足インテントFAQ追加｜川口典礼サイト（社内・非公開）</title>
+<style>
+  :root{--ink:#2b2b2b;--soft:#6b6b6b;--line:#e3e0da;--bg:#faf9f7;--accent:#7a6a55;--warn:#a4442f;--ok:#3f6b4a}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;line-height:1.85;font-size:15px}
+  .wrap{max-width:880px;margin:0 auto;padding:44px 22px 80px}
+  .kicker{font-size:12px;letter-spacing:.12em;color:var(--accent);margin:0 0 6px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:25px;font-weight:600;margin:0 0 10px;line-height:1.5}
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:19px;font-weight:600;
+     margin:38px 0 12px;padding-bottom:7px;border-bottom:2px solid var(--line)}
+  h3{font-size:15.5px;font-weight:600;margin:24px 0 8px;color:#43413c}
+  .meta{color:var(--soft);font-size:13px;border-bottom:2px solid var(--line);padding-bottom:16px;margin-bottom:6px}
+  .meta div{margin:2px 0}
+  code{background:#f1efe9;padding:1px 6px;border-radius:5px;font-size:12.5px;font-family:ui-monospace,Consolas,monospace}
+  table{border-collapse:collapse;width:100%;margin:14px 0;font-size:13px;background:#fff}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  th{background:#f3f1ec;font-weight:600;white-space:nowrap}
+  td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .ok{color:var(--ok);font-weight:600}
+  .warn{color:var(--warn);font-weight:600}
+  .box{background:#fff;border:1px solid var(--line);border-left:4px solid var(--accent);
+       border-radius:0 8px 8px 0;padding:14px 18px;margin:16px 0}
+  .box.alert{border-left-color:var(--warn)}
+  .box p{margin:6px 0}
+  ul{padding-left:22px;margin:10px 0}
+  li{margin:6px 0}
+  .tag{display:inline-block;font-size:11px;padding:2px 8px;border-radius:20px;
+       background:#e9e5dc;color:#5c5442;margin-right:6px;vertical-align:2px}
+  .tag.done{background:#dde9df;color:#2f5638}
+  .tag.todo{background:#f0e2dd;color:#8a3d29}
+  .tag.info{background:#dee3ec;color:#33465f}
+  .before{color:var(--soft)}
+  footer{margin-top:44px;border-top:1px solid var(--line);padding-top:16px;color:var(--soft);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="kicker">川口典礼サイト ＿ 社内記録</p>
+  <h1>めぐりの森クラスタ：カニバリ解消 ＋ 未充足インテントFAQ追加</h1>
+  <div class="meta">
+    <div><strong>作成日</strong>：2026年7月20日</div>
+    <div><strong>担当</strong>：松澤</div>
+    <div><strong>データ</strong>：<code>tmp/seo-analysis-2026-07-18/gsc-query-page-compare.csv</code>（GSC・28日 vs 前28日、確定最新 2026-07-16）</div>
+    <div><strong>経緯</strong>：MAGI決議 第4回（<a href="./2026-07-20-magi-4th-resolution-verification.html">受領・検証レポート</a>）を受け、本サイト側で実行可能な順位施策を抽出して実装したもの。</div>
+  </div>
+
+  <h2>1. サマリ</h2>
+  <ul>
+    <li><span class="tag done">実装</span><strong>カニバリ解消</strong>：<code>/column/meguri/</code> の title からめぐりの森の完全一致語を外し、ヘッドターム「川口市めぐりの森」を <code>/saijo/megurinomori/</code> に一本化。</li>
+    <li><span class="tag done">実装</span><strong>未充足インテントの補完</strong>：<code>/saijo/megurinomori/</code> に「予約は誰が行うか／空き状況の確認方法／申込み先／電話番号」の4問をFAQ追加。いずれもGSC実測で 9〜19位・クリック0 の未回収インテント。</li>
+    <li><span class="tag info">確認</span>build 成功・型エラーなし・静的生成 <strong>137ページで増減なし</strong>。FAQPage JSON-LD への反映も出力HTMLで確認済み。</li>
+    <li><span class="tag todo">未着手</span>旧URLの多段リダイレクト（<strong>実測3ホップ</strong>）は <code>next.config.ts</code> の変更が必要＝§19.2 の push 前確認必須領域のため、本作業では触れず §6 に記録のみ。</li>
+  </ul>
+
+  <h2>2. 背景 ── GSC実測で分かったこと</h2>
+  <p>MAGI決議は「めぐりの森」を広告投下額（上限月3万円）の文脈でしか扱っていないが、GSCの query × page データを見ると<strong>オーガニックで詰める余地</strong>がはっきり出ている。</p>
+
+  <h3>2.1 発見①：2ページが同一クエリ群で共食いしている</h3>
+  <p><code>/saijo/megurinomori/</code> と <code>/column/meguri/</code> が、ほぼ全てのめぐりの森クエリで同時に表示されている。</p>
+  <table>
+    <tr><th>クエリ</th><th>ページ</th><th class="num">表示</th><th class="num">順位</th><th class="num">クリック</th></tr>
+    <tr><td rowspan="3">川口市めぐりの森<br><span class="before">（ヘッドターム）</span></td><td>/saijo/megurinomori/</td><td class="num">77</td><td class="num warn">28.13</td><td class="num">0</td></tr>
+    <tr><td>/column/meguri/</td><td class="num">23</td><td class="num warn">33.00</td><td class="num">0</td></tr>
+    <tr><td>/Column_list/kouden_souba<span class="before">（旧URL）</span></td><td class="num">1</td><td class="num">83.00</td><td class="num">0</td></tr>
+    <tr><td rowspan="2">川口市めぐりの森 葬儀</td><td>/saijo/megurinomori/</td><td class="num">5</td><td class="num">12.80</td><td class="num">0</td></tr>
+    <tr><td>/column/meguri/</td><td class="num">3</td><td class="num">15.67</td><td class="num">0</td></tr>
+    <tr><td rowspan="2">川口市めぐりの森 家族葬</td><td>/saijo/megurinomori/</td><td class="num">2</td><td class="num">14.50</td><td class="num">0</td></tr>
+    <tr><td>/column/meguri/</td><td class="num">2</td><td class="num">18.50</td><td class="num">0</td></tr>
+    <tr><td rowspan="2">川口市めぐりの森 一日葬</td><td>/saijo/megurinomori/</td><td class="num">3</td><td class="num">9.67</td><td class="num">0</td></tr>
+    <tr><td>/column/meguri/</td><td class="num">3</td><td class="num">17.33</td><td class="num">0</td></tr>
+  </table>
+  <p><code>/column/meguri/</code> の旧 title は「<span class="before">川口市 めぐりの森での葬儀は――火葬場と式場をどう選ぶ？</span>」で、ヘッドタームを完全一致で保持していた。<strong>7/14 に解消したトップ×<code>/plan/family-funeral/</code> のカニバリと完全に同じ型</strong>。</p>
+
+  <h3>2.2 発見②：ヘッドタームだけが弱い（順位分布が逆転している）</h3>
+  <p>通常は「ヘッドが強くロングテールが弱い」が、このクラスタは逆になっている。</p>
+  <table>
+    <tr><th>クエリ</th><th class="num">表示</th><th class="num">順位（今回）</th><th class="num">順位（前回）</th></tr>
+    <tr><td>川口市めぐりの森 レビュー</td><td class="num">3</td><td class="num ok">2.67</td><td class="num">—</td></tr>
+    <tr><td>川口市めぐりの森 写真</td><td class="num">35</td><td class="num ok">6.49</td><td class="num">10.67</td></tr>
+    <tr><td>川口市めぐりの森 料金</td><td class="num">16</td><td class="num ok">7.25</td><td class="num">11.33</td></tr>
+    <tr><td>川口市 めぐりの森 料金</td><td class="num">8</td><td class="num ok">7.63</td><td class="num">11.00</td></tr>
+    <tr><td>川口市めぐりの森 一日葬</td><td class="num">3</td><td class="num">9.67</td><td class="num">—</td></tr>
+    <tr><td>川口市 めぐりの森 空き状況</td><td class="num">10</td><td class="num">9.70</td><td class="num">15.29</td></tr>
+    <tr><td>川口市めぐりの森 空き状況</td><td class="num">7</td><td class="num">9.71</td><td class="num">14.88</td></tr>
+    <tr><td>川口市めぐりの森 値段</td><td class="num">6</td><td class="num">10.00</td><td class="num">16.88</td></tr>
+    <tr><td>川口市めぐりの森 代金</td><td class="num">4</td><td class="num">9.75</td><td class="num">16.50</td></tr>
+    <tr><td>川口市 めぐりの森 予約</td><td class="num">9</td><td class="num">10.89</td><td class="num">16.50</td></tr>
+    <tr><td>川口市めぐりの森 予約</td><td class="num">9</td><td class="num">11.33</td><td class="num">15.80</td></tr>
+    <tr><td>川口市めぐりの森 予約状況</td><td class="num">5</td><td class="num">11.80</td><td class="num">12.50</td></tr>
+    <tr><td>川口市めぐりの森 申し込み</td><td class="num">4</td><td class="num">12.50</td><td class="num">14.00</td></tr>
+    <tr><td>川口市 めぐりの森 電話</td><td class="num">4</td><td class="num">13.00</td><td class="num">23.25</td></tr>
+    <tr><td>川口市めぐりの森 電話</td><td class="num">4</td><td class="num">14.75</td><td class="num">21.67</td></tr>
+    <tr><td>川口市 めぐりの森 申込み</td><td class="num">4</td><td class="num">18.75</td><td class="num">28.00</td></tr>
+    <tr><td><strong>川口市めぐりの森（ヘッド）</strong></td><td class="num">77</td><td class="num warn">28.13</td><td class="num">37.33</td></tr>
+  </table>
+  <div class="box">
+    <p><strong>読み取り。</strong>修飾語付きクエリでは 7〜12位まで来ているのに、ヘッドタームだけが28位に取り残されている。これは「ページの質が足りない」のではなく <strong>「めぐりの森そのものの代表ページとして認識されていない」</strong>状態を示す。2ページに割れていたことが直接の要因と考えられる。</p>
+    <p>なお全クエリで前回比プラス（例：予約 16.5→10.9、電話 23.3→13.0、申込み 28.0→18.8）。<strong>方向は合っているので、詰めれば動く見込みがある</strong>。</p>
+  </div>
+
+  <h3>2.3 発見③：インテントの主成分は「使い方」であって「葬儀社選び」ではない</h3>
+  <p>クエリの修飾語を数えると、<strong>料金・値段・代金／予約・予約状況・空き状況／申込み・申し込み／電話</strong>が大半を占める。めぐりの森を<strong>これから使う人の実務的な問い</strong>であり、いずれもクリック0＝回答が読み取れていない。</p>
+  <p>既存FAQは「火葬料金」は持っていたが、<strong>予約・空き状況・申込み・電話の4系統が完全に空いていた</strong>。今回はここを埋めた。</p>
+
+  <h3>2.4 副次：計測ノイズを再確認</h3>
+  <p>決議が指摘した順位計測ツールの巡回を本データでも確認。<code>＞川口市 めぐりの森 川口典礼</code> 等の「＞」接頭クエリが、複数ページにまたがり <strong>平均順位1.06〜1.35・クリック0</strong> で計上されている。表示回数を分母に置くKPIを禁止した決議条件C7は、本データでも妥当。</p>
+
+  <h2>3. 変更内容</h2>
+
+  <h3>3.1 <code>lib/columns.ts</code> ── /column/meguri/ の title・description</h3>
+  <table>
+    <tr><th></th><th>変更前</th><th>変更後</th></tr>
+    <tr><th>title</th>
+      <td class="before">川口市 めぐりの森での葬儀は――火葬場と式場をどう選ぶ？</td>
+      <td>火葬場に式場がないときの葬儀の流れ――めぐりの森を利用する場合の式場選び</td></tr>
+    <tr><th>description</th>
+      <td class="before">川口市の公営火葬場「めぐりの森」は火葬専用で、通夜・告別式は別会場で行います。……</td>
+      <td>火葬場に通夜・告別式の式場が併設されていない場合、式典は別会場で行い、そこから火葬場へ移動します。川口市の公営火葬場「めぐりの森」を利用するケースを例に、……</td></tr>
+  </table>
+  <p><strong>意図</strong>：「川口市めぐりの森」の完全一致を <code>/saijo/megurinomori/</code> へ譲渡し、コラム側は「火葬場に式場がない」「式場選び」というロングテールを取りにいく。記事本文・内部リンクは変更していない（コラムから <code>/saijo/megurinomori/</code> への relatedlinks は既存のまま維持）。</p>
+
+  <h3>3.2 <code>lib/saijo.ts</code> ── /saijo/megurinomori/ にFAQを4問追加</h3>
+  <table>
+    <tr><th>追加した問い</th><th>対応するクエリ（実測順位）</th></tr>
+    <tr><td>川口市めぐりの森の火葬の予約は誰が行いますか？</td><td>川口市 めぐりの森 予約（10.89）／川口市めぐりの森 予約（11.33）／予約状況（11.80）</td></tr>
+    <tr><td>川口市めぐりの森の空き状況はどうすれば分かりますか？</td><td>川口市 めぐりの森 空き状況（9.70）／川口市めぐりの森 空き状況（9.71）</td></tr>
+    <tr><td>川口市めぐりの森を利用したいときは、どこに申し込めばよいですか？</td><td>川口市めぐりの森 申し込み（12.50）／川口市 めぐりの森 申込み（18.75）</td></tr>
+    <tr><td>川口市めぐりの森の電話番号を知りたいのですが。</td><td>川口市 めぐりの森 電話（13.00）／川口市めぐりの森 電話（14.75）</td></tr>
+  </table>
+
+  <div class="box alert">
+    <p><strong>表現上の制約を守った点（§19.2・§19.3）</strong></p>
+    <ul>
+      <li>公営斎場の<strong>空き状況・利用可否を新規に断定していない</strong>。「日によって埋まり具合が異なり、時期によっては数日お待ちいただく場合もあります」「その時点でご確認したうえでお伝えします」と、確認して伝える運用として記述。</li>
+      <li>禁止表現（「空きがあります」「いつでも利用」「確実に手配」「必ず」「絶対」）は不使用。</li>
+      <li>電話番号FAQでは「運営は株式会社川口斎苑サービスで、<strong>川口典礼が運営する施設ではありません</strong>」を明記。自社運営と誤認させる表現を避けた（§19.3 停止条件）。掲載した 048-242-5414 は既存の Place JSON-LD に入っていた番号で、新規の追加情報ではない。</li>
+      <li>料金の新規記載なし。既存の火葬料FAQ（市民30,000円／市外100,000円・目安表記）は変更していない。</li>
+      <li>CTAは「まずはお電話でご相談ください」「24時間365日ご相談を承っています」に留め、煽らない文体を維持。</li>
+    </ul>
+  </div>
+
+  <h2>4. 確認結果</h2>
+  <ul>
+    <li><code>npm run build</code>：<span class="ok">✓ Compiled successfully</span>／TypeScriptエラーなし／警告なし</li>
+    <li>静的生成：<strong>137ページ（増減なし）</strong>。<code>/saijo/megurinomori</code>・<code>/column/meguri</code> ともに出力を確認</li>
+    <li>出力HTMLでの反映確認：
+      <ul>
+        <li><code>/saijo/megurinomori/</code>：追加した4問の本文が描画され、<strong>FAQPage の JSON-LD にも含まれている</strong>ことを確認</li>
+        <li><code>/column/meguri/</code>：<code>&lt;title&gt;</code> が新しい文言に置き換わっていることを確認</li>
+      </ul>
+    </li>
+    <li>保護ファイル（<code>Header.tsx</code> / <code>Footer.tsx</code> / <code>MobileBottomCTA.tsx</code> / <code>package.json</code> / <code>funeral-system/</code>）：<strong>未変更</strong></li>
+    <li>禁止表現の混入なし。価格・プラン正本（§9）の数値変更なし。</li>
+  </ul>
+
+  <h3>変更ファイル</h3>
+  <ul>
+    <li><code>lib/columns.ts</code>（title・description 各1箇所）</li>
+    <li><code>lib/saijo.ts</code>（FAQ 4問追加）</li>
+    <li><code>docs/reports/2026-07-20-megurinomori-cannibalization-and-intent-faq.html</code>（本ファイル・新規）</li>
+    <li><code>docs/reports/index.html</code>（1行追記）</li>
+  </ul>
+
+  <h3>確認URL</h3>
+  <ul>
+    <li><code>npm run dev</code> → <code>http://localhost:3000/saijo/megurinomori/</code></li>
+    <li><code>npm run dev</code> → <code>http://localhost:3000/column/meguri/</code></li>
+  </ul>
+
+  <h2>5. 今回やらなかったこと（意図的）</h2>
+  <ul>
+    <li><strong>コラム記事本文の書き換え</strong>：title/description の差別化だけで効果を切り分けたい。本文まで同時に触ると、順位が動いたときに原因が特定できなくなる（7/14の「核ページを乱いじりせず、構造的に確実な一手だけ」の方針を踏襲）。</li>
+    <li><strong>/column/meguri/ の統合・noindex化</strong>：現時点では title 差別化で棲み分けが成立するかを先に見る。次回測定で共食いが続くようなら統合を検討する。</li>
+    <li><strong>構造化データへの価格入稿</strong>：MAGI決議で明示的に「行わない」とされた項目。</li>
+    <li><strong>description の字数最適化</strong>：決議が「50〜60字へ」を一次情報なしのベンダー伝承として撤回したため、字数目標を置かない。</li>
+  </ul>
+
+  <h2>6. 残課題</h2>
+  <div class="box alert">
+    <p><strong>旧URLのリダイレクトが実測3ホップ（決議の記載より1段多い）</strong></p>
+    <p>2026-07-20 に実測：</p>
+    <ul>
+      <li><code>/Column_list/kouden_souba</code> → <strong>3リダイレクト</strong> → <code>/column/kouden_souba/</code>（最終200）</li>
+      <li><code>/kawaguchishi-megurinomori</code> → <strong>2リダイレクト</strong> → <code>/saijo/megurinomori/</code>（最終200）</li>
+    </ul>
+    <p>決議は「308→308 の2ホップ」としていたが、前者は3ホップ。<code>/Column_list/kouden_souba</code> は現在もめぐりの森クエリで 82〜87位に表示されており（7/18レポートの「旧サイトURL残骸 消滅」から漏れていた）、クロールバジェットとシグナル分散の観点で残っている。</p>
+    <p><strong>修正には <code>next.config.ts</code> の編集が必要＝CLAUDE.md §19.2 の「push 前確認必須」領域</strong>のため、本作業では触れていない。決議自身も「衛生であって成長施策ではない（年0〜1件）」と位置づけており優先度は低いが、着手する場合は承認をいただいてから別タスクで行う。</p>
+  </div>
+
+  <h2>7. 今後のアクション</h2>
+  <table>
+    <tr><th>#</th><th>内容</th><th>期限・時期</th></tr>
+    <tr><td>1</td><td>本変更の commit / push（<code>lib/**</code> のSEO改善＝§19.1 自走push可範囲。ただし現時点で<strong>未実行</strong>）</td><td>指示があり次第</td></tr>
+    <tr><td>2</td><td><strong>効果測定</strong>：「川口市めぐりの森」ヘッドタームの順位（現28.13位）と、2ページ共存が解消したかを GSC query×page で再取得</td><td>2026-08-17 目安（再インデックス2〜4週＋観測期間）</td></tr>
+    <tr><td>3</td><td>予約・空き状況・申込み・電話の4系統でクリックが発生したかを確認（現在すべて0）</td><td>同上</td></tr>
+    <tr><td>4</td><td>共食いが続く場合、<code>/column/meguri/</code> の統合または noindex 化を検討</td><td>2の結果次第</td></tr>
+    <tr><td>5</td><td><code>next.config.ts</code> のリダイレクト1ホップ化（承認後・別タスク）</td><td>未定</td></tr>
+    <tr><td>6</td><td>口コミ346件の sameAs 追加（本サイト内で完結する残りの一手）。件数・評点のJSON-LD取り込みはしない方針</td><td>未着手</td></tr>
+  </table>
+  <p>なお本サイト側で最大の順位施策である<strong>2ドメイン競合の解消（LPの canonical / robots / sitemap 整備または noindex 化）はリポジトリ外</strong>のため、制作会社への依頼事項として <a href="./2026-07-20-magi-4th-resolution-verification.html">MAGI検証レポート §8</a> に記載済み。</p>
+
+  <footer>
+    社内記録（Web非公開・<code>noindex</code>）。作成 2026-07-20。<br>
+    順位・表示回数は GSC 実測（country=jpn／28日窓・確定最新 2026-07-16）。リダイレクトのホップ数は 2026-07-20 の実測。<br>
+    コミット：<strong>未実行</strong>。
+  </footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SEO 現状分析レポート（GSC＋GA4・2026-07-18）</title>
+<style>
+  :root{--ink:#23201c;--sub:#6b645c;--line:#e4ddd3;--bg:#fbf9f5;--accent:#7a5c3e;--warn:#a3402f;--good:#3d6b4a;--card:#fff;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;line-height:1.8;font-size:15px}
+  .wrap{max-width:980px;margin:0 auto;padding:32px 22px 80px}
+  header.doc{border-bottom:3px solid var(--accent);padding-bottom:18px;margin-bottom:24px}
+  header.doc .tag{color:var(--accent);font-weight:700;letter-spacing:.12em;font-size:12px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:24px;margin:6px 0 4px;font-weight:700}
+  .meta{color:var(--sub);font-size:13px}
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:20px;margin:34px 0 12px;padding-left:12px;border-left:5px solid var(--accent)}
+  h3{font-size:16px;margin:18px 0 6px}
+  p{margin:8px 0}
+  .lead{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px 20px;margin:16px 0}
+  .fact{background:#fbf1ef;border:1px solid #e6c9c0;border-radius:10px;padding:14px 18px;margin:14px 0}
+  .good-box{background:#eef7ef;border:1px solid #cfe6d3;border-radius:10px;padding:14px 18px;margin:14px 0}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13px;background:#fff}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:right;vertical-align:top}
+  th:first-child,td:first-child{text-align:left}
+  thead th{background:#f2ece2}
+  tr.bad td{background:#fbf1ef}tr.good td{background:#eef7ef}
+  .up{color:var(--good);font-weight:700}.down{color:var(--warn);font-weight:700}
+  .verdict{background:#2b2620;color:#f5efe6;border-radius:12px;padding:22px 26px;margin:24px 0}
+  .verdict h2{color:#fff;border-left-color:#c9a978;margin-top:0}
+  .badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:4px;font-weight:700}
+  .b-do{background:#d9ead0;color:#2c5233}.b-hold{background:#f6e2b8;color:#7a5a12}.b-stop{background:#f3ccc4;color:#8a2c1d}
+  .note{font-size:12.5px;color:var(--sub)}
+  ul{margin:8px 0 8px 1.2em}li{margin:5px 0}
+  .foot{margin-top:36px;border-top:1px solid var(--line);padding-top:14px;color:var(--sub);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <div class="tag">社内レポート（docs/reports・非公開/noindex）</div>
+  <h1>SEO 現状分析レポート（GSC＋GA4 実データ）</h1>
+  <div class="meta">作成：2026-07-18 ／ データ：Search Console（確定最新 2026-07-16）＋ GA4 Data API<br>比較：AFTER 2026-06-19〜07-16 vs BEFORE 2026-05-22〜06-18（各28日）</div>
+</header>
+
+<div class="lead">
+  <strong>結論：露出は倍増したが、増えたのは「全国型の情報検索（訃報の返信・検視）」であり、地域の商用検索と問い合わせはむしろ減っている。</strong><br>
+  表示回数 11,549 → <strong class="up">23,194（+101%）</strong>、クリック 109 → <strong class="up">158（+45%）</strong>。
+  一方で、電話タップ 29 → <strong class="down">13</strong>、資料/見積CTA 10 → <strong class="down">3</strong>、リード 16 → <strong class="down">11</strong>。<br>
+  ＝ <strong>「コラムがSEO的に成功し、商用の受け皿と成約導線が置いていかれている」</strong>状態。
+</div>
+
+<h2>1. 全体サマリー（28日 vs 前28日）</h2>
+<table>
+<thead><tr><th>指標</th><th>AFTER</th><th>BEFORE</th><th>増減</th></tr></thead>
+<tbody>
+<tr class="good"><td>表示回数（GSC）</td><td>23,194</td><td>11,549</td><td class="up">+101%</td></tr>
+<tr class="good"><td>クリック（GSC）</td><td>158</td><td>109</td><td class="up">+45%</td></tr>
+<tr><td>クリックのある/露出クエリ数</td><td>1,004</td><td>806</td><td class="up">+25%</td></tr>
+<tr class="good"><td>Google オーガニック セッション（GA4）</td><td>294</td><td>184</td><td class="up">+60%</td></tr>
+<tr class="bad"><td>click_tel（電話タップ）</td><td>13</td><td>29</td><td class="down">−55%</td></tr>
+<tr class="bad"><td>generate_lead</td><td>11</td><td>16</td><td class="down">−31%</td></tr>
+<tr class="bad"><td>click_estimate_cta</td><td>3</td><td>10</td><td class="down">−70%</td></tr>
+<tr><td>click_contact_cta</td><td>11</td><td>13</td><td>−15%</td></tr>
+<tr><td>form_start</td><td>41</td><td>19</td><td class="up">+116%</td></tr>
+</tbody>
+</table>
+<p class="note">※ form_start だけ増えて generate_lead が減っている＝<strong>フォーム着手はしたが送信まで至っていない</strong>。離脱要因の確認価値あり（別途フォーム計測の検証が必要）。</p>
+
+<h2>2. 何が伸びたのか＝コラム（全国型・情報検索）</h2>
+<table>
+<thead><tr><th>ページ</th><th>クリック 後/前</th><th>表示 後/前</th><th>順位 後/前</th></tr></thead>
+<tbody>
+<tr class="good"><td>/column/fuhou/（訃報の返信）</td><td>96 / 29</td><td>10,192 / 1,986</td><td>9.8 / 11.4</td></tr>
+<tr class="good"><td>/column/kenshi-nagare/（検視の流れ）</td><td>27 / 13</td><td>5,595 / 1,755</td><td>9.0 / 10.0</td></tr>
+<tr class="good"><td>/column/yujinso-sokagakkai/</td><td>9 / 2</td><td>2,081 / 760</td><td>11.7 / 16.5</td></tr>
+<tr class="good"><td>/column/shinsiki/（神式）</td><td>14 / 2</td><td>1,786 / 437</td><td>10.9 / 18.4</td></tr>
+<tr class="good"><td>/column/shibou-todoke/（死亡届）</td><td>2 / 1</td><td>1,255 / 264</td><td>12.1 / 11.1</td></tr>
+</tbody>
+</table>
+<div class="good-box">
+  コラム施策は<strong>明確に成功</strong>している。「訃報 返信」表示 2,765・順位10.7位、「検視とは」49→642表示で12.7→8.9位。神式・友人葬・死亡届も同様に上昇。<br>
+  ただしこれらは<strong>全国どこからでも検索される情報系</strong>で、川口市の葬儀依頼には直結しない。GA4上も /column/fuhou/ 128セッションで<strong>keyEvents 0</strong>。
+</div>
+
+<h2>3. 何が伸びていないのか＝地域の商用KW</h2>
+<table>
+<thead><tr><th>KW</th><th>クリック</th><th>表示</th><th>CTR</th><th>順位 後/前</th><th>実際の着地</th></tr></thead>
+<tbody>
+<tr class="good"><td>川口典礼（指名）</td><td>37</td><td>222</td><td>16.7%</td><td>1.37 / 3.29</td><td>/</td></tr>
+<tr><td>川口市 葬儀</td><td>5</td><td>1,581</td><td>0.32%</td><td>7.39 / 10.77</td><td>/（1,576）</td></tr>
+<tr class="bad"><td>川口 葬儀</td><td>0</td><td>603</td><td>0%</td><td>11.18 / 13.22</td><td>/（590）</td></tr>
+<tr class="bad"><td>葬儀 川口市</td><td>0</td><td>365</td><td>0%</td><td>9.11 / 10.18</td><td>/（360）</td></tr>
+<tr class="bad"><td>川口市 家族葬</td><td>0</td><td>431</td><td>0%</td><td>19.42 / 23.43</td><td>/（353）</td></tr>
+<tr class="bad"><td>川口 家族葬</td><td>1</td><td>165</td><td>0.6%</td><td>20.48 / 22.59</td><td>/（137）</td></tr>
+<tr class="bad"><td>川口市 葬儀社</td><td>0</td><td>182</td><td>0%</td><td>10.78 / 18.06</td><td>/（182）</td></tr>
+<tr><td>川口市 直葬</td><td>0</td><td>72+</td><td>0%</td><td>10.17</td><td>/plan/direct-funeral/</td></tr>
+<tr><td>川口市 市民葬</td><td>0</td><td>128</td><td>0%</td><td>14.05</td><td>/plan/kawaguchi-shimin/</td></tr>
+<tr><td>川口市 一日葬</td><td>0</td><td>55/49</td><td>0%</td><td>12.69 / 20.55</td><td>/ と /plan/oneday-funeral/ が分散</td></tr>
+</tbody>
+</table>
+
+<div class="fact">
+  <h3>所見①：順位は改善している（前回より確実に良い）</h3>
+  「川口市 葬儀」10.8→7.4位、「川口市 葬儀社」18.1→10.8位、「川口市 家族葬」23.4→19.4位。<strong>7/14のカニバリ解消（トップtitle変更）以降、地域商用KWの順位は全体的に改善方向</strong>。表示回数も軒並み増加。
+</div>
+
+<div class="fact">
+  <h3>所見②：しかし CTR がほぼゼロ。7〜11位＝「1ページ目の下」で止まっている</h3>
+  川口市 葬儀は7.4位まで来て CTR 0.32%。この帯はローカルパック（地図枠）と大手ポータルに挟まれ、実クリックがほぼ発生しない。<strong>順位を上げる（3位以内）か、地図枠に入るか以外に打開策がない位置</strong>。
+</div>
+
+<div class="fact">
+  <h3>所見③：受け皿ズレが未解決。エリア/プランページが事実上ランクしていない</h3>
+  地域商用KWの着地は<strong>ほぼ全部トップページ（/）</strong>。専用ページの順位は：
+  <ul>
+    <li>「川口市 葬儀」で /area/kawaguchi/ ＝ <strong>63.5位</strong>（表示31）</li>
+    <li>「川口 家族葬」で /plan/family-funeral/ ＝ <strong>71.6位</strong>（表示5）</li>
+    <li>「川口市 家族葬」で /area/aoki/ 49.6位・/area/higashikawaguchi/ 51.3位</li>
+  </ul>
+  つまり Google は「川口＋葬儀系」を<strong>全部トップページで評価</strong>しており、エリア/プラン専用ページは補完扱い。7/14のカニバリ解消は「トップに寄せる」方向に効いた形。
+</div>
+
+<div class="fact">
+  <h3>所見④：/area/kawaguchi/ が単独で後退</h3>
+  表示 425→<strong class="down">201</strong>、順位 17.5→<strong class="down">29.6</strong>。他のエリアページ（鳩ヶ谷 54→174、青木 31→96、川口駅前 30→79、芝 13→54）は軒並み表示増なので、<strong>川口市の中心KWだけトップページに集約された副作用</strong>と見るのが自然。
+</div>
+
+<h2>4. 地味に良い動き</h2>
+<ul>
+  <li><strong>/saijo/megurinomori/</strong> 表示 626→1,054・順位 20.0→15.1・クリック 2→7。火葬場近接の軸は育っている。</li>
+  <li><strong>/hall/kawaguchi-memorial-hall/</strong> クリック 3→12。「川口メモリアルホール アクセス」5.2→<strong>2.0位</strong>。</li>
+  <li><strong>/access/</strong> クリック 9→29、<strong>/company/</strong> 4→15。指名検索まわりの回遊は強い。</li>
+  <li><strong>旧サイトURLの残骸が消えた</strong>（/Column_list/*・/kazoku_sou・/QA/* など、before で 50表示以上あったものが after 0）。移行の後片付けは完了段階。GSC露出ページ数 135→95 の減少はこれが主因で、悪い兆候ではない。</li>
+  <li><strong>/plan/family-funeral/</strong> 自体は表示 181→467・順位 12.1→6.6 と改善（ただし「川口市 家族葬」完全一致では拾えていない）。</li>
+</ul>
+
+<h2>5. AI検索（LLMO）の現況</h2>
+<table>
+<thead><tr><th>流入元</th><th>AFTER セッション</th><th>BEFORE</th></tr></thead>
+<tbody>
+<tr><td>openai / organic（ChatGPT検索）</td><td>5</td><td>3</td></tr>
+<tr><td>copilot.com / ai-assistant</td><td>1</td><td>0</td></tr>
+<tr><td>chatgpt.com（Unassigned）</td><td>0</td><td>3</td></tr>
+</tbody>
+</table>
+<p>AI経由は<strong>合計6セッション</strong>。母数として意味を持つ水準ではないが、計測はできている。現時点で優先度を上げる根拠はない。</p>
+
+<div class="verdict">
+<h2>総括</h2>
+<p><strong>on-page の作りは引き続き良好で、順位も改善傾向。問題は3点に絞られる。</strong></p>
+<ol>
+  <li><strong>集客の中身が商用とズレている</strong>：伸びた露出の8割超がコラム（訃報返信・検視）。CVに一切繋がっていない。</li>
+  <li><strong>地域商用KWが「1ページ目の下（7〜11位）」で頭打ち</strong>。ここから先は on-page ではほぼ動かない。<strong>off-page（GBP/MEO・実在する口コミ・被リンク）が律速</strong>。</li>
+  <li><strong>問い合わせが実数で減っている</strong>（電話13・リード11）。form_start が倍増して generate_lead が減っているのは、<strong>フォーム側に問題がある可能性</strong>があり、SEO以前に確認すべき。</li>
+</ol>
+<p class="note">＝「SEOの構造改善フェーズは概ね終わり、勝負はローカル（地図枠・口コミ）とCVRに移っている」というのが現状評価。</p>
+</div>
+
+<h2>6. 優先順位つきの次アクション（提案・未実施）</h2>
+<table>
+<thead><tr><th>優先</th><th>アクション</th><th>種別</th><th>担当</th></tr></thead>
+<tbody>
+<tr><td>P0</td><td><strong>フォーム離脱の確認</strong>：form_start 41 → generate_lead 11。計測不具合か実離脱かを切り分け</td><td>計測/実装</td><td>要人手（§19.2 承認必須）</td></tr>
+<tr><td>P0</td><td><strong>GBP（Googleビジネスプロフィール）強化</strong>：投稿・写真・実在する口コミ獲得。7〜11位帯の突破口は地図枠</td><td>off-page</td><td>要人手</td></tr>
+<tr><td>P1</td><td><strong>コラム→商用の回遊設計</strong>：/column/fuhou/・/column/kenshi-nagare/（合計 124セッション・CV 0）から、押し売りにならない範囲で川口の相談導線へ</td><td>on-page</td><td>実装可</td></tr>
+<tr><td>P1</td><td><strong>受け皿方針の確定</strong>：地域商用KWを「トップに集約」で行くのか「/area/kawaguchi/ を立て直す」のか。現状は集約側に振れており、<strong>中途半端に両方持つのが一番弱い</strong></td><td>方針判断</td><td>要判断</td></tr>
+<tr><td>P2</td><td><strong>CTR改善</strong>：川口市 葬儀 7.4位でCTR0.32%。title/description の訴求見直し（価格・24時間・自社式場）</td><td>on-page</td><td>実装可</td></tr>
+<tr><td>P2</td><td><strong>/saijo/megurinomori/ の強化</strong>：15.1位・上昇中。10位以内が現実的な唯一の商用KW群</td><td>on-page</td><td>実装可</td></tr>
+</tbody>
+</table>
+
+<div class="foot">
+  分析のみ・コード変更なし。データ出力：<code>tmp/seo-analysis-2026-07-18/</code>（非commit）。<br>
+  取得スクリプト：<code>fetch_gsc.mjs</code>（28日窓比較に変更）／<code>fetch_ga4.mjs</code>。秘密情報・個人情報は記載していない。
+</div>
+
+</div>
+</body>
+</html>

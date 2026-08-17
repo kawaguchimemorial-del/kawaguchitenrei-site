@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>本サイト SEOチェック（2026-08-17）</title>
+<style>
+  :root{
+    --ink:#1c1a17; --sub:#5c564e; --line:#e2ddd4; --bg:#fbfaf8;
+    --accent:#7a5c3e; --red:#a8322a; --amber:#8a6412; --green:#2f6146; --blue:#2d5573;
+    --redbg:#fdf3f2; --amberbg:#fdf9ee; --greenbg:#f1f7f3; --bluebg:#f0f4f8; --box:#fff;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
+    line-height:1.9;font-size:15px;-webkit-text-size-adjust:100%}
+  .wrap{max-width:1000px;margin:0 auto;padding:44px 22px 96px}
+  header.doc{border-bottom:3px solid var(--ink);padding-bottom:18px;margin-bottom:30px}
+  .kicker{font-size:12px;letter-spacing:.14em;color:var(--sub);margin:0}
+  h1{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:25px;line-height:1.5;margin:10px 0 12px;font-weight:600}
+  .meta{font-size:13px;color:var(--sub)}
+  h2{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:20px;margin:54px 0 14px;
+    padding:8px 0 8px 14px;border-left:5px solid var(--accent);font-weight:600;background:#f6f3ee}
+  h3{font-size:16px;margin:32px 0 10px;font-weight:600;border-bottom:1px solid var(--line);padding-bottom:6px}
+  h4{font-size:14px;margin:20px 0 6px;color:var(--accent);font-weight:600}
+  p{margin:0 0 12px}
+  table{border-collapse:collapse;width:100%;font-size:13px;margin:14px 0;background:var(--box)}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:right;vertical-align:top}
+  th{background:#f4f1eb;font-weight:600;text-align:center;white-space:nowrap}
+  td.l,th.l{text-align:left}
+  .scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .bad{color:var(--red);font-weight:600}
+  .warn{color:var(--amber);font-weight:600}
+  .good{color:var(--green);font-weight:600}
+  .box{background:var(--box);border:1px solid var(--line);border-radius:6px;padding:18px 20px;margin:18px 0}
+  .box.red{background:var(--redbg);border-color:#e8c4c0}
+  .box.amber{background:var(--amberbg);border-color:#ecdcb4}
+  .box.green{background:var(--greenbg);border-color:#c3ded0}
+  .box.blue{background:var(--bluebg);border-color:#c2d3e0}
+  .box h4{margin-top:0}
+  ul,ol{margin:8px 0 14px;padding-left:1.4em}
+  li{margin-bottom:6px}
+  .kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:11px;margin:16px 0}
+  .kpi div{background:var(--box);border:1px solid var(--line);border-radius:5px;padding:11px 13px}
+  .kpi span{display:block;font-size:11px;color:var(--sub)}
+  .kpi strong{font-size:19px;font-weight:600}
+  .note{font-size:12.5px;color:var(--sub);margin-top:6px}
+  code{background:#f2efe9;padding:1px 5px;border-radius:3px;font-size:12.5px}
+  hr{border:0;border-top:1px solid var(--line);margin:44px 0}
+  footer{margin-top:60px;padding-top:18px;border-top:1px solid var(--line);font-size:12px;color:var(--sub)}
+  .verdict{background:#2f3a44;color:#fff;border-radius:6px;padding:20px 24px;margin:20px 0}
+  .verdict h4{color:#e6c88a;margin-top:0;font-size:12px;letter-spacing:.06em}
+  .verdict .big{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:18px;line-height:1.7;margin:6px 0 10px}
+  @media print{body{background:#fff}.wrap{padding:0}h2{page-break-after:avoid}.box,table{page-break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <p class="kicker">社内レポート（docs/reports・非公開/noindex）</p>
+  <h1>本サイト SEOチェック（2026-08-17）</h1>
+  <div class="meta">
+    実施：2026-08-17 ／ データ：Google Search Console（API直接取得）／ <strong>確定最新日 2026-08-14</strong><br>
+    比較窓：①28日 AFTER 7/18–8/14 vs BEFORE 6/20–7/17　②7日 AFTER 8/08–8/14 vs BEFORE 8/01–8/07<br>
+    対象：<code>kawaguchitenrei.com</code>（本サイト）。<strong>広告LPは対象外</strong><br>
+    取得：<code>tmp/seo-analysis-2026-08-17/</code>・<code>tmp/seo-analysis-2026-08-17-w7/</code>
+  </div>
+</header>
+
+<div class="verdict">
+  <h4>結論</h4>
+  <p class="big">🟢 <strong>前回（8/9）の課題2つは両方とも解消した。</strong>週クリックは60→110に回復し、4週連続の減少は止まった。<br>
+  🔴 <strong>ただし、回復したのはコラムとブランド系だけ。</strong>問い合わせにつながる商用KWは28日窓で軒並み悪化しており、<strong>エリアページ16本は28日間でクリック1件</strong>。</p>
+  <p style="margin-bottom:0;font-size:14px">今回もっとも重い発見は、<strong>「川口市 葬儀」「川口市 家族葬」といった地域KWを、すべてトップページ1枚が受けており、/area/ 配下は70〜80位にいて出番がない</strong>という構造。技術面の不具合はなし。</p>
+</div>
+
+<h2>1. 前回（8/9）に「8/19に判断する」とした指標の答え合わせ</h2>
+<div class="scroll">
+<table>
+<tr><th class="l">8/9に設定した観測項目</th><th class="l">結果</th><th class="l">判定</th></tr>
+<tr><td class="l">週クリックが60から戻るか</td><td class="l"><strong>60 → 110</strong>（+83%）</td><td class="l good">✅ 戻った</td></tr>
+<tr><td class="l">/column/fuhou/ のCTRが0.54%から戻るか</td><td class="l">クリック <strong>22 → 31</strong>（順位9.95→9.85でほぼ不変）</td><td class="l good">✅ 戻った</td></tr>
+<tr><td class="l">トップの「川口市 葬儀」表示が123からさらに減るか</td><td class="l">7日窓で <strong>265表示</strong>に回復。ただしクリックは0のまま</td><td class="l warn">△ 表示は戻ったがクリック0</td></tr>
+<tr><td class="l">「川口メモリアルホール」4.64位が維持されるか</td><td class="l"><strong>3.92位</strong>・クリック 6 → 13</td><td class="l good">✅ 維持・改善</td></tr>
+<tr><td class="l">旧ドメインの契約者特定（9/3期限）</td><td class="l"><code>kawaguchi-tenrei.com</code> は403のまま変化なし。<strong>残り17日</strong></td><td class="l bad">🔴 未着手</td></tr>
+<tr><td class="l">GBP API承認確認</td><td class="l">本チェックでは未確認</td><td class="l warn">△ 要確認</td></tr>
+</table>
+</div>
+<p class="note">※ 8/9レポートで「AI Overviewsが原因の可能性が最も高い」としたコラムCTRの低下は、施策を何もしていないのに戻りました。<strong>AI Overviews定着説は、少なくとも今回のデータでは支持されません。</strong>一時的な変動だった可能性が高く、8/9の見立ては保留に戻します。</p>
+
+<hr>
+
+<h2>2. 全体の推移</h2>
+
+<h3>7日窓 ── 明確に回復</h3>
+<div class="kpi">
+  <div><span>クリック</span><strong class="good">60 → 110</strong></div>
+  <div><span>表示回数</span><strong>8,564 → 8,777</strong></div>
+  <div><span>CTR</span><strong class="good">0.70% → 1.25%</strong></div>
+  <div><span>平均掲載順位</span><strong>12.5 → 11.4 前後</strong></div>
+</div>
+<p><strong>表示はほぼ横ばいのままクリックだけが増えています。</strong>順位が上がったというより、CTRが戻ったことによる回復です。</p>
+
+<h3>週次推移（月曜起点・1日あたりに換算）</h3>
+<div class="scroll">
+<table>
+<tr><th class="l">週</th><th>日数</th><th>クリック</th><th>1日平均</th><th>表示</th><th>CTR</th><th>平均順位</th></tr>
+<tr><td class="l">6/22–6/28</td><td>7</td><td>33</td><td>4.7</td><td>5,935</td><td>0.56%</td><td>14.39</td></tr>
+<tr><td class="l">6/29–7/05</td><td>7</td><td>82</td><td>11.7</td><td>9,181</td><td>0.89%</td><td>12.19</td></tr>
+<tr><td class="l">7/06–7/12</td><td>7</td><td>76</td><td>10.9</td><td>10,236</td><td>0.74%</td><td>11.30</td></tr>
+<tr><td class="l">7/13–7/19</td><td>7</td><td>100</td><td>14.3</td><td>9,275</td><td>1.08%</td><td>10.99</td></tr>
+<tr><td class="l">7/20–7/26</td><td>7</td><td>121</td><td class="good">17.3</td><td>9,669</td><td>1.25%</td><td>11.19</td></tr>
+<tr><td class="l">7/27–8/02</td><td>7</td><td>72</td><td class="bad">10.3</td><td>9,497</td><td>0.76%</td><td>12.24</td></tr>
+<tr><td class="l">8/03–8/09</td><td>7</td><td>79</td><td class="bad">11.3</td><td>8,362</td><td>0.94%</td><td>12.33</td></tr>
+<tr><td class="l"><strong>8/10–8/14</strong></td><td>5</td><td>85</td><td class="good"><strong>17.0</strong></td><td>6,440</td><td class="good">1.32%</td><td class="good">11.37</td></tr>
+</table>
+</div>
+<p>直近週は5日分しかないため、<strong>1日あたりで比較</strong>しています。
+<strong>17.0クリック/日は、7/20週のピーク（17.3）とほぼ同水準</strong>まで戻りました。CTR 1.32%は期間中で最高です。</p>
+
+<div class="box amber">
+  <h4>ただし、この回復にはお盆の影響が含まれる可能性があります</h4>
+  <p style="margin-bottom:0">直近週（8/10–8/14）はお盆入りの週です。伸びたのは<strong>ブランド系（川口典礼＋6、川口メモリアルホール＋7）と訃報・法要系の情報クエリ</strong>で、
+  帰省・法要のタイミングで調べられやすい領域と一致します。<strong>回復が定着したかどうかは、お盆明けの次回チェック（8/24前後）で確認が必要です。</strong>現時点で「回復した」と確定するのは早い。</p>
+</div>
+
+<hr>
+
+<h2>3. 良くなったところ</h2>
+<div class="scroll">
+<table>
+<tr><th class="l">対象</th><th>前週</th><th>今週</th><th class="l">内容</th></tr>
+<tr><td class="l">/hall/kawaguchi-memorial-hall/</td><td>7クリック</td><td class="good">25クリック</td><td class="l good">今週の増加分の最大要因（+18）。順位2.40→3.93</td></tr>
+<tr><td class="l">「川口メモリアルホール」</td><td>4.64位・6クリック</td><td class="good">3.92位・13クリック</td><td class="l">CTR 18.06%。8/7の下落からの回復が定着</td></tr>
+<tr><td class="l">「川口典礼」（指名）</td><td>10クリック</td><td class="good">16クリック</td><td class="l">1.0位を維持。28日窓ではCTR 25.00%</td></tr>
+<tr><td class="l">/column/fuhou/</td><td>22クリック</td><td class="good">31クリック</td><td class="l">順位ほぼ不変（9.95→9.85）でクリックのみ回復</td></tr>
+<tr><td class="l">/column/kenshi-nagare/</td><td>4クリック</td><td class="good">12クリック</td><td class="l">順位 9.60→8.97</td></tr>
+<tr><td class="l">/saijo/megurinomori/</td><td>0クリック</td><td class="good">5クリック</td><td class="l">順位 16.10→13.75</td></tr>
+<tr><td class="l">トップページ</td><td>16.99位</td><td class="good">12.75位</td><td class="l">8/9で指摘した後退から戻した</td></tr>
+<tr><td class="l">/access/</td><td>10.03位</td><td class="good">7.08位</td><td class="l">—</td></tr>
+</table>
+</div>
+<p>28日窓でも <strong>/hall/kawaguchi-memorial-hall/ は 9.28位→4.57位・クリック12→54</strong> と大きく伸びています。
+1ページしかない施設ページが最も効率よく成果を出している、という8/10レポートの結論と一致します。</p>
+
+<h4>直葬系は継続して改善</h4>
+<div class="scroll">
+<table>
+<tr><th class="l">キーワード</th><th>28日 前</th><th>28日 後</th><th class="l">評価</th></tr>
+<tr><td class="l">川口 直葬</td><td>11.1位</td><td class="good">7.8位</td><td class="l good">改善</td></tr>
+<tr><td class="l">川口市 直葬</td><td>10.3位</td><td class="good">9.0位</td><td class="l good">改善</td></tr>
+<tr><td class="l">川口 火葬式</td><td>28.5位</td><td class="good">12.3位</td><td class="l good">大幅改善（表示は4と小さい）</td></tr>
+</table>
+</div>
+
+<hr>
+
+<h2>4. 課題① 商用KWは28日窓で悪化している ← 本質的な問題</h2>
+<p>週次では回復しましたが、<strong>28日窓で見ると、お金になるキーワードは軒並み下がっています。</strong>
+しかも<strong>表示回数そのものが減っている</strong>ため、順位変動だけの話ではありません。</p>
+
+<div class="scroll">
+<table>
+<tr><th class="l">キーワード</th><th>表示 前→後</th><th>順位 前→後</th><th>クリック</th><th class="l">評価</th></tr>
+<tr><td class="l">川口市 葬儀</td><td class="bad">1,587 → 1,123</td><td class="bad">7.4 → 10.7</td><td class="bad">0</td><td class="l bad">表示▲29%・1ページ目から陥落</td></tr>
+<tr><td class="l">川口 葬儀</td><td class="bad">590 → 385</td><td class="bad">11.2 → 14.2</td><td>2</td><td class="l bad">表示▲35%</td></tr>
+<tr><td class="l">川口市 家族葬</td><td class="bad">433 → 303</td><td class="bad">19.3 → 25.3</td><td class="bad">0</td><td class="l bad">3ページ目へ後退</td></tr>
+<tr><td class="l">川口 家族葬</td><td class="bad">161 → 100</td><td class="bad">20.6 → 25.9</td><td class="bad">0</td><td class="l bad">3ページ目へ後退</td></tr>
+<tr><td class="l">川口市 一日葬</td><td>87 → 104</td><td class="bad">13.3 → 23.1</td><td class="bad">0</td><td class="l bad">大幅悪化</td></tr>
+<tr><td class="l">川口市 火葬式</td><td>52 → 47</td><td class="warn">21.6 → 22.8</td><td class="bad">0</td><td class="l warn">低位で停滞</td></tr>
+<tr><td class="l">川口市 葬儀社</td><td class="bad">178 → 111</td><td class="bad">10.8 → 13.2</td><td class="bad">0</td><td class="l bad">—</td></tr>
+<tr><td class="l">川口市 葬儀場</td><td class="bad">83 → 62</td><td class="bad">11.0 → 16.6</td><td>1</td><td class="l bad">—</td></tr>
+</table>
+</div>
+
+<div class="box red">
+  <p style="margin-bottom:0"><strong>「川口市 家族葬」は8/3・8/9レポートから継続して指摘している未解決課題ですが、改善どころか 19.3位 → 25.3位 とさらに悪化しました。</strong>
+  表示303回に対しクリック0。<strong>3ページ目にいる限りクリックは発生しません。</strong></p>
+</div>
+
+<hr>
+
+<h2>5. 課題② エリアページ16本が機能していない ← 今回の最重要発見</h2>
+
+<div class="box red">
+  <h4>28日間で、/area/ 配下16ページの合計クリックは <span style="font-size:20px">1件</span></h4>
+  <p style="margin-bottom:0">表示は1,068回あるにもかかわらず、です。</p>
+</div>
+
+<div class="scroll">
+<table>
+<tr><th class="l">ページ</th><th>表示</th><th>クリック</th><th>平均順位</th></tr>
+<tr><td class="l">/area/kawaguchi/</td><td>165</td><td class="bad">0</td><td class="bad">53.4</td></tr>
+<tr><td class="l">/area/hatogaya/</td><td>164</td><td class="bad">0</td><td class="bad">30.2</td></tr>
+<tr><td class="l">/area/nishikawaguchi/</td><td>162</td><td class="bad">0</td><td class="bad">32.4</td></tr>
+<tr><td class="l">/area/kawaguchi-ekimae/</td><td>95</td><td class="bad">0</td><td class="bad">35.8</td></tr>
+<tr><td class="l">/area/higashikawaguchi/</td><td>93</td><td>1</td><td class="bad">25.5</td></tr>
+<tr><td class="l">/area/（一覧）</td><td>86</td><td class="bad">0</td><td class="bad">74.4</td></tr>
+<tr><td class="l">/area/angyo/</td><td>70</td><td class="bad">0</td><td class="bad">53.2</td></tr>
+<tr><td class="l">/area/kawaguchi-motogo/</td><td>59</td><td class="bad">0</td><td class="bad">37.3</td></tr>
+<tr><td class="l">/area/aoki/</td><td>52</td><td class="bad">0</td><td class="bad">46.3</td></tr>
+<tr><td class="l">/area/kamiaoki/</td><td>31</td><td class="bad">0</td><td class="bad">78.2</td></tr>
+<tr><td class="l">/area/shiba/</td><td>29</td><td class="bad">0</td><td>16.2</td></tr>
+<tr><td class="l">/area/minami-hatogaya/</td><td>18</td><td class="bad">0</td><td class="bad">33.6</td></tr>
+<tr><td class="l"><strong>16ページ合計</strong></td><td><strong>1,068</strong></td><td class="bad"><strong>1</strong></td><td class="bad"><strong>25〜78位</strong></td></tr>
+</table>
+</div>
+
+<h3>なぜ0なのか ── 地域KWはすべてトップページ1枚が受けている</h3>
+<p>重要クエリが<strong>どのURLで表示されているか</strong>を調べると、原因がはっきりします。</p>
+
+<div class="scroll">
+<table>
+<tr><th class="l">クエリ</th><th class="l">実際に表示されているURL</th><th>表示</th><th>順位</th></tr>
+<tr><td class="l" rowspan="3">川口市 葬儀</td><td class="l"><strong>/（トップページ）</strong></td><td>1,089</td><td>9.24</td></tr>
+<tr><td class="l">/column/</td><td>43</td><td class="bad">53.81</td></tr>
+<tr><td class="l bad">/area/kawaguchi/ ← 本来の受け皿</td><td>27</td><td class="bad">78.33</td></tr>
+<tr><td class="l" rowspan="3">川口市 家族葬</td><td class="l"><strong>/（トップページ）</strong></td><td>257</td><td>16.35</td></tr>
+<tr><td class="l">/area/angyo/</td><td>13</td><td class="bad">77.62</td></tr>
+<tr><td class="l bad">/area/kawaguchi/</td><td>10</td><td class="bad">79.60</td></tr>
+<tr><td class="l" rowspan="2">川口 葬儀</td><td class="l"><strong>/（トップページ）</strong></td><td>367</td><td>11.43</td></tr>
+<tr><td class="l bad">/area/kawaguchi/</td><td>7</td><td class="bad">80.57</td></tr>
+<tr><td class="l" rowspan="2">川口市 葬儀社</td><td class="l"><strong>/（トップページ）</strong></td><td>111</td><td>13.17</td></tr>
+<tr><td class="l bad">/area/kawaguchi/</td><td>1</td><td class="bad">66</td></tr>
+</table>
+</div>
+
+<div class="box amber">
+  <p><strong>「川口市 葬儀」で /area/kawaguchi/ は78.33位（＝検索結果8ページ目）です。</strong>
+  Googleはこのクエリに対して<strong>トップページを選んでおり、エリアページは候補にすら入っていません。</strong></p>
+  <p style="margin-bottom:0">つまり<strong>エリアページは「地域KWの受け皿」として一切機能しておらず、地域KWの成否はトップページ1枚に依存しています。</strong>
+  そしてその<strong>トップページが §4 のとおり悪化している</strong>ため、地域KW全体が沈んでいる、という構造です。</p>
+</div>
+
+<p class="note">※ 8/10レポートで「エリア16本すべてクリック0（平均順位38.3位）」と指摘した内容の続報にあたります。<strong>1か月経っても改善しておらず、平均順位はむしろ悪化しています。</strong></p>
+
+<hr>
+
+<h2>6. 課題③ カニバリゼーション（1クエリに自社の複数URLが出ている）</h2>
+<div class="scroll">
+<table>
+<tr><th class="l">クエリ</th><th>出ているURL数</th><th>表示計</th><th>クリック計</th><th class="l">状況</th></tr>
+<tr><td class="l">川口メモリアルホール</td><td>10本</td><td>687</td><td class="good">33</td><td class="l">ブランド系。分散していても取れている</td></tr>
+<tr><td class="l bad">川口市 葬儀</td><td>5本</td><td>1,191</td><td class="bad">0</td><td class="l bad">/・/column/・/area/kawaguchi/・/area/ が競合</td></tr>
+<tr><td class="l bad">川口市 家族葬</td><td>8本</td><td>319</td><td class="bad">0</td><td class="l bad">エリアページ複数が低順位で分散</td></tr>
+<tr><td class="l bad">川口市 一日葬</td><td>4本</td><td>111</td><td class="bad">0</td><td class="l bad">下記のとおり三つ巴</td></tr>
+</table>
+</div>
+
+<h4>「川口市 一日葬」は3ページが競合している</h4>
+<div class="scroll">
+<table>
+<tr><th class="l">URL</th><th>表示 前→後</th><th>順位 前→後</th><th class="l">評価</th></tr>
+<tr><td class="l">/plan/oneday-funeral/（本来の受け皿）</td><td>51 → 48</td><td class="bad">20.43 → 25.79</td><td class="l bad">本来の受け皿が最下位</td></tr>
+<tr><td class="l">/（トップページ）</td><td>53 → 29</td><td class="good">12.42 → 9.10</td><td class="l">最上位だが受け皿ではない</td></tr>
+<tr><td class="l">/plan/yugure-kazokuso/（7/27新設）</td><td>0 → 26</td><td>— → 10.19</td><td class="l warn">新設ページが割り込んだ</td></tr>
+</table>
+</div>
+<p>7/27に新設した<strong>夕暮れ家族葬のページが「川口市 一日葬」に10.19位で入り込み</strong>、
+本来の受け皿である <code>/plan/oneday-funeral/</code> は 20.43位 → 25.79位 に後退しました。
+<strong>夕暮れ家族葬は一日葬の一種なので内容としては正しいのですが、結果としてGoogleがどちらを出すか迷っている状態</strong>です。</p>
+
+<hr>
+
+<h2>7. 参考：クリックの内訳はコラムに偏っている</h2>
+<div class="scroll">
+<table>
+<tr><th class="l">ページ</th><th>28日クリック</th><th>構成比</th><th>表示</th><th>順位</th></tr>
+<tr><td class="l">/column/fuhou/</td><td>129</td><td class="warn">34%</td><td>15,760</td><td>9.81</td></tr>
+<tr><td class="l">/（トップページ）</td><td>69</td><td>18%</td><td>5,159</td><td>13.16</td></tr>
+<tr><td class="l">/hall/kawaguchi-memorial-hall/</td><td>54</td><td>14%</td><td>738</td><td class="good">4.57</td></tr>
+<tr><td class="l">/column/kenshi-nagare/</td><td>30</td><td>8%</td><td>4,975</td><td>9.47</td></tr>
+<tr><td class="l">/column/shinsiki/</td><td>23</td><td>6%</td><td>2,045</td><td>10.37</td></tr>
+<tr><td class="l">/column/yujinso-sokagakkai/</td><td>14</td><td>4%</td><td>3,008</td><td>10.62</td></tr>
+<tr><td class="l"><strong>コラム4本の小計</strong></td><td><strong>196</strong></td><td class="warn"><strong>52%</strong></td><td>—</td><td>—</td></tr>
+<tr><td class="l"><strong>28日 合計</strong></td><td><strong>378</strong>（前期 299）</td><td>100%</td><td>—</td><td>—</td></tr>
+</table>
+</div>
+<p><strong>クリックの半分が、川口市の相談に直結しない全国区の情報コラム4本から来ています。</strong>
+これは8/10レポートの結論（コラムを増やす必要はない／成果は1ページしかないページから出ている）と整合します。
+<strong>/hall/ は表示738で54クリック（CTR 7.3%）</strong>と、少ない表示で最も効率よく獲得しています。</p>
+
+<h4>補足：アンカーURL（#s-N）が表示回数を膨らませている</h4>
+<div class="scroll">
+<table>
+<tr><th class="l">URL</th><th>表示</th><th>クリック</th></tr>
+<tr><td class="l">/column/fuhou/#s-2 ／ #s-1 ／ #s-4-1 ／ #s-4-3 ／ #s-4-2</td><td>合計 約7,800</td><td class="bad">0</td></tr>
+<tr><td class="l">/column/kenshi-nagare/#s-2 ／ #s-3 ／ #s-8-2 ／ #s-1</td><td>合計 約2,700</td><td class="bad">0</td></tr>
+</table>
+</div>
+<p>Googleが自動生成した本文内ジャンプリンクです。<strong>実体は同じページなので実害はありませんが、表示回数を実態より多く見せます。</strong>
+表示回数を見るときは、この分を割り引いて読む必要があります。</p>
+
+<hr>
+
+<h2>8. 技術面のチェック</h2>
+<div class="scroll">
+<table>
+<tr><th class="l">項目</th><th class="l">結果</th><th class="l">判定</th></tr>
+<tr><td class="l">主要10ページのHTTPステータス</td><td class="l">すべて200（/・/area/kawaguchi/・/plan/family-funeral/・/plan/direct-funeral/・/hall/・/column/fuhou/・/saijo/megurinomori/・/contact/・/plan/・/case/）</td><td class="l good">✅</td></tr>
+<tr><td class="l">sitemap.xml</td><td class="l">200・<strong>129 URL</strong>（前回から増減なし）</td><td class="l good">✅</td></tr>
+<tr><td class="l">robots.txt</td><td class="l">200・Sitemap記述あり・Disallowは /admin/ と /post/ のみ</td><td class="l good">✅</td></tr>
+<tr><td class="l">llms.txt</td><td class="l">200</td><td class="l good">✅</td></tr>
+<tr><td class="l">コード変更</td><td class="l"><strong>7/30以降なし</strong>（直近コミットはGBP関連ドキュメントのみ）</td><td class="l">—</td></tr>
+<tr><td class="l">旧ドメイン <code>kawaguchi-tenrei.com</code></td><td class="l">403のまま変化なし。<strong>失効まで残り17日（9/3）</strong></td><td class="l bad">🔴</td></tr>
+</table>
+</div>
+<p><strong>今回の順位変動は、サイト側の技術的な不具合によるものではありません。</strong></p>
+
+<hr>
+
+<h2>9. 判断と、次にやること</h2>
+
+<div class="box green">
+  <h4>今回もサイトは触らない（判断）</h4>
+  <p style="margin-bottom:0">週次で回復した直後に手を入れると、<strong>何が効いたのか分からなくなります。</strong>
+  しかも直近週はお盆入りで、回復が定着したかどうかがまだ判定できません。
+  <strong>8/24前後（お盆明けのデータが揃うタイミング）まで待って判断します。</strong>これは8/3・8/9と同じ方針の維持です。</p>
+</div>
+
+<h3>優先順位</h3>
+<div class="scroll">
+<table>
+<tr><th>順</th><th class="l">項目</th><th class="l">理由</th><th class="l">状態</th></tr>
+<tr><td class="bad">1</td><td class="l"><strong>旧ドメインの契約者特定</strong>（9/3失効）</td><td class="l">残り17日。経理の支払い履歴からNTT西日本への支払いを探すのが最短</td><td class="l bad">未着手・期限あり</td></tr>
+<tr><td class="bad">2</td><td class="l"><strong>GBP（Googleビジネスプロフィール）</strong></td><td class="l">「川口市 葬儀」は表示1,123・9.24位でクリック0。<strong>1ページ目にいてもクリックが出ない＝ローカルパック側でしか解けない</strong>。API承認状況の確認も</td><td class="l warn">継続課題</td></tr>
+<tr><td class="warn">3</td><td class="l"><strong>エリアページ16本の扱いを決める</strong></td><td class="l">28日でクリック1件・順位25〜78位。トップページに完全に食われている。<strong>増やす前に、この16本をどうするかの方針決定が必要</strong></td><td class="l warn">要判断</td></tr>
+<tr><td class="warn">4</td><td class="l">「川口市 家族葬」の受け皿（19.3→25.3位）</td><td class="l">8/3から継続指摘。悪化が続いている</td><td class="l warn">未解決</td></tr>
+<tr><td>5</td><td class="l">「川口市 一日葬」のカニバリ整理</td><td class="l">/plan/oneday-funeral/ が25.79位まで後退し、新設の夕暮れ家族葬が10.19位で割り込んでいる</td><td class="l">新規発生</td></tr>
+</table>
+</div>
+
+<div class="box blue">
+  <h4>「エリアページをどうするか」について（提案ではなく論点整理）</h4>
+  <p>16本すべてが機能していないという事実が2か月続いています。考えられる選択肢は3つです。</p>
+  <ul style="margin-bottom:0">
+    <li><strong>(a) 主要数本に絞って中身を厚くする</strong> — 分散しているシグナルを集約する。ただし削除・統合は慎重に</li>
+    <li><strong>(b) トップページとの棲み分けを明確にする</strong> — 現状はトップが全部受けているので、エリアページ側は「そのエリア固有の情報（最寄り斎場・火葬場までの距離・地域の慣習）」に振り、トップと同じ土俵で戦わない</li>
+    <li><strong>(c) 現状維持</strong> — 8/7分析のとおり「自社近接エリアで戦う」方針自体は正しく、方針が正しくても作り方で順位が付いていないだけ、という見方</li>
+  </ul>
+  <p style="margin-top:10px;margin-bottom:0"><strong>これは大きな判断なので、今回は決めずに論点として置きます。</strong>どの方向で進めるかご指示をいただければ、具体案を作ります。</p>
+</div>
+
+<h3>次回（8/24前後）に見る指標</h3>
+<ul>
+  <li>週クリックが110を維持するか（お盆要因だったのか、定着したのか）</li>
+  <li>/column/fuhou/ のクリックが31から落ちないか（AI Overviews説の再検証）</li>
+  <li>「川口市 家族葬」が25.3位から戻るか</li>
+  <li>「川口市 葬儀」のトップページ順位（9.24位）と表示（1,123）</li>
+  <li>/hall/ の4.57位が維持されるか</li>
+  <li><strong>旧ドメインの契約者特定（9/3期限・残り17日）</strong></li>
+  <li>GBP API承認状況</li>
+</ul>
+
+<footer>
+  作成：Claude Code ／ 2026年8月17日<br>
+  データ：Google Search Console API（<code>tmp/seo-analysis-2026-08-17/</code>・<code>tmp/seo-analysis-2026-08-17-w7/</code>）。確定最新日 2026-08-14。<br>
+  技術チェック：本番URLへの実リクエスト（HTTPステータス・sitemap・robots.txt・llms.txt）。<br>
+  対象は <code>kawaguchitenrei.com</code> のみ。広告LP（<code>kawaguchi-memorial-hall.com</code>）は対象外で、記録は <code>docs/ad-lp/</code> に分離。<br>
+  <strong>本チェックではサイト・広告ともに変更を行っていません（分析のみ）。</strong><br>
+  本資料は社内用・Web非公開（noindex）。個人情報・秘密情報は含みません。
+</footer>
+
+</div>
+</body>
+</html>

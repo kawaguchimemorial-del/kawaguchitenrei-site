@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>コラムを増やすべきか ─ ページ資産の投資対効果レビュー（2026-08-10）</title>
+<style>
+  :root{--ink:#23201c;--sub:#6b645c;--line:#e4ddd3;--bg:#fbf9f5;--accent:#7a5c3e;--warn:#a3402f;--good:#3d6b4a;--blue:#3a5a7a;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;line-height:1.8;font-size:15px}
+  .wrap{max-width:1040px;margin:0 auto;padding:32px 22px 80px}
+  header.doc{border-bottom:3px solid var(--accent);padding-bottom:18px;margin-bottom:24px}
+  header.doc .tag{color:var(--accent);font-weight:700;letter-spacing:.12em;font-size:12px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:23px;margin:6px 0 4px;font-weight:700}
+  .meta{color:var(--sub);font-size:13px}
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:19px;margin:38px 0 12px;padding-left:12px;border-left:5px solid var(--accent)}
+  h3{font-size:15px;margin:24px 0 8px;color:var(--accent)}
+  .status{display:inline-block;background:#f2f4f8;border:1px solid #d4dbe6;color:#3a5a7a;border-radius:999px;padding:4px 14px;font-weight:700;font-size:14px}
+  .lead{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px 20px;margin:16px 0}
+  .info-box{background:#f2f4f8;border:1px solid #d4dbe6;border-radius:10px;padding:14px 18px;margin:14px 0}
+  .warn-box{background:#fdf1ef;border:1px solid #e8c4bc;border-radius:10px;padding:14px 18px;margin:14px 0}
+  .good-box{background:#eef7ef;border:1px solid #cfe6d3;border-radius:10px;padding:14px 18px;margin:14px 0}
+  .tw{overflow-x:auto;margin:12px 0}
+  table{width:100%;min-width:560px;border-collapse:collapse;font-size:13px;background:#fff}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:right;vertical-align:top}
+  th:first-child,td:first-child{text-align:left}
+  thead th{background:#f2ece2;text-align:center}
+  .up{color:var(--good);font-weight:700}.down{color:var(--warn);font-weight:700}
+  code{background:#f1efe9;padding:1px 6px;border-radius:5px;font-size:12.5px;font-family:ui-monospace,Consolas,monospace}
+  ul{margin:8px 0 8px 1.2em}li{margin:5px 0}
+  .foot{margin-top:36px;border-top:1px solid var(--line);padding-top:14px;color:var(--sub);font-size:12px}
+  .num{font-variant-numeric:tabular-nums}
+  .big{font-size:17px;font-weight:700}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <div class="tag">社内レポート（docs/reports・非公開/noindex）</div>
+  <h1>「新しいコラムを増やしていかなくて良いのか」への回答 ─ ページ資産の投資対効果レビュー</h1>
+  <div class="meta">
+    実施：2026-08-10 ／ データ：Google Search Console 実測（28日：2026/7/11–8/07・確定最新日 8/7）<br>
+    対象：本サイト <code>kawaguchitenrei.com</code>（アンカー付きURLは除外して集計）<br>
+    ※分析のみ。サイトは変更していません。
+  </div>
+</header>
+
+<div class="lead">
+  <span class="status">結論</span><br>
+  <span class="big">新しいコラムを増やす必要はありません。むしろ、このサイトは既に「作りすぎ」の状態にあります。</span><br><br>
+  <strong>コラム34本のうち23本（68%）が、28日間でクリック0です。</strong>
+  さらに<strong>エリアページは16本すべてがクリック0</strong>。
+  一方で<strong>たった1ページの <code>/hall/kawaguchi-memorial-hall/</code> が38クリック</strong>を稼いでいます。<br>
+  <strong>「ページを増やす」という打ち手は、このサイトでは既に頭打ちになっています。</strong>
+  問題は<strong>量ではなく位置（順位）</strong>であり、次の投資先は<strong>新規作成ではなく、既にある「惜しいページ」の押し上げ</strong>です。
+</div>
+
+<h2>1. セグメント別の投資対効果（28日実測）</h2>
+<div class="tw">
+<table>
+  <thead><tr><th>セグメント</th><th>ページ数</th><th>クリック</th><th>表示</th><th>CTR</th><th>平均順位</th><th>1ページあたり<br>クリック</th></tr></thead>
+  <tbody>
+    <tr><td>/column/（コラム）</td><td class="num">34</td><td class="num">222</td><td class="num">28,816</td><td class="down">0.77%</td><td>10.1</td><td class="num">6.5</td></tr>
+    <tr><td>/（トップ）</td><td class="num">1</td><td class="num">79</td><td class="num">5,397</td><td>1.46%</td><td>12.2</td><td class="num up">79.0</td></tr>
+    <tr><td class="up">/hall/（自社式場）</td><td class="num up"><strong>1</strong></td><td class="num up"><strong>38</strong></td><td class="num">751</td><td class="up"><strong>5.06%</strong></td><td class="up">5.9</td><td class="num up"><strong>38.0</strong></td></tr>
+    <tr><td class="up">/access/（アクセス）</td><td class="num up"><strong>1</strong></td><td class="num up"><strong>20</strong></td><td class="num">390</td><td class="up"><strong>5.13%</strong></td><td class="up">6.9</td><td class="num up"><strong>20.0</strong></td></tr>
+    <tr><td>/plan/（プラン）</td><td class="num">8</td><td class="num">12</td><td class="num">1,923</td><td>0.62%</td><td class="up">7.5</td><td class="num">1.5</td></tr>
+    <tr><td>/company/</td><td class="num">1</td><td class="num">7</td><td class="num">518</td><td>1.35%</td><td class="up">5.0</td><td class="num">7.0</td></tr>
+    <tr><td>/saijo/（斎場）</td><td class="num">5</td><td class="num">4</td><td class="num">1,630</td><td class="down">0.25%</td><td class="down">22.2</td><td class="num">0.8</td></tr>
+    <tr><td>/ques/</td><td class="num">4</td><td class="num">3</td><td class="num">33</td><td class="up">9.09%</td><td class="up">7.7</td><td class="num">0.8</td></tr>
+    <tr><td>/case/（施行事例）</td><td class="num">8</td><td class="num">2</td><td class="num">73</td><td>2.74%</td><td>15.7</td><td class="num">0.3</td></tr>
+    <tr><td class="down">/area/（エリア）</td><td class="num down"><strong>16</strong></td><td class="num down"><strong>0</strong></td><td class="num">1,028</td><td class="down"><strong>0.00%</strong></td><td class="down"><strong>38.3</strong></td><td class="num down"><strong>0.0</strong></td></tr>
+    <tr><td class="down">/voice/（お客様の声）</td><td class="num">9</td><td class="num down">0</td><td class="num">21</td><td class="down">0%</td><td>10.0</td><td class="num down">0.0</td></tr>
+    <tr><td class="down">/QA/</td><td class="num">3</td><td class="num down">0</td><td class="num">42</td><td class="down">0%</td><td class="down">71.4</td><td class="num down">0.0</td></tr>
+    <tr><td class="down">/pet/</td><td class="num">1</td><td class="num down">0</td><td class="num">59</td><td class="down">0%</td><td class="down">38.0</td><td class="num down">0.0</td></tr>
+  </tbody>
+</table>
+</div>
+<div class="warn-box">
+  <strong>この表が示していることは、はっきりしています。</strong>
+  <ul>
+    <li><strong>1ページの <code>/hall/</code> が38クリック。16ページの <code>/area/</code> が0クリック。</strong></li>
+    <li><strong>ページ数とクリックに相関がない。</strong>むしろ、ページ数の多いセグメント（コラム34・エリア16・お客様の声9）ほど1ページあたりの成果が小さい。</li>
+    <li><strong>成果を出しているのは、いずれも「1ページしかないページ」</strong>——式場・アクセス・会社概要・トップ。
+      <strong>これらは「増やせないページ」であり、だからこそ内容が集約されて順位が高い（5〜7位）。</strong></li>
+  </ul>
+</div>
+
+<h2>2. コラム34本の内訳 ── 4本が94%を稼ぎ、23本は0</h2>
+<div class="tw">
+<table>
+  <thead><tr><th>コラム</th><th>クリック</th><th>表示</th><th>CTR</th><th>順位</th></tr></thead>
+  <tbody>
+    <tr><td>/column/fuhou/（訃報の返信）</td><td class="num">140</td><td class="num">16,045</td><td>0.87%</td><td>9.69</td></tr>
+    <tr><td>/column/kenshi-nagare/（検視）</td><td class="num">28</td><td class="num">5,506</td><td>0.51%</td><td>9.42</td></tr>
+    <tr><td>/column/shinsiki/（神道）</td><td class="num">22</td><td class="num">2,100</td><td>1.05%</td><td>10.54</td></tr>
+    <tr><td>/column/yujinso-sokagakkai/（友人葬）</td><td class="num">18</td><td class="num">3,043</td><td>0.59%</td><td>10.58</td></tr>
+    <tr><td><strong>上位4本 小計</strong></td><td class="num"><strong>208</strong></td><td class="num"><strong>26,694</strong></td><td>0.78%</td><td>—</td></tr>
+    <tr><td class="down"><strong>残り30本 合計</strong></td><td class="num down"><strong>14</strong></td><td class="num">2,122</td><td class="down">0.66%</td><td>—</td></tr>
+    <tr><td class="down">うち クリック0のページ</td><td class="num down"><strong>23本</strong></td><td>—</td><td>—</td><td>—</td></tr>
+  </tbody>
+</table>
+</div>
+<div class="info-box">
+  <strong>コラムの成果は、上位4本に94%が集中しています。</strong>
+  そして<strong>その4本はすべて「訃報の返信」「検視」「神道」「友人葬」という全国区の情報キーワード</strong>で、
+  <strong>川口市のご相談・ご依頼には直結しません</strong>（8/3・8/7レポートで繰り返し確認）。<br><br>
+  <strong>つまり、コラムを増やしても起きることは2つに1つです。</strong>
+  <ul>
+    <li><strong>ほとんどの場合</strong>：残り30本と同じく、クリック0のページが1本増える</li>
+    <li><strong>うまくいった場合</strong>：全国区の情報KWで表示が増えるが、<strong>川口のご相談は増えない</strong></li>
+  </ul>
+  <strong>どちらの結果も、事業のKPI（川口市でのご相談件数）には効きません。</strong>
+</div>
+
+<h2>3. さらに悪い材料 ── その帯のクリックが今まさに減っている</h2>
+<div class="warn-box">
+  8/9のSEOチェックで確認したとおり、<strong>コラムのCTRが半減しています。</strong>
+  <div class="tw"><table>
+    <thead><tr><th><code>/column/fuhou/</code></th><th>7/25–7/31</th><th>8/01–8/07</th></tr></thead>
+    <tbody>
+      <tr><td>クリック</td><td class="num">39</td><td class="num down"><strong>22</strong></td></tr>
+      <tr><td>表示</td><td class="num">4,275</td><td class="num">4,054</td></tr>
+      <tr><td>順位</td><td>9.80</td><td>9.95</td></tr>
+      <tr><td>CTR</td><td>0.91%</td><td class="down"><strong>0.54%</strong></td></tr>
+    </tbody>
+  </table></div>
+  <strong>順位も表示も変わっていないのに、クリックだけが44%減りました。</strong>
+  原因はGSCから断定できませんが、<strong>AI Overviews（AIによる概要）が「訃報 返信」のような情報系クエリの答えを検索結果上で完結させている</strong>可能性が最も高いと見ています。<br><br>
+  <strong>もしそうなら、いま情報コラムを増やすのは「AIが先に答えてしまう領域」に投資することになります。</strong>
+  <strong>タイミングとしても良くありません。</strong>
+</div>
+
+<h2>4. では何をすべきか ── 「新規作成」ではなく「押し上げ」</h2>
+
+<h3>4-1. 最大の空白：川口ローカルの11〜25位帯</h3>
+<p><strong>表示はあるのに、順位が中途半端なせいでクリックが0のクエリが並んでいます。</strong>
+<strong>ここは既にページがあり、押し上げるだけで取れる可能性のある帯です。</strong></p>
+<div class="tw">
+<table>
+  <thead><tr><th>クエリ</th><th>表示</th><th>順位</th><th>クリック</th><th>現状の受け皿</th></tr></thead>
+  <tbody>
+    <tr><td class="down"><strong>川口市 家族葬</strong></td><td class="num">319</td><td class="down">23.42</td><td class="down">0</td><td class="down">トップ（17.03位）＋エリア断片。専用ページが機能していない</td></tr>
+    <tr><td>川口市 市民葬</td><td class="num">166</td><td>11.83</td><td class="down">0</td><td class="up"><code>/plan/kawaguchi-shimin/</code></td></tr>
+    <tr><td>川口市 葬式</td><td class="num">140</td><td class="down">20.78</td><td class="down">0</td><td>トップ</td></tr>
+    <tr><td>川口市 葬儀社</td><td class="num">119</td><td>12.98</td><td class="down">0</td><td>トップ</td></tr>
+    <tr><td>川口市 一日葬</td><td class="num">106</td><td class="down">23.25</td><td class="down">0</td><td>トップ</td></tr>
+    <tr><td>川口 家族葬</td><td class="num">104</td><td class="down">24.45</td><td class="down">0</td><td>トップ</td></tr>
+    <tr><td>川口市 葬儀場</td><td class="num">66</td><td>14.92</td><td>1</td><td>—</td></tr>
+    <tr><td>川口市 葬儀屋</td><td class="num">62</td><td class="down">23.05</td><td class="down">0</td><td>—</td></tr>
+    <tr><td>西川口 葬儀</td><td class="num">37</td><td class="down">23.46</td><td class="down">0</td><td><code>/area/nishikawaguchi/</code></td></tr>
+  </tbody>
+</table>
+</div>
+<div class="info-box">
+  <strong>「川口市 家族葬」表示319・23.42位・クリック0 が、このサイト最大の空白です。</strong>
+  8/3レポートから継続して指摘している「家族葬×川口市の受け皿不在」問題そのもので、<strong>まだ解決していません</strong>。<br>
+  <strong>ここに新しいコラムを1本足しても解決しません。</strong>必要なのは<strong>既存ページの立て直し</strong>です。
+</div>
+
+<h3>4-2. エリアページ16本の立て直し（増やさない）</h3>
+<div class="warn-box">
+  <strong>エリアページは16本あって、28日間でクリック0。平均順位38.3位。</strong>
+  <strong>これは「エリアページを増やす」という過去の方針が、既に限界に達している証拠です。</strong><br>
+  <strong>17本目を作る前に、16本が1クリックも生んでいない理由を解く必要があります。</strong>
+  38.3位という順位は「惜しい」ですらなく、<strong>検索結果の4ページ目</strong>です。<br><br>
+  <strong>※ただし、これは「エリアページが無駄」という意味ではありません。</strong>
+  8/7の分析どおり、<strong>花ぜんセレモニーに川口駅前の立地で勝てない以上、自社に近いエリア（新井宿・鳩ヶ谷・安行・東川口）で戦う方針は正しい</strong>。
+  <strong>方針が正しくても、今の作り方では順位が付いていない</strong>——ここを直すのが先です。
+</div>
+
+<h3>4-3. 新規で作る価値があるとすれば、1つだけ</h3>
+<div class="good-box">
+  <strong>「人数」軸の受け皿</strong>——現状、表示はあるのに専用ページがありません。
+  <div class="tw"><table>
+    <thead><tr><th>クエリ</th><th>表示</th><th>順位</th></tr></thead>
+    <tbody>
+      <tr><td>家族葬 10人 費用</td><td class="num">104</td><td>16.50</td></tr>
+      <tr><td>家族葬10人 費用</td><td class="num">71</td><td>17.07</td></tr>
+      <tr><td>家族葬 10 人 費用</td><td class="num">57</td><td>17.00</td></tr>
+      <tr><td><strong>合計</strong></td><td class="num"><strong>232</strong></td><td>約17位</td></tr>
+    </tbody>
+  </table></div>
+  <strong>「10人だといくらか」は、まさにご検討中の方の問いです。</strong>川口ローカルではありませんが、<strong>受注に近い検討層</strong>です。<br>
+  <strong>ただし、これも「コラム」ではなく <code>/plan/family-funeral/</code> の中に人数別の目安を加えるほうが自然</strong>で、
+  <strong>新規ページを増やさずに対応できます。</strong>
+</div>
+
+<h2>5. 優先順位</h2>
+<div class="tw">
+<table>
+  <thead><tr><th>順位</th><th>やること</th><th>理由</th></tr></thead>
+  <tbody>
+    <tr><td class="up"><strong>1</strong></td><td><strong>GBP（Googleビジネスプロフィール）</strong></td><td>8/7の結論。サイト品質では既に花ぜんに勝っており、<strong>サイトを磨く限界効用は下がっている</strong>。「川口市 葬儀」9.37位・表示1,267でクリック0という構造は、ローカルパック側でしか解けない</td></tr>
+    <tr><td class="up"><strong>2</strong></td><td><strong>「川口市 家族葬」の受け皿を立て直す</strong></td><td>表示319・23.42位・クリック0。<strong>最大の空白</strong>。8/3から未解決。ただし<strong>8/19の28日窓測定を待ってから</strong>（短期データでの往復を避けるため）</td></tr>
+    <tr><td>3</td><td><strong>エリアページ16本の立て直し</strong></td><td>平均38.3位・クリック0。<strong>17本目を作る前に、なぜ順位が付かないかを解く</strong></td></tr>
+    <tr><td>4</td><td><strong>既存コラム上位4本を5位圏内へ</strong></td><td>9〜10位はCTRが構造的に出ない位置。<strong>ただしAI Overviewsの影響が定着していれば効果は限定的</strong>——8/19に <code>/column/fuhou/</code> のCTRが0.54%から戻るかを見て判断</td></tr>
+    <tr><td>5</td><td>人数軸（10人・20人）の目安を <code>/plan/family-funeral/</code> に追加</td><td>表示232・約17位。新規ページ不要</td></tr>
+    <tr><td class="down"><strong>—</strong></td><td class="down"><strong>新しいコラムの追加</strong></td><td class="down"><strong>今は行わない。</strong>34本中23本がクリック0で、量の問題でないことが既に証明されている。加えてAI Overviewsが情報系クエリのクリックを吸っている最中</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2>6. 補足 ── 「増やすな」ではなく「今は増やす番ではない」</h2>
+<div class="info-box">
+  <strong>コンテンツを増やすこと自体を否定しているのではありません。</strong>
+  <ul>
+    <li>コラム34本・エリア16本という資産は、<strong>平均順位を17.03位（6月中旬）から11.55位（現在）まで押し上げた原動力</strong>です。作ってきたこと自体は正しかった。</li>
+    <li>ただし<strong>今は「作った資産が順位に変換されていない」局面</strong>です。34本中23本がクリック0、エリア16本すべてクリック0。
+      <strong>入れ物を増やす段階から、入れ物を機能させる段階に移っています。</strong></li>
+    <li><strong>再び増やす番が来るとすれば</strong>、①既存の惜しいページが5位圏内に入り、②GBPが整い、③AI Overviewsの影響が読めた後です。
+      <strong>そのときは「全国区の情報コラム」ではなく「川口ローカル×検討層」を作ることになります。</strong></li>
+  </ul>
+</div>
+
+<div class="foot">
+  作成：Claude Code ／ 2026-08-10 ／ データ：Google Search Console API 実測（<code>tmp/seo-analysis-2026-08-09/</code>・28日 2026/7/11–8/07）<br>
+  ※セグメント集計はアンカー付きURL（<code>#s-1</code> 等）を除外しています。<br>
+  ※AI Overviewsの影響はGSCから直接測定できないため、§3は<strong>可能性として述べており、断定していません</strong>。<br>
+  ※本レポートは <code>docs/reports/</code> 配下の社内文書で Web には公開されません（<code>noindex</code>）。<br>
+  ※分析のみ。サイトは変更していません。
+</div>
+
+</div>
+</body>
+</html>
