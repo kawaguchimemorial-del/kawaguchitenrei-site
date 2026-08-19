@@ -43,6 +43,8 @@ export type CompanyInfo = {
 
 export const company: CompanyInfo = {
   name: "川口典礼",
+  // 登記上の正式名称。GBP の登録名称「株式会社川口典礼 川口メモリアルホール」と名寄せするために保持
+  legalName: "株式会社川口典礼",
   shortDescription:
     "川口市・新井宿の地域密着葬儀社。川口メモリアルホール(駐車場70台・川口市めぐりの森まで車5分)を拠点に、家族葬から200名規模の一般葬まで対応します。創業20年、年間約260件の施行実績。",
   postal: "333-0833",
@@ -226,6 +228,7 @@ export function getLocalBusinessJsonLd() {
         "@type": "Organization",
         "@id": `${SITE_URL}/#organization`,
         name: company.name,
+        legalName: company.legalName,
         url: `${SITE_URL}/`,
         logo: LOGO_URL,
         image: HALL_IMAGE_URL,
