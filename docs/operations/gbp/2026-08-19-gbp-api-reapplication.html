@@ -103,6 +103,7 @@
   <div class="links">
     <a href="#s1">1. 却下の事実</a>
     <a href="#s2">2. 却下理由の分解</a>
+    <a href="#s2b">2-1. 却下理由Bの確定</a>
     <a href="#s3">3. 是正チェックリスト</a>
     <a href="#s4">4. 申請後の確認</a>
     <a href="#s5">5. やってはいけないこと</a>
@@ -191,13 +192,32 @@ API を有効化しただけでは足りず、<strong>OAuth 同意画面のア�
   <strong>GBP API の却下対応と SEO 対策が同じ打ち手に収束している。</strong>
 </div>
 
+<h2 id="s2b">2-1. 確定：却下理由 B の原因（2026-08-19 確認）</h2>
+<div class="box good">
+  <div class="h">✅ 原因は実測で確定した</div>
+  <strong>GBP のウェブサイト欄には <code>kawaguchi-memorial-hall.com</code>（広告 LP）が入っていた。</strong>
+  松澤が同日 <code>https://kawaguchitenrei.com/</code> に修正済み。
+  「The listing ID is associated with a different website」の原因は推測ではなく実測で裏が取れた。
+</div>
+<div class="box warn">
+  <div class="h">⚠ 反映を待ってから再申請する</div>
+  GBP のウェブサイト欄の変更は審査・反映に数日かかる。<strong>Google マップ上の表示が新しい URL に変わったことを確認してから</strong>申請すること。
+  反映前に申請すると、Google の内部チェックは古い情報を見て同じ理由で却下する。
+</div>
+<div class="box info">
+  <div class="h">📊 計測上の注意</div>
+  これまで GBP からのウェブサイトクリックは広告 LP に流れており、公式サイトの GA4 には計上されていなかった。
+  今後は公式サイトに流入するため、8/24 前後の効果測定では<strong>「SEO 施策の効果」と「GBP 流入先の切り替え」が混ざる</strong>。
+  参照元で切り分けること。
+</div>
+
 <h2 id="s3">3. 再申請の前にやること（是正チェックリスト）</h2>
 <p><strong>順番どおりに進める。飛ばして申請すると再び却下される。</strong></p>
 
 <h3><span class="step">STEP 1</span>現状の事実確認（まず見るだけ・変更しない）</h3>
 <ul class="ck"><div class="box2">
-  <li><label><input type="checkbox" data-ck="s1a"><span>GBP 管理画面 →「編集」→「ウェブサイト」欄の URL を確認し、<strong>そのまま書き写す</strong></span></label></li>
-  <li><label><input type="checkbox" data-ck="s1b"><span>上記が <code>kawaguchitenrei.com</code> 以外なら、理由 B の直接原因が確定</span></label></li>
+  <li><label><input type="checkbox" data-ck="s1a"><span>✅ <strong>確認済み（2026-08-19）：<code>kawaguchi-memorial-hall.com</code> が入っていた → <code>https://kawaguchitenrei.com/</code> に修正済み</strong></span></label></li>
+  <li><label><input type="checkbox" data-ck="s1b"><span>修正が Google マップ上の表示に反映されたか確認（数日後）</span></label></li>
   <li><label><input type="checkbox" data-ck="s1c"><span><code>www.kawaguchi-tenrei.com</code> が現在も表示されるか確認（生きているか / リダイレクトか）</span></label></li>
   <li><label><input type="checkbox" data-ck="s1d"><span><code>kawaguchi-memorial-hall.com</code> の noindex 有無を確認</span></label></li>
   <li><label><input type="checkbox" data-ck="s1e"><span>GBP の「オーナー・管理者」に kawaguchi.memorial@gmail.com が<strong>オーナー</strong>として入っているか確認</span></label></li>
@@ -305,7 +325,7 @@ API アクセスを申請します。
 <tr><td>申請日</td><td>（未申請）</td></tr>
 <tr><td>ケース ID</td><td>（未申請）</td></tr>
 <tr><td>プロジェクト番号</td><td><code>487251905710</code></td></tr>
-<tr><td>GBP ウェブサイト欄の設定値</td><td>（記入）</td></tr>
+<tr><td>GBP ウェブサイト欄の設定値</td><td><code>https://kawaguchitenrei.com/</code>（2026-08-19 修正。修正前は <code>kawaguchi-memorial-hall.com</code>）</td></tr>
 <tr><td>承認確認の目安</td><td>申請日 + 7〜10 営業日</td></tr>
 <tr><td>結果</td><td>（未確認）</td></tr>
 </tbody>
