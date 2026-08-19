@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GBP API 申請の却下対応と、ビジネス名称の正本修正 2026-08-19</title>
+<style>
+  :root{--ink:#1c1a17;--sub:#5c564e;--line:#e2ddd4;--bg:#fbfaf8;--accent:#7a5c3e;
+    --red:#a8322a;--amber:#8a6412;--green:#2f6146;--blue:#2d5573;
+    --redbg:#fdf3f2;--amberbg:#fdf9ee;--greenbg:#f1f7f3;--bluebg:#f0f4f8;--box:#fff;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;line-height:1.9;font-size:15px}
+  .wrap{max-width:1000px;margin:0 auto;padding:44px 22px 96px}
+  header.doc{border-bottom:3px solid var(--ink);padding-bottom:18px;margin-bottom:30px}
+  .kicker{font-size:12px;letter-spacing:.14em;color:var(--sub);margin:0}
+  h1{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:25px;line-height:1.5;margin:10px 0 12px;font-weight:600}
+  .meta{font-size:13px;color:var(--sub)}
+  h2{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:20px;margin:54px 0 14px;
+    padding:8px 0 8px 14px;border-left:5px solid var(--accent);font-weight:600;background:#f6f3ee}
+  h3{font-size:16px;margin:32px 0 10px;font-weight:600;border-bottom:1px solid var(--line);padding-bottom:6px}
+  h4{font-size:14px;margin:20px 0 6px;color:var(--accent);font-weight:600}
+  p{margin:0 0 12px}
+  table{border-collapse:collapse;width:100%;font-size:13px;margin:14px 0;background:var(--box)}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:right;vertical-align:top}
+  th{background:#f4f1eb;font-weight:600;text-align:center;white-space:nowrap}
+  td.l,th.l{text-align:left}
+  .scroll{overflow-x:auto}
+  .bad{color:var(--red);font-weight:600}.warn{color:var(--amber);font-weight:600}.good{color:var(--green);font-weight:600}
+  .box{background:var(--box);border:1px solid var(--line);border-radius:6px;padding:18px 20px;margin:18px 0}
+  .box.red{background:var(--redbg);border-color:#e8c4c0}
+  .box.amber{background:var(--amberbg);border-color:#ecdcb4}
+  .box.green{background:var(--greenbg);border-color:#c3ded0}
+  .box.blue{background:var(--bluebg);border-color:#c2d3e0}
+  .box h4{margin-top:0}
+  ul,ol{margin:8px 0 14px;padding-left:1.4em}li{margin-bottom:6px}
+  .note{font-size:12.5px;color:var(--sub);margin-top:6px}
+  code{background:#f2efe9;padding:1px 5px;border-radius:3px;font-size:12.5px}
+  pre{background:#f4f1eb;border:1px solid var(--line);border-radius:5px;padding:12px 14px;
+    overflow-x:auto;font-size:12.5px;line-height:1.7;margin:10px 0}
+  hr{border:0;border-top:1px solid var(--line);margin:44px 0}
+  footer{margin-top:60px;padding-top:18px;border-top:1px solid var(--line);font-size:12px;color:var(--sub)}
+  .exp{margin:16px 0;padding-left:16px;border-left:3px solid var(--line)}
+  .exp .who{font-size:13px;font-weight:600;color:var(--accent);margin-bottom:3px}
+  .before{background:#fdf3f2;border:1px solid #e8c4c0;border-radius:5px;padding:8px 12px;margin:6px 0;font-size:13px}
+  .after{background:#f1f7f3;border:1px solid #c3ded0;border-radius:5px;padding:8px 12px;margin:6px 0;font-size:13px}
+  .verdict{background:#2f3a44;color:#fff;border-radius:6px;padding:20px 24px;margin:20px 0}
+  .verdict h4{color:#e6c88a;margin-top:0;font-size:12px;letter-spacing:.06em}
+  .verdict .big{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:18px;line-height:1.7;margin:6px 0 10px}
+  @media print{body{background:#fff}.wrap{padding:0}h2{page-break-after:avoid}.box,table{page-break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <p class="kicker">川口典礼サイト ＿ 社内記録 / noindex</p>
+  <h1>GBP API 申請の却下対応と、ビジネス名称の正本修正</h1>
+  <p class="meta">2026-08-19 ／ 🔧 サイト変更あり（<code>lib/company.ts</code> 1項目追加）</p>
+</header>
+
+<h2>1. きっかけ</h2>
+<p>「GBP についてメールが来ている」との依頼で <code>scripts/gmail-search.mjs --preset=gbp</code> を実行し、受信内容を確認した。</p>
+
+<h2>2. GBP API 申請は却下</h2>
+<table>
+<tr><th>却下日</th><td>2026-08-18</td></tr>
+<tr><th>差出人</th><td>googlebusinessprofile-support@google.com</td></tr>
+<tr><th>ケース ID</th><td>2-9362000041843</td></tr>
+</table>
+<p>却下理由（原文）：<em>"did not pass our internal quality checks ( No approved project. The listing ID is associated with a different website )"</em></p>
+<p>不合格点は 2 つ。<strong>A. 承認済みプロジェクトがない</strong>（GCP 側の OAuth 同意画面が実サイトと結び付いていない）、<strong>B. リスティングが別のウェブサイトに紐づいている</strong>。B は 8/7 に発見済みの 3 ドメイン分散問題がそのまま審査に出た形で、GBP API の却下対応と SEO 対策が同じ打ち手に収束することが確定した。</p>
+<p>なお 8/17 の申請画面で発行された受付番号 <code>2-1581000041699</code> は Gmail 上に 1 通も存在せず、却下メールは別番号だった。却下が 8/17 申請の翌日である点から 8/17 申請への回答と判断し、その根拠を手順書に注記した。</p>
+
+<h2>3. 外形調査で分かったこと</h2>
+<table>
+<tr><th>ドメイン</th><th>サーバー</th><th>状態</th></tr>
+<tr><td>kawaguchi-memorial-hall.com（広告LP）</td><td>nginx / XSERVER</td><td>200。<strong>robots.txt なし・meta robots なし・X-Robots-Tag なし＝完全にインデックス可能</strong>。title が「川口典礼 |…」で始まり公式サイトと指名検索で競合</td></tr>
+<tr><td>www.kawaguchi-tenrei.com（旧サイト）</td><td>Apache</td><td>https 応答なし・http は 403 Forbidden</td></tr>
+<tr><td>kawaguchitenrei.com（公式）</td><td>Vercel</td><td>正常</td></tr>
+</table>
+<div class="box red">
+  <b>旧ドメインは解約してはいけない</b><br>
+  DNS を確認したところ、MX が自ドメイン（biz&amp;ウェブのサーバー）を指し、TXT に <code>v=spf1 a include:_spf.bizmw.com ~all</code> が入っていた。<strong>メールが現役で稼働している可能性が高い</strong>。Web は 301 で公式サイトへ寄せ、メールは残す方針とする。松澤がコントロールパネル（NTT biz&amp;ウェブ）にログインし、ドメイン設定が <code>kawaguchi-tenrei.com</code> であることを確認済み。
+</div>
+<p>ファイルマネージャの操作は、ログインフォームがワンタイムパスワード必須のため代行不可。公開ディレクトリの構成・<code>.htaccess</code> の有無・ファイル更新日を松澤側で確認してもらう段階で止まっている。</p>
+
+<h2>4. ビジネス名称が戻る件 ─ 変更しないのが正解</h2>
+<p>「株式会社川口典礼 川口メモリアルホール」を「川口典礼」に変更しても元に戻る、という事象。原因は Google が検証済みの名称を保持しているためで、<strong>短縮方向の変更は差し戻されやすく、繰り返すと審査対象になる</strong>。</p>
+<p>確認の結果、登記上の正式名称は「株式会社川口典礼」、建物の看板は「川口メモリアルホール」。<strong>現在の登録名は登記名＋看板名であり、Google のガイドライン（実世界で使われている名称）に適合している。</strong>加えて「川口メモリアルホール」は順位追跡中のブランドキーワード（3.55→12.88位に下落した語）であり、名称から外す不利のほうが大きい。GBP API の却下理由にも名称は含まれていない。</p>
+<div class="box amber">
+  <b>プレイブックの記載ミスを訂正</b><br>
+  <code>2026-07-27-gbp-full-setup-playbook</code> の NAP 正本に「名称：川口典礼」と書いていたのは誤り。実態に合わせて修正し、「名称は変更しない」旨を警告として明記した。
+</div>
+
+<h2>5. 実施した変更</h2>
+<table>
+<tr><th>ファイル</th><th>内容</th></tr>
+<tr><td>docs/operations/gbp/2026-08-19-gbp-api-reapplication.md / .html（新規）</td><td>却下記録と再申請手順書。STEP 1〜5 の是正チェックリスト、申請文面の下書き、承認確認手順、再申請の記録欄</td></tr>
+<tr><td>docs/operations/gbp/2026-07-30-gbp-api-access-request.md / .html</td><td>却下バナーを追加し、旧手順書であることを明示</td></tr>
+<tr><td>docs/operations/gbp/2026-07-27-gbp-full-setup-playbook.md / .html</td><td>NAP 正本を実際の登録名に修正。名称変更禁止の警告を追加</td></tr>
+<tr><td><b>lib/company.ts</b></td><td><code>legalName: "株式会社川口典礼"</code> を追加し、Organization の JSON-LD に出力。GBP・登記・サイトで事業者名を名寄せするため。<b>表示文言は変更なし</b></td></tr>
+</table>
+
+<h2>6. 確認</h2>
+<ul>
+  <li><code>npm run build</code> 成功。エラー・警告なし</li>
+  <li>静的生成 <b>138 ページ</b>（減少なし）</li>
+  <li>出力に <code>"legalName":"株式会社川口典礼"</code> を確認</li>
+  <li><code>.env</code> の差分なし／価格・プラン名の変更なし／Header・Footer・MobileBottomCTA 未変更</li>
+  <li>禁止表現の混入なし</li>
+  <li>commit・push 実施済み（docs 2件＋構造化データ追加は自走 push 可の範囲）</li>
+</ul>
+
+<h2>7. 次のアクション</h2>
+<ol>
+  <li><b>GBP のウェブサイト欄に入っている URL を確認する</b>（却下理由 B の本体。公式サイト以外なら <code>https://kawaguchitenrei.com/</code> に統一）</li>
+  <li>旧ドメイン：メールアカウント一覧を確認 → Web のみ 301 リダイレクト（<code>.htaccess</code>）。<b>解約はしない</b></li>
+  <li>広告 LP：XSERVER 側で <code>&lt;meta name="robots" content="noindex,follow"&gt;</code> を追加。robots.txt での Disallow は禁止（noindex が読まれなくなる）。代理店（NEXTUP）管理下のため事前に一報</li>
+  <li>GCP プロジェクト 487251905710 の OAuth 同意画面を公式ドメインで整備（却下理由 A）</li>
+  <li>上記が揃ってから再申請。<b>ケース ID を必ず控える</b></li>
+  <li>プレイブック Day 1（カテゴリ・営業時間・属性・説明文・サービス8件）は手動で進行中</li>
+</ol>
+
+<p class="foot">社内用。Web 非公開（noindex）。秘密情報・個人情報は記載していない。</p>
+
+</div>
+</body>
+</html>
