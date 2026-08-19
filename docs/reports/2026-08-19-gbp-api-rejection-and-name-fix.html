@@ -123,6 +123,30 @@
   <li>プレイブック Day 1（カテゴリ・営業時間・属性・説明文・サービス8件）は手動で進行中</li>
 </ol>
 
+<h2>8. 追記：却下理由 B の原因確定と、旧ドメインの 301 完了（同日）</h2>
+<div class="box green">
+  <b>GBP のウェブサイト欄には広告 LP が入っていた</b><br>
+  松澤が確認したところ <code>kawaguchi-memorial-hall.com</code> が設定されており、
+  「The listing ID is associated with a different website」の原因が実測で確定。同日 <code>https://kawaguchitenrei.com/</code> に修正済み。
+  ただし反映に数日かかるため、<strong>Google マップ上の表示が変わったことを確認してから再申請する</strong>。
+</div>
+<div class="box blue">
+  <b>計測上の交絡に注意</b><br>
+  これまで GBP からのウェブサイトクリックは広告 LP に流れており公式サイトの GA4 に計上されていなかった。
+  今後は公式サイトに入るため、8/24 前後の測定では「SEO 施策の効果」と「GBP 流入先の切り替え」が混ざる。参照元で切り分けること。
+</div>
+<div class="box green">
+  <b>旧ドメイン kawaguchi-tenrei.com の 301 リダイレクト完了</b><br>
+  コントロールパネル（NTT biz&amp;ウェブ）に松澤がログインでき、8/17 レポートで最優先課題としていた「旧ドメインの契約者特定」が解消。
+  <strong>公開ディレクトリは <code>htdocs</code></strong>（<code>www</code> は空で、置いたファイルは 404 になる）。
+  <code>htdocs/.htaccess</code> を設置し、<code>/</code>・<code>www</code> 付き・配下パスすべてが 301 →
+  <code>https://kawaguchitenrei.com/</code> → 200 になることを curl で確認。ループなし。
+  旧サイトは中身が空でSEO資産は元から無かったため、個別 URL の対応付けはせずトップページへ集約した。
+  ドメイン有効期限 2026-09-03 の更新設定は松澤が確認済み・問題なし。<br>
+  <strong>@kawaguchi-tenrei.com のメールは現役稼働（MX が自ドメイン・SPF に _spf.bizmw.com）。ドメインもホスティング契約も解約しない。</strong>
+</div>
+<p>これで 3 ドメイン分散のうち旧ドメインが解決。<strong>残る課題は広告 LP の noindex のみ</strong>（XSERVER 上・NEXTUP 管理下のため事前一報が必要）。</p>
+
 <p class="foot">社内用。Web 非公開（noindex）。秘密情報・個人情報は記載していない。</p>
 
 </div>
