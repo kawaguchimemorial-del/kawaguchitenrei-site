@@ -233,10 +233,24 @@ API を有効化しただけでは足りず、<strong>OAuth 同意画面のア�
 
 <h3><span class="step">STEP 3</span>ドメイン分散の整理</h3>
 <ul class="ck"><div class="box2">
-  <li><label><input type="checkbox" data-ck="s3a"><span><code>www.kawaguchi-tenrei.com</code>（旧サイト）を <code>kawaguchitenrei.com</code> へ 301 リダイレクト、または閉鎖</span></label></li>
+  <li><label><input type="checkbox" data-ck="s3a"><span>✅ <strong>完了（2026-08-19）：<code>htdocs/.htaccess</code> で 301 リダイレクト設置済み</strong></span></label></li>
   <li><label><input type="checkbox" data-ck="s3b"><span><code>kawaguchi-memorial-hall.com</code>（広告 LP）に <code>noindex</code> を入れる（広告運用は止めない。検索インデックスから外すだけ）</span></label></li>
   <li><label><input type="checkbox" data-ck="s3c"><span>公式サイトの会社情報ページに、正式社名・住所・電話・代表者が明記されているか確認</span></label></li>
 </div></ul>
+
+<div class="box good">
+  <div class="h">✅ 旧ドメインの 301 リダイレクト完了（2026-08-19）</div>
+  <table style="margin:8px 0">
+    <tr><th>ホスティング</th><td>NTT biz&amp;ウェブ（Apache / JPRS）</td></tr>
+    <tr><th>公開ディレクトリ</th><td><strong><code>htdocs</code></strong>（<code>www</code> ではない。<code>www</code> に置いても 404）</td></tr>
+    <tr><th>設置ファイル</th><td><code>htdocs/.htaccess</code></td></tr>
+    <tr><th>ドメイン有効期限</th><td>2026-09-03（更新設定は確認済み・問題なし）</td></tr>
+    <tr><th>メール</th><td><strong>現役稼働中。ドメインとホスティング契約は解約しない</strong></td></tr>
+  </table>
+  検証：<code>http://kawaguchi-tenrei.com/</code> と <code>www</code> 付き、配下のパスすべてが 301 →
+  <code>https://kawaguchitenrei.com/</code> → 200。リダイレクトループなし。
+  旧サイトは中身が空だったため、個別 URL の対応付けはせずトップページへ集約した。
+</div>
 
 <div class="box warn">
   <div class="h">注意</div>

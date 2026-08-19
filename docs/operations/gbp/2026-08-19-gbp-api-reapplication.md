@@ -103,10 +103,40 @@ GBP に登録されているウェブサイト URL と、申請時に「公式�
 
 ### STEP 3. ドメイン分散の整理
 
-- [ ] `www.kawaguchi-tenrei.com`（旧サイト）を `kawaguchitenrei.com` へ 301 リダイレクト、または閉鎖
+- [x] ~~`www.kawaguchi-tenrei.com`（旧サイト）を 301 リダイレクト~~ → **完了（2026-08-19）**。詳細は下記
 - [ ] `kawaguchi-memorial-hall.com`（広告 LP）に `noindex` を入れる
       ※ LP の広告運用そのものは止めない。検索インデックスから外すだけ
 - [ ] 公式サイトの会社情報ページに、正式社名・住所・電話・代表者が明記されているか確認
+
+### 旧ドメインの 301 リダイレクト実施記録（2026-08-19 完了）
+
+| 項目 | 内容 |
+|---|---|
+| ホスティング | NTT biz&ウェブ（Apache / JPRS） |
+| **公開ディレクトリ** | **`htdocs`**（`www` ではない。`www` は空で、置いても 404 になる） |
+| 設置ファイル | `htdocs/.htaccess` |
+| ドメイン有効期限 | 2026-09-03（更新設定は確認済み・問題なし） |
+| **メール** | **現役稼働中。ドメインとホスティング契約は解約しない** |
+
+設置した `.htaccess`：
+
+```apache
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^(www\.)?kawaguchi-tenrei\.com$ [NC]
+RewriteRule ^(.*)$ https://kawaguchitenrei.com/ [R=301,L]
+```
+
+検証結果（curl）：
+
+| リクエスト | 結果 |
+|---|---|
+| `http://kawaguchi-tenrei.com/` | 301 → `https://kawaguchitenrei.com/` → 200 |
+| `http://www.kawaguchi-tenrei.com/` | 301 → 同上 → 200 |
+| 配下のパス（`/company/` 等） | 301 → 同上 |
+| リダイレクトループ | なし |
+
+> 旧サイトは中身が空だったため、個別 URL の対応付けは不要でトップページへ集約した。
+> 実施前は `/` が 403、存在しないパスが 404 という状態だった。
 
 > **注意**：広告 LP の扱いは広告運用側にも影響する。実施前に運用状況を確認すること。
 > LP は「逝去後の緊急層を刈る」役割で、検索流入を前提にしていないため noindex 化は成立する見込み。
