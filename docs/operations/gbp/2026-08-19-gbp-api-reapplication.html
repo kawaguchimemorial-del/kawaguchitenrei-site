@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GBP API 再申請 手順書（却下対応 / 2026-08-19）</title>
+<style>
+  :root{
+    --ink:#23201c;--sub:#6b645c;--soft:#8b837a;--line:#e4ddd3;--line2:#f0eae1;
+    --bg:#fbf9f5;--card:#fff;--accent:#7a5c3e;--accent2:#a3824f;
+    --warn:#a3402f;--warnbg:#fdf1ef;--warnline:#e8c4bc;
+    --good:#3d6b4a;--goodbg:#eef7ef;--goodline:#cfe6d3;
+    --info:#3a5573;--infobg:#f2f4f8;--infoline:#d4dbe6;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;scroll-padding-top:16px}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;line-height:1.85;font-size:15px}
+  .layout{display:flex;gap:30px;max-width:1240px;margin:0 auto;padding:28px 22px 100px;align-items:flex-start}
+
+  nav.toc{position:sticky;top:20px;flex:0 0 214px;background:var(--card);border:1px solid var(--line);
+    border-radius:12px;padding:16px 14px;font-size:13px}
+  nav.toc .t{font-weight:700;color:var(--accent);letter-spacing:.1em;font-size:11px;margin-bottom:10px}
+  nav.toc a{display:block;color:var(--sub);text-decoration:none;padding:5px 8px;border-radius:6px;line-height:1.5}
+  nav.toc a:hover{background:var(--bg);color:var(--ink)}
+  nav.toc a.active{background:#f4ede2;color:var(--accent);font-weight:700}
+  .prog{margin-top:14px;padding-top:12px;border-top:1px solid var(--line2)}
+  .prog .bar{height:7px;background:var(--line2);border-radius:99px;overflow:hidden}
+  .prog .bar i{display:block;height:100%;width:0;background:var(--accent2);transition:width .25s}
+  .prog .num{font-size:11px;color:var(--soft);margin-top:6px;display:flex;justify-content:space-between;align-items:center}
+  .prog button{font:inherit;font-size:11px;color:var(--soft);background:none;border:1px solid var(--line);
+    border-radius:6px;padding:2px 7px;cursor:pointer}
+
+  main{flex:1 1 auto;min-width:0}
+  header.doc{border-bottom:3px solid var(--accent);padding-bottom:18px;margin-bottom:22px}
+  header.doc .tag{color:var(--accent);font-weight:700;letter-spacing:.12em;font-size:12px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:24px;margin:6px 0 6px;font-weight:700;line-height:1.4}
+  .meta{color:var(--sub);font-size:13px}
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:20px;margin:38px 0 14px;
+    padding-left:12px;border-left:5px solid var(--accent);scroll-margin-top:16px}
+  h3{font-size:15.5px;margin:24px 0 8px;color:var(--accent)}
+  p{margin:10px 0}
+  ul,ol{margin:10px 0 10px 1.35em;padding:0}li{margin:6px 0}
+
+  .lead{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin:16px 0}
+  .box{border-radius:10px;padding:14px 18px;margin:16px 0}
+  .box.warn{background:var(--warnbg);border:1px solid var(--warnline)}
+  .box.info{background:var(--infobg);border:1px solid var(--infoline)}
+  .box.good{background:var(--goodbg);border:1px solid var(--goodline)}
+  .box .h{font-weight:700;margin-bottom:6px}
+  .box.warn .h{color:var(--warn)}.box.good .h{color:var(--good)}.box.info .h{color:var(--info)}
+  .box ul{margin-bottom:0}
+
+  .tw{overflow-x:auto;margin:14px 0}
+  table{width:100%;min-width:480px;border-collapse:collapse;font-size:13.5px;background:var(--card)}
+  th,td{border:1px solid var(--line);padding:9px 11px;text-align:left;vertical-align:top}
+  thead th{background:#f2ece2;white-space:nowrap}
+  tbody tr:nth-child(even){background:#fdfcfa}
+
+  code{background:#f1efe9;padding:1px 6px;border-radius:5px;font-size:12.5px;
+    font-family:ui-monospace,Consolas,monospace;word-break:break-all}
+  a.ext{color:var(--accent);font-weight:700}
+
+  .copy{position:relative;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:12px 0}
+  .copy .label{font-size:11px;font-weight:700;letter-spacing:.08em;color:var(--accent);margin-bottom:8px;
+    display:flex;justify-content:space-between;align-items:center;gap:10px}
+  .copy .txt{white-space:pre-wrap;font-size:13.5px;line-height:1.85}
+  .copy .txt.mono{font-family:ui-monospace,Consolas,monospace;font-size:12.5px}
+  button.cp{font:inherit;font-size:11.5px;font-weight:700;color:var(--accent);background:#fff;
+    border:1px solid var(--accent2);border-radius:7px;padding:4px 12px;cursor:pointer;white-space:nowrap}
+  button.cp:hover{background:#f7f0e6}
+  button.cp.done{color:var(--good);border-color:var(--goodline);background:var(--goodbg)}
+
+  .ck{list-style:none;margin:12px 0;padding:0}
+  .ck li{margin:0;border-bottom:1px solid var(--line2)}
+  .ck li:last-child{border-bottom:0}
+  .ck label{display:flex;gap:11px;align-items:flex-start;padding:9px 4px;cursor:pointer;border-radius:6px}
+  .ck label:hover{background:#fdfcfa}
+  .ck input{margin:5px 0 0;width:17px;height:17px;flex:0 0 auto;accent-color:var(--accent2);cursor:pointer}
+  .ck input:checked + span{color:var(--soft);text-decoration:line-through;text-decoration-color:var(--line)}
+  .ck .box2{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:4px 14px}
+
+  .step{display:inline-block;background:var(--accent);color:#fff;font-size:12px;font-weight:700;
+    border-radius:99px;padding:2px 11px;margin-right:8px;vertical-align:2px}
+  .foot{margin-top:44px;border-top:1px solid var(--line);padding-top:14px;color:var(--sub);font-size:12px}
+
+  @media (max-width:900px){
+    .layout{display:block;padding:20px 16px 80px}
+    nav.toc{position:static;width:auto;margin-bottom:20px}
+    nav.toc .links{display:flex;flex-wrap:wrap;gap:4px}
+    nav.toc a{padding:5px 10px;border:1px solid var(--line2);border-radius:99px;font-size:12px}
+    h1{font-size:20px}
+  }
+  @media print{nav.toc,button.cp,.prog{display:none}.layout{display:block;padding:0}body{background:#fff}}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<nav class="toc">
+  <div class="t">目次</div>
+  <div class="links">
+    <a href="#s1">1. 却下の事実</a>
+    <a href="#s2">2. 却下理由の分解</a>
+    <a href="#s3">3. 是正チェックリスト</a>
+    <a href="#s4">4. 申請後の確認</a>
+    <a href="#s5">5. やってはいけないこと</a>
+    <a href="#s6">6. 承認までの運用</a>
+    <a href="#s7">7. 再申請の記録欄</a>
+  </div>
+  <div class="prog">
+    <div class="bar"><i id="pbar"></i></div>
+    <div class="num"><span id="pnum">0 / 0 完了</span><button id="preset" type="button">リセット</button></div>
+  </div>
+</nav>
+
+<main>
+
+<header class="doc">
+  <div class="tag">社内ドキュメント（非公開 / noindex）</div>
+  <h1>Google Business Profile API 再申請 手順書（却下対応）</h1>
+  <div class="meta">
+    作成：2026-08-19 ／ 操作者：松澤 ／ 是正 1〜2時間＋申請 15分＋審査待ち<br>
+    前提記録：<code>docs/operations/gbp/2026-07-30-gbp-api-access-request.html</code>
+  </div>
+</header>
+
+<div class="lead">
+  <strong>この画面の使い方</strong><br>
+  ・チェックの進捗はこのブラウザに自動保存されます<br>
+  ・<strong>2026-08-18 に申請は却下されました。</strong>是正せずに再申請しても同じ結果になります<br>
+  ・<strong>STEP 1 → STEP 5 の順に進めてください</strong>（順番に意味があります）<br>
+  ・<strong>API の利用は無料です</strong>（公式：<em>"available to registered users at no charge"</em>）
+</div>
+
+<h2 id="s1">1. 却下の事実</h2>
+
+<div class="tw"><table>
+<thead><tr><th>項目</th><th>内容</th></tr></thead>
+<tbody>
+<tr><td>却下日</td><td><strong>2026-08-18</strong></td></tr>
+<tr><td>差出人</td><td>googlebusinessprofile-support@google.com</td></tr>
+<tr><td>ケース ID</td><td><strong><code>2-9362000041843</code></strong></td></tr>
+<tr><td>対象と思われる申請</td><td>2026-08-17 提出分（受付番号 <code>2-1581000041699</code>）※下の注記</td></tr>
+</tbody>
+</table></div>
+
+<div class="box warn">
+  <div class="h">却下メール原文（該当部分）</div>
+  We will not be able to move forward with your application to use the GBP API as your account
+  did not pass our internal quality checks
+  ( <strong>No approved project. The listing ID is associated with a different website</strong> ).<br><br>
+  We recommend reviewing our eligibility criteria and ensuring that your Business Profile and
+  your company's official website are fully up to date before reapplying in the future.
+</div>
+
+<div class="box info">
+  <div class="h">注記：ケース ID の不一致について</div>
+  8/17 の申請画面で発行された受付番号は <code>2-1581000041699</code>、却下メールの件名は <code>2-9362000041843</code>。
+  Gmail 全文検索では <code>2-1581000041699</code> を含むメールは 1 通も存在しない。
+  却下が 8/17 申請の翌日である点から、<strong>8/17 申請に対する回答</strong>と判断する。
+  Google は受付番号とサポートケース番号を別体系で発行することがあるため、ID 不一致だけを根拠に
+  「別件だ」とは判断しない。
+</div>
+
+<h2 id="s2">2. 却下理由の分解</h2>
+
+<p>Google が挙げた不合格点は 2 つ。<strong>両方を直さないと再申請しても同じ結果になる。</strong></p>
+
+<h3>理由 A：No approved project（承認済みプロジェクトがない）</h3>
+<p>Google Cloud 側のプロジェクトが、GBP API の利用主体として審査に耐える状態になっていない。
+API を有効化しただけでは足りず、<strong>OAuth 同意画面のアプリ情報が実在の公式サイトと結び付いている</strong>必要がある。</p>
+
+<h3>理由 B：The listing ID is associated with a different website（リスティングが別サイトに紐づく）</h3>
+<p>GBP に登録されているウェブサイト URL と、申請時に「公式サイト」として申告したドメインが一致していない。
+当社は<strong>ブランドサイトが 3 ドメインに分散</strong>しているため、ここが直撃していると考えられる。</p>
+
+<div class="tw"><table>
+<thead><tr><th>ドメイン</th><th>位置づけ</th><th>想定される問題</th></tr></thead>
+<tbody>
+<tr><td><code>kawaguchitenrei.com</code></td><td>公式サイト（本体）</td><td>本来ここに統一すべき</td></tr>
+<tr><td><code>kawaguchi-memorial-hall.com</code></td><td>広告 LP</td><td>GBP のウェブサイト欄がここを指している可能性</td></tr>
+<tr><td><code>www.kawaguchi-tenrei.com</code></td><td>旧サイト</td><td>生きていると同一実体の別サイトと見なされる</td></tr>
+</tbody>
+</table></div>
+
+<div class="box good">
+  <div class="h">補足</div>
+  このドメイン分散は SEO 面でも未解決の課題（「川口メモリアルホール」3.55位 → 12.88位の下落要因）。
+  <strong>GBP API の却下対応と SEO 対策が同じ打ち手に収束している。</strong>
+</div>
+
+<h2 id="s3">3. 再申請の前にやること（是正チェックリスト）</h2>
+<p><strong>順番どおりに進める。飛ばして申請すると再び却下される。</strong></p>
+
+<h3><span class="step">STEP 1</span>現状の事実確認（まず見るだけ・変更しない）</h3>
+<ul class="ck"><div class="box2">
+  <li><label><input type="checkbox" data-ck="s1a"><span>GBP 管理画面 →「編集」→「ウェブサイト」欄の URL を確認し、<strong>そのまま書き写す</strong></span></label></li>
+  <li><label><input type="checkbox" data-ck="s1b"><span>上記が <code>kawaguchitenrei.com</code> 以外なら、理由 B の直接原因が確定</span></label></li>
+  <li><label><input type="checkbox" data-ck="s1c"><span><code>www.kawaguchi-tenrei.com</code> が現在も表示されるか確認（生きているか / リダイレクトか）</span></label></li>
+  <li><label><input type="checkbox" data-ck="s1d"><span><code>kawaguchi-memorial-hall.com</code> の noindex 有無を確認</span></label></li>
+  <li><label><input type="checkbox" data-ck="s1e"><span>GBP の「オーナー・管理者」に kawaguchi.memorial@gmail.com が<strong>オーナー</strong>として入っているか確認</span></label></li>
+</div></ul>
+
+<h3><span class="step">STEP 2</span>GBP 側の是正</h3>
+<ul class="ck"><div class="box2">
+  <li><label><input type="checkbox" data-ck="s2a"><span>GBP のウェブサイト欄を <strong><code>https://kawaguchitenrei.com/</code></strong> に変更</span></label></li>
+  <li><label><input type="checkbox" data-ck="s2b"><span>店舗名・住所・電話番号が公式サイトの表記と一字一句そろっているか確認（NAP 一致）</span></label></li>
+  <li><label><input type="checkbox" data-ck="s2c"><span>営業時間・カテゴリ・説明文が最新か確認</span></label></li>
+  <li><label><input type="checkbox" data-ck="s2d"><span>変更後、GBP 側の反映に<strong>数日かかる</strong>。反映を見てから次へ進む</span></label></li>
+</div></ul>
+
+<h3><span class="step">STEP 3</span>ドメイン分散の整理</h3>
+<ul class="ck"><div class="box2">
+  <li><label><input type="checkbox" data-ck="s3a"><span><code>www.kawaguchi-tenrei.com</code>（旧サイト）を <code>kawaguchitenrei.com</code> へ 301 リダイレクト、または閉鎖</span></label></li>
+  <li><label><input type="checkbox" data-ck="s3b"><span><code>kawaguchi-memorial-hall.com</code>（広告 LP）に <code>noindex</code> を入れる（広告運用は止めない。検索インデックスから外すだけ）</span></label></li>
+  <li><label><input type="checkbox" data-ck="s3c"><span>公式サイトの会社情報ページに、正式社名・住所・電話・代表者が明記されているか確認</span></label></li>
+</div></ul>
+
+<div class="box warn">
+  <div class="h">注意</div>
+  広告 LP の扱いは広告運用側にも影響する。実施前に運用状況を確認すること。
+  LP は「逝去後の緊急層を刈る」役割で検索流入を前提にしていないため、noindex 化は成立する見込み。
+</div>
+
+<h3><span class="step">STEP 4</span>Google Cloud プロジェクト側の是正（理由 A）</h3>
+<ul class="ck"><div class="box2">
+  <li><label><input type="checkbox" data-ck="s4a"><span>対象プロジェクト：<strong><code>487251905710</code></strong>（<code>.env.local</code> の OAuth クライアントが属する）</span></label></li>
+  <li><label><input type="checkbox" data-ck="s4b"><span>OAuth 同意画面 →「アプリ情報」の<strong>アプリ名</strong>を実在のサービス名にする</span></label></li>
+  <li><label><input type="checkbox" data-ck="s4c"><span><strong>アプリのホームページ</strong>に <code>https://kawaguchitenrei.com/</code> を設定</span></label></li>
+  <li><label><input type="checkbox" data-ck="s4d"><span><strong>プライバシーポリシーの URL</strong>に公式サイトのプライバシーポリシーページを設定</span></label></li>
+  <li><label><input type="checkbox" data-ck="s4e"><span><strong>承認済みドメイン</strong>に <code>kawaguchitenrei.com</code> を登録</span></label></li>
+  <li><label><input type="checkbox" data-ck="s4f"><span>必要な API が有効化されたままか確認（<code>scripts/gbp/README.md</code> 参照）</span></label></li>
+</div></ul>
+
+<h3><span class="step">STEP 5</span>再申請</h3>
+<ul class="ck"><div class="box2">
+  <li><label><input type="checkbox" data-ck="s5a"><span>申請フォーム：<a class="ext" href="https://support.google.com/business/contact/api_default" target="_blank" rel="noopener">support.google.com/business/contact/api_default</a></span></label></li>
+  <li><label><input type="checkbox" data-ck="s5b"><span>申請アカウント：kawaguchi.memorial@gmail.com（<strong>GBP のオーナー権限があること</strong>）</span></label></li>
+  <li><label><input type="checkbox" data-ck="s5c"><span>プロジェクト番号欄：<code>487251905710</code></span></label></li>
+  <li><label><input type="checkbox" data-ck="s5d"><span>ウェブサイト欄：<code>https://kawaguchitenrei.com/</code>（<strong>GBP のウェブサイト欄と完全一致させる</strong>）</span></label></li>
+  <li><label><input type="checkbox" data-ck="s5e"><span><strong>発行されたケース ID を必ず §7 に追記する</strong></span></label></li>
+</div></ul>
+
+<div class="copy">
+  <div class="label"><span>申請フォームの用途説明欄に貼る文面（下書き）</span><button class="cp" type="button">コピー</button></div>
+  <div class="txt">当社は埼玉県川口市で葬儀式場「川口メモリアルホール」を運営する葬儀社です。
+自社の Google ビジネス プロフィール（1拠点）について、営業時間・サービス内容・
+写真・投稿の更新を、社内の運用スクリプトから安全に反映することを目的として
+API アクセスを申請します。
+
+利用範囲は当社が所有する自社リスティングのみで、第三者のリスティングを
+取り扱う予定はありません。第三者向けの管理ツールの提供や再販も行いません。
+
+公式サイト: https://kawaguchitenrei.com/</div>
+</div>
+
+<p>上記はそのまま送らず、申請時点の実態に合わせて確認してから使うこと。</p>
+
+<h2 id="s4">4. 申請後の確認手順</h2>
+
+<div class="copy">
+  <div class="label"><span>承認状況の確認</span><button class="cp" type="button">コピー</button></div>
+  <div class="txt mono">node scripts/gbp/dump.mjs</div>
+</div>
+
+<div class="tw"><table>
+<thead><tr><th>結果</th><th>意味</th></tr></thead>
+<tbody>
+<tr><td>アカウント情報が返る</td><td>✅ 承認済み。<code>diff.mjs</code> → <code>apply.mjs --confirm</code> に進む</td></tr>
+<tr><td><code>429 Quota exceeded ... Requests per minute</code></td><td>🔴 まだ未承認（割り当て 0 QPM）</td></tr>
+<tr><td><code>has not been used in project ... or it is disabled</code></td><td>⚠️ プロジェクト取り違え。再確認</td></tr>
+</tbody>
+</table></div>
+
+<div class="copy">
+  <div class="label"><span>メール側の確認</span><button class="cp" type="button">コピー</button></div>
+  <div class="txt mono">node --env-file=.env.local scripts/gmail-search.mjs --preset=gbp</div>
+</div>
+
+<p>Google Cloud Console 側：「割り当てとシステム上限」→ My Business Business Information API の QPM
+（<strong>0 = 未承認 / 300 = 承認済み</strong>）</p>
+
+<h2 id="s5">5. やってはいけないこと</h2>
+<div class="box warn">
+  <div class="h">再申請前に必ず確認</div>
+  <ul>
+    <li><strong>是正せずに連続で再申請する</strong> — 同じ内容の再提出は品質チェックで同じ結果になるだけでなく、アカウント評価を下げるおそれがある</li>
+    <li><strong>ケース ID を控えずに申請する</strong> — 7/30 の申請は記録が無く、送信されたかどうかすら確認できなかった</li>
+    <li>GBP の店舗名にキーワードを足すなどのガイドライン違反の変更（審査に直接響く）</li>
+  </ul>
+</div>
+
+<h2 id="s6">6. 承認までの運用</h2>
+<p>API 承認は再申請から<strong>さらに 7〜10 営業日</strong>かかる見込み。それまでは
+<code>docs/operations/gbp/2026-07-27-gbp-full-setup-playbook.md</code> の手作業運用を継続する。
+手作業で入れた内容は、承認後に <code>diff.mjs</code> で突き合わせられるため無駄にならない。</p>
+<p>なお <strong>GBP API の利用は無料</strong>（公式に "available to registered users at no charge"）。請求先アカウントの登録も不要。</p>
+
+<h2 id="s7">7. 再申請の記録欄（申請したらここに追記）</h2>
+<div class="tw"><table>
+<thead><tr><th>項目</th><th>内容</th></tr></thead>
+<tbody>
+<tr><td>申請日</td><td>（未申請）</td></tr>
+<tr><td>ケース ID</td><td>（未申請）</td></tr>
+<tr><td>プロジェクト番号</td><td><code>487251905710</code></td></tr>
+<tr><td>GBP ウェブサイト欄の設定値</td><td>（記入）</td></tr>
+<tr><td>承認確認の目安</td><td>申請日 + 7〜10 営業日</td></tr>
+<tr><td>結果</td><td>（未確認）</td></tr>
+</tbody>
+</table></div>
+
+<div class="foot">
+  社内用ドキュメント。Web 非公開（noindex）。秘密情報・個人情報は記載しない。<br>
+  関連：<code>docs/operations/gbp/2026-07-30-gbp-api-access-request.html</code> ／ <code>scripts/gbp/README.md</code>
+</div>
+
+</main>
+</div>
+<script>
+(function(){
+  "use strict";
+  var KEY = "gbp-api-reapplication-2026-08-19";
+  function load(){ try { return JSON.parse(localStorage.getItem(KEY) || "{}"); } catch(e){ return {}; } }
+  function save(s){ try { localStorage.setItem(KEY, JSON.stringify(s)); } catch(e){} }
+
+  var boxes = Array.prototype.slice.call(document.querySelectorAll('input[type=checkbox][data-ck]'));
+  var state = load();
+  var bar = document.getElementById('pbar');
+  var num = document.getElementById('pnum');
+
+  function render(){
+    var done = boxes.filter(function(b){ return b.checked; }).length;
+    bar.style.width = (boxes.length ? Math.round(done / boxes.length * 100) : 0) + '%';
+    num.textContent = done + ' / ' + boxes.length + ' 完了';
+  }
+  boxes.forEach(function(b){
+    if (state[b.dataset.ck]) b.checked = true;
+    b.addEventListener('change', function(){ state[b.dataset.ck] = b.checked; save(state); render(); });
+  });
+  render();
+  document.getElementById('preset').addEventListener('click', function(){
+    if (!window.confirm('チェックをすべて外します。よろしいですか？')) return;
+    boxes.forEach(function(b){ b.checked = false; });
+    state = {}; save(state); render();
+  });
+
+  function copyText(text){
+    if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text);
+    return new Promise(function(resolve, reject){
+      var ta = document.createElement('textarea');
+      ta.value = text; ta.style.position='fixed'; ta.style.opacity='0';
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy') ? resolve() : reject(); }
+      catch(e){ reject(e); } finally { document.body.removeChild(ta); }
+    });
+  }
+  document.querySelectorAll('button.cp').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var el = btn.closest('.copy') && btn.closest('.copy').querySelector('.txt');
+      if (!el) return;
+      var original = btn.textContent;
+      copyText(el.innerText).then(function(){
+        btn.textContent = 'コピーしました'; btn.classList.add('done');
+        setTimeout(function(){ btn.textContent = original; btn.classList.remove('done'); }, 1600);
+      }).catch(function(){
+        btn.textContent = '手動で選択してください';
+        setTimeout(function(){ btn.textContent = original; }, 2400);
+      });
+    });
+  });
+
+  var links = Array.prototype.slice.call(document.querySelectorAll('nav.toc a'));
+  var targets = links.map(function(a){ return document.querySelector(a.getAttribute('href')); });
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (!en.isIntersecting) return;
+        var i = targets.indexOf(en.target);
+        if (i < 0) return;
+        links.forEach(function(a){ a.classList.remove('active'); });
+        links[i].classList.add('active');
+      });
+    }, { rootMargin: '0px 0px -75% 0px' });
+    targets.forEach(function(t){ if (t) io.observe(t); });
+  }
+})();
+</script>
+</body>
+</html>
