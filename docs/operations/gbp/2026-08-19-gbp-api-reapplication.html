@@ -368,14 +368,23 @@ API アクセスを申請します。
 <div class="tw"><table>
 <thead><tr><th>項目</th><th>内容</th></tr></thead>
 <tbody>
-<tr><td>申請日</td><td>（未申請）</td></tr>
-<tr><td>ケース ID</td><td>（未申請）</td></tr>
+<tr><td>申請日</td><td><strong>2026-08-21（金）</strong></td></tr>
+<tr><td>ケース ID</td><td><strong><code>8-8661000041490</code></strong></td></tr>
 <tr><td>プロジェクト番号</td><td><code>487251905710</code></td></tr>
 <tr><td>GBP ウェブサイト欄の設定値</td><td><code>https://kawaguchitenrei.com/</code>（2026-08-19 修正。修正前は <code>kawaguchi-memorial-hall.com</code>）</td></tr>
-<tr><td>承認確認の目安</td><td>申請日 + 7〜10 営業日</td></tr>
-<tr><td>結果</td><td>（未確認）</td></tr>
+<tr><td>承認確認の目安</td><td><strong>2026-09-01（火）〜 09-04（金）</strong>（Google 案内：審査 7〜10 営業日）</td></tr>
+<tr><td>結果</td><td>（審査中）</td></tr>
 </tbody>
 </table></div>
+
+<div class="box good">
+  <div class="h">✅ 2026-08-21 再申請を提出（ケース ID: 8-8661000041490）</div>
+  却下理由 A（OAuth 同意画面）・B（ウェブサイト欄）とも是正したうえで提出。
+  <strong>審査待ちの間は GBP のウェブサイト欄・名称を触らないこと。</strong>
+  審査中に値が変わると内部チェックが不整合を検出する可能性がある。<br><br>
+  承認確認は <code>node scripts/gbp/dump.mjs</code>（アカウント情報が返れば承認済み／429 なら未承認）。
+  目安は <strong>2026-09-01 以降</strong>。
+</div>
 
 <div class="foot">
   社内用ドキュメント。Web 非公開（noindex）。秘密情報・個人情報は記載しない。<br>
