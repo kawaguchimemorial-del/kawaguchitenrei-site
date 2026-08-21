@@ -172,6 +172,78 @@ metaTitle だけでは足りず、本文の見出し構成・内部リンクの�
   <li>GBP のウェブサイト欄が維持されているか。GBP API 承認（ケース 8-8661000041490・9/1以降）</li>
 </ul>
 
+<h2>9. GA4（追加取得）— 今日の問い合わせはどこから来たか</h2>
+
+<div class="box amber">
+  <b>今日の問い合わせ2件は、参照元が「Unassigned（不明）」のセッションから発生している。</b><br>
+  自然検索ではない。8/20 に GBP のウェブサイト欄を公式サイトへ戻した翌日という時期の一致から
+  <b>GBP 経由の可能性が高い</b>が、1日分のデータだけなので断定はできない。
+</div>
+
+<h3>今日（8/21）の実測</h3>
+<table>
+<tr><th>チャネル</th><th>デバイス</th><th>セッション</th><th>キーイベント</th></tr>
+<tr><td><b>Unassigned</b></td><td>mobile</td><td>7</td><td><b>8</b></td></tr>
+<tr><td><b>Unassigned</b></td><td>desktop</td><td>7</td><td>2</td></tr>
+<tr><td>Organic Search</td><td>desktop</td><td>7</td><td>3</td></tr>
+<tr><td>Organic Search</td><td>mobile</td><td>4</td><td>0</td></tr>
+<tr><td>Referral</td><td>mobile</td><td>3</td><td>0</td></tr>
+</table>
+<p>イベントの内訳は <code>click_tel</code> 8回（1人）・<code>generate_lead</code> 2回（1人）・
+<code>click_contact_cta</code> 3回（1人）。電話タップとメール問い合わせの実数と符合する。</p>
+
+<h3>Unassigned は今日だけ出ている</h3>
+<table>
+<tr><th>日付</th><th>Organic</th><th>Direct</th><th>Referral</th><th>Unassigned</th><th>KE計</th></tr>
+<tr><td>8/17</td><td>27</td><td>2</td><td>4</td><td>0</td><td>3</td></tr>
+<tr><td>8/18</td><td>29</td><td>6</td><td>3</td><td>0</td><td>1</td></tr>
+<tr><td>8/19</td><td>15</td><td>11</td><td>5</td><td>0</td><td>4</td></tr>
+<tr><td>8/20</td><td>33</td><td>8</td><td>3</td><td>0</td><td>4</td></tr>
+<tr><td><b>8/21</b></td><td>11</td><td>1</td><td>3</td><td><b>14</b></td><td><b>13</b></td></tr>
+</table>
+<p>8/08〜8/20 の Unassigned は 0〜1 セッション。<b>8/21 だけ 14 セッション・KE 10 件</b>。
+GA4 が参照元を判定できないケースは、地図アプリや各種アプリ内ブラウザからの流入で起きやすい。
+<b>8/20 の GBP ウェブサイト欄の切り替えと時期が一致している。</b></p>
+<div class="box blue">
+  <b>ただし別の可能性も残る。</b>本日は社内で概算見積り資料の作成作業を行っており、
+  その操作が計測に混ざっている可能性がある（<code>/plan/hanaire-owakare/</code> や
+  <code>/admin/seo/</code> の閲覧が今日に集中している）。<b>GA4 の内部トラフィック除外設定を確認したい。</b>
+</div>
+
+<h3>期間比較</h3>
+<table>
+<tr><th>指標</th><th>28日 7/25–8/21</th><th>前28日 6/27–7/24</th><th>直近7日 8/15–21</th><th>前7日 8/08–14</th></tr>
+<tr><td>セッション</td><td>811</td><td>847</td><td>229</td><td>232</td></tr>
+<tr><td>Organic Search</td><td><b>603</b></td><td>550</td><td>150</td><td>172</td></tr>
+<tr><td>Direct</td><td>131</td><td>210</td><td>39</td><td>45</td></tr>
+<tr><td>Referral</td><td>57</td><td>81</td><td>22</td><td>14</td></tr>
+</table>
+<p>28日窓は総セッション -4% だが、<b>自然検索は +10%</b>（550 → 603）。GSC のクリック +19% と整合する。
+Direct の減少（210 → 131）が総数を押し下げている。</p>
+
+<h3>問い合わせ系イベント</h3>
+<table>
+<tr><th>イベント</th><th>28日</th><th>直近7日</th><th>今日</th></tr>
+<tr><td>click_tel（電話タップ）</td><td>36回 / 19人</td><td>12回 / 4人</td><td>8回 / 1人</td></tr>
+<tr><td>generate_lead（フォーム送信）</td><td>13回 / 10人</td><td>8回 / 5人</td><td>2回 / 1人</td></tr>
+<tr><td>click_contact_cta</td><td>7回 / 5人</td><td>5回 / 3人</td><td>3回 / 1人</td></tr>
+</table>
+<p>28日で電話タップ19人・フォーム送信10人。<b>直近7日でフォーム送信5人</b>と、8月に入ってからのほうが密度が高い。
+<code>/contact/</code> をランディングにしたセッションは直近7日で5、キーイベント6件と成約性が高い。</p>
+
+<h3>広告LPからの流入が増えている</h3>
+<p><code>kawaguchi-memorial-hall.com</code> からの参照が 前7日7 → 直近7日12セッション。
+LP から本サイトへのリンクが機能している。ただしキーイベントは0件。</p>
+
+<h2>10. GA4を踏まえた次のアクション</h2>
+<ul>
+  <li><b>GA4 の内部トラフィック除外を確認する。</b>社内作業が問い合わせ計測に混ざると、以後の判断を誤る</li>
+  <li><b>Unassigned が明日以降も続くか見る。</b>続けば GBP 切り替えの効果とみてよい</li>
+  <li><b>GBP のウェブサイト欄に UTM を付けるのは、API 承認後にする。</b>
+      審査中（ケース 8-8661000041490）に値を変えると内部チェックに引っかかる可能性がある</li>
+  <li>問い合わせのあったお客様に、どこで当社を知ったか確認できると確実</li>
+</ul>
+
 <p class="foot">分析のみ。サイト変更・広告変更なし。個人情報・秘密情報は記載していない。</p>
 
 </div>
