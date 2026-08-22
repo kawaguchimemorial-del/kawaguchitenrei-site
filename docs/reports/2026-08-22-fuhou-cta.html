@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>/column/fuhou/ CTA導線見直し 2026-08-22</title>
+<style>
+  :root{
+    --ink:#1c1a17; --sub:#5c564e; --line:#e2ddd4; --bg:#fbfaf8;
+    --accent:#7a5c3e; --red:#a8322a; --amber:#8a6412; --green:#2f6146; --blue:#2d5573;
+    --redbg:#fdf3f2; --amberbg:#fdf9ee; --greenbg:#f1f7f3; --bluebg:#f0f4f8; --box:#fff;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
+    line-height:1.9;font-size:15px;-webkit-text-size-adjust:100%}
+  .wrap{max-width:1000px;margin:0 auto;padding:44px 22px 96px}
+  header.doc{border-bottom:3px solid var(--ink);padding-bottom:18px;margin-bottom:30px}
+  .kicker{font-size:12px;letter-spacing:.14em;color:var(--sub);margin:0}
+  h1{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:25px;line-height:1.5;margin:10px 0 12px;font-weight:600}
+  .meta{font-size:13px;color:var(--sub)}
+  h2{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:20px;margin:54px 0 14px;
+    padding:8px 0 8px 14px;border-left:5px solid var(--accent);font-weight:600;background:#f6f3ee}
+  h3{font-size:16px;margin:32px 0 10px;font-weight:600;border-bottom:1px solid var(--line);padding-bottom:6px}
+  h4{font-size:14px;margin:20px 0 6px;color:var(--accent);font-weight:600}
+  p{margin:0 0 12px}
+  table{border-collapse:collapse;width:100%;font-size:13px;margin:14px 0;background:var(--box)}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:right;vertical-align:top}
+  th{background:#f4f1eb;font-weight:600;text-align:center;white-space:nowrap}
+  td.l,th.l{text-align:left}
+  .scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .bad{color:var(--red);font-weight:600}
+  .warn{color:var(--amber);font-weight:600}
+  .good{color:var(--green);font-weight:600}
+  .box{background:var(--box);border:1px solid var(--line);border-radius:6px;padding:18px 20px;margin:18px 0}
+  .box.red{background:var(--redbg);border-color:#e8c4c0}
+  .box.amber{background:var(--amberbg);border-color:#ecdcb4}
+  .box.green{background:var(--greenbg);border-color:#c3ded0}
+  .box.blue{background:var(--bluebg);border-color:#c2d3e0}
+  .box h4{margin-top:0}
+  ul,ol{margin:8px 0 14px;padding-left:1.4em}
+  li{margin-bottom:6px}
+  .kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:11px;margin:16px 0}
+  .kpi div{background:var(--box);border:1px solid var(--line);border-radius:5px;padding:11px 13px}
+  .kpi span{display:block;font-size:11px;color:var(--sub)}
+  .kpi strong{font-size:19px;font-weight:600}
+  .note{font-size:12.5px;color:var(--sub);margin-top:6px}
+  code{background:#f2efe9;padding:1px 5px;border-radius:3px;font-size:12.5px}
+  hr{border:0;border-top:1px solid var(--line);margin:44px 0}
+  footer{margin-top:60px;padding-top:18px;border-top:1px solid var(--line);font-size:12px;color:var(--sub)}
+  .verdict{background:#2f3a44;color:#fff;border-radius:6px;padding:20px 24px;margin:20px 0}
+  .verdict h4{color:#e6c88a;margin-top:0;font-size:12px;letter-spacing:.06em}
+  .verdict .big{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:18px;line-height:1.7;margin:6px 0 10px}
+  @media print{body{background:#fff}.wrap{padding:0}h2{page-break-after:avoid}.box,table{page-break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <p class="kicker">KAWAGUCHI TENREI / INTERNAL REPORT</p>
+  <h1>/column/fuhou/ の CTA 導線見直し<br>― GA4 で判明した「流入2位・コンバージョン0」への対応</h1>
+  <p class="meta">
+    作成日：2026-08-22 ／ 担当：松澤（Claude Code 実装）<br>
+    対象データ期間：GA4 直近7日 2026-08-16〜2026-08-22（当日分は処理途中）／ 比較 前7日 2026-08-09〜2026-08-15<br>
+    区分：🔧 サイト変更あり（<code>lib/columns.ts</code> の該当記事のみ）
+  </p>
+</header>
+
+<h2>1. サマリ</h2>
+<ul>
+  <li><strong>【完了】</strong>GA4 実データを取得し、<code>/column/fuhou/</code> が直近7日で54セッション（ランディング2位）ながらキーイベント0件であることを確認。</li>
+  <li><strong>【完了】</strong>同記事の CTA 導線を見直し。記事中盤に文脈CTAを1つ追加、末尾CTAの文言を訃報の文脈に差し替え、関連リンクに <code>/plan/</code> を追加。</li>
+  <li><strong>【完了】</strong><code>npm run build</code> 成功。静的生成138ページで減少なし。</li>
+  <li><strong>【訂正】</strong>初回の分析で「Paid Search が7日2セッションしかない＝検索KPの支出が流入に現れていない」と述べたが、広告は別ドメインの広告LPに着地するため本サイトGA4に広告流入がほぼ無いのは正常。この指摘は撤回した。GA4（kawaguchitenrei.com）は代理店ではなく松澤の管理下。</li>
+  <li><strong>【未着手】</strong>Unassigned セッションの扱い（下記5章）。2026-08-25 に再取得して判定する。</li>
+</ul>
+
+<h2>2. 背景・原因</h2>
+
+<h3>2.1 GA4 実データ（直近7日 vs 前7日）</h3>
+<div class="kpi">
+  <div><span>セッション（直近7日）</span><strong>232</strong></div>
+  <div><span>セッション（前7日）</span><strong>230</strong></div>
+  <div><span>キーイベント（直近7日）</span><strong class="good">27</strong></div>
+  <div><span>キーイベント（前7日）</span><strong>12</strong></div>
+  <div><span>セッション（直近28日）</span><strong>821</strong></div>
+  <div><span>セッション（前28日）</span><strong>860</strong></div>
+</div>
+<p>流入量は横ばい、キーイベントは7日で12→27。ただし増加分の一部は下記5章の Unassigned に乗っているため、確定扱いにしない。</p>
+
+<div class="scroll">
+<table>
+  <tr><th class="l">チャネル</th><th>直近7日</th><th>前7日</th><th>KE（直近7日）</th></tr>
+  <tr><td class="l">Organic Search</td><td>151</td><td>168</td><td>7</td></tr>
+  <tr><td class="l">Direct</td><td>34</td><td>48</td><td>6</td></tr>
+  <tr><td class="l">Referral</td><td>21</td><td>12</td><td>2</td></tr>
+  <tr><td class="l">Unassigned</td><td class="warn">22</td><td>1</td><td class="warn">11</td></tr>
+  <tr><td class="l">AI Assistant（chatgpt.com）</td><td>2</td><td>1</td><td>1</td></tr>
+  <tr><td class="l">Paid Search（google / cpc）</td><td>2</td><td>0</td><td>0</td></tr>
+</table>
+</div>
+<p class="note">Referral の内訳は <code>kawaguchi-memorial-hall.com</code> 12（前7日6）、<code>service.smt.docomo.ne.jp</code> 9。広告LPからの回遊は倍増しているが KE は0件。</p>
+
+<h3>2.2 ランディングページ（直近7日・上位）</h3>
+<div class="scroll">
+<table>
+  <tr><th class="l">ランディング</th><th>セッション</th><th>キーイベント</th></tr>
+  <tr><td class="l">/</td><td>81</td><td>8</td></tr>
+  <tr><td class="l">/column/fuhou/</td><td>54</td><td class="bad">0</td></tr>
+  <tr><td class="l">（Unassigned・ランディング空）</td><td>21</td><td>5</td></tr>
+  <tr><td class="l">/column/yujinso-sokagakkai/</td><td>10</td><td>0</td></tr>
+  <tr><td class="l">/column/kenshi-nagare/</td><td>9</td><td>0</td></tr>
+  <tr><td class="l">/hall/kawaguchi-memorial-hall/</td><td>6</td><td>0</td></tr>
+  <tr><td class="l">/contact/</td><td>5</td><td class="good">6</td></tr>
+  <tr><td class="l">/plan/hanaire-owakare/</td><td>3</td><td class="good">6</td></tr>
+</table>
+</div>
+
+<div class="box amber">
+  <h4>原因の見立て</h4>
+  <p><code>/column/fuhou/</code> はサイト内でトップページに次ぐ流入を集めながら、キーイベントが0件だった。読者の多くは訃報を「受け取った側（参列者）」で、そもそも葬儀社を探していない層が相当数を占めるため、0件のすべてが導線の不備というわけではない。</p>
+  <p>ただし記事の導線側にも明確な問題があった。CTA は<strong>記事末尾に汎用のものが1つあるだけ</strong>で、<code>text</code> を指定していなかったため <code>ColumnBody.tsx</code> のデフォルト文「詳しい内容や費用感は、川口典礼までお気軽にご相談ください。」がそのまま表示されていた。訃報メールの文面を調べに来た人に「費用感」と提示しても接続しない。</p>
+  <p>一方で、この記事には<strong>訃報を「出す側」＝ご喪家</strong>も確実に含まれる。とくに「訃報メールに必ず入れるべき5つの項目」で葬儀日程・葬儀形式に触れる箇所は、日程や形式が未定であれば葬儀社もまだ決まっていない可能性がある局面で、記事内で最も相談に近い接点である。ここに導線が無かった。</p>
+</div>
+
+<h2>3. 変更内容</h2>
+<p>変更は <code>lib/columns.ts</code> の <code>slug: "fuhou"</code> の記事データのみ。コンポーネント（<code>components/column/ColumnBody.tsx</code>）は <code>cta</code> ブロックが <code>text</code> による文言差し替えに対応済みのため未変更。</p>
+<ol>
+  <li><strong>記事中盤に文脈CTAを追加</strong>（「訃報メールに必ず入れるべき5つの項目」直後）<br>
+    <code>{ type: "cta", label: "葬儀の日程・形式を相談する", href: "/contact/", text: "訃報をお知らせする段階で、葬儀の日程や形式がまだ決まっていないこともあります。川口市周辺で葬儀社をお探しでしたら、24時間365日ご相談を承っています。" }</code></li>
+  <li><strong>末尾CTAの文言を訃報の文脈に差し替え</strong>（デフォルトの費用文言をやめ、文面・連絡範囲の相談を受ける旨に）<br>
+    <code>text: "訃報の文面やお知らせする範囲についてのご相談も承っています。はじめてのことで迷われたときは、川口典礼までお気軽にお声がけください。"</code></li>
+  <li><strong>関連リンクに1本追加</strong>（既存2本＝死亡届・川口市の葬儀ガイドに加えて）<br>
+    「葬儀プラン一覧｜直葬・一日葬・家族葬の内容と費用」→ <code>/plan/</code></li>
+  <li>記事冒頭のリード（<code>quote</code>）・本文・見出し構成・<code>metaDescription</code> は変更なし。</li>
+</ol>
+<p>CTA は中盤・末尾の計2つに留め、<code>/column/jiyusou/</code> と同じ密度にした。煽り表現・断定表現は使用していない。</p>
+
+<h2>4. 確認結果</h2>
+<ul>
+  <li><code>npm run build</code> 成功。エラー・警告なし。</li>
+  <li>静的生成 <strong>138ページ</strong>。従前と同数で減少なし。</li>
+  <li><code>git diff</code> は <code>lib/columns.ts</code> のみ、3行追加・1行変更。指示外ファイルへの巻き込み変更なし。</li>
+  <li><code>.env*</code> の差分なし。価格・プラン名の変更なし。<code>Header.tsx</code> / <code>Footer.tsx</code> / <code>MobileBottomCTA.tsx</code> 未変更。</li>
+  <li>禁止表現（最安・必ず・絶対・追加費用なし 等）の混入なし。</li>
+  <li>確認URL：<code>http://localhost:3000/column/fuhou/</code></li>
+  <li>commit・push：未実施（指示待ち）。</li>
+</ul>
+
+<h2>5. 未解決：Unassigned セッション</h2>
+<div class="box blue">
+  <p>直近7日の Unassigned 22セッション・KE 11件は <strong>8/21（17セッション）と 8/22（5セッション）に集中</strong>しており、8/09〜8/20 は0〜1セッション。参照元は <code>(not set)</code>、ランディングも空。</p>
+  <p>GA4 の直近日データにおける処理遅延の典型パターンであり、数日後に Organic / Direct へ再配分される可能性が高い。ただし 8/21 のレポートでも同じ事象を「GBPウェブサイト欄切り替え（8/20）の翌日」として記録しており、GBP由来の可能性も残る。</p>
+  <p><strong>判定方法</strong>：2026-08-25 に <code>tmp/seo-2026-08-22/ga4.mjs</code> を同じ日付範囲で再実行し、8/21 の Unassigned 17件が再配分されていれば処理遅延、残っていればタグ側（計測設定または内部トラフィック除外）の問題として切り分ける。</p>
+  <p>今回のキーイベント増加分（12→27）もこの Unassigned に乗っているため、CTA改修の効果測定の基準値としては使わない。</p>
+</div>
+
+<h2>6. 今後のアクション</h2>
+<ol>
+  <li><strong>2026-08-25</strong>：Unassigned の再配分を確認し、処理遅延かタグ側の問題かを判定する。</li>
+  <li><strong>2026-09-05 前後</strong>：<code>/column/fuhou/</code> のキーイベント（click_tel / generate_lead / click_contact_cta）が0から動いたかを確認。セッション数はほぼ変わらない想定なので、見るのは KE と <code>/contact/</code>・<code>/plan/</code> への遷移。</li>
+  <li>同様に「流入はあるが KE 0」の記事（<code>/column/yujinso-sokagakkai/</code> 10セッション、<code>/column/kenshi-nagare/</code> 9セッション）についても、効果が確認できてから同じ手当てを横展開するか判断する。先に fuhou で検証してから広げる。</li>
+  <li>GA4 の内部トラフィック除外設定の確認（8/21 レポートからの持ち越し）。</li>
+</ol>
+
+<footer>
+  川口典礼 社内レポート／Web非公開（noindex）。作成：2026-08-22。
+</footer>
+
+</div>
+</body>
+</html>
