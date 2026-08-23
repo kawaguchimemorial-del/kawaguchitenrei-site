@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>本サイト SEOチェック 2026-08-23</title>
+<style>
+  :root{
+    --ink:#1c1a17; --sub:#5c564e; --line:#e2ddd4; --bg:#fbfaf8;
+    --accent:#7a5c3e; --red:#a8322a; --amber:#8a6412; --green:#2f6146; --blue:#2d5573;
+    --redbg:#fdf3f2; --amberbg:#fdf9ee; --greenbg:#f1f7f3; --bluebg:#f0f4f8; --box:#fff;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
+    line-height:1.9;font-size:15px;-webkit-text-size-adjust:100%}
+  .wrap{max-width:1000px;margin:0 auto;padding:44px 22px 96px}
+  header.doc{border-bottom:3px solid var(--ink);padding-bottom:18px;margin-bottom:30px}
+  .kicker{font-size:12px;letter-spacing:.14em;color:var(--sub);margin:0}
+  h1{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:25px;line-height:1.5;margin:10px 0 12px;font-weight:600}
+  .meta{font-size:13px;color:var(--sub)}
+  h2{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:20px;margin:54px 0 14px;
+    padding:8px 0 8px 14px;border-left:5px solid var(--accent);font-weight:600;background:#f6f3ee}
+  h3{font-size:16px;margin:32px 0 10px;font-weight:600;border-bottom:1px solid var(--line);padding-bottom:6px}
+  h4{font-size:14px;margin:20px 0 6px;color:var(--accent);font-weight:600}
+  p{margin:0 0 12px}
+  table{border-collapse:collapse;width:100%;font-size:13px;margin:14px 0;background:var(--box)}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:right;vertical-align:top}
+  th{background:#f4f1eb;font-weight:600;text-align:center;white-space:nowrap}
+  td.l,th.l{text-align:left}
+  .scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .bad{color:var(--red);font-weight:600}
+  .warn{color:var(--amber);font-weight:600}
+  .good{color:var(--green);font-weight:600}
+  .box{background:var(--box);border:1px solid var(--line);border-radius:6px;padding:18px 20px;margin:18px 0}
+  .box.red{background:var(--redbg);border-color:#e8c4c0}
+  .box.amber{background:var(--amberbg);border-color:#ecdcb4}
+  .box.green{background:var(--greenbg);border-color:#c3ded0}
+  .box.blue{background:var(--bluebg);border-color:#c2d3e0}
+  .box h4{margin-top:0}
+  ul,ol{margin:8px 0 14px;padding-left:1.4em}
+  li{margin-bottom:6px}
+  .kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:11px;margin:16px 0}
+  .kpi div{background:var(--box);border:1px solid var(--line);border-radius:5px;padding:11px 13px}
+  .kpi span{display:block;font-size:11px;color:var(--sub)}
+  .kpi strong{font-size:19px;font-weight:600}
+  .note{font-size:12.5px;color:var(--sub);margin-top:6px}
+  code{background:#f2efe9;padding:1px 5px;border-radius:3px;font-size:12.5px}
+  hr{border:0;border-top:1px solid var(--line);margin:44px 0}
+  footer{margin-top:60px;padding-top:18px;border-top:1px solid var(--line);font-size:12px;color:var(--sub)}
+  .verdict{background:#2f3a44;color:#fff;border-radius:6px;padding:20px 24px;margin:20px 0}
+  .verdict h4{color:#e6c88a;margin-top:0;font-size:12px;letter-spacing:.06em}
+  .verdict .big{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:18px;line-height:1.7;margin:6px 0 10px}
+  @media print{body{background:#fff}.wrap{padding:0}h2{page-break-after:avoid}.box,table{page-break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <p class="kicker">社内レポート（docs/reports・非公開/noindex）</p>
+  <h1>本サイト SEOチェック（2026-08-23）</h1>
+  <p class="meta">GSC API 直接取得／確定最新日 2026-08-20 ／ 分析のみ・サイト変更なし</p>
+</header>
+
+<div class="verdict">
+  <h4>結論</h4>
+  <p class="big">順位は着実に上がっている。しかし直近7日はクリックが 112 → 84 に減っており、減った分はほぼ全部「川口典礼」「川口メモリアルホール」の指名検索である。</p>
+  <p>地域KWは 7日窓でそろって順位を上げた（川口市 葬儀 11.2位／川口市 直葬 7.9位／川口市 一日葬 9.1位）。一方でクリックの主柱である指名検索が 8/18〜8/20 に落ちた。8/20 の GBP ウェブサイト欄の切り替え直後であり、「自然検索のクリックが地図枠に移った」可能性がある。悪化と決めつけず、GA4 と合わせて 8/25 に再確認する。</p>
+</div>
+
+<h2>1. 全体（GSC 実測）</h2>
+<div class="scroll">
+<table>
+<tr><th class="l">窓</th><th>期間</th><th>クリック</th><th>表示</th><th>CTR</th><th>平均順位</th></tr>
+<tr><td class="l">28日 AFTER</td><td>7/24–8/20</td><td>354</td><td>37,772</td><td>0.94%</td><td>11.59</td></tr>
+<tr><td class="l">28日 BEFORE</td><td>6/26–7/23</td><td>343</td><td>36,940</td><td>0.93%</td><td>11.69</td></tr>
+<tr><td class="l">7日 AFTER</td><td>8/14–8/20</td><td class="bad">84</td><td>10,753</td><td class="bad">0.78%</td><td class="good">10.70</td></tr>
+<tr><td class="l">7日 BEFORE</td><td>8/07–8/13</td><td>112</td><td>8,643</td><td>1.30%</td><td>11.86</td></tr>
+</table>
+</div>
+<p>28日窓は前回（8/21 時点）と同じく微増で安定。問題は 7日窓で、<b>表示 +24%・順位 1.2 改善なのにクリックは 25% 減</b>。表示増による CTR 希釈だけでは説明がつかない減り方のため、内訳を見る。</p>
+
+<h3>日別クリック</h3>
+<p>8/10–8/17 は 13〜21 で推移していたが、8/18 = 9、8/19 = 7、8/20 = 10 と直近3日が落ちている。平均順位はこの3日も 10.3〜11.5 で悪化していない。<b>順位はそのままでクリックだけ落ちた</b>形。</p>
+
+<h2>2. 減ったのは指名検索</h2>
+<div class="scroll">
+<table>
+<tr><th class="l">クエリ（7日窓）</th><th>前</th><th>後</th><th>差</th></tr>
+<tr><td class="l">川口メモリアルホール</td><td>13</td><td>5</td><td class="bad">-8</td></tr>
+<tr><td class="l">川口典礼</td><td>18</td><td>14</td><td class="bad">-4</td></tr>
+<tr><td class="l">川口典礼 川口メモリアルホール</td><td>2</td><td>1</td><td>-1</td></tr>
+<tr><td class="l">訃報系（返信・連絡ほか合計）</td><td>—</td><td>—</td><td class="bad">約 -10</td></tr>
+</table>
+</div>
+<div class="box amber">
+  <h4>解釈（断定はしない）</h4>
+  <p>指名検索の順位は落ちていない（28日窓で「川口典礼」1.01位・「川口メモリアルホール」8.08→5.83位、クリックも 28日窓では 23 → 29 と増えている）。それでも直近7日だけ指名クリックが減っているのは、<b>8/20 に GBP のウェブサイト欄を広告LPから公式サイトへ戻した</b>ことで、指名検索の受け皿がローカルパック（地図枠）側に移り、自然検索リンクのクリックが相対的に減った可能性がある。これは実害ではなく計測上の移動であり、GA4 側で総セッションが落ちていなければ問題ない。</p>
+  <p>もう一つの候補はお盆明けの季節要因。8/10〜8/17 が高かった反動の可能性もある。1週間分では切り分けられないため、<b>8/25 に GA4（参照元別セッション）と GSC を合わせて再確認する</b>。</p>
+</div>
+
+<h2>3. 8/17 のタイトル改修：順位はさらに上昇（クリックは依然0）</h2>
+<div class="scroll">
+<table>
+<tr><th class="l">クエリ（7日窓）</th><th>順位 前</th><th>順位 後</th><th>表示 前</th><th>表示 後</th><th>クリック</th></tr>
+<tr><td class="l">川口市 葬儀</td><td>12.95</td><td class="good">11.19</td><td>238</td><td>409</td><td>1</td></tr>
+<tr><td class="l">川口 葬儀</td><td>12.91</td><td class="good">11.04</td><td>142</td><td>185</td><td>0</td></tr>
+<tr><td class="l">川口市 直葬</td><td>9.54</td><td class="good">7.88</td><td>24</td><td>32</td><td>0</td></tr>
+<tr><td class="l">川口市 一日葬</td><td>10.71</td><td class="good">9.11</td><td>21</td><td>28</td><td>0</td></tr>
+<tr><td class="l">川口市 市民葬</td><td>11.06</td><td class="good">10.18</td><td>47</td><td>57</td><td>0</td></tr>
+<tr><td class="l">川口市 葬儀屋</td><td>22.90</td><td class="good">8.93</td><td>10</td><td>14</td><td>0</td></tr>
+<tr><td class="l">川口市 家族葬</td><td>21.10</td><td class="good">19.59</td><td>84</td><td>104</td><td>0</td></tr>
+<tr><td class="l">川口 家族葬</td><td>21.32</td><td class="bad">23.51</td><td>22</td><td>39</td><td>0</td></tr>
+</table>
+</div>
+<p>8/21 レポートで「1週間で順位に出た」と書いた動きが、そのまま継続している。主要語は 8〜11位、つまり<b>1ページ目の下端まで来た</b>。ここから1〜2つ上がるとクリックが発生し始める帯域。ただし現時点でクリックは 1 件のみで、「獲れるようになった」段階ではないという 8/21 の判断は変わらない。</p>
+<p class="note">「川口 家族葬」だけ逆行（21.3→23.5位）。表示は 22→39 と増えているため、新しい検索語の組み合わせで拾われ始めて平均が下がった可能性がある。単独では判断しない。</p>
+
+<h2>4. 未解決：受け皿はまだ入れ替わっていない</h2>
+<p>28日窓の query × page。8/21 時点から変化なし。</p>
+<div class="scroll">
+<table>
+<tr><th class="l">クエリ</th><th class="l">受け皿ページ</th><th>表示</th><th>クリック</th><th>順位</th></tr>
+<tr><td class="l">川口市 家族葬</td><td class="l">/（トップページ）</td><td>287</td><td>0</td><td>15.03</td></tr>
+<tr><td class="l"></td><td class="l">/area/higashikawaguchi/</td><td>19</td><td>0</td><td>53.95</td></tr>
+<tr><td class="l"></td><td class="l bad" colspan="4">/plan/family-funeral/ は 28日窓の上位に出てこない（地域KWでは受けていない）</td></tr>
+<tr><td class="l">川口 家族葬</td><td class="l">/</td><td>95</td><td>0</td><td>12.68</td></tr>
+<tr><td class="l"></td><td class="l">/area/angyo/</td><td>6</td><td>0</td><td>77.17</td></tr>
+<tr><td class="l">川口市 葬儀</td><td class="l">/</td><td>1,099</td><td>1</td><td>9.32</td></tr>
+<tr><td class="l"></td><td class="l">/area/kawaguchi/</td><td>40</td><td>0</td><td>80.70</td></tr>
+<tr><td class="l">川口市 直葬</td><td class="l good">/plan/direct-funeral/</td><td>75</td><td>0</td><td>12.20</td></tr>
+<tr><td class="l"></td><td class="l">/</td><td>55</td><td>0</td><td>8.98</td></tr>
+</table>
+</div>
+<div class="box">
+  <p><b>直葬だけは受け皿が正しく機能している</b>（/plan/direct-funeral/ が表示75で最上位の受け皿）。家族葬は依然トップページが受けている。8/17 の metaTitle 改修から6日しか経っておらず、28日窓は改修前を多く含むため、判断は 9月初旬に持ち越す（8/21 の判断を維持）。</p>
+</div>
+
+<h2>5. 一日葬のカニバリ：わずかに改善、逆転はまだ</h2>
+<div class="scroll">
+<table>
+<tr><th class="l">「川口市 一日葬」の受け皿</th><th>表示</th><th>順位</th><th>8/21時点</th></tr>
+<tr><td class="l">/plan/oneday-funeral/（本家）</td><td>53</td><td>21.81</td><td>24.6</td></tr>
+<tr><td class="l">/（トップページ）</td><td>33</td><td>8.88</td><td>9.1</td></tr>
+<tr><td class="l">/plan/yugure-kazokuso/（7/27新設）</td><td>26</td><td>10.19</td><td>10.2</td></tr>
+</table>
+</div>
+<p>本家が 24.6 → 21.8位 とわずかに戻したが、<b>依然として夕暮れ家族葬（10.2位）のほうが上</b>。逆転は起きていない。8/21 に書いた「metaTitle だけでは足りない」という見立ては変わらない。本文の見出し構成・内部リンクの見直しが必要だが、これはサイト変更を伴うため別途提案する。</p>
+
+<h2>6. ページ別（28日窓）</h2>
+<div class="scroll">
+<table>
+<tr><th class="l">ページ</th><th>クリック 前</th><th>後</th><th>表示</th><th>順位 前</th><th>後</th></tr>
+<tr><td class="l">/hall/kawaguchi-memorial-hall/</td><td>19</td><td class="good">52</td><td>657</td><td>7.60</td><td class="good">5.10</td></tr>
+<tr><td class="l">/column/fuhou/</td><td>123</td><td>126</td><td>15,866</td><td>9.62</td><td>9.78</td></tr>
+<tr><td class="l">/（トップ）</td><td>78</td><td class="bad">65</td><td>—</td><td>11.09</td><td class="bad">13.04</td></tr>
+<tr><td class="l">/column/shinsiki/</td><td>16</td><td>22</td><td>2,044</td><td>10.60</td><td>10.21</td></tr>
+<tr><td class="l">/saijo/megurinomori/</td><td>4</td><td>11</td><td>775</td><td>14.71</td><td>13.42</td></tr>
+<tr><td class="l">/access/</td><td>31</td><td class="bad">10</td><td>—</td><td>8.68</td><td class="good">7.30</td></tr>
+<tr><td class="l">/company/</td><td>11</td><td>8</td><td>—</td><td>5.13</td><td>4.75</td></tr>
+</table>
+</div>
+<div class="box blue">
+  <h4>/access/ の -21 は悪化ではない</h4>
+  <p>クエリ「川口メモリアルホール アクセス」が 15 → 3クリックに減っている一方、/hall/kawaguchi-memorial-hall/ が +33クリック。<b>同じ検索の受け皿が /access/ から式場ページに移った</b>だけで、合算では大きく増えている。式場ページのほうが情報量が多く問い合わせにも近いため、この移動は望ましい。</p>
+</div>
+<p>トップページは 78 → 65クリック・順位 11.09 → 13.04 と後退。これまでトップページが受けていた指名・式場系のクエリが /hall/ に移った結果と整合するが、地域KWでトップページが受け皿になっている状態（§4）は依然続いているため、要注意項目として残す。</p>
+
+<h2>7. 技術面の確認</h2>
+<div class="scroll">
+<table>
+<tr><th class="l">項目</th><th class="l">結果</th></tr>
+<tr><td class="l">本番トップ HTTP</td><td class="l good">200 ／ 0.20秒</td></tr>
+<tr><td class="l">sitemap.xml</td><td class="l good">129 URL・正常</td></tr>
+<tr><td class="l">robots.txt</td><td class="l good">正常（/admin/・/post/ のみ Disallow、Sitemap 記載あり）</td></tr>
+<tr><td class="l">旧ドメイン http://kawaguchi-tenrei.com/</td><td class="l good">301 → https://kawaguchitenrei.com/</td></tr>
+<tr><td class="l">旧ドメイン https://kawaguchi-tenrei.com/</td><td class="l warn">TLS 接続失敗（証明書なし）</td></tr>
+</table>
+</div>
+<div class="box amber">
+  <h4>新規に見つかった小さな穴：旧ドメインの https</h4>
+  <p>8/19 に設定した 301 は <b>http でのみ有効</b>で、https://kawaguchi-tenrei.com/ は証明書が無いため接続自体が失敗する。旧ドメインへの被リンクや、ブラウザが自動で https に上げるケースでは公式サイトへ届かない。NTT biz&amp;ウェブ側で SSL を有効化できるか確認したい（メールは現役のため解約はしない前提）。影響は大きくないが、旧ドメイン統合の効果を取り切るには必要。</p>
+</div>
+
+<h2>8. 次に見る指標</h2>
+<h4>8/25（切り分け）</h4>
+<ul>
+  <li>GA4 の参照元別セッションで、指名クリックの減少分が GBP（Organic Search 以外）に移っているか</li>
+  <li>8/21 レポートで保留した Unassigned 22セッション・KE11件が再配分されたか</li>
+</ul>
+<h4>9月初旬（効果判定）</h4>
+<ul>
+  <li>「川口市 葬儀」11.2位 → 1ページ目上部に入りクリックが発生するか</li>
+  <li>「川口市 家族葬」19.6位 → 受け皿が / から /plan/family-funeral/ に変わるか</li>
+  <li>一日葬の本家（21.8位）と夕暮れ（10.2位）の逆転</li>
+  <li>/hall/ の 52クリック維持（お盆の一時要因でないか）</li>
+  <li>GBP API 承認確認（ケース 8-8661000041490・9/01 以降）</li>
+</ul>
+
+<h2>9. 今回の変更</h2>
+<div class="box green">
+  <p><b>サイト変更なし（分析のみ）</b>。GSC API 取得スクリプト <code>tmp/seo-2026-08-23/fetch.mjs</code> は tmp 配下・非コミット。秘密情報・個人情報は本レポートに含まない。</p>
+</div>
+
+<footer>
+  川口典礼サイト 社内レポート／作成 2026-08-23／GSC API 直接取得（確定最新日 2026-08-20）／非公開・noindex
+</footer>
+
+</div>
+</body>
+</html>
