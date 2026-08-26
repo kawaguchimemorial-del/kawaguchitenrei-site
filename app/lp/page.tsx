@@ -172,19 +172,31 @@ export default function LpPage() {
               「川口メモリアルホール」で、直葬から家族葬・市民葬まで。
             </p>
 
-            {/* 実績バッジ（ティアの金枠縦カードの型） */}
-            <dl className="mt-5 grid max-w-lg grid-cols-3 gap-2">
+            {/* 実績エンブレム。月桂樹は装飾であり、受賞・順位を示すものではない。
+                「No.1」「受賞」等は根拠となる第三者調査がないため用いない（景表法）。 */}
+            <dl className="mt-5 grid max-w-lg grid-cols-3 gap-1.5">
               {BADGES.map((badge) => (
                 <div
                   key={badge.label}
-                  className="rounded-lg border-2 border-gold/70 bg-white/85 px-1 py-2.5 text-center shadow-sm"
+                  className="relative flex aspect-square items-center justify-center"
                 >
-                  <dd className="font-serif-jp text-xl font-medium leading-tight text-brand-deep md:text-3xl">
-                    {badge.value}
-                  </dd>
-                  <dt className="mt-1 text-[10px] leading-tight text-ink-mid md:text-xs">
-                    {badge.label}
-                  </dt>
+                  <Image
+                    src="/images/lp/emblem-laurel.png"
+                    alt=""
+                    aria-hidden
+                    fill
+                    priority
+                    sizes="160px"
+                    className="object-contain"
+                  />
+                  <div className="relative px-2 text-center">
+                    <dd className="font-serif-jp text-[17px] font-medium leading-none text-brand-deep md:text-[26px]">
+                      {badge.value}
+                    </dd>
+                    <dt className="mt-1 text-[9px] leading-tight text-ink-mid md:text-xs">
+                      {badge.label}
+                    </dt>
+                  </div>
                 </div>
               ))}
             </dl>
