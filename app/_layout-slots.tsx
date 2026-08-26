@@ -6,22 +6,28 @@ import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { MobileBottomCTA } from "@/components/layout/MobileBottomCTA";
 
-function isAdminPath(pathname: string | null): boolean {
-  return pathname?.startsWith("/admin") ?? false;
+// ヘッダー・フッター・下部固定CTAを出さないパス。
+// - /admin : 管理画面
+// - /lp    : 広告LP専用ページ（CLAUDE.md §21）。LP側で専用の固定CTAを持つ
+const CHROMELESS_PREFIXES = ["/admin", "/lp"];
+
+function isChromelessPath(pathname: string | null): boolean {
+  if (!pathname) return false;
+  return CHROMELESS_PREFIXES.some((prefix) => pathname.startsWith(prefix));
 }
 
 export function HeaderSlot() {
-  if (isAdminPath(usePathname())) return null;
+  if (isChromelessPath(usePathname())) return null;
   return <Header />;
 }
 
 export function FooterSlot() {
-  if (isAdminPath(usePathname())) return null;
+  if (isChromelessPath(usePathname())) return null;
   return <Footer />;
 }
 
 export function MobileBottomCTASlot() {
-  if (isAdminPath(usePathname())) return null;
+  if (isChromelessPath(usePathname())) return null;
   return <MobileBottomCTA />;
 }
 
@@ -76,6 +82,6 @@ function RevealController() {
 }
 
 export function RevealOnScrollSlot() {
-  if (isAdminPath(usePathname())) return null;
+  if (isChromelessPath(usePathname())) return null;
   return <RevealController />;
 }

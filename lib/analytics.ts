@@ -6,7 +6,7 @@ declare global {
   }
 }
 
-export type LeadFormType = "contact" | "estimate";
+export type LeadFormType = "contact" | "estimate" | "lp_contact";
 
 export function pushGenerateLead(formType: LeadFormType) {
   if (typeof window === "undefined") return;
