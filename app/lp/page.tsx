@@ -184,10 +184,12 @@ export default function LpPage() {
                 川口市の葬祭事業（市民葬）登録店
               </p>
             </div>
-            <h1 className="font-serif-jp mt-2.5 text-[24px] font-bold leading-[1.4] text-brand-deep md:mt-3 md:whitespace-nowrap md:text-[40px]">
-              <span className="text-emergency">川口市</span>の家族葬・直葬・市民葬。
+            {/* 見出しは明朝だと線が細くインパクトが出ないため、ゴシックの極太にする。
+                本サイトのセリフ体基調は §21 によりLPには適用しない。 */}
+            <h1 className="mt-2.5 text-[24px] font-black leading-[1.35] tracking-tighter text-brand-deep md:mt-3 md:whitespace-nowrap md:text-[44px] md:tracking-tight">
+              <span className="text-emergency">川口市</span>の家族葬・直葬・市民葬
               <br />
-              自社式場の川口典礼へ。
+              自社式場の<span className="text-emergency">川口典礼</span>へ。
             </h1>
             <p className="mt-3 text-[16px] font-medium leading-7 text-ink md:text-lg md:leading-8">
               まだ何も決まっていなくて、大丈夫です。
@@ -201,7 +203,7 @@ export default function LpPage() {
 
             {/* 実績エンブレム。月桂樹は装飾であり、受賞・順位を示すものではない。
                 「No.1」「受賞」等は根拠となる第三者調査がないため用いない（景表法）。 */}
-            <dl className="mt-4 grid max-w-[232px] grid-cols-3 gap-1 md:mt-5 md:max-w-lg md:gap-1.5">
+            <dl className="relative z-10 mt-3 grid max-w-[288px] grid-cols-3 gap-1 md:mt-5 md:max-w-lg md:gap-1.5">
               {BADGES.map((badge) => (
                 <div
                   key={badge.label}
@@ -220,14 +222,14 @@ export default function LpPage() {
                       ラベルも本文色まで濃くして、小さくても潰れないようにする。 */}
                   <div className="relative px-1 text-center">
                     <dd className="whitespace-nowrap leading-none text-brand-deep">
-                      <span className="text-[20px] font-black tracking-tight md:text-[32px]">
+                      <span className="text-[21px] font-black tracking-tight md:text-[32px]">
                         {badge.value}
                       </span>
-                      <span className="text-[12px] font-black md:text-[17px]">
+                      <span className="text-[13px] font-black md:text-[17px]">
                         {badge.unit}
                       </span>
                     </dd>
-                    <dt className="mt-1 whitespace-nowrap text-[10px] font-bold leading-tight text-ink md:text-[13px]">
+                    <dt className="mt-1 whitespace-nowrap text-[11px] font-bold leading-tight text-ink md:text-[13px]">
                       {badge.label}
                     </dt>
                   </div>
@@ -237,17 +239,17 @@ export default function LpPage() {
 
             {/* Google クチコミ。出典は lib/reviews.ts の1か所のみ。
                 構造化データにはしない（LPは noindex・§19.2）。 */}
-            <div className="mt-3 inline-flex items-center gap-2 rounded-lg border border-line bg-white/90 px-2.5 py-1.5 shadow-sm md:mt-4 md:px-3 md:py-2">
+            {/* スタッフに掛からない幅に収めるため、1行で組む */}
+            <div className="mt-2.5 inline-flex items-center gap-1.5 whitespace-nowrap rounded-lg border border-line bg-white/90 px-2.5 py-1.5 shadow-sm md:mt-4 md:gap-2 md:px-3 md:py-2">
               <LpStars rating={googleReview.rating} className="text-sm md:text-base" />
               <span className="text-base font-bold leading-none text-ink-deep md:text-lg">
                 {googleReview.rating}
               </span>
-              <span className="text-[12px] leading-4 text-ink-mid md:text-xs">
+              <span className="text-[12px] font-bold leading-none text-ink-mid md:text-xs">
                 Googleクチコミ
-                <br />
-                <span className="text-[13px] text-ink-soft md:text-[12px]">
-                  {reviewSummary.asOf}
-                </span>
+              </span>
+              <span className="text-[10px] leading-none text-ink-soft md:text-[12px]">
+                {reviewSummary.asOf}
               </span>
             </div>
           </div>
@@ -257,7 +259,7 @@ export default function LpPage() {
           <div className="relative mt-auto flex items-end justify-between gap-2 pb-[76px] md:static md:block md:pb-0">
             {/* 実在の式場写真（AI画像と区別できるように必ず添える）。
                 モバイルではスタッフに重ならないよう幅を半分までに抑える。 */}
-            <div className="relative z-10 max-w-[50%] pb-1 md:mt-4 md:max-w-none">
+            <div className="relative z-10 hidden max-w-[50%] pb-1 md:mt-4 md:block md:max-w-none">
               <div className="flex items-center gap-2">
                 <div className="relative h-12 w-16 shrink-0 overflow-hidden rounded-md border border-line shadow-sm md:h-20 md:w-32">
                   <Image
@@ -281,7 +283,7 @@ export default function LpPage() {
             </div>
 
             {/* スタッフ（イメージ）。モバイルは右下、PCはヒーロー右いっぱい */}
-            <div className="pointer-events-none absolute bottom-[76px] right-0 h-[27vh] w-[42%] md:bottom-0 md:h-[92%] md:w-[36%]">
+            <div className="pointer-events-none absolute bottom-[76px] right-0 h-[28vh] w-[40%] md:bottom-0 md:h-[92%] md:w-[36%]">
               <Image
                 src="/images/lp/staff-hero.webp"
                 alt="黒いフォーマルスーツで対応する葬祭スタッフ（イメージ）"
