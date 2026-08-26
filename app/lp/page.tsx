@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { company } from "@/lib/company";
 import { reviewSummary } from "@/lib/reviews";
 import { voices } from "@/lib/voices";
 import { LpContactForm } from "./contact/LpContactForm";
@@ -41,7 +42,7 @@ const REASONS = [
   {
     image: "/images/home/hero/kawaguchi-memorial-hall-hero.png",
     alt: "川口メモリアルホールの外観",
-    icon: "/images/lp/reason-crematory.png",
+    icon: "/images/lp/reason-crematory.webp",
     label: "01",
     title: "川口市めぐりの森まで、車で約5分",
     body: "火葬場がすぐ近くです。ご高齢の参列者が多い場合でも、ご移動の負担を抑えてお見送りいただけます。",
@@ -49,7 +50,7 @@ const REASONS = [
   {
     image: "/images/home/hall/hall-parking.png",
     alt: "川口メモリアルホールの駐車場",
-    icon: "/images/lp/reason-parking.png",
+    icon: "/images/lp/reason-parking.webp",
     label: "02",
     title: "駐車場70台・敷地内で無料",
     body: "お車でお越しの参列者が多いご葬儀でも、路上駐車で近隣にご迷惑をおかけすることがありません。",
@@ -57,7 +58,7 @@ const REASONS = [
   {
     image: "/images/home/hall/hall-family-waiting-room.jpg",
     alt: "川口メモリアルホールのご親族控室",
-    icon: "/images/lp/reason-hall.png",
+    icon: "/images/lp/reason-hall.webp",
     label: "03",
     title: "貸式場ではない、自社の式場です",
     body: "時間に追われることなく、ご家族のペースでお別れの時間をお過ごしいただけます。",
@@ -68,25 +69,25 @@ const FLOW = [
   {
     step: "お電話",
     body: "24時間365日受付。ご状況をお聞かせください。",
-    image: "/images/lp/flow-1-call.png",
+    image: "/images/lp/flow-1-call.webp",
     alt: "お電話を受けるスタッフ（イメージ）",
   },
   {
     step: "お迎え・ご安置",
     body: "寝台車でおうかがいし、ご自宅または当社の安置施設へご安置します。",
-    image: "/images/lp/flow-2-transfer.png",
+    image: "/images/lp/flow-2-transfer.webp",
     alt: "寝台車でお迎えにうかがうスタッフ（イメージ）",
   },
   {
     step: "お打合せ",
     body: "ご希望とご予算をうかがい、お見積りをご提示します。",
-    image: "/images/lp/flow-3-meeting.png",
+    image: "/images/lp/flow-3-meeting.webp",
     alt: "ご家族とお打合せをする様子（イメージ）",
   },
   {
     step: "ご葬儀・ご火葬",
     body: "川口メモリアルホールでお見送りいただき、川口市めぐりの森などへご移動します。",
-    image: "/images/lp/flow-4-farewell.png",
+    image: "/images/lp/flow-4-farewell.webp",
     alt: "生花祭壇（イメージ）",
   },
 ];
@@ -153,7 +154,7 @@ export default function LpPage() {
       {/* ヒーロー：競合7社はいずれも明るい背景＋濃い文字。暗いオーバーレイをやめた */}
       <section className="relative overflow-hidden">
         <Image
-          src="/images/lp/hero-bg.png"
+          src="/images/lp/hero-bg.webp"
           alt=""
           aria-hidden
           fill
@@ -186,7 +187,7 @@ export default function LpPage() {
                   className="relative flex aspect-square items-center justify-center"
                 >
                   <Image
-                    src="/images/lp/emblem-laurel.png"
+                    src="/images/lp/emblem-laurel.webp"
                     alt=""
                     aria-hidden
                     fill
@@ -248,7 +249,7 @@ export default function LpPage() {
           {/* スタッフ（イメージ） */}
           <div className="pointer-events-none absolute bottom-0 right-0 hidden h-[92%] w-[36%] md:block">
             <Image
-              src="/images/lp/staff-hero.png"
+              src="/images/lp/staff-hero.webp"
               alt="黒いフォーマルスーツで対応する葬祭スタッフ（イメージ）"
               fill
               priority
@@ -330,7 +331,7 @@ export default function LpPage() {
           <figure className="mt-5 overflow-hidden rounded-xl border border-line">
             <div className="relative h-44 w-full md:h-56">
               <Image
-                src="/images/lp/staff-night-call.png"
+                src="/images/lp/staff-night-call.webp"
                 alt="夜間にお電話を受ける葬祭スタッフ（イメージ）"
                 fill
                 loading="lazy"
@@ -648,6 +649,32 @@ export default function LpPage() {
               <dd className="text-ink-mid">川口市めぐりの森まで車で約5分</dd>
             </div>
           </dl>
+
+          {/* 地図。ご会葬の方が場所を確かめる導線も兼ねる（本サイト /access/ と同じ方式） */}
+          <div className="relative mt-4 aspect-[4/3] overflow-hidden rounded-lg border border-line md:aspect-[16/9]">
+            <iframe
+              title="川口メモリアルホールの地図"
+              src={`https://www.google.com/maps?q=${encodeURIComponent(
+                company.mapEmbedQuery
+              )}&output=embed`}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              allowFullScreen
+              className="absolute inset-0 h-full w-full border-0"
+            />
+          </div>
+          <p className="mt-2 text-center text-sm">
+            <a
+              href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+                company.mapEmbedQuery
+              )}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-brand underline underline-offset-4"
+            >
+              Googleマップで経路を調べる
+            </a>
+          </p>
         </div>
       </section>
 
