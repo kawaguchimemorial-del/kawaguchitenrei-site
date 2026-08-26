@@ -276,9 +276,6 @@ export default function LpPage() {
             />
           </div>
 
-          <p className="absolute bottom-[80px] right-2 z-10 text-[10px] text-white/85 md:bottom-1">
-            ※スタッフ写真はイメージです
-          </p>
         </div>
       </section>
 
