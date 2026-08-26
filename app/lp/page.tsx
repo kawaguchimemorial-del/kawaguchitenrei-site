@@ -168,7 +168,7 @@ export default function LpPage() {
           className="object-cover"
         />
 
-        <div className="relative flex flex-1 flex-col px-5 pt-5 md:mx-auto md:w-full md:max-w-4xl md:px-8 md:pb-4 md:pt-10">
+        <div className="relative flex flex-1 flex-col px-5 pt-3.5 md:mx-auto md:w-full md:max-w-4xl md:px-8 md:pb-4 md:pt-10">
           <div className="md:max-w-[66%]">
             {/* 見出しの設計（2026-08-26 10名討議）
                 ・広告クリック直後の3秒で「川口市の葬儀社か」を確かめられること
@@ -176,22 +176,25 @@ export default function LpPage() {
                   プラン・費用系。検索語と見出しの語を一致させる
                 ・お急ぎの方への一言は、見出しの上に赤字で先に置く */}
             <div className="flex flex-wrap items-center gap-1.5">
-              <p className="inline-block rounded bg-emergency px-2.5 py-1 text-[12px] font-bold text-white md:text-[15px]">
+              <p className="inline-block rounded bg-emergency px-2 py-1 text-[11px] font-bold text-white md:px-2.5 md:text-[15px]">
                 ご危篤・ご逝去でお急ぎの方へ
               </p>
               {/* 市民葬は川口市の制度。当社は市の登録店（lib/company.ts の trackRecord に一致） */}
-              <p className="inline-block rounded border border-brand bg-white px-2.5 py-1 text-[12px] font-bold text-brand-deep md:text-[15px]">
-                川口市の葬祭事業（市民葬）登録店
+              <p className="inline-block rounded border border-brand bg-white px-2 py-1 text-[11px] font-bold text-brand-deep md:px-2.5 md:text-[15px]">
+                <span className="md:hidden">市民葬の登録店</span>
+                <span className="hidden md:inline">
+                  川口市の葬祭事業（市民葬）登録店
+                </span>
               </p>
             </div>
             {/* 見出しは明朝だと線が細くインパクトが出ないため、ゴシックの極太にする。
                 本サイトのセリフ体基調は §21 によりLPには適用しない。 */}
-            <h1 className="mt-2.5 text-[24px] font-black leading-[1.35] tracking-tighter text-brand-deep md:mt-3 md:whitespace-nowrap md:text-[44px] md:tracking-tight">
+            <h1 className="mt-2 text-[24px] font-black leading-[1.3] tracking-tighter text-brand-deep md:mt-3 md:whitespace-nowrap md:text-[44px] md:tracking-tight">
               <span className="text-emergency">川口市</span>の家族葬・直葬・市民葬
               <br />
               自社式場の<span className="text-emergency">川口典礼</span>へ。
             </h1>
-            <p className="mt-3 text-[16px] font-medium leading-7 text-ink md:text-lg md:leading-8">
+            <p className="mt-2.5 text-[16px] font-medium leading-[1.7] text-ink md:mt-3 md:text-lg md:leading-8">
               まだ何も決まっていなくて、大丈夫です。
               <br />
               <span className="font-bold">24時間365日</span>
@@ -203,7 +206,7 @@ export default function LpPage() {
 
             {/* 実績エンブレム。月桂樹は装飾であり、受賞・順位を示すものではない。
                 「No.1」「受賞」等は根拠となる第三者調査がないため用いない（景表法）。 */}
-            <dl className="relative z-10 mt-3 grid max-w-[288px] grid-cols-3 gap-1 md:mt-5 md:max-w-lg md:gap-1.5">
+            <dl className="relative z-10 mt-3 grid max-w-[262px] grid-cols-3 gap-1 md:mt-5 md:max-w-lg md:gap-1.5">
               {BADGES.map((badge) => (
                 <div
                   key={badge.label}
@@ -256,12 +259,11 @@ export default function LpPage() {
 
           {/* 下段：左に実在の式場写真、右にスタッフ（イメージ）。
               モバイルは1画面に収めるため、この2つを横並びで底に置く。 */}
-          <div className="relative mt-auto flex items-end justify-between gap-2 pb-[76px] md:static md:block md:pb-0">
-            {/* 実在の式場写真（AI画像と区別できるように必ず添える）。
-                モバイルではスタッフに重ならないよう幅を半分までに抑える。 */}
-            <div className="relative z-10 hidden max-w-[50%] pb-1 md:mt-4 md:block md:max-w-none">
+          <div className="relative mt-auto flex items-end justify-between gap-1 pb-[76px] md:static md:block md:pb-0">
+            {/* 実在の式場写真（AI画像と区別できるように必ず添える）。 */}
+            <div className="relative z-10 w-[42%] shrink-0 pb-1 md:mt-4 md:w-auto md:max-w-none">
               <div className="flex items-center gap-2">
-                <div className="relative h-12 w-16 shrink-0 overflow-hidden rounded-md border border-line shadow-sm md:h-20 md:w-32">
+                <div className="relative h-11 w-14 shrink-0 overflow-hidden rounded-md border border-line shadow-sm md:h-20 md:w-32">
                   <Image
                     src="/images/home/hero/hall-exterior-hero.jpg"
                     alt="川口メモリアルホールの外観"
@@ -271,7 +273,7 @@ export default function LpPage() {
                     className="object-cover"
                   />
                 </div>
-                <p className="rounded bg-white/85 px-1.5 py-1 text-[13px] font-bold leading-4 text-ink-deep md:bg-transparent md:px-0 md:leading-5">
+                <p className="rounded bg-white/85 px-1 py-1 text-[11px] font-bold leading-4 text-ink-deep md:bg-transparent md:px-0 md:text-[13px] md:leading-5">
                   自社式場
                   <br />
                   川口メモリアルホール
@@ -282,8 +284,10 @@ export default function LpPage() {
               </p>
             </div>
 
-            {/* スタッフ（イメージ）。モバイルは右下、PCはヒーロー右いっぱい */}
-            <div className="pointer-events-none absolute bottom-[76px] right-0 h-[28vh] w-[40%] md:bottom-0 md:h-[92%] md:w-[36%]">
+            {/* スタッフ（イメージ）。
+                モバイルは右側に大きく置く。1画面に収めることより、
+                人物が小さくならないことを優先する（ヒーローは1画面より高くてよい）。 */}
+            <div className="pointer-events-none relative h-[40vh] w-[56%] self-end md:absolute md:bottom-0 md:right-0 md:h-[92%] md:w-[36%]">
               <Image
                 src="/images/lp/staff-hero.webp"
                 alt="黒いフォーマルスーツで対応する葬祭スタッフ（イメージ）"
