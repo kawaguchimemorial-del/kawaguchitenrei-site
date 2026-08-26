@@ -4,7 +4,6 @@ import Link from "next/link";
 import { reviewSummary } from "@/lib/reviews";
 import { voices } from "@/lib/voices";
 import { LpContactForm } from "./contact/LpContactForm";
-import { LpCtaBand } from "./LpCtaBand";
 import { LpPhoneBox } from "./LpPhoneBox";
 import { LpStars } from "./LpStars";
 import { LpStickyCta } from "./LpStickyCta";
@@ -69,26 +68,26 @@ const FLOW = [
   {
     step: "お電話",
     body: "24時間365日受付。ご状況をお聞かせください。",
-    image: "/images/home/hall/hall-exterior.jpg",
-    alt: "川口メモリアルホール外観",
+    image: "/images/lp/flow-1-call.png",
+    alt: "お電話を受けるスタッフ（イメージ）",
   },
   {
     step: "お迎え・ご安置",
     body: "寝台車でおうかがいし、ご自宅または当社の安置施設へご安置します。",
-    image: "/images/home/hall/hall-interior.jpg",
-    alt: "川口メモリアルホール館内",
+    image: "/images/lp/flow-2-transfer.png",
+    alt: "寝台車でお迎えにうかがうスタッフ（イメージ）",
   },
   {
     step: "お打合せ",
     body: "ご希望とご予算をうかがい、お見積りをご提示します。",
-    image: "/images/home/hall/hall-family-waiting-room.jpg",
-    alt: "ご親族控室",
+    image: "/images/lp/flow-3-meeting.png",
+    alt: "ご家族とお打合せをする様子（イメージ）",
   },
   {
     step: "ご葬儀・ご火葬",
     body: "川口メモリアルホールでお見送りいただき、川口市めぐりの森などへご移動します。",
-    image: "/images/home/hall/hall-ceremony-room.jpg",
-    alt: "式場",
+    image: "/images/lp/flow-4-farewell.png",
+    alt: "生花祭壇（イメージ）",
   },
 ];
 
@@ -135,15 +134,12 @@ const FAQS = [
   },
 ];
 
-const LP_VOICE_SLUGS = [
-  "oneday-careful-guidance",
-  "cremation-clear-pricing",
-  "family-funeral-warm",
-];
-
-const lpVoices = LP_VOICE_SLUGS.map((slug) =>
-  voices.find((voice) => voice.slug === slug)
-).filter((voice): voice is NonNullable<typeof voice> => Boolean(voice));
+// 手書きアンケートの画像があるものだけを、新しい順に横スクロールで並べる。
+// 個人名・故人名・喪主名は voices 側で既に伏せられている（§12）。
+const lpVoices = voices
+  .filter((voice) => Boolean(voice.surveyImage))
+  .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt))
+  .slice(0, 10);
 
 const googleReview =
   reviewSummary.highlights.find((item) => item.label === "Google口コミ") ??
@@ -417,8 +413,6 @@ export default function LpPage() {
         </div>
       </section>
 
-      <LpCtaBand />
-
       {/* 費用 */}
       <section id="price" className="scroll-mt-16 bg-white px-5 py-10">
         <div className="mx-auto max-w-2xl">
@@ -494,11 +488,6 @@ export default function LpPage() {
         </div>
       </section>
 
-      <LpPhoneBox
-        lead="どのプランが合うか分からない、という段階でも構いません"
-        tone="dark"
-      />
-
       {/* お客様の声（手書きアンケート） */}
       <section className="px-5 py-10">
         <div className="mx-auto max-w-2xl">
@@ -512,41 +501,56 @@ export default function LpPage() {
             ご葬儀後にお答えいただいた、手書きのアンケートです。
           </p>
 
-          <div className="mt-6 space-y-5">
-            {lpVoices.map((voice) => (
-              <figure
-                key={voice.slug}
-                className="overflow-hidden rounded-xl border border-line bg-white shadow-sm"
-              >
-                <div className="p-5">
-                  <p aria-hidden className="text-base tracking-widest text-gold">
-                    {"★".repeat(voice.rating)}
-                  </p>
-                  <blockquote className="font-serif-jp mt-2 text-base font-medium leading-relaxed text-ink-deep md:text-lg">
-                    「{voice.title}」
-                  </blockquote>
-                  <p className="mt-2 text-sm leading-7 text-ink-mid">
-                    {voice.comment}
-                  </p>
-                  <figcaption className="mt-3 text-xs text-ink-soft">
-                    {voice.family}
-                  </figcaption>
-                </div>
-                {voice.surveyImage && (
-                  <div className="relative h-56 w-full border-t border-line bg-paper md:h-72">
-                    <Image
-                      src={voice.surveyImage.src}
-                      alt={voice.surveyImage.alt}
-                      fill
-                      loading="lazy"
-                      sizes="(min-width: 768px) 672px, 100vw"
-                      className="object-contain"
-                    />
-                  </div>
-                )}
-              </figure>
-            ))}
+          <p className="mt-1 text-center text-xs text-ink-soft">
+            横にスワイプしてご覧いただけます（{lpVoices.length}件）
+          </p>
+
+          <div className="-mx-5 mt-5 overflow-x-auto px-5 pb-3">
+            <ul className="flex snap-x snap-mandatory gap-4">
+              {lpVoices.map((voice) => (
+                <li
+                  key={voice.slug}
+                  className="w-[80vw] max-w-xs shrink-0 snap-start md:w-80"
+                >
+                  <figure className="flex h-full flex-col overflow-hidden rounded-xl border border-line bg-white shadow-sm">
+                    {voice.surveyImage && (
+                      <div className="relative h-44 w-full border-b border-line bg-paper">
+                        <Image
+                          src={voice.surveyImage.src}
+                          alt={voice.surveyImage.alt}
+                          fill
+                          loading="lazy"
+                          sizes="320px"
+                          className="object-contain"
+                        />
+                      </div>
+                    )}
+                    <div className="flex flex-1 flex-col p-4">
+                      <LpStars rating={voice.rating} className="text-sm" />
+                      <blockquote className="font-serif-jp mt-1.5 text-[15px] font-medium leading-relaxed text-ink-deep">
+                        「{voice.title}」
+                      </blockquote>
+                      <p className="mt-2 line-clamp-5 text-[13px] leading-6 text-ink-mid">
+                        {voice.comment}
+                      </p>
+                      <figcaption className="mt-auto pt-3 text-[11px] text-ink-soft">
+                        {voice.family}
+                      </figcaption>
+                    </div>
+                  </figure>
+                </li>
+              ))}
+            </ul>
           </div>
+
+          <p className="mt-1 text-center text-sm">
+            <Link
+              href="/voice/"
+              className="text-brand underline underline-offset-4"
+            >
+              お客様の声をもっと見る
+            </Link>
+          </p>
 
           {/* 出典別の評価。数値は lib/reviews.ts の1か所のみを参照する */}
           <div className="mt-6 overflow-hidden rounded-xl border border-brand-tint bg-white">
@@ -591,11 +595,6 @@ export default function LpPage() {
           </div>
         </div>
       </section>
-
-      <LpCtaBand
-        heading="ご相談だけでも構いません"
-        note="無理におすすめすることはありません。ご不明な点をお聞きください。"
-      />
 
       {/* 式場（ご会葬の方の着地点も兼ねる） */}
       <section id="hall" className="scroll-mt-16 bg-white px-5 py-10">
@@ -661,6 +660,9 @@ export default function LpPage() {
           <h2 className="font-serif-jp mt-1 text-center text-[22px] font-medium md:text-3xl">
             お電話をいただいてからの流れ
           </h2>
+          <p className="mt-2 text-center text-[11px] text-ink-soft">
+            ※写真はイメージです
+          </p>
           <ol className="mt-6 space-y-4">
             {FLOW.map((item, index) => (
               <li
