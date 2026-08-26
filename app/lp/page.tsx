@@ -18,10 +18,11 @@ import { PHONE_DISPLAY, PHONE_HREF } from "./lp-data";
 // 取り入れた型：ヘッダー常設電話／ヒーロー直下の電話ボックス／入口分岐（お急ぎ・ご会葬）／
 // バッジによる実績提示／プランカード／手書きアンケートによる社会的証明／ページ内フォーム。
 
+// 数字と単位を分けて持つ。単位を小さく組むことで「4,600件超」が折り返さない。
 const BADGES = [
-  { value: "20年", label: "川口市で創業" },
-  { value: "4,600件超", label: "累計の施行" },
-  { value: "97%超", label: "アンケート満足度" },
+  { value: "20", unit: "年", label: "川口市で創業" },
+  { value: "4,600", unit: "件超", label: "累計の施行" },
+  { value: "97", unit: "%超", label: "満足度" },
 ];
 
 const URGENT_STEPS = [
@@ -200,7 +201,7 @@ export default function LpPage() {
 
             {/* 実績エンブレム。月桂樹は装飾であり、受賞・順位を示すものではない。
                 「No.1」「受賞」等は根拠となる第三者調査がないため用いない（景表法）。 */}
-            <dl className="mt-4 grid max-w-[300px] grid-cols-3 gap-1 md:mt-5 md:max-w-lg md:gap-1.5">
+            <dl className="mt-4 grid max-w-[232px] grid-cols-3 gap-1 md:mt-5 md:max-w-lg md:gap-1.5">
               {BADGES.map((badge) => (
                 <div
                   key={badge.label}
@@ -215,11 +216,18 @@ export default function LpPage() {
                     sizes="160px"
                     className="object-contain"
                   />
-                  <div className="relative px-2 text-center">
-                    <dd className="font-serif-jp text-[15px] font-medium leading-none text-brand-deep md:text-[26px]">
-                      {badge.value}
+                  {/* 数字は明朝だと細く読みづらいためゴシックの極太にする。
+                      ラベルも本文色まで濃くして、小さくても潰れないようにする。 */}
+                  <div className="relative px-1 text-center">
+                    <dd className="whitespace-nowrap leading-none text-brand-deep">
+                      <span className="text-[20px] font-black tracking-tight md:text-[32px]">
+                        {badge.value}
+                      </span>
+                      <span className="text-[12px] font-black md:text-[17px]">
+                        {badge.unit}
+                      </span>
                     </dd>
-                    <dt className="mt-1 text-[8px] leading-tight text-ink-mid md:text-xs">
+                    <dt className="mt-1 whitespace-nowrap text-[10px] font-bold leading-tight text-ink md:text-[13px]">
                       {badge.label}
                     </dt>
                   </div>
@@ -273,7 +281,7 @@ export default function LpPage() {
             </div>
 
             {/* スタッフ（イメージ）。モバイルは右下、PCはヒーロー右いっぱい */}
-            <div className="pointer-events-none absolute bottom-[76px] right-0 h-[34vh] w-[52%] md:bottom-0 md:h-[92%] md:w-[36%]">
+            <div className="pointer-events-none absolute bottom-[76px] right-0 h-[27vh] w-[42%] md:bottom-0 md:h-[92%] md:w-[36%]">
               <Image
                 src="/images/lp/staff-hero.webp"
                 alt="黒いフォーマルスーツで対応する葬祭スタッフ（イメージ）"
