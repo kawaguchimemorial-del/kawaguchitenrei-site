@@ -6,10 +6,11 @@ import { reviewSummary } from "@/lib/reviews";
 import { voices } from "@/lib/voices";
 import { LpContactForm } from "./contact/LpContactForm";
 import { LpPhoneBox } from "./LpPhoneBox";
+import { LpPlanTable } from "./LpPlanTable";
 import { LpStars } from "./LpStars";
 import { LpStickyCta } from "./LpStickyCta";
 import { LpTopBar } from "./LpTopBar";
-import { lpPlans, PHONE_DISPLAY, PHONE_HREF } from "./lp-data";
+import { PHONE_DISPLAY, PHONE_HREF } from "./lp-data";
 
 // 広告LP（CLAUDE.md §21）。
 // 設計：docs/reports/2026-08-26-lp-page-design-15expert.html
@@ -428,47 +429,7 @@ export default function LpPage() {
             正式なお見積り時にご確認ください。
           </p>
 
-          <div className="mt-6 space-y-4">
-            {lpPlans.map((plan) => (
-              <Link
-                key={plan.slug}
-                href={plan.href}
-                className="flex gap-3 overflow-hidden rounded-xl border border-line bg-paper shadow-sm transition hover:border-brand hover:shadow-md"
-              >
-                {plan.image && (
-                  <div className="relative w-28 shrink-0 md:w-40">
-                    <Image
-                      src={plan.image.src}
-                      alt={plan.image.alt}
-                      fill
-                      loading="lazy"
-                      sizes="160px"
-                      className="object-cover"
-                    />
-                  </div>
-                )}
-                <div className="flex-1 py-3 pr-3">
-                  <p className="font-serif-jp text-base font-medium text-ink-deep md:text-xl">
-                    {plan.name}
-                  </p>
-                  <p className="mt-0.5 text-xs leading-6 text-ink-mid">
-                    {plan.short}
-                  </p>
-                  <p className="mt-1 inline-block rounded bg-brand-tint px-2 py-0.5 text-[10px] text-brand-deep">
-                    {plan.people}／{plan.days}
-                  </p>
-                  <p className="mt-1.5 text-[22px] font-bold leading-tight text-emergency md:text-[26px]">
-                    {plan.mainPrice}
-                  </p>
-                  {plan.memberPrice && (
-                    <p className="text-[11px] leading-5 text-ink-soft">
-                      事前相談会員価格 {plan.memberPrice}
-                    </p>
-                  )}
-                </div>
-              </Link>
-            ))}
-          </div>
+          <LpPlanTable />
 
           <div className="mt-6 rounded-lg border border-line bg-paper p-4">
             <p className="text-sm font-bold text-ink-deep">
