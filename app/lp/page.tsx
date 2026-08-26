@@ -25,6 +25,13 @@ const BADGES = [
   { value: "97", unit: "%超", label: "満足度" },
 ];
 
+// ヒーローの特徴チップ。数値の根拠は lib/company.ts / lib/halls.ts に一致させる。
+const HERO_POINTS = [
+  "めぐりの森まで車5分",
+  "駐車場70台",
+  "創業20年・累計4,600件超",
+];
+
 const URGENT_STEPS = [
   {
     title: "「すぐに移動を」と言われた",
@@ -154,9 +161,10 @@ export default function LpPage() {
       <LpTopBar />
 
       {/* ヒーロー
-          ・競合7社はいずれも明るい背景＋濃い文字（暗いオーバーレイは使わない）
-          ・モバイルは1画面ぴったりに収める（小さな森の家のモバイル版に合わせた）
-          ・スタッフはPC/モバイルとも表示する */}
+          構成は競合（小さな森の家 モバイル版）の実測に合わせている。
+          ・上段：明るい背景に特大の見出し
+          ・下段：式場の実写を全幅に敷き、左に円形バッジ、右にスタッフ。余白を作らない
+          ・本サイトのセリフ体基調（§3）はLPには適用しない（§21） */}
       <section className="relative flex min-h-[calc(100svh-84px)] flex-col overflow-hidden md:min-h-0">
         <Image
           src="/images/lp/hero-bg.webp"
@@ -168,18 +176,13 @@ export default function LpPage() {
           className="object-cover"
         />
 
-        <div className="relative flex flex-1 flex-col px-5 pt-3.5 md:mx-auto md:w-full md:max-w-4xl md:px-8 md:pb-4 md:pt-10">
-          <div className="md:max-w-[66%]">
-            {/* 見出しの設計（2026-08-26 10名討議）
-                ・広告クリック直後の3秒で「川口市の葬儀社か」を確かめられること
-                ・実測ではクリックの大半が「家族葬プラン」「葬儀プラン」等の
-                  プラン・費用系。検索語と見出しの語を一致させる
-                ・お急ぎの方への一言は、見出しの上に赤字で先に置く */}
+        {/* 上段：見出し */}
+        <div className="relative px-5 pt-3.5 md:mx-auto md:w-full md:max-w-5xl md:px-8 md:pt-8">
+          <div className="md:max-w-[58%]">
             <div className="flex flex-wrap items-center gap-1.5">
               <p className="inline-block rounded bg-emergency px-2 py-1 text-[11px] font-bold text-white md:px-2.5 md:text-[15px]">
                 ご危篤・ご逝去でお急ぎの方へ
               </p>
-              {/* 市民葬は川口市の制度。当社は市の登録店（lib/company.ts の trackRecord に一致） */}
               <p className="inline-block rounded border border-brand bg-white px-2 py-1 text-[11px] font-bold text-brand-deep md:px-2.5 md:text-[15px]">
                 <span className="md:hidden">市民葬の登録店</span>
                 <span className="hidden md:inline">
@@ -187,62 +190,31 @@ export default function LpPage() {
                 </span>
               </p>
             </div>
-            {/* 見出しは明朝だと線が細くインパクトが出ないため、ゴシックの極太にする。
-                本サイトのセリフ体基調は §21 によりLPには適用しない。 */}
-            <h1 className="mt-2 text-[24px] font-black leading-[1.3] tracking-tighter text-brand-deep md:mt-3 md:whitespace-nowrap md:text-[44px] md:tracking-tight">
-              <span className="text-emergency">川口市</span>の家族葬・直葬・市民葬
+
+            <h1 className="mt-2.5 text-[29px] font-black leading-[1.3] tracking-tighter text-brand-deep md:mt-3 md:text-[46px] md:tracking-tight">
+              <span className="text-emergency">川口市</span>の家族葬・直葬なら
               <br />
               自社式場の<span className="text-emergency">川口典礼</span>へ。
             </h1>
-            <p className="mt-2.5 text-[16px] font-medium leading-[1.7] text-ink md:mt-3 md:text-lg md:leading-8">
+
+            <p className="mt-2.5 text-[16px] font-bold leading-[1.7] text-ink md:mt-4 md:text-xl">
               まだ何も決まっていなくて、大丈夫です。
               <br />
-              <span className="font-bold">24時間365日</span>
-              、いまお電話がつながります。
-            </p>
-            <p className="mt-2 text-[14px] font-medium leading-6 text-ink-mid md:text-[15px] md:leading-7">
-              めぐりの森まで車5分／駐車場70台
+              24時間365日、いまお電話がつながります。
             </p>
 
-            {/* 実績エンブレム。月桂樹は装飾であり、受賞・順位を示すものではない。
-                「No.1」「受賞」等は根拠となる第三者調査がないため用いない（景表法）。 */}
-            <dl className="relative z-10 mt-3 grid max-w-[262px] grid-cols-3 gap-1 md:mt-5 md:max-w-lg md:gap-1.5">
-              {BADGES.map((badge) => (
-                <div
-                  key={badge.label}
-                  className="relative flex aspect-square items-center justify-center"
+            {/* 特徴チップ。上段の余白を埋めつつ、当社の差別化を短く出す */}
+            <ul className="mt-3 flex flex-wrap gap-1.5 md:mt-4 md:gap-2">
+              {HERO_POINTS.map((point) => (
+                <li
+                  key={point}
+                  className="rounded-full border border-brand-tint bg-white/90 px-2.5 py-1 text-[12px] font-bold text-brand-deep shadow-sm md:px-3 md:py-1.5 md:text-sm"
                 >
-                  <Image
-                    src="/images/lp/emblem-laurel.webp"
-                    alt=""
-                    aria-hidden
-                    fill
-                    priority
-                    sizes="160px"
-                    className="object-contain"
-                  />
-                  {/* 数字は明朝だと細く読みづらいためゴシックの極太にする。
-                      ラベルも本文色まで濃くして、小さくても潰れないようにする。 */}
-                  <div className="relative px-1 text-center">
-                    <dd className="whitespace-nowrap leading-none text-brand-deep">
-                      <span className="text-[21px] font-black tracking-tight md:text-[32px]">
-                        {badge.value}
-                      </span>
-                      <span className="text-[13px] font-black md:text-[17px]">
-                        {badge.unit}
-                      </span>
-                    </dd>
-                    <dt className="mt-1 whitespace-nowrap text-[11px] font-bold leading-tight text-ink md:text-[13px]">
-                      {badge.label}
-                    </dt>
-                  </div>
-                </div>
+                  {point}
+                </li>
               ))}
-            </dl>
+            </ul>
 
-            {/* Google クチコミ。出典は lib/reviews.ts の1か所のみ。
-                構造化データにはしない（LPは noindex・§19.2）。 */}
-            {/* スタッフに掛からない幅に収めるため、1行で組む */}
             <div className="mt-2.5 inline-flex items-center gap-1.5 whitespace-nowrap rounded-lg border border-line bg-white/90 px-2.5 py-1.5 shadow-sm md:mt-4 md:gap-2 md:px-3 md:py-2">
               <LpStars rating={googleReview.rating} className="text-sm md:text-base" />
               <span className="text-base font-bold leading-none text-ink-deep md:text-lg">
@@ -256,50 +228,55 @@ export default function LpPage() {
               </span>
             </div>
           </div>
+        </div>
 
-          {/* 下段：左に実在の式場写真、右にスタッフ（イメージ）。
-              モバイルは1画面に収めるため、この2つを横並びで底に置く。 */}
-          <div className="relative mt-auto flex items-end justify-between gap-1 pb-[76px] md:static md:block md:pb-0">
-            {/* 実在の式場写真（AI画像と区別できるように必ず添える）。 */}
-            <div className="relative z-10 w-[42%] shrink-0 pb-1 md:mt-4 md:w-auto md:max-w-none">
-              <div className="flex items-center gap-2">
-                <div className="relative h-11 w-14 shrink-0 overflow-hidden rounded-md border border-line shadow-sm md:h-20 md:w-32">
-                  <Image
-                    src="/images/home/hero/hall-exterior-hero.jpg"
-                    alt="川口メモリアルホールの外観"
-                    fill
-                    priority
-                    sizes="128px"
-                    className="object-cover"
-                  />
-                </div>
-                <p className="rounded bg-white/85 px-1 py-1 text-[11px] font-bold leading-4 text-ink-deep md:bg-transparent md:px-0 md:text-[13px] md:leading-5">
-                  自社式場
-                  <br />
-                  川口メモリアルホール
-                </p>
-              </div>
-              <p className="mt-1 text-[11px] leading-4 text-ink-soft md:hidden">
-                ※スタッフ写真はイメージです
+        {/* 下段：式場の実写を全幅に敷き、左に円形バッジ、右にスタッフ。左右に余白を作らない */}
+        <div className="relative mt-auto h-[42vh] min-h-[250px] w-full md:absolute md:inset-y-0 md:right-0 md:mt-0 md:h-auto md:w-[44%]">
+          <Image
+            src="/images/home/hero/hall-exterior-hero.jpg"
+            alt="川口メモリアルホールの外観"
+            fill
+            priority
+            sizes="(min-width: 768px) 45vw, 100vw"
+            className="object-cover md:rounded-l-[2rem]"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-brand-deep/70 via-brand-deep/25 to-transparent" />
+
+          {/* 円形バッジ（左） */}
+          <div className="absolute bottom-[86px] left-3 z-10 flex h-[108px] w-[108px] items-center justify-center md:bottom-6 md:left-4 md:h-[124px] md:w-[124px]">
+            <Image
+              src="/images/lp/badge-circle.webp"
+              alt=""
+              aria-hidden
+              fill
+              priority
+              sizes="124px"
+              className="object-contain drop-shadow"
+            />
+            <div className="relative px-2 text-center leading-none">
+              <p className="text-[10px] font-bold text-ink-mid md:text-[11px]">
+                アンケート満足度
               </p>
-            </div>
-
-            {/* スタッフ（イメージ）。
-                モバイルは右側に大きく置く。1画面に収めることより、
-                人物が小さくならないことを優先する（ヒーローは1画面より高くてよい）。 */}
-            <div className="pointer-events-none relative h-[40vh] w-[56%] self-end md:absolute md:bottom-0 md:right-0 md:h-[92%] md:w-[36%]">
-              <Image
-                src="/images/lp/staff-hero.webp"
-                alt="黒いフォーマルスーツで対応する葬祭スタッフ（イメージ）"
-                fill
-                priority
-                sizes="(min-width: 768px) 40vw, 55vw"
-                className="object-contain object-bottom md:object-right-bottom"
-              />
+              <p className="mt-0.5 text-brand-deep">
+                <span className="text-[30px] font-black md:text-[34px]">97</span>
+                <span className="text-[15px] font-black">%超</span>
+              </p>
             </div>
           </div>
 
-          <p className="absolute bottom-0.5 right-2 hidden text-[13px] text-ink-soft md:block">
+          {/* スタッフ（イメージ） */}
+          <div className="pointer-events-none absolute bottom-0 right-0 h-full w-[62%] md:w-[76%]">
+            <Image
+              src="/images/lp/staff-hero.webp"
+              alt="黒いフォーマルスーツで対応する葬祭スタッフ（イメージ）"
+              fill
+              priority
+              sizes="(min-width: 768px) 34vw, 62vw"
+              className="object-contain object-bottom"
+            />
+          </div>
+
+          <p className="absolute bottom-[80px] right-2 z-10 text-[10px] text-white/85 md:bottom-1">
             ※スタッフ写真はイメージです
           </p>
         </div>
