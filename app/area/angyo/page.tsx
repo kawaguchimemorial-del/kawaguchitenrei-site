@@ -14,6 +14,8 @@ import { AreaDetailCta } from "@/components/area/AreaDetailCta";
 import { AreaPrimaryHall } from "@/components/area/AreaPrimaryHall";
 import { ArrowRightIcon } from "@/components/common/icons";
 import { areaAngyo } from "@/lib/areas";
+import { AreaLocalGuide } from "@/components/area/AreaLocalGuide";
+import { buildLocalGuide } from "@/lib/area-local-guide";
 
 const SITE_URL = "https://kawaguchitenrei.com";
 const pageUrl = `${SITE_URL}/area/${areaAngyo.slug}/`;
@@ -175,6 +177,8 @@ export default function AngyoAreaPage() {
       <AreaReasons area={areaAngyo} />
       <AreaFlow area={areaAngyo} />
       <AreaFaq area={areaAngyo} />
+
+      <AreaLocalGuide {...buildLocalGuide(areaAngyo)} />
 
       {/* 関連ページ導線 */}
       <section className="bg-white py-16 md:py-24">

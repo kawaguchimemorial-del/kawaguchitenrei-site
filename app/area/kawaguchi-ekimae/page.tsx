@@ -14,6 +14,8 @@ import { AreaDetailCta } from "@/components/area/AreaDetailCta";
 import { AreaPrimaryHall } from "@/components/area/AreaPrimaryHall";
 import { ArrowRightIcon } from "@/components/common/icons";
 import { areaKawaguchiEkimae } from "@/lib/areas";
+import { AreaLocalGuide } from "@/components/area/AreaLocalGuide";
+import { buildLocalGuide } from "@/lib/area-local-guide";
 
 const SITE_URL = "https://kawaguchitenrei.com";
 const pageUrl = `${SITE_URL}/area/${areaKawaguchiEkimae.slug}/`;
@@ -195,6 +197,8 @@ export default function KawaguchiEkimaeAreaPage() {
       <AreaReasons area={areaKawaguchiEkimae} />
       <AreaFlow area={areaKawaguchiEkimae} />
       <AreaFaq area={areaKawaguchiEkimae} />
+
+      <AreaLocalGuide {...buildLocalGuide(areaKawaguchiEkimae)} />
 
       {/* 関連ページ導線 */}
       <section className="bg-white py-16 md:py-24">

@@ -14,6 +14,8 @@ import { AreaDetailCta } from "@/components/area/AreaDetailCta";
 import { AreaPrimaryHall } from "@/components/area/AreaPrimaryHall";
 import { ArrowRightIcon } from "@/components/common/icons";
 import { areaAraijuku } from "@/lib/areas";
+import { AreaLocalGuide } from "@/components/area/AreaLocalGuide";
+import { buildLocalGuide } from "@/lib/area-local-guide";
 
 const SITE_URL = "https://kawaguchitenrei.com";
 const pageUrl = `${SITE_URL}/area/${areaAraijuku.slug}/`;
@@ -200,6 +202,8 @@ export default function AraijukuAreaPage() {
       <AreaReasons area={areaAraijuku} />
       <AreaFlow area={areaAraijuku} />
       <AreaFaq area={areaAraijuku} />
+
+      <AreaLocalGuide {...buildLocalGuide(areaAraijuku)} />
 
       {/* 関連ページ導線 */}
       <section className="bg-white py-16 md:py-24">

@@ -12,6 +12,8 @@ import {
   AreaReasons,
 } from "@/components/area/AreaDetailExtras";
 import { AreaDetailCta } from "@/components/area/AreaDetailCta";
+import { AreaLocalGuide } from "@/components/area/AreaLocalGuide";
+import { buildLocalGuide } from "@/lib/area-local-guide";
 import { ArrowRightIcon } from "@/components/common/icons";
 import { areaKawaguchi } from "@/lib/areas";
 
@@ -212,6 +214,7 @@ const relatedLinks = [
     href: "/case/",
   },
 ];
+
 
 export default function KawaguchiAreaPage() {
   return (
@@ -426,6 +429,8 @@ export default function KawaguchiAreaPage() {
       <AreaReasons area={areaKawaguchi} />
       <AreaFlow area={areaKawaguchi} />
       <AreaFaq area={areaKawaguchi} />
+
+      <AreaLocalGuide {...buildLocalGuide(areaKawaguchi)} />
 
       {/* 関連ページ導線：川口市内の対応エリア・主要施設・プラン */}
       <section className="bg-white py-16 md:py-24">
