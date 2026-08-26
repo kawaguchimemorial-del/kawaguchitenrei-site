@@ -35,6 +35,19 @@ const PLAN_STAGES: Record<string, FuneralStage[]> = {
   "kawaguchi-shimin": ["搬送", "安置", "通夜", "告別式", "火葬"],
 };
 
+/**
+ * プランごとの色。葬祭の文脈に合う彩度の低い色に限る（原色・蛍光色は使わない）。
+ * プラン間の違いを一目で見分けるための識別色であり、装飾のためではない。
+ */
+const PLAN_ACCENT: Record<string, string> = {
+  "direct-funeral": "#6b7a72",
+  "hanaire-owakare": "#9b6f74",
+  "oneday-funeral": "#3f7d78",
+  "yugure-kazokuso": "#9a7442",
+  "family-funeral": "#2a5145",
+  "kawaguchi-shimin": "#4a5f7a",
+};
+
 /** 一覧で1行に添える短い説明（何を優先するプランかを一言で） */
 const PLAN_LEAD: Record<string, string> = {
   "direct-funeral": "式を行わず、ご火葬を中心に",
@@ -53,11 +66,15 @@ export type LpPlan = {
   days: string;
   /** LPの主表示。ご逝去後にお越しの方は事前相談会員になれないため通常価格を出す */
   mainPrice: string;
+  /** 大きく組むための分解（数字とそれ以外） */
+  mainAmount: string;
+  mainSuffix: string;
   /** 補足として添える事前相談会員価格。市民葬など区分がないものは null */
   memberPrice: string | null;
   href: string;
   image: { src: string; alt: string } | null;
   lead: string;
+  accent: string;
   stages: FuneralStage[];
   /** 市民葬は内容により式の有無が変わるため、流れを断定しない */
   stagesNote?: string;
@@ -71,12 +88,18 @@ function toLpPlan(plan: Plan): LpPlan {
   const pricing = plan.pricing;
   let mainPrice = plan.price;
   let memberPrice: string | null = null;
+  let mainAmount = plan.price;
+  let mainSuffix = "";
 
   if (pricing?.type === "member-regular") {
     mainPrice = `${yen(pricing.regular)}〜`;
     memberPrice = `${yen(pricing.member)}〜`;
+    mainAmount = pricing.regular.toLocaleString("ja-JP");
+    mainSuffix = "円（税込）〜";
   } else if (pricing?.type === "citizen") {
     mainPrice = yen(pricing.citizen);
+    mainAmount = pricing.citizen.toLocaleString("ja-JP");
+    mainSuffix = "円（税込）";
   }
 
   return {
@@ -86,10 +109,13 @@ function toLpPlan(plan: Plan): LpPlan {
     people: plan.people,
     days: plan.days,
     mainPrice,
+    mainAmount,
+    mainSuffix,
     memberPrice,
     href: `/plan/${plan.slug}/`,
     image: plan.image ?? null,
     lead: PLAN_LEAD[plan.slug] ?? plan.short,
+    accent: PLAN_ACCENT[plan.slug] ?? "#2a5145",
     stages: PLAN_STAGES[plan.slug] ?? [],
     stagesNote:
       plan.slug === "kawaguchi-shimin"

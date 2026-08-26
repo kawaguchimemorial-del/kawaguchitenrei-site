@@ -5,6 +5,7 @@ import { FUNERAL_STAGES, lpPlans, type LpPlan } from "./lp-data";
 
 // 「葬儀の流れ」チップ。含まれる工程だけを塗り、含まれない工程は灰色で残す。
 // 抜けている工程を消さずに薄く残すことで、プラン間の差が一目で分かる。
+// PC専用。モバイルでは写真とプラン名を大きく見せることを優先して出さない。
 function StageChips({ plan }: { plan: LpPlan }) {
   return (
     <div>
@@ -14,13 +15,20 @@ function StageChips({ plan }: { plan: LpPlan }) {
           return (
             <li
               key={stage}
-              className={`flex w-8 items-center justify-center rounded px-1 py-2 text-[10px] font-bold leading-tight md:w-9 md:text-[11px] ${
+              className="flex w-9 items-center justify-center rounded px-1 py-2 text-[11px] font-bold leading-tight"
+              style={
                 included
-                  ? "bg-brand text-white"
-                  : "border border-line bg-white text-ink-soft/60"
-              }`}
+                  ? { backgroundColor: plan.accent, color: "#fff" }
+                  : undefined
+              }
             >
-              <span className="[writing-mode:vertical-rl]">{stage}</span>
+              <span
+                className={`[writing-mode:vertical-rl] ${
+                  included ? "" : "text-ink-soft/50"
+                }`}
+              >
+                {stage}
+              </span>
             </li>
           );
         })}
@@ -32,14 +40,22 @@ function StageChips({ plan }: { plan: LpPlan }) {
   );
 }
 
-function PriceBlock({ plan }: { plan: LpPlan }) {
+// 価格。数字を大きく、単位と税込表記を小さく組む（折り返させない）。
+function Price({ plan, big = false }: { plan: LpPlan; big?: boolean }) {
   return (
     <div>
-      <p className="text-[22px] font-bold leading-tight text-emergency md:text-[26px]">
-        {plan.mainPrice}
+      <p className="whitespace-nowrap leading-none text-emergency">
+        <span className={`font-bold ${big ? "text-[40px]" : "text-[26px]"}`}>
+          {plan.mainAmount}
+        </span>
+        <span
+          className={`ml-0.5 font-bold ${big ? "text-[18px]" : "text-[14px]"}`}
+        >
+          {plan.mainSuffix}
+        </span>
       </p>
       {plan.memberPrice && (
-        <p className="mt-0.5 text-[11px] leading-5 text-ink-soft">
+        <p className="mt-1.5 text-[11px] leading-5 text-ink-soft">
           事前相談会員価格 {plan.memberPrice}
         </p>
       )}
@@ -52,7 +68,7 @@ export function LpPlanTable() {
     <div className="mt-6">
       {/* PC：プラン名／通常価格／葬儀の流れ の3列 */}
       <div className="hidden overflow-hidden rounded-xl border border-line md:block">
-        <div className="grid grid-cols-[1fr_240px_220px] bg-brand text-sm font-bold text-white">
+        <div className="grid grid-cols-[minmax(0,1fr)_230px_210px] bg-brand text-sm font-bold text-white">
           <div className="px-4 py-2.5">プラン名</div>
           <div className="border-l border-white/20 px-4 py-2.5">通常価格</div>
           <div className="border-l border-white/20 px-4 py-2.5">葬儀の流れ</div>
@@ -61,7 +77,7 @@ export function LpPlanTable() {
           <Link
             key={plan.slug}
             href={plan.href}
-            className="grid grid-cols-[1fr_240px_220px] items-center border-t border-line bg-white transition hover:bg-paper"
+            className="grid grid-cols-[minmax(0,1fr)_230px_210px] items-center border-t border-line bg-white transition hover:bg-paper"
           >
             <div className="flex items-center gap-4 px-4 py-4">
               {plan.image && (
@@ -78,7 +94,10 @@ export function LpPlanTable() {
               )}
               <div>
                 <p className="text-xs text-ink-mid">{plan.lead}</p>
-                <p className="font-serif-jp mt-0.5 text-xl font-medium text-brand-deep">
+                <p
+                  className="font-serif-jp mt-0.5 whitespace-nowrap text-xl font-medium"
+                  style={{ color: plan.accent }}
+                >
                   {plan.name}
                 </p>
                 <p className="mt-1 text-[11px] text-ink-soft">
@@ -87,7 +106,7 @@ export function LpPlanTable() {
               </div>
             </div>
             <div className="border-l border-line px-4 py-4">
-              <PriceBlock plan={plan} />
+              <Price plan={plan} />
             </div>
             <div className="border-l border-line px-4 py-4">
               <StageChips plan={plan} />
@@ -96,45 +115,68 @@ export function LpPlanTable() {
         ))}
       </div>
 
-      {/* スマホ：横3列は狭いのでカードに落とす */}
-      <div className="space-y-4 md:hidden">
+      {/* モバイル：写真とプラン名・価格を大きく見せる。葬儀の流れは載せない。 */}
+      <div className="space-y-5 md:hidden">
         {lpPlans.map((plan) => (
           <Link
             key={plan.slug}
             href={plan.href}
             className="block overflow-hidden rounded-xl border border-line bg-white shadow-sm"
           >
-            <div className="flex gap-3">
+            {/* キャッチコピーの帯（プランごとの識別色） */}
+            <p
+              className="px-4 py-2 text-center text-[13px] font-bold text-white"
+              style={{ backgroundColor: plan.accent }}
+            >
+              {plan.lead}
+            </p>
+
+            <div className="px-4 pb-4 pt-3">
+              <p
+                className="font-serif-jp text-center text-[26px] font-medium leading-tight"
+                style={{ color: plan.accent }}
+              >
+                {plan.name}
+              </p>
+
+              <ul className="mt-2 flex flex-wrap justify-center gap-1.5">
+                <li className="rounded bg-paper px-2 py-1 text-[11px] text-ink-mid">
+                  {plan.days}
+                </li>
+                <li className="rounded bg-paper px-2 py-1 text-[11px] text-ink-mid">
+                  {plan.people}
+                </li>
+                <li className="rounded bg-paper px-2 py-1 text-[11px] text-ink-mid">
+                  全宗派対応
+                </li>
+              </ul>
+
               {plan.image && (
-                <div className="relative w-24 shrink-0">
+                <div className="relative mt-3 h-44 w-full overflow-hidden rounded-lg">
                   <Image
                     src={plan.image.src}
                     alt={plan.image.alt}
                     fill
                     loading="lazy"
-                    sizes="96px"
+                    sizes="100vw"
                     className="object-cover"
                   />
                 </div>
               )}
-              <div className="flex-1 py-3 pr-3">
-                <p className="text-[11px] text-ink-mid">{plan.lead}</p>
-                <p className="font-serif-jp mt-0.5 text-base font-medium text-brand-deep">
-                  {plan.name}
-                </p>
-                <p className="mt-0.5 text-[10px] text-ink-soft">
-                  {plan.people}／{plan.days}
-                </p>
-                <div className="mt-1.5">
-                  <PriceBlock plan={plan} />
+
+              <div className="mt-3 rounded-lg bg-paper px-3 py-3 text-center">
+                <p className="text-[11px] font-bold text-ink-mid">通常価格</p>
+                <div className="mt-1">
+                  <Price plan={plan} big />
                 </div>
               </div>
-            </div>
-            <div className="flex items-center gap-3 border-t border-line bg-paper px-3 py-2.5">
-              <span className="shrink-0 text-[11px] font-bold text-ink-mid">
-                葬儀の流れ
-              </span>
-              <StageChips plan={plan} />
+
+              <p
+                className="mt-3 rounded py-2 text-center text-[13px] font-bold text-white"
+                style={{ backgroundColor: plan.accent }}
+              >
+                プランの詳細を見る
+              </p>
             </div>
           </Link>
         ))}

@@ -432,7 +432,8 @@ export default function LpPage() {
 
       {/* 費用 */}
       <section id="price" className="scroll-mt-24 bg-white px-5 py-10">
-        <div className="mx-auto max-w-2xl">
+        {/* 表を組むPCだけ広げる（列が狭いとプラン名が1文字ずつ折り返す） */}
+        <div className="mx-auto max-w-2xl md:max-w-5xl">
           <p className="text-center text-xs tracking-[0.16em] text-brand-soft">
             PLAN
           </p>
