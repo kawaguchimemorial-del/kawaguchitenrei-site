@@ -152,8 +152,11 @@ export default function LpPage() {
     <div className="bg-paper pb-28 text-ink">
       <LpTopBar />
 
-      {/* ヒーロー：競合7社はいずれも明るい背景＋濃い文字。暗いオーバーレイをやめた */}
-      <section className="relative overflow-hidden">
+      {/* ヒーロー
+          ・競合7社はいずれも明るい背景＋濃い文字（暗いオーバーレイは使わない）
+          ・モバイルは1画面ぴったりに収める（小さな森の家のモバイル版に合わせた）
+          ・スタッフはPC/モバイルとも表示する */}
+      <section className="relative flex min-h-[calc(100svh-52px)] flex-col overflow-hidden md:min-h-0">
         <Image
           src="/images/lp/hero-bg.webp"
           alt=""
@@ -163,17 +166,18 @@ export default function LpPage() {
           sizes="100vw"
           className="object-cover"
         />
-        <div className="relative mx-auto max-w-4xl px-5 pb-4 pt-7 md:px-8 md:pt-10">
+
+        <div className="relative flex flex-1 flex-col px-5 pt-5 md:mx-auto md:w-full md:max-w-4xl md:px-8 md:pb-4 md:pt-10">
           <div className="md:max-w-[62%]">
             <p className="inline-block rounded-full bg-brand px-3 py-1 text-[11px] tracking-[0.12em] text-white">
               埼玉県川口市・新井宿／自社式場
             </p>
-            <h1 className="font-serif-jp mt-3 text-[27px] font-medium leading-[1.35] text-brand-deep md:text-[42px]">
+            <h1 className="font-serif-jp mt-3 text-[28px] font-medium leading-[1.35] text-brand-deep md:text-[42px]">
               <span className="text-emergency">川口市</span>のご葬儀を、
               <br />
               24時間365日承ります。
             </h1>
-            <p className="mt-3 text-sm leading-7 text-ink md:text-base">
+            <p className="mt-2.5 text-[13px] leading-6 text-ink md:mt-3 md:text-base md:leading-7">
               川口市めぐりの森まで車で約5分。駐車場70台の自社式場
               <br className="hidden md:block" />
               「川口メモリアルホール」で、直葬から家族葬・市民葬まで。
@@ -181,7 +185,7 @@ export default function LpPage() {
 
             {/* 実績エンブレム。月桂樹は装飾であり、受賞・順位を示すものではない。
                 「No.1」「受賞」等は根拠となる第三者調査がないため用いない（景表法）。 */}
-            <dl className="mt-5 grid max-w-lg grid-cols-3 gap-1.5">
+            <dl className="mt-4 grid max-w-[300px] grid-cols-3 gap-1 md:mt-5 md:max-w-lg md:gap-1.5">
               {BADGES.map((badge) => (
                 <div
                   key={badge.label}
@@ -197,10 +201,10 @@ export default function LpPage() {
                     className="object-contain"
                   />
                   <div className="relative px-2 text-center">
-                    <dd className="font-serif-jp text-[17px] font-medium leading-none text-brand-deep md:text-[26px]">
+                    <dd className="font-serif-jp text-[15px] font-medium leading-none text-brand-deep md:text-[26px]">
                       {badge.value}
                     </dd>
-                    <dt className="mt-1 text-[9px] leading-tight text-ink-mid md:text-xs">
+                    <dt className="mt-1 text-[8px] leading-tight text-ink-mid md:text-xs">
                       {badge.label}
                     </dt>
                   </div>
@@ -210,55 +214,66 @@ export default function LpPage() {
 
             {/* Google クチコミ。出典は lib/reviews.ts の1か所のみ。
                 構造化データにはしない（LPは noindex・§19.2）。 */}
-            <div className="mt-4 inline-flex items-center gap-2 rounded-lg border border-line bg-white/90 px-3 py-2 shadow-sm">
-              <LpStars rating={googleReview.rating} className="text-base" />
-              <span className="text-lg font-bold leading-none text-ink-deep">
+            <div className="mt-3 inline-flex items-center gap-2 rounded-lg border border-line bg-white/90 px-2.5 py-1.5 shadow-sm md:mt-4 md:px-3 md:py-2">
+              <LpStars rating={googleReview.rating} className="text-sm md:text-base" />
+              <span className="text-base font-bold leading-none text-ink-deep md:text-lg">
                 {googleReview.rating}
               </span>
-              <span className="text-xs leading-4 text-ink-mid">
+              <span className="text-[10px] leading-4 text-ink-mid md:text-xs">
                 Googleクチコミ
                 <br />
-                <span className="text-[10px] text-ink-soft">
+                <span className="text-[9px] text-ink-soft md:text-[10px]">
                   {reviewSummary.asOf}
                 </span>
               </span>
             </div>
+          </div>
 
-            {/* 実在の式場写真を小さく添える（AI画像と区別できるように） */}
-            <div className="mt-4 flex items-center gap-2">
-              <div className="relative h-16 w-24 overflow-hidden rounded-md border border-line md:h-20 md:w-32">
-                <Image
-                  src="/images/home/hero/hall-exterior-hero.jpg"
-                  alt="川口メモリアルホールの外観"
-                  fill
-                  priority
-                  sizes="128px"
-                  className="object-cover"
-                />
+          {/* 下段：左に実在の式場写真、右にスタッフ（イメージ）。
+              モバイルは1画面に収めるため、この2つを横並びで底に置く。 */}
+          <div className="relative mt-auto flex items-end justify-between gap-2 pb-[76px] md:static md:block md:pb-0">
+            {/* 実在の式場写真（AI画像と区別できるように必ず添える）。
+                モバイルではスタッフに重ならないよう幅を半分までに抑える。 */}
+            <div className="relative z-10 max-w-[50%] pb-1 md:mt-4 md:max-w-none">
+              <div className="flex items-center gap-2">
+                <div className="relative h-14 w-20 shrink-0 overflow-hidden rounded-md border border-line shadow-sm md:h-20 md:w-32">
+                  <Image
+                    src="/images/home/hero/hall-exterior-hero.jpg"
+                    alt="川口メモリアルホールの外観"
+                    fill
+                    priority
+                    sizes="128px"
+                    className="object-cover"
+                  />
+                </div>
+                <p className="rounded bg-white/85 px-1.5 py-1 text-[10px] leading-4 text-ink-mid md:bg-transparent md:px-0 md:text-xs md:leading-5">
+                  自社式場
+                  <br className="md:hidden" />
+                  <span className="font-semibold text-ink-deep">
+                    川口メモリアルホール
+                  </span>
+                </p>
               </div>
-              <p className="text-xs leading-5 text-ink-mid">
-                自社式場
-                <span className="font-semibold text-ink-deep">
-                  川口メモリアルホール
-                </span>
-                <br />
-                川口市西新井宿440-1／駐車場70台
+              <p className="mt-1 rounded bg-white/85 px-1.5 py-0.5 text-[9px] leading-4 text-ink-soft md:bg-transparent md:px-0 md:text-[10px]">
+                駐車場70台／めぐりの森まで車5分
+                <span className="md:hidden">／※スタッフ写真はイメージです</span>
               </p>
+            </div>
+
+            {/* スタッフ（イメージ）。モバイルは右下、PCはヒーロー右いっぱい */}
+            <div className="pointer-events-none absolute bottom-[76px] right-0 h-[34vh] w-[52%] md:bottom-0 md:h-[92%] md:w-[36%]">
+              <Image
+                src="/images/lp/staff-hero.webp"
+                alt="黒いフォーマルスーツで対応する葬祭スタッフ（イメージ）"
+                fill
+                priority
+                sizes="(min-width: 768px) 40vw, 55vw"
+                className="object-contain object-bottom md:object-right-bottom"
+              />
             </div>
           </div>
 
-          {/* スタッフ（イメージ） */}
-          <div className="pointer-events-none absolute bottom-0 right-0 hidden h-[92%] w-[36%] md:block">
-            <Image
-              src="/images/lp/staff-hero.webp"
-              alt="黒いフォーマルスーツで対応する葬祭スタッフ（イメージ）"
-              fill
-              priority
-              sizes="40vw"
-              className="object-contain object-bottom"
-            />
-          </div>
-          <p className="mt-2 text-right text-[9px] text-ink-soft">
+          <p className="absolute bottom-0.5 right-2 hidden text-[9px] text-ink-soft md:block">
             ※スタッフ写真はイメージです
           </p>
         </div>
