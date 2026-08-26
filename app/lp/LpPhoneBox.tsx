@@ -37,7 +37,7 @@ export function LpPhoneBox({
           <span className="mt-0.5 text-[32px] font-bold leading-none tracking-wider md:text-[46px]">
             {PHONE_DISPLAY}
           </span>
-          <span className="mt-1.5 text-[11px]">タップで発信できます</span>
+          <span className="mt-1.5 text-[13px]">タップで発信できます</span>
         </a>
         <div className="mt-3 grid grid-cols-2 gap-2">
           <Link

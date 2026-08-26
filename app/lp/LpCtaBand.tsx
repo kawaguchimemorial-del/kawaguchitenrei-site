@@ -26,7 +26,7 @@ export function LpCtaBand({
           <span className="mt-0.5 text-3xl font-bold tracking-wider md:text-4xl">
             {PHONE_DISPLAY}
           </span>
-          <span className="mt-0.5 text-[11px]">タップで発信できます</span>
+          <span className="mt-0.5 text-[13px]">タップで発信できます</span>
         </a>
         <Link
           href="/lp/contact/"

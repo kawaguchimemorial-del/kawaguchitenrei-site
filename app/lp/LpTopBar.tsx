@@ -18,7 +18,7 @@ export function LpTopBar() {
           <p className="font-serif-jp text-base font-medium text-brand-deep md:text-xl">
             川口典礼
           </p>
-          <p className="hidden text-[10px] text-ink-soft md:block">
+          <p className="hidden text-[12px] text-ink-soft md:block">
             川口市・新井宿／創業20年・自社式場
           </p>
         </div>
@@ -27,7 +27,7 @@ export function LpTopBar() {
             href={PHONE_HREF}
             className="flex items-center gap-2 rounded-lg bg-emergency px-3 py-1.5 text-white shadow-sm transition hover:bg-emergency-deep"
           >
-            <span className="text-[9px] font-bold leading-tight md:text-[11px]">
+            <span className="text-[13px] font-bold leading-tight md:text-[13px]">
               24時間
               <br />
               365日
@@ -52,7 +52,7 @@ export function LpTopBar() {
             <li key={item.href}>
               <Link
                 href={item.href}
-                className="block border-r border-line py-2 text-center text-[11px] font-semibold text-ink-mid transition hover:bg-paper md:text-sm"
+                className="block border-r border-line py-2 text-center text-[13px] font-semibold text-ink-mid transition hover:bg-paper md:text-sm"
               >
                 {item.label}
               </Link>
@@ -61,7 +61,7 @@ export function LpTopBar() {
           <li>
             <Link
               href="#urgent"
-              className="block bg-emergency py-2 text-center text-[11px] font-bold text-white transition hover:bg-emergency-deep md:text-sm"
+              className="block bg-emergency py-2 text-center text-[13px] font-bold text-white transition hover:bg-emergency-deep md:text-sm"
             >
               お急ぎの方へ
             </Link>

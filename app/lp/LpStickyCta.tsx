@@ -13,7 +13,7 @@ export function LpStickyCta() {
           href={PHONE_HREF}
           className="flex flex-[2] flex-col items-center justify-center rounded-lg bg-emergency px-3 py-2.5 text-white transition hover:bg-emergency-deep"
         >
-          <span className="text-[11px] font-semibold tracking-wide">
+          <span className="text-[13px] font-semibold tracking-wide">
             24時間365日・年中無休
           </span>
           <span className="text-xl font-bold leading-tight tracking-wide md:text-2xl">
@@ -24,7 +24,7 @@ export function LpStickyCta() {
           href="/lp/contact/"
           className="flex flex-1 flex-col items-center justify-center rounded-lg border-2 border-brand bg-white px-2 py-2.5 text-brand transition hover:bg-brand-tint"
         >
-          <span className="text-[11px] font-semibold">メールで</span>
+          <span className="text-[13px] font-semibold">メールで</span>
           <span className="text-sm font-bold leading-tight">ご相談</span>
         </Link>
       </div>

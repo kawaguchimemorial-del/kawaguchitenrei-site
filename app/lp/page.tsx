@@ -168,19 +168,28 @@ export default function LpPage() {
         />
 
         <div className="relative flex flex-1 flex-col px-5 pt-5 md:mx-auto md:w-full md:max-w-4xl md:px-8 md:pb-4 md:pt-10">
-          <div className="md:max-w-[62%]">
-            <p className="inline-block rounded-full bg-brand px-3 py-1 text-[11px] tracking-[0.12em] text-white">
-              埼玉県川口市・新井宿／自社式場
+          <div className="md:max-w-[66%]">
+            {/* 見出しの設計（2026-08-26 10名討議）
+                ・広告クリック直後の3秒で「川口市の葬儀社か」を確かめられること
+                ・実測ではクリックの大半が「家族葬プラン」「葬儀プラン」等の
+                  プラン・費用系。検索語と見出しの語を一致させる
+                ・お急ぎの方への一言は、見出しの上に赤字で先に置く */}
+            <p className="inline-block rounded bg-emergency px-2.5 py-1 text-[12px] font-bold text-white md:text-[15px]">
+              ご危篤・ご逝去でお急ぎの方へ
             </p>
-            <h1 className="font-serif-jp mt-3 text-[28px] font-medium leading-[1.35] text-brand-deep md:text-[42px]">
-              <span className="text-emergency">川口市</span>のご葬儀を、
+            <h1 className="font-serif-jp mt-3 text-[29px] font-bold leading-[1.4] text-brand-deep md:whitespace-nowrap md:text-[40px]">
+              <span className="text-emergency">川口市</span>の家族葬・直葬なら、
               <br />
-              24時間365日承ります。
+              自社式場の川口典礼へ。
             </h1>
-            <p className="mt-2.5 text-[13px] leading-6 text-ink md:mt-3 md:text-base md:leading-7">
-              川口市めぐりの森まで車で約5分。駐車場70台の自社式場
-              <br className="hidden md:block" />
-              「川口メモリアルホール」で、直葬から家族葬・市民葬まで。
+            <p className="mt-3 text-[16px] font-medium leading-7 text-ink md:text-lg md:leading-8">
+              まだ何も決まっていなくて、大丈夫です。
+              <br />
+              <span className="font-bold">24時間365日</span>
+              、いまお電話がつながります。
+            </p>
+            <p className="mt-2 text-[14px] font-medium leading-6 text-ink-mid md:text-[15px] md:leading-7">
+              めぐりの森まで車5分／駐車場70台
             </p>
 
             {/* 実績エンブレム。月桂樹は装飾であり、受賞・順位を示すものではない。
@@ -219,10 +228,10 @@ export default function LpPage() {
               <span className="text-base font-bold leading-none text-ink-deep md:text-lg">
                 {googleReview.rating}
               </span>
-              <span className="text-[10px] leading-4 text-ink-mid md:text-xs">
+              <span className="text-[12px] leading-4 text-ink-mid md:text-xs">
                 Googleクチコミ
                 <br />
-                <span className="text-[9px] text-ink-soft md:text-[10px]">
+                <span className="text-[13px] text-ink-soft md:text-[12px]">
                   {reviewSummary.asOf}
                 </span>
               </span>
@@ -236,7 +245,7 @@ export default function LpPage() {
                 モバイルではスタッフに重ならないよう幅を半分までに抑える。 */}
             <div className="relative z-10 max-w-[50%] pb-1 md:mt-4 md:max-w-none">
               <div className="flex items-center gap-2">
-                <div className="relative h-14 w-20 shrink-0 overflow-hidden rounded-md border border-line shadow-sm md:h-20 md:w-32">
+                <div className="relative h-12 w-16 shrink-0 overflow-hidden rounded-md border border-line shadow-sm md:h-20 md:w-32">
                   <Image
                     src="/images/home/hero/hall-exterior-hero.jpg"
                     alt="川口メモリアルホールの外観"
@@ -246,17 +255,14 @@ export default function LpPage() {
                     className="object-cover"
                   />
                 </div>
-                <p className="rounded bg-white/85 px-1.5 py-1 text-[10px] leading-4 text-ink-mid md:bg-transparent md:px-0 md:text-xs md:leading-5">
+                <p className="rounded bg-white/85 px-1.5 py-1 text-[13px] font-bold leading-4 text-ink-deep md:bg-transparent md:px-0 md:leading-5">
                   自社式場
-                  <br className="md:hidden" />
-                  <span className="font-semibold text-ink-deep">
-                    川口メモリアルホール
-                  </span>
+                  <br />
+                  川口メモリアルホール
                 </p>
               </div>
-              <p className="mt-1 rounded bg-white/85 px-1.5 py-0.5 text-[9px] leading-4 text-ink-soft md:bg-transparent md:px-0 md:text-[10px]">
-                駐車場70台／めぐりの森まで車5分
-                <span className="md:hidden">／※スタッフ写真はイメージです</span>
+              <p className="mt-1 text-[11px] leading-4 text-ink-soft md:hidden">
+                ※スタッフ写真はイメージです
               </p>
             </div>
 
@@ -273,7 +279,7 @@ export default function LpPage() {
             </div>
           </div>
 
-          <p className="absolute bottom-0.5 right-2 hidden text-[9px] text-ink-soft md:block">
+          <p className="absolute bottom-0.5 right-2 hidden text-[13px] text-ink-soft md:block">
             ※スタッフ写真はイメージです
           </p>
         </div>
@@ -291,7 +297,7 @@ export default function LpPage() {
               <br />
               お急ぎの方
             </span>
-            <span className="mt-1 block text-[11px] text-ink-mid">
+            <span className="mt-1 block text-[13px] text-ink-mid">
               いま何をすればよいか →
             </span>
           </a>
@@ -304,7 +310,7 @@ export default function LpPage() {
               <br />
               （式場のご案内）
             </span>
-            <span className="mt-1 block text-[11px] text-ink-mid">
+            <span className="mt-1 block text-[13px] text-ink-mid">
               場所・駐車場を見る →
             </span>
           </a>
@@ -327,7 +333,7 @@ export default function LpPage() {
             <br className="md:hidden" />
             大丈夫です。
           </h2>
-          <p className="mt-2 text-sm leading-7 text-ink-mid">
+          <p className="mt-2 text-[15px] font-medium leading-7 text-ink">
             葬儀社を決めていなくても、ご予算が固まっていなくても構いません。
             まずお電話をいただければ、その場でできることからお手伝いします。
           </p>
@@ -338,7 +344,7 @@ export default function LpPage() {
                 className="rounded-lg border border-line border-l-4 border-l-emergency bg-paper p-4"
               >
                 <p className="text-sm font-bold text-ink-deep">{item.title}</p>
-                <p className="mt-1 text-sm leading-7 text-ink-mid">
+                <p className="mt-1 text-[15px] font-medium leading-7 text-ink">
                   {item.body}
                 </p>
               </div>
@@ -381,7 +387,7 @@ export default function LpPage() {
           <p className="text-center text-xs tracking-[0.16em] text-brand-soft">
             REASON
           </p>
-          <h2 className="font-serif-jp mt-1 text-center text-[22px] font-medium md:text-3xl">
+          <h2 className="font-serif-jp mt-1 text-center text-[24px] font-bold md:text-3xl">
             川口典礼が選ばれる理由
           </h2>
           <div className="mt-6 space-y-5">
@@ -416,10 +422,10 @@ export default function LpPage() {
                     />
                   </div>
                   <div>
-                    <p className="font-serif-jp text-lg font-medium text-ink-deep md:text-xl">
+                    <p className="font-serif-jp text-xl font-bold text-ink-deep md:text-xl">
                       {item.title}
                     </p>
-                    <p className="mt-1.5 text-sm leading-7 text-ink-mid">
+                    <p className="mt-1.5 text-[15px] font-medium leading-7 text-ink">
                       {item.body}
                     </p>
                   </div>
@@ -437,10 +443,10 @@ export default function LpPage() {
           <p className="text-center text-xs tracking-[0.16em] text-brand-soft">
             PLAN
           </p>
-          <h2 className="font-serif-jp mt-1 text-center text-[22px] font-medium md:text-3xl">
+          <h2 className="font-serif-jp mt-1 text-center text-[24px] font-bold md:text-3xl">
             費用の目安
           </h2>
-          <p className="mx-auto mt-2 max-w-xl text-center text-sm leading-7 text-ink-mid">
+          <p className="mx-auto mt-2 max-w-xl text-center text-[15px] font-medium leading-7 text-ink">
             表示は通常価格です。ご葬儀の内容・人数・ご希望により変わりますので、
             正式なお見積り時にご確認ください。
           </p>
@@ -451,7 +457,7 @@ export default function LpPage() {
             <p className="text-sm font-bold text-ink-deep">
               含まれるもの・含まれないもの
             </p>
-            <p className="mt-2 text-sm leading-7 text-ink-mid">
+            <p className="mt-2 text-[15px] font-medium leading-7 text-ink">
               プランには、ご搬送・ご安置・お棺・ご遺影・式場使用料・スタッフの人件費などが含まれます。
               <strong className="font-semibold text-ink-deep">
                 火葬料金、式場までの参列者の交通費、お食事代、返礼品、宗教者へのお礼
@@ -472,7 +478,7 @@ export default function LpPage() {
           <p className="text-center text-xs tracking-[0.16em] text-brand-soft">
             VOICE
           </p>
-          <h2 className="font-serif-jp mt-1 text-center text-[22px] font-medium md:text-3xl">
+          <h2 className="font-serif-jp mt-1 text-center text-[24px] font-bold md:text-3xl">
             ご葬儀を終えられたご家族から
           </h2>
           <p className="mt-2 text-center text-sm text-ink-mid">
@@ -508,10 +514,10 @@ export default function LpPage() {
                       <blockquote className="font-serif-jp mt-1.5 text-[15px] font-medium leading-relaxed text-ink-deep">
                         「{voice.title}」
                       </blockquote>
-                      <p className="mt-2 line-clamp-5 text-[13px] leading-6 text-ink-mid">
+                      <p className="mt-2 line-clamp-5 text-[15px] leading-6 text-ink-mid">
                         {voice.comment}
                       </p>
-                      <figcaption className="mt-auto pt-3 text-[11px] text-ink-soft">
+                      <figcaption className="mt-auto pt-3 text-[13px] text-ink-soft">
                         {voice.family}
                       </figcaption>
                     </div>
@@ -580,7 +586,7 @@ export default function LpPage() {
           <p className="text-center text-xs tracking-[0.16em] text-brand-soft">
             HALL
           </p>
-          <h2 className="font-serif-jp mt-1 text-center text-[22px] font-medium md:text-3xl">
+          <h2 className="font-serif-jp mt-1 text-center text-[24px] font-bold md:text-3xl">
             川口メモリアルホール
           </h2>
           <div className="mt-5 grid grid-cols-2 gap-2 md:grid-cols-3">
@@ -661,10 +667,10 @@ export default function LpPage() {
           <p className="text-center text-xs tracking-[0.16em] text-brand-soft">
             FLOW
           </p>
-          <h2 className="font-serif-jp mt-1 text-center text-[22px] font-medium md:text-3xl">
+          <h2 className="font-serif-jp mt-1 text-center text-[24px] font-bold md:text-3xl">
             お電話をいただいてからの流れ
           </h2>
-          <p className="mt-2 text-center text-[11px] text-ink-soft">
+          <p className="mt-2 text-center text-[13px] text-ink-soft">
             ※写真はイメージです
           </p>
           <ol className="mt-6 space-y-4">
@@ -692,7 +698,7 @@ export default function LpPage() {
                       {item.step}
                     </span>
                   </p>
-                  <p className="mt-1 text-sm leading-7 text-ink-mid">
+                  <p className="mt-1 text-[15px] font-medium leading-7 text-ink">
                     {item.body}
                   </p>
                 </div>
@@ -708,7 +714,7 @@ export default function LpPage() {
           <p className="text-center text-xs tracking-[0.16em] text-brand-soft">
             FAQ
           </p>
-          <h2 className="font-serif-jp mt-1 text-center text-[22px] font-medium md:text-3xl">
+          <h2 className="font-serif-jp mt-1 text-center text-[24px] font-bold md:text-3xl">
             よくあるご質問
           </h2>
           <div className="mt-6 space-y-2">
@@ -720,7 +726,7 @@ export default function LpPage() {
                 <summary className="cursor-pointer text-sm font-semibold text-ink-deep">
                   {item.q}
                 </summary>
-                <p className="mt-2 text-sm leading-7 text-ink-mid">{item.a}</p>
+                <p className="mt-2 text-[15px] font-medium leading-7 text-ink">{item.a}</p>
               </details>
             ))}
           </div>
@@ -733,7 +739,7 @@ export default function LpPage() {
           <p className="text-center text-xs tracking-[0.16em] text-gold">
             CONTACT
           </p>
-          <h2 className="font-serif-jp mt-1 text-center text-[22px] font-medium text-white md:text-3xl">
+          <h2 className="font-serif-jp mt-1 text-center text-[24px] font-bold text-white md:text-3xl">
             メールでのご相談
           </h2>
           <p className="mt-2 text-center text-sm leading-7 text-white/85">

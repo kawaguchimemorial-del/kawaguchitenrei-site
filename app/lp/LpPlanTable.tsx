@@ -15,7 +15,7 @@ function StageChips({ plan }: { plan: LpPlan }) {
           return (
             <li
               key={stage}
-              className="flex w-9 items-center justify-center rounded px-1 py-2 text-[11px] font-bold leading-tight"
+              className="flex w-9 items-center justify-center rounded px-1 py-2 text-[13px] font-bold leading-tight"
               style={
                 included
                   ? { backgroundColor: plan.accent, color: "#fff" }
@@ -34,7 +34,7 @@ function StageChips({ plan }: { plan: LpPlan }) {
         })}
       </ul>
       {plan.stagesNote && (
-        <p className="mt-1 text-[10px] text-ink-soft">※{plan.stagesNote}</p>
+        <p className="mt-1 text-[12px] text-ink-soft">※{plan.stagesNote}</p>
       )}
     </div>
   );
@@ -55,7 +55,7 @@ function Price({ plan, big = false }: { plan: LpPlan; big?: boolean }) {
         </span>
       </p>
       {plan.memberPrice && (
-        <p className="mt-1.5 text-[11px] leading-5 text-ink-soft">
+        <p className="mt-1.5 text-[13px] leading-5 text-ink-soft">
           事前相談会員価格 {plan.memberPrice}
         </p>
       )}
@@ -100,7 +100,7 @@ export function LpPlanTable() {
                 >
                   {plan.name}
                 </p>
-                <p className="mt-1 text-[11px] text-ink-soft">
+                <p className="mt-1 text-[13px] text-ink-soft">
                   {plan.people}／{plan.days}
                 </p>
               </div>
@@ -125,7 +125,7 @@ export function LpPlanTable() {
           >
             {/* キャッチコピーの帯（プランごとの識別色） */}
             <p
-              className="px-4 py-2 text-center text-[13px] font-bold text-white"
+              className="px-4 py-2 text-center text-[15px] font-bold text-white"
               style={{ backgroundColor: plan.accent }}
             >
               {plan.lead}
@@ -140,13 +140,13 @@ export function LpPlanTable() {
               </p>
 
               <ul className="mt-2 flex flex-wrap justify-center gap-1.5">
-                <li className="rounded bg-paper px-2 py-1 text-[11px] text-ink-mid">
+                <li className="rounded bg-paper px-2 py-1 text-[13px] text-ink-mid">
                   {plan.days}
                 </li>
-                <li className="rounded bg-paper px-2 py-1 text-[11px] text-ink-mid">
+                <li className="rounded bg-paper px-2 py-1 text-[13px] text-ink-mid">
                   {plan.people}
                 </li>
-                <li className="rounded bg-paper px-2 py-1 text-[11px] text-ink-mid">
+                <li className="rounded bg-paper px-2 py-1 text-[13px] text-ink-mid">
                   全宗派対応
                 </li>
               </ul>
@@ -165,14 +165,14 @@ export function LpPlanTable() {
               )}
 
               <div className="mt-3 rounded-lg bg-paper px-3 py-3 text-center">
-                <p className="text-[11px] font-bold text-ink-mid">通常価格</p>
+                <p className="text-[13px] font-bold text-ink-mid">通常価格</p>
                 <div className="mt-1">
                   <Price plan={plan} big />
                 </div>
               </div>
 
               <p
-                className="mt-3 rounded py-2 text-center text-[13px] font-bold text-white"
+                className="mt-3 rounded py-2 text-center text-[15px] font-bold text-white"
                 style={{ backgroundColor: plan.accent }}
               >
                 プランの詳細を見る

@@ -17,7 +17,7 @@ export default function LpContactPage() {
         <h1 className="font-serif-jp text-xl font-medium md:text-2xl">
           メールでのご相談
         </h1>
-        <p className="mt-3 text-sm leading-7 text-ink-mid">
+        <p className="mt-3 text-[15px] font-medium leading-7 text-ink">
           ご葬儀のご依頼、費用のご相談、式場の見学など、どのようなことでもお受けしています。
           <strong className="font-semibold text-ink-deep">
             お急ぎの場合は、お電話のほうが早くご案内できます。
