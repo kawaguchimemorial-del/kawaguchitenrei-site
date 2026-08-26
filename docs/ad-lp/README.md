@@ -113,7 +113,7 @@
 | 2026-08-20 | [2026-08-20-july-keyword-full-data-analysis.md](./2026-08-20-july-keyword-full-data-analysis.md) | 7月キーワード全件データの分析 |
 | 2026-08-26 | [2026-08-26-weekly-0817-0823-analysis.md](./2026-08-26-weekly-0817-0823-analysis.md) | 週次（8/17-23）分析。5時台に表示の49%集中・P-MAX初週CV0・0-5時の無断停止。10専門家討議は `docs/reports/2026-08-26-google-ads-weekly-10expert.html` |
 | 2026-08-26 | [2026-08-26-brand-budget-and-lp-integration.md](./2026-08-26-brand-budget-and-lp-integration.md) | 松澤相談2件（指名KWの日予算上限／LP廃止・本サイト統合）への回答。20専門家討議は `docs/reports/2026-08-26-lp-integration-20expert.html` |
-| 2026-08-26 | [2026-08-26-agency-instruction-keyword-shift.md](./2026-08-26-agency-instruction-keyword-shift.md) | 代理店指示書：地域×緊急クエリへの寄せ替え・除外追加・上限CPC・着地先を `/lp/` へ。先方共有用は `docs/operations/2026-08-26-agency-instruction-sheet.html` |
+| 2026-08-26 | [2026-08-26-agency-instruction-keyword-shift.md](./2026-08-26-agency-instruction-keyword-shift.md) | **【未送付・保留中】**代理店指示書：地域×緊急クエリへの寄せ替え・除外追加・上限CPC・着地先を `/lp/` へ。先方共有用は `docs/operations/2026-08-26-agency-instruction-sheet.html` |
 
 ### 関連する既存記録（`docs/` 内の他所にあるもの）
 
