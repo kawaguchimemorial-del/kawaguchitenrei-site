@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>本サイト内 広告LP の構成設計 専門家15名討議</title>
+<style>
+  :root{
+    --ink:#1c1a17; --sub:#5c564e; --line:#e2ddd4; --bg:#fbfaf8;
+    --accent:#7a5c3e; --red:#a8322a; --amber:#8a6412; --green:#2f6146; --blue:#2d5573;
+    --redbg:#fdf3f2; --amberbg:#fdf9ee; --greenbg:#f1f7f3; --bluebg:#f0f4f8; --box:#fff;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
+    line-height:1.9;font-size:15px;-webkit-text-size-adjust:100%}
+  .wrap{max-width:1000px;margin:0 auto;padding:44px 22px 96px}
+  header.doc{border-bottom:3px solid var(--ink);padding-bottom:18px;margin-bottom:30px}
+  .kicker{font-size:12px;letter-spacing:.14em;color:var(--sub);margin:0}
+  h1{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:25px;line-height:1.5;margin:10px 0 12px;font-weight:600}
+  .meta{font-size:13px;color:var(--sub)}
+  h2{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:20px;margin:54px 0 14px;
+    padding:8px 0 8px 14px;border-left:5px solid var(--accent);font-weight:600;background:#f6f3ee}
+  h3{font-size:16px;margin:32px 0 10px;font-weight:600;border-bottom:1px solid var(--line);padding-bottom:6px}
+  h4{font-size:14px;margin:20px 0 6px;color:var(--accent);font-weight:600}
+  p{margin:0 0 12px}
+  table{border-collapse:collapse;width:100%;font-size:13px;margin:14px 0;background:var(--box)}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:right;vertical-align:top}
+  th{background:#f4f1eb;font-weight:600;text-align:center;white-space:nowrap}
+  td.l,th.l{text-align:left}
+  .scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .bad{color:var(--red);font-weight:600}
+  .warn{color:var(--amber);font-weight:600}
+  .good{color:var(--green);font-weight:600}
+  .box{background:var(--box);border:1px solid var(--line);border-radius:6px;padding:18px 20px;margin:18px 0}
+  .box.red{background:var(--redbg);border-color:#e8c4c0}
+  .box.amber{background:var(--amberbg);border-color:#ecdcb4}
+  .box.green{background:var(--greenbg);border-color:#c3ded0}
+  .box.blue{background:var(--bluebg);border-color:#c2d3e0}
+  .box h4{margin-top:0}
+  ul,ol{margin:8px 0 14px;padding-left:1.4em}
+  li{margin-bottom:6px}
+  .kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:11px;margin:16px 0}
+  .kpi div{background:var(--box);border:1px solid var(--line);border-radius:5px;padding:11px 13px}
+  .kpi span{display:block;font-size:11px;color:var(--sub)}
+  .kpi strong{font-size:19px;font-weight:600}
+  .note{font-size:12.5px;color:var(--sub);margin-top:6px}
+  code{background:#f2efe9;padding:1px 5px;border-radius:3px;font-size:12.5px}
+  hr{border:0;border-top:1px solid var(--line);margin:44px 0}
+  footer{margin-top:60px;padding-top:18px;border-top:1px solid var(--line);font-size:12px;color:var(--sub)}
+  .verdict{background:#2f3a44;color:#fff;border-radius:6px;padding:20px 24px;margin:20px 0}
+  .verdict h4{color:#e6c88a;margin-top:0;font-size:12px;letter-spacing:.06em}
+  .verdict .big{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:18px;line-height:1.7;margin:6px 0 10px}
+  @media print{body{background:#fff}.wrap{padding:0}h2{page-break-after:avoid}.box,table{page-break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <p class="kicker">社内レポート（docs/reports・非公開/noindex）／広告LP 設計</p>
+  <h1>本サイト内 広告LP（`/lp/`）の構成設計<br><span style="font-size:15px;font-weight:400">専門家15名による討議</span></h1>
+  <p class="meta">2026-08-26／価格の正本＝本サイト `lib/plans.ts`（松澤指示）／外部調査＋LP運用前提＋GSC/GA4実測にもとづく</p>
+</header>
+
+<div class="verdict">
+  <h4>設計の結論</h4>
+  <p class="big">「1枚で完結する縦長LP」を、<strong>上から3層</strong>に分けて設計します。<br>①3秒で電話できる層 → ②5分で信頼を判断する層 → ③迷っている人が価格を確かめる層。</p>
+  <p>最大の争点は<strong>ファーストビューに価格を出すか</strong>でした。業界の定石は「地域名＋葬儀形態＋料金目安＋24時間対応」を最上部に置くことですが、<strong>15名中9名が「価格を最上段に置くことに反対」</strong>。当社は最安ではなく、価格で選ぶ層は獲りにいかないと8月に決めているためです。</p>
+  <p>結論として、<strong>ファーストビューには価格を置かず、電話と「今すぐすべきこと」を置く。</strong>価格は2画面目以降に、<strong>通常価格を主表示</strong>で出します。理由は次項のとおり構造的なものです。</p>
+</div>
+
+<h2>0. 設計の前提として全員が確認したこと</h2>
+
+<div class="box red">
+  <h4>【最重要】このLPの訪問者に「事前相談会員価格」は適用されない</h4>
+  <p>このLPは<strong>ご逝去後に葬儀社を探している方</strong>が着地します。事前相談会員価格は、事前にご相談いただいた方の価格です。<strong>訪問者の大半は、構造上その価格の対象になりません。</strong></p>
+  <p>したがってLPで主表示すべきは<strong>通常価格</strong>です。会員価格を大きく出すと、実際にご案内する金額との差でご不信を招きます。外部調査でも「通常価格表示は販売実績がなければ不当表示」「プラン総額だけでなく含まれないものを明記」と指摘されています。</p>
+  <div class="scroll">
+  <table>
+  <tr><th class="l">プラン</th><th>事前相談会員価格</th><th class="l">LPでの主表示（通常価格）</th></tr>
+  <tr><td class="l">シンプル直葬プラン</td><td>88,000円</td><td class="l"><strong>138,000円（税込）</strong></td></tr>
+  <tr><td class="l">直葬プラン</td><td>139,000円</td><td class="l"><strong>189,000円（税込）</strong></td></tr>
+  <tr><td class="l">花入れお別れプラン</td><td>229,000円</td><td class="l"><strong>279,000円（税込）</strong></td></tr>
+  <tr><td class="l">一日葬プラン</td><td>396,000円</td><td class="l"><strong>496,000円（税込）</strong></td></tr>
+  <tr><td class="l">夕暮れ家族葬</td><td>451,000円</td><td class="l"><strong>551,000円（税込）</strong></td></tr>
+  <tr><td class="l">家族葬プラン</td><td>528,000円</td><td class="l"><strong>628,000円（税込）</strong></td></tr>
+  <tr><td class="l">川口市民葬プラン</td><td colspan="2" class="l">231,000円（税込）※川口市民の葬祭事業価格。会員/通常の区分なし</td></tr>
+  </table>
+  </div>
+  <p class="note">出典：`lib/plans.ts`（本サイト正本）／CLAUDE.md §9。<strong>松澤指示により本サイトの金額を正本とするため、広告LP画像の「直葬シンプル 139,000円」との食い違いは本サイト側の 138,000円 に統一されます</strong>（`docs/ad-lp/README.md` §5 宿題1がこれで解消）。</p>
+</div>
+
+<h2>1. 争点：ファーストビューに価格を出すか</h2>
+
+<h4>① LP設計（賛成＝出すべき）</h4>
+<p>業界の定石は明確です。<strong>「地域名＋葬儀形態＋料金目安＋24時間365日対応」を3秒以内に伝える。</strong>価格が分からないページは、ユーザーが次に何をすべきか判断できず離脱します。葬儀は「いくらか分からない」ことが最大の不安要素です。</p>
+
+<h4>② 広告運用（強く反対）</h4>
+<p>反対します。<strong>8月に「安い層は獲りにいかない」と決めたばかりです。</strong>8.8万円の直葬訴求は利益が残らないため除外キーワードに登録し、DGアセットも停止しました。ここで「88,000円〜」をファーストビューに置けば、その判断を自分で無効化します。</p>
+
+<h4>③ 価格表示・法務（反対・別の理由）</h4>
+<p>より単純な問題があります。<strong>ファーストビューに置ける文字数で、会員価格と通常価格の区別を正確に説明することは不可能です。</strong>「88,000円〜」とだけ書けば、逝去後に来た方には適用されない価格を最も目立つ場所に置くことになります。これは景品表示法上のリスクであると同時に、ご遺族に対して不誠実です。</p>
+
+<h4>④ 消費者心理（条件つき賛成）</h4>
+<p>ただし②③に全面同意はしません。<strong>価格が全く見えないページは、それはそれで離脱します。</strong>「料金を確かめたい」は不安の裏返しであって、必ずしも「最安を探している」ではない。鎌倉新書の調査では<strong>87.1%が相見積もりを取らない</strong>——つまり多くの方は<strong>比較ではなく、目の前の1社が妥当かを確かめている</strong>だけです。</p>
+<p>したがって必要なのは<strong>「価格の範囲が把握できること」</strong>であって、最安値の提示ではありません。</p>
+
+<h4>⑤ 情報設計（折衷案を提示）</h4>
+<p>④の整理が正しい。<strong>ファーストビューには「価格そのもの」ではなく「価格に到達できること」を置きます。</strong>具体的には、電話番号と並べて<strong>「費用の目安を見る ↓」</strong>という内部アンカーを1つ置く。3秒で電話したい人は電話へ、価格を確かめたい人は1タップで価格表へ飛べます。<strong>どちらの層も取りこぼさず、誤解を招く数字を最上段に置かずに済みます。</strong></p>
+
+<div class="box green">
+  <h4>争点1の合議（賛成4・反対9・折衷2 → 折衷案を採用）</h4>
+  <p><strong>ファーストビューに価格は置かない。</strong>代わりに、①電話番号（特大・タップ発信）②「24時間365日・年中無休」③「川口市・新井宿／川口メモリアルホール」④<strong>「費用の目安を見る」への内部リンク</strong>の4点を置く。価格は第2ブロックに、<strong>通常価格を主表示</strong>で掲載する。</p>
+</div>
+
+<h2>2. 争点：どこまで情報を載せるか</h2>
+
+<h4>⑥ 直帰率（反対＝載せすぎ）</h4>
+<p>外部調査の失敗例に<strong>「全プランを1枚に詰め込むと情報が薄まり、どの層にも響かない」</strong>とあります。今回、直葬から家族葬・市民葬まで7プランを載せる方針になりましたが、<strong>これはまさにその失敗例そのものです。</strong>緊急層は迷いたくない。選択肢が多いほど電話が遅れます。</p>
+
+<h4>⑦ 検索クエリ整合（⑥に反論）</h4>
+<p>それは<strong>広告の構造を見ていない意見です。</strong>このLPには「川口市 直葬」「川口市 家族葬」「川口市 市民葬」「川口市 一日葬」と、<strong>異なる葬儀形式のクエリから流入します。</strong>「川口市 直葬」で来た人が直葬の記載がないページに着地したら、その瞬間に離脱します。実際、現行LPは本文に直葬が0回だったため<strong>「直葬系クエリは買わない」という制約を7か月背負ってきました。</strong>載せなければ、また同じ制約が続きます。</p>
+
+<h4>⑧ 広告品質（⑦を支持）</h4>
+<p>⑦に技術的な裏づけを足します。<strong>広告文とLPの見出しの不一致は、品質スコアを直接下げます。</strong>関連性が低いと単価が上がり、二重に損をする。実測でも、受け皿が厚い層はCPC ¥95〜143、受け皿がない層はCPC ¥918〜1,341でした。<strong>7倍以上の差です。</strong>プランを載せることは「情報を増やす」のではなく「単価を下げる」施策です。</p>
+
+<h4>⑤ 情報設計（再登壇・解き方を出す）</h4>
+<p>⑥と⑦は両立できます。<strong>「全プランを均等に並べる」から失敗するのであって、階層をつければよい。</strong></p>
+<ul>
+  <li><strong>価格ブロックは1つの表にまとめる</strong>——7プランをカード7枚で並べない。1つの比較表なら縦幅は1画面で収まり、かつ全クエリの受け皿になる</li>
+  <li>各行から本サイトの詳細ページへリンクを出す。<strong>詳しく知りたい人だけが深く行ける</strong></li>
+</ul>
+<p>これで⑥の「薄まる」も⑦の「受け皿がない」も回避できます。</p>
+
+<div class="box green">
+  <h4>争点2の合議</h4>
+  <p><strong>7プランすべてを載せる。ただしカードではなく1つの比較表にまとめる。</strong>各行に「人数の目安」「日数」「通常価格」を置き、詳細は本サイトへリンク。</p>
+</div>
+
+<h2>3. 争点：信頼材料をどこまで出すか</h2>
+
+<h4>⑨ 実績表示（賛成）</h4>
+<p>外部調査でも「スタッフの顔写真・資格」「施行事例・実績」「選ばれる理由」が必須10要素に入っています。当社には出せる材料があります——<strong>創業20年・累計4,600件以上・年間約260件・アンケート満足度97%以上・川口市葬祭事業（市民葬）登録店。</strong></p>
+
+<h4>③ 価格表示・法務（条件つき）</h4>
+<p>数字を出すこと自体は問題ありませんが、<strong>注記が必須です。</strong>本サイトの会社概要には「年間施行件数はおおよその目安、累計件数は創業からの実績、満足度はご葬儀後のアンケート集計に基づく」という注記が入っています。<strong>LPでもこの注記を省略してはいけません。</strong>省略した瞬間に景表法上の裏づけを失います。</p>
+
+<h4>⑩ 個人情報（反対寄り・お客様の声について）</h4>
+<p>お客様の声の掲載には慎重であるべきです。<strong>個人名・故人名・喪主名は出せません</strong>（CLAUDE.md §12）。本サイトには32件の声がありますが、LPに転載する際に<strong>地域名と続柄だけでも特定につながる組み合わせ</strong>が生じないか、1件ずつ確認が要ります。</p>
+<p>加えて<strong>遺影・名札・会葬礼状が写る画像は掲載前に人間の確認が必須</strong>です。LPで使う画像は<strong>式場・外観・スタッフに限定</strong>すべきです。</p>
+
+<h4>⑪ 構造化データ（反対・入れない）</h4>
+<p>1点だけ技術的な注意を。<strong>LPには JSON-LD を入れないでください。</strong>本サイトには aggregateRating（★4.5・27件）が入っていますが、<strong>LPはnoindexです。</strong>noindexのページに構造化データを置いても検索に出ないうえ、同じ評価値が2つのURLに存在する状態は避けたい。<strong>LPのSEO的な仕事はゼロにするのが正しい設計です。</strong></p>
+
+<div class="box green">
+  <h4>争点3の合議</h4>
+  <ul>
+    <li>実績4項目（20年／4,600件以上／約260件／97%以上）＋市民葬登録店を掲載。<strong>本サイトと同じ注記を必ず併記</strong></li>
+    <li>お客様の声は<strong>掲載する。ただし本サイト掲載済みのものから3件、個人特定性を1件ずつ確認したうえで</strong></li>
+    <li>画像は式場・外観・スタッフのみ。<strong>遺影・名札・会葬礼状が写るものは使わない</strong></li>
+    <li><strong>JSON-LD は入れない</strong></li>
+  </ul>
+</div>
+
+<h2>4. 争点：電話とフォームの扱い</h2>
+
+<h4>⑫ 電話導線（フォーム不要論）</h4>
+<p>このLPの主戦場は電話です。現行LPは本体にフォームがなく tel: リンクが6箇所。広告アセットのCTRも「24時間365日」12.18%、「お急ぎ電話」5.64%に対し、「事前説明で料金を明確に」は0.20%・CV 0。<strong>データは一貫して「電話」を指しています。フォームは不要では。</strong></p>
+
+<h4>⑬ 計測（強く反対）</h4>
+<p>それは危険です。<strong>フォームを外すと、いま最も困っている問題が永久に解けません。</strong>——「広告経由の相談件数が把握できない」（`docs/ad-lp/README.md` §5 宿題4・未取得）。</p>
+<p>電話タップは計測できても<strong>実着信は分かりません。</strong>フォームは、件数が少なくとも<strong>確実に中身が残る唯一の経路</strong>です。そして今回、`formType: "lp_contact"` で流入元を記録すると決めました。<strong>フォームを外すことは、その決定を捨てることと同じです。</strong></p>
+
+<h4>⑭ UX（折衷）</h4>
+<p>両立します。<strong>優先度を明確に差をつければよい。</strong>画面下部の固定CTAは<strong>電話を主・フォームを従</strong>（面積比おおむね2:1）。深夜にお困りの方は電話、日中に落ち着いて書ける方はフォーム。<strong>フォームの必須項目は3つまで</strong>——お名前・電話番号・ご状況。現行LPの必須7項目・3ステップは、緊急層には重すぎます。</p>
+
+<div class="box green">
+  <h4>争点4の合議</h4>
+  <p>画面下部に<strong>固定CTA（電話：フォーム＝2:1）</strong>。フォームは <code>/lp/contact/</code> に置き、<strong>必須はお名前・電話番号・ご状況の3項目のみ。</strong>送信は既存Webhookに <code>formType: "lp_contact"</code> で送る。</p>
+  <p class="note">※ CLAUDE.md §4「スマホ下部固定CTAは電話と事前相談の2つのみ」と整合します（LINE等は追加しません）。</p>
+</div>
+
+<h2>5. 争点：煽らずに行動してもらえるか</h2>
+
+<h4>⑮ コピー（問題提起）</h4>
+<p>広告LPの定石は「緊急性の演出」ですが、<strong>当社は §11 で不安を煽る表現を禁止しています。</strong>「今すぐ決めないと」「絶対」「最安」は使えません。外部調査でも<strong>「不安を過度に煽らない」「成約を急かす表現は避ける」</strong>と葬儀業界特有の注意として挙がっており、方針は一致しています。</p>
+<p>では何で動いてもらうか。<strong>煽りの代わりに「手順」を出します。</strong>ご逝去直後の方が本当に困っているのは「安いところ」ではなく<strong>「今、何をすればいいのか分からない」</strong>ことです。</p>
+
+<h4>④ 消費者心理（支持・補強）</h4>
+<p>賛成です。<strong>63.8%が事前準備なし</strong>で当日を迎えます。<strong>「まず病院からお迎えに向かいます。ご安置場所が決まっていなくても大丈夫です」</strong>——この一文は、どんな煽り文句より強く電話を後押しします。不安を作って解消するのではなく、<strong>すでにある不安に手順を渡す</strong>。これが葬儀LPの正解です。</p>
+
+<div class="box green">
+  <h4>争点5の合議</h4>
+  <p>ファーストビュー直下に<strong>「ご逝去直後の方へ ― いま必要な3つのこと」</strong>を置く。煽り表現は一切使わず、<strong>手順の提示で電話までの心理的障壁を下げる。</strong></p>
+</div>
+
+<h2>6. 決定した構成（上から順）</h2>
+<div class="scroll">
+<table>
+<tr><th>#</th><th class="l">ブロック</th><th class="l">内容</th><th class="l">意図</th></tr>
+<tr><td>1</td><td class="l"><strong>ファーストビュー</strong></td><td class="l">川口市・新井宿の葬儀／川口メモリアルホール外観／<strong>特大の電話番号（タップ発信）</strong>／24時間365日・年中無休／「費用の目安を見る↓」</td><td class="l">3秒で電話できる。価格は置かない</td></tr>
+<tr><td>2</td><td class="l"><strong>ご逝去直後の方へ</strong></td><td class="l">いま必要な3つのこと（お迎えのご連絡／ご安置場所は未定でも可／費用は後から確定できる）</td><td class="l">煽らずに障壁を下げる</td></tr>
+<tr><td>3</td><td class="l"><strong>費用の目安</strong></td><td class="l">7プランを<strong>1つの比較表</strong>で。<strong>通常価格を主表示</strong>・会員価格は注記。含まれるもの／含まれないものを明記</td><td class="l">全クエリの受け皿。誤解を生まない</td></tr>
+<tr><td>4</td><td class="l"><strong>選ばれる理由</strong></td><td class="l">めぐりの森まで車約5分／駐車場70台（無料）／自社式場／創業20年・4,600件以上・年約260件・満足度97%以上・市民葬登録店<strong>＋注記</strong></td><td class="l">1社で判断する層への材料</td></tr>
+<tr><td>5</td><td class="l"><strong>式場のご案内</strong></td><td class="l">川口メモリアルホール（川口市西新井宿440-1）／新井宿駅 徒歩約10分／首都高 新井宿出入口 約5分／個室面会室</td><td class="l">実在性と近さの証明</td></tr>
+<tr><td>6</td><td class="l"><strong>お客様の声</strong></td><td class="l">本サイト掲載済みから3件（個人特定性を確認のうえ）</td><td class="l">第三者評価</td></tr>
+<tr><td>7</td><td class="l"><strong>ご依頼の流れ</strong></td><td class="l">お電話 → お迎え・ご安置 → 打合せ → 通夜・葬儀 → 火葬</td><td class="l">先が見える安心</td></tr>
+<tr><td>8</td><td class="l"><strong>よくあるご質問</strong></td><td class="l">深夜でも対応可／病院からすぐ／費用はいつ決まる／市民葬の条件／宗派</td><td class="l">電話前の最後の疑問を消す</td></tr>
+<tr><td>9</td><td class="l"><strong>お問い合わせ</strong></td><td class="l">電話＋フォーム（<code>/lp/contact/</code>）</td><td class="l">CV</td></tr>
+<tr><td>—</td><td class="l"><strong>固定CTA</strong></td><td class="l">全画面で下部固定。電話：フォーム＝2:1</td><td class="l">どこで読むのをやめても電話できる</td></tr>
+</table>
+</div>
+
+<h2>7. 実装上の制約（CLAUDE.md §21 準拠）</h2>
+<ul>
+  <li><code>noindex</code>／<code>sitemap.ts</code> に追加しない／グローバルナビからリンクしない／<strong>robots.txt の Disallow には入れない</strong></li>
+  <li><strong>HTML 50KB 以下。</strong>ファーストビューの画像1枚のみ <code>priority</code>、以降は遅延読み込み</li>
+  <li>ヘッダー・フッター・下部固定CTAは <code>_layout-slots.tsx</code> のパス判定で除外（3コンポーネントは触らない）</li>
+  <li>価格は <code>lib/plans.ts</code> のみを参照。<strong>ハードコードしない</strong>（正本が動いたらLPも動く）</li>
+  <li>JSON-LD を入れない</li>
+</ul>
+
+<h2>8. 少数意見（取り下げられていない）</h2>
+<div class="box red">
+  <ul>
+    <li><strong>⑥：7プラン掲載はやはり多すぎる。</strong>比較表にまとめる折衷案でも、緊急層の意思決定は遅れる。<strong>公開後、スクロール到達率と電話タップの位置を計測して、表が離脱点になっていないか確認すべき</strong>という条件を付す</li>
+    <li><strong>⑫：フォームは電話を食う。</strong>下部固定CTAにフォームを並べると、電話すべき人がフォームに流れる可能性がある。2:1の面積比で足りるかは実測で確認する</li>
+    <li><strong>⑩：お客様の声3件は、掲載前に人間の確認を必須とする。</strong>当方の判断だけで載せない</li>
+  </ul>
+</div>
+
+<h2>9. 未解決・確認が必要な点</h2>
+<ol>
+  <li><strong>「シンプル直葬プラン」通常価格 138,000円 で確定してよいか。</strong>松澤指示（本サイトを正本）に従えば 138,000円。広告LP画像の 139,000円 は廃止に伴い消滅します。<strong>この確定をもって `docs/ad-lp/README.md` §5 宿題1 をクローズします</strong></li>
+  <li><strong>お客様の声3件の選定</strong>——当方で候補を出し、掲載可否は人間が判断</li>
+  <li><strong>直葬・火葬式系クエリの解禁</strong>——LPに受け皿ができるため、広告側の除外解除を代理店に依頼するかどうか（今回の掲載判断とセットの運用変更）</li>
+</ol>
+
+<footer>川口典礼 広告LP 社内レポート／作成 2026-08-26／専門家15名討議形式／価格正本＝lib/plans.ts／非公開・noindex</footer>
+</div>
+</body>
+</html>
