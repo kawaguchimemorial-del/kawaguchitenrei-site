@@ -156,7 +156,7 @@ export default function LpPage() {
           ・競合7社はいずれも明るい背景＋濃い文字（暗いオーバーレイは使わない）
           ・モバイルは1画面ぴったりに収める（小さな森の家のモバイル版に合わせた）
           ・スタッフはPC/モバイルとも表示する */}
-      <section className="relative flex min-h-[calc(100svh-52px)] flex-col overflow-hidden md:min-h-0">
+      <section className="relative flex min-h-[calc(100svh-84px)] flex-col overflow-hidden md:min-h-0">
         <Image
           src="/images/lp/hero-bg.webp"
           alt=""
@@ -316,7 +316,7 @@ export default function LpPage() {
       {/* お急ぎの方へ */}
       <section
         id="urgent"
-        className="scroll-mt-16 border-y-4 border-emergency bg-white px-5 py-9"
+        className="scroll-mt-24 border-y-4 border-emergency bg-white px-5 py-9"
       >
         <div className="mx-auto max-w-2xl">
           <p className="inline-block rounded bg-emergency px-3 py-1 text-xs font-bold text-white">
@@ -431,7 +431,7 @@ export default function LpPage() {
       </section>
 
       {/* 費用 */}
-      <section id="price" className="scroll-mt-16 bg-white px-5 py-10">
+      <section id="price" className="scroll-mt-24 bg-white px-5 py-10">
         <div className="mx-auto max-w-2xl">
           <p className="text-center text-xs tracking-[0.16em] text-brand-soft">
             PLAN
@@ -574,7 +574,7 @@ export default function LpPage() {
       </section>
 
       {/* 式場（ご会葬の方の着地点も兼ねる） */}
-      <section id="hall" className="scroll-mt-16 bg-white px-5 py-10">
+      <section id="hall" className="scroll-mt-24 bg-white px-5 py-10">
         <div className="mx-auto max-w-2xl">
           <p className="text-center text-xs tracking-[0.16em] text-brand-soft">
             HALL
@@ -727,7 +727,7 @@ export default function LpPage() {
       </section>
 
       {/* ページ内フォーム（ティアの型） */}
-      <section id="contact" className="scroll-mt-16 bg-brand-deep px-5 py-10">
+      <section id="contact" className="scroll-mt-24 bg-brand-deep px-5 py-10">
         <div className="mx-auto max-w-2xl">
           <p className="text-center text-xs tracking-[0.16em] text-gold">
             CONTACT
