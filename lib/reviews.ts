@@ -21,4 +21,14 @@ export const reviewSummary = {
     { label: "Google口コミ", rating: 4.5, count: 27 },
     { label: "ご利用後アンケート", rating: 4.8, count: 250 },
   ],
+  /**
+   * 出典別の内訳。表示に使うのはこの配列のみ（数値の二重管理を避ける）。
+   * 葬儀口コミサイトA(96件/★4.6)とB(198件/★4.7)は、ポータル名を出さない方針のため
+   * 「各種葬儀口コミサイト」として合算（294件・加重平均★4.7）で持つ。
+   */
+  sources: [
+    { label: "Googleクチコミ", rating: 4.5, count: 27, showCount: false },
+    { label: "各種葬儀口コミサイト", rating: 4.7, count: 294, showCount: true },
+    { label: "ご利用後アンケート", rating: 4.8, count: 250, showCount: true },
+  ],
 } as const;

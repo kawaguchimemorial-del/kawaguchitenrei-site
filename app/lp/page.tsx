@@ -6,6 +6,7 @@ import { voices } from "@/lib/voices";
 import { LpContactForm } from "./contact/LpContactForm";
 import { LpCtaBand } from "./LpCtaBand";
 import { LpPhoneBox } from "./LpPhoneBox";
+import { LpStars } from "./LpStars";
 import { LpStickyCta } from "./LpStickyCta";
 import { LpTopBar } from "./LpTopBar";
 import { lpPlans, PHONE_DISPLAY, PHONE_HREF } from "./lp-data";
@@ -212,14 +213,12 @@ export default function LpPage() {
             {/* Google クチコミ。出典は lib/reviews.ts の1か所のみ。
                 構造化データにはしない（LPは noindex・§19.2）。 */}
             <div className="mt-4 inline-flex items-center gap-2 rounded-lg border border-line bg-white/90 px-3 py-2 shadow-sm">
-              <span aria-hidden className="text-base tracking-tight text-gold">
-                ★★★★☆
-              </span>
+              <LpStars rating={googleReview.rating} className="text-base" />
               <span className="text-lg font-bold leading-none text-ink-deep">
                 {googleReview.rating}
               </span>
               <span className="text-xs leading-4 text-ink-mid">
-                Googleクチコミ {googleReview.count}件
+                Googleクチコミ
                 <br />
                 <span className="text-[10px] text-ink-soft">
                   {reviewSummary.asOf}
@@ -549,14 +548,45 @@ export default function LpPage() {
             ))}
           </div>
 
-          <div className="mt-6 rounded-xl border border-brand-tint bg-brand-tint/40 p-5 text-center">
-            <p className="text-sm text-ink-mid">ご葬儀後アンケートの満足度</p>
-            <p className="font-serif-jp mt-1 text-4xl font-medium text-brand-deep md:text-5xl">
-              97<span className="text-2xl">%超</span>
-            </p>
-            <p className="mt-2 text-xs leading-6 text-ink-soft">
+          {/* 出典別の評価。数値は lib/reviews.ts の1か所のみを参照する */}
+          <div className="mt-6 overflow-hidden rounded-xl border border-brand-tint bg-white">
+            <div className="bg-brand-tint/60 px-4 py-3 text-center">
+              <p className="text-xs text-ink-mid">いただいているご評価</p>
+              <div className="mt-1 flex items-center justify-center gap-2">
+                <LpStars rating={reviewSummary.total.rating} className="text-xl" />
+                <span className="font-serif-jp text-3xl font-medium leading-none text-brand-deep">
+                  {reviewSummary.total.rating}
+                </span>
+              </div>
+              <p className="mt-1 text-xs text-ink-mid">
+                {reviewSummary.total.count}件の平均（{reviewSummary.asOf}）
+              </p>
+            </div>
+            <ul className="divide-y divide-line">
+              {reviewSummary.sources.map((source) => (
+                <li
+                  key={source.label}
+                  className="flex items-center justify-between gap-3 px-4 py-3"
+                >
+                  <span className="text-sm text-ink-deep">{source.label}</span>
+                  <span className="flex shrink-0 items-center gap-2">
+                    <LpStars rating={source.rating} className="text-sm" />
+                    <span className="text-sm font-bold text-ink-deep">
+                      {source.rating}
+                    </span>
+                    {source.showCount && (
+                      <span className="w-14 text-right text-xs text-ink-mid">
+                        {source.count}件
+                      </span>
+                    )}
+                  </span>
+                </li>
+              ))}
+            </ul>
+            <p className="border-t border-line px-4 py-3 text-xs leading-6 text-ink-soft">
               ※
-              ご葬儀後にお答えいただいたアンケートの集計に基づく数値です。累計4,600件以上・年間約260件はおおよその実績です。
+              {reviewSummary.basis}
+              。ご利用後アンケートはご葬儀後にお答えいただいたものです。ポータルサイト名は各社の規約により記載していません。
             </p>
           </div>
         </div>
