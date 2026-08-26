@@ -50,3 +50,7 @@ next-env.d.ts
 # 社内資料（領収書・管理画面スクリーンショット等）。リポジトリに含めない
 /ryousyu/
 /public/images/GBP/
+
+# 競合サイトのフルページキャプチャ（分析用の社内資料）。
+# リポジトリが public のため、他社サイトの複製をコミットしない。
+docs/ad-lp/competitor-captures/

@@ -11,7 +11,7 @@ import { lpPlans, PHONE_DISPLAY, PHONE_HREF } from "./lp-data";
 
 // 広告LP（CLAUDE.md §21）。
 // 設計：docs/reports/2026-08-26-lp-page-design-15expert.html
-// 競合7社のフルページ実測（public/images/LP/）を踏まえた構成。
+// 競合7社のフルページ実測（docs/ad-lp/competitor-captures/・Git管理外）を踏まえた構成。
 // 取り入れた型：ヘッダー常設電話／ヒーロー直下の電話ボックス／入口分岐（お急ぎ・ご会葬）／
 // バッジによる実績提示／プランカード／手書きアンケートによる社会的証明／ページ内フォーム。
 
@@ -188,6 +188,21 @@ export default function LpPage() {
               ))}
             </dl>
           </div>
+
+          {/* スタッフ（イメージ）。競合各社と同様にヒーローへ人物を重ねる */}
+          <div className="pointer-events-none absolute bottom-0 right-0 hidden h-[86%] w-[38%] md:block">
+            <Image
+              src="/images/lp/staff-hero.png"
+              alt="黒いフォーマルスーツで対応する葬祭スタッフ（イメージ）"
+              fill
+              priority
+              sizes="40vw"
+              className="object-contain object-bottom"
+            />
+          </div>
+          <p className="absolute bottom-1 right-2 text-[9px] text-white/60">
+            ※写真はイメージです
+          </p>
         </div>
       </section>
 
@@ -256,6 +271,23 @@ export default function LpPage() {
               </div>
             ))}
           </div>
+          <figure className="mt-5 overflow-hidden rounded-xl border border-line">
+            <div className="relative h-44 w-full md:h-56">
+              <Image
+                src="/images/lp/staff-night-call.png"
+                alt="夜間にお電話を受ける葬祭スタッフ（イメージ）"
+                fill
+                loading="lazy"
+                sizes="(min-width: 768px) 672px, 100vw"
+                className="object-cover"
+              />
+            </div>
+            <figcaption className="bg-ink-deep px-3 py-2 text-center text-xs text-white">
+              深夜・早朝もお電話を受け付けています
+              <span className="ml-1 text-white/60">※写真はイメージです</span>
+            </figcaption>
+          </figure>
+
           <a
             href={PHONE_HREF}
             className="mt-5 flex flex-col items-center rounded-xl bg-emergency px-5 py-4 text-white shadow-md transition hover:bg-emergency-deep"
