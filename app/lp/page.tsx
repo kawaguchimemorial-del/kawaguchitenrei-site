@@ -174,11 +174,17 @@ export default function LpPage() {
                 ・実測ではクリックの大半が「家族葬プラン」「葬儀プラン」等の
                   プラン・費用系。検索語と見出しの語を一致させる
                 ・お急ぎの方への一言は、見出しの上に赤字で先に置く */}
-            <p className="inline-block rounded bg-emergency px-2.5 py-1 text-[12px] font-bold text-white md:text-[15px]">
-              ご危篤・ご逝去でお急ぎの方へ
-            </p>
-            <h1 className="font-serif-jp mt-3 text-[29px] font-bold leading-[1.4] text-brand-deep md:whitespace-nowrap md:text-[40px]">
-              <span className="text-emergency">川口市</span>の家族葬・直葬なら、
+            <div className="flex flex-wrap items-center gap-1.5">
+              <p className="inline-block rounded bg-emergency px-2.5 py-1 text-[12px] font-bold text-white md:text-[15px]">
+                ご危篤・ご逝去でお急ぎの方へ
+              </p>
+              {/* 市民葬は川口市の制度。当社は市の登録店（lib/company.ts の trackRecord に一致） */}
+              <p className="inline-block rounded border border-brand bg-white px-2.5 py-1 text-[12px] font-bold text-brand-deep md:text-[15px]">
+                川口市の葬祭事業（市民葬）登録店
+              </p>
+            </div>
+            <h1 className="font-serif-jp mt-2.5 text-[24px] font-bold leading-[1.4] text-brand-deep md:mt-3 md:whitespace-nowrap md:text-[40px]">
+              <span className="text-emergency">川口市</span>の家族葬・直葬・市民葬。
               <br />
               自社式場の川口典礼へ。
             </h1>
