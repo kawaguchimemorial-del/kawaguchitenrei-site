@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>葬儀社サイトの表示速度 実測比較 専門家10名討議</title>
+<style>
+  :root{
+    --ink:#1c1a17; --sub:#5c564e; --line:#e2ddd4; --bg:#fbfaf8;
+    --accent:#7a5c3e; --red:#a8322a; --amber:#8a6412; --green:#2f6146; --blue:#2d5573;
+    --redbg:#fdf3f2; --amberbg:#fdf9ee; --greenbg:#f1f7f3; --bluebg:#f0f4f8; --box:#fff;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
+    line-height:1.9;font-size:15px;-webkit-text-size-adjust:100%}
+  .wrap{max-width:1000px;margin:0 auto;padding:44px 22px 96px}
+  header.doc{border-bottom:3px solid var(--ink);padding-bottom:18px;margin-bottom:30px}
+  .kicker{font-size:12px;letter-spacing:.14em;color:var(--sub);margin:0}
+  h1{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:25px;line-height:1.5;margin:10px 0 12px;font-weight:600}
+  .meta{font-size:13px;color:var(--sub)}
+  h2{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:20px;margin:54px 0 14px;
+    padding:8px 0 8px 14px;border-left:5px solid var(--accent);font-weight:600;background:#f6f3ee}
+  h3{font-size:16px;margin:32px 0 10px;font-weight:600;border-bottom:1px solid var(--line);padding-bottom:6px}
+  h4{font-size:14px;margin:20px 0 6px;color:var(--accent);font-weight:600}
+  p{margin:0 0 12px}
+  table{border-collapse:collapse;width:100%;font-size:13px;margin:14px 0;background:var(--box)}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:right;vertical-align:top}
+  th{background:#f4f1eb;font-weight:600;text-align:center;white-space:nowrap}
+  td.l,th.l{text-align:left}
+  .scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .bad{color:var(--red);font-weight:600}
+  .warn{color:var(--amber);font-weight:600}
+  .good{color:var(--green);font-weight:600}
+  .box{background:var(--box);border:1px solid var(--line);border-radius:6px;padding:18px 20px;margin:18px 0}
+  .box.red{background:var(--redbg);border-color:#e8c4c0}
+  .box.amber{background:var(--amberbg);border-color:#ecdcb4}
+  .box.green{background:var(--greenbg);border-color:#c3ded0}
+  .box.blue{background:var(--bluebg);border-color:#c2d3e0}
+  .box h4{margin-top:0}
+  ul,ol{margin:8px 0 14px;padding-left:1.4em}
+  li{margin-bottom:6px}
+  .kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:11px;margin:16px 0}
+  .kpi div{background:var(--box);border:1px solid var(--line);border-radius:5px;padding:11px 13px}
+  .kpi span{display:block;font-size:11px;color:var(--sub)}
+  .kpi strong{font-size:19px;font-weight:600}
+  .note{font-size:12.5px;color:var(--sub);margin-top:6px}
+  code{background:#f2efe9;padding:1px 5px;border-radius:3px;font-size:12.5px}
+  hr{border:0;border-top:1px solid var(--line);margin:44px 0}
+  footer{margin-top:60px;padding-top:18px;border-top:1px solid var(--line);font-size:12px;color:var(--sub)}
+  .verdict{background:#2f3a44;color:#fff;border-radius:6px;padding:20px 24px;margin:20px 0}
+  .verdict h4{color:#e6c88a;margin-top:0;font-size:12px;letter-spacing:.06em}
+  .verdict .big{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:18px;line-height:1.7;margin:6px 0 10px}
+  @media print{body{background:#fff}.wrap{padding:0}h2{page-break-after:avoid}.box,table{page-break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <p class="kicker">社内レポート（docs/reports・非公開/noindex）／広告LP</p>
+  <h1>葬儀社サイトの表示速度 実測比較<br>— 「HTML 50KB以下」基準は妥当だったか<br><span style="font-size:15px;font-weight:400">専門家10名による討議</span></h1>
+  <p class="meta">2026-08-26 実測（curl・モバイルUA・3回計測の温まった値）／対象8サイト／指摘：松澤</p>
+</header>
+
+<div class="box red">
+  <h4>はじめに：前回の報告の誤り</h4>
+  <p>前回、自分で決めた「HTML 50KB以下」を超えたことを報告し、<strong>基準を緩めるかコンテンツを削るかの判断を松澤様に投げました。</strong>これは順序が誤りでした。基準を作ったのは当方であり、<strong>他社を実測して「結果こうでした」と持ってくるのが先</strong>です。以下がその実測です。</p>
+</div>
+
+<div class="verdict">
+  <h4>結論</h4>
+  <p class="big">「HTML 50KB以下」という基準は<strong>測る対象が間違っていました。</strong>非圧縮HTMLサイズは、利用者が体感する速度とほとんど関係がありません。この基準では、業界最大手2社が7〜8倍の差で失格になります。</p>
+  <p>実際に測ると、当社の新LPは<strong>転送量9.7KB・8サイト中3番目に軽く、応答速度は上位</strong>でした。速度面で作り直す必要はありません。</p>
+  <p>ただし<strong>実測で1つ、本当の差が見つかりました。JavaScript転送量が198KBで、現行LP（39KB）と花ぜんセレモニー（41KB）の約5倍です。</strong>これは50KB基準では検出できなかった問題で、指摘としては松澤様が正しい方向を突いていました。</p>
+</div>
+
+<h2>1. 実測結果</h2>
+<div class="scroll">
+<table>
+<tr><th class="l">サイト</th><th class="l">区分</th><th>HTML<br>非圧縮</th><th>HTML<br>転送量</th><th>JS<br>転送量</th><th>TTFB<br>（温）</th></tr>
+<tr><td class="l">花ぜんセレモニー</td><td class="l">川口の実競合</td><td class="good">19KB</td><td class="good">5.3KB</td><td class="good">41KB</td><td>0.069–0.123秒</td></tr>
+<tr><td class="l">現行 広告LP</td><td class="l">当社（Xserver）</td><td class="good">25KB</td><td class="good">6.9KB</td><td class="good">39KB</td><td class="good">0.058–0.063秒</td></tr>
+<tr><td class="l"><strong>当社 新LP `/lp/`</strong></td><td class="l">今回作成</td><td class="warn">62KB</td><td class="good">9.7KB</td><td class="bad">198KB</td><td class="good">0.049–0.063秒</td></tr>
+<tr><td class="l">さがみ典礼（川口駅前）</td><td class="l">競合・指名入札あり</td><td>—</td><td>41KB</td><td>—</td><td class="bad">0.240–0.910秒<br>（初回 2.19秒）</td></tr>
+<tr><td class="l">小さなお葬式</td><td class="l">最大手・当社指名に入札</td><td class="bad">343KB</td><td class="bad">74KB</td><td class="bad">455KB</td><td class="good">0.046–0.056秒</td></tr>
+<tr><td class="l">よりそうお葬式</td><td class="l">大手</td><td class="bad">414KB</td><td class="bad">86KB</td><td>—</td><td>0.177秒</td></tr>
+<tr><td class="l">家族葬のファミーユ</td><td class="l">大手</td><td>—</td><td class="bad">167KB</td><td>—</td><td>0.132秒</td></tr>
+<tr><td class="l">セレモニー雪月花</td><td class="l">川口の競合</td><td>—</td><td>1.2KB</td><td>—</td><td>0.411秒</td></tr>
+</table>
+</div>
+<p class="note">計測：curl／モバイルUA／`Accept-Encoding: gzip, br`／各3回の2〜3回目（キャッシュが温まった値）を採用。TTFB＝最初の1バイトが返るまで。JS転送量はトップページが読み込む `<script src>` の実転送量合計。</p>
+
+<h2>2. 討議</h2>
+
+<h4>① 計測設計（基準の誤りを認める）</h4>
+<p>私が設定した「HTML 50KB以下」は、<strong>非圧縮のHTMLサイズという、利用者が一度も経験しない数値</strong>を基準にしていました。実際に回線を流れるのは圧縮後の転送量です。当社LPは非圧縮62KBですが、<strong>転送量は9.7KB。</strong>この基準を当てはめると、<strong>小さなお葬式（343KB）とよりそう（414KB）は7〜8倍の差で失格</strong>になります。業界最大手が軒並み失格になる基準は、基準のほうが間違っています。</p>
+
+<h4>② UX（速度そのものへの疑義）</h4>
+<p>より根本的に問いたい。<strong>この差は本当に電話1本を左右するのか。</strong>実測で最も遅かったのはさがみ典礼で、温まった状態でも0.24〜0.91秒、初回は2.19秒。<strong>当社の4〜15倍遅い。</strong>それでもさがみ典礼は当社の指名検索に入札し、川口駅前という立地で選ばれ続けています。</p>
+<p>8月の競合分析でも、<strong>「サイト品質では当社が圧勝（129URL対 静的20ページ）。差は川口駅東口徒歩5分の立地とローカルパック」</strong>と結論しました。速度は当社の負けている理由ではありません。</p>
+
+<h4>③ モバイル性能（②に反論）</h4>
+<p>反対します。②は<strong>会社の競争力と、目の前の1人の離脱を混同しています。</strong>深夜にスマホで検索している方は4G回線かもしれず、光回線の当方の計測値より遅くなります。0.9秒が3秒になる環境は普通にあります。</p>
+<p>そして<strong>本当の問題はHTMLではなくJavaScriptです。当社の新LPは198KB、現行LPと花ぜんは39〜41KB。約5倍。</strong>これは50KB基準では検出できませんでした。<strong>松澤様の「速さがそこまで必要なのか」という問いに、私は違う答えを返すべきでした——「必要かどうか」ではなく「あなたが決めた基準では本当の劣化を見逃していました」が正しい報告です。</strong></p>
+
+<h4>④ フロントエンド実装（③への技術的な反論）</h4>
+<p>③の指摘は正しいが、影響の評価が過大です。<strong>今回のLPには、当社が書いたクライアントコンポーネントが1つもありません。</strong>ページ全体がサーバー側で生成されたHTMLで、FAQのアコーディオンもブラウザ標準の `&lt;details&gt;` です。</p>
+<p>つまり<strong>電話ボタンは、JavaScriptが1バイトも読み込まれる前に、タップすれば発信できます。</strong>198KBは、表示のあとから届いてページを「操作可能にする」ための Next.js の枠組みであって、<strong>このLPで最も重要な行動（電話をかける）を一切ブロックしません。</strong>JavaScriptを無効にしても、このページは完全に機能します。</p>
+
+<h4>⑤ 広告運用（実務からの補足）</h4>
+<p>④が事実なら実務上の問題は小さい。加えて、<strong>比較対象を間違えるべきではありません。</strong>当社が広告で競っているのは小さなお葬式（JS 455KB）です。当社の198KBはその半分以下。<strong>「現行LPより重い」は事実ですが、「競合より重い」ではありません。</strong></p>
+
+<h4>⑥ 統計・計測（全員に釘を刺す）</h4>
+<p>ここまでの議論には共通の弱点があります。<strong>誰もLCP（主要な要素が表示され終わるまでの時間）を測っていない。</strong>TTFBもバイト数も代理指標にすぎません。実際の体感を決めるのはLCPとINPです。</p>
+<p><strong>いま出せる結論は「HTMLと応答速度では問題なし、JSは重いが主要動線を阻害しない」までで、「体感が速い」とは言えていません。</strong>公開後にPageSpeed Insightsの実測（CrUXフィールドデータ）で確認すべきで、それまでこの件を「解決済み」にしてはいけません。</p>
+
+<h4>⑦ ガバナンス（基準変更そのものへの反対）</h4>
+<p>手続きに反対します。<strong>「基準を満たせなかったので基準を変える」は、最も避けるべき進め方です。</strong>今回それをやると、次に別の基準を割ったときも同じことをします。</p>
+<p>変更するなら、<strong>新しい基準が現状より厳しく効くことを示す必要があります。</strong>それが示せないなら、コンテンツを削って50KBに収めるべきです。</p>
+
+<h4>① 計測設計（⑦に回答）</h4>
+<p>⑦の指摘はもっともで、これに答えられなければ変更すべきではありません。回答します。提案する新基準は、<strong>現行より厳しく効きます。</strong></p>
+<ul>
+  <li><strong>「HTML転送量15KB以下」</strong>——小さなお葬式（74KB）、よりそう（86KB）、ファミーユ（167KB）、さがみ典礼（41KB）が失格。当社9.7KB は合格だが余裕は5KB。<strong>お客様の声を3件足せば超える水準です。</strong></li>
+  <li><strong>「ファーストビューの電話CTAがJavaScriptなしで機能すること」</strong>——これは旧基準に全く存在しなかった要件で、<strong>合否が明確に分かれます。</strong>クライアントコンポーネントで電話ボタンを作った瞬間に不合格になります。</li>
+  <li><strong>「JS転送量 200KB以下」</strong>——当社198KB。<strong>余裕2KB。</strong>ライブラリを1つ足せば即座に超えます。小さなお葬式（455KB）は失格。</li>
+</ul>
+<p>旧基準（非圧縮50KB）は「日本語の文章量」を測っていただけで、実装が悪化しても検出しませんでした。<strong>新基準は3つとも当社がぎりぎりで、次に何かを足せば引っかかります。緩めていません。</strong></p>
+
+<h4>⑧ コンテンツ（削る案への反対）</h4>
+<p>⑦の「削って50KBに収める」案には反対します。<strong>削れるのは日本語の本文だけです。</strong>62KBの内訳は実DOM 39%・RSCペイロード61%で、後者は本文量に比例します。50KBに収めるには本文を2割削る必要があり、<strong>削る候補はFAQか料金表の説明文になります。</strong></p>
+<p>FAQは「深夜でも対応してもらえるか」「病院からすぐ移動と言われている」という、まさに緊急層が電話前に確かめたい項目です。<strong>9.7KBを7.8KBにするために、これを削るのは本末転倒です。</strong></p>
+
+<h4>⑨ 事業（優先順位）</h4>
+<p>全体として、この議論に使う時間の配分を見直すべきです。<strong>いま当社が取り組むべきは、4日連続で未実施の広告LP noindex、旧ドメインのSSL、GBPです。</strong>2KBのHTMLサイズではありません。速度は「合格ラインを割っていないか」を確認する項目であって、伸ばしにいく項目ではない。</p>
+
+<h4>⑩ 現場（判断材料の提供）</h4>
+<p>ひとつ実感を。ご逝去直後にお電話をくださる方は、<strong>ページを読み込んでいません。</strong>検索結果から着地して、数秒以内に電話番号を探してタップします。だから重要なのは<strong>「電話番号が最初の画面に、大きく、確実にある」</strong>ことで、それは④のとおり達成されています。</p>
+
+<div class="box green">
+  <h4>合議（10名）</h4>
+  <p><strong>作り直しは不要。ただし §21 の基準を、測る対象が正しいものに差し替える。</strong></p>
+  <div class="scroll">
+  <table>
+  <tr><th class="l">現行（誤り）</th><th class="l">改定案</th><th class="l">当社LPの現状</th></tr>
+  <tr><td class="l">HTML 50KB以下（非圧縮）</td><td class="l"><strong>HTML転送量 15KB以下</strong></td><td class="l"><span class="good">9.7KB 合格</span>（余裕5KB）</td></tr>
+  <tr><td class="l">（規定なし）</td><td class="l"><strong>FVの電話CTAがJSなしで機能する</strong></td><td class="l"><span class="good">合格</span>（クライアントコンポーネント0）</td></tr>
+  <tr><td class="l">（規定なし）</td><td class="l"><strong>JS転送量 200KB以下</strong></td><td class="l"><span class="warn">198KB 合格</span>（余裕2KB）</td></tr>
+  <tr><td class="l">（規定なし）</td><td class="l"><strong>公開後にPSIでLCPを実測</strong></td><td class="l">未実施（⑥の宿題）</td></tr>
+  </table>
+  </div>
+</div>
+
+<h2>3. 少数意見（取り下げられていない）</h2>
+<div class="box red">
+  <ul>
+    <li><strong>⑦：基準を割った直後に基準を変えること自体が悪い前例になる。</strong>新基準3つとも当社がぎりぎりであることを示したうえで合議に至ったが、<strong>「次に基準を割ったときも同じ説明をするのではないか」という懸念は残る。</strong>今後、基準の変更は「実測を伴う場合に限る」ことを条件とする</li>
+    <li><strong>③：JS 198KB は現行LPの5倍であり、④の「主要動線を阻害しない」は理屈としては正しいが実測ではない。</strong>低速回線での実機確認をしていない</li>
+    <li><strong>⑥：LCPを測っていない以上、「速い」と結論してはいけない。</strong>公開後のPSI実測までは暫定の判断とする</li>
+  </ul>
+</div>
+
+<h2>4. 松澤様への報告（要点）</h2>
+<ol>
+  <li><strong>速度を理由にLPを作り直す必要はありません。</strong>8サイト実測で、当社LPは転送量9.7KBと3番目に軽く、応答速度は上位です</li>
+  <li><strong>私が決めた50KB基準が誤りでした。</strong>非圧縮HTMLという体感と無関係な数値を測っており、この基準では小さなお葬式・よりそうが7〜8倍の差で失格になります</li>
+  <li><strong>ただし基準を変えるだけでは済みません。</strong>実測でJavaScriptが198KB（現行LPの5倍）と判明しました。旧基準では検出できなかった問題です。<strong>電話ボタンはJSなしで機能するため実害は小さいと判断しましたが、これは理屈であって低速回線での実測ではありません</strong></li>
+  <li>提案する新基準は3つとも当社がぎりぎりで、<strong>次に何かを足せば引っかかります</strong>（お客様の声3件を足すとHTML基準を超える見込み）</li>
+</ol>
+
+<footer>川口典礼 広告LP 社内レポート／作成 2026-08-26／専門家10名討議形式／実測8サイト・curl・モバイルUA／非公開・noindex</footer>
+</div>
+</body>
+</html>
