@@ -1,68 +1,94 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { voices } from "@/lib/voices";
+import { LpCtaBand } from "./LpCtaBand";
 import { LpStickyCta } from "./LpStickyCta";
+import { LpTopBar } from "./LpTopBar";
 import { lpPlans, PHONE_DISPLAY, PHONE_HREF } from "./lp-data";
 
-// 広告LP（CLAUDE.md §21）。構成は docs/reports/2026-08-26-lp-page-design-15expert.html の合議に従う。
-// ・ファーストビューに価格を置かない（会員価格が適用されない層が着地するため）
-// ・価格は通常価格を主表示
-// ・煽り表現を使わず、手順の提示で電話までの障壁を下げる
-// ・JSON-LD は入れない（noindex のため）
+// 広告LP（CLAUDE.md §21）。
+// 設計：docs/reports/2026-08-26-lp-page-design-15expert.html
+// 競合実測（小さなお葬式・花ぜんセレモニー 2026-08-26）を踏まえ、
+// 上部固定電話・CTAの反復・お急ぎ専用ブロック・写真によるメリハリを入れている。
 
-const TRACK_RECORD = [
-  { value: "20年", label: "創業" },
-  { value: "4,600件以上", label: "累計の施行実績" },
-  { value: "約260件", label: "年間の施行実績" },
-  { value: "97%以上", label: "アンケート満足度" },
-];
-
-const FIRST_STEPS = [
+const URGENT_STEPS = [
   {
-    title: "まずはお電話ください",
-    body: "病院・施設・ご自宅、どちらからでもお迎えに向かいます。深夜・早朝でもお電話がつながります。",
+    title: "病院・施設からのお迎え",
+    body: "「すぐに移動を」と言われた方も、まずお電話ください。深夜・早朝でも寝台車でお迎えにあがります。",
   },
   {
-    title: "ご安置場所は未定でも大丈夫です",
-    body: "決まっていない場合は、当社の安置施設をご利用いただけます。お電話でご相談ください。",
+    title: "ご安置場所が決まっていない",
+    body: "ご自宅に安置が難しい場合、当社の安置施設をご利用いただけます。決まっていない前提でご相談ください。",
   },
   {
-    title: "費用は後からご相談いただけます",
+    title: "費用が心配で決められない",
     body: "お迎えの時点で内容を決めていただく必要はありません。お見積りをご確認のうえ、お決めいただけます。",
   },
 ];
 
+const TRACK_RECORD = [
+  { value: "20年", label: "創業" },
+  { value: "4,600件超", label: "累計の施行" },
+  { value: "約260件", label: "年間の施行" },
+  { value: "97%超", label: "満足度" },
+];
+
 const REASONS = [
   {
-    title: "川口市めぐりの森まで車で約5分",
-    body: "火葬場が近く、ご移動のご負担を抑えられます。ご高齢の参列者が多い場合にも配慮できます。",
+    image: "/images/home/hero/kawaguchi-memorial-hall-hero.png",
+    alt: "川口メモリアルホールの外観",
+    label: "01",
+    title: "川口市めぐりの森まで、車で約5分",
+    body: "火葬場がすぐ近くです。ご高齢の参列者が多い場合でも、ご移動の負担を抑えてお見送りいただけます。",
   },
   {
-    title: "駐車場70台・自社式場",
-    body: "敷地内に無料の駐車場を70台。お車でお越しの参列者が多いご葬儀でも、近隣にご迷惑をおかけしません。",
+    image: "/images/home/hall/hall-parking.png",
+    alt: "川口メモリアルホールの駐車場",
+    label: "02",
+    title: "駐車場70台・敷地内で無料",
+    body: "お車でお越しの参列者が多いご葬儀でも、路上駐車で近隣にご迷惑をおかけすることがありません。",
   },
   {
-    title: "川口市の葬祭事業（市民葬）登録店",
-    body: "川口市民の方は市民葬プランをご利用いただけます。申請手続きからご相談いただけます。",
+    image: "/images/home/hall/hall-family-waiting-room.jpg",
+    alt: "川口メモリアルホールのご親族控室",
+    label: "03",
+    title: "自社式場だから、時間に追われません",
+    body: "貸式場ではなく自社の式場です。ご家族のペースでお別れの時間をお過ごしいただけます。",
   },
 ];
 
 const FLOW = [
-  { step: "お電話", body: "24時間365日受付。まずはご連絡ください。" },
-  { step: "お迎え・ご安置", body: "病院・施設・ご自宅へお迎えにあがります。" },
+  { step: "お電話", body: "24時間365日受付。ご状況をお聞かせください。" },
+  { step: "お迎え", body: "寝台車で病院・施設・ご自宅へおうかがいします。" },
+  { step: "ご安置", body: "ご自宅または当社の安置施設へご安置します。" },
   { step: "お打合せ", body: "ご希望とご予算をうかがい、お見積りをご提示します。" },
-  { step: "通夜・ご葬儀", body: "川口メモリアルホールでお見送りいただけます。" },
-  { step: "ご火葬", body: "川口市めぐりの森などへご移動し、お見送りします。" },
+  { step: "ご葬儀", body: "川口メモリアルホールでお見送りいただけます。" },
+  { step: "ご火葬", body: "川口市めぐりの森などへご移動します。" },
+];
+
+const HALL_PHOTOS = [
+  { src: "/images/home/hall/hall-ceremony-room.jpg", alt: "川口メモリアルホールの式場" },
+  { src: "/images/home/hall/hall-interior.jpg", alt: "川口メモリアルホールの館内" },
+  {
+    src: "/images/hall/kawaguchi-memorial-hall/kawaguchi-memorial-hall-visitation-room-pet.png",
+    alt: "川口メモリアルホールの個室面会室",
+  },
+  { src: "/images/home/hall/hall-family-waiting-room.jpg", alt: "ご親族控室" },
 ];
 
 const FAQS = [
   {
-    q: "深夜や早朝でも対応してもらえますか。",
+    q: "深夜や早朝でも来てもらえますか。",
     a: "はい。24時間365日、年中無休でお電話を受け付けています。お迎えも時間を問わずうかがいます。",
   },
   {
     q: "病院から「すぐに移動を」と言われています。",
     a: "お電話をいただければ、お迎えの手配をいたします。ご安置場所が決まっていない場合も、そのままご相談ください。",
+  },
+  {
+    q: "まだ亡くなってはいませんが、相談してもよいですか。",
+    a: "はい。ご危篤の段階でのご相談もお受けしています。あらかじめご事情をうかがっておくことで、その時のご負担を減らせます。",
   },
   {
     q: "費用はいつ決まりますか。",
@@ -73,156 +99,226 @@ const FAQS = [
     a: "川口市民の方が対象です。適用の可否や必要な手続きは、お電話またはフォームでご確認ください。",
   },
   {
-    q: "宗派の指定はありますか。",
+    q: "菩提寺がありません。宗派の指定はありますか。",
     a: "特定の宗派に限定していません。菩提寺がある場合もない場合も、ご事情にあわせてご相談いただけます。",
   },
 ];
 
+const LP_VOICE_SLUGS = [
+  "oneday-careful-guidance",
+  "cremation-clear-pricing",
+  "direct-funeral-home-time",
+];
+
+const lpVoices = LP_VOICE_SLUGS.map((slug) =>
+  voices.find((voice) => voice.slug === slug)
+).filter((voice): voice is NonNullable<typeof voice> => Boolean(voice));
+
 export default function LpPage() {
   return (
     <div className="bg-paper pb-28 text-ink">
-      {/* 1. ファーストビュー ─ 価格は置かない。電話と「今すべきこと」への導線のみ */}
+      <LpTopBar />
+
+      {/* ヒーロー：地域と「近さ」を一言で刺す。花ぜんの「川口駅徒歩5分！」に対応する当社の武器 */}
       <section className="relative">
-        <div className="relative h-[210px] w-full md:h-[320px]">
+        <div className="relative h-[380px] w-full md:h-[460px]">
           <Image
-            src="/images/home/hall/hall-exterior.jpg"
+            src="/images/home/hero/hall-exterior-hero.jpg"
             alt="川口メモリアルホールの外観"
             fill
             priority
             sizes="100vw"
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-brand-deep/55" />
+          <div className="absolute inset-0 bg-gradient-to-b from-brand-deep/75 via-brand-deep/65 to-brand-deep/85" />
           <div className="absolute inset-0 flex flex-col items-center justify-center px-5 text-center text-white">
-            <p className="text-xs font-semibold tracking-[0.2em] md:text-sm">
-              埼玉県川口市・新井宿
+            <p className="rounded-full border border-white/50 px-3 py-1 text-[11px] tracking-[0.16em] md:text-xs">
+              埼玉県川口市・新井宿／自社式場
             </p>
-            <h1 className="font-serif-jp mt-2 text-2xl font-medium leading-snug md:text-4xl">
-              川口市のご葬儀は
-              <br className="md:hidden" />
-              川口典礼へ
+            <h1 className="font-serif-jp mt-4 text-[26px] font-medium leading-tight md:text-[42px]">
+              川口市めぐりの森まで、
+              <br />
+              車で約5分。
             </h1>
-            <p className="mt-2 text-sm md:text-base">
-              自社式場 川口メモリアルホール／創業20年
+            <p className="mt-3 text-sm leading-7 md:text-base">
+              駐車場70台の自社式場・川口メモリアルホール
+              <br />
+              直葬から家族葬・市民葬まで、24時間365日ご相談を承ります
             </p>
+            <a
+              href={PHONE_HREF}
+              className="mt-5 flex w-full max-w-sm flex-col items-center rounded-xl bg-emergency px-5 py-4 shadow-xl transition hover:bg-emergency-deep"
+            >
+              <span className="text-xs font-bold tracking-wide">
+                深夜・早朝もつながります
+              </span>
+              <span className="mt-0.5 text-[34px] font-bold leading-tight tracking-wider md:text-[42px]">
+                {PHONE_DISPLAY}
+              </span>
+              <span className="text-[11px]">タップで発信できます</span>
+            </a>
+            <a
+              href="#price"
+              className="mt-3 text-sm text-white underline underline-offset-4"
+            >
+              費用の目安を見る ↓
+            </a>
           </div>
         </div>
+      </section>
 
-        <div className="mx-auto max-w-3xl px-5 py-6">
+      {/* お急ぎの方へ：LPで最も重要なブロック。緊急層の3つの困りごとに直接答える */}
+      <section className="border-y-4 border-emergency bg-white px-5 py-8">
+        <div className="mx-auto max-w-2xl">
+          <p className="inline-block rounded bg-emergency px-3 py-1 text-xs font-bold text-white">
+            ご危篤・ご逝去でお急ぎの方へ
+          </p>
+          <h2 className="font-serif-jp mt-3 text-xl font-medium leading-snug text-ink-deep md:text-2xl">
+            何も決まっていなくて大丈夫です。
+            <br />
+            まず、お電話ください。
+          </h2>
+          <div className="mt-5 space-y-3">
+            {URGENT_STEPS.map((item) => (
+              <div
+                key={item.title}
+                className="rounded-lg border-l-4 border-emergency bg-paper p-4"
+              >
+                <p className="text-sm font-bold text-ink-deep">{item.title}</p>
+                <p className="mt-1 text-sm leading-7 text-ink-mid">
+                  {item.body}
+                </p>
+              </div>
+            ))}
+          </div>
           <a
             href={PHONE_HREF}
-            className="flex flex-col items-center rounded-xl bg-emergency px-5 py-4 text-white shadow-sm transition hover:bg-emergency-deep"
+            className="mt-5 flex flex-col items-center rounded-xl bg-emergency px-5 py-4 text-white shadow-md transition hover:bg-emergency-deep"
           >
-            <span className="text-sm font-semibold tracking-wide">
-              24時間365日・年中無休で受付
-            </span>
-            <span className="mt-1 text-3xl font-bold tracking-wider md:text-4xl">
+            <span className="text-xs font-bold">24時間365日・年中無休</span>
+            <span className="mt-0.5 text-3xl font-bold tracking-wider">
               {PHONE_DISPLAY}
             </span>
-            <span className="mt-1 text-xs">タップでお電話がつながります</span>
-          </a>
-          <a
-            href="#price"
-            className="mt-3 flex items-center justify-center gap-2 rounded-lg border border-brand bg-white px-4 py-3 text-sm font-semibold text-brand"
-          >
-            費用の目安を見る
-            <span aria-hidden>↓</span>
           </a>
         </div>
       </section>
 
-      {/* 2. ご逝去直後の方へ ─ 煽らず、手順を渡す */}
-      <section className="bg-white py-10">
-        <div className="mx-auto max-w-3xl px-5">
-          <h2 className="font-serif-jp text-xl font-medium md:text-2xl">
-            ご逝去直後の方へ ― いま必要な3つのこと
+      {/* 実績の帯 */}
+      <section className="bg-brand px-5 py-6 text-white">
+        <dl className="mx-auto grid max-w-2xl grid-cols-4 gap-2 text-center">
+          {TRACK_RECORD.map((item) => (
+            <div key={item.label}>
+              <dd className="font-serif-jp text-lg font-medium leading-tight md:text-2xl">
+                {item.value}
+              </dd>
+              <dt className="mt-1 text-[10px] text-white/85 md:text-xs">
+                {item.label}
+              </dt>
+            </div>
+          ))}
+        </dl>
+        <p className="mx-auto mt-3 max-w-2xl text-[10px] leading-5 text-white/70">
+          ※
+          年間施行件数はおおよその目安、累計件数は創業からの実績です。満足度はご葬儀後にお答えいただいたアンケートの集計に基づく数値です。
+        </p>
+      </section>
+
+      {/* 選ばれる理由 */}
+      <section className="px-5 py-10">
+        <div className="mx-auto max-w-2xl">
+          <h2 className="font-serif-jp text-center text-xl font-medium md:text-2xl">
+            川口典礼が選ばれる理由
           </h2>
-          <ol className="mt-5 space-y-4">
-            {FIRST_STEPS.map((item, index) => (
-              <li
+          <div className="mt-6 space-y-5">
+            {REASONS.map((item) => (
+              <div
                 key={item.title}
-                className="flex gap-3 rounded-lg border border-line bg-paper p-4"
+                className="overflow-hidden rounded-xl border border-line bg-white shadow-sm"
               >
-                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-brand text-sm font-bold text-white">
-                  {index + 1}
-                </span>
-                <div>
-                  <p className="font-semibold text-ink-deep">{item.title}</p>
-                  <p className="mt-1 text-sm leading-7 text-ink-mid">
+                <div className="relative h-44 w-full md:h-56">
+                  <Image
+                    src={item.image}
+                    alt={item.alt}
+                    fill
+                    loading="lazy"
+                    sizes="(min-width: 768px) 672px, 100vw"
+                    className="object-cover"
+                  />
+                  <span className="absolute left-0 top-0 bg-brand px-3 py-1 font-serif-jp text-sm text-white">
+                    {item.label}
+                  </span>
+                </div>
+                <div className="p-4">
+                  <p className="font-serif-jp text-lg font-medium text-ink-deep">
+                    {item.title}
+                  </p>
+                  <p className="mt-1.5 text-sm leading-7 text-ink-mid">
                     {item.body}
                   </p>
                 </div>
-              </li>
+              </div>
             ))}
-          </ol>
+          </div>
         </div>
       </section>
 
-      {/* 3. 費用の目安 ─ 通常価格を主表示。7プランではなく指定の6プランを1表に */}
-      <section id="price" className="scroll-mt-4 py-10">
-        <div className="mx-auto max-w-3xl px-5">
-          <h2 className="font-serif-jp text-xl font-medium md:text-2xl">
+      <LpCtaBand />
+
+      {/* 費用 */}
+      <section id="price" className="scroll-mt-16 bg-white px-5 py-10">
+        <div className="mx-auto max-w-2xl">
+          <h2 className="font-serif-jp text-center text-xl font-medium md:text-2xl">
             費用の目安
           </h2>
-          <p className="mt-2 text-sm leading-7 text-ink-mid">
-            下記は通常価格です。ご葬儀の内容・人数・ご希望により変わりますので、
+          <p className="mx-auto mt-2 max-w-xl text-center text-sm leading-7 text-ink-mid">
+            表示は通常価格です。ご葬儀の内容・人数・ご希望により変わりますので、
             正式なお見積り時にご確認ください。
           </p>
 
-          <div className="mt-5 overflow-x-auto">
-            <table className="w-full border-collapse bg-white text-sm">
-              <thead>
-                <tr className="bg-brand-tint text-ink-deep">
-                  <th className="border border-line px-3 py-2 text-left">
-                    プラン
-                  </th>
-                  <th className="border border-line px-3 py-2 text-left">
-                    人数・日数の目安
-                  </th>
-                  <th className="border border-line px-3 py-2 text-right">
-                    通常価格
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {lpPlans.map((plan) => (
-                  <tr key={plan.slug} className="align-top">
-                    <td className="border border-line px-3 py-3">
-                      <Link
-                        href={plan.href}
-                        className="font-semibold text-brand underline underline-offset-2"
-                      >
-                        {plan.name}
-                      </Link>
-                      <p className="mt-1 text-xs leading-6 text-ink-mid">
-                        {plan.short}
-                      </p>
-                    </td>
-                    <td className="border border-line px-3 py-3 text-xs leading-6 text-ink-mid">
-                      {plan.people}
-                      <br />
-                      {plan.days}
-                    </td>
-                    <td className="border border-line px-3 py-3 text-right">
-                      <span className="font-bold text-ink-deep">
-                        {plan.mainPrice}
-                      </span>
-                      {plan.memberPrice && (
-                        <span className="mt-1 block text-[11px] leading-5 text-ink-soft">
-                          事前相談会員価格
-                          <br />
-                          {plan.memberPrice}
-                        </span>
-                      )}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          <div className="mt-6 space-y-4">
+            {lpPlans.map((plan) => (
+              <Link
+                key={plan.slug}
+                href={plan.href}
+                className="flex gap-3 overflow-hidden rounded-xl border border-line bg-paper shadow-sm transition hover:border-brand"
+              >
+                {plan.image && (
+                  <div className="relative h-auto w-28 shrink-0 md:w-36">
+                    <Image
+                      src={plan.image.src}
+                      alt={plan.image.alt}
+                      fill
+                      loading="lazy"
+                      sizes="144px"
+                      className="object-cover"
+                    />
+                  </div>
+                )}
+                <div className="flex-1 py-3 pr-3">
+                  <p className="font-serif-jp text-base font-medium text-ink-deep md:text-lg">
+                    {plan.name}
+                  </p>
+                  <p className="mt-0.5 text-xs leading-6 text-ink-mid">
+                    {plan.short}
+                  </p>
+                  <p className="mt-1 text-[11px] text-ink-soft">
+                    {plan.people}／{plan.days}
+                  </p>
+                  <p className="mt-2 text-xl font-bold text-brand-deep md:text-2xl">
+                    {plan.mainPrice}
+                  </p>
+                  {plan.memberPrice && (
+                    <p className="text-[11px] leading-5 text-ink-soft">
+                      事前相談会員価格 {plan.memberPrice}
+                    </p>
+                  )}
+                </div>
+              </Link>
+            ))}
           </div>
 
-          <div className="mt-5 rounded-lg border border-line bg-white p-4">
-            <p className="text-sm font-semibold text-ink-deep">
+          <div className="mt-6 rounded-lg border border-line bg-paper p-4">
+            <p className="text-sm font-bold text-ink-deep">
               含まれるもの・含まれないもの
             </p>
             <p className="mt-2 text-sm leading-7 text-ink-mid">
@@ -233,119 +329,31 @@ export default function LpPage() {
               は別途申し受けます。プランごとの内訳は各プランのページでご確認いただけます。
             </p>
             <p className="mt-3 text-xs leading-6 text-ink-soft">
-              ※ 事前相談会員価格は、事前にご相談いただいた方の価格です。
-              川口市民葬プランは川口市民の方が対象で、会員・通常の区分はございません。
+              ※
+              事前相談会員価格は、事前にご相談いただいた方の価格です。川口市民葬プランは川口市民の方が対象で、会員・通常の区分はございません。
             </p>
           </div>
         </div>
       </section>
 
-      {/* 4. 選ばれる理由 */}
-      <section className="bg-white py-10">
-        <div className="mx-auto max-w-3xl px-5">
-          <h2 className="font-serif-jp text-xl font-medium md:text-2xl">
-            川口典礼が選ばれる理由
+      {/* お迎えまでの流れ */}
+      <section className="px-5 py-10">
+        <div className="mx-auto max-w-2xl">
+          <h2 className="font-serif-jp text-center text-xl font-medium md:text-2xl">
+            お電話をいただいてからの流れ
           </h2>
-          <div className="mt-5 space-y-3">
-            {REASONS.map((item) => (
-              <div
-                key={item.title}
-                className="rounded-lg border border-line bg-paper p-4"
-              >
-                <p className="font-semibold text-ink-deep">{item.title}</p>
-                <p className="mt-1 text-sm leading-7 text-ink-mid">
-                  {item.body}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          <dl className="mt-6 grid grid-cols-2 gap-3">
-            {TRACK_RECORD.map((item) => (
-              <div
-                key={item.label}
-                className="rounded-lg border border-line bg-paper p-4 text-center"
-              >
-                <dt className="text-xs text-ink-mid">{item.label}</dt>
-                <dd className="font-serif-jp mt-1 text-2xl font-medium text-brand">
-                  {item.value}
-                </dd>
-              </div>
-            ))}
-          </dl>
-          <p className="mt-3 text-xs leading-6 text-ink-soft">
-            ※
-            年間施行件数はおおよその目安、累計件数は創業からの実績です。満足度はご葬儀後にお答えいただいたアンケートの集計に基づく数値です。
-          </p>
-        </div>
-      </section>
-
-      {/* 5. 式場のご案内 */}
-      <section className="py-10">
-        <div className="mx-auto max-w-3xl px-5">
-          <h2 className="font-serif-jp text-xl font-medium md:text-2xl">
-            川口メモリアルホール
-          </h2>
-          <div className="mt-4 overflow-hidden rounded-lg border border-line bg-white">
-            <div className="relative h-48 w-full md:h-64">
-              <Image
-                src="/images/home/hall/hall-ceremony-room.jpg"
-                alt="川口メモリアルホールの式場内観"
-                fill
-                loading="lazy"
-                sizes="(min-width: 768px) 720px, 100vw"
-                className="object-cover"
-              />
-            </div>
-            <dl className="divide-y divide-line text-sm">
-              <div className="flex gap-3 px-4 py-3">
-                <dt className="w-20 shrink-0 font-semibold text-ink-deep">
-                  所在地
-                </dt>
-                <dd className="text-ink-mid">埼玉県川口市西新井宿440-1</dd>
-              </div>
-              <div className="flex gap-3 px-4 py-3">
-                <dt className="w-20 shrink-0 font-semibold text-ink-deep">
-                  電車
-                </dt>
-                <dd className="text-ink-mid">
-                  埼玉高速鉄道「新井宿」駅 徒歩約10分
-                </dd>
-              </div>
-              <div className="flex gap-3 px-4 py-3">
-                <dt className="w-20 shrink-0 font-semibold text-ink-deep">
-                  お車
-                </dt>
-                <dd className="text-ink-mid">
-                  首都高速川口線「新井宿出入口」より約5分。駐車場70台（敷地内・無料）
-                </dd>
-              </div>
-              <div className="flex gap-3 px-4 py-3">
-                <dt className="w-20 shrink-0 font-semibold text-ink-deep">
-                  火葬場
-                </dt>
-                <dd className="text-ink-mid">
-                  川口市めぐりの森まで車で約5分
-                </dd>
-              </div>
-            </dl>
-          </div>
-        </div>
-      </section>
-
-      {/* 6. ご依頼の流れ */}
-      <section className="bg-white py-10">
-        <div className="mx-auto max-w-3xl px-5">
-          <h2 className="font-serif-jp text-xl font-medium md:text-2xl">
-            ご依頼の流れ
-          </h2>
-          <ol className="mt-5 space-y-3">
+          <ol className="mt-6 space-y-0">
             {FLOW.map((item, index) => (
-              <li key={item.step} className="flex gap-3">
-                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-brand text-sm font-bold text-brand">
-                  {index + 1}
-                </span>
-                <div>
+              <li key={item.step} className="flex gap-4">
+                <div className="flex flex-col items-center">
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand text-sm font-bold text-white">
+                    {index + 1}
+                  </span>
+                  {index < FLOW.length - 1 && (
+                    <span className="h-full w-px flex-1 bg-brand-tint" />
+                  )}
+                </div>
+                <div className="pb-6">
                   <p className="font-semibold text-ink-deep">{item.step}</p>
                   <p className="mt-0.5 text-sm leading-7 text-ink-mid">
                     {item.body}
@@ -357,17 +365,107 @@ export default function LpPage() {
         </div>
       </section>
 
-      {/* 7. よくあるご質問 */}
-      <section className="py-10">
-        <div className="mx-auto max-w-3xl px-5">
-          <h2 className="font-serif-jp text-xl font-medium md:text-2xl">
+      <LpCtaBand
+        heading="ご不明な点は、お電話でお聞きください"
+        note="ご相談だけでも構いません。無理におすすめすることはありません。"
+      />
+
+      {/* 式場 */}
+      <section className="bg-white px-5 py-10">
+        <div className="mx-auto max-w-2xl">
+          <h2 className="font-serif-jp text-center text-xl font-medium md:text-2xl">
+            川口メモリアルホール
+          </h2>
+          <div className="mt-5 grid grid-cols-2 gap-2">
+            {HALL_PHOTOS.map((photo) => (
+              <div
+                key={photo.src}
+                className="relative h-32 w-full overflow-hidden rounded-lg md:h-40"
+              >
+                <Image
+                  src={photo.src}
+                  alt={photo.alt}
+                  fill
+                  loading="lazy"
+                  sizes="(min-width: 768px) 330px, 50vw"
+                  className="object-cover"
+                />
+              </div>
+            ))}
+          </div>
+          <dl className="mt-5 divide-y divide-line rounded-lg border border-line text-sm">
+            <div className="flex gap-3 px-4 py-3">
+              <dt className="w-16 shrink-0 font-semibold text-ink-deep">
+                所在地
+              </dt>
+              <dd className="text-ink-mid">埼玉県川口市西新井宿440-1</dd>
+            </div>
+            <div className="flex gap-3 px-4 py-3">
+              <dt className="w-16 shrink-0 font-semibold text-ink-deep">電車</dt>
+              <dd className="text-ink-mid">
+                埼玉高速鉄道「新井宿」駅 徒歩約10分
+              </dd>
+            </div>
+            <div className="flex gap-3 px-4 py-3">
+              <dt className="w-16 shrink-0 font-semibold text-ink-deep">お車</dt>
+              <dd className="text-ink-mid">
+                首都高速川口線「新井宿出入口」より約5分／駐車場70台（敷地内・無料）
+              </dd>
+            </div>
+            <div className="flex gap-3 px-4 py-3">
+              <dt className="w-16 shrink-0 font-semibold text-ink-deep">
+                火葬場
+              </dt>
+              <dd className="text-ink-mid">川口市めぐりの森まで車で約5分</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      {/* お客様の声 */}
+      <section className="px-5 py-10">
+        <div className="mx-auto max-w-2xl">
+          <h2 className="font-serif-jp text-center text-xl font-medium md:text-2xl">
+            ご葬儀を終えられたご家族から
+          </h2>
+          <div className="mt-6 space-y-4">
+            {lpVoices.map((voice) => (
+              <figure
+                key={voice.slug}
+                className="rounded-xl border border-line bg-white p-5 shadow-sm"
+              >
+                <p aria-hidden className="text-sm text-gold">
+                  {"★".repeat(voice.rating)}
+                </p>
+                <blockquote className="font-serif-jp mt-2 text-base font-medium leading-relaxed text-ink-deep">
+                  「{voice.title}」
+                </blockquote>
+                <p className="mt-2 text-sm leading-7 text-ink-mid">
+                  {voice.comment}
+                </p>
+                <figcaption className="mt-3 text-xs text-ink-soft">
+                  {voice.family}
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+          <p className="mt-4 text-center text-xs text-ink-soft">
+            ご葬儀後にお答えいただいたアンケートより。個人が特定される情報は掲載していません。
+          </p>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="bg-white px-5 py-10">
+        <div className="mx-auto max-w-2xl">
+          <h2 className="font-serif-jp text-center text-xl font-medium md:text-2xl">
             よくあるご質問
           </h2>
-          <div className="mt-5 space-y-3">
+          <div className="mt-6 space-y-2">
             {FAQS.map((item) => (
               <details
                 key={item.q}
-                className="rounded-lg border border-line bg-white p-4"
+                className="rounded-lg border border-line bg-paper p-4"
               >
                 <summary className="cursor-pointer text-sm font-semibold text-ink-deep">
                   {item.q}
@@ -379,35 +477,13 @@ export default function LpPage() {
         </div>
       </section>
 
-      {/* 8. お問い合わせ */}
-      <section className="bg-brand-deep py-10 text-white">
-        <div className="mx-auto max-w-3xl px-5 text-center">
-          <h2 className="font-serif-jp text-xl font-medium md:text-2xl">
-            お気軽にご相談ください
-          </h2>
-          <p className="mt-2 text-sm leading-7">
-            ご葬儀のご依頼だけでなく、費用のご相談・式場の見学もお受けしています。
-          </p>
-          <a
-            href={PHONE_HREF}
-            className="mt-5 flex flex-col items-center rounded-xl bg-white px-5 py-4 text-emergency shadow-sm"
-          >
-            <span className="text-sm font-semibold">24時間365日・年中無休</span>
-            <span className="mt-1 text-3xl font-bold tracking-wider">
-              {PHONE_DISPLAY}
-            </span>
-          </a>
-          <Link
-            href="/lp/contact/"
-            className="mt-3 flex items-center justify-center rounded-lg border-2 border-white px-4 py-3 text-sm font-semibold text-white"
-          >
-            メールでのご相談はこちら
-          </Link>
-        </div>
-      </section>
+      <LpCtaBand
+        heading="川口市のご葬儀は、川口典礼へ"
+        note="24時間365日・年中無休。ご危篤の段階でのご相談もお受けしています。"
+      />
 
-      <footer className="py-6 text-center text-xs text-ink-soft">
-        <p>川口典礼（埼玉県川口市西新井宿440-1）</p>
+      <footer className="px-5 py-6 text-center text-xs leading-6 text-ink-soft">
+        <p>川口典礼／埼玉県川口市西新井宿440-1</p>
         <p className="mt-1">
           <Link href="/privacy/" className="underline underline-offset-2">
             プライバシーポリシー

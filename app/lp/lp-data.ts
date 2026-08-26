@@ -24,6 +24,7 @@ export type LpPlan = {
   /** 補足として添える事前相談会員価格。市民葬など区分がないものは null */
   memberPrice: string | null;
   href: string;
+  image: { src: string; alt: string } | null;
 };
 
 function yen(value: number): string {
@@ -51,6 +52,7 @@ function toLpPlan(plan: Plan): LpPlan {
     mainPrice,
     memberPrice,
     href: `/plan/${plan.slug}/`,
+    image: plan.image ?? null,
   };
 }
 
