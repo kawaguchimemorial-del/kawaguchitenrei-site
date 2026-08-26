@@ -110,6 +110,8 @@
 |---|---|---|
 | 2026-08-14 | [2026-08-14-202607-report-review.md](./2026-08-14-202607-report-review.md) | 2026年7月 代理店報告書（全19ページ）の全数検算とP-MAX提案の評価 |
 | 2026-08-14 | [2026-08-14-mtg-decisions.md](./2026-08-14-mtg-decisions.md) | 定例MTGの決定事項（P-MAX承認・深夜帯週次注視・KW単位管理・全件データ依頼） |
+| 2026-08-20 | [2026-08-20-july-keyword-full-data-analysis.md](./2026-08-20-july-keyword-full-data-analysis.md) | 7月キーワード全件データの分析 |
+| 2026-08-26 | [2026-08-26-weekly-0817-0823-analysis.md](./2026-08-26-weekly-0817-0823-analysis.md) | 週次（8/17-23）分析。5時台に表示の49%集中・P-MAX初週CV0・0-5時の無断停止。10専門家討議は `docs/reports/2026-08-26-google-ads-weekly-10expert.html` |
 
 ### 関連する既存記録（`docs/` 内の他所にあるもの）
 
