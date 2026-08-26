@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { reviewSummary } from "@/lib/reviews";
 import { voices } from "@/lib/voices";
 import { LpContactForm } from "./contact/LpContactForm";
 import { LpCtaBand } from "./LpCtaBand";
@@ -40,6 +41,7 @@ const REASONS = [
   {
     image: "/images/home/hero/kawaguchi-memorial-hall-hero.png",
     alt: "川口メモリアルホールの外観",
+    icon: "/images/lp/reason-crematory.png",
     label: "01",
     title: "川口市めぐりの森まで、車で約5分",
     body: "火葬場がすぐ近くです。ご高齢の参列者が多い場合でも、ご移動の負担を抑えてお見送りいただけます。",
@@ -47,6 +49,7 @@ const REASONS = [
   {
     image: "/images/home/hall/hall-parking.png",
     alt: "川口メモリアルホールの駐車場",
+    icon: "/images/lp/reason-parking.png",
     label: "02",
     title: "駐車場70台・敷地内で無料",
     body: "お車でお越しの参列者が多いご葬儀でも、路上駐車で近隣にご迷惑をおかけすることがありません。",
@@ -54,6 +57,7 @@ const REASONS = [
   {
     image: "/images/home/hall/hall-family-waiting-room.jpg",
     alt: "川口メモリアルホールのご親族控室",
+    icon: "/images/lp/reason-hall.png",
     label: "03",
     title: "貸式場ではない、自社の式場です",
     body: "時間に追われることなく、ご家族のペースでお別れの時間をお過ごしいただけます。",
@@ -140,6 +144,10 @@ const lpVoices = LP_VOICE_SLUGS.map((slug) =>
   voices.find((voice) => voice.slug === slug)
 ).filter((voice): voice is NonNullable<typeof voice> => Boolean(voice));
 
+const googleReview =
+  reviewSummary.highlights.find((item) => item.label === "Google口コミ") ??
+  reviewSummary.highlights[0];
+
 export default function LpPage() {
   return (
     <div className="bg-paper pb-28 text-ink">
@@ -200,6 +208,24 @@ export default function LpPage() {
                 </div>
               ))}
             </dl>
+
+            {/* Google クチコミ。出典は lib/reviews.ts の1か所のみ。
+                構造化データにはしない（LPは noindex・§19.2）。 */}
+            <div className="mt-4 inline-flex items-center gap-2 rounded-lg border border-line bg-white/90 px-3 py-2 shadow-sm">
+              <span aria-hidden className="text-base tracking-tight text-gold">
+                ★★★★☆
+              </span>
+              <span className="text-lg font-bold leading-none text-ink-deep">
+                {googleReview.rating}
+              </span>
+              <span className="text-xs leading-4 text-ink-mid">
+                Googleクチコミ {googleReview.count}件
+                <br />
+                <span className="text-[10px] text-ink-soft">
+                  {reviewSummary.asOf}
+                </span>
+              </span>
+            </div>
 
             {/* 実在の式場写真を小さく添える（AI画像と区別できるように） */}
             <div className="mt-4 flex items-center gap-2">
@@ -365,13 +391,26 @@ export default function LpPage() {
                     {item.label}
                   </span>
                 </div>
-                <div className="p-4">
-                  <p className="font-serif-jp text-lg font-medium text-ink-deep md:text-xl">
-                    {item.title}
-                  </p>
-                  <p className="mt-1.5 text-sm leading-7 text-ink-mid">
-                    {item.body}
-                  </p>
+                <div className="flex gap-3 p-4">
+                  <div className="relative h-14 w-14 shrink-0 md:h-16 md:w-16">
+                    <Image
+                      src={item.icon}
+                      alt=""
+                      aria-hidden
+                      fill
+                      loading="lazy"
+                      sizes="64px"
+                      className="object-contain"
+                    />
+                  </div>
+                  <div>
+                    <p className="font-serif-jp text-lg font-medium text-ink-deep md:text-xl">
+                      {item.title}
+                    </p>
+                    <p className="mt-1.5 text-sm leading-7 text-ink-mid">
+                      {item.body}
+                    </p>
+                  </div>
                 </div>
               </div>
             ))}
