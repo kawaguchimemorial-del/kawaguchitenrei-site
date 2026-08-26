@@ -165,7 +165,7 @@ export default function LpPage() {
           ・上段：明るい背景に特大の見出し
           ・下段：式場の実写を全幅に敷き、左に円形バッジ、右にスタッフ。余白を作らない
           ・本サイトのセリフ体基調（§3）はLPには適用しない（§21） */}
-      <section className="relative flex min-h-[calc(100svh-84px)] flex-col overflow-hidden md:min-h-0">
+      <section className="relative flex min-h-[calc(100svh-84px)] flex-col overflow-hidden md:min-h-[580px] md:justify-center">
         <Image
           src="/images/lp/hero-bg.webp"
           alt=""
@@ -177,8 +177,8 @@ export default function LpPage() {
         />
 
         {/* 上段：見出し */}
-        <div className="relative px-5 pt-3.5 md:mx-auto md:w-full md:max-w-5xl md:px-8 md:pt-8">
-          <div className="md:max-w-[58%]">
+        <div className="relative px-5 pt-3.5 md:mx-auto md:w-full md:max-w-6xl md:px-10 md:pt-0">
+          <div className="md:max-w-[52%]">
             <div className="flex flex-wrap items-center gap-1.5">
               <p className="inline-block rounded bg-emergency px-2 py-1 text-[11px] font-bold text-white md:px-2.5 md:text-[15px]">
                 ご危篤・ご逝去でお急ぎの方へ
@@ -191,13 +191,13 @@ export default function LpPage() {
               </p>
             </div>
 
-            <h1 className="mt-2.5 text-[29px] font-black leading-[1.3] tracking-tighter text-brand-deep md:mt-3 md:text-[46px] md:tracking-tight">
+            <h1 className="mt-2.5 text-[29px] font-black leading-[1.3] tracking-tighter text-brand-deep md:mt-3 md:text-[31px] md:tracking-tight lg:text-[40px] xl:text-[46px]">
               <span className="text-emergency">川口市</span>の家族葬・直葬なら
               <br />
               自社式場の<span className="text-emergency">川口典礼</span>へ。
             </h1>
 
-            <p className="mt-2.5 text-[16px] font-bold leading-[1.7] text-ink md:mt-4 md:text-xl">
+            <p className="mt-2.5 text-[16px] font-bold leading-[1.7] text-ink md:mt-3 md:text-base lg:mt-4 lg:text-xl">
               まだ何も決まっていなくて、大丈夫です。
               <br />
               24時間365日、いまお電話がつながります。
@@ -208,7 +208,7 @@ export default function LpPage() {
               {HERO_POINTS.map((point) => (
                 <li
                   key={point}
-                  className="rounded-full border border-brand-tint bg-white/90 px-2.5 py-1 text-[12px] font-bold text-brand-deep shadow-sm md:px-3 md:py-1.5 md:text-sm"
+                  className="rounded-full border border-brand-tint bg-white/90 px-2.5 py-1 text-[12px] font-bold text-brand-deep shadow-sm md:px-2.5 md:py-1 md:text-[12px] lg:px-3 lg:py-1.5 lg:text-sm"
                 >
                   {point}
                 </li>
@@ -231,19 +231,20 @@ export default function LpPage() {
         </div>
 
         {/* 下段：式場の実写を全幅に敷き、左に円形バッジ、右にスタッフ。左右に余白を作らない */}
-        <div className="relative mt-auto h-[42vh] min-h-[250px] w-full md:absolute md:inset-y-0 md:right-0 md:mt-0 md:h-auto md:w-[44%]">
+        <div className="relative mt-auto h-[42vh] min-h-[250px] w-full md:absolute md:inset-y-0 md:right-0 md:mt-0 md:h-auto md:w-[46%]">
           <Image
             src="/images/home/hero/hall-exterior-hero.jpg"
             alt="川口メモリアルホールの外観"
             fill
             priority
             sizes="(min-width: 768px) 45vw, 100vw"
-            className="object-cover md:rounded-l-[2rem]"
+            className="object-cover object-center md:rounded-l-[2.5rem]"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-brand-deep/70 via-brand-deep/25 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-brand-deep/70 via-brand-deep/25 to-transparent md:rounded-l-[2.5rem]" />
+          <div className="absolute inset-0 hidden bg-gradient-to-r from-paper via-transparent to-transparent md:block md:rounded-l-[2.5rem]" />
 
           {/* 円形バッジ（左） */}
-          <div className="absolute bottom-[86px] left-3 z-10 flex h-[108px] w-[108px] items-center justify-center md:bottom-6 md:left-4 md:h-[124px] md:w-[124px]">
+          <div className="absolute bottom-[86px] left-3 z-10 flex h-[108px] w-[108px] items-center justify-center md:bottom-8 md:left-8 md:h-[140px] md:w-[140px]">
             <Image
               src="/images/lp/badge-circle.webp"
               alt=""
@@ -265,14 +266,14 @@ export default function LpPage() {
           </div>
 
           {/* スタッフ（イメージ） */}
-          <div className="pointer-events-none absolute bottom-0 right-0 h-full w-[62%] md:w-[76%]">
+          <div className="pointer-events-none absolute bottom-0 right-0 h-full w-[62%] md:h-[94%] md:w-[72%]">
             <Image
               src="/images/lp/staff-hero.webp"
               alt="黒いフォーマルスーツで対応する葬祭スタッフ（イメージ）"
               fill
               priority
               sizes="(min-width: 768px) 34vw, 62vw"
-              className="object-contain object-bottom"
+              className="object-contain object-bottom md:object-right-bottom"
             />
           </div>
 
