@@ -145,52 +145,75 @@ export default function LpPage() {
     <div className="bg-paper pb-28 text-ink">
       <LpTopBar />
 
-      {/* ヒーロー */}
-      <section className="relative">
-        <div className="relative min-h-[420px] w-full md:min-h-[520px]">
-          <Image
-            src="/images/home/hero/hall-exterior-hero.jpg"
-            alt="川口メモリアルホールの外観"
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-brand-deep/80 via-brand-deep/70 to-brand-deep/90" />
-          <div className="relative flex flex-col items-center justify-center px-5 py-10 text-center text-white">
-            <p className="rounded-full border border-white/50 px-3 py-1 text-[11px] tracking-[0.14em]">
+      {/* ヒーロー：競合7社はいずれも明るい背景＋濃い文字。暗いオーバーレイをやめた */}
+      <section className="relative overflow-hidden">
+        <Image
+          src="/images/lp/hero-bg.png"
+          alt=""
+          aria-hidden
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+        />
+        <div className="relative mx-auto max-w-4xl px-5 pb-4 pt-7 md:px-8 md:pt-10">
+          <div className="md:max-w-[62%]">
+            <p className="inline-block rounded-full bg-brand px-3 py-1 text-[11px] tracking-[0.12em] text-white">
               埼玉県川口市・新井宿／自社式場
             </p>
-            <h1 className="font-serif-jp mt-4 text-[27px] font-medium leading-tight md:text-[44px]">
-              川口市めぐりの森まで、
+            <h1 className="font-serif-jp mt-3 text-[27px] font-medium leading-[1.35] text-brand-deep md:text-[42px]">
+              <span className="text-emergency">川口市</span>のご葬儀を、
               <br />
-              車で約5分。
+              24時間365日承ります。
             </h1>
-            <p className="mt-3 text-sm leading-7 md:text-base">
-              駐車場70台の自社式場・川口メモリアルホール
-              <br />
-              直葬から家族葬・市民葬まで、24時間365日承ります
+            <p className="mt-3 text-sm leading-7 text-ink md:text-base">
+              川口市めぐりの森まで車で約5分。駐車場70台の自社式場
+              <br className="hidden md:block" />
+              「川口メモリアルホール」で、直葬から家族葬・市民葬まで。
             </p>
 
-            <dl className="mt-5 grid w-full max-w-md grid-cols-3 gap-2">
+            {/* 実績バッジ（ティアの金枠縦カードの型） */}
+            <dl className="mt-5 grid max-w-lg grid-cols-3 gap-2">
               {BADGES.map((badge) => (
                 <div
                   key={badge.label}
-                  className="rounded-lg border border-gold/50 bg-white/10 px-1 py-2.5"
+                  className="rounded-lg border-2 border-gold/70 bg-white/85 px-1 py-2.5 text-center shadow-sm"
                 >
-                  <dd className="font-serif-jp text-lg font-medium leading-tight text-gold md:text-2xl">
+                  <dd className="font-serif-jp text-xl font-medium leading-tight text-brand-deep md:text-3xl">
                     {badge.value}
                   </dd>
-                  <dt className="mt-1 text-[10px] leading-tight text-white/90">
+                  <dt className="mt-1 text-[10px] leading-tight text-ink-mid md:text-xs">
                     {badge.label}
                   </dt>
                 </div>
               ))}
             </dl>
+
+            {/* 実在の式場写真を小さく添える（AI画像と区別できるように） */}
+            <div className="mt-4 flex items-center gap-2">
+              <div className="relative h-16 w-24 overflow-hidden rounded-md border border-line md:h-20 md:w-32">
+                <Image
+                  src="/images/home/hero/hall-exterior-hero.jpg"
+                  alt="川口メモリアルホールの外観"
+                  fill
+                  priority
+                  sizes="128px"
+                  className="object-cover"
+                />
+              </div>
+              <p className="text-xs leading-5 text-ink-mid">
+                自社式場
+                <span className="font-semibold text-ink-deep">
+                  川口メモリアルホール
+                </span>
+                <br />
+                川口市西新井宿440-1／駐車場70台
+              </p>
+            </div>
           </div>
 
-          {/* スタッフ（イメージ）。競合各社と同様にヒーローへ人物を重ねる */}
-          <div className="pointer-events-none absolute bottom-0 right-0 hidden h-[86%] w-[38%] md:block">
+          {/* スタッフ（イメージ） */}
+          <div className="pointer-events-none absolute bottom-0 right-0 hidden h-[92%] w-[36%] md:block">
             <Image
               src="/images/lp/staff-hero.png"
               alt="黒いフォーマルスーツで対応する葬祭スタッフ（イメージ）"
@@ -200,8 +223,8 @@ export default function LpPage() {
               className="object-contain object-bottom"
             />
           </div>
-          <p className="absolute bottom-1 right-2 text-[9px] text-white/60">
-            ※写真はイメージです
+          <p className="mt-2 text-right text-[9px] text-ink-soft">
+            ※スタッフ写真はイメージです
           </p>
         </div>
       </section>
