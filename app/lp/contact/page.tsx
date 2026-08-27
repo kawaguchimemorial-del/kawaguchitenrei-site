@@ -14,7 +14,7 @@ export default function LpContactPage() {
       </header>
 
       <main className="mx-auto max-w-2xl px-5 py-8">
-        <h1 className="font-serif-jp text-xl font-medium md:text-2xl">
+        <h1 className="text-[24px] font-black md:text-3xl">
           メールでのご相談
         </h1>
         <p className="mt-3 text-[15px] font-medium leading-7 text-ink">

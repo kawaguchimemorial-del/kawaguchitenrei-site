@@ -38,10 +38,10 @@ export function LpHalls() {
         <p className="text-center text-xs tracking-[0.16em] text-brand-soft">
           HALL
         </p>
-        <h2 className="mt-1 text-center text-[24px] font-black md:text-3xl">
+        <h2 className="mt-1 text-center text-[24px] font-black text-ink-deep md:text-[38px]">
           川口市でご利用いただける式場
         </h2>
-        <p className="mx-auto mt-2 max-w-2xl text-center text-[15px] font-medium leading-7 text-ink">
+        <p className="mx-auto mt-3 max-w-3xl text-center text-[15px] font-medium leading-7 text-ink md:text-base md:leading-8">
           自社式場「川口メモリアルホール」のほか、川口市内の寺院会館・民営式場でのご葬儀にも対応しています。
           ご希望の地域・ご参列の人数・菩提寺とのお付き合いに合わせてお選びいただけます。
         </p>

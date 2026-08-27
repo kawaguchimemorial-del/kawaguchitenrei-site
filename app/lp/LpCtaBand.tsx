@@ -14,7 +14,7 @@ export function LpCtaBand({
   return (
     <section className="bg-brand-deep px-5 py-8 text-white">
       <div className="mx-auto max-w-2xl text-center">
-        <p className="font-serif-jp text-lg font-medium md:text-xl">{heading}</p>
+        <p className="text-xl font-black md:text-2xl">{heading}</p>
         <p className="mt-2 text-xs leading-6 text-white/80 md:text-sm">{note}</p>
         <a
           href={PHONE_HREF}

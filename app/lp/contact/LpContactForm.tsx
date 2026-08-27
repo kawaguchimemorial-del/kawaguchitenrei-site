@@ -44,7 +44,7 @@ export function LpContactForm() {
   if (state?.ok) {
     return (
       <div className="rounded-lg border-2 border-brand bg-white p-6">
-        <p className="font-serif-jp text-xl font-bold text-ink-deep">
+        <p className="text-xl font-black text-ink-deep">
           お問い合わせを受け付けました
         </p>
         <p className="mt-3 text-[15px] font-medium leading-7 text-ink">{state.message}</p>

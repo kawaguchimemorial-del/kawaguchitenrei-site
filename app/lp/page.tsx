@@ -324,7 +324,7 @@ export default function LpPage() {
           <p className="inline-block rounded bg-emergency px-3 py-1 text-xs font-bold text-white">
             ご危篤・ご逝去でお急ぎの方へ
           </p>
-          <h2 className="font-serif-jp mt-3 text-[22px] font-medium leading-snug text-ink-deep md:text-3xl">
+          <h2 className="mt-3 text-[24px] font-black leading-snug text-ink-deep md:text-[36px]">
             何も決まっていなくて
             <br className="md:hidden" />
             大丈夫です。
@@ -383,7 +383,7 @@ export default function LpPage() {
           <p className="text-center text-xs tracking-[0.16em] text-brand-soft">
             REASON
           </p>
-          <h2 className="font-serif-jp mt-1 text-center text-[24px] font-bold md:text-3xl">
+          <h2 className="mt-1 text-center text-[24px] font-black text-ink-deep md:text-[38px]">
             川口典礼が選ばれる理由
           </h2>
           <div className="mt-6 space-y-5">
@@ -401,7 +401,7 @@ export default function LpPage() {
                     sizes="(min-width: 768px) 672px, 100vw"
                     className="object-cover"
                   />
-                  <span className="font-serif-jp absolute left-0 top-0 bg-brand px-3 py-1 text-sm text-white">
+                  <span className="absolute left-0 top-0 bg-brand px-3 py-1 text-sm font-black text-white">
                     {item.label}
                   </span>
                 </div>
@@ -418,7 +418,7 @@ export default function LpPage() {
                     />
                   </div>
                   <div>
-                    <p className="font-serif-jp text-xl font-bold text-ink-deep md:text-xl">
+                    <p className="text-xl font-black text-ink-deep md:text-2xl">
                       {item.title}
                     </p>
                     <p className="mt-1.5 text-[15px] font-medium leading-7 text-ink">
@@ -441,13 +441,23 @@ export default function LpPage() {
           <p className="text-center text-xs tracking-[0.16em] text-brand-soft">
             PLAN
           </p>
-          <h2 className="font-serif-jp mt-1 text-center text-[24px] font-bold md:text-3xl">
+          <h2 className="mt-1 text-center text-[24px] font-black text-ink-deep md:text-[38px]">
             費用の目安
           </h2>
-          <p className="mx-auto mt-2 max-w-xl text-center text-[15px] font-medium leading-7 text-ink">
-            表示は通常価格です。ご葬儀の内容・人数・ご希望により変わりますので、
-            正式なお見積り時にご確認ください。
-          </p>
+          {/* 通常価格を出していることは、このLPで最も誤解されやすい点なので明示的に強調する */}
+          <div className="mx-auto mt-4 max-w-3xl rounded-xl border-2 border-brand-tint bg-paper px-5 py-4 text-center md:mt-5 md:px-6 md:py-5">
+            <p className="text-[17px] font-black leading-8 text-ink-deep md:text-[20px]">
+              表示している金額は
+              <span className="mx-1 rounded bg-emergency px-2 py-0.5 text-white">
+                通常価格
+              </span>
+              です。
+            </p>
+            <p className="mt-2 text-[15px] font-medium leading-7 text-ink md:text-base md:leading-8">
+              ご葬儀の内容・ご参列の人数・ご希望により変わります。
+              正式なお見積り時にご確認ください。
+            </p>
+          </div>
 
           <LpPlanTable />
 
@@ -476,7 +486,7 @@ export default function LpPage() {
           <p className="text-center text-xs tracking-[0.16em] text-brand-soft">
             VOICE
           </p>
-          <h2 className="font-serif-jp mt-1 text-center text-[24px] font-bold md:text-3xl">
+          <h2 className="mt-1 text-center text-[24px] font-black text-ink-deep md:text-[38px]">
             ご葬儀を終えられたご家族から
           </h2>
           <p className="mt-2 text-center text-sm text-ink-mid">
@@ -540,7 +550,7 @@ export default function LpPage() {
               <p className="text-xs text-ink-mid">いただいているご評価</p>
               <div className="mt-1 flex items-center justify-center gap-2">
                 <LpStars rating={reviewSummary.total.rating} className="text-xl" />
-                <span className="font-serif-jp text-3xl font-medium leading-none text-brand-deep">
+                <span className="text-[34px] font-black leading-none text-brand-deep">
                   {reviewSummary.total.rating}
                 </span>
               </div>
@@ -584,7 +594,7 @@ export default function LpPage() {
           <p className="text-center text-xs tracking-[0.16em] text-brand-soft">
             HALL
           </p>
-          <h2 className="font-serif-jp mt-1 text-center text-[24px] font-bold md:text-3xl">
+          <h2 className="mt-1 text-center text-[24px] font-black text-ink-deep md:text-[38px]">
             川口メモリアルホール
           </h2>
           <div className="mt-5 grid grid-cols-2 gap-2 md:grid-cols-3">
@@ -665,7 +675,7 @@ export default function LpPage() {
           <p className="text-center text-xs tracking-[0.16em] text-brand-soft">
             FLOW
           </p>
-          <h2 className="font-serif-jp mt-1 text-center text-[24px] font-bold md:text-3xl">
+          <h2 className="mt-1 text-center text-[24px] font-black text-ink-deep md:text-[38px]">
             お電話をいただいてからの流れ
           </h2>
           <p className="mt-2 text-center text-[13px] text-ink-soft">
@@ -712,7 +722,7 @@ export default function LpPage() {
           <p className="text-center text-xs tracking-[0.16em] text-brand-soft">
             FAQ
           </p>
-          <h2 className="font-serif-jp mt-1 text-center text-[24px] font-bold md:text-3xl">
+          <h2 className="mt-1 text-center text-[24px] font-black text-ink-deep md:text-[38px]">
             よくあるご質問
           </h2>
           <div className="mt-6 space-y-2">
@@ -737,7 +747,7 @@ export default function LpPage() {
           <p className="text-center text-xs tracking-[0.16em] text-gold">
             CONTACT
           </p>
-          <h2 className="font-serif-jp mt-1 text-center text-[24px] font-bold text-white md:text-3xl">
+          <h2 className="mt-1 text-center text-[24px] font-black text-white md:text-[38px]">
             メールでのご相談
           </h2>
           <p className="mt-2 text-center text-sm leading-7 text-white/85">

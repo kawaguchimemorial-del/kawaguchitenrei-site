@@ -95,7 +95,7 @@ export function LpPlanTable() {
               <div>
                 <p className="text-xs text-ink-mid">{plan.lead}</p>
                 <p
-                  className="font-serif-jp mt-0.5 whitespace-nowrap text-xl font-medium"
+                  className="mt-0.5 whitespace-nowrap text-[22px] font-black"
                   style={{ color: plan.accent }}
                 >
                   {plan.name}
@@ -133,7 +133,7 @@ export function LpPlanTable() {
 
             <div className="px-4 pb-4 pt-3">
               <p
-                className="font-serif-jp text-center text-[26px] font-medium leading-tight"
+                className="text-center text-[26px] font-black leading-tight"
                 style={{ color: plan.accent }}
               >
                 {plan.name}
