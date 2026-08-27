@@ -75,11 +75,11 @@ export function LpPreneed() {
           </div>
           <div className="flex-1 bg-brand-deep p-5 text-white md:p-6">
             <p className="text-[18px] font-black leading-snug md:text-lg lg:text-xl">
-              急がずに、ご希望をうかがう時間を取れます
+              ご希望やご不安を、ゆっくりおうかがいします
             </p>
             <p className="mt-2 text-[14px] font-medium leading-7 text-white/90 md:text-[15px] md:leading-8">
               ご予算、ご参列いただく方の人数、菩提寺とのお付き合い、ご安置の場所。
-              事前にうかがっておくことで、その時にお決めいただくことを減らせます。
+              あらかじめうかがっておくことで、いざという時に決めなければならないことを減らせます。
               お電話でも、フォームでも承ります。
             </p>
             <div className="mt-4 grid gap-2 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2">
