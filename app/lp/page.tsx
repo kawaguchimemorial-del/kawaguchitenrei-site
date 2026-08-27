@@ -5,6 +5,7 @@ import { company } from "@/lib/company";
 import { reviewSummary } from "@/lib/reviews";
 import { voices } from "@/lib/voices";
 import { LpContactForm } from "./contact/LpContactForm";
+import { LpHalls } from "./LpHalls";
 import { LpPhoneBox } from "./LpPhoneBox";
 import { LpPlanTable } from "./LpPlanTable";
 import { LpStars } from "./LpStars";
@@ -430,6 +431,8 @@ export default function LpPage() {
           </div>
         </div>
       </section>
+
+      <LpHalls />
 
       {/* 費用 */}
       <section id="price" className="scroll-mt-24 bg-white px-5 py-10">
