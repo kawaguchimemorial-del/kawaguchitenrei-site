@@ -74,6 +74,17 @@ const REASONS = [
     title: "貸式場ではない、自社の式場です",
     body: "時間に追われることなく、ご家族のペースでお別れの時間をお過ごしいただけます。",
   },
+  {
+    // 旧LPの「事前説明で安心料金プラン」を引き継ぐ項目。
+    // 「追加費用なし」「総額確定」とは書かない（CLAUDE.md §11・§14）。
+    // 金額を保証するのではなく、ご了承なく増えないという進め方の約束として書く。
+    image: "/images/lp/reason-estimate.webp",
+    alt: "お見積りの内容を説明する様子（イメージ）",
+    icon: "/images/lp/reason-estimate-icon.webp",
+    label: "04",
+    title: "費用は、お見積りでご説明します",
+    body: "お見積りにない費用が、ご家族のご了承なく加わることはありません。内容が変わる場合は、その都度ご説明したうえでお決めいただきます。",
+  },
 ];
 
 const FLOW = [
@@ -427,6 +438,10 @@ export default function LpPage() {
           <h2 className="mt-1 text-center text-[24px] font-black text-ink-deep md:text-[38px]">
             川口典礼が選ばれる理由
           </h2>
+          <p className="mx-auto mt-3 max-w-3xl text-center text-[15px] font-medium leading-7 text-ink md:text-base md:leading-8">
+            川口市で創業20年。年間約260件のご葬儀をお手伝いしてきました。
+            川口市の葬祭事業（市民葬）の登録店として、制度のご利用もご案内できます。
+          </p>
           <div className="mt-6 space-y-5">
             {REASONS.map((item) => (
               <div
