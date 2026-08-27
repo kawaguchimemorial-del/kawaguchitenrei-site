@@ -45,7 +45,10 @@ function Price({ plan, big = false }: { plan: LpPlan; big?: boolean }) {
   return (
     <div>
       <p className="whitespace-nowrap leading-none text-emergency">
+        {/* 数字は和文フォントに900の字形がなく font-black だけでは太りきらないため、
+            同色の輪郭を足して太らせる（競合の価格表示に合わせた） */}
         <span
+          style={{ WebkitTextStroke: "0.9px currentColor" }}
           className={`font-black tracking-tight ${
             big ? "text-[40px]" : "text-[30px] md:text-[34px]"
           }`}
@@ -53,6 +56,7 @@ function Price({ plan, big = false }: { plan: LpPlan; big?: boolean }) {
           {plan.mainAmount}
         </span>
         <span
+          style={{ WebkitTextStroke: "0.4px currentColor" }}
           className={`ml-0.5 font-black ${
             big ? "text-[18px]" : "text-[15px]"
           }`}
