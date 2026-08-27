@@ -347,7 +347,7 @@ export default function KawaguchiAreaPage() {
             </p>
             <ul className="mt-3 grid gap-2 text-sm leading-7 text-ink-mid sm:grid-cols-2">
               <li>・参列人数（お料理・返礼品の数）</li>
-              <li>・式場使用料（外部斎場を利用する場合）</li>
+              <li>・式場使用料（川口メモリアルホール以外を利用する場合）</li>
               <li>・火葬料（川口市めぐりの森は川口市民30,000円〜が目安）</li>
               <li>・宗教者へのお礼（お勤めをご希望の場合）</li>
               <li>・ご安置日数（友引・火葬場の予約状況による）</li>
