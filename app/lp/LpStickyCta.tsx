@@ -24,7 +24,7 @@ export function LpStickyCta() {
           href="/lp/contact/"
           className="flex flex-1 flex-col items-center justify-center rounded-lg border-2 border-brand bg-white px-2 py-2.5 text-brand transition hover:bg-brand-tint"
         >
-          <span className="text-[13px] font-semibold">メールで</span>
+          <span className="text-[13px] font-semibold">事前の</span>
           <span className="text-sm font-bold leading-tight">ご相談</span>
         </Link>
       </div>

@@ -32,7 +32,7 @@ export function LpCtaBand({
           href="/lp/contact/"
           className="mt-3 inline-block text-sm text-white/90 underline underline-offset-4"
         >
-          メールでのご相談はこちら
+          事前のご相談はこちら
         </Link>
       </div>
     </section>

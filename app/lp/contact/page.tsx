@@ -15,13 +15,11 @@ export default function LpContactPage() {
 
       <main className="mx-auto max-w-2xl px-5 py-8">
         <h1 className="text-[24px] font-black md:text-3xl">
-          メールでのご相談
+          事前のご相談フォーム
         </h1>
-        <p className="mt-3 text-[15px] font-medium leading-7 text-ink">
-          ご葬儀のご依頼、費用のご相談、式場の見学など、どのようなことでもお受けしています。
-          <strong className="font-semibold text-ink-deep">
-            お急ぎの場合は、お電話のほうが早くご案内できます。
-          </strong>
+        <p className="mt-3 rounded-lg border border-emergency/40 bg-emergency/5 px-4 py-3 text-[15px] font-bold leading-7 text-ink-deep">
+          ご逝去後のお急ぎのご依頼は、お電話でお願いします。
+          フォームは、事前のご相談・お見積り・式場見学のお申し込みにご利用ください。
         </p>
 
         <a

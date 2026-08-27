@@ -58,7 +58,7 @@ export function LpPhoneBox({
                 : "border-brand bg-white text-brand"
             }`}
           >
-            メールで相談する
+            事前に相談する
           </Link>
         </div>
       </div>

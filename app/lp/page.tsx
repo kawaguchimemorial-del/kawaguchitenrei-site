@@ -803,13 +803,15 @@ export default function LpPage() {
       <section id="contact" className="scroll-mt-24 bg-brand-deep px-5 py-10">
         <div className="mx-auto max-w-2xl">
           <p className="text-center text-xs tracking-[0.16em] text-gold">
-            CONTACT
+            PRE-CONSULTATION
           </p>
           <h2 className="mt-1 text-center text-[24px] font-black text-white md:text-[38px]">
-            メールでのご相談
+            事前のご相談フォーム
           </h2>
-          <p className="mt-2 text-center text-sm leading-7 text-white/85">
-            お急ぎの場合は、お電話のほうが早くご案内できます。
+          <p className="mx-auto mt-3 max-w-2xl rounded-lg border border-white/40 bg-white/10 px-4 py-3 text-center text-[15px] font-bold leading-7 text-white">
+            ご逝去後のお急ぎのご依頼は、お電話でお願いします。
+            <br className="hidden md:block" />
+            フォームは、事前のご相談・お見積り・式場見学のお申し込みにご利用ください。
           </p>
           <a
             href={PHONE_HREF}

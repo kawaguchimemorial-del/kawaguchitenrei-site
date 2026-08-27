@@ -8,6 +8,32 @@ import { SpamGuardFields } from "@/components/forms/SpamGuardFields";
 import { PHONE_DISPLAY, PHONE_HREF } from "../lp-data";
 import { submitLpContact, type LpContactFormState } from "./actions";
 
+/**
+ * 事前のご相談フォーム。
+ *
+ * ご逝去後のお急ぎのご依頼は電話でしか間に合わないため、このフォームは
+ * 事前相談の受け皿に限定する（2026-08-27 松澤指示）。
+ *
+ * 「ご危篤」「余命」といった病状そのものは尋ねない。
+ * 要配慮個人情報を集めないため、差し迫り具合だけを任意でうかがう（§12）。
+ */
+
+const PURPOSE_OPTIONS = [
+  "費用の目安を知りたい",
+  "式場を見学したい",
+  "葬儀の流れを知りたい",
+  "川口市民葬について知りたい",
+  "その他",
+];
+
+const TIMING_OPTIONS = [
+  "具体的な予定はないが、備えておきたい",
+  "近いうちに必要になるかもしれない",
+  "差し迫った状況にある",
+];
+
+const CONTACT_OPTIONS = ["電話", "メール", "どちらでも"];
+
 const inputBase =
   "block w-full rounded-lg border border-line bg-white px-4 py-3 text-base text-ink-deep transition focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/30";
 
@@ -45,9 +71,11 @@ export function LpContactForm() {
     return (
       <div className="rounded-lg border-2 border-brand bg-white p-6">
         <p className="text-xl font-black text-ink-deep">
-          お問い合わせを受け付けました
+          ご相談を受け付けました
         </p>
-        <p className="mt-3 text-[15px] font-medium leading-7 text-ink">{state.message}</p>
+        <p className="mt-3 text-[15px] font-medium leading-7 text-ink">
+          {state.message}
+        </p>
         <a
           href={PHONE_HREF}
           className="mt-5 flex flex-col items-center rounded-lg bg-emergency px-4 py-3 text-white"
@@ -72,7 +100,7 @@ export function LpContactForm() {
       )}
 
       <div>
-        <label htmlFor="lp-name" className="block text-sm font-semibold">
+        <label htmlFor="lp-name" className="block text-sm font-bold">
           お名前
           <Required />
         </label>
@@ -87,7 +115,7 @@ export function LpContactForm() {
       </div>
 
       <div>
-        <label htmlFor="lp-phone" className="block text-sm font-semibold">
+        <label htmlFor="lp-phone" className="block text-sm font-bold">
           電話番号
           <Required />
         </label>
@@ -103,7 +131,7 @@ export function LpContactForm() {
       </div>
 
       <div>
-        <label htmlFor="lp-email" className="block text-sm font-semibold">
+        <label htmlFor="lp-email" className="block text-sm font-bold">
           メールアドレス
           <span className="ml-2 text-xs font-normal text-ink-soft">任意</span>
         </label>
@@ -116,21 +144,75 @@ export function LpContactForm() {
         />
       </div>
 
-      <div>
-        <label htmlFor="lp-message" className="block text-sm font-semibold">
-          ご状況
+      <fieldset>
+        <legend className="text-sm font-bold">
+          ご相談内容
           <Required />
+          <span className="ml-2 text-xs font-normal text-ink-soft">
+            いくつでも
+          </span>
+        </legend>
+        <div className="mt-2 space-y-2">
+          {PURPOSE_OPTIONS.map((option) => (
+            <label
+              key={option}
+              className="flex items-center gap-2 rounded-lg border border-line bg-white px-3 py-2.5 text-[15px]"
+            >
+              <input type="checkbox" name="purpose" value={option} />
+              {option}
+            </label>
+          ))}
+        </div>
+        <FieldError message={state?.errors?.purpose} />
+      </fieldset>
+
+      <fieldset>
+        <legend className="text-sm font-bold">
+          ご相談の時期
+          <span className="ml-2 text-xs font-normal text-ink-soft">任意</span>
+        </legend>
+        <div className="mt-2 space-y-2">
+          {TIMING_OPTIONS.map((option) => (
+            <label
+              key={option}
+              className="flex items-center gap-2 rounded-lg border border-line bg-white px-3 py-2.5 text-[15px]"
+            >
+              <input type="radio" name="timing" value={option} />
+              {option}
+            </label>
+          ))}
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend className="text-sm font-bold">
+          ご希望の連絡方法
+          <span className="ml-2 text-xs font-normal text-ink-soft">任意</span>
+        </legend>
+        <div className="mt-2 flex flex-wrap gap-2">
+          {CONTACT_OPTIONS.map((option) => (
+            <label
+              key={option}
+              className="flex items-center gap-2 rounded-lg border border-line bg-white px-3 py-2.5 text-[15px]"
+            >
+              <input type="radio" name="preferredContact" value={option} />
+              {option}
+            </label>
+          ))}
+        </div>
+      </fieldset>
+
+      <div>
+        <label htmlFor="lp-message" className="block text-sm font-bold">
+          ご質問・ご希望
+          <span className="ml-2 text-xs font-normal text-ink-soft">任意</span>
         </label>
-        <p className="mt-1 text-xs leading-6 text-ink-soft">
-          「病院からお迎えをお願いしたい」「費用を知りたい」など、ひとことで構いません。
-        </p>
         <textarea
           id="lp-message"
           name="message"
           rows={4}
           className={`mt-2 ${inputBase}`}
         />
-        <FieldError message={state?.errors?.message} />
       </div>
 
       <div>
@@ -160,8 +242,16 @@ export function LpContactForm() {
         disabled={pending}
         className="w-full rounded-lg bg-brand px-5 py-4 text-base font-bold text-white transition hover:bg-brand-deep disabled:opacity-60"
       >
-        {pending ? "送信中..." : "この内容で送信する"}
+        {pending ? "送信中..." : "この内容で相談する"}
       </button>
+
+      <p className="text-center text-[13px] leading-6 text-ink-mid">
+        ご逝去後のお急ぎのご依頼は、
+        <a href={PHONE_HREF} className="font-bold text-emergency underline">
+          {PHONE_DISPLAY}
+        </a>
+        までお電話ください。
+      </p>
     </form>
   );
 }

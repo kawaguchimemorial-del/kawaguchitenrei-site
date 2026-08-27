@@ -4,11 +4,15 @@ import { sendWebhook } from "@/lib/forms/sendWebhook";
 import { assessBot, assessSpam, shouldDiscard } from "@/lib/forms/antispam";
 import { isBotSubmission } from "@/lib/forms/botid";
 
-// 広告LP専用の問い合わせ。本サイトの /contact/ とは formType だけが異なる。
+// 広告LP専用の「事前のご相談」フォーム。
+// ご逝去後のお急ぎのご依頼は電話でしか間に合わないため、このフォームは
+// 事前相談（ご危篤・ご高齢のご家族がいる・備えておきたい）の受け皿に限定する
+// （2026-08-27 松澤指示）。
+//
 // 送信先の Webhook は共通で、振り分け（件名の【広告LP】付与・シートの流入元列）は
 // Google Apps Script 側で formType: "lp_contact" を見て行う。
 const LP_CONTACT_SUCCESS_MESSAGE =
-  "お問い合わせを受け付けました。折り返しご連絡いたします。お急ぎの場合は 0120-963-765 までお電話ください。";
+  "ご相談を受け付けました。担当者より折り返しご連絡いたします。お急ぎの場合は 0120-963-765 までお電話ください。";
 
 export type LpContactFormState = {
   ok?: boolean;
@@ -16,11 +20,11 @@ export type LpContactFormState = {
   message?: string;
 } | null;
 
-// 緊急層向けのため必須は3項目のみ（2026-08-26 15名討議の合議）。
+// 必須は3項目まで。事前相談なので、何を聞きたいかを選べるようにする。
 const REQUIRED_FIELDS: { name: string; label: string }[] = [
   { name: "name", label: "お名前" },
   { name: "phone", label: "電話番号" },
-  { name: "message", label: "ご状況" },
+  { name: "purpose", label: "ご相談内容" },
 ];
 
 function isPhone(value: string): boolean {
@@ -70,6 +74,11 @@ export async function submitLpContact(
     name: formData.get("name"),
     phone: formData.get("phone"),
     email: formData.get("email"),
+    // ご相談内容（複数選択）と、差し迫り具合。
+    // 病状そのものは尋ねない（要配慮個人情報を集めないため）。
+    purpose: formData.getAll("purpose").join("／"),
+    timing: formData.get("timing"),
+    preferredContact: formData.get("preferredContact"),
     message: formData.get("message"),
     submittedAt: new Date().toISOString(),
     ...bot,

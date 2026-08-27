@@ -98,7 +98,7 @@ export function LpPreneed() {
                 href="#contact"
                 className="flex items-center justify-center rounded-lg border-2 border-white px-4 py-3 text-[15px] font-bold text-white"
               >
-                メールで相談する
+                相談フォームへ
               </Link>
             </div>
             <p className="mt-3 text-[12px] leading-5 text-white/70">

@@ -40,7 +40,7 @@ export function LpTopBar() {
             href="#contact"
             className="hidden rounded-lg border-2 border-brand px-3 py-2 text-xs font-bold text-brand md:block"
           >
-            メール相談
+            事前相談
           </Link>
         </div>
       </div>
