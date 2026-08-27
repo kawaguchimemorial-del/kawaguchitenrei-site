@@ -168,15 +168,42 @@ export default function LpPage() {
           ・下段：式場の実写を全幅に敷き、左に円形バッジ、右にスタッフ。余白を作らない
           ・本サイトのセリフ体基調（§3）はLPには適用しない（§21） */}
       <section className="relative flex min-h-[calc(100svh-84px)] flex-col overflow-hidden md:min-h-[580px] md:justify-center">
-        <Image
-          src="/images/lp/hero-bg.webp"
-          alt=""
+        {/* 背景はCSSのグラデーションで作る。
+            以前は背景写真の四隅に柄を描き込んでいたが、object-cover で
+            画面比率に応じて柄が切り落とされ、単色の余白に見えていた。
+            装飾は独立した素材として位置を固定する。 */}
+        <div
           aria-hidden
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover"
+          className="absolute inset-0 bg-[linear-gradient(160deg,#ffffff_0%,#fbf9f4_45%,#f3f1e8_100%)]"
         />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -left-10 -top-8 h-56 w-56 opacity-70 md:-left-14 md:-top-12 md:h-80 md:w-80"
+        >
+          <Image
+            src="/images/lp/ornament-lily.webp"
+            alt=""
+            aria-hidden
+            fill
+            priority
+            sizes="320px"
+            className="object-contain"
+          />
+        </div>
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -bottom-10 left-1/3 hidden h-72 w-72 rotate-180 opacity-50 md:block"
+        >
+          <Image
+            src="/images/lp/ornament-lily.webp"
+            alt=""
+            aria-hidden
+            fill
+            loading="lazy"
+            sizes="288px"
+            className="object-contain"
+          />
+        </div>
 
         {/* 上段：見出し */}
         <div className="relative px-5 pt-3.5 md:mx-auto md:w-full md:max-w-6xl md:px-10 md:pt-0">
