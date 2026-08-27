@@ -63,18 +63,18 @@ export function LpPreneed() {
         </div>
 
         <div className="mt-6 overflow-hidden rounded-xl border border-line md:flex">
-          <div className="relative h-44 w-full md:h-auto md:w-2/5">
+          <div className="relative h-48 w-full md:h-auto md:w-1/2">
             <Image
-              src="/images/lp/staff-greeting.webp"
-              alt="ご相談にお迎えする葬祭スタッフ（イメージ）"
+              src="/images/lp/preneed-meeting.webp"
+              alt="明るい応接室でご夫婦の事前相談に応じる葬祭スタッフ（イメージ）"
               fill
               loading="lazy"
-              sizes="(min-width: 768px) 320px, 100vw"
-              className="object-contain object-bottom md:object-center"
+              sizes="(min-width: 768px) 480px, 100vw"
+              className="object-cover"
             />
           </div>
           <div className="flex-1 bg-brand-deep p-5 text-white md:p-6">
-            <p className="text-[18px] font-black leading-snug md:text-xl">
+            <p className="text-[18px] font-black leading-snug md:text-lg lg:text-xl">
               急がずに、ご希望をうかがう時間を取れます
             </p>
             <p className="mt-2 text-[14px] font-medium leading-7 text-white/90 md:text-[15px] md:leading-8">
@@ -82,7 +82,7 @@ export function LpPreneed() {
               事前にうかがっておくことで、その時にお決めいただくことを減らせます。
               お電話でも、フォームでも承ります。
             </p>
-            <div className="mt-4 grid gap-2 sm:grid-cols-2">
+            <div className="mt-4 grid gap-2 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2">
               <a
                 href={PHONE_HREF}
                 className="flex flex-col items-center rounded-lg bg-emergency px-4 py-3 transition hover:bg-emergency-deep"
@@ -90,7 +90,7 @@ export function LpPreneed() {
                 <span className="text-[11px] font-bold">
                   24時間365日・通話無料
                 </span>
-                <span className="text-xl font-bold tracking-wide">
+                <span className="whitespace-nowrap text-xl font-bold tracking-wide">
                   {PHONE_DISPLAY}
                 </span>
               </a>
