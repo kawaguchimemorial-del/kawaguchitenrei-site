@@ -7,6 +7,7 @@ import { voices } from "@/lib/voices";
 import { LpContactForm } from "./contact/LpContactForm";
 import { LpHalls } from "./LpHalls";
 import { LpPhoneBox } from "./LpPhoneBox";
+import { LpPreneed } from "./LpPreneed";
 import { LpPlanTable } from "./LpPlanTable";
 import { LpStars } from "./LpStars";
 import { LpStickyCta } from "./LpStickyCta";
@@ -283,31 +284,44 @@ export default function LpPage() {
 
       {/* 入口分岐：お急ぎの方と、ご会葬の方を最初に分ける（光彩セレモの型） */}
       <section className="bg-white px-4 py-5">
-        <div className="mx-auto grid max-w-2xl grid-cols-2 gap-2">
+        <div className="mx-auto grid max-w-2xl grid-cols-3 gap-1.5">
           <a
             href="#urgent"
-            className="rounded-xl border-2 border-emergency bg-emergency/5 px-3 py-3 text-center"
+            className="rounded-xl border-2 border-emergency bg-emergency/5 px-2 py-3 text-center"
           >
-            <span className="block text-sm font-bold text-emergency">
-              ご危篤・ご逝去で
+            <span className="block text-[13px] font-bold leading-snug text-emergency md:text-sm">
+              ご危篤・ご逝去
               <br />
-              お急ぎの方
+              でお急ぎの方
             </span>
-            <span className="mt-1 block text-[13px] text-ink-mid">
-              いま何をすればよいか →
+            <span className="mt-1 block text-[12px] leading-tight text-ink-mid">
+              いま何をすべきか →
+            </span>
+          </a>
+          <a
+            href="#preneed"
+            className="rounded-xl border-2 border-brand bg-brand/5 px-2 py-3 text-center"
+          >
+            <span className="block text-[13px] font-bold leading-snug text-brand-deep md:text-sm">
+              事前に
+              <br />
+              相談したい方
+            </span>
+            <span className="mt-1 block text-[12px] leading-tight text-ink-mid">
+              相談・見積り無料 →
             </span>
           </a>
           <a
             href="#hall"
-            className="rounded-xl border-2 border-brand bg-brand/5 px-3 py-3 text-center"
+            className="rounded-xl border-2 border-line bg-white px-2 py-3 text-center"
           >
-            <span className="block text-sm font-bold text-brand-deep">
-              ご会葬の方へ
+            <span className="block text-[13px] font-bold leading-snug text-ink-deep md:text-sm">
+              ご会葬の
               <br />
-              （式場のご案内）
+              方へ
             </span>
-            <span className="mt-1 block text-[13px] text-ink-mid">
-              場所・駐車場を見る →
+            <span className="mt-1 block text-[12px] leading-tight text-ink-mid">
+              場所・駐車場 →
             </span>
           </a>
         </div>
@@ -444,18 +458,18 @@ export default function LpPage() {
           <h2 className="mt-1 text-center text-[24px] font-black text-ink-deep md:text-[38px]">
             費用の目安
           </h2>
-          {/* 通常価格を出していることは、このLPで最も誤解されやすい点なので明示的に強調する */}
+          {/* 何が「セット」に含まれ、何で総額が変わるのかを先に示す。
+              通常価格か会員価格かは、表のヘッダーと各行の補足で示している。 */}
           <div className="mx-auto mt-4 max-w-3xl rounded-xl border-2 border-brand-tint bg-paper px-5 py-4 text-center md:mt-5 md:px-6 md:py-5">
             <p className="text-[17px] font-black leading-8 text-ink-deep md:text-[20px]">
               表示している金額は
               <span className="mx-1 rounded bg-emergency px-2 py-0.5 text-white">
-                通常価格
+                セットプラン
               </span>
-              です。
+              の価格です。
             </p>
             <p className="mt-2 text-[15px] font-medium leading-7 text-ink md:text-base md:leading-8">
-              ご葬儀の内容・ご参列の人数・ご希望により変わります。
-              正式なお見積り時にご確認ください。
+              ご葬儀の規模、返礼品、お食事の有無などにより、最終的なお見積り金額が決まります。
             </p>
           </div>
 
@@ -479,6 +493,8 @@ export default function LpPage() {
           </div>
         </div>
       </section>
+
+      <LpPreneed />
 
       {/* お客様の声（手書きアンケート） */}
       <section className="px-5 py-10">
