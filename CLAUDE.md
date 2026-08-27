@@ -190,6 +190,11 @@ SEO/AIO の観点では、構造化データ・見出し階層・地名×サー�
 - 遺影・名札・会葬礼状などが写る画像は **掲載前に必ず人間が確認**
 - フォーム改修時は `docs/04-privacy-review.md` のチェックリストを実行
 - Google Apps Script Webhook 連携・バリデーション・エラー表示を壊さない
+- **GAS のコードを変更したら、必ず `docs/operations/gas/form-webhook.gs` も同じ内容に更新する。**
+  GAS 本体は Google 側にあり、リポジトリからは追えない。写しを置いておかないと
+  「今どうなっているか」が分からなくなる（2026-08-27 に実際に探すところから始まった）
+- **逆に、写しだけを直しても本番には反映されない。** GAS への貼り付けとデプロイが必要
+- フォームの送信項目（`sendWebhook` の payload）を増減したら、GAS 側の受け取りも同時に直す
 
 ---
 
@@ -241,6 +246,8 @@ SEO/AIO の観点では、構造化データ・見出し階層・地名×サー�
 | 競合分析 | `docs/02-competitor-analysis-summary.md` |
 | 改修ロードマップ | `docs/03-improvement-roadmap.md` |
 | Privacy Review | `docs/04-privacy-review.md` |
+| GAS Webhook の仕様・更新手順 | `docs/operations/2026-08-27-gas-webhook-spec.md` |
+| GAS Webhook のコード（本体の写し） | `docs/operations/gas/form-webhook.gs` |
 | 文言・コンテンツ方針 | `docs/05-content-guidelines.md` |
 | 作業用プロンプト集 | `docs/prompts/claude-code-prompts.md` |
 | SEO/AIO 評価チェックリスト | `docs/eval/seo-aio-checklist.md` |
