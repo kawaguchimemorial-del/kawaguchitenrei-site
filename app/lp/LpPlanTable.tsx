@@ -45,17 +45,23 @@ function Price({ plan, big = false }: { plan: LpPlan; big?: boolean }) {
   return (
     <div>
       <p className="whitespace-nowrap leading-none text-emergency">
-        <span className={`font-bold ${big ? "text-[40px]" : "text-[26px]"}`}>
+        <span
+          className={`font-black tracking-tight ${
+            big ? "text-[40px]" : "text-[30px] md:text-[34px]"
+          }`}
+        >
           {plan.mainAmount}
         </span>
         <span
-          className={`ml-0.5 font-bold ${big ? "text-[18px]" : "text-[14px]"}`}
+          className={`ml-0.5 font-black ${
+            big ? "text-[18px]" : "text-[15px]"
+          }`}
         >
           {plan.mainSuffix}
         </span>
       </p>
       {plan.memberPrice && (
-        <p className="mt-1.5 text-[13px] leading-5 text-ink-soft">
+        <p className="mt-1.5 text-[13px] font-medium leading-5 text-ink-mid">
           事前相談会員価格 {plan.memberPrice}
         </p>
       )}
@@ -68,7 +74,7 @@ export function LpPlanTable() {
     <div className="mt-6">
       {/* PC：プラン名／通常価格／葬儀の流れ の3列 */}
       <div className="hidden overflow-hidden rounded-xl border border-line md:block">
-        <div className="grid grid-cols-[minmax(0,1fr)_230px_210px] bg-brand text-sm font-bold text-white">
+        <div className="grid grid-cols-[minmax(0,1fr)_296px_200px] bg-brand text-sm font-bold text-white">
           <div className="px-4 py-2.5">プラン名</div>
           <div className="border-l border-white/20 px-4 py-2.5">通常価格</div>
           <div className="border-l border-white/20 px-4 py-2.5">葬儀の流れ</div>
@@ -77,17 +83,17 @@ export function LpPlanTable() {
           <Link
             key={plan.slug}
             href={plan.href}
-            className="grid grid-cols-[minmax(0,1fr)_230px_210px] items-center border-t border-line bg-white transition hover:bg-paper"
+            className="grid grid-cols-[minmax(0,1fr)_296px_200px] items-center border-t border-line bg-white transition hover:bg-paper"
           >
             <div className="flex items-center gap-4 px-4 py-4">
               {plan.image && (
-                <div className="relative h-20 w-28 shrink-0 overflow-hidden rounded">
+                <div className="relative h-32 w-48 shrink-0 overflow-hidden rounded-lg">
                   <Image
                     src={plan.image.src}
                     alt={plan.image.alt}
                     fill
                     loading="lazy"
-                    sizes="112px"
+                    sizes="192px"
                     className="object-cover"
                   />
                 </div>
