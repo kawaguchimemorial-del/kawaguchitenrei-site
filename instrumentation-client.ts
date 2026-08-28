@@ -9,5 +9,10 @@ initBotId({
     { path: "/contact/", method: "POST" },
     { path: "/estimate", method: "POST" },
     { path: "/estimate/", method: "POST" },
+    // 広告LPの事前相談フォーム。ここを登録し忘れると、クライアント側の
+    // BotID トークンが発行されず checkBotId() が bot と判定し、
+    // 画面上は「受け付けました」と出たまま送信されない（2026-08-28 に発生）。
+    { path: "/lp/contact", method: "POST" },
+    { path: "/lp/contact/", method: "POST" },
   ],
 });
