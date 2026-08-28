@@ -66,7 +66,13 @@ export async function submitLpContact(
   });
 
   // bot に気付かせないため、破棄時も画面上は通常の完了表示を返す。
-  if (shouldDiscard(spam) || (await isBotSubmission())) {
+  const botLike = await isBotSubmission();
+  if (shouldDiscard(spam) || botLike) {
+    // 個人情報は出さない。どちらの判定で止めたかだけ残す。
+    // これが無いと「成功画面が出るのに届かない」原因を追えない（2026-08-28）。
+    console.warn(
+      `[lp_contact] discarded: gibberish=${spam.gibberishHits > 0} botid=${botLike}`
+    );
     return { ok: true, message: LP_CONTACT_SUCCESS_MESSAGE };
   }
 
