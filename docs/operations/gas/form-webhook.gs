@@ -478,6 +478,42 @@ function jsonResponse(obj) {
 // 関数を選択して testContact / testEstimate / testLpContact / testCustomerSurvey を実行できます
 // --------------------------------------------------------------
 
+// 2026-08-28 追加：設定の確認用。
+// 「どのスプレッドシートに書いて、どのアドレスに送っているか」を実行ログに出す。
+// 秘密トークンは出さない（設定されているかどうかだけ表示）。
+function showConfig() {
+  const spreadsheetId = PROPS.getProperty("SPREADSHEET_ID");
+  const adminEmail = PROPS.getProperty("ADMIN_EMAIL");
+  const secret = PROPS.getProperty("FORM_WEBHOOK_SECRET");
+
+  Logger.log("ADMIN_EMAIL（通知先）: " + (adminEmail || "未設定"));
+  Logger.log("FORM_WEBHOOK_SECRET : " + (secret ? "設定あり（" + secret.length + "文字）" : "未設定"));
+
+  if (!spreadsheetId) {
+    Logger.log("SPREADSHEET_ID      : 未設定");
+    return;
+  }
+
+  try {
+    const ss = SpreadsheetApp.openById(spreadsheetId);
+    Logger.log("スプレッドシート名  : " + ss.getName());
+    Logger.log("スプレッドシートURL : " + ss.getUrl());
+    const names = ss.getSheets().map(function (sh) {
+      return sh.getName() + "(" + sh.getLastRow() + "行)";
+    });
+    Logger.log("シート一覧          : " + names.join(", "));
+  } catch (err) {
+    Logger.log("スプレッドシートを開けません: " + err);
+  }
+
+  // 通知メールが本当に送れるかを単体で確認する
+  try {
+    Logger.log("本日の残りメール送信可能数: " + MailApp.getRemainingDailyQuota());
+  } catch (err) {
+    Logger.log("メール送信数の取得に失敗: " + err);
+  }
+}
+
 function testContact() {
   const secret = PROPS.getProperty("FORM_WEBHOOK_SECRET");
 
