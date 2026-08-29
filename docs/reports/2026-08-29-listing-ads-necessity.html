@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>「読まれていない」論はリスティング広告にも及ぶのか 2026-08-29</title>
+<style>
+  :root{
+    --ink:#1c1a17; --sub:#5c564e; --line:#e2ddd4; --bg:#fbfaf8;
+    --accent:#7a5c3e; --red:#a8322a; --amber:#8a6412; --green:#2f6146; --blue:#2d5573;
+    --redbg:#fdf3f2; --amberbg:#fdf9ee; --greenbg:#f1f7f3; --bluebg:#f0f4f8; --box:#fff;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
+    line-height:1.9;font-size:15px;-webkit-text-size-adjust:100%}
+  .wrap{max-width:1000px;margin:0 auto;padding:44px 22px 96px}
+  header.doc{border-bottom:3px solid var(--ink);padding-bottom:18px;margin-bottom:30px}
+  .kicker{font-size:12px;letter-spacing:.14em;color:var(--sub);margin:0}
+  h1{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:25px;line-height:1.5;margin:10px 0 12px;font-weight:600}
+  .meta{font-size:13px;color:var(--sub)}
+  h2{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:20px;margin:54px 0 14px;
+    padding:8px 0 8px 14px;border-left:5px solid var(--accent);font-weight:600;background:#f6f3ee}
+  h3{font-size:16px;margin:32px 0 10px;font-weight:600;border-bottom:1px solid var(--line);padding-bottom:6px}
+  h4{font-size:14px;margin:20px 0 6px;color:var(--accent);font-weight:600}
+  p{margin:0 0 12px}
+  table{border-collapse:collapse;width:100%;font-size:13px;margin:14px 0;background:var(--box)}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:right;vertical-align:top}
+  th{background:#f4f1eb;font-weight:600;text-align:center;white-space:nowrap}
+  td.l,th.l{text-align:left}
+  .scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .bad{color:var(--red);font-weight:600}
+  .warn{color:var(--amber);font-weight:600}
+  .good{color:var(--green);font-weight:600}
+  .box{background:var(--box);border:1px solid var(--line);border-radius:6px;padding:18px 20px;margin:18px 0}
+  .box.red{background:var(--redbg);border-color:#e8c4c0}
+  .box.amber{background:var(--amberbg);border-color:#ecdcb4}
+  .box.green{background:var(--greenbg);border-color:#c3ded0}
+  .box.blue{background:var(--bluebg);border-color:#c2d3e0}
+  .box h4{margin-top:0}
+  ul,ol{margin:8px 0 14px;padding-left:1.4em}
+  li{margin-bottom:6px}
+  .kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:11px;margin:16px 0}
+  .kpi div{background:var(--box);border:1px solid var(--line);border-radius:5px;padding:11px 13px}
+  .kpi span{display:block;font-size:11px;color:var(--sub)}
+  .kpi strong{font-size:19px;font-weight:600}
+  .note{font-size:12.5px;color:var(--sub);margin-top:6px}
+  code{background:#f2efe9;padding:1px 5px;border-radius:3px;font-size:12.5px}
+  hr{border:0;border-top:1px solid var(--line);margin:44px 0}
+  footer{margin-top:60px;padding-top:18px;border-top:1px solid var(--line);font-size:12px;color:var(--sub)}
+  .verdict{background:#2f3a44;color:#fff;border-radius:6px;padding:20px 24px;margin:20px 0}
+  .verdict h4{color:#e6c88a;margin-top:0;font-size:12px;letter-spacing:.06em}
+  .verdict .big{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:18px;line-height:1.7;margin:6px 0 10px}
+  @media print{body{background:#fff}.wrap{padding:0}h2{page-break-after:avoid}.box,table{page-break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <p class="kicker">社内レポート（docs/reports・非公開/noindex）／松澤指摘への回答</p>
+  <h1>「読まれていない」という結論は、<br>リスティング広告の要否にも及ぶのか</h1>
+  <p class="meta">2026-08-29／松澤指摘への回答／GSC実測＋広告実測（8/17–8/23 週次・7月報告書）／分析のみ・サイト変更なし</p>
+</header>
+
+<div class="verdict">
+  <h4>回答</h4>
+  <p class="big">及びます。ただし「リスティングをやめるべき」という形ではありません。<strong>いま買っている枠の98.4%が、そもそもリスティング（検索連動）ではない</strong>——という形で及びます。</p>
+  <p>検索結果の最上部にある広告枠は、実際に読まれています。当社の検索広告CTRは1.5〜3%で、同じ人・同じクエリでのオーガニック9位のCTR 0.09%の<strong>20〜30倍</strong>です。「読まれていない」のは枠の種類ではなく、画面上の位置の問題でした。</p>
+  <p>問題は別のところにあります。8/17–8/23 週の表示97,240回のうち、検索語句に紐づくのは<strong>1,514回（1.6%）</strong>。残り98.4%はCTR 0.23〜0.40%で、<strong>オーガニック9位とまったく同じ「読まれない帯」を、有料で買っている</strong>状態です。</p>
+</div>
+
+<h2>1. 指摘の論理構造を確認する</h2>
+<p>8/29 の15専門家討議で出した結論はこうでした。</p>
+<div class="box">
+<p>「川口市 葬儀」でクリックが出ないのは順位のせいではない。SERPの上半分を地図枠と大手ポータルが占有し、<strong>オーガニック枠そのものが読まれていない</strong>。指名検索「川口典礼」ですら1.01位でCTR 20.97%しかない。</p>
+</div>
+<p>松澤指摘は、この論法の射程を問うものです。<strong>「SERP上のリンクが読まれていないのなら、有料のリンクも同じではないのか。ならばリスティング広告に払う理由も消えるのではないか」</strong>。</p>
+<p>論理としては正当です。もし当社の結論が「人はSERPのリンクを読まない」なら、その主張は有料リンクにも等しく当てはまり、月¥200,000超の支出の根拠を自ら崩します。<strong>したがって、この検証は結論の妥当性テストでもあります</strong>。</p>
+
+<h2>2. 検証：広告は読まれているのか</h2>
+
+<h4>A. 検索広告のCTRとオーガニックのCTRを、同じ土俵で比べる</h4>
+<div class="scroll">
+<table>
+<tr><th class="l">枠</th><th class="l">画面上の位置</th><th>CTR</th><th class="l">出典</th></tr>
+<tr><td class="l">検索広告（検索連動）</td><td class="l">SERP最上部</td><td class="good">1.5〜3%</td><td class="l">本アカウント実測（8/26 週次分析）</td></tr>
+<tr><td class="l">22–23時台の広告</td><td class="l">SERP最上部</td><td class="good">3.16%</td><td class="l">時間帯別レポート 8/17–8/23</td></tr>
+<tr><td class="l">オーガニック（訃報系・情報クエリ）</td><td class="l">7〜10位</td><td>1.3〜2.2%</td><td class="l">GSC 28日窓</td></tr>
+<tr><td class="l">オーガニック（川口市 葬儀）</td><td class="l">9.1位（地図枠＋ポータルの下）</td><td class="bad">0.09%</td><td class="l">GSC 28日窓</td></tr>
+<tr><td class="l">5時台の広告（DG/P-MAX面）</td><td class="l">検索結果ではない配信面</td><td class="bad">0.40%</td><td class="l">時間帯別レポート 8/17–8/23</td></tr>
+<tr><td class="l">指名キャンペーン（7月）</td><td class="l">大半が検索結果ではない</td><td class="bad">0.23%</td><td class="l">7月報告書 P2</td></tr>
+</table>
+</div>
+
+<div class="box green">
+<h4>結論：「読まれていない」のは枠の種類ではなく、画面上の位置</h4>
+<p>SERP最上部にある限り、有料リンクは<strong>1.5〜3%</strong>で読まれています。オーガニック9位の0.09%の20〜30倍です。同じユーザー・同じクエリ・同じ検索結果画面で、この差が出る。<br>したがって<strong>「リンクは読まれない」という一般命題は成立しません</strong>。成立するのは「地図枠とポータルの下に沈んだリンクは読まれない」という、位置に限定された命題です。8/29 の結論はこの限定つきで正しく、リスティング広告の否定には接続しません。</p>
+</div>
+
+<h4>B. ところが、当社が買っている枠の98.4%はそこにない</h4>
+<div class="scroll">
+<table>
+<tr><th class="l">指標（8/17–8/23）</th><th>全キャンペーン</th><th>検索語句に紐づく分</th><th>割合</th></tr>
+<tr><td class="l">表示回数</td><td>97,240</td><td>1,514</td><td class="bad">1.6%</td></tr>
+<tr><td class="l">クリック</td><td>978</td><td>203</td><td>20.8%</td></tr>
+<tr><td class="l">費用</td><td>¥215,641</td><td>¥92,859</td><td>43.1%</td></tr>
+<tr><td class="l">コンバージョン</td><td>15.00</td><td>1.00</td><td>6.7%</td></tr>
+</table>
+</div>
+<p><strong>表示の98.4%は検索語句を持ちません。</strong>そこのCTRは0.23〜0.40%——これは偶然にも、オーガニック9位の0.09%と同じ桁の世界です。つまり当社は、<strong>SEOで「取れない」と結論した読まれない帯を、広告費で買い直している</strong>ことになります。</p>
+
+<h4>C. もっと露骨な例：7月の指名キャンペーン</h4>
+<div class="scroll">
+<table>
+<tr><th class="l">項目</th><th class="l">実測</th></tr>
+<tr><td class="l">費用</td><td class="l">¥311,058（7月）</td></tr>
+<tr><td class="l">表示回数</td><td class="l">303,538</td></tr>
+<tr><td class="l">CTR</td><td class="l"><span class="bad">0.23%</span></td></tr>
+<tr><td class="l">CPC</td><td class="l">¥436</td></tr>
+<tr><td class="l">実際の指名検索の需要</td><td class="l"><strong>月およそ200回</strong>（GSC「川口典礼」186表示/28日＝週46回。独立した2実測が一致）</td></tr>
+</table>
+</div>
+<p><strong>表示303,538回に対し、実需要は月200回。1,500倍です。</strong>指名キャンペーンという名前でありながら、実体の99.9%以上は指名検索ではない配信面への露出です。CTR 0.23% はそれを裏づけています。</p>
+
+<h2>3. 松澤指摘への回答</h2>
+
+<div class="box amber">
+<h4>問い：読まれていないなら、リスティング広告も要らないのでは</h4>
+<p><strong>回答：リスティング（検索連動の最上部枠）は要ります。それが当社にとって唯一「読まれている枠」だからです。</strong>むしろ8/29 の結論は、リスティングの価値を下げるのではなく上げます。オーガニックで最上部に到達する道がポータル4社に塞がれている以上、最上部を取る手段は2つしかありません。</p>
+<ol>
+  <li><strong>地図枠（GBP）</strong>——費用ゼロ。ただしAPI承認待ちで、こちらから進捗を動かせない</li>
+  <li><strong>検索広告の最上部枠</strong>——費用がかかる。ただし今すぐ機能する</li>
+</ol>
+<p>この2つは競合ではなく、<strong>GBPが効くまでの橋渡しとして広告がある</strong>という関係です。GBPが機能し始めたら広告の役割を見直す、という順序になります。</p>
+</div>
+
+<div class="box red">
+<h4>ただし、指摘は別の的を射抜いています</h4>
+<p>「読まれていないものに金を払っているのではないか」という疑いは、<strong>いまの支出の内訳に対しては完全に正しい</strong>。</p>
+<ul>
+  <li>表示の<strong>98.4%</strong>は検索語句に紐づかず、CTRは0.23〜0.40%＝オーガニック9位と同じ帯</li>
+  <li>指名キャンペーンは実需要の<strong>1,500倍</strong>の表示を買っている</li>
+  <li>5時台だけで表示47,635回・¥43,525を、CTR 0.40%で消化している</li>
+</ul>
+<p><strong>削るべきは「リスティング広告」ではなく、「リスティングという名前で買っている非検索面」です。</strong>この区別を曖昧にしたまま予算を削ると、唯一機能している検索最上部枠から先に消える危険があります（CPCが高い枠ほど早く止まるため）。8/26 レポートで「CPC¥2,396の社名クリックは1日2回で枠を使い切って止まり、CPC¥436相当の非社名配信は単価が安いぶん生き残る＝目的と逆の結果」と書いた現象がこれです。</p>
+</div>
+
+<h2>4. この判断の限界（先に置く）</h2>
+<div class="box blue">
+<p>正直に書いておきます。<strong>「広告をやめるべきか」を、いま当社が持っているデータで決めることはできません。</strong></p>
+<ul>
+  <li><strong>着地先が広告LP（kawaguchi-memorial-hall.com）で、当社の計測が届かない。</strong>GA4 の <code>google / cpc</code> は直近7日で1セッション——これは広告が機能していない証拠ではなく、広告が本サイトに来ていないというだけ</li>
+  <li><strong>CVに小数（0.46・0.54）が混ざる。</strong>推定値を含むため「CV 15」は実件数ではない</li>
+  <li><strong>電話タップと実着信の区別がつかない。</strong>このLPの主戦場は電話であり、そこが不明なままでは費用対効果を判定できない</li>
+  <li><strong>キャンペーン別・配信面別の費用分解が未開示。</strong>¥122,782が何に使われたかが分からない（8/26 に開示依頼済み・未回答）</li>
+</ul>
+<p>したがって現時点の正しい行動は「広告の要否を決める」ことではなく、<strong>「決められる状態を作る」</strong>ことです。それが着地先の本サイト統合（9月・指名のみA/B）であり、面別の費用分解の開示要求です。</p>
+</div>
+
+<h2>5. 結論と、次にとる行動</h2>
+<div class="scroll">
+<table>
+<tr><th class="l">問い</th><th class="l">回答</th></tr>
+<tr><td class="l">「読まれていない」論はリスティングにも及ぶか</td><td class="l"><strong>及ぶ。ただし枠の種類ではなく位置の問題として。</strong>SERP最上部の広告はCTR 1.5〜3%で読まれている（オーガニック9位の20〜30倍）</td></tr>
+<tr><td class="l">ではリスティング広告は不要か</td><td class="l"><strong>不要ではない。</strong>オーガニックで最上部に届かない以上、最上部を取る手段は地図枠（無料・承認待ち）と検索広告（有料・即時）の2つしかない</td></tr>
+<tr><td class="l">では何が不要か</td><td class="l"><strong>表示の98.4%を占める非検索面。</strong>CTR 0.23〜0.40%は、SEOで「取れない」と結論した帯を有料で買い直しているのと同じ</td></tr>
+<tr><td class="l">いま広告費を削ってよいか</td><td class="l"><strong>総額を削るのは早い。</strong>面別の分解がないまま削ると、単価の高い検索最上部枠から先に消える（8/26 で確認済みの挙動）</td></tr>
+</table>
+</div>
+
+<h4>次にとる行動（いずれも既存の宿題で、新規の提案ではない）</h4>
+<ol>
+  <li><strong>キャンペーン別・配信面別の費用分解の開示</strong>——8/26 に依頼済み・未回答。これが出るまで総額の増減判断はしない</li>
+  <li><strong>指名キャンペーンの2分割</strong>（社名完全一致のみ＝検索のみ・検索パートナーOFF・ディスプレイ拡張OFF ／ それ以外）——代理店への依頼事項。実需要月200回に対し表示303,538回という状態を切り分ける唯一の手段</li>
+  <li><strong>着地先の本サイト統合</strong>（9月・指名のみでA/B）——広告の効果を当社側で測れるようにする。これが済むまで、広告の費用対効果はこちらでは判定できない</li>
+  <li><strong>GBP</strong>——最上部を無料で取る唯一の道。API承認確認は9/01以降（ケース 8-8661000041490）</li>
+</ol>
+
+<h2>6. 今回の変更</h2>
+<p>サイト変更なし（分析のみ）。広告設定の変更・予算変更は行っていない。価格は本サイト正本（<code>lib/plans.ts</code>／CLAUDE.md §9）以外の数字を使用していない。</p>
+
+<footer>川口典礼サイト 社内レポート／作成 2026-08-29／出典：GSC API 実測（28日窓 7/30–8/26）／広告 時間帯別・検索語句レポート 8/17–8/23（NEXTUP 眞部様より 2026-08-24 受領）／2026年7月報告書 P2／非公開・noindex</footer>
+</div>
+</body>
+</html>
