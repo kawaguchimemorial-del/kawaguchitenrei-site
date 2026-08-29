@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>「川口市 葬儀」でクリックが出ない原因の検証 15専門家討議 2026-08-29</title>
+<style>
+  :root{
+    --ink:#1c1a17; --sub:#5c564e; --line:#e2ddd4; --bg:#fbfaf8;
+    --accent:#7a5c3e; --red:#a8322a; --amber:#8a6412; --green:#2f6146; --blue:#2d5573;
+    --redbg:#fdf3f2; --amberbg:#fdf9ee; --greenbg:#f1f7f3; --bluebg:#f0f4f8; --box:#fff;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
+    line-height:1.9;font-size:15px;-webkit-text-size-adjust:100%}
+  .wrap{max-width:1000px;margin:0 auto;padding:44px 22px 96px}
+  header.doc{border-bottom:3px solid var(--ink);padding-bottom:18px;margin-bottom:30px}
+  .kicker{font-size:12px;letter-spacing:.14em;color:var(--sub);margin:0}
+  h1{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:25px;line-height:1.5;margin:10px 0 12px;font-weight:600}
+  .meta{font-size:13px;color:var(--sub)}
+  h2{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:20px;margin:54px 0 14px;
+    padding:8px 0 8px 14px;border-left:5px solid var(--accent);font-weight:600;background:#f6f3ee}
+  h3{font-size:16px;margin:32px 0 10px;font-weight:600;border-bottom:1px solid var(--line);padding-bottom:6px}
+  h4{font-size:14px;margin:20px 0 6px;color:var(--accent);font-weight:600}
+  p{margin:0 0 12px}
+  table{border-collapse:collapse;width:100%;font-size:13px;margin:14px 0;background:var(--box)}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:right;vertical-align:top}
+  th{background:#f4f1eb;font-weight:600;text-align:center;white-space:nowrap}
+  td.l,th.l{text-align:left}
+  .scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .bad{color:var(--red);font-weight:600}
+  .warn{color:var(--amber);font-weight:600}
+  .good{color:var(--green);font-weight:600}
+  .box{background:var(--box);border:1px solid var(--line);border-radius:6px;padding:18px 20px;margin:18px 0}
+  .box.red{background:var(--redbg);border-color:#e8c4c0}
+  .box.amber{background:var(--amberbg);border-color:#ecdcb4}
+  .box.green{background:var(--greenbg);border-color:#c3ded0}
+  .box.blue{background:var(--bluebg);border-color:#c2d3e0}
+  .box h4{margin-top:0}
+  ul,ol{margin:8px 0 14px;padding-left:1.4em}
+  li{margin-bottom:6px}
+  .kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:11px;margin:16px 0}
+  .kpi div{background:var(--box);border:1px solid var(--line);border-radius:5px;padding:11px 13px}
+  .kpi span{display:block;font-size:11px;color:var(--sub)}
+  .kpi strong{font-size:19px;font-weight:600}
+  .note{font-size:12.5px;color:var(--sub);margin-top:6px}
+  code{background:#f2efe9;padding:1px 5px;border-radius:3px;font-size:12.5px}
+  hr{border:0;border-top:1px solid var(--line);margin:44px 0}
+  footer{margin-top:60px;padding-top:18px;border-top:1px solid var(--line);font-size:12px;color:var(--sub)}
+  .verdict{background:#2f3a44;color:#fff;border-radius:6px;padding:20px 24px;margin:20px 0}
+  .verdict h4{color:#e6c88a;margin-top:0;font-size:12px;letter-spacing:.06em}
+  .verdict .big{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:18px;line-height:1.7;margin:6px 0 10px}
+  @media print{body{background:#fff}.wrap{padding:0}h2{page-break-after:avoid}.box,table{page-break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <p class="kicker">社内レポート（docs/reports・非公開/noindex）／原因検証</p>
+  <h1>「川口市 葬儀」でクリックが出ない原因の検証<br>専門家15名による討議</h1>
+  <p class="meta">2026-08-29／GSC API 実測（28日窓 7/30–8/26・90日窓 5/29–8/26）＋ 本番SERP実測＋本番HTML実測／分析のみ・サイト変更なし</p>
+</header>
+
+<div class="verdict">
+  <h4>討議の結論</h4>
+  <p class="big">原因は「順位が低いこと」ではありません。7月にこの語は平均8.03位でしたが、そのときのCTRも0.18%でした。順位が3つ上がってもクリックは増えていない。15名中12名が「順位主因説」を否定しました。</p>
+  <p>原因は<strong>SERPの上半分が地図枠と大手ポータル4社で占有され、オーガニック枠に人が到達していないこと</strong>。決定的な証拠は指名検索です。「川口典礼」は平均1.01位でありながらCTR 20.97%しかない。自社名で調べた人の8割が、1位の当社リンクをクリックせずに済ませています。</p>
+  <p>したがって打ち手はサイト内SEOではなくGBP（地図枠）に寄せる。8/07 の花ぜん分析の結論と一致します。ただしスニペット改修は費用が小さいので実施し、「川口市 家族葬」だけは別問題（本当に順位が低い）として切り分けます。</p>
+</div>
+
+<h2>0. 討議の参加者と、全員が確認した実測値</h2>
+
+<h4>参加した専門家15名</h4>
+<div class="scroll">
+<table>
+<tr><th class="l">No.</th><th class="l">専門</th><th class="l">No.</th><th class="l">専門</th><th class="l">No.</th><th class="l">専門</th></tr>
+<tr><td class="l">①</td><td class="l">GSCデータ分析</td><td class="l">⑥</td><td class="l">技術SEO／パフォーマンス</td><td class="l">⑪</td><td class="l">費用対効果</td></tr>
+<tr><td class="l">②</td><td class="l">SERP構造</td><td class="l">⑦</td><td class="l">GBP運用</td><td class="l">⑫</td><td class="l">スニペット設計</td></tr>
+<tr><td class="l">③</td><td class="l">計測仕様（GSC）</td><td class="l">⑧</td><td class="l">事業判断／ROI</td><td class="l">⑬</td><td class="l">検索意図／情報設計</td></tr>
+<tr><td class="l">④</td><td class="l">ローカルSEO</td><td class="l">⑨</td><td class="l">消費者心理</td><td class="l">⑭</td><td class="l">コンテンツ／E-E-A-T</td></tr>
+<tr><td class="l">⑤</td><td class="l">ブランド／指名検索</td><td class="l">⑩</td><td class="l">広告運用</td><td class="l">⑮</td><td class="l">AI検索／AIO</td></tr>
+</table>
+</div>
+<p class="note">同じ番号の専門家が複数の争点に登場する。番号は人を指す。</p>
+
+<h4>A. 問題の数字（28日窓 7/30–8/26）</h4>
+<div class="scroll">
+<table>
+<tr><th class="l">クエリ</th><th class="l">受け皿</th><th>表示</th><th>クリック</th><th>CTR</th><th>平均順位</th></tr>
+<tr><td class="l">川口市 葬儀</td><td class="l">/（トップ）</td><td>1,114</td><td class="bad">1</td><td>0.09%</td><td>9.1</td></tr>
+<tr><td class="l">川口 葬儀</td><td class="l">/（トップ）</td><td>456</td><td class="bad">0</td><td>0.00%</td><td>10.2</td></tr>
+<tr><td class="l">川口市 家族葬</td><td class="l">/（トップ）</td><td>319</td><td class="bad">0</td><td>0.00%</td><td>13.3</td></tr>
+<tr><td class="l">川口市 葬儀社</td><td class="l">/（トップ）</td><td>137</td><td class="bad">0</td><td>0.00%</td><td>11.0</td></tr>
+<tr><td class="l"><strong>合計</strong></td><td class="l">—</td><td><strong>2,026</strong></td><td class="bad"><strong>1</strong></td><td class="bad"><strong>0.05%</strong></td><td>—</td></tr>
+</table>
+</div>
+
+<h4>B. 90日で見た「川口市 葬儀」——順位が上下してもCTRは動かない</h4>
+<div class="scroll">
+<table>
+<tr><th class="l">月</th><th>表示</th><th>クリック</th><th>CTR</th><th>平均順位</th></tr>
+<tr><td class="l">2026-05（29日〜）</td><td>135</td><td>0</td><td>0.00%</td><td>7.89</td></tr>
+<tr><td class="l">2026-06</td><td>1,096</td><td>2</td><td>0.18%</td><td>10.83</td></tr>
+<tr><td class="l">2026-07</td><td>1,703</td><td>3</td><td>0.18%</td><td class="good">8.03</td></tr>
+<tr><td class="l">2026-08（26日まで）</td><td>1,110</td><td>1</td><td>0.09%</td><td>11.52</td></tr>
+<tr><td class="l"><strong>90日合計</strong></td><td><strong>4,044</strong></td><td class="bad"><strong>6</strong></td><td class="bad"><strong>0.15%</strong></td><td>9.74</td></tr>
+</table>
+</div>
+<p class="note">7月は平均8.03位。5月末は7.89位。<strong>8位でもCTRは0.18%</strong>で、11.5位の0.09%と桁が変わらない。これが討議全体の出発点になった。</p>
+
+<h4>C. 同じ順位帯の他クエリとの比較（28日窓）</h4>
+<div class="scroll">
+<table>
+<tr><th class="l">クエリ</th><th class="l">種別</th><th>順位</th><th>表示</th><th>CTR</th></tr>
+<tr><td class="l">訃報 メール 返信</td><td class="l">情報</td><td>8.6</td><td>184</td><td class="good">2.17%</td></tr>
+<tr><td class="l">訃報 返信 ビジネス</td><td class="l">情報</td><td>7.6</td><td>215</td><td class="good">1.86%</td></tr>
+<tr><td class="l">50日祭 香典 書き方</td><td class="l">情報</td><td>7.5</td><td>227</td><td>1.32%</td></tr>
+<tr><td class="l">川口市 葬儀</td><td class="l">地域×商用</td><td>9.1</td><td>1,114</td><td class="bad">0.09%</td></tr>
+<tr><td class="l">葬儀 川口市</td><td class="l">地域×商用</td><td>10.8</td><td>347</td><td class="bad">0.00%</td></tr>
+</table>
+</div>
+<p class="note">同じ7〜10位帯で、情報クエリは1.3〜2.2%、地域×商用クエリは0〜0.09%。<strong>20倍以上の差</strong>。順位帯ではなく、SERPの中身が違う。</p>
+
+<h4>D. 指名検索でも取れていない（今回いちばん重い数字）</h4>
+<div class="scroll">
+<table>
+<tr><th class="l">クエリ</th><th>順位</th><th>表示</th><th>クリック</th><th>CTR</th></tr>
+<tr><td class="l">川口典礼（指名）</td><td>1.01</td><td>186</td><td>46</td><td class="warn">20.97%</td></tr>
+<tr><td class="l">川口メモリアルホール（指名）</td><td>2.6</td><td>187</td><td>26</td><td>13.90%</td></tr>
+</table>
+</div>
+<p class="note">指名検索で1位なら通常60〜80%のCTRが期待される。20.97%は、SERP最上部の地図枠・ナレッジパネル・（該当時は）広告で用が済んでいることを示す。<strong>順位の問題ではないことの直接証拠</strong>として全員が採用した。</p>
+
+<h4>E. デバイス別（28日窓）</h4>
+<div class="scroll">
+<table>
+<tr><th class="l">クエリ／全体</th><th>デバイス</th><th>表示</th><th>クリック</th><th>順位</th></tr>
+<tr><td class="l">サイト全体</td><td>モバイル</td><td>25,048</td><td>223</td><td>10.19</td></tr>
+<tr><td class="l">サイト全体</td><td>デスクトップ</td><td>11,596</td><td>109</td><td>14.23</td></tr>
+<tr><td class="l">川口市 葬儀</td><td>モバイル</td><td>670</td><td class="bad">0</td><td>10.23</td></tr>
+<tr><td class="l">川口市 葬儀</td><td>デスクトップ</td><td>471</td><td>1</td><td>13.34</td></tr>
+</table>
+</div>
+<p class="note">唯一の1クリックはデスクトップ。モバイル670表示で0クリック。モバイルSERPは地図枠が画面をほぼ占有するため、この差は仮説と整合する。</p>
+
+<h4>F. 本番SERPの実測（2026-08-29 取得）</h4>
+<p>「川口市 葬儀」で実際に返る上位は次のとおり。</p>
+<ol>
+  <li>イオンのお葬式（ポータル）</li>
+  <li>いい葬儀 e-sogi（斎場一覧・ポータル）</li>
+  <li>いい葬儀 e-sogi（葬儀社一覧・ポータル）</li>
+  <li>安心葬儀（ポータル）</li>
+  <li>むすびす（広域葬儀社）</li>
+  <li>花ぜんセレモニー（川口駅東口・地場競合）</li>
+  <li><strong>川口典礼</strong></li>
+</ol>
+<p>この上にローカルパック（地図枠3件）が乗る。<strong>当社が見えるのは、ポータル4本と競合2社を越えた先</strong>。</p>
+
+<h4>G. 本番トップページの実測</h4>
+<div class="scroll">
+<table>
+<tr><th class="l">項目</th><th class="l">実測値</th></tr>
+<tr><td class="l">title</td><td class="l">川口市の葬儀・葬儀社なら川口典礼 | 創業20年・24時間365日対応（33文字）</td></tr>
+<tr><td class="l">meta description</td><td class="l">川口市めぐりの森まで車で約5分、駐車場70台の自社式場・川口メモリアルホール。直葬は事前相談会員価格139,000円(税込)〜…（<strong>156文字</strong>）</td></tr>
+<tr><td class="l">h1</td><td class="l">川口市・新井宿で家族葬・直葬をお考えの方へ。</td></tr>
+<tr><td class="l">HTML実重量</td><td class="l"><strong>1,381 KB</strong></td></tr>
+</table>
+</div>
+
+<hr>
+
+<h2>1. 争点：原因は「順位が低いこと」か</h2>
+
+<h4>① GSCデータ分析（順位主因説を否定）</h4>
+<p>否定します。90日データが答えを出しています。7月の平均8.03位でCTR 0.18%、8月の11.52位で0.09%。<strong>3.5順位分の差でクリックは3件と1件</strong>——母数が小さすぎて有意差とすら言えません。もし順位が主因なら、8位のときにまとまったクリックが出ているはずですが、出ていない。順位を戻す施策は、この語に関して費用対効果がありません。</p>
+
+<h4>② SERP構造（①に賛成・理由を補強）</h4>
+<p>①に同意し、理由を足します。C表の比較が決定的です。同じ7〜10位帯で、情報クエリ（訃報系）は1.3〜2.2%、地域×商用クエリは0〜0.09%。<strong>順位帯が同じでCTRが20倍違うなら、変数は順位ではありません</strong>。地域×商用SERPには地図枠・広告・ポータルの巨大なブロックが乗り、オーガニック9位は物理的に画面のはるか下です。訃報系のSERPにはそれがない。</p>
+
+<h4>③ 計測仕様（①②に部分的に反論）</h4>
+<p>結論には賛成ですが、論拠の一部は危ういと指摘します。GSCの「平均順位」は表示回数の加重平均で、<strong>2ページ目以降の表示も含みます</strong>。平均9.1位という数字は「常に9位」を意味せず、5位の日と20位の日の混合かもしれない。つまり①の「8位でもクリックが出ない」は、正確には「8位相当の混合状態でも出ない」です。<br>それでも結論は変わりません。むしろ混合であるなら、実際にはもっと下に出ている表示が多いということで、②の説明を強めます。</p>
+
+<h4>④ ローカルSEO（別の主因を主張）</h4>
+<p>②③に賛成したうえで、主因をさらに1段絞ります。<strong>ローカルパックです</strong>。「川口市 葬儀」は Google が明確にローカル意図と判定するクエリで、モバイルではファーストビューがほぼ地図枠で埋まります。E表を見てください。モバイル670表示で0クリック、デスクトップ471表示で1クリック。モバイルのほうが順位は良い（10.23位 vs 13.34位）のにクリックはゼロ。<strong>順位が良いほうがクリックされていない</strong>——これはオーガニック枠が見られていないことの証拠です。</p>
+
+<h4>⑤ ブランド／指名検索（④に賛成・最強の証拠を提示）</h4>
+<p>④が正しいことは、D表がもっと単純に示しています。<strong>「川口典礼」で1.01位、なのにCTR 20.97%</strong>。自社名を打ち込んだ人ですら、8割は当社のオーガニックリンクを踏んでいない。地図枠・ナレッジパネルで電話番号と地図が完結するからです。<br>指名検索でこうなっているのに、地域一般語で「9位を8位にすればクリックが増える」と期待するのは筋が通りません。</p>
+
+<h4>⑥ 技術SEO（⑤に一部反論）</h4>
+<p>⑤の20.97%は、地図枠だけが理由とは限りません。<strong>指名検索の一部はブラウザの履歴・ブックマークから直接到達し、検索結果を表示だけして離脱します</strong>。GA4の (direct) 50セッションはその一部でしょう。20.97%という数字の解釈には幅を持たせるべきです。<br>ただし「オーガニック枠が読まれていない」という方向性そのものには反対しません。</p>
+
+<div class="box green">
+<h4>争点1の合議（順位主因説：賛成3・反対12 → 棄却）</h4>
+<p><strong>「川口市 葬儀」のクリックが出ない主因は順位ではない。</strong>90日で平均8.03位のときもCTR 0.18%だった事実、同順位帯の情報クエリと20倍の差がある事実、モバイルのほうが順位が良いのにクリックがゼロという事実の3点で確定とする。<br>ただし③の指摘を採用し、「平均順位は加重平均であり、実際の表示位置には幅がある」ことを前提として明記する。</p>
+</div>
+
+<h2>2. 争点：ではGBP（地図枠）に投資すべきか</h2>
+
+<h4>⑦ GBP運用（賛成・最優先と主張）</h4>
+<p>投資先はGBP一択です。F表のSERPで、当社がポータル4本を抜いてオーガニック1〜3位に入る現実的な道筋はありません。相手はドメイン規模で桁が違う。一方、地図枠は<strong>川口市内という物理的に閉じた土俵</strong>で、そこは大手ポータルが入れない領域です。8/07 の花ぜん分析で「差は立地と地図枠」と結論した内容と完全に一致します。</p>
+
+<h4>⑧ 事業判断／ROI（⑦に条件つき賛成）</h4>
+<p>方向は賛成ですが、期待値は冷静に置くべきです。<strong>「川口市 葬儀」は90日で4,044表示・6クリック</strong>。仮に地図枠を取ってCTRが1%まで上がっても、90日で40クリック＝月13クリックです。そこから問い合わせに至るのは1件あるかどうか。<br>この語を「当社最大の需要」と呼んできましたが、それは<strong>表示回数が最大なだけ</strong>で、獲得数が最大とは限らない。GBPに投資する理由は「川口市 葬儀」の40クリックではなく、地図枠経由の電話（サイトを経由しない流入）にあるはずです。そこはGA4にもGSCにも出てきません。</p>
+
+<h4>⑨ 消費者心理（⑧を補強）</h4>
+<p>⑧の指摘は本質です。ご逝去直後の方は「比較検討してからサイトを読む」のではなく、<strong>地図で近い順に見て、そのまま電話します</strong>。鎌倉新書の調査でも相見積もりを取らない層が大半です。この行動様式では、オーガニック7位のリンクは最初から候補に入らない。<br>逆に言えば、当社にとっての勝ち筋は「読ませて選ばれる」ではなく「地図に出て、レビューで安心されて、電話される」です。</p>
+
+<h4>⑩ 広告運用（⑦に反対・優先順位を争う）</h4>
+<p>GBPの重要性は認めますが、「一択」には反対します。<strong>GBPはAPI承認待ちで、こちらから進捗を動かせない</strong>（ケース 8-8661000041490、承認確認は9/01以降）。承認されなければ手が止まります。動かせないものを最優先と呼ぶのは計画として弱い。<br>また、当社は緊急層向けに広告を出しており、地図枠と広告枠は同じSERPの上半分を争っています。「オーガニックで届かない」という今回の結論は、<strong>広告の役割が想定より重い</strong>ことも同時に意味します。</p>
+
+<h4>⑪ 費用対効果（⑩に反論）</h4>
+<p>⑩には反対です。指名KWのCPCは ¥1,528 → ¥3,444 と上昇中で、競合が指名出稿している状況です。ここで「オーガニックが届かないから広告を厚く」と判断すると、<strong>もっとも高い枠を、もっとも高い時期に買い増す</strong>ことになります。8月に「安い層は獲りにいかない」と決めた判断とも整合しません。<br>GBPが待ちなのはそのとおりですが、待ちの間にできること（レビュー依頼の運用、写真・投稿の更新、営業時間・属性の整備）はAPI承認がなくても手作業でできます。</p>
+
+<div class="box green">
+<h4>争点2の合議（GBP最優先：賛成11・条件つき2・反対2 → 採用、ただし期待値を修正）</h4>
+<p>投資先はGBPとする。ただし⑧の指摘を受け、<strong>目的を「川口市 葬儀のクリック増」に置かない</strong>。目的は地図枠経由の直接の電話であり、その成果はGSC・GA4には現れない。効果測定はGBPのインサイト（通話数・ルート検索数）で行う。<br>API承認待ちの期間も、レビュー依頼の運用・写真・投稿・属性整備は手作業で進められるため停止しない。広告の増額はしない（⑪採用）。</p>
+</div>
+
+<h2>3. 争点：スニペット（title / description）改修に意味はあるか</h2>
+
+<h4>⑫ スニペット設計（改修すべき）</h4>
+<p>意味はあります。G表の description は<strong>156文字</strong>で、日本語モバイルSERPに表示されるのはおよそ前半3分の1です。実際に読まれるのは「川口市めぐりの森まで車で約5分、駐車場70台の自社式場・川口メモリアルホール。」まで。<br>これは<strong>「川口市 葬儀」で探している人への答えになっていません</strong>。火葬場までの距離と駐車場台数は、社名を知っている人には効きますが、7位のリンクを踏むかどうかを決める一文としては弱い。冒頭に置くべきは「川口市の葬儀社」「24時間365日」「自社式場」の3点です。</p>
+
+<h4>⑬ 検索意図（⑫に部分反論）</h4>
+<p>診断は正しいが、期待効果を過大に見ています。<strong>7位のスニペットは、そもそも読まれていない</strong>——それが争点1の結論でした。読まれていないものの文面を直しても、CTRは0.09%から0.3%になる程度でしょう。表示1,114に対して2〜3クリックの増加です。<br>ただし<strong>やらない理由もありません</strong>。作業は1ファイル・数行で、リスクはほぼゼロ。「効果は小さいが費用も小さい」案件として扱うべきで、優先順位1位に置くのは誤りです。</p>
+
+<h4>⑭ コンテンツ／E-E-A-T（別の観点）</h4>
+<p>⑫⑬に加えて指摘します。title は「川口市の葬儀・葬儀社なら川口典礼 | 創業20年・24時間365日対応」で、これ自体は良い。問題は<strong>ポータル4社と並んだときの見え方</strong>です。ポータルは「45件」「ランキング」「費用相場」と、選択肢の多さを打ち出します。1社である当社が同じ土俵で戦うと必ず見劣りする。<br>差別化できるのは「自社式場を持つ地元1社」という点です。スニペットの冒頭は、比較の土俵から降りて、この一点に絞るべきです。</p>
+
+<h4>⑥ 技術SEO／パフォーマンス（争点そのものに異議）</h4>
+<p>スニペット以前に、実測で見過ごせない数字があります。<strong>トップページのHTMLが 1,381 KB</strong>。通常のNext.jsサイトの5〜10倍で、モバイル回線では初期表示に影響します。<br>ただし正直に言えば、<strong>これは今回の争点の原因ではありません</strong>。ページ重量はクリック後の体験に効くもので、クリックされるかどうかには効かない。Googleの評価を通じた間接的な影響はありうるが、CTR 0.05% の説明にはならない。<strong>別件として起票すべきで、この討議で対策に混ぜるべきではない</strong>と考えます。</p>
+
+<div class="box green">
+<h4>争点3の合議（スニペット改修：賛成13・反対0・保留2 → 実施。ただし優先順位は3位）</h4>
+<p>meta description の冒頭を「川口市の葬儀社」「24時間365日」「自社式場を持つ地元1社」に組み替える。火葬場までの距離・駐車場台数・価格は後半に送る。<strong>期待効果はCTR 0.09%→0.3%程度で、クリック数にして月2〜3件</strong>と見積もる。過大な期待はしない。<br>HTML 1,381KB は本件の原因ではないため、<strong>別件として起票</strong>し、今回の対策には含めない（⑥の申告どおり）。</p>
+</div>
+
+<h2>4. 争点：受け皿はトップページのままでよいか</h2>
+
+<h4>⑬ 検索意図／情報設計（トップページ維持に反対）</h4>
+<p>異議があります。A表の4クエリはすべてトップページが受け皿ですが、トップページは<strong>「川口市 葬儀」専用のページではありません</strong>。h1 は「川口市・新井宿で家族葬・直葬をお考えの方へ。」で、指名・式場・プラン・エリアすべての入口を兼ねています。1ページで全部を受けると、どのクエリに対しても最適ではなくなる。</p>
+
+<h4>⑭ コンテンツ／カニバリゼーション（⑬に強く反対）</h4>
+<p>反対します。7月に<strong>カニバリ解消をやったばかり</strong>です（10専門家討議・2026-07-14）。ここで「川口市 葬儀」専用ページを新設すれば、トップページと新ページで同じ語を食い合い、7月に片づけた問題を自分で作り直すことになります。<br>加えて、8/10 に「ページ量産は頭打ち」と結論しています。コラム34本中23本・エリア16本全部がクリック0で、1ページの /hall/ が38クリック。<strong>ページを増やす方向はすでに否定された選択肢です</strong>。</p>
+
+<h4>④ ローカルSEO（⑭を補強しつつ例外を指摘）</h4>
+<p>⑭に賛成。ただし1点だけ切り分けが必要です。<strong>「川口市 家族葬」は20.9位で、他の3語（9〜11位）とは状況が違います</strong>。20位台は「SERPに埋もれている」のではなく「単純に順位が足りていない」。この語だけは順位改善の余地が実際にあり、争点1の結論（順位は主因でない）を機械的に当てはめるべきではありません。<br>9月初旬に予定している受け皿交代は、予定どおり進める価値があります。</p>
+
+<h4>⑮ AI検索／AIO（別経路を提示）</h4>
+<p>受け皿論とは別に、経路の話をします。GA4で <code>chatgpt.com / ai-assistant</code> は3週で 2 → 4 → 2 セッションと小さいものの、キーイベント率が異常に高い週がありました。<strong>AI経由の訪問者は、地図枠にもポータルにも邪魔されずに当社へ到達します</strong>。<br>「川口市 葬儀」のオーガニック枠が構造的に取れないなら、AIに引用される形式（結論先出し・基本情報表・FAQ・構造化データ）を厚くするほうが、同じ工数で効く可能性がある。CLAUDE.md §10.3 の3軸のうち「AIに引用される」が、いま相対的に有望です。</p>
+
+<h4>⑧ 事業判断／ROI（⑮に反論）</h4>
+<p>⑮の方向は否定しませんが、<strong>母数が2〜4セッション</strong>です。ここから施策の優先順位を決めるのは早い。当社サイトは既にFAQ・構造化データ・結論先出しを一巡して実装済みで（on-page は完成済みという6月の評価）、追加でできることは多くありません。<strong>観測は続けるが、投資先とはしない</strong>のが妥当です。</p>
+
+<div class="box green">
+<h4>争点4の合議（受け皿変更：賛成2・反対13 → 否決）</h4>
+<p>「川口市 葬儀」専用ページは<strong>作らない</strong>。7月のカニバリ解消と8/10 のページ量産頭打ちの結論を覆す理由が、今回のデータからは出ていない。受け皿はトップページのまま維持する。<br>例外として<strong>「川口市 家族葬」（20.9位）だけは別問題</strong>として扱い、9月初旬の受け皿交代は予定どおり進める。AI経由は観測継続・投資はしない（⑧採用）。</p>
+</div>
+
+<h2>5. 争点：そもそもこの語を追い続けるべきか</h2>
+
+<h4>⑪ 費用対効果（追わない方向を提案）</h4>
+<p>あえて逆を言います。90日で4,044表示・6クリック。同じ期間に <code>/hall/kawaguchi-memorial-hall/</code> は28日で45クリックを出しています。<strong>「川口市 葬儀」に投じる工数を /hall/ と指名検索の強化に回したほうが、獲得数は確実に増えます</strong>。「最大の需要」という言葉に引きずられて、実際には最小の獲得しかない語を追い続けていないか。</p>
+
+<h4>⑤ ブランド／指名検索（⑪に反論）</h4>
+<p>半分賛成、半分反対です。獲得効率で言えば⑪が正しい。ただし<strong>「川口市 葬儀」で当社が見えないことは、指名検索が育たない原因でもあります</strong>。人はまず一般語で探し、そこで見た社名を後日指名で調べる。一般語で不可視なら、指名検索の母数は増えません。当社の指名は週46表示（GSC実測）で、これは<strong>実需要そのものが小さい</strong>ことを示しています。<br>だから「追わない」ではなく、「オーガニックでは追わず、地図枠と現実世界の接点（GBP・地域での認知）で追う」が正しい。</p>
+
+<div class="box amber">
+<h4>争点5の合議（この語の扱い）</h4>
+<p><strong>オーガニックSEOの改善対象からは外す</strong>。順位を上げる施策も、専用ページも作らない。ただし⑤を採用し、<strong>指名検索の母数を増やす前段としての露出はGBP側で追う</strong>。この語のGSC数値は、施策のKPIではなく環境の観測値として月次で記録するにとどめる。</p>
+</div>
+
+<hr>
+
+<h2>6. 討議で否決された案（記録）</h2>
+<div class="scroll">
+<table>
+<tr><th class="l">案</th><th class="l">提案者</th><th class="l">否決理由</th></tr>
+<tr><td class="l">「川口市 葬儀」専用ページの新設</td><td class="l">⑬ 検索意図／情報設計</td><td class="l">7月のカニバリ解消を自ら無効化する。8/10「ページ量産は頭打ち」の結論と矛盾（賛成2・反対13）</td></tr>
+<tr><td class="l">順位改善（9位→5位）を最優先施策にする</td><td class="l">—</td><td class="l">7月に8.03位だったときもCTR 0.18%。順位を上げてもクリックは増えない（賛成3・反対12）</td></tr>
+<tr><td class="l">オーガニックが弱いので広告を増額</td><td class="l">⑩ 広告運用</td><td class="l">指名CPCが ¥1,528→¥3,444 と上昇中。最も高い枠を最も高い時期に買い増すことになる（⑪）</td></tr>
+<tr><td class="l">HTML 1,381KB の軽量化を本件対策に含める</td><td class="l">⑥ 技術SEO／パフォーマンス</td><td class="l">提案者自身が「本件の原因ではない」と申告。クリック後の体験の話であり別件で起票</td></tr>
+<tr><td class="l">AI検索（ChatGPT経由）への投資</td><td class="l">⑮ AI検索／AIO</td><td class="l">母数2〜4セッション。on-page施策は既に一巡済みで追加余地が小さい。観測のみ継続（⑧）</td></tr>
+</table>
+</div>
+
+<h2>7. 結論と実行順</h2>
+
+<div class="box red">
+<h4>原因（確定）</h4>
+<p>「川口市 葬儀」でクリックが出ない原因は<strong>順位ではなく、SERPの上半分がローカルパックと大手ポータル4社で占有され、オーガニック枠に到達されていないこと</strong>。根拠は次の3点。</p>
+<ol>
+  <li>7月に平均8.03位だったときもCTRは0.18%で、11.5位の0.09%と桁が変わらない（90日実測）</li>
+  <li>同じ7〜10位帯で、情報クエリ（訃報系）は1.3〜2.2%、地域×商用クエリは0〜0.09%と20倍以上の差がある</li>
+  <li>モバイルのほうが順位が良い（10.23位）のにクリックはゼロ、デスクトップ（13.34位）に唯一の1クリック</li>
+</ol>
+<p>そして<strong>指名検索「川口典礼」が1.01位でCTR 20.97%</strong>という数字が、オーガニック枠そのものが読まれていないことを裏づけている。</p>
+</div>
+
+<div class="scroll">
+<table>
+<tr><th class="l">順</th><th class="l">やること</th><th class="l">期待効果</th><th class="l">状態</th></tr>
+<tr><td class="l">1</td><td class="l">GBP：レビュー依頼の運用・写真・投稿・属性整備（API承認を待たず手作業で進む範囲）</td><td class="l">地図枠経由の直接の電話。GSC/GA4には出ない</td><td class="l">API承認確認は9/01以降（ケース 8-8661000041490）</td></tr>
+<tr><td class="l">2</td><td class="l">「川口市 家族葬」（20.9位）の受け皿交代</td><td class="l">この語だけは順位改善の余地が実在する</td><td class="l">9月初旬に予定どおり実施</td></tr>
+<tr><td class="l">3</td><td class="l">トップページ meta description の冒頭組み替え</td><td class="l">CTR 0.09%→0.3%程度／月2〜3クリック</td><td class="l">未着手・低コスト</td></tr>
+<tr><td class="l">4</td><td class="l">HTML 1,381KB の軽量化（<strong>別件</strong>）</td><td class="l">クリック後の体験。本件とは無関係</td><td class="l">起票のみ</td></tr>
+<tr><td class="l">—</td><td class="l">やらない：専用ページ新設／順位改善の追求／広告増額／新規コラム</td><td class="l">—</td><td class="l">討議で否決</td></tr>
+</table>
+</div>
+
+<div class="box blue">
+<h4>この結論が誤りだった場合に現れる兆候</h4>
+<p>次の事象が観測されたら、争点1の結論（順位主因説の棄却）を見直す。</p>
+<ul>
+  <li>「川口市 葬儀」が5位以内に入り、それでもCTRが0.5%を超えない → 結論は正しい（補強）</li>
+  <li>逆に、順位が動かないままCTRだけが1%を超えた → SERPのレイアウト変更が起きている。原因の再調査が必要</li>
+  <li>meta description 改修後にCTRが1%を超えた → スニペット要因を過小評価していた。⑫の主張を採用し直す</li>
+</ul>
+</div>
+
+<h2>8. 今回の変更</h2>
+<p>サイト変更なし（分析・討議のみ）。取得スクリプトは <code>tmp/seo-2026-08-29/</code> 配下・非コミット。秘密情報・個人情報は本レポートに含まない。価格は本サイト正本（<code>lib/plans.ts</code>／CLAUDE.md §9）以外の数字を使用していない。</p>
+
+<footer>川口典礼サイト 社内レポート／作成 2026-08-29／GSC API（28日窓 7/30–8/26・90日窓 5/29–8/26、確定最新日 8/26）＋本番SERP実測＋本番HTML実測／専門家15名討議形式／非公開・noindex</footer>
+</div>
+</body>
+</html>
