@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>広告LP 満足度97%表記に出典注記を追加 2026-09-01</title>
+<style>
+  :root{
+    --ink:#1c1a17; --sub:#5c564e; --line:#e2ddd4; --bg:#fbfaf8;
+    --accent:#7a5c3e; --red:#a8322a; --amber:#8a6412; --green:#2f6146; --blue:#2d5573;
+    --redbg:#fdf3f2; --amberbg:#fdf9ee; --greenbg:#f1f7f3; --bluebg:#f0f4f8; --box:#fff;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
+    line-height:1.9;font-size:15px;-webkit-text-size-adjust:100%}
+  .wrap{max-width:1000px;margin:0 auto;padding:44px 22px 96px}
+  header.doc{border-bottom:3px solid var(--ink);padding-bottom:18px;margin-bottom:30px}
+  .kicker{font-size:12px;letter-spacing:.14em;color:var(--sub);margin:0}
+  h1{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:25px;line-height:1.5;margin:10px 0 12px;font-weight:600}
+  .meta{font-size:13px;color:var(--sub)}
+  h2{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:20px;margin:54px 0 14px;
+    padding:8px 0 8px 14px;border-left:5px solid var(--accent);font-weight:600;background:#f6f3ee}
+  h3{font-size:16px;margin:32px 0 10px;font-weight:600;border-bottom:1px solid var(--line);padding-bottom:6px}
+  h4{font-size:14px;margin:20px 0 6px;color:var(--accent);font-weight:600}
+  p{margin:0 0 12px}
+  table{border-collapse:collapse;width:100%;font-size:13px;margin:14px 0;background:var(--box)}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:right;vertical-align:top}
+  th{background:#f4f1eb;font-weight:600;text-align:center;white-space:nowrap}
+  td.l,th.l{text-align:left}
+  .scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .bad{color:var(--red);font-weight:600}
+  .warn{color:var(--amber);font-weight:600}
+  .good{color:var(--green);font-weight:600}
+  .box{background:var(--box);border:1px solid var(--line);border-radius:6px;padding:18px 20px;margin:18px 0}
+  .box.red{background:var(--redbg);border-color:#e8c4c0}
+  .box.amber{background:var(--amberbg);border-color:#ecdcb4}
+  .box.green{background:var(--greenbg);border-color:#c3ded0}
+  .box.blue{background:var(--bluebg);border-color:#c2d3e0}
+  .box h4{margin-top:0}
+  ul,ol{margin:8px 0 14px;padding-left:1.4em}
+  li{margin-bottom:6px}
+  .kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:11px;margin:16px 0}
+  .kpi div{background:var(--box);border:1px solid var(--line);border-radius:5px;padding:11px 13px}
+  .kpi span{display:block;font-size:11px;color:var(--sub)}
+  .kpi strong{font-size:19px;font-weight:600}
+  .note{font-size:12.5px;color:var(--sub);margin-top:6px}
+  code{background:#f2efe9;padding:1px 5px;border-radius:3px;font-size:12.5px}
+  hr{border:0;border-top:1px solid var(--line);margin:44px 0}
+  footer{margin-top:60px;padding-top:18px;border-top:1px solid var(--line);font-size:12px;color:var(--sub)}
+  .verdict{background:#2f3a44;color:#fff;border-radius:6px;padding:20px 24px;margin:20px 0}
+  .verdict h4{color:#e6c88a;margin-top:0;font-size:12px;letter-spacing:.06em}
+  .verdict .big{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:18px;line-height:1.7;margin:6px 0 10px}
+  @media print{body{background:#fff}.wrap{padding:0}h2{page-break-after:avoid}.box,table{page-break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="doc">
+  <p class="kicker">WORK REPORT</p>
+  <h1>広告LP「アンケート満足度97%超」に出典注記を追加</h1>
+  <p class="meta">2026-09-01 ／ 対象：app/lp/page.tsx ／ 依頼：松澤</p>
+</header>
+
+<h2>背景</h2>
+<p>広告LPのヒーローに置いた円形バッジ「アンケート満足度 97%超」に、参照元データの注記（いわゆる「〇〇調べ」）が無かった。数値を掲げる以上、誰がどう集計した数字なのかを同一画面で示す必要がある。</p>
+
+<h2>変更内容</h2>
+<p>ヒーロー直下（入口分岐の直前）に注記を1行追加した。</p>
+<p>※「アンケート満足度97%超」は、ご葬儀後にお答えいただいた当社アンケートの集計結果です（川口典礼調べ・2026年8月時点）。</p>
+<p>あわせて、直後の入口分岐セクションの上下パディングを調整し、注記が入っても余白が詰まらないようにした（<code>py-5</code> → <code>pb-5 pt-3</code>）。</p>
+
+<h2>数値の根拠</h2>
+<p><code>lib/company.ts</code> の <code>satisfactionRate: "97%以上"</code>、および <code>trackRecord</code> の注記「ご葬儀後にお答えいただいたアンケートの満足度」に一致させた。数値そのものは変更していない。</p>
+
+<h2>変更ファイル</h2>
+<p><code>app/lp/page.tsx</code></p>
+
+<h2>確認</h2>
+<p><code>npm run build</code> 成功（静的生成ページ数の減少なし）。確認URL：<code>http://localhost:3000/lp</code></p>
+
+<h2>コミット</h2>
+<p>コミット・push 済み（<code>fix(lp): note the source behind the 97% satisfaction badge</code>）。</p>
+</div>
+</body>
+</html>
