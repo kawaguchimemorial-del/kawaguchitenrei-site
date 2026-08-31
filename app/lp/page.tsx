@@ -320,8 +320,14 @@ export default function LpPage() {
         </div>
       </section>
 
+      {/* ヒーローのバッジ（アンケート満足度97%超）の出典注記。景表法上、
+          自社調べであることと母数の性質を明示する。 */}
+      <p className="bg-white px-5 pt-3 text-[11px] leading-5 text-ink-soft">
+        ※「アンケート満足度97%超」は、ご葬儀後にお答えいただいた当社アンケートの集計結果です（川口典礼調べ・2026年8月時点）。
+      </p>
+
       {/* 入口分岐：お急ぎの方と、ご会葬の方を最初に分ける（光彩セレモの型） */}
-      <section className="bg-white px-4 py-5">
+      <section className="bg-white px-4 pb-5 pt-3">
         <div className="mx-auto grid max-w-2xl grid-cols-3 gap-1.5">
           <a
             href="#urgent"
