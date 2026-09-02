@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2026年8月 Google広告レポート分析・専門家10名討議</title>
+<style>
+  :root{--ink:#1c1a17;--sub:#5c564e;--line:#e2ddd4;--bg:#fbfaf8;--accent:#7a5c3e;
+    --red:#a8322a;--amber:#8a6412;--green:#2f6146;--blue:#2d5573;
+    --redbg:#fdf3f2;--amberbg:#fdf9ee;--greenbg:#f1f7f3;--bluebg:#f0f4f8;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;line-height:1.9;font-size:15px}
+  .wrap{max-width:1040px;margin:0 auto;padding:44px 22px 96px}
+  header.doc{border-bottom:3px solid var(--ink);padding-bottom:18px;margin-bottom:30px}
+  .kicker{font-size:12px;letter-spacing:.14em;color:var(--sub);margin:0}
+  h1{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:25px;line-height:1.5;margin:10px 0 12px;font-weight:600}
+  .meta{font-size:13px;color:var(--sub)}
+  h2{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:20px;margin:52px 0 14px;
+    padding:8px 0 8px 14px;border-left:5px solid var(--accent);font-weight:600;background:#f6f3ee}
+  h3{font-size:16px;margin:30px 0 10px;font-weight:600;border-bottom:1px solid var(--line);padding-bottom:6px}
+  p{margin:0 0 12px}
+  table{border-collapse:collapse;width:100%;font-size:13px;margin:14px 0;background:#fff}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:right;vertical-align:top}
+  th{background:#f4f1eb;font-weight:600;text-align:center;white-space:nowrap}
+  td:first-child,th:first-child{text-align:left}
+  code{background:#f2efe9;padding:1px 5px;border-radius:3px;font-size:12px}
+  ul,ol{margin:0 0 14px;padding-left:1.4em}
+  li{margin-bottom:6px}
+  .box{border:1px solid var(--line);border-radius:6px;padding:14px 16px;margin:16px 0;background:#fff}
+  .box.red{background:var(--redbg);border-color:#e6bfbb}
+  .box.amber{background:var(--amberbg);border-color:#ead9ae}
+  .box.green{background:var(--greenbg);border-color:#c3ddcd}
+  .box.blue{background:var(--bluebg);border-color:#c3d3e0}
+  .box p:last-child{margin-bottom:0}
+  .who{font-weight:600;color:var(--blue);display:block;margin-bottom:4px;font-size:13px}
+  .ok{color:var(--green);font-weight:600}
+  .ng{color:var(--red);font-weight:600}
+  .part{color:var(--amber);font-weight:600}
+  .gray{background:#e0ddd7}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="doc">
+  <p class="kicker">社内レポート（docs/reports・非公開/noindex）</p>
+  <h1>2026年8月 Google広告レポートの分析<br>——NEXT UP 回答の評価を含む・専門家10名討議</h1>
+  <p class="meta">
+    2026-09-02 ／ 出典：NEXT UP 提供「202608 Google広告レポート.xlsx」（2026-09-01 受領・9シート）、および 2026-09-01 付 眞部様ご回答メール<br>
+    集計は当方で再計算。広告設定の変更なし・サイト変更なし・分析のみ
+  </p>
+</header>
+
+<div class="box blue">
+  <p><strong>データの読み方（確認済み）。</strong>「検索クエリ」シートの<span class="gray">&nbsp;グレーアウトされたセル&nbsp;</span>はすべて <strong>「除外済み」＝停止中の検索語句</strong>だった。516行を機械的に判定した結果、<strong>グレー276語＝すべて除外済み、非グレー240語＝「なし」または「追加済み」</strong>で、例外は1件もない。以下、グレー行は「停止中」として扱い、稼働中の数字と必ず分けて集計している。</p>
+</div>
+
+<h2>結論（先に4点）</h2>
+<div class="box red">
+  <p><strong>1. 8/03 に停止を決めた「直葬8.8万～」の広告見出しが、8月を通して配信され続けていた。</strong>検索・DG 合わせて表示2,204・クリック55・費用<strong>¥24,560</strong>・コンバージョン0。8.8万円は当社の価格正本（直葬 139,000円／189,000円）に存在しない金額で、これは費用の問題以前に<strong>表示している価格が当社の商品と一致していない</strong>という問題である。<strong>最優先で停止を依頼する。</strong></p>
+</div>
+<div class="box red">
+  <p><strong>2.「深夜は検索広告のみ」というご認識と、実データが合わない。</strong>0時台だけで<strong>表示200,161回（月間表示の30%）・費用¥234,862（24%）・CTR 0.20%</strong>。配信は川口市限定なので、川口市内で0時台に月20万回の葬儀関連検索が起きていることになるが、これは考えにくい。<strong>3つの可能性のどれかを、キャンペーン別×時間帯で確認する必要がある。</strong></p>
+</div>
+<div class="box red">
+  <p><strong>3. 指名キャンペーンの表示304,177回のうち、社名の検索語句に紐づくのは168回（0.055%）。</strong>費用¥301,524のうち社名クエリ分は¥101,094で、<strong>残る¥200,430は「川口典礼」を検索していない人への配信</strong>。指名キャンペーンは全費用の31%を占める最大の支出先である。</p>
+</div>
+<div class="box amber">
+  <p><strong>4. 一方で、眞部様のご回答は前進している。</strong>キャンペーン別の内訳が初めて出てきたこと（Q1の速報）、地域設定が「所在地」と確定したこと（Q2）、そして<strong>Q3で「リンク先をテストor変更することで改善を図れる」と貴社側から提案が出たこと</strong>は大きい。着地先を当社サイト <code>/lp/</code> へ移す話が、当社からの要望ではなく<strong>品質スコア改善という運用上の理由で成立する</strong>ようになった。</p>
+</div>
+
+<h2>1. 8月の実測（当方で再集計）</h2>
+
+<h3>1-1. キャンペーン別</h3>
+<table>
+<tr><th>キャンペーン</th><th>表示</th><th>クリック</th><th>CTR</th><th>CPC</th><th>費用</th><th>費用比</th><th>CV</th><th>CV単価</th></tr>
+<tr><td>指名</td><td>304,177</td><td>574</td><td>0.19%</td><td>¥525</td><td>¥301,524</td><td>31.4%</td><td>14</td><td>¥21,537</td></tr>
+<tr><td>一般KW（費用、エリア）</td><td>225,970</td><td>1,114</td><td>0.49%</td><td>¥326</td><td>¥363,711</td><td>37.9%</td><td>12</td><td>¥30,309</td></tr>
+<tr><td>P-MAX</td><td>72,962</td><td>994</td><td>1.36%</td><td>¥100</td><td>¥99,211</td><td>10.3%</td><td>13</td><td>¥7,632</td></tr>
+<tr><td>デマンドジェネレーション</td><td>63,520</td><td>997</td><td>1.57%</td><td>¥196</td><td>¥195,308</td><td>20.4%</td><td>18</td><td>¥10,850</td></tr>
+<tr><td><strong>合計</strong></td><td><strong>666,629</strong></td><td><strong>3,679</strong></td><td><strong>0.55%</strong></td><td><strong>¥261</strong></td><td><strong>¥959,754</strong></td><td>100%</td><td><strong>57</strong></td><td><strong>¥16,838</strong></td></tr>
+</table>
+<p class="meta">※ CV はフォーム等の計測値であり、受注件数ではない。小数を含む推定値が混ざっている点は 8/30 レポートと同じ。</p>
+<p><strong>検索キャンペーン2本（指名＋一般KW）で費用の69%・¥665,235を使い、CV は26。</strong>一方 P-MAX と DG は費用29.4%で CV31。CV単価だけ見れば非検索側のほうが安い。ただしこの CV が本当に成果かどうかは、電話の実着信と突き合わせるまで判定しない（従来方針を維持）。</p>
+
+<h3>1-2. 登録キーワードに紐づいている割合</h3>
+<table>
+<tr><th>区分</th><th>表示</th><th>全体比</th><th>費用</th><th>全体比</th></tr>
+<tr><td>登録キーワードに一致（KWレポート合計）</td><td>4,783</td><td><strong>0.72%</strong></td><td>¥344,330</td><td>35.9%</td></tr>
+<tr><td>検索語句に紐づいた分（検索クエリ＋その他）</td><td>5,817</td><td><strong>0.87%</strong></td><td>¥380,875</td><td>39.7%</td></tr>
+<tr><td>アカウント全体</td><td>666,629</td><td>100%</td><td>¥959,754</td><td>100%</td></tr>
+</table>
+<p>7月の実測（表示の99.1%がキーワード外）とほぼ同じ構造が、8月も続いている。<strong>費用の60%は、検索語句に紐づかないところで使われている。</strong></p>
+
+<h3>1-3. 検索語句（稼働中と停止中を分けて集計）</h3>
+<table>
+<tr><th>区分</th><th>語数</th><th>表示</th><th>クリック</th><th>CTR</th><th>CPC</th><th>費用</th><th>CV</th></tr>
+<tr><td>合計（510語）</td><td>510</td><td>4,127</td><td>515</td><td>12.48%</td><td>¥518</td><td>¥266,599</td><td>6</td></tr>
+<tr><td>　稼働中</td><td>234</td><td>3,572</td><td>480</td><td>13.44%</td><td>¥515</td><td>¥247,016</td><td>6</td></tr>
+<tr><td>　<span class="gray">停止中（グレー）</span></td><td>276</td><td>555</td><td>35</td><td>6.31%</td><td>¥560</td><td><strong>¥19,582</strong></td><td>0</td></tr>
+</table>
+<div class="box amber">
+  <p><strong>停止（除外済み）にしてある276語のうち31語で、8月中に合計¥19,582の費用が発生している。</strong>除外は設定した時点から効くため、月の途中で除外した語に月初分の費用が残るのは仕様どおりで、ただちに問題とは言えない。ただし中身に看過できないものがある。</p>
+  <table>
+  <tr><th>停止中なのに費用が出た語</th><th>キャンペーン</th><th>クリック</th><th>CPC</th><th>費用</th></tr>
+  <tr><td>戸田 典礼 センター</td><td>P-MAX</td><td>1</td><td>¥2,250</td><td>¥2,250</td></tr>
+  <tr><td><strong>川口 典礼 川口 メモリアル ホール</strong></td><td>P-MAX</td><td>2</td><td>¥869</td><td>¥1,738</td></tr>
+  <tr><td>農協 葬儀</td><td>一般KW</td><td>1</td><td>¥1,292</td><td>¥1,292</td></tr>
+  <tr><td>鳩ヶ谷 葬式</td><td>一般KW</td><td>1</td><td>¥1,065</td><td>¥1,065</td></tr>
+  <tr><td><strong>川口 メモリアル ホール</strong></td><td>P-MAX</td><td>2</td><td>¥351</td><td>¥701</td></tr>
+  </table>
+  <p><strong>自社の式場名「川口メモリアルホール」「川口典礼 川口メモリアルホール」が P-MAX で除外済みなのに課金されている（計¥2,439）。</strong>また「鳩ヶ谷 葬式」は 8/07 に誤除外を指摘した鳩ヶ谷系の語で、いまも除外側に入っている。</p>
+</div>
+
+<h3>1-4. 費用上位の検索語句（稼働中）</h3>
+<table>
+<tr><th>検索語句</th><th>キャンペーン</th><th>状態</th><th>表示</th><th>クリック</th><th>CPC</th><th>費用</th><th>CV</th></tr>
+<tr><td>川口 典礼</td><td>指名</td><td>追加済み</td><td>165</td><td>50</td><td><strong>¥2,012</strong></td><td>¥100,589</td><td>5</td></tr>
+<tr><td>家族 葬 プラン</td><td>一般KW</td><td>追加済み</td><td>951</td><td>203</td><td>¥196</td><td>¥39,870</td><td>0</td></tr>
+<tr><td>川口 典礼</td><td>一般KW</td><td>なし</td><td>96</td><td>13</td><td><strong>¥1,648</strong></td><td>¥21,426</td><td>0</td></tr>
+<tr><td>葬儀 プラン</td><td>一般KW</td><td>追加済み</td><td>620</td><td>45</td><td>¥248</td><td>¥11,181</td><td>0</td></tr>
+<tr><td>一 日 葬</td><td>一般KW</td><td>なし</td><td>138</td><td>27</td><td>¥244</td><td>¥6,576</td><td>1</td></tr>
+<tr><td>川口 市 葬儀 場</td><td>一般KW</td><td>追加済み</td><td>11</td><td>1</td><td><strong>¥5,960</strong></td><td>¥5,960</td><td>0</td></tr>
+<tr><td>川口 葬儀 場</td><td>一般KW</td><td>なし</td><td>12</td><td>1</td><td><strong>¥4,890</strong></td><td>¥4,890</td><td>0</td></tr>
+<tr><td>川口 家族 葬</td><td>P-MAX</td><td>なし</td><td>1</td><td>1</td><td><strong>¥3,632</strong></td><td>¥3,632</td><td>0</td></tr>
+<tr><td>川口 市 葬儀 屋</td><td>一般KW</td><td>なし</td><td>5</td><td>1</td><td><strong>¥3,264</strong></td><td>¥3,264</td><td>0</td></tr>
+<tr><td>川口 市 葬儀</td><td>一般KW</td><td>なし</td><td>17</td><td>1</td><td><strong>¥2,255</strong></td><td>¥2,255</td><td>0</td></tr>
+</table>
+<p>社名「川口典礼」は指名キャンペーンで CPC¥2,012、一般KWキャンペーンでも CPC¥1,648 で<strong>二重に買っている</strong>（合計¥122,015）。地域語は 1クリック¥2,255〜¥5,960 で、Q5 のご説明（スコアが低いKWのCPCが高騰）と整合する。</p>
+
+<h3>1-5. キーワード別（登録KW・上位）</h3>
+<table>
+<tr><th>キーワード</th><th>表示</th><th>クリック</th><th>CPC</th><th>費用</th><th>CV</th></tr>
+<tr><td>"川口典礼"（指名）</td><td>205</td><td>53</td><td>¥2,084</td><td>¥110,472</td><td>6</td></tr>
+<tr><td>"川口 葬儀"</td><td>908</td><td>72</td><td><strong>¥1,379</strong></td><td><strong>¥99,318</strong></td><td><strong>0</strong></td></tr>
+<tr><td>"家族葬 プラン"</td><td>989</td><td>214</td><td>¥192</td><td>¥41,128</td><td>0</td></tr>
+<tr><td>"葬式 プラン"</td><td>313</td><td>107</td><td>¥235</td><td>¥25,096</td><td>2</td></tr>
+<tr><td>"葬儀 プラン"</td><td>1,035</td><td>108</td><td>¥211</td><td>¥22,838</td><td>0</td></tr>
+<tr><td>"めぐりの森 葬儀"</td><td>581</td><td>19</td><td>¥587</td><td>¥11,146</td><td>0</td></tr>
+<tr><td>"川口市 葬儀場"</td><td>53</td><td>2</td><td>¥3,238</td><td>¥6,476</td><td>0</td></tr>
+<tr><td>"鳩ヶ谷 葬儀"</td><td>20</td><td>2</td><td>¥2,043</td><td>¥4,086</td><td>0</td></tr>
+<tr><td>"川口市 家族葬"</td><td>11</td><td>0</td><td>—</td><td>¥0</td><td>0</td></tr>
+<tr><td>"川口市 葬儀社"</td><td><strong>0</strong></td><td>0</td><td>—</td><td>¥0</td><td>0</td></tr>
+<tr><td>"新井宿 葬儀"</td><td>10</td><td>0</td><td>—</td><td>¥0</td><td>0</td></tr>
+<tr><td>"西新井宿 葬儀"</td><td><strong>0</strong></td><td>0</td><td>—</td><td>¥0</td><td>0</td></tr>
+</table>
+<div class="box red">
+  <p><strong>「川口 葬儀」は月908表示・72クリック・¥99,318 を使ってコンバージョン0。</strong>地域語で最も配信されている語がこれで、CPC¥1,379。一方 <strong>「川口市 葬儀社」「西新井宿 葬儀」「めぐりの森 家族葬」など14語は月間表示0</strong>。同じアカウント内で、片方は10万円使い、もう片方は1回も出ていない。</p>
+</div>
+
+<h3>1-6. 時間帯別（月間・全キャンペーン）</h3>
+<table>
+<tr><th>帯</th><th>表示</th><th>表示比</th><th>クリック</th><th>CTR</th><th>費用</th><th>費用比</th><th>CV</th></tr>
+<tr><td><strong>0時</strong></td><td><strong>200,161</strong></td><td><strong>30.0%</strong></td><td>406</td><td>0.20%</td><td><strong>¥234,862</strong></td><td>24.5%</td><td>6</td></tr>
+<tr><td>1–4時</td><td>77,198</td><td>11.6%</td><td>143</td><td>0.19%</td><td>¥52,348</td><td>5.5%</td><td>2</td></tr>
+<tr><td>5時</td><td>90,795</td><td>13.6%</td><td>429</td><td>0.47%</td><td>¥84,405</td><td>8.8%</td><td>3.5</td></tr>
+<tr><td>6–11時</td><td>170,886</td><td>25.6%</td><td>1,713</td><td>1.00%</td><td>¥295,876</td><td>30.8%</td><td>35.5</td></tr>
+<tr><td>12–17時</td><td>91,126</td><td>13.7%</td><td>703</td><td>0.77%</td><td>¥226,512</td><td>23.6%</td><td>9.5</td></tr>
+<tr><td>18–23時</td><td>36,463</td><td>5.5%</td><td>285</td><td>0.78%</td><td>¥65,751</td><td>6.9%</td><td>1.0</td></tr>
+</table>
+<div class="box red">
+  <p><strong>0時台の1点に、月間表示の30%・費用の24.5%が集まっている。</strong>CTR 0.20% は 6–11時（1.00%）の5分の1。川口市限定という前提のもとで、この帯を「検索広告のみ」と説明することはできない。考えられるのは次の3つ。</p>
+  <ol>
+    <li>深夜も DG・P-MAX（バナー面）が動いている</li>
+    <li>検索キャンペーン側のディスプレイ拡張・検索パートナーが深夜に消化されている</li>
+    <li>レポート上、面によって表示時刻が0時に寄せて計上されている（集計側の仕様）</li>
+  </ol>
+  <p>DG（63,520）＋ P-MAX（72,962）を全部足しても136,482で、0時の200,161には届かない。したがって<strong>①だけでは説明がつかず、②か③が絡んでいる</strong>可能性が高い。</p>
+</div>
+
+<h3>1-7. 地域別</h3>
+<table>
+<tr><th>対象地域</th><th>表示</th><th>クリック</th><th>CPC</th><th>費用</th><th>費用比</th><th>CV</th></tr>
+<tr><td>川口市</td><td>620,910</td><td>3,590</td><td>¥251</td><td>¥901,796</td><td>93.9%</td><td>53</td></tr>
+<tr><td>緑区（さいたま市）</td><td>33,880</td><td>63</td><td><strong>¥734</strong></td><td>¥46,225</td><td>4.8%</td><td>3</td></tr>
+<tr><td>蕨市</td><td>11,839</td><td>26</td><td>¥451</td><td>¥11,734</td><td>1.2%</td><td>1</td></tr>
+</table>
+<p>Q2 で「所在地」設定と確定いただいたが、<strong>川口市外に表示45,719回・費用¥57,959（6.0%）が出ている。</strong>市境をまたぐ地域では位置推定の誤差で起こりうる範囲だが、緑区の33,880表示は誤差として大きく、かつ CPC が¥734と川口市（¥251）の約3倍である。</p>
+
+<h3>1-8. 広告文（アセット）</h3>
+<table>
+<tr><th>アセット</th><th>掲載面</th><th>表示</th><th>クリック</th><th>費用</th><th>CV</th></tr>
+<tr><td rowspan="4"><strong>直葬8.8万～、ご負担を最小限に</strong></td><td>検索</td><td>543</td><td>29</td><td>¥14,431</td><td>0</td></tr>
+<tr><td>DG（KW）</td><td>1,364</td><td>21</td><td>¥5,560</td><td>0</td></tr>
+<tr><td>DG（URL）</td><td>297</td><td>5</td><td>¥4,569</td><td>0</td></tr>
+<tr><td><strong>合計</strong></td><td><strong>2,204</strong></td><td><strong>55</strong></td><td><strong>¥24,560</strong></td><td><strong>0</strong></td></tr>
+<tr><td>家族葬・市民葬の相談受付中</td><td>DG（KW）</td><td>44,907</td><td>750</td><td>¥74,368</td><td>16.07</td></tr>
+<tr><td>川口周辺で葬儀社をお探しの方へ…</td><td>DG（KW）</td><td>16,462</td><td>418</td><td>¥56,581</td><td>8.07</td></tr>
+</table>
+<div class="box red">
+  <p><strong>「直葬8.8万～」は 2026-08-03 に停止を決めた広告文である。</strong>それが8月を通じて検索面・DG面の両方で配信され、¥24,560 を消費してコンバージョン0。</p>
+  <p>費用より重いのは、<strong>8.8万円という金額が当社の価格正本に存在しない</strong>ことである。当社の直葬プランは事前相談会員価格139,000円／通常価格189,000円。広告に出ている金額でお問い合わせをいただいた場合、その金額ではお受けできない。<strong>ご遺族に対して事実と異なる期待を持たせる状態が1か月続いていた</strong>ことになる。</p>
+</div>
+
+<h2>2. NEXT UP 眞部様のご回答の評価</h2>
+<table>
+<tr><th>項目</th><th>ご回答</th><th>当方評価</th><th>根拠・残る論点</th></tr>
+<tr><td>配信エリア</td><td>川口市のみで問題ない</td><td class="ok">確定</td><td>前提が固まった。ただし実データでは市外6.0%（§1-7）</td></tr>
+<tr><td>Q1 面別の費用内訳</td><td>3日までに速報値</td><td class="part">部分回答</td><td>本レポートがその速報にあたる。<strong>キャンペーン別は判明したが、検索キャンペーン内の「検索／検索パートナー／ディスプレイ拡張」の内訳は依然不明</strong></td></tr>
+<tr><td>Q2 地域ターゲティング</td><td>「所在地」で間違いない</td><td class="ok">確定</td><td>これで「関心を示した地域」説は消えた。市外6.0%の説明が別途必要</td></tr>
+<tr><td>Q3 地域語が出ない理由</td><td>品質スコアの問題。リンク先のテスト／変更で改善可能</td><td class="part">妥当だが未検証</td><td>CPCの高騰（§1-4）とは整合。ただし<strong>「川口市 葬儀社」など表示0</strong>はスコアだけでは説明しにくい。<strong>リンク先変更の提案は当方の方針と一致（後述）</strong></td></tr>
+<tr><td>Q4 5時台の配信面</td><td>時間帯別の配信面は出せない</td><td class="ng">代替案を提示したい</td><td>面が異なるキャンペーンは分かれているので、<strong>「キャンペーン別×時間帯」であれば同じことが分かる</strong>。§1-6 の判定に必要</td></tr>
+<tr><td>Q5 高額CPCの内訳</td><td>一般KWの通常検索面。スコアが低いKWのCPC高騰</td><td class="ok">実データと整合</td><td>ただし「戸田典礼センター」¥2,250 は P-MAX・除外済み語（§1-3）で、この説明の外にある</td></tr>
+<tr><td>Q6 着地先の行動計測</td><td>ブレイン様へGA権限をリクエスト</td><td class="ok">前進</td><td>結果を待つ。取得できない場合は §3 の判断が変わる</td></tr>
+<tr><td>ご依頼1 地域KWへの予算配分</td><td>Q3のとおり、次回打合せで方針決定</td><td class="ok">同意</td><td>当方も「理由が分かる前に入札だけ上げない」立場。次回で決める</td></tr>
+<tr><td>ご依頼2 地名なし語の継続</td><td>承知</td><td class="ok">合意</td><td>—</td></tr>
+<tr><td>ご依頼3 深夜の扱い</td><td>深夜は検索してお電話するケースが多いので、現状どおり検索広告のみで配信するのが良いのでは</td><td class="ng">認識の相違</td><td><strong>0時台20万表示・CTR0.20%（§1-6）は検索広告では説明できない。</strong>「現状＝検索広告のみ」というご認識自体を確認したい</td></tr>
+</table>
+
+<h2>3. 専門家10名の討議</h2>
+
+<div class="box blue"><span class="who">A：検索広告アカウント設計</span>
+<p>指名キャンペーンの304,177表示に対し、社名の検索語句は168表示。<strong>0.055%です。</strong>これはもう「指名キャンペーン」という名前がついた別物です。社名を守るための出稿なら、必要な表示回数は月200〜300回程度のはずで、実際 GSC で見た「川口典礼」の検索需要も月200回前後でした。</p>
+<p>加えて社名を<strong>指名と一般KWの2キャンペーンで買っている</strong>（¥100,589＋¥21,426）。同一アカウント内で同じ語に2本入札している状態で、CPCが¥2,012まで上がる一因になっています。</p></div>
+
+<div class="box blue"><span class="who">B：計測・アトリビューション</span>
+<p>0時台の件は、私は<strong>③のレポート仕様</strong>を最有力と見ます。DGとP-MAXを全部足しても200,161に届かない以上、「深夜にバナーが20万回出た」だけでは説明できない。面によっては表示時刻が0時に丸められて計上されることがあり、その場合<strong>0時台の数字は実在の深夜配信ではない</strong>ことになります。</p>
+<p>これは重要で、もし③なら「深夜を止める／残す」の議論そのものが空振りです。逆に①②なら実在の配信です。<strong>どちらかで打ち手が正反対になるので、キャンペーン別×時間帯を1枚もらうまで深夜の判断はできません。</strong></p></div>
+
+<div class="box blue"><span class="who">C：地域ローカル広告</span>
+<p>私は §1-5 を最も重く見ます。<strong>「川口 葬儀」に¥99,318を投じてCV0、その裏で「川口市 葬儀社」「西新井宿 葬儀」が月間表示0。</strong>同じ地域語なのに、片方に10万円、片方に0円です。</p>
+<p>眞部様の「品質スコア」説は、CPCが高い理由の説明としては正しい。ただし<strong>表示0の説明にはなりません。</strong>品質スコアが低ければ「高い単価で少しだけ出る」のであって、「1回も出ない」は入札除外・予算配分・マッチタイプ側の話です。ここは分けて確認すべきです。</p></div>
+
+<div class="box blue"><span class="who">D：法務・表示（景表法の観点）</span>
+<p>「直葬8.8万～」は費用対効果の話ではありません。<strong>当社が提供していない価格を1か月間広告し続けた</strong>という事実です。しかも8/03に停止を決定済み。決定が実装されていなかったことになります。</p>
+<p>優良誤認の観点では、実際に8.8万円で提供できないのであれば、注記の有無にかかわらず表示自体を改めるべきです。<strong>今日すぐ止める依頼を出し、あわせて「8/03に停止と決めた指示がなぜ8月末まで生きていたのか」の確認をお願いすべき</strong>だと考えます。責める趣旨ではなく、同じことが再発する経路を塞ぐためです。</p></div>
+
+<div class="box blue"><span class="who">E：財務・ユニットエコノミクス</span>
+<p>月¥959,754でCV57、CV単価¥16,838。ただしこのCVはフォーム等の計測値で受注ではありません。<strong>葬儀1件の粗利から逆算すれば、CV単価¥16,838は成立しうる水準ですが、それは「CVが本当に見込み客だったら」の話です。</strong></p>
+<p>気になるのは配分です。指名がCV単価¥21,537で最も高く、DGが¥10,850、P-MAXが¥7,632。<strong>いちばん高いところに最大の予算（31%）を置いている</strong>形になっている。社名は本来いちばん安く獲れる場所のはずで、この逆転は §1-4 の「二重入札」で説明がつきます。</p></div>
+
+<div class="box blue"><span class="who">F：消費者行動・ご遺族の心理</span>
+<p>ご依頼3への眞部様のご返答「深夜など緊急時は検索してお電話するケースが多い」は、<strong>実感として正しい</strong>と思います。私も同意見です。だからこそ深夜の検索広告は残すべきです。</p>
+<p>ただ、それと「0時台に20万回表示されている」は別の話です。前者は当社の方針、後者はデータの解釈。<strong>両者を混ぜずに、方針は維持したまま、データの中身だけを確認する</strong>という進め方が正しいと思います。眞部様のご意見に反対しているのではない、という点は伝えたほうがよいでしょう。</p></div>
+
+<div class="box blue"><span class="who">G：LP・CRO</span>
+<p>Q3の「リンク先をテストor変更する事で改善を図れる」は、今回いちばんの収穫です。<strong>着地先の変更が、当社の要望ではなく運用上の改善策として先方から出てきた。</strong></p>
+<p>品質スコアは「広告の関連性・推定クリック率・ランディングページの利便性」で決まります。現在の着地先は当社が編集できず、地域語との関連性を高める修正もできない。対して当社サイトの <code>/lp/</code> なら、「川口市 葬儀」「川口市 家族葬」に対して見出しから本文まで合わせられます。<strong>品質スコアを上げる手段を持っているのは当社側だけ</strong>です。</p></div>
+
+<div class="box blue"><span class="who">H：データ分析</span>
+<p>数字の扱いで2点。第一に、CVに 0.93 / 16.07 / 2.04 といった小数が並んでいます。<strong>これはモデル化された推定値</strong>で、実測ではありません。DGの「CV18」を成果として扱うときは、この点を明示しておくべきです。</p>
+<p>第二に、日別（§デイリー）を見ると<strong>8/17を境にCTRが0.2〜0.3%台から1%前後へ跳ね、CPCが¥500台から¥100台に下がっています。</strong>8/17前後で配信の中身が変わったことは間違いありません。何を変えたのかを聞いておくと、9月の判断材料になります。</p></div>
+
+<div class="box blue"><span class="who">I：代理店マネジメント</span>
+<p>今回の回答は、8/07 に「口頭では伝わらない」と総括したときと比べて、明確に改善しています。<strong>書面で出した6問に、6問とも回答が返ってきた。</strong>Q4だけが「出せない」ですが、これも明確な回答です。この運用は続けるべきです。</p>
+<p>その上で申し上げると、<strong>8/03の「8.8万アセット停止」が実装されていなかった</strong>のは、指示の伝達ではなく実装確認の問題です。今後は「依頼」と「実装確認」を分け、次回レポートで<strong>前回依頼の実装状況を1行ずつ確認する欄</strong>を設けるのが現実的だと思います。</p></div>
+
+<div class="box blue"><span class="who">J：自然検索（SEO）との統合</span>
+<p>広告の「川口 葬儀」がCPC¥1,379でCV0という一方で、自然検索では同じ「川口市 葬儀」が8.53位まで戻り、月1,264表示を無料で得ています。<strong>同じ語を、有料で高く買いながら、無料でも取りに行っている。</strong></p>
+<p>ここは対立ではなく役割分担で整理できます。自然検索は9〜11位の壁の手前で止まっており、この壁の正体はローカルパック（地図枠）です。<strong>広告で地域語を高いCPCで買い続けるより、GBPを取りに行くほうが同じ枠を安く取れる</strong>可能性が高い。GBP APIの承認待ちが長引いているのは、そういう意味でも痛いです。</p></div>
+
+<h3>3-1. 討議で残った対立</h3>
+<table>
+<tr><th>論点</th><th>意見</th><th>反対意見</th><th>当方判定</th></tr>
+<tr><td>0時台20万表示の正体</td><td>B：レポート仕様（③）が最有力。実在の配信ではない可能性</td><td>C：②のディスプレイ拡張なら実在の配信で、放置は損失</td><td><strong>判定保留。</strong>キャンペーン別×時間帯を1枚もらう。それまで深夜の設定は触らない</td></tr>
+<tr><td>指名キャンペーンの縮小</td><td>A・E：表示の0.055%しか社名でない。縮小すべき</td><td>F：社名で来た方を他社に取られるリスクは残る</td><td><strong>縮小ではなく分割を提案。</strong>社名クエリだけを完全一致で残し、それ以外を別勘定にする。総額は変えない</td></tr>
+<tr><td>地域語のCPCを上げるか</td><td>C：出ていない語がある以上、入札以前の問題</td><td>G：着地先を変えれば品質スコアが上がりCPCは下がる</td><td><strong>着地先の変更が先。</strong>Q3のご提案に沿って次回打合せで決める</td></tr>
+</table>
+
+<h2>4. 合意点（10名の共通見解）</h2>
+<ol>
+  <li><strong>「直葬8.8万～」は即時停止。</strong>費用ではなく表示内容の問題であり、他のどの論点よりも先に処理する</li>
+  <li><strong>深夜の方針は変えない。</strong>眞部様のご意見（深夜は検索して電話）に当方も同意する。ただし0時台の20万表示が何かは別途確認する</li>
+  <li><strong>着地先の変更は、当社の要望ではなく品質スコア改善策として進める。</strong>次回打合せの議題（オーナー・松澤・貴社の三者）</li>
+  <li><strong>指名キャンペーンは総額を変えずに構造を分ける。</strong>社名クエリと、それ以外を同じ財布に入れない</li>
+  <li><strong>「キャンペーン別×時間帯」の1枚を依頼する。</strong>Q4の代替であり、これで0時台の正体が判定できる</li>
+  <li><strong>前回依頼の実装確認欄を、次回レポートに設ける。</strong>8/03の指示が8月末まで生きていた経路を塞ぐ</li>
+</ol>
+
+<h2>5. 次のアクション</h2>
+<h3>5-1. 至急（本日中に連絡）</h3>
+<ul>
+  <li>「直葬8.8万～、ご負担を最小限に」の広告見出しを全キャンペーンで停止</li>
+  <li>あわせて、他のアセットに当社の価格正本にない金額が入っていないかの確認</li>
+</ul>
+<h3>5-2. 次回レポートまで</h3>
+<ul>
+  <li>キャンペーン別×時間帯（Q4の代替）</li>
+  <li>検索キャンペーン内の「検索／検索パートナー／ディスプレイ拡張」の内訳（Q1の残り）</li>
+  <li>緑区33,880表示・¥46,225 の理由（Q2の確定を受けて）</li>
+  <li>「川口市 葬儀社」「西新井宿 葬儀」など表示0の語が出ない理由（Q3の残り。スコアとは別の要因）</li>
+  <li>8/17前後で何を変更したか（CTR・CPCの変化点）</li>
+  <li>ブレイン様へのGA権限リクエストの進捗（Q6）</li>
+</ul>
+<h3>5-3. 次回打合せの議題</h3>
+<ul>
+  <li>着地先を <code>/lp/</code> へ変更するか（品質スコア改善策として。オーナー・松澤・貴社の三者）</li>
+  <li>指名キャンペーンの分割</li>
+  <li>地域語への予算配分（Q3の結論を受けて）</li>
+</ul>
+
+<h2>6. 今回の変更</h2>
+<p>広告設定の変更なし・サイト変更なし（分析のみ）。元データは <code>public/images/tmp/リスティング/報告/20260901/202608 Google広告レポート.xlsx</code>。個人情報・秘密情報は含まない。</p>
+
+<footer class="doc" style="margin-top:60px;border-top:1px solid #e2ddd4;border-bottom:none;padding-top:14px">
+  <p class="meta">川口典礼サイト 社内レポート／作成 2026-09-02／出典：NEXT UP 提供 202608 Google広告レポート（9シート・2026-09-01受領）、眞部様ご回答メール（2026-09-01）、当社 Search Console 実測／グレーアウト＝除外済みの判定、区分別合計・CTR・CPCは当方で再集計／非公開・noindex</p>
+</footer>
+</div>
+</body>
+</html>
