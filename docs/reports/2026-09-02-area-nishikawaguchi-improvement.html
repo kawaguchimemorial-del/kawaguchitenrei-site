@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>西川口エリアページ改善 2026-09-02</title>
+<style>
+  :root{--ink:#1c1a17;--sub:#5c564e;--line:#e2ddd4;--bg:#fbfaf8;--accent:#7a5c3e;
+    --red:#a8322a;--amber:#8a6412;--green:#2f6146;--blue:#2d5573;
+    --redbg:#fdf3f2;--amberbg:#fdf9ee;--greenbg:#f1f7f3;--bluebg:#f0f4f8;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;line-height:1.9;font-size:15px}
+  .wrap{max-width:1000px;margin:0 auto;padding:44px 22px 96px}
+  header.doc{border-bottom:3px solid var(--ink);padding-bottom:18px;margin-bottom:30px}
+  .kicker{font-size:12px;letter-spacing:.14em;color:var(--sub);margin:0}
+  h1{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:25px;line-height:1.5;margin:10px 0 12px;font-weight:600}
+  .meta{font-size:13px;color:var(--sub)}
+  h2{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:20px;margin:50px 0 14px;
+    padding:8px 0 8px 14px;border-left:5px solid var(--accent);font-weight:600;background:#f6f3ee}
+  h3{font-size:16px;margin:30px 0 10px;font-weight:600;border-bottom:1px solid var(--line);padding-bottom:6px}
+  p{margin:0 0 12px}
+  table{border-collapse:collapse;width:100%;font-size:13px;margin:14px 0;background:#fff}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:right;vertical-align:top}
+  th{background:#f4f1eb;font-weight:600;text-align:center;white-space:nowrap}
+  td:first-child,th:first-child{text-align:left}
+  code{background:#f2efe9;padding:1px 5px;border-radius:3px;font-size:12px}
+  ul,ol{margin:0 0 14px;padding-left:1.4em}
+  li{margin-bottom:6px}
+  .box{border:1px solid var(--line);border-radius:6px;padding:14px 16px;margin:16px 0;background:#fff}
+  .box.red{background:var(--redbg);border-color:#e6bfbb}
+  .box.amber{background:var(--amberbg);border-color:#ead9ae}
+  .box.green{background:var(--greenbg);border-color:#c3ddcd}
+  .box.blue{background:var(--bluebg);border-color:#c3d3e0}
+  .box p:last-child{margin-bottom:0}
+  .diff{background:#fff;border:1px solid var(--line);border-radius:6px;padding:12px 14px;margin:10px 0;font-size:13.5px}
+  .diff .b{color:var(--red)}
+  .diff .a{color:var(--green)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="doc">
+  <p class="kicker">社内レポート（docs/reports・非公開/noindex）</p>
+  <h1>西川口エリアページの改善（「西川口 葬儀」21位の押し上げ）</h1>
+  <p class="meta">2026-09-02 ／ 松澤指示 ／ 対象：<code>lib/areas.ts</code>（西川口のデータのみ）・<code>lib/area-local-guide.ts</code>（西川口の項のみ）</p>
+</header>
+
+<h2>0. 経緯 ― 当初の見立ての訂正</h2>
+<div class="box red">
+  <p>本日の SEOチェックで「エリアページが他社施設名で拾われている」と報告し、その原因を<strong>「エリアページ内で近隣式場を列挙しているため」</strong>と書いた。<strong>これは誤りだった。</strong></p>
+  <p><code>app/</code>・<code>lib/</code>・<code>components/</code> を全文検索したところ、ライフホール西川口・ティア鳩ヶ谷・川口駅前葬斎センター等の施設名は<strong>サイト内のどこにも記載がない</strong>（ヒットするのは広告LPのソース内コメントのみで、表示テキストではなく <code>/lp/</code> は noindex）。実際は Google が施設名クエリの代替候補として当社のエリアページを16〜48位に並べているだけで、当社側に直す記述はない。</p>
+  <p>他社式場について当社が断定的に書くことは §15・§19.2 上できないため、<strong>この語を追うこと自体が対策にならない。</strong>そこで対象を絞り直した。</p>
+</div>
+
+<h2>1. 何を対策対象にしたか</h2>
+<p>エリアページに当たっている語から、他社施設名を除いて当社が本来狙う語だけを並べ直した（56日窓・7/06–8/30）。</p>
+<table>
+<tr><th>クエリ</th><th>ページ</th><th>表示</th><th>クリック</th><th>順位</th></tr>
+<tr><td><strong>西川口 葬儀</strong></td><td>/area/nishikawaguchi/</td><td>73</td><td>0</td><td><strong>20.8</strong></td></tr>
+<tr><td><strong>葬儀 西川口</strong></td><td>/area/nishikawaguchi/</td><td>66</td><td>0</td><td><strong>20.4</strong></td></tr>
+<tr><td>南鳩ヶ谷駅 葬儀</td><td>/area/minami-hatogaya/</td><td>9</td><td>0</td><td>9.8</td></tr>
+<tr><td>鳩ヶ谷 斎場</td><td>/area/hatogaya/</td><td>1</td><td>0</td><td>14.0</td></tr>
+<tr><td>川口市 家族葬</td><td>/area/higashikawaguchi/</td><td>56</td><td>0</td><td>52.3（トップが12.1位）</td></tr>
+<tr><td>川口市 葬儀</td><td>/area/kawaguchi/</td><td>59</td><td>0</td><td>74.7（トップが8.85位）</td></tr>
+</table>
+<div class="box blue">
+  <p><strong>駅名×葬儀の実需要は、事実上「西川口 葬儀／葬儀 西川口」だけに集中している。</strong>56日で合計139表示。他の駅名は一桁で、施策の対象にする規模がない。</p>
+  <p>市全域語（川口市 葬儀・川口市 家族葬）はトップページが 8.85位／12.1位で受けており、エリアページは下位に並走しているだけ。こちらは今回の対象外とした（松澤判断で範囲は「駅名×葬儀の押し上げのみ」）。</p>
+  <p>したがって<strong>今回触るのは <code>/area/nishikawaguchi/</code> 1ページ分のデータのみ</strong>。20位台は「2ページ目の上部」で、1ページ目に届けば初めてクリックが発生する帯であり、エリアページで現実的に手が届く唯一の位置。</p>
+</div>
+
+<h2>2. 変更内容</h2>
+<p>「西川口 葬儀」で検索する方の意図は<strong>「西川口で葬儀社を探している」</strong>であるのに対し、ページ側に「葬儀社」という語と、葬儀社選びの観点がほとんど無かった。そこを補う形で5点を修正した。</p>
+
+<h3>2-1. metaTitle</h3>
+<div class="diff">
+  <p class="b">旧：西川口の葬儀・家族葬 | 川口市西川口周辺で葬儀をお考えの方へ | 川口典礼</p>
+  <p class="a" style="margin:0">新：西川口の葬儀・家族葬 | 川口市西川口の葬儀社なら川口典礼 | 24時間365日受付</p>
+</div>
+<p>「周辺で葬儀をお考えの方へ」は自社視点の言い換えで、検索語と噛み合っていなかった。「葬儀社」と受付体制を入れた。</p>
+
+<h3>2-2. metaDescription</h3>
+<div class="diff">
+  <p class="b">旧：川口市西川口周辺で葬儀・家族葬・直葬・一日葬をお考えの方へ。川口典礼では、搬送・安置・ご葬儀・川口市めぐりの森での火葬まで、状況に合わせて一貫してサポートします。</p>
+  <p class="a" style="margin:0">新：川口市西川口で葬儀社をお探しの方へ。JR西川口駅周辺からの葬儀・家族葬・直葬・一日葬に、創業20年の川口典礼が24時間365日対応します。病院・ご自宅からのお迎え、ご安置、自社式場でのお別れ、川口市めぐりの森での火葬までを一貫してご案内します。事前相談・お見積りは無料です。</p>
+</div>
+
+<h3>2-3. 見出し（features 1本目）</h3>
+<div class="diff">
+  <p class="b">旧：西川口エリアからのご相談に丁寧に対応</p>
+  <p class="a" style="margin:0">新：西川口エリアの葬儀社をお探しの段階からご相談いただけます</p>
+</div>
+<p>本文にも「どの葬儀社に頼むか決まっていない段階でも構いません」を追加。相談のハードルを下げる文体（§11）を維持している。</p>
+
+<h3>2-4. FAQ を2問追加</h3>
+<table>
+<tr><th>設問</th><th>回答の要点</th></tr>
+<tr><td>西川口で葬儀社を選ぶときは、何を確認しておくとよいですか？</td><td>見積りに含まれる範囲と別途項目（式場使用料・安置とドライアイス・料理・返礼品・宗教者へのお礼）、安置先、火葬場予約の代行、深夜早朝の受付。<strong>他社の優劣には触れず、確認項目の提示にとどめた（§15）</strong></td></tr>
+<tr><td>西川口駅の近くで式場を探しています。どのような選択肢がありますか？</td><td>自社式場（川口メモリアルホール・西新井宿）、寺院式場、ご自宅、近隣の公営斎場。<strong>「空きがあります」等は書かず、「利用条件・料金が異なり空き状況も日によって変わる」と明記（§19.3）</strong></td></tr>
+</table>
+<p>この2問はページ内 FAQ であると同時に、<code>FAQPage</code> の構造化データにもそのまま反映される。</p>
+
+<h3>2-5. 地域ガイドの西川口の記述を厚くした</h3>
+<p>8/26 に全エリアページへ追加したブロックのうち、西川口固有の2文が短かったため加筆した。</p>
+<ul>
+  <li><strong>アクセス</strong>：自社式場まで「お車でお越しいただける距離・駐車場70台」を追記（数値は <code>lib/halls.ts</code> と一致）</li>
+  <li><strong>導入文</strong>：「葬儀社・葬儀場をお探しの方へ」に変更し、マンション・アパートが多く自宅安置が難しい事情、搬送から火葬場予約までまとめて引き受ける点を追記</li>
+</ul>
+
+<h2>3. やらなかったこと</h2>
+<ul>
+  <li><strong>他社施設名の追記</strong>：§15・§19.2 に抵触するため行わない。施設名クエリでの16〜48位は実害のない副産物として放置する</li>
+  <li><strong>新規ページの作成</strong>：ページ量産は頭打ちという 8/10 の判断を維持</li>
+  <li><strong>市全域語のカニバリ解消</strong>：今回の指示範囲外。トップと <code>/area/kawaguchi/</code>・<code>/area/higashikawaguchi/</code> の並走は残っている</li>
+  <li><strong>他の駅名ページの同様の改修</strong>：需要が一桁のため、西川口で効果が確認できてから判断する</li>
+  <li>価格・プラン名の変更、式場の利用可否の新規断定は一切していない</li>
+</ul>
+
+<h2>4. 効果の判定方法</h2>
+<table>
+<tr><th>指標</th><th>現在（56日窓）</th><th>判定の目安</th></tr>
+<tr><td>「西川口 葬儀」の順位</td><td>20.8位</td><td>2週後に<strong>15位以内</strong>なら効果あり。20位台のままなら文言では動かないと判断</td></tr>
+<tr><td>「葬儀 西川口」の順位</td><td>20.4位</td><td>同上</td></tr>
+<tr><td>/area/nishikawaguchi/ のクリック</td><td>0</td><td>1件でも出れば、この帯を抜けた合図</td></tr>
+</table>
+<p><strong>次の判定は 9/16 前後。</strong>それまでは他のエリアページに同じ改修を広げない。</p>
+
+<h2>5. 変更ファイルと確認</h2>
+<ul>
+  <li><code>lib/areas.ts</code>（<code>areaNishikawaguchi</code> のみ）</li>
+  <li><code>lib/area-local-guide.ts</code>（<code>nishikawaguchi</code> の項のみ）</li>
+</ul>
+<p>確認コマンド：<code>npm run dev</code> / <code>npm run build</code>（成功・静的生成140ページで減少なし）<br>
+確認URL：<code>http://localhost:3000/area/nishikawaguchi/</code></p>
+<p>コミット・push 済み（§19.1 の「既存ページの SEO/AIO 改善」に該当）。</p>
+
+<footer class="doc" style="margin-top:60px;border-top:1px solid #e2ddd4;border-bottom:none;padding-top:14px">
+  <p class="meta">川口典礼サイト 社内レポート／作成 2026-09-02／根拠：GSC API 実測（7/06–8/30 の query×page）／非公開・noindex</p>
+</footer>
+</div>
+</body>
+</html>
