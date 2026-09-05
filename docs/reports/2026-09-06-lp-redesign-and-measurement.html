@@ -4,7 +4,7 @@
 <p><strong>次回会議で広告の受け皿として提案できるLPを実装した。</strong> 緊急時の電話相談を優先し、費用の理解、実在する式場への安心感、事前相談への導線を整理した。変更はユーザーの構築・commit・push依頼に基づく。問い合わせ率の改善は仮説であり、成果を保証するものではない。</p>
 <ul>
 <li>完了：競合の公開ページ調査、LPと専用フォーム画面の再設計、通常価格・別途費用の整理、実写3点の選定、LP専用イベント実装、既存GA4を使った分離集計の実行確認。</li>
-<li>完了：ビルド、計測の自動検証、スマートフォンの表示・展開操作・未入力送信抑止の確認。最終公開結果は本資料末尾に追記する。</li>
+<li>完了：ビルド、計測の自動検証、スマートフォンの表示・展開操作・未入力送信抑止の確認、mainへのpushとVercel本番反映。詳細は本資料末尾。</li>
 <li>会議後に実施：広告管理画面の最終ページURL切り替え、配信条件・広告文・Google AdsのCV対応表の決定。現在の外部LPや代理店設定は変更していない。</li>
 <li>未確認：新しいLPイベントのGA4実受信、広告クリックから問い合わせ保存・通知までの本番通し確認。実際の相談を発生させるテスト送信は行っていない。</li>
 </ul>
@@ -102,5 +102,8 @@
 </ul>
 </section>
 <section id="section-10"><h2>公開記録</h2>
-<p>本番反映後にコミット・Vercel結果・HTML容量・sitemapを追記する。</p>
+<p>実装コミットは <code>38f85c3</code>（Redesign advertising LP and separate acquisition reporting）。2026-09-06にorigin/mainへpushし、<a href="https://vercel.com/kawaguchitenrei-s-projects/kawaguchitenrei-site/3k883qfq52Y5JSzNnd6Z668Pm5Tj">Vercelデプロイ</a> のsuccessを確認した。</p>
+<p>2026-09-06 07:24 JSTの本番確認で、LP・専用フォーム・トップ・sitemap.xml・robots.txtはすべてHTTP 200、Server: Vercel。LPの新見出し、noindex、自己参照canonical、電話リンクの計測属性を確認。sitemapは129 URLでLPを含まず、robotsでLPを遮断していない。</p>
+<p>本番の非圧縮HTMLは改修前339,073 bytesから42,515 bytesへ約87.5%減少。専用フォームは32,120 bytes。ローカル生成物との差は本番環境の埋め込み等を含むため、ローカル値と本番値を区別する。画像・CSS・JavaScriptを含む総転送量やLCPが87.5%改善したという意味ではない。</p>
+<p>本番ブラウザでも <code>https://kawaguchitenrei.com/lp/?analytics=off</code> を開き、新構成と価格・リンクを確認した。記録追記は別のdocsコミットで保存する。広告管理画面の配信先、予算、Google Ads CVはこの公開で変更していない。</p>
 </section></main></div><footer>作業記録 / docs内資料 / noindex,nofollow</footer></div></body></html>

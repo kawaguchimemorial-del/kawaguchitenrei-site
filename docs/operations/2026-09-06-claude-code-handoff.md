@@ -26,6 +26,7 @@
 |---|---|---|
 | d3fc44b | サイト改善、計測除外、9月5日監査と接続資料 | mainへpush、Vercel success、本番129 URL検証成功 |
 | 98500bf | 公開結果・Googleの登録リクエスト結果の記録 | mainへpush、Vercel success（最終確認済み） |
+| 38f85c3 | 広告LP再設計、LP専用イベント、GA4分離集計と引き継ぎ資料 | mainへpush、Vercel success。本番LP42,515 bytes・sitemap129 URL。広告配信先は未切替 |
 
 本番は [kawaguchitenrei.com](https://kawaguchitenrei.com/)。ソースは `kawaguchimemorial-del/kawaguchitenrei-site` のmain。確認済みデプロイは [サイト改善](https://vercel.com/kawaguchitenrei-s-projects/kawaguchitenrei-site/7bUfvGtDmhG6PVM6UDdwfWC4qJ4U) と [記録追記](https://vercel.com/kawaguchitenrei-s-projects/kawaguchitenrei-site/DxMsg8ZCviR9X7EY5xdqrKFCSiW6)。URLの閲覧にはVercel権限が必要な場合がある。将来の作業では現在のHEAD・remote・本番状態を再確認する。
 
