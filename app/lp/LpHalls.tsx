@@ -126,6 +126,8 @@ export function LpHalls() {
             <div className="mt-4 grid gap-2 sm:grid-cols-2">
               <a
                 href={PHONE_HREF}
+                data-lp-event="lp_click_tel"
+                data-lp-placement="hall"
                 className="flex flex-col items-center rounded-lg bg-emergency px-4 py-3 text-white transition hover:bg-emergency-deep"
               >
                 <span className="text-[11px] font-bold">

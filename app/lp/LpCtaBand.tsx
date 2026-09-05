@@ -18,6 +18,8 @@ export function LpCtaBand({
         <p className="mt-2 text-xs leading-6 text-white/80 md:text-sm">{note}</p>
         <a
           href={PHONE_HREF}
+          data-lp-event="lp_click_tel"
+          data-lp-placement="band"
           className="mt-4 flex flex-col items-center rounded-xl bg-emergency px-5 py-4 shadow-lg transition hover:bg-emergency-deep"
         >
           <span className="text-xs font-bold tracking-wide">
@@ -30,6 +32,8 @@ export function LpCtaBand({
         </a>
         <Link
           href="/lp/contact/"
+          data-lp-event="lp_contact_open"
+          data-lp-placement="band"
           className="mt-3 inline-block text-sm text-white/90 underline underline-offset-4"
         >
           事前のご相談はこちら

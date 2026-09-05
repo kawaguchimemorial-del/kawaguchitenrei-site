@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
+
 import { LpAnalytics } from "./LpAnalytics";
-import styles from "./lp.module.css";
 
 // 広告LP専用（CLAUDE.md §21）。
 // 検索結果には一切出さない。sitemap.ts にも追加しない。
@@ -17,5 +17,12 @@ export const metadata: Metadata = {
 export default function LpLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  return <div className={styles.root}>{children}<LpAnalytics /></div>;
+  // LpAnalytics は lp_* イベント（電話タップ・プラン展開・フォーム開始等）を
+  // 既存の Google タグへ直接送る。本サイト側のイベントとは合算しない。
+  return (
+    <>
+      {children}
+      <LpAnalytics />
+    </>
+  );
 }

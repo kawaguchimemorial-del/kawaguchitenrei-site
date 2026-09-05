@@ -29,6 +29,8 @@ export function LpPhoneBox({
         </p>
         <a
           href={PHONE_HREF}
+          data-lp-event="lp_click_tel"
+          data-lp-placement="hero"
           className="mt-3 flex flex-col items-center rounded-xl bg-emergency px-4 py-4 text-white shadow-lg transition hover:bg-emergency-deep"
         >
           <span className="text-xs font-bold tracking-wide">
@@ -52,6 +54,8 @@ export function LpPhoneBox({
           </Link>
           <Link
             href="#contact"
+            data-lp-event="lp_contact_open"
+            data-lp-placement="hero"
             className={`rounded-lg border-2 px-3 py-2.5 text-xs font-bold ${
               dark
                 ? "border-white/60 text-white"

@@ -85,6 +85,8 @@ export function LpPreneed() {
             <div className="mt-4 grid gap-2 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2">
               <a
                 href={PHONE_HREF}
+                data-lp-event="lp_click_tel"
+                data-lp-placement="preneed"
                 className="flex flex-col items-center rounded-lg bg-emergency px-4 py-3 transition hover:bg-emergency-deep"
               >
                 <span className="text-[11px] font-bold">
@@ -96,6 +98,8 @@ export function LpPreneed() {
               </a>
               <Link
                 href="#contact"
+                data-lp-event="lp_contact_open"
+                data-lp-placement="preneed"
                 className="flex items-center justify-center rounded-lg border-2 border-white px-4 py-3 text-[15px] font-bold text-white"
               >
                 相談フォームへ
