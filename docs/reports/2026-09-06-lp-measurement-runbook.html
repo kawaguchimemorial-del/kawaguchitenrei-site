@@ -1,0 +1,63 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>広告LPと本サイトの計測運用｜2026-09-06</title><style>
+:root{--ink:#233c37;--muted:#61716b;--paper:#f5f5f0;--line:#dbe4dc;--accent:#386951;--light:#eaf1e9;--warn:#755326}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:"Yu Gothic UI","Meiryo",sans-serif;line-height:1.9;font-size:15px}a{color:#295e7b;text-underline-offset:4px}a:hover{color:#20382d}a:focus-visible{outline:3px solid #b38548;outline-offset:4px}.wrap{max-width:1160px;margin:auto;padding:0 32px}header{background:#233e34;color:#fff;padding:52px 0 44px}.eyebrow{font-size:12px;letter-spacing:.16em;color:#cedbcf;margin:0 0 14px}h1{font-size:clamp(25px,3.4vw,39px);line-height:1.55;letter-spacing:.03em;margin:0 0 18px}header .lead{max-width:780px;color:#e0e8df;font-size:16px;margin:0}.date{font-size:12px;color:#cedbcf;margin-top:20px}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:26px 0}.metric{background:white;border:1px solid var(--line);padding:20px 22px;border-radius:9px}.metric .label{font-size:12px;color:var(--muted)}.metric strong{display:block;font-size:29px;font-weight:650;line-height:1.6}.metric small{color:var(--muted);font-size:11px}.notice{padding:18px 22px;border-left:4px solid #a78348;background:#fff6e8;border-radius:3px;margin-bottom:26px;color:var(--warn)}.notice strong{color:#674519}.layout{display:grid;grid-template-columns:225px minmax(0,1fr);gap:30px;align-items:start}nav{position:sticky;top:20px;padding:19px;background:#ebefe8;border-radius:8px}nav .title{font-weight:700;font-size:12px;color:var(--muted);margin-bottom:9px}nav a{display:block;font-size:12px;padding:5px 0;text-decoration:none;color:#3a5749;line-height:1.7}.main{min-width:0}section{background:#fff;border:1px solid var(--line);border-radius:10px;margin:0 0 22px;padding:27px 30px;scroll-margin-top:20px}h2{font-size:21px;line-height:1.6;font-weight:650;margin:0 0 20px;padding-bottom:13px;border-bottom:1px solid var(--line)}p{margin:14px 0}ul{padding-left:22px}li{margin:8px 0}code{font-family:Consolas,"Meiryo",monospace;background:#f0f3ee;padding:1px 4px;border-radius:3px;font-size:.87em;overflow-wrap:anywhere}.table-scroll{overflow-x:auto;max-width:100%;margin:19px 0;border:1px solid var(--line);border-radius:5px}table{width:100%;border-collapse:collapse;font-size:12px;line-height:1.8}th{background:#edf2ec;color:#284535;text-align:left;padding:11px 12px;vertical-align:top}td{padding:11px 12px;border-top:1px solid #e5eae2;vertical-align:top;min-width:80px;overflow-wrap:anywhere}tbody tr:nth-child(even){background:#fafbf8}td:first-child{color:#304f41}footer{padding:22px 0 45px;color:var(--muted);font-size:12px}.file-links{margin:16px 0 24px;font-size:12px}.file-links a{margin-right:18px}@media(max-width:850px){.layout{display:block}nav{position:static;margin-bottom:22px;display:grid;grid-template-columns:1fr 1fr;gap:5px 18px}nav .title{grid-column:1/-1}.metrics{grid-template-columns:repeat(2,1fr)}section{padding:24px}}@media(max-width:520px){.wrap{padding:0 17px}header{padding:33px 0}section{padding:21px 17px}h2{font-size:19px}.metric{padding:15px}.metric strong{font-size:25px}.notice{padding:14px 16px;font-size:13px}.metrics{gap:9px}table{min-width:540px}nav{padding:15px}body{font-size:14px}}@media print{body{background:#fff;font-size:11px}header{background:#fff;color:#233e34;padding:10px 0}header .lead,.date,.eyebrow{color:#526256}nav{display:none}.layout{display:block}.wrap{max-width:none;padding:0}.metrics{margin:14px 0}.metric{padding:10px}.metric strong{font-size:20px}section{padding:15px 0;border:0;border-radius:0;break-inside:auto}h2{break-after:avoid}.table-scroll{overflow:visible}table{font-size:10px}tr{break-inside:avoid}.file-links{display:none}}
+</style></head><body><header><div class="wrap"><p class="eyebrow">川口典礼 / 広告LP / 2026-09-06</p><h1>広告LPと本サイトの計測運用</h1><p class="lead">入口セッションで分ける集計、イベント辞書、二重計上を防ぐルール、広告切替前の確認手順。</p><div class="date">2026年9月6日 / Codex</div></div></header><div class="wrap"><p class="file-links"><a href="index.html">レポート一覧</a><a href="../ad-lp/2026-09-06-lp-measurement-runbook.md">Markdown版</a></p><div class="layout"><nav aria-label="目次"><a href="#section-1">集計の原則</a><a href="#section-2">毎回実行するコマンド</a><a href="#section-3">GA4画面で同じ見方を作る</a><a href="#section-4">LPイベントの辞書</a><a href="#section-5">二重計上とGoogle Adsの切替前チェック</a><a href="#section-6">テスト・内部利用の除外</a><a href="#section-7">週次報告の書式と移行判定</a><a href="#section-8">後任への注意</a></nav><main class="main"><section id="section-1"><h2>集計の原則</h2>
+<p>同一GA4プロパティを使い、セッション入口で「LP入口」「本サイト入口」「内部入口」「入口不明」に分ける。同一人物の別セッションは別訪問。同じセッションのLP→本サイト遷移はLP入口のまま。ページの閲覧場所を測る指標と、最初の集客元を測る指標を混同しない。</p>
+<p>本サイトの成果は、本サイト入口に限定したうえでOrganic Searchを抽出する。Paid Search、Cross-network、Display等の広告チャネルは別表示。LP入口全体にもDirect等があるため「LP入口＝広告クリック」としない。広告クリック数とGA4セッション数が常に一致するとも考えない。</p>
+<p>LP内で起きたイベントを全部LP入口の成果として数えるわけではない。本サイト入口からLPへ移動した同一セッションのlp_*イベントは、本サイト入口レポート側に残る。入口不明の値を本サイトへ含めない。GSCは自然検索のクリック・表示を見る別のデータ源であり、広告クリックを含まない。</p>
+</section>
+<section id="section-2"><h2>毎回実行するコマンド</h2>
+<p>リポジトリのルートで <code>node --env-file=.env.local scripts/ad-lp-report.mjs --start 2026-09-01 --end 2026-09-03</code> を実行する。期間は必ず対象の開始日・終了日へ変更する。将来の日や本日の未確定値を週次比較へ混ぜず、期間・プロパティのタイムゾーン・処理遅延を確認する。</p>
+<p>既存のGA4_PROPERTY_IDと、既存のGoogle認証を利用する。認証値を開く・画面表示する・報告書へ貼る必要はない。認証の再発行や権限変更はこの手順に含まない。失敗時は区分・HTTPステータスだけを出力し、生のエラーや資格情報をログへ出さない。</p>
+<p>取得する内容は各区分のチャネル別sessions/engagedSessionsとイベント別eventCount。結果はtmp/ad-lp-report-開始日-終了日-時刻.json。tmpはGit管理外。スクリプトはGA4設定を変更しない。5区分目のmain_organicはmain_entryの内数なので、全体合計へ足してはいけない。activeUsersを区分間で足して総人数とする方法も使わない。</p>
+<p>2026-09-06の実行で10レポート取得成功。2026-09-01〜03のセッションはLP2、本サイト95、内部1、入口不明7。本サイトOrganic Search73は95の内数。この値は新LP公開前の動作確認用であり改修効果ではない。</p>
+</section>
+<section id="section-3"><h2>GA4画面で同じ見方を作る</h2>
+<p>管理画面に保存済みの新しい探索を作成したわけではない。編集権限がある担当者は、以下を設定するとチームで同じ条件を再利用できる。APIスクリプトの集計は探索の作成やカスタムディメンションの登録がなくても動作する。</p>
+<ul>
+<li>「ランディングページ」レポートまたは探索で、期間と本番ホストを指定する。対象ホストは kawaguchitenrei.com と www.kawaguchitenrei.com。</li>
+<li>LP用はランディングページ＋クエリ文字列が正規表現 <code>^/lp(/.*|\?.*|$)</code> に完全一致するものを含める。</li>
+<li>本サイト用は上記LPに加え、内部入口の正規表現 <code>^/(admin|post|voice/survey)(/.*|\?.*|$)</code> と <code>(not set)</code> を除外する。</li>
+<li>探索ではユーザーセグメントではなくセッションセグメントを作る。入口条件で対象セッションを選び、そのセッションの行動を確認する。</li>
+<li>流入分析には「セッションのデフォルトチャネルグループ」、必要なら「セッションの参照元/メディア」「セッションのキャンペーン」を使用する。初回ユーザーの参照元へ置き換えない。</li>
+<li>SEOの資料には「本サイト入口＋Organic Search」と明記する。旧SEOダッシュボードや既存search-console-audit.mjsのGA4全体値を、除外済みだと思って引用しない。</li>
+</ul>
+<p>入口はセッションの最初のページビューのパスとクエリで決まる。<a href="https://support.google.com/analytics/answer/12931766?hl=en">Google公式のランディングページ説明</a>。標準レポートの初期表示や機能名はプロパティの構成により異なる。</p>
+</section>
+<section id="section-4"><h2>LPイベントの辞書</h2>
+<div class="table-scroll"><table><thead><tr><th scope="col">イベント</th><th scope="col">発生条件</th><th scope="col">指標の意味</th></tr></thead><tbody>
+<tr><td>lp_view</td><td>LP配下の画面が表示されたとき</td><td>ページ表示の補助。セッション数・広告クリック数ではない</td></tr>
+<tr><td>lp_click_tel</td><td>LP内の計測対象電話リンクを押す</td><td>電話タップ。実通話ではない</td></tr>
+<tr><td>lp_contact_open</td><td>LP内の事前相談リンクを押す</td><td>フォームへの移動意図。送信ではない</td></tr>
+<tr><td>lp_plan_open</td><td>LPのプラン詳細リンクを押す</td><td>料金・内容への関心</td></tr>
+<tr><td>lp_form_start</td><td>専用フォーム内に最初にフォーカスが入る</td><td>入力開始の代理指標。画面を再訪すれば再計測され得る</td></tr>
+<tr><td>lp_generate_lead</td><td>専用フォームの成功表示</td><td>送信成功表示。保存された有効相談の確定件数ではない</td></tr>
+<tr><td>lp_directions</td><td>地図リンクを押す</td><td>場所への関心。来館ではない</td></tr>
+</tbody></table></div>
+<p>固定パラメータはsite_area=ad_lp、lp_variant=2026-09-consultation-v2。cta_placementでhero/header/sticky/bottom/contact_form等の位置を識別し、plan_slugはプラン詳細クリック時だけ送る。イベントのpage_locationはorigin＋pathnameとし、クエリは送らない。フォームの名前、連絡先、相談本文、病状、入力値は送らない。既存の通常page_viewのURL収集仕様を変更したわけではないので、そもそも個人情報をURLへ入れない。</p>
+<p>位置別・版別の集計が必要な場合だけ、GA4「管理→カスタム定義」でcta_placement、lp_variant、site_area、plan_slugをイベントスコープのカスタムディメンションとして登録する。今回Google側では登録していない。登録前の過去値への遡及を前提にしない。<a href="https://support.google.com/analytics/answer/14239696?hl=en">Google公式のカスタムディメンション手順</a>。</p>
+</section>
+<section id="section-5"><h2>二重計上とGoogle Adsの切替前チェック</h2>
+<p>既存generate_lead(form_type=lp_contact)は互換のため維持。lp_generate_leadは同じ成功表示に対する追加の識別用イベントである。両方を足した「問い合わせ数」は誤り。既存click_telとlp_click_telも合算しない。LPを経由して本サイトの別フォームで相談した場合は、LP入口セッションのgenerate_leadとして別途確認できる。</p>
+<p>LPイベントは既存Googleタグへsend_toを指定して送っており、GTMで同名の送信タグを新設する必要はない。GTMのdataLayerイベントオブジェクトだけを探すテストでは確認できないため、Googleタグの送信とGA4受信を確認する。既存タグの設定変更により互換性が変わる可能性は残る。<a href="https://developers.google.com/tag-platform/gtagjs/routing">Google公式のルーティング仕様</a>。</p>
+<ul>
+<li>会議前に、現在のGoogle Adsの主要/補助CV、GA4インポート、電話クリックタグ、通話計測を一覧化する。今回それらを設定変更したわけではない。</li>
+<li>フォーム送信をGoogle Adsへ渡す場合、同じ行動を既存generate_leadとlp_generate_leadの両方から主要CVへインポートしない。既存対応表を見て片方を選ぶ。</li>
+<li>lp_view、lp_contact_open、lp_form_start、lp_plan_open、lp_directionsを「問い合わせ完了」として扱わない。</li>
+<li>電話タップは実着信と分ける。主要CVを何にするかは実際の通話計測との対応を確認して決める。全タップを有効相談だとする入札評価は避ける。</li>
+<li>新イベントのGA4リアルタイム受信、通常レポートへの反映、保存・通知との対応を切替前に確認する。テスト用の問い合わせを送る場合は通知先と削除・除外方法を先に決める。</li>
+</ul>
+<p>広告の自動タグ設定、最終ページURL、遷移後の計測を代理店と確認する。サイト内リンクへ広告用UTMを付けて流入元を上書きしない。同一ドメイン内でLPと本サイトを移動するだけなら、別サイト同士のクロスドメイン設定を追加する理由はない。旧ドメインと行き来する導線が残る場合は別途設計する。</p>
+</section>
+<section id="section-6"><h2>テスト・内部利用の除外</h2>
+<p>日常の確認は本番 /lp/?analytics=off を開く。フラグは同じブラウザに保存される。localhost、Vercelプレビュー、内部パスは既存ポリシーでも除外。実受信を試す担当者はこの除外が有効だとイベントが送られないことを理解したうえで、限定的に?analytics=onを使い、終了後は?analytics=offへ戻す。除外フラグを外したまま日常確認しない。</p>
+<p>APIスクリプトは取得だけで、GA4へテストイベントを送らない。電話アプリの起動やフォームの実送信を、単なる表示検証として繰り返さない。</p>
+</section>
+<section id="section-7"><h2>週次報告の書式と移行判定</h2>
+<p>毎週、対象期間・変更日・対象キャンペーン・入口条件・チャネル・広告費/クリック・セッション・電話タップ・フォーム成功表示・実着信・有効相談・施行の順で記録する。取得できない項目は未取得と書き、タップで代用しない。広告費÷タップ単価と広告費÷有効相談単価は別の指標である。</p>
+<p>Google Adsの広告帰属とGA4のセッション入口は異なる見方なので、両者を合算しない。旧LPと比較するときは期間、配信面、検索語句、料金表現、CV定義、計測可能性の違いを明記する。同時に広告設定も変わったら、LP改修だけの効果とはしない。</p>
+<p>次回会議日・移行日は未確定。決定後に日付と担当を追記し、初週は不具合・欠損の点検を優先する。低い件数の短期間比較で勝敗を決めず、比較可能な条件と十分な観測期間を会議で合意する。</p>
+</section>
+<section id="section-8"><h2>後任への注意</h2>
+<p>正本はこの運用手順と同日の再設計記録。古い広告LP資料の「別ドメインだから混ざらない」は、新LPへ移行した後には当てはまらない。新LPのnoindexとsitemap除外は検索結果への出し分けであり、GA4の計測分離設定ではない。</p>
+<p>認証値は.env.localを開かず既存の--env-fileで利用する。新たなプロパティ、Google Adsコンバージョン、GTMタグ、カスタムディメンション、共有権限の追加は、それぞれ実施記録がなければ未設定と扱う。分離集計スクリプトの成功だけを「広告移行完了」と報告しない。</p>
+</section></main></div><footer>作業記録 / docs内資料 / noindex,nofollow</footer></div></body></html>

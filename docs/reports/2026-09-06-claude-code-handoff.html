@@ -1,0 +1,84 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Claude Code引き継ぎ｜2026-09-06</title><style>
+:root{--ink:#233c37;--muted:#61716b;--paper:#f5f5f0;--line:#dbe4dc;--accent:#386951;--light:#eaf1e9;--warn:#755326}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:"Yu Gothic UI","Meiryo",sans-serif;line-height:1.9;font-size:15px}a{color:#295e7b;text-underline-offset:4px}a:hover{color:#20382d}a:focus-visible{outline:3px solid #b38548;outline-offset:4px}.wrap{max-width:1160px;margin:auto;padding:0 32px}header{background:#233e34;color:#fff;padding:52px 0 44px}.eyebrow{font-size:12px;letter-spacing:.16em;color:#cedbcf;margin:0 0 14px}h1{font-size:clamp(25px,3.4vw,39px);line-height:1.55;letter-spacing:.03em;margin:0 0 18px}header .lead{max-width:780px;color:#e0e8df;font-size:16px;margin:0}.date{font-size:12px;color:#cedbcf;margin-top:20px}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:26px 0}.metric{background:white;border:1px solid var(--line);padding:20px 22px;border-radius:9px}.metric .label{font-size:12px;color:var(--muted)}.metric strong{display:block;font-size:29px;font-weight:650;line-height:1.6}.metric small{color:var(--muted);font-size:11px}.notice{padding:18px 22px;border-left:4px solid #a78348;background:#fff6e8;border-radius:3px;margin-bottom:26px;color:var(--warn)}.notice strong{color:#674519}.layout{display:grid;grid-template-columns:225px minmax(0,1fr);gap:30px;align-items:start}nav{position:sticky;top:20px;padding:19px;background:#ebefe8;border-radius:8px}nav .title{font-weight:700;font-size:12px;color:var(--muted);margin-bottom:9px}nav a{display:block;font-size:12px;padding:5px 0;text-decoration:none;color:#3a5749;line-height:1.7}.main{min-width:0}section{background:#fff;border:1px solid var(--line);border-radius:10px;margin:0 0 22px;padding:27px 30px;scroll-margin-top:20px}h2{font-size:21px;line-height:1.6;font-weight:650;margin:0 0 20px;padding-bottom:13px;border-bottom:1px solid var(--line)}p{margin:14px 0}ul{padding-left:22px}li{margin:8px 0}code{font-family:Consolas,"Meiryo",monospace;background:#f0f3ee;padding:1px 4px;border-radius:3px;font-size:.87em;overflow-wrap:anywhere}.table-scroll{overflow-x:auto;max-width:100%;margin:19px 0;border:1px solid var(--line);border-radius:5px}table{width:100%;border-collapse:collapse;font-size:12px;line-height:1.8}th{background:#edf2ec;color:#284535;text-align:left;padding:11px 12px;vertical-align:top}td{padding:11px 12px;border-top:1px solid #e5eae2;vertical-align:top;min-width:80px;overflow-wrap:anywhere}tbody tr:nth-child(even){background:#fafbf8}td:first-child{color:#304f41}footer{padding:22px 0 45px;color:var(--muted);font-size:12px}.file-links{margin:16px 0 24px;font-size:12px}.file-links a{margin-right:18px}@media(max-width:850px){.layout{display:block}nav{position:static;margin-bottom:22px;display:grid;grid-template-columns:1fr 1fr;gap:5px 18px}nav .title{grid-column:1/-1}.metrics{grid-template-columns:repeat(2,1fr)}section{padding:24px}}@media(max-width:520px){.wrap{padding:0 17px}header{padding:33px 0}section{padding:21px 17px}h2{font-size:19px}.metric{padding:15px}.metric strong{font-size:25px}.notice{padding:14px 16px;font-size:13px}.metrics{gap:9px}table{min-width:540px}nav{padding:15px}body{font-size:14px}}@media print{body{background:#fff;font-size:11px}header{background:#fff;color:#233e34;padding:10px 0}header .lead,.date,.eyebrow{color:#526256}nav{display:none}.layout{display:block}.wrap{max-width:none;padding:0}.metrics{margin:14px 0}.metric{padding:10px}.metric strong{font-size:20px}section{padding:15px 0;border:0;border-radius:0;break-inside:auto}h2{break-after:avoid}.table-scroll{overflow:visible}table{font-size:10px}tr{break-inside:avoid}.file-links{display:none}}
+</style></head><body><header><div class="wrap"><p class="eyebrow">川口典礼 / 改善・公開記録</p><h1>Claude Codeへの引き継ぎ</h1><p class="lead">公開済み変更、接続手順、未確認事項、次回確認を一つの入口にまとめました。</p><div class="date">2026年9月6日 / Codex</div></div></header><div class="wrap"><p class="file-links"><a href="index.html">レポート一覧</a><a href="../operations/2026-09-06-claude-code-handoff.md">Markdown版</a></p><div class="layout"><nav aria-label="目次"><a href="#section-1">最初に読む資料</a><a href="#section-2">完了した作業と公開位置</a><a href="#section-3">サイトで変更したこと</a><a href="#section-4">Googleで変更したこと</a><a href="#section-5">接続と再確認の手順</a><a href="#section-6">検証できた範囲と限界</a><a href="#section-7">次に確認すること</a><a href="#section-8">作業ツリーと引き継ぎ資料の維持</a></nav><main class="main"><section id="section-1"><h2>最初に読む資料</h2>
+<p><strong>同日の追加作業：広告LPを再設計した。</strong> 最新のLP実装・公開結果は <a href="../ad-lp/2026-09-06-lp-redesign-and-measurement.md">LP再設計記録</a>、別集計の方法は <a href="../ad-lp/2026-09-06-lp-measurement-runbook.md">LP計測運用</a>。以下の98500bfはSEO改善時点のコミットであり、サイト全体の最新HEADを意味しない。広告配信先はまだ切り替えていない。</p>
+<p>本資料は、チャット履歴がないClaude Codeが作業を再開するための索引。業務ルール・料金の正本は <a href="../../CLAUDE.md">CLAUDE.md</a>、共通の入口は <a href="../../AGENTS.md">AGENTS.md</a>。双方の相互参照を再帰的に読み込まない。</p>
+<div class="table-scroll"><table><thead><tr><th scope="col">目的</th><th scope="col">資料</th></tr></thead><tbody>
+<tr><td>改善前の状態と実測</td><td><a href="../seo-research/2026-09-05-search-console-seo-meo-aio-audit.md">9月5日 SEO・MEO・AIO監査</a></td></tr>
+<tr><td>実装と公開結果</td><td><a href="2026-09-06-seo-meo-aio-improvements.html">9月6日 改善レポート</a></td></tr>
+<tr><td>サイト全体・Vercel・制約</td><td><a href="../seo-research/2026-09-05-site-baseline-and-codex-handoff.md">サイト分析と引き継ぎ基準</a></td></tr>
+<tr><td>GSC・GA4の再接続と読解</td><td><a href="../operations/search-console/codex-readonly-access.md">既存認証の読み取り手順</a></td></tr>
+<tr><td>Googleに実施した操作</td><td><a href="../operations/search-console/2026-09-seo-improvements-url-inspection-log.md">サイトマップ・3 URLの登録リクエスト記録</a></td></tr>
+<tr><td>テスト時の計測除外</td><td><a href="../operations/2026-09-06-analytics-exclusion.md">内部・テスト計測の除外方法</a></td></tr>
+<tr><td>全レポート</td><td><a href="index.html">レポート一覧</a></td></tr>
+</tbody></table></div>
+</section>
+<section id="section-2"><h2>完了した作業と公開位置</h2>
+<p>ユーザーからサイト・Google側の対策とpush・デプロイを明示依頼され、以下を実施した。本資料の追記依頼は、Claude Codeへ戻った際に困らないよう記録を整えるためのもの。</p>
+<div class="table-scroll"><table><thead><tr><th scope="col">コミット</th><th scope="col">内容</th><th scope="col">確認した結果</th></tr></thead><tbody>
+<tr><td>d3fc44b</td><td>サイト改善、計測除外、9月5日監査と接続資料</td><td>mainへpush、Vercel success、本番129 URL検証成功</td></tr>
+<tr><td>98500bf</td><td>公開結果・Googleの登録リクエスト結果の記録</td><td>mainへpush、Vercel success（最終確認済み）</td></tr>
+</tbody></table></div>
+<p>本番は <a href="https://kawaguchitenrei.com/">kawaguchitenrei.com</a>。ソースは <code>kawaguchimemorial-del/kawaguchitenrei-site</code> のmain。確認済みデプロイは <a href="https://vercel.com/kawaguchitenrei-s-projects/kawaguchitenrei-site/7bUfvGtDmhG6PVM6UDdwfWC4qJ4U">サイト改善</a> と <a href="https://vercel.com/kawaguchitenrei-s-projects/kawaguchitenrei-site/DxMsg8ZCviR9X7EY5xdqrKFCSiW6">記録追記</a>。URLの閲覧にはVercel権限が必要な場合がある。将来の作業では現在のHEAD・remote・本番状態を再確認する。</p>
+</section>
+<section id="section-3"><h2>サイトで変更したこと</h2>
+<ul>
+<li>トップ・家族葬・一日葬の検索用情報を整理。火葬式には、直葬との違い、具体的なプランへのリンク、料金・面会の条件を追加。</li>
+<li>一日葬コラムは日程の決め方と事前確認を中心に整理し、プラン・施設へリンク。変更対象は <code>lib/plans.ts</code>、<code>lib/columns.ts</code>、プラン関連コンポーネント等。詳細と差分は <code>git show d3fc44b</code> で確認できる。</li>
+<li>OG画像不足51ページを補完。声30ページの題名をh1に変更。既存の口コミ本文・評価値は変更していない。</li>
+<li>プラン・事例・声の構造化データから共通事業者の <code>@id</code> を参照。構文検証の成功を、星表示・AI引用の保証と扱わない。</li>
+<li><code>lib/seo.ts</code> に共通OG画像と実更新日を管理。sitemap全件をビルド日時に更新する処理を撤去。更新日が不明なページはlastModifiedを省略する。</li>
+<li>トップの事例・声は各最新6件。一覧は全件を保持。元の全件マーキーへ戻す場合はHTML量への影響を確認する。</li>
+<li>内部・テスト計測を除外。変更対象はroot layout、GTM、Vercel Analytics、フォーム完了イベントの送信判定。フォームの保存・通知処理は変更していない。</li>
+</ul>
+</section>
+<section id="section-4"><h2>Googleで変更したこと</h2>
+<ul>
+<li>GBPの商品「一日葬プラン」の通常価格を469,000円から496,000円（税込）へ訂正。会員価格396,000円（税込）、別途費用、公式一日葬プランURLを追加。管理画面の反映待ちを経て、Google検索の商品欄に496,000円が表示されたことを確認済み。</li>
+<li>GSCのsitemap.xmlを再送信。送信日・最終読み込み日2026/09/06、成功、検出129 URLを管理画面で確認。</li>
+<li><code>/plan/cremation/</code>、<code>/column/ichinichi-sou/</code>、<code>/voice/20250912/</code> のライブテストで登録可能と表示。3 URLとも「インデックス登録をリクエスト済み」「優先クロール キューに追加」を確認。</li>
+<li>登録リクエストは受付完了。Googleへの実登録は未確認。次担当者が同じ依頼をすぐ再送信する必要はない。</li>
+<li>GA4管理画面にIPフィルタは追加していない。サイト側の除外を実装したもので、過去のGA4データは変更・削除していない。</li>
+</ul>
+</section>
+<section id="section-5"><h2>接続と再確認の手順</h2>
+<ul>
+<li>作業開始時に <code>git status --short</code>、<code>git log -3 --oneline</code> を確認し、現在のユーザー依頼を読む。過去の公開許可を将来の無関係な変更へ拡張しない。</li>
+<li>既存認証を使った疎通確認: <code>node --env-file=.env.local scripts/search-console-audit.mjs --probe</code>。</li>
+<li>3 URLの登録状態と検索データを再取得: <code>node --env-file=.env.local scripts/search-console-audit.mjs --inspect</code>。GA4を含めるときは <code>--with-ga4</code> を追加する。</li>
+<li>全129 URLの登録検査は必要なときだけ <code>--inspect-all</code> を使う。読み取りスクリプトは登録リクエスト・sitemap送信を行わない。</li>
+<li><code>.env.local</code> の値を開く・表示する・ログへ書くことはしない。Nodeのenv-fileでプロセス内だけに渡す。取得JSONはGit除外のtmpへ保存される。引き継ぎの必須情報はtmpに依存させない。</li>
+<li>GSCの読み取りは成功したが、sitemap送信APIは403だった。既存ブラウザの対象プロパティで送信できた。読み取り権限と変更権限を区別し、認証再発行を反射的に行わない。</li>
+<li>GBPのAPIは割り当て0で利用できなかった。管理者として接続済みのブラウザから閲覧・商品編集を実施した。次担当者のブラウザセッションが同じとは限らないため、対象事業者と権限を確認する。</li>
+<li>社内・テストの本番閲覧は <code>https://kawaguchitenrei.com/?analytics=off</code> を最初に開く。同じブラウザに除外が保存される。解除時だけ <code>?analytics=on</code>。localStorage削除・別端末・別ブラウザでは再設定する。</li>
+<li>計測ポリシー検証は <code>node scripts/test-analytics-policy.mjs</code>。サイトコード変更後は同梱Next.jsドキュメントを読み、<code>npm run build</code> を実行する。</li>
+</ul>
+</section>
+<section id="section-6"><h2>検証できた範囲と限界</h2>
+<ul>
+<li>ビルド成功、静的生成140/140。本番sitemapは129 URL。数え方が異なるため一致させない。</li>
+<li>本番129 URLでHTTP 200、title・description・h1・OG画像・自己参照canonical・JSON-LD構文・計測ポリシーの存在を確認。これで全文の事実性や全端末の表示を保証したとは扱わない。</li>
+<li>ローカル生成トップHTMLは1,322,921→544,470 bytes（58.8%減）。本番改善後は578,401 bytes。圧縮後転送量、LCP、実ユーザーの速度改善率とは異なる。</li>
+<li>変更ファイルのlintはエラー0、既存未使用型importの警告2。全体lintには既存の内部リンク・Reactルール違反が残る。全体lint合格と報告しない。</li>
+<li>ローカルのトップ・火葬式画面を確認。全端末の表示検査、フォーム実送信、実通話、実問い合わせ件数の照合は未実施。</li>
+<li>計測除外はロジックテスト済み。本番のGA4受信状況・内部アクセス減少は後日のデータで確認する。GTMのnoscript iframeは除外判定を通らないため撤去した。</li>
+</ul>
+</section>
+<section id="section-7"><h2>次に確認すること</h2>
+<div class="table-scroll"><table><thead><tr><th scope="col">目安日</th><th scope="col">内容</th><th scope="col">判定の注意</th></tr></thead><tbody>
+<tr><td>2026-09-09</td><td>未登録3 URLの登録状態</td><td>受付済みと実登録を区別する</td></tr>
+<tr><td>2026-09-13</td><td>検索表示・GA4内部ページ混入</td><td>新しい確定データを取得し、過去分を混ぜない</td></tr>
+<tr><td>2026-09-20〜10-04</td><td>家族葬・一日葬・火葬式のクエリ×ページ、クリックと順位</td><td>title変更直後の短期変動だけで受け皿を再変更しない</td></tr>
+<tr><td>2026-10-18〜11-01</td><td>CTR・問い合わせへの影響</td><td>電話タップを実通話や施行件数と扱わない</td></tr>
+</tbody></table></div>
+<p>上記は推奨確認日。自動実行・リマインダーは設定していない。日付を過ぎて再開した場合は、現在のデータで再確認する。</p>
+<p>残課題はGoogle口コミの現行件数と7月時点の他媒体込み集計の照合、声2ページの重複title、全体lint、速度指標の実測。口コミ・声の内容を創作して解消しない。GBP説明文の面会条件など、今回の商品訂正以外のプロフィール文言は未修正として扱う。</p>
+</section>
+<section id="section-8"><h2>作業ツリーと引き継ぎ資料の維持</h2>
+<ul>
+<li>本資料作成開始時、追跡ファイルは変更なし。利用者の未追跡画像フォルダ <code>public/images/GMOサジェスト/</code> と <code>public/images/NTT/</code> が存在した。今回のサイト公開に含めていない。削除・一括stageしない。</li>
+<li>package.json・lockfile、料金正本、Header・Footer・MobileBottomCTA、環境変数、フォーム通知先を変更していない。</li>
+<li>重要な変更は日本語HTMLレポートと一覧へ残し、接続手順や共通入口から参照できるようにする。秘密情報・顧客情報は複写しない。確認時点と未確認事項を分ける。</li>
+<li>戻す必要が生じたら、現在の差分とユーザー指示を確認してから対象変更をrevertする。Google商品・GSC操作はgit revertでは戻らない。</li>
+</ul>
+</section></main></div><footer>作業記録 / docs内資料 / noindex,nofollow</footer></div></body></html>

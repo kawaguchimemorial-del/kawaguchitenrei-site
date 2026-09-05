@@ -1,49 +1,48 @@
 import Link from "next/link";
-
+import type { Metadata } from "next";
 import { LpStickyCta } from "../LpStickyCta";
-import { PHONE_DISPLAY, PHONE_HREF } from "../lp-data";
+import { LpTopBar } from "../LpTopBar";
+import { PHONE_DISPLAY, PHONE_HREF } from "../lp-constants";
 import { LpContactForm } from "./LpContactForm";
-
-// 広告LP専用の問い合わせページ（CLAUDE.md §21）。noindex は app/lp/layout.tsx で適用済み。
+import s from "../lp.module.css";
+export const metadata: Metadata = {
+  title: "事前のご相談｜川口典礼",
+  alternates: { canonical: "https://kawaguchitenrei.com/lp/contact/" },
+};
 export default function LpContactPage() {
   return (
-    <div className="min-h-screen bg-paper pb-28 text-ink">
-      <header className="bg-brand-deep px-5 py-5 text-center text-white">
-        <p className="text-xs tracking-[0.2em]">埼玉県川口市・新井宿</p>
-        <p className="font-serif-jp mt-1 text-lg font-medium">川口典礼</p>
-      </header>
-
-      <main className="mx-auto max-w-2xl px-5 py-8">
-        <h1 className="text-[24px] font-black md:text-3xl">
-          事前のご相談フォーム
-        </h1>
-        <p className="mt-3 rounded-lg border border-emergency/40 bg-emergency/5 px-4 py-3 text-[15px] font-bold leading-7 text-ink-deep">
-          ご逝去後のお急ぎのご依頼は、お電話でお願いします。
-          フォームは、事前のご相談・お見積り・式場見学のお申し込みにご利用ください。
+    <>
+      <LpTopBar />
+      <div className={s.contactPage}>
+        <p className={s.eyebrow}>ご相談・お見積り無料</p>
+        <h1>事前のご相談</h1>
+        <p className={s.contactPageIntro}>
+          費用のこと、葬儀の流れ、式場見学。
+          <br />
+          気になることから、お聞かせください。
         </p>
-
+        <p className={s.note}>
+          ご逝去後のお急ぎのご依頼は、フォームではなくお電話でお願いします。
+        </p>
         <a
           href={PHONE_HREF}
-          className="mt-4 flex flex-col items-center rounded-xl bg-emergency px-5 py-4 text-white shadow-sm transition hover:bg-emergency-deep"
+          className={s.textLink}
+          data-lp-event="lp_click_tel"
+          data-lp-placement="contact_header"
         >
-          <span className="text-sm font-semibold">24時間365日・年中無休</span>
-          <span className="mt-1 text-3xl font-bold tracking-wider">
-            {PHONE_DISPLAY}
-          </span>
+          24時間受付 {PHONE_DISPLAY}
         </a>
-
-        <div className="mt-8 rounded-lg border border-line bg-white p-5 md:p-6">
+        <div className={s.contactFormBox}>
           <LpContactForm />
         </div>
-
-        <p className="mt-6 text-center text-sm">
-          <Link href="/lp/" className="text-brand underline underline-offset-2">
-            ← ご案内のページに戻る
-          </Link>
+        <p className={s.note}>
+          送信後、担当者より折り返しご連絡します。フォームは即時のお迎え受付ではありません。
         </p>
-      </main>
-
+        <Link href="/lp/" className={s.textLink}>
+          ← ご葬儀のご案内へ戻る
+        </Link>
+      </div>
       <LpStickyCta />
-    </div>
+    </>
   );
 }

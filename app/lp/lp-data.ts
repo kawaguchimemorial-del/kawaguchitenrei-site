@@ -1,9 +1,10 @@
 import { plans, type Plan } from "@/lib/plans";
 
-export const PHONE_DISPLAY = "0120-963-765";
-export const PHONE_HREF = "tel:0120-963-765";
+export { PHONE_DISPLAY, PHONE_HREF } from "./lp-constants";
 
-// 掲載するプラン（2026-08-26 松澤指示）。並び順もこの指定どおり。
+
+// 掲載する6プラン（2026-08-26指示）。データ順は維持する。
+// 2026-09-06のLP再設計ではpage.tsxで主要3プランと追加3プランへ表示を分ける。
 const LP_PLAN_SLUGS = [
   "direct-funeral",
   "hanaire-owakare",

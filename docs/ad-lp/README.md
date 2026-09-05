@@ -1,4 +1,16 @@
-# 広告LP（kawaguchi-memorial-hall.com）記録
+# 広告LP・リスティング運用の記録
+
+## 最新の入口（2026-09-06）
+
+ユーザーのLP再設計・commit・push依頼に基づき、`https://kawaguchitenrei.com/lp/` を改修した。広告配信先の切り替えは次回会議で決定するため未実施。旧ドメインのサイトを変更したわけではない。
+
+- [新LPの再設計・競合調査・公開記録](2026-09-06-lp-redesign-and-measurement.md)
+- [LPと本サイトの計測分離・毎回の集計手順](2026-09-06-lp-measurement-runbook.md)
+- [会議・人間向けHTMLレポート](../reports/2026-09-06-lp-redesign-and-measurement.html)
+
+広告LPの分析正本は引き続きこのディレクトリ。HTMLは共通の`docs/reports/`へ置き、一覧から参照する。新LP移行後は同じドメインでも入口セッションで集計を分け、本サイトのSEOレポートへ広告流入を混ぜない。
+
+以下の旧LP運用記録は当時の前提として保存する。「別ドメインだから計測が分かれる」「変更不可」は旧外部LPについての記述であり、現在の新LP実装・ユーザー依頼への禁止事項として読み替えない。
 
 広告LPに関する記録はすべてこのディレクトリに置く。
 **本サイト（kawaguchitenrei.com）のSEO/AIO記録（`docs/reports/`・`docs/eval/`・`docs/seo-research/`）とは混ぜない。**

@@ -3,7 +3,7 @@
 このファイルは、チャット中に得た情報をどの保存先に置くべきかを決めるルール。
 情報が散らばると将来の Claude Code / 人間が判断できなくなるため、保存先と削除条件を明確化する。
 
-最終更新: 2026-05-25
+最終更新: 2026-09-06
 
 追記（2026-09-05）: ユーザーのCodex引き継ぎ依頼により、`AGENTS.md` は技術前提に加え、
 既存 `CLAUDE.md` / docsへの入口、主要な作業制約、SEO/MEO/AIO・Vercelの参照先を保持する。
@@ -11,6 +11,8 @@
 計測値・日付付きの現状分析は `docs/seo-research/2026-09-05-site-baseline-and-codex-handoff.md` に置く。
 
 ---
+
+2026-09-06追記: Claude Code / Codex間の再開に必要な情報は、個別エージェントのauto-memoryだけに置かず、リポジトリ内の引き継ぎ資料へ残す。現在の索引は [Claude Code引き継ぎ](../operations/2026-09-06-claude-code-handoff.md)。CLAUDE.md・AGENTS.mdは入口、日付付きの事実・公開結果・未確認事項はdocsに分ける。
 
 ## 1. 保存先の分類
 

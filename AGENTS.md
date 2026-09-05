@@ -15,6 +15,8 @@ This version has breaking changes — APIs, conventions, and file structure may 
 3. 現状と既知の不整合は `docs/seo-research/2026-09-05-site-baseline-and-codex-handoff.md` を参照する。計測値・外部サービスの状態は確認日付きの記録であり、将来の現状として扱わない。
 4. 対象に応じて `skills/`、`docs/operations/`、最新の `docs/reports/` を読む。古い提案や過去の実行許可を、今回の変更・公開の許可として扱わない。
 
+Claude Codeへ戻る場合も、`docs/operations/2026-09-06-claude-code-handoff.md` を作業再開の索引として使う。チャット履歴やCodex専用メモリがなくても確認できるよう、公開結果・接続・未完了事項はリポジトリ内に残す。
+
 2026-09-05の実測更新は `docs/seo-research/2026-09-05-search-console-seo-meo-aio-audit.md`。GSC全129 URL検査、GA4流入・イベント、GBPブラウザ管理画面の実績を確認済み。GBPはAPI割り当て0でも既存ブラウザから閲覧できる。2026-09-06にサイト改善・Google商品価格訂正・公開を依頼され対応。最新状況は `docs/seo-research/2026-09-06-seo-meo-aio-improvements.md` を参照する。
 
 ユーザーの現在の依頼範囲を基準に作業する。既存文書と実装が違う場合は、現行コード・日付付きの変更記録・公式仕様を照合し、不一致を記録する。分析依頼からサイト改修・外部送信・デプロイを推測しない。
@@ -87,6 +89,10 @@ Next.js App Router + TypeScript + Tailwind CSS。確認時の Next.js は 16.2.6
 - コミット・push・本番反映は今回の明示指示があるときだけ。完了時は変更ファイル、実行した検証と結果、未確認事項を簡潔に示す。
 
 ## 2026-09-06の運用更新
+
+- 広告LPの最新実装は `docs/ad-lp/2026-09-06-lp-redesign-and-measurement.md`、計測は `docs/ad-lp/2026-09-06-lp-measurement-runbook.md`。ユーザー依頼で `/lp/` を再設計。広告配信先の切替は次回会議で決定するため未実施。古い外部LPの変更不可という前提を新LPへ適用しない。
+- LPは通常価格・電話相談を主導線とし、主要3プラン＋展開3プラン、実写3点、専用フォームを採用。`LpContent.tsx` のclient境界はSSRを保持しながらHTML重複を減らすため。変更後は `node scripts/test-lp-output.mjs` で50KB以内・noindex・6プラン・電話計測を確認する。
+- LPと本サイトは同じGA4の入口セッションで分離する。`scripts/ad-lp-report.mjs` は読み取り専用。既存SEO監査のGA4全体値が自動で分離されたわけではない。`lp_*` は既存Googleタグへ直接送出するので同名のGTMタグを重ねない。`generate_lead` と `lp_generate_lead`、`click_tel` と `lp_click_tel` を合算しない。
 
 - 内部・テスト計測の除外は `docs/operations/2026-09-06-analytics-exclusion.md`。テスト時は本番URLに `?analytics=off` を付け、解除時のみ `?analytics=on` を使う。
 - 共通OG画像と実更新日の管理は `lib/seo.ts`。sitemapのlastModifiedをビルド日時へ戻さない。

@@ -41,6 +41,8 @@
 ## Google・Vercel公開記録
 
 - コミット `d3fc44b` をmainへpush。VercelのDeployment has completed / successを確認。
+- 公開結果を記録した `98500bf` もmainへpushし、Vercel successを確認。
+- [Claude Codeへの引き継ぎ](../operations/2026-09-06-claude-code-handoff.md) に再開手順と確認範囲を集約。
 - [本番サイト](https://kawaguchitenrei.com/) の新titleと計測ポリシーを確認。本番129 URLすべてHTTP 200、メタ情報・h1・JSON-LD等の検査に問題なし。
 - 本番トップの非圧縮HTMLは578,401 bytes。ローカルとの環境差があるため、上記58.8%はローカル同士の比較として扱う。
 - Search Consoleサイトマップ再送信成功。送信日・最終読み込み日2026/09/06、検出129 URL。APIは403のため、既存ブラウザ認証で送信した。

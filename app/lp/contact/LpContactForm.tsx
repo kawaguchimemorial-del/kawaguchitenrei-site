@@ -4,8 +4,9 @@ import { useActionState, useEffect } from "react";
 import Link from "next/link";
 
 import { pushGenerateLead } from "@/lib/analytics";
+import { trackLpEvent } from "@/lib/lp-analytics";
 import { SpamGuardFields } from "@/components/forms/SpamGuardFields";
-import { PHONE_DISPLAY, PHONE_HREF } from "../lp-data";
+import { PHONE_DISPLAY, PHONE_HREF } from "../lp-constants";
 import { submitLpContact, type LpContactFormState } from "./actions";
 
 /**
@@ -63,6 +64,7 @@ export function LpContactForm() {
   useEffect(() => {
     if (state?.ok) {
       pushGenerateLead("lp_contact");
+      trackLpEvent("lp_generate_lead", "contact_form");
       window.scrollTo({ top: 0, left: 0, behavior: "auto" });
     }
   }, [state?.ok]);
@@ -78,6 +80,8 @@ export function LpContactForm() {
         </p>
         <a
           href={PHONE_HREF}
+          data-lp-event="lp_click_tel"
+          data-lp-placement="contact_success"
           className="mt-5 flex flex-col items-center rounded-lg bg-emergency px-4 py-3 text-white"
         >
           <span className="text-xs font-semibold">24時間365日・年中無休</span>
@@ -90,7 +94,7 @@ export function LpContactForm() {
   }
 
   return (
-    <form action={formAction} className="space-y-5">
+    <form action={formAction} data-lp-form className="space-y-5">
       <SpamGuardFields />
 
       {state?.message && (
@@ -107,6 +111,7 @@ export function LpContactForm() {
         <input
           id="lp-name"
           name="name"
+          required
           type="text"
           autoComplete="name"
           className={`mt-2 ${inputBase}`}
@@ -122,6 +127,7 @@ export function LpContactForm() {
         <input
           id="lp-phone"
           name="phone"
+          required
           type="tel"
           inputMode="tel"
           autoComplete="tel"
@@ -220,6 +226,7 @@ export function LpContactForm() {
           <input
             type="checkbox"
             name="consent"
+            required
             value="agreed"
             className="mt-1"
           />
@@ -247,7 +254,12 @@ export function LpContactForm() {
 
       <p className="text-center text-[13px] leading-6 text-ink-mid">
         ご逝去後のお急ぎのご依頼は、
-        <a href={PHONE_HREF} className="font-bold text-emergency underline">
+        <a
+          href={PHONE_HREF}
+          data-lp-event="lp_click_tel"
+          data-lp-placement="contact_form"
+          className="font-bold text-emergency underline"
+        >
           {PHONE_DISPLAY}
         </a>
         までお電話ください。
