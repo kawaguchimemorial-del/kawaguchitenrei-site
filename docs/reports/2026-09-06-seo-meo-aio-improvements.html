@@ -3,9 +3,9 @@
 </style></head><body><header><div class="wrap"><p class="eyebrow">川口典礼 / 改善・公開記録</p><h1>検索情報・Googleの商品・計測を整備</h1><p class="lead">9月5日の監査で確認した課題に対応。公開結果とGoogle側の処理状況を記録します。</p><div class="date">2026年9月6日 / Codex</div></div></header><div class="wrap"><p class="file-links"><a href="index.html">レポート一覧</a><a href="../seo-research/2026-09-06-seo-meo-aio-improvements.md">Markdown版</a></p><div class="layout"><nav aria-label="目次"><a href="#section-1">対応状況</a><a href="#section-2">背景と変更内容</a><a href="#section-3">検証結果</a><a href="#section-4">Google・Vercel公開記録</a><a href="#section-5">残る課題と観測</a><a href="#section-6">参照と運用</a></nav><main class="main"><section id="section-1"><h2>対応状況</h2>
 <ul>
 <li>完了: SEO/AIOのページ情報・構造化データ・料金条件・内部リンクを改善。</li>
-<li>完了: Googleビジネスプロフィールの一日葬商品を通常価格496,000円へ訂正し、会員価格396,000円・税込・別途費用の説明と公式プランURLを追加。管理画面は公開申請後「反映待ち」。</li>
+<li>完了: Googleビジネスプロフィールの一日葬商品を通常価格496,000円へ訂正し、会員価格396,000円・税込・別途費用の説明と公式プランURLを追加。公開申請後に反映され、Google検索の商品欄で496,000円の表示を確認。</li>
 <li>完了: 社内利用・開発環境・テスト用ブラウザの計測除外を実装。</li>
-<li>公開確認中: mainへのpush、Vercel反映、Search Consoleへの送信結果は下記の公開記録へ追記する。</li>
+<li>完了: mainへpushし、Vercel本番デプロイ成功。本番129 URLを検証。Search Consoleサイトマップ再送信と未登録3 URLの登録リクエストが成功。</li>
 </ul>
 </section>
 <section id="section-2"><h2>背景と変更内容</h2>
@@ -36,11 +36,18 @@
 </ul>
 </section>
 <section id="section-4"><h2>Google・Vercel公開記録</h2>
-<p>公開処理中。確認済みのコミット・デプロイ・Search Console結果は完了後に追記する。</p>
+<ul>
+<li>コミット <code>d3fc44b</code> をmainへpush。VercelのDeployment has completed / successを確認。</li>
+<li><a href="https://kawaguchitenrei.com/">本番サイト</a> の新titleと計測ポリシーを確認。本番129 URLすべてHTTP 200、メタ情報・h1・JSON-LD等の検査に問題なし。</li>
+<li>本番トップの非圧縮HTMLは578,401 bytes。ローカルとの環境差があるため、上記58.8%はローカル同士の比較として扱う。</li>
+<li>Search Consoleサイトマップ再送信成功。送信日・最終読み込み日2026/09/06、検出129 URL。APIは403のため、既存ブラウザ認証で送信した。</li>
+<li><a href="../operations/search-console/2026-09-seo-improvements-url-inspection-log.md">URL検査・登録リクエスト記録</a> に各URLの結果を記録。3 URLすべて公開URLテストを通過し、登録リクエストの受付を確認。</li>
+<li>GBP一日葬商品は、公開後のGoogle検索結果側でも496,000円へ反映された。</li>
+</ul>
 </section>
 <section id="section-5"><h2>残る課題と観測</h2>
 <ul>
-<li>Google商品の「反映待ち」と、GSCリクエスト後の実登録はGoogle側の処理。即時反映・順位・AI引用を保証しない。</li>
+<li>Google商品の訂正反映は確認済み。GSCリクエスト後の実登録・順位・AI引用は別の結果として観測する。</li>
 <li>2026-09-09を目安に未登録3 URLの状態、2026-09-13に検索表示と内部計測混入、2026-09-20〜10-04にクリック・順位を再比較する。これは推奨確認日であり、自動実行の予約ではない。</li>
 <li>Google口コミは現在値と7月時点の集計値に差がある。他媒体を含む総評価を未照合で変更しない。</li>
 <li>声の既存2ページは同じ本文題名のためtitleも重複している。内容を創作して差別化せず、今後の編集で扱う。</li>

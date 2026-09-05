@@ -91,3 +91,4 @@ Next.js App Router + TypeScript + Tailwind CSS。確認時の Next.js は 16.2.6
 - 内部・テスト計測の除外は `docs/operations/2026-09-06-analytics-exclusion.md`。テスト時は本番URLに `?analytics=off` を付け、解除時のみ `?analytics=on` を使う。
 - 共通OG画像と実更新日の管理は `lib/seo.ts`。sitemapのlastModifiedをビルド日時へ戻さない。
 - トップの事例・声は最新6件。一覧には全件を維持する。
+- 既存GSC認証は読み取り成功でも、2026-09-06のsitemap送信APIは403。接続済みブラウザでは送信成功。認証の再発行を前提にせず、読み取りと変更の権限を区別する。
