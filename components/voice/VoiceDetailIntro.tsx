@@ -59,7 +59,7 @@ export function VoiceDetailIntro({ voice }: { voice: Voice }) {
             「
           </span>
           <blockquote className="font-serif-jp -mt-6 text-[1.8rem] font-medium leading-[1.6] text-ink-deep md:-mt-10 md:text-[2.4rem] md:leading-[1.55]">
-            {voice.title}
+            <h1>{voice.title}</h1>
           </blockquote>
           <figcaption className="mt-5 flex items-center gap-3 text-sm text-ink-mid">
             <span className="font-semibold">— {voice.family}</span>

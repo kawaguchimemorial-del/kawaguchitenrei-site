@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { defaultOpenGraphImages } from "@/lib/seo";
 import Image from "next/image";
 import { Breadcrumbs } from "@/components/common/Breadcrumbs";
 import { ArrowRightIcon, ExternalLinkIcon } from "@/components/common/icons";
@@ -23,6 +24,7 @@ export const metadata: Metadata = {
       "川口市・近隣で利用できる葬儀場を一覧でご案内。川口メモリアルホール、川口市めぐりの森、戸田葬祭場、谷塚斎場に加え、朝日・本町・上青木・安行・南鳩ヶ谷・新郷など川口市内の寺院会館・民営式場をエリア別にご紹介。川口典礼でご相談・手配に対応しています。",
     url: "/saijo/",
     type: "website",
+    images: defaultOpenGraphImages,
   },
 };
 

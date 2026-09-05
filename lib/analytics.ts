@@ -9,7 +9,7 @@ declare global {
 export type LeadFormType = "contact" | "estimate" | "lp_contact";
 
 export function pushGenerateLead(formType: LeadFormType) {
-  if (typeof window === "undefined") return;
+  if (typeof window === "undefined" || !window.kawaguchiAnalyticsAllowed?.()) return;
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push({
     event: "generate_lead",

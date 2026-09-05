@@ -8,6 +8,7 @@ import {
   CaseStory,
 } from "@/components/case/CaseDetailBody";
 import { getAllCaseSlugs, getCase, type CaseRecord } from "@/lib/cases";
+import { defaultOpenGraphImages } from "@/lib/seo";
 
 const SITE_URL = "https://kawaguchitenrei.com";
 
@@ -52,11 +53,13 @@ function buildCaseJsonLd(c: CaseRecord) {
     dateModified: c.publishedAt,
     author: {
       "@type": "Organization",
+      "@id": `${SITE_URL}/#organization`,
       name: "川口典礼",
       url: `${SITE_URL}/`,
     },
     publisher: {
       "@type": "Organization",
+      "@id": `${SITE_URL}/#organization`,
       name: "川口典礼",
       url: `${SITE_URL}/`,
       logo: {
@@ -93,6 +96,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       url: `/case/${c.slug}/`,
       type: "article",
       publishedTime: c.publishedAt,
+      images: c.photo ? [{ url: c.photo.src, alt: c.photo.alt }] : defaultOpenGraphImages,
     },
   };
 }

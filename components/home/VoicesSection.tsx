@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Image from "next/image";
 import { ArrowRightIcon, StarIcon } from "@/components/common/icons";
 import { voices, type Voice } from "@/lib/voices";
@@ -35,7 +36,7 @@ function VoiceCard({
   duplicate?: boolean;
 }) {
   return (
-    <a
+    <Link
       href={`/voice/${voice.slug}/`}
       // マーキーの複製カードはキーボード/読み上げ対象から除外
       tabIndex={duplicate ? -1 : undefined}
@@ -76,15 +77,15 @@ function VoiceCard({
           </span>
         </div>
       </div>
-    </a>
+    </Link>
   );
 }
 
 export function VoicesSection() {
-  // スマホ・PC共通：公開中の全件を新しい順に自動スクロール（marquee）
+  // スマホ・PC共通：最新6件を新しい順に（全件は一覧で案内）自動スクロール（marquee）
   const marqueeItems = [...voices].sort((a, b) =>
     a.publishedAt < b.publishedAt ? 1 : -1
-  );
+  ).slice(0, 6);
 
   // 1カードあたり約3.4秒で流れる速度。件数に比例させ、Cases と体感速度を揃える
   // （globals.css の固定 150s を上書き）。最低 40s で極端に速くならないよう下限を設ける。
@@ -151,13 +152,13 @@ export function VoicesSection() {
 
       <div className="mx-auto max-w-6xl px-5 md:px-8">
         <div className="mt-10 text-center md:text-right">
-          <a
+          <Link
             href="/voice/"
             className="inline-flex items-center justify-center gap-2 rounded-lg border border-ink-deep bg-white px-6 py-4 text-base font-bold text-ink-deep shadow-sm transition hover:bg-paper"
           >
             お客様の声をすべて見る
             <ArrowRightIcon className="h-4 w-4" />
-          </a>
+          </Link>
         </div>
       </div>
     </section>

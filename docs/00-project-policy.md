@@ -124,3 +124,10 @@ docs/
 | `README.md` | Next.js デフォルト（必要なら別途整備） |
 
 `CLAUDE.md` 末尾に各 docs へのインデックスがある。
+
+### 2026-09-05 追記: Codexへの引き継ぎ
+
+`AGENTS.md` はNext.jsの注意書きを保持したうえで、Codex / 共通エージェントの入口へ拡張した。
+業務ルール・料金の正本は引き続き `CLAUDE.md` と既存ポリシーを参照し、二重に更新しない。
+現状分析とVercel・SEO/MEO/AIOの確認範囲は
+`docs/seo-research/2026-09-05-site-baseline-and-codex-handoff.md` に記録した。

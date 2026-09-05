@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { defaultOpenGraphImages } from "@/lib/seo";
 import { PageHero } from "@/components/common/PageHero";
 import { PhoneIcon } from "@/components/common/icons";
 
@@ -18,6 +19,7 @@ export const metadata: Metadata = {
     description: PET_DESCRIPTION,
     url: "/pet/",
     type: "article",
+    images: defaultOpenGraphImages,
   },
 };
 

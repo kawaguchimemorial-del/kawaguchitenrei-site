@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Image from "next/image";
 import { ArrowRightIcon } from "@/components/common/icons";
 import { cases, type CaseRecord } from "@/lib/cases";
@@ -10,7 +11,7 @@ function CaseCard({
   duplicate?: boolean;
 }) {
   return (
-    <a
+    <Link
       href={`/case/${item.slug}/`}
       // マーキーの複製カードはキーボード/読み上げ対象から除外
       tabIndex={duplicate ? -1 : undefined}
@@ -55,15 +56,15 @@ function CaseCard({
           <ArrowRightIcon className="h-4 w-4" />
         </p>
       </div>
-    </a>
+    </Link>
   );
 }
 
 export function CasesSection() {
-  // スマホ・PC共通：公開中の全件を新しい順に自動スクロール（marquee）
+  // スマホ・PC共通：最新6件を新しい順に（全件は一覧で案内）自動スクロール（marquee）
   const marqueeItems = [...cases].sort((a, b) =>
     a.publishedAt < b.publishedAt ? 1 : -1
-  );
+  ).slice(0, 6);
 
   // 1カードあたり約3.4秒で流れる速度。件数に比例させ、Voices と体感速度を揃える
   // （globals.css の固定 150s を上書き）。最低 40s で極端に速くならないよう下限を設ける。
@@ -87,12 +88,12 @@ export function CasesSection() {
               ご希望のイメージに近い事例をご覧いただけます。掲載内容は、ご家族の許可をいただいています。
             </p>
           </div>
-          <a
+          <Link
             href="/case/"
             className="hidden shrink-0 rounded-lg border border-ink-deep bg-white px-5 py-3 text-base font-bold text-ink-deep transition hover:bg-cool md:inline-flex"
           >
             事例一覧を見る
-          </a>
+          </Link>
         </div>
       </div>
 
@@ -138,12 +139,12 @@ export function CasesSection() {
 
       <div className="mx-auto max-w-6xl px-5 md:px-8">
         <div className="mt-8 md:hidden">
-          <a
+          <Link
             href="/case/"
             className="block w-full rounded-lg border border-ink-deep bg-white px-5 py-4 text-center text-base font-bold text-ink-deep shadow-sm"
           >
             施行事例をもっと見る
-          </a>
+          </Link>
         </div>
       </div>
     </section>

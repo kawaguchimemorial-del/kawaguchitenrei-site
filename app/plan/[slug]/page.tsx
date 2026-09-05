@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PlanDetailIntro } from "@/components/plan/PlanDetailIntro";
+import { CremationPlanGuide } from "@/components/plan/CremationPlanGuide";
 import {
   PlanAdditional,
   PlanCitizenFuneralBody,
@@ -22,6 +23,7 @@ import {
   YugureCta,
 } from "@/components/plan/PlanYugureBody";
 import { getAllPlanSlugs, getPlan, type Plan } from "@/lib/plans";
+import { defaultOpenGraphImages } from "@/lib/seo";
 
 const SITE_URL = "https://kawaguchitenrei.com";
 
@@ -111,6 +113,7 @@ function buildPlanJsonLd(plan: Plan) {
     url: pageUrl,
     provider: {
       "@type": "FuneralHome",
+      "@id": `${SITE_URL}/#funeralhome`,
       name: "川口典礼",
       url: `${SITE_URL}/`,
       telephone: "0120-963-765",
@@ -178,6 +181,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: plan.metaDescription,
       url: `/plan/${plan.slug}/`,
       type: "article",
+      images: plan.image ? [{ url: plan.image.src, alt: plan.image.alt }] : defaultOpenGraphImages,
     },
   };
 }
@@ -209,6 +213,7 @@ export default async function PlanDetailPage({ params }: Props) {
       )}
 
       <PlanDetailIntro plan={plan} />
+      {plan.slug === "cremation" && <CremationPlanGuide />}
       {plan.yugureInfo ? (
         <>
           <PlanYugureBody plan={plan} />

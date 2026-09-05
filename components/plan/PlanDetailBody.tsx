@@ -11,13 +11,15 @@ export function PlanInclusions({ plan }: { plan: Plan }) {
             Inclusions
           </p>
           <p className="mt-2 text-sm font-semibold text-ink-mid">
-            プランに含まれるもの
+            {plan.slug === "cremation" ? "費用の確認項目" : "プランに含まれるもの"}
           </p>
           <h2 className="font-serif-jp mt-4 text-3xl font-medium leading-[1.4] text-ink-deep md:text-[2.2rem]">
-            {plan.name}の費用に含まれる内容。
+            {plan.slug === "cremation" ? "火葬式のお見積りで確認する内容。" : `${plan.name}の費用に含まれる内容。`}
           </h2>
           <p className="mt-5 text-base leading-9 text-ink-mid md:text-lg">
-            ご葬儀の進行に必要な手配を、基本のセットとしてご用意します。詳細は事前のご相談で個別にご案内します。
+            {plan.slug === "cremation"
+              ? "下記はご相談時に確認する手配の項目です。含まれる物品・ご安置日数・搬送距離は選ぶプランによって異なります。必要なものと別途費用をお見積りでご案内します。"
+              : "ご葬儀の進行に必要な手配を、基本のセットとしてご用意します。詳細は事前のご相談で個別にご案内します。"}
           </p>
         </div>
 
@@ -246,10 +248,10 @@ export function PlanCostGuide({ plan }: { plan: Plan }) {
               Included
             </p>
             <p className="font-serif-jp mt-2 text-lg font-medium text-ink-deep md:text-xl">
-              プランに含まれるもの
+              {plan.slug === "cremation" ? "内容・費用を確認する項目" : "プランに含まれるもの"}
             </p>
             <p className="mt-3 text-sm leading-7 text-ink-mid md:text-base md:leading-8">
-              基本費用としてご用意する項目です。
+              {plan.slug === "cremation" ? "含まれる内容と別途費用は、選ぶプランに応じて確認します。" : "基本費用としてご用意する項目です。"}
             </p>
             <ul className="mt-5 space-y-2.5 text-sm leading-7 text-ink md:text-base md:leading-8">
               {plan.inclusions.map((item) => (

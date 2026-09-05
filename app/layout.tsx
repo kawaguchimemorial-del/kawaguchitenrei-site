@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import { Analytics } from "@vercel/analytics/next";
+import Script from "next/script";
+import { analyticsPolicyScript } from "@/lib/analytics-policy";
+import { SiteAnalytics } from "@/components/analytics/SiteAnalytics";
 import {
   GoogleTagManager,
-  GoogleTagManagerNoscript,
 } from "@/components/analytics/GoogleTagManager";
 import {
   FooterSlot,
@@ -53,16 +54,16 @@ export default function RootLayout({
       className="h-full scroll-smooth antialiased"
       data-scroll-behavior="smooth"
     >
-      <GoogleTagManager />
       <body className="min-h-full bg-paper pb-[calc(6rem+env(safe-area-inset-bottom))] text-ink md:pb-0">
-        <GoogleTagManagerNoscript />
+        <Script id="analytics-policy" strategy="beforeInteractive">{analyticsPolicyScript}</Script>
+        <GoogleTagManager />
         <HeaderSlot />
         <main>{children}</main>
         <FooterSlot />
         <MobileBottomCTASlot />
         <RevealOnScrollSlot />
         {/* Vercel Web Analytics（ページビュー計測のみ・カスタムイベントなし） */}
-        <Analytics />
+        <SiteAnalytics />
       </body>
     </html>
   );

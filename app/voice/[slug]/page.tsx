@@ -7,6 +7,7 @@ import {
   VoiceSurvey,
 } from "@/components/voice/VoiceDetailBody";
 import { getAllVoiceSlugs, getVoice, type Voice } from "@/lib/voices";
+import { defaultOpenGraphImages } from "@/lib/seo";
 
 const SITE_URL = "https://kawaguchitenrei.com";
 
@@ -51,11 +52,13 @@ function buildVoiceJsonLd(v: Voice) {
     dateModified: v.publishedAt,
     author: {
       "@type": "Organization",
+      "@id": `${SITE_URL}/#organization`,
       name: "川口典礼",
       url: `${SITE_URL}/`,
     },
     publisher: {
       "@type": "Organization",
+      "@id": `${SITE_URL}/#organization`,
       name: "川口典礼",
       url: `${SITE_URL}/`,
       logo: {
@@ -125,6 +128,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       url: `/voice/${v.slug}/`,
       type: "article",
       publishedTime: v.publishedAt,
+      images: defaultOpenGraphImages,
     },
   };
 }
