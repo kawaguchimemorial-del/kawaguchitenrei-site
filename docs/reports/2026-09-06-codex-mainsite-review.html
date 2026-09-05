@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Codex による本サイト改修の確認 2026-09-06</title>
+<style>
+  :root{--ink:#1c1a17;--sub:#5c564e;--line:#e2ddd4;--bg:#fbfaf8;--accent:#7a5c3e;
+    --red:#a8322a;--amber:#8a6412;--green:#2f6146;--blue:#2d5573;
+    --redbg:#fdf3f2;--amberbg:#fdf9ee;--greenbg:#f1f7f3;--bluebg:#f0f4f8;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;line-height:1.9;font-size:15px}
+  .wrap{max-width:1000px;margin:0 auto;padding:44px 22px 96px}
+  header.doc{border-bottom:3px solid var(--ink);padding-bottom:18px;margin-bottom:30px}
+  .kicker{font-size:12px;letter-spacing:.14em;color:var(--sub);margin:0}
+  h1{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:25px;line-height:1.5;margin:10px 0 12px;font-weight:600}
+  .meta{font-size:13px;color:var(--sub)}
+  h2{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:20px;margin:50px 0 14px;
+    padding:8px 0 8px 14px;border-left:5px solid var(--accent);font-weight:600;background:#f6f3ee}
+  h3{font-size:16px;margin:30px 0 10px;font-weight:600;border-bottom:1px solid var(--line);padding-bottom:6px}
+  p{margin:0 0 12px}
+  table{border-collapse:collapse;width:100%;font-size:13px;margin:14px 0;background:#fff}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:right;vertical-align:top}
+  th{background:#f4f1eb;font-weight:600;text-align:center;white-space:nowrap}
+  td:first-child,th:first-child{text-align:left}
+  code{background:#f2efe9;padding:1px 5px;border-radius:3px;font-size:12px}
+  ul,ol{margin:0 0 14px;padding-left:1.4em}
+  li{margin-bottom:6px}
+  .box{border:1px solid var(--line);border-radius:6px;padding:14px 16px;margin:16px 0;background:#fff}
+  .box.red{background:var(--redbg);border-color:#e6bfbb}
+  .box.amber{background:var(--amberbg);border-color:#ead9ae}
+  .box.green{background:var(--greenbg);border-color:#c3ddcd}
+  .box.blue{background:var(--bluebg);border-color:#c3d3e0}
+  .box p:last-child{margin-bottom:0}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="doc">
+  <p class="kicker">社内レポート（docs/reports・非公開/noindex）</p>
+  <h1>Codex による本サイト改修の確認</h1>
+  <p class="meta">2026-09-06 ／ 対象コミット：<code>d3fc44b</code>「Improve local search pages, metadata and analytics exclusions」・<code>98500bf</code>「Document production deployment and Google indexing requests」／サイト変更なし・確認のみ</p>
+</header>
+
+<h2>結論</h2>
+<div class="box green">
+  <p class="lead"><strong>本サイト側の改修は、内容・実装とも問題ありません。</strong>価格の食い違い、禁止表現の混入、施設の断定、noindex や sitemap の崩れは1件も見つかりませんでした。むしろ<strong>実装上の見落としを2つ直しており、これは当方が拾えていなかった指摘です。</strong></p>
+</div>
+<div class="box amber">
+  <p><strong>要監視が1件。</strong>GA4のセッションが 9/04 の27件から 9/05 は11件へ落ちています。<strong>計測が壊れたのではないこと</strong>は確認しました（時間帯ごとに正常に発生・ポリシーの自動テスト通過・本番HTMLの読み込み順も正しい）。GSC の確定日が 9/03 までのため、実流入の落ち込みかどうかは 9/08 前後に判定します。</p>
+</div>
+
+<h2>1. 何を変えたか</h2>
+<table>
+<tr><th>領域</th><th>変更</th></tr>
+<tr><td>メタ情報</td><td>プラン3本の title / description を書き直し。OG画像の継承漏れを修正。全ページに自己参照 canonical</td></tr>
+<tr><td>コンテンツ</td><td>火葬式ページに <code>CremationPlanGuide</code> を新設。コラム「一日葬」を日程視点で書き直し</td></tr>
+<tr><td>構造化データ</td><td>事例・声・プラン・ペット・斎場に <code>@id</code> を付与し、エンティティを統一</td></tr>
+<tr><td>sitemap</td><td><code>lastModified</code> をビルド日時から実更新日へ</td></tr>
+<tr><td>トップページ</td><td>事例・お客様の声を全件→最新6件に</td></tr>
+<tr><td>内部リンク</td><td>ホーム周辺の <code>&lt;a&gt;</code> を <code>&lt;Link&gt;</code> へ</td></tr>
+<tr><td>計測</td><td>内部利用・テストの除外（<code>lib/analytics-policy.ts</code>）と自動テスト</td></tr>
+<tr><td>記録</td><td>GSC監査・URL検査ログ・引き継ぎ資料</td></tr>
+</table>
+
+<h2>2. 評価できる点</h2>
+
+<h3>2-1. OG画像の継承漏れ ── 当方が見落としていた不具合</h3>
+<p>Next.js の入れ子 <code>openGraph</code> は<strong>浅いマージ</strong>のため、子ページで <code>openGraph</code> を定義すると親の <code>images</code> が引き継がれません。事例・声・プラン・ペット・斎場の各ページで OG画像が欠落していた状態でした。</p>
+<p><code>lib/seo.ts</code> に共通の <code>defaultOpenGraphImages</code> を置き、各ページで明示的に指定する形に修正されています。</p>
+<div class="box blue">
+  <p><strong>実測（ビルド出力の全ページ走査）：</strong>対象132ページのうち、<strong>og:image が無いのはエラーページ1件のみ。canonical が無いのはエラーページと404の2件のみ。</strong>いずれも実ページではありません。修正は効いています。</p>
+</div>
+
+<h3>2-2. sitemap の lastModified ── これも当方が見落としていた点</h3>
+<p>従来は全URLの <code>lastModified</code> に<strong>ビルド日時</strong>を入れていました。デプロイのたびに「129ページすべてが更新された」とGoogleに伝える状態で、更新日の信頼性を損ないます。</p>
+<p><code>lib/seo.ts</code> の <code>pageContentUpdatedAt</code> に実際に手を入れた日付だけを記録し、コラムは記事の <code>updatedAt</code> を使う形に変わりました。<strong>正しい直し方です。</strong></p>
+
+<h3>2-3. 火葬式ページの「含まれるもの」を「費用の確認項目」へ</h3>
+<p>火葬式は<strong>葬儀の形式であって、価格の付いたプランではありません</strong>（<code>price: "事前相談でご案内"</code>）。それにもかかわらず「含まれるもの」として物品が並んでいると、そのまま提供される商品のように読めます。</p>
+<p>見出しが「費用の確認項目／火葬式のお見積りで確認する内容」に変わり、「含まれる物品・ご安置日数・搬送距離は選ぶプランによって異なります」という但し書きが付きました。<strong>正確性の改善です。</strong></p>
+
+<h3>2-4. 新設した <code>CremationPlanGuide</code> の書き方</h3>
+<ul>
+  <li>価格を<strong>ハードコードせず <code>lib/plans.ts</code> から取得</strong>している（直葬 139,000/189,000、花入れお別れ 229,000/279,000）。正本とずれない作りです</li>
+  <li>「川口市めぐりの森は<strong>川口市営の火葬場で、通夜・告別式の式場はありません</strong>」と明記。§19.3 の停止条件に触れない書き方です</li>
+  <li>「シンプル直葬は、お預かり中の面会を行いません」と、条件を隠さず書いています</li>
+  <li>断定表現・煽り表現はありません</li>
+</ul>
+
+<h3>2-5. 計測の内部除外</h3>
+<p><code>lib/analytics-policy.ts</code> で、HTTPSの本番ドメインのみを計測対象とし、<code>/admin/</code>・<code>/post/</code>・<code>/voice/survey/</code> を除外。<code>?analytics=off</code> で社内ブラウザを恒久除外できます。<code>node scripts/test-analytics-policy.mjs</code> が用意され、<strong>通過を確認しました。</strong></p>
+
+<h2>3. ルール適合の確認（当方で実測）</h2>
+<table>
+<tr><th>確認項目</th><th>結果</th></tr>
+<tr><td>価格の食い違い（§9）</td><td>なし。家族葬 528,000/628,000、一日葬 396,000/496,000 とも正本どおり。人数表記（10〜30名・5〜30名）も <code>lib/plans.ts</code> と一致</td></tr>
+<tr><td>禁止表現の混入（§19.3）</td><td>なし。差分全体を「最安／必ず／絶対／追加費用なし／総額確定／標準価格／いつでも利用／空きがあります／確実に手配」で走査し0件</td></tr>
+<tr><td>他社施設・公営斎場の断定</td><td>なし。めぐりの森は市営火葬場として正しく記述</td></tr>
+<tr><td>sitemap のURL数</td><td>129 URL（変化なし）。<code>/lp</code> は含まれていない</td></tr>
+<tr><td>h1 の重複</td><td>ビルド出力136ページを走査。h1が1つでないのは <code>/post/print</code>（社内用）のみ</td></tr>
+<tr><td>title の長さ</td><td>60字超は0件</td></tr>
+<tr><td>静的生成ページ数</td><td>140ページ（減少なし）</td></tr>
+<tr><td>lint（app/lp 以外）</td><td>Codex の追加分にエラーなし</td></tr>
+</table>
+
+<h2>4. 要監視 ── GA4のセッションが9/05に半減</h2>
+<table>
+<tr><th>日付</th><th>AI</th><th>Direct</th><th>Organic</th><th>Paid</th><th>Referral</th><th>Unassigned</th><th>計</th></tr>
+<tr><td>9/02</td><td>0</td><td>4</td><td>26</td><td>0</td><td>1</td><td>0</td><td>31</td></tr>
+<tr><td>9/03</td><td>0</td><td>8</td><td>22</td><td>0</td><td>0</td><td>0</td><td>30</td></tr>
+<tr><td>9/04</td><td>0</td><td>7</td><td>18</td><td>0</td><td>2</td><td>0</td><td>27</td></tr>
+<tr><td>9/05</td><td>0</td><td><strong>0</strong></td><td><strong>5</strong></td><td>2</td><td>0</td><td>5</td><td><strong>12</strong></td></tr>
+<tr><td>9/06（作成時点・早朝）</td><td>0</td><td>0</td><td>4</td><td>0</td><td>0</td><td>3</td><td>7</td></tr>
+</table>
+<div class="box amber">
+  <p><strong>計測が壊れたわけではないことは確認しました。</strong></p>
+  <ul>
+    <li>9/05 のセッションは 02・03・07・10・11・15・16・19・22時と<strong>一日を通して正常に発生</strong>している（計測停止なら特定時刻で途切れる）</li>
+    <li><code>test-analytics-policy.mjs</code> 通過</li>
+    <li>本番HTMLで、判定スクリプトが GTM より<strong>先に</strong>置かれていることを確認（位置 5,365 対 292,567）</li>
+    <li>9/05・9/06 とも <code>page_view</code> が発生。LPの <code>lp_view</code> も発火している</li>
+  </ul>
+  <p><strong>ただし変更は 9/06 01:04 のデプロイなので、9/05 の落ち込みはそもそも変更より前です。</strong>つまりこれは Codex の改修とは無関係の、実流入の動きである可能性が高い。Unassigned が出ているのは GA4 の直近日のチャネル判定遅延です。</p>
+  <p><strong>判定：GSC の確定日が 9/03 までのため、9/08 前後に GSC 実測と突き合わせて確認します。</strong>それまで結論は出しません。</p>
+</div>
+
+<h2>5. 申し送り（対応不要だが知っておく点）</h2>
+<ul>
+  <li><strong>GTM の noscript が撤去されました。</strong>JavaScript を無効にしている利用者は計測対象外になります。除外判定を通せないためで、意図的な判断としてドキュメントにも明記されています</li>
+  <li><strong><code>/admin/</code> か <code>/post/</code> を一度開いたブラウザは、以後サイト全体で計測対象外になります。</strong>localStorage に保存されるためで、内部利用の除外としては正しい挙動です。ただし<strong>社内のPCでSEOダッシュボードを開いた後、同じブラウザで公開ページを見た分もGA4に出なくなります</strong>。解除は <code>?analytics=on</code></li>
+  <li><code>app/plan/page.tsx</code> の578行に <code>&lt;a&gt;</code> での内部リンクが1件残っており lint エラーになりますが、<strong>これは Codex の変更ではなく以前からのもの</strong>です。次に同ファイルを触るときに直します</li>
+</ul>
+
+<h2>6. 当方で直した点（別作業）</h2>
+<p>Codex が書いた <code>CLAUDE.md</code>・<code>AGENTS.md</code> の広告LPの記述は、差し戻し前の構成（<code>LpContent.tsx</code>・<code>lp.module.css</code>）を前提にしていたため、現行構成に合わせて更新済みです。詳細は <code>docs/reports/2026-09-06-lp-design-restore.html</code>。</p>
+
+<h2>7. 今回の変更</h2>
+<p>サイト変更なし（確認のみ）。取得スクリプトは <code>tmp/</code> 配下・非コミット。秘密情報・個人情報は含みません。</p>
+
+<footer class="doc" style="margin-top:60px;border-top:1px solid #e2ddd4;border-bottom:none;padding-top:14px">
+  <p class="meta">川口典礼サイト 社内レポート／作成 2026-09-06／確認方法：git diff の走査、ビルド出力136ページの静的検査、本番HTMLの実測、GA4 Data API、GSC API、各テストスクリプトの実行／非公開・noindex</p>
+</footer>
+</div>
+</body>
+</html>
