@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>広告LPのデザイン差し戻し 2026-09-06</title>
+<style>
+  :root{--ink:#1c1a17;--sub:#5c564e;--line:#e2ddd4;--bg:#fbfaf8;--accent:#7a5c3e;
+    --red:#a8322a;--amber:#8a6412;--green:#2f6146;--blue:#2d5573;
+    --redbg:#fdf3f2;--amberbg:#fdf9ee;--greenbg:#f1f7f3;--bluebg:#f0f4f8;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;line-height:1.9;font-size:15px}
+  .wrap{max-width:1000px;margin:0 auto;padding:44px 22px 96px}
+  header.doc{border-bottom:3px solid var(--ink);padding-bottom:18px;margin-bottom:30px}
+  .kicker{font-size:12px;letter-spacing:.14em;color:var(--sub);margin:0}
+  h1{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:25px;line-height:1.5;margin:10px 0 12px;font-weight:600}
+  .meta{font-size:13px;color:var(--sub)}
+  h2{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:20px;margin:50px 0 14px;
+    padding:8px 0 8px 14px;border-left:5px solid var(--accent);font-weight:600;background:#f6f3ee}
+  h3{font-size:16px;margin:30px 0 10px;font-weight:600;border-bottom:1px solid var(--line);padding-bottom:6px}
+  p{margin:0 0 12px}
+  table{border-collapse:collapse;width:100%;font-size:13px;margin:14px 0;background:#fff}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:right;vertical-align:top}
+  th{background:#f4f1eb;font-weight:600;text-align:center;white-space:nowrap}
+  td:first-child,th:first-child{text-align:left}
+  code{background:#f2efe9;padding:1px 5px;border-radius:3px;font-size:12px}
+  ul,ol{margin:0 0 14px;padding-left:1.4em}
+  li{margin-bottom:6px}
+  .box{border:1px solid var(--line);border-radius:6px;padding:14px 16px;margin:16px 0;background:#fff}
+  .box.red{background:var(--redbg);border-color:#e6bfbb}
+  .box.amber{background:var(--amberbg);border-color:#ead9ae}
+  .box.green{background:var(--greenbg);border-color:#c3ddcd}
+  .box.blue{background:var(--bluebg);border-color:#c3d3e0}
+  .box p:last-child{margin-bottom:0}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="doc">
+  <p class="kicker">社内レポート（docs/reports・非公開/noindex）</p>
+  <h1>広告LPのデザイン差し戻しと、計測の引き継ぎ</h1>
+  <p class="meta">2026-09-06 ／ 松澤指示 ／ 対象：<code>app/lp/**</code>・<code>scripts/test-lp-output.mjs</code>・CLAUDE.md §21.2</p>
+</header>
+
+<h2>やったこと</h2>
+<div class="box blue">
+  <p>同日に Codex が <code>/lp/</code> を CSS Modules で再設計したが、<strong>デザインが意図と異なった</strong>ため、松澤指示により <strong>2026-08-27 版の構成へ差し戻した。</strong>ただし Codex 版で入った計測・フォームの改善は、素直に良いものなのでそのまま引き継いでいる。</p>
+</div>
+
+<h2>1. 戻したもの（デザイン・構造）</h2>
+<p><code>6cb0412</code>（2026-09-01 時点＝差し戻し前の最終版）から復元した。</p>
+<table>
+<tr><th>ファイル</th><th>扱い</th></tr>
+<tr><td><code>app/lp/page.tsx</code></td><td>復元。ヒーロー／入口分岐／緊急セクション／選ばれる理由／プラン／式場／お客様の声／FAQ／フォーム</td></tr>
+<tr><td><code>app/lp/LpTopBar.tsx</code></td><td>復元</td></tr>
+<tr><td><code>app/lp/LpStickyCta.tsx</code></td><td>復元</td></tr>
+<tr><td><code>app/lp/contact/page.tsx</code></td><td>復元</td></tr>
+<tr><td><code>app/lp/layout.tsx</code></td><td>復元。ただし <code>LpAnalytics</code> の設置は残した</td></tr>
+<tr><td><code>app/lp/LpContent.tsx</code></td><td><strong>削除</strong>（386行・Codex 版で追加。未使用になった）</td></tr>
+<tr><td><code>app/lp/lp.module.css</code></td><td><strong>削除</strong>（986行・同上）</td></tr>
+</table>
+
+<h2>2. 引き継いだもの（Codex 版の良い部分）</h2>
+<table>
+<tr><th>引き継いだもの</th><th>実装</th><th>理由</th></tr>
+<tr><td>LP専用の7イベント計測</td><td><code>lib/lp-analytics.ts</code>／<code>LpAnalytics.tsx</code></td><td><code>data-lp-event</code> 属性で動く設計のため、デザインを変えてもそのまま機能する</td></tr>
+<tr><td>入口によるセッション分離の集計</td><td><code>scripts/ad-lp-report.mjs</code></td><td>LP入口と本サイト入口を排他的に集計。触っていない</td></tr>
+<tr><td>フォームの必須指定</td><td><code>LpContactForm.tsx</code> の <code>required</code></td><td>未入力送信の抑止</td></tr>
+<tr><td>自己参照 canonical と LP専用 title</td><td><code>page.tsx</code>／<code>contact/page.tsx</code></td><td>noindex なので順位には効かないが、広告の審査クローラと社内確認で「このURLが正」と分かる</td></tr>
+<tr><td>出力の自動検証</td><td><code>scripts/test-lp-output.mjs</code></td><td>現構成に合わせて検査内容を更新</td></tr>
+<tr><td>お客様の声を絞る判断</td><td><code>lpVoices</code> を10件→4件</td><td>Codex は2件。Next/Image の srcset が1件あたり約1.4KB効く</td></tr>
+</table>
+<p>復元した各要素に <code>data-lp-event</code> と <code>data-lp-placement</code> を付け直した。<strong>電話リンク8箇所すべてと、相談導線4箇所。</strong>設置箇所の一覧は <code>docs/ad-lp/2026-09-06-lp-design-restore.md</code> にある。</p>
+<div class="box amber">
+  <p><code>click_tel</code> と <code>lp_click_tel</code>、<code>generate_lead</code> と <code>lp_generate_lead</code> は同じ操作で二重に発火しうる。<strong>合算しない。</strong></p>
+</div>
+
+<h2>3. ページ重量の判定基準を変えた（CLAUDE.md §21.2）</h2>
+<p>§21.2 の「HTML 50KB 以下」は単位が明記されておらず、Codex は非圧縮バイト数で解釈していた。復元した構成はその基準では収まらないため、松澤判断で<strong>転送量（brotli 圧縮後）で判定する</strong>ことにした。</p>
+<table>
+<tr><th></th><th>非圧縮</th><th>gzip</th><th>brotli（判定に使う）</th></tr>
+<tr><td>/lp/</td><td>276,950</td><td>37,716</td><td><strong>21,686</strong></td></tr>
+<tr><td>/lp/contact/</td><td>28,617</td><td>6,398</td><td><strong>5,200</strong></td></tr>
+<tr><td>（参考）差し戻し前の本番</td><td>42,515</td><td>—</td><td>9,977</td></tr>
+</table>
+<p>非圧縮の HTML には Next.js の RSC ペイロード（約142KB）と Next/Image の srcset（画像43枚で約69KB）が含まれる。これらは転送時に圧縮されるため、非圧縮のバイト数は実際の表示速度と乖離する。ご遺族の体感に効くのは転送量と描画であることから、基準を転送量に統一した。</p>
+<p>CLAUDE.md §21.2 に判定方法（<code>node scripts/test-lp-output.mjs</code> を使う、非圧縮は記録するだけ）も明記した。</p>
+
+<h2>4. 検証結果</h2>
+<table>
+<tr><th>確認</th><th>結果</th></tr>
+<tr><td><code>npm run build</code></td><td>成功。静的生成140ページで減少なし</td></tr>
+<tr><td><code>node scripts/test-lp-output.mjs</code></td><td>通過（転送量／noindex／canonical／h1が1つ／電話リンク全8本に計測属性／6プランの会員価格・通常価格12種／88,000円は非掲載／フォーム1つ／sitemap除外／robotsでDisallowしていない）</td></tr>
+<tr><td><code>node scripts/test-lp-analytics.mjs</code></td><td>通過</td></tr>
+<tr><td><code>npm run lint</code></td><td><code>app/lp/</code> のエラー・警告0件（未使用だった <code>BADGES</code> 定数も削除）</td></tr>
+<tr><td>本番</td><td>push 済み。<code>https://kawaguchitenrei.com/lp/</code> は 200</td></tr>
+</table>
+
+<h2>5. やっていないこと</h2>
+<ul>
+  <li><strong>広告の配信先の切り替え</strong>：次回会議で決定するため未実施。広告は引き続き <code>kawaguchi-memorial-hall.com</code> に着地している</li>
+  <li><strong>本サイト側の変更</strong>：<code>app/lp/**</code> の外は触っていない（Codex の SEO 改修も残したまま）</li>
+  <li>画像の追加・改名・移動、価格・プラン名の変更</li>
+</ul>
+
+<h2>6. 変更ファイル</h2>
+<ul>
+  <li><code>app/lp/page.tsx</code> / <code>LpTopBar.tsx</code> / <code>LpStickyCta.tsx</code> / <code>LpPhoneBox.tsx</code> / <code>LpCtaBand.tsx</code> / <code>LpHalls.tsx</code> / <code>LpPreneed.tsx</code> / <code>contact/page.tsx</code> / <code>layout.tsx</code></li>
+  <li>削除：<code>app/lp/LpContent.tsx</code>、<code>app/lp/lp.module.css</code></li>
+  <li><code>scripts/test-lp-output.mjs</code></li>
+  <li><code>CLAUDE.md</code>（§21.2 の判定基準、冒頭の現行構成の記述）／<code>AGENTS.md</code></li>
+  <li>新規：<code>docs/ad-lp/2026-09-06-lp-design-restore.md</code>／Codex の再設計記録に差し戻しの追記</li>
+</ul>
+<p>確認URL：<code>https://kawaguchitenrei.com/lp/</code>（本番）、<code>npm run dev</code> → <code>http://localhost:3000/lp/</code></p>
+
+<footer class="doc" style="margin-top:60px;border-top:1px solid #e2ddd4;border-bottom:none;padding-top:14px">
+  <p class="meta">川口典礼サイト 社内レポート／作成 2026-09-06／非公開・noindex</p>
+</footer>
+</div>
+</body>
+</html>
