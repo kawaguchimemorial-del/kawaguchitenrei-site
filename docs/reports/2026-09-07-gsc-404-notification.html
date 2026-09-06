@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GSC「404でインデックス未登録」通知の調査 2026-09-07</title>
+<style>
+  :root{--ink:#1c1a17;--sub:#5c564e;--line:#e2ddd4;--bg:#fbfaf8;--accent:#7a5c3e;
+    --red:#a8322a;--amber:#8a6412;--green:#2f6146;--blue:#2d5573;
+    --redbg:#fdf3f2;--amberbg:#fdf9ee;--greenbg:#f1f7f3;--bluebg:#f0f4f8;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;line-height:1.9;font-size:15px}
+  .wrap{max-width:1020px;margin:0 auto;padding:44px 22px 96px}
+  header.doc{border-bottom:3px solid var(--ink);padding-bottom:18px;margin-bottom:30px}
+  .kicker{font-size:12px;letter-spacing:.14em;color:var(--sub);margin:0}
+  h1{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:25px;line-height:1.5;margin:10px 0 12px;font-weight:600}
+  .meta{font-size:13px;color:var(--sub)}
+  h2{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:20px;margin:50px 0 14px;
+    padding:8px 0 8px 14px;border-left:5px solid var(--accent);font-weight:600;background:#f6f3ee}
+  h3{font-size:16px;margin:30px 0 10px;font-weight:600;border-bottom:1px solid var(--line);padding-bottom:6px}
+  p{margin:0 0 12px}
+  table{border-collapse:collapse;width:100%;font-size:13px;margin:14px 0;background:#fff}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:right;vertical-align:top}
+  th{background:#f4f1eb;font-weight:600;text-align:center;white-space:nowrap}
+  td:first-child,th:first-child{text-align:left}
+  code{background:#f2efe9;padding:1px 5px;border-radius:3px;font-size:12px}
+  ul,ol{margin:0 0 14px;padding-left:1.4em}
+  li{margin-bottom:6px}
+  .box{border:1px solid var(--line);border-radius:6px;padding:14px 16px;margin:16px 0;background:#fff}
+  .box.red{background:var(--redbg);border-color:#e6bfbb}
+  .box.amber{background:var(--amberbg);border-color:#ead9ae}
+  .box.green{background:var(--greenbg);border-color:#c3ddcd}
+  .box.blue{background:var(--bluebg);border-color:#c3d3e0}
+  .box p:last-child{margin-bottom:0}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="doc">
+  <p class="kicker">社内レポート（docs/reports・非公開/noindex）</p>
+  <h1>Search Console「404でインデックスに登録されない」通知の調査</h1>
+  <p class="meta">2026-09-07 ／ 通知：Message type [WNC-20237597]（2026-09-07 5:34 受信）／ GSC API・URL検査API・本番実測・ビルド出力の全数走査／サイト変更なし</p>
+</header>
+
+<h2>結論</h2>
+<div class="box green">
+  <p><strong>1. 対応は不要です。</strong>404 になっているのは、すべて<strong>Next.js に作り替える前の旧サイトのページ</strong>で、いまは存在しないものです。<strong>削除したページが404を返すのは正しい状態</strong>で、Google もそれを確認しているだけです。<strong>8月以降、これらのURLの表示回数はすべて0</strong>で、現在の集客に影響していません。</p>
+</div>
+<div class="box green">
+  <p><strong>2. いまのサイトに壊れたリンクはありません。</strong>ビルド出力の全ページから内部リンク132種を抽出し、本番で1件ずつ最終到達まで確認した結果、<strong>200以外は0件</strong>。sitemap の129 URLもすべて200です。</p>
+</div>
+<div class="box amber">
+  <p><strong>3. ただし、調査中に別の不具合を1つ見つけました。</strong>URLに日本語が含まれる存在しないページで、<strong>本番だけ 404 ではなく 500（サーバーエラー）を返します</strong>。今回の通知とは別件ですが、Google は 5xx を 404 より悪く扱う（再試行し、クロール頻度を落とすことがある）ため、直しておくのが望ましいです。詳細は §4。</p>
+</div>
+
+<h2>1. 404 になっているURLの全数（16か月分）</h2>
+<p>GSC で過去16か月に表示のあった全URLと、sitemap の全URLを本番で1件ずつ検証しました（転送は最後まで追跡）。</p>
+<table>
+<tr><th>URL</th><th>累計表示</th><th>最終表示日</th><th>8月以降の表示</th></tr>
+<tr><td>/hotel</td><td>7,261</td><td>2026-06-06</td><td><strong>0</strong></td></tr>
+<tr><td>/seiten</td><td>3,933</td><td>2026-06-06</td><td><strong>0</strong></td></tr>
+<tr><td>/SK/info</td><td>1,478</td><td>2026-06-01</td><td><strong>0</strong></td></tr>
+<tr><td>/ribingu_sou</td><td>1,297</td><td>2025-08-19</td><td><strong>0</strong></td></tr>
+<tr><td>/3</td><td>512</td><td>2025-09-12</td><td><strong>0</strong></td></tr>
+<tr><td>/next flower</td><td>485</td><td>2026-05-06</td><td><strong>0</strong></td></tr>
+<tr><td>/kawaguchi/kazokusou/</td><td>372</td><td>2026-05-31</td><td><strong>0</strong></td></tr>
+<tr><td>その他17件（/1・/2・/cash・/itabashi・/SK/01・/SK/04・/tesut・/kawaguchi/Backup・/kawaguchi/main-2・/Column_list/9s57l8f3 ほか）</td><td>各1〜159</td><td>〜2026-04</td><td><strong>0</strong></td></tr>
+</table>
+<p>合計24件。<strong>いずれも 2026年8月以降の表示は0</strong>です。</p>
+
+<h3>Google 側の見え方（URL検査API・本日実測）</h3>
+<table>
+<tr><th>URL</th><th>カバレッジ</th><th>最終クロール</th><th>Googleが見た参照元</th></tr>
+<tr><td>/hotel</td><td>Not found (404)</td><td>2026-06-08</td><td>kawaguchitenrei.com/</td></tr>
+<tr><td>/seiten</td><td>Not found (404)</td><td>2026-06-19</td><td>—</td></tr>
+<tr><td>/SK/info</td><td>Not found (404)</td><td>2026-06-06</td><td>/kawaguchi/hall、トップ</td></tr>
+<tr><td>/kawaguchi/kazokusou/</td><td>Not found (404)</td><td>2026-06-25</td><td>/kawaguchi/hall</td></tr>
+<tr><td>/ribingu_sou</td><td>Googleが認識していない</td><td>—</td><td>—</td></tr>
+<tr><td>/Column_list/9s57l8f3</td><td>Googleが認識していない</td><td>—</td><td>—</td></tr>
+</table>
+<div class="box blue">
+  <p><strong>参照元が「kawaguchitenrei.com/」「/kawaguchi/hall」になっている点が、性格をよく表しています。</strong>これらは<strong>旧サイト時代に、当社のドメイン上でリンクされていた</strong>ページです。旧サイトは同じドメインで運営されていたため、その時の記憶が Google に残っており、いまも定期的に確認しに来ます。最終クロールは6月で、すでに間隔が空いています。</p>
+</div>
+
+<h2>2. なぜ「新しい要因」として通知が来たのか</h2>
+<p>Google のこの通知は、404 の件数や種類に変化があったときに自動送信されます。今回の候補は次のとおりですが、<strong>いずれも当社の対応を必要としません。</strong></p>
+<ul>
+  <li><strong>旧サイトURLの再クロール。</strong>Google は削除済みURLを何度か確認しに来ます。6月のクロールがレポートに反映された可能性</li>
+  <li><strong>2026-08-19 の旧ドメイン301化。</strong><code>kawaguchi-tenrei.com</code> を当ドメインへ転送した際、旧ドメインのURLが当プロパティ側で再評価された可能性。<strong>ただし転送先はすべてトップページ</strong>で、同じパスへは転送していないため、これ自体が404を生む構造にはなっていません（実測で確認）</li>
+  <li><strong>2026-09-06 の sitemap の更新日修正。</strong>従来は全URLにビルド日時が入っていたのを実更新日に変えたため、クロールの動きが変わった可能性</li>
+</ul>
+
+<h2>3. いまのサイトは健全か（全数検証）</h2>
+<table>
+<tr><th>検証</th><th>方法</th><th>結果</th></tr>
+<tr><td>内部リンク</td><td>ビルド出力の全ページから内部リンク132種を抽出し、本番で最終到達まで確認</td><td><strong>200以外0件</strong></td></tr>
+<tr><td>sitemap</td><td>129 URL すべてを本番で確認</td><td><strong>全て200</strong></td></tr>
+<tr><td>旧URLの転送</td><td>GSCで表示のあった160URLの転送チェーンを追跡</td><td>/ques/・/QA/・/Column_list/・/koe/・/toda-sousaijyo 等はすべて正しく200へ到達</td></tr>
+<tr><td>旧ドメイン</td><td><code>http://kawaguchi-tenrei.com/</code> と配下パス</td><td>すべて301でトップへ。<strong>httpsは証明書の名義不一致で接続不可（従来からの既知事項）</strong></td></tr>
+</table>
+
+<h2>4. 調査中に見つかった別の不具合（今回の通知とは別件）</h2>
+<div class="box red">
+  <p><strong>URLに日本語が含まれる存在しないページが、本番で 500（サーバーエラー）を返します。</strong></p>
+</div>
+<table>
+<tr><th>URL</th><th>本番（Vercel）</th><th>ローカル（next start）</th></tr>
+<tr><td>/column/sonzai-shinai/（英数字）</td><td>404 ✅</td><td>404 ✅</td></tr>
+<tr><td>/column/%E8%91%AC%E5%84%80/（＝/column/葬儀/）</td><td><strong>500 ❌</strong></td><td>404 ✅</td></tr>
+<tr><td>/plan/葬儀/・/voice/葬儀/・/case/葬儀/</td><td><strong>500 ❌</strong></td><td>404 ✅</td></tr>
+<tr><td>/area/葬儀/・/saijo/葬儀/・/hall/葬儀/</td><td>404 ✅</td><td>404 ✅</td></tr>
+</table>
+<p><strong>発生条件：</strong><code>[slug]</code> の動的ルート（column・plan・voice・case）に、URLエンコードされた多バイト文字が渡されたとき。<code>/area/</code>・<code>/saijo/</code>・<code>/hall/</code> は個別ディレクトリで静的なため影響を受けません。</p>
+<p><strong>ページ側のコードは正しく <code>notFound()</code> を呼んでいます。ローカルでは404になるため、Vercel 上のルーティング固有の挙動</strong>と考えられます。実害としては、過去に <code>/Column_list/葬儀</code> が41表示・3クリックあった実績があり、Google はこのURLを踏むと 500 を受け取ります。</p>
+<div class="box amber">
+  <p><strong>なぜ直すべきか。</strong>Google は 404（もう無い）と 5xx（一時的な障害）を区別します。5xx は「あとで再試行」と扱われ、繰り返すとサイト全体のクロール頻度が落ちることがあります。件数は少ないものの、放置する理由もありません。</p>
+  <p><strong>ただし今回は直していません。</strong>原因が Vercel 側のルーティング挙動である可能性が高く、切り分けに時間がかかるためです。別タスクとして扱うことをおすすめします。</p>
+</div>
+
+<h2>5. やるとしたら（優先度は低い）</h2>
+<p>対応は必須ではありませんが、やるなら次の2つです。</p>
+<table>
+<tr><th>優先</th><th>内容</th><th>理由</th></tr>
+<tr><td>低</td><td><code>/kawaguchi/kazokusou</code>（と末尾スラッシュ版）を <code>/plan/family-funeral/</code> へ転送</td><td>累計372表示。<code>/kawaguchi/hall</code> と <code>/kawaguchi/main</code> は既に転送設定があり、<strong>この1つだけ漏れている</strong>。旧サイトの家族葬ページに相当する</td></tr>
+<tr><td>低</td><td>日本語スラッグの500を404にする</td><td>§4のとおり。Vercel 側の挙動確認が必要</td></tr>
+</table>
+<div class="box blue">
+  <p><strong>それ以外（/hotel・/seiten・/SK/*・/cash・/itabashi・/3・/1・/2・/tesut・/kawaguchi/Backup・/kawaguchi/main-2 など）は、404 のままにします。</strong>いまのサイトに相当するページが存在せず、無理に転送先を作ると、Google からは「関係のないページへの転送（ソフト404）」と見なされて評価を落とします。<strong>消えたページは404を返すのが正しい対応です。</strong></p>
+</div>
+
+<h2>6. 通知そのものへの対応</h2>
+<p>Search Console のこの通知は「検出したので念のためお知らせします」という性格のもので、<strong>ペナルティでも警告でもありません。</strong>現在の129ページのインデックス状況に影響はありません。</p>
+<p>気になる場合は、インデックス登録レポートの「見つかりませんでした（404）」の一覧を開き、<strong>今回の24件以外に心当たりのないURLが出ていないか</strong>だけご確認ください。APIでは個別URLの状態しか取れず、レポートの一覧は管理画面でしか見られないためです。</p>
+
+<h2>7. 今回の変更</h2>
+<p>サイト変更なし（調査のみ）。取得スクリプトは <code>tmp/seo-2026-09-06/</code> 配下・非コミット。秘密情報・個人情報は含みません。</p>
+
+<footer class="doc" style="margin-top:60px;border-top:1px solid #e2ddd4;border-bottom:none;padding-top:14px">
+  <p class="meta">川口典礼サイト 社内レポート／作成 2026-09-07／GSC Search Analytics API（16か月・全URL）＋ URL検査API ＋ 本番HTTP実測 ＋ ビルド出力の内部リンク全数走査 ＋ ローカル next start との比較／非公開・noindex</p>
+</footer>
+</div>
+</body>
+</html>
