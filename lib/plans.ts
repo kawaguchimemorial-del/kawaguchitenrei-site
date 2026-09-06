@@ -206,15 +206,15 @@ export const plans: Plan[] = [
   {
     slug: "family-funeral",
     name: "家族葬プラン",
-    subtitle: "川口市の家族葬",
-    heroTitle: "川口市の家族葬プラン",
+    subtitle: "家族葬プラン",
+    heroTitle: "家族葬プランの料金と内容",
     short: "親しい方だけで、ゆっくりお見送り。",
     long: "川口市で家族葬を検討している方へ。川口典礼では、川口市西新井宿の自社式場・川口メモリアルホールでのお別れから川口市めぐりの森での火葬まで、ご家族や親しい方を中心に落ち着いて見送る葬儀をご相談いただけます。新井宿・鳩ヶ谷など川口市内・近隣にお住まいの方からのご相談に対応し、一般的な葬儀と同じく通夜・告別式を行いながら、参列範囲や人数を整理して進めます。",
     price: "528,000円（税込）〜",
     pricing: { type: "member-regular", member: 528000, regular: 628000 },
     image: {
       src: "/images/home/plans/plan-ichinichiso-kazokuso.png",
-      alt: "川口市の家族葬プランのイメージ",
+      alt: "家族葬プランのイメージ",
     },
     people: "10〜30名",
     days: "2日",
@@ -317,9 +317,9 @@ export const plans: Plan[] = [
       },
     ],
     metaTitle:
-      "川口市の家族葬｜1日1組の自社式場・費用と流れ｜川口典礼",
+      "家族葬プランの料金と内容｜10〜30名・1日1組の川口メモリアルホール｜川口典礼",
     metaDescription:
-      "川口市で家族葬をお考えの方へ。1日1組貸切の川口メモリアルホールで、通夜・告別式を行います。10〜30名が目安、事前相談会員価格528,000円(税込)・通常628,000円(税込)。火葬料・飲食等は別途。人数や総額の目安を24時間365日ご相談いただけます。",
+      "川口典礼の家族葬プラン。事前相談会員価格528,000円(税込)・通常価格628,000円(税込)、参列10〜30名が目安。1日1組貸切の川口メモリアルホール(川口市西新井宿)で通夜・告別式を行い、川口市めぐりの森で火葬します。含まれる内容、別途かかる費用、総額の考え方をご案内します。",
     conclusionBox: {
       heading: "川口市で家族葬を検討している方へ。",
       intro:
@@ -536,7 +536,7 @@ export const plans: Plan[] = [
         href: "/saijo/megurinomori/",
       },
       {
-        label: "川口市の家族葬",
+        label: "家族葬プランの料金と内容",
         description: "ご家族中心のお別れ・528,000円(税込)〜",
         href: "/plan/family-funeral/",
       },
@@ -693,7 +693,7 @@ export const plans: Plan[] = [
         href: "/plan/oneday-funeral/",
       },
       {
-        label: "川口市の家族葬",
+        label: "家族葬プランの料金と内容",
         description: "通夜・告別式を二日間で行うご家族中心のお別れ",
         href: "/plan/family-funeral/",
       },
@@ -874,7 +874,7 @@ export const plans: Plan[] = [
             gathering: "1日で区切りをつけたい方に",
           },
           {
-            name: "川口市の家族葬",
+            name: "家族葬プラン",
             href: "/plan/family-funeral/",
             days: "2日（通夜・告別式）",
             timeOfDay: "通夜は夕方／告別式は日中",
@@ -1023,7 +1023,7 @@ export const plans: Plan[] = [
         href: "/plan/oneday-funeral/",
       },
       {
-        label: "川口市の家族葬",
+        label: "家族葬プランの料金と内容",
         description: "ご家族中心のお別れ・528,000円(税込)〜",
         href: "/plan/family-funeral/",
       },
@@ -1183,7 +1183,7 @@ export const plans: Plan[] = [
         href: "/plan/oneday-funeral/",
       },
       {
-        label: "川口市の家族葬",
+        label: "家族葬プランの料金と内容",
         description: "ご家族中心のお別れ・528,000円(税込)〜",
         href: "/plan/family-funeral/",
       },
@@ -1731,7 +1731,7 @@ export const plans: Plan[] = [
           href: "/saijo/megurinomori/",
         },
         {
-          label: "川口市の家族葬",
+          label: "家族葬プランの料金と内容",
           description: "ご家族中心のお別れ・528,000円(税込)〜",
           href: "/plan/family-funeral/",
         },

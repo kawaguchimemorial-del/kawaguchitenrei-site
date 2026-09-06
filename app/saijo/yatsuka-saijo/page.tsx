@@ -135,7 +135,7 @@ const relatedLinks = [
     href: "/area/higashikawaguchi/",
   },
   {
-    label: "川口市の家族葬",
+    label: "家族葬プランの料金と内容",
     description: "ご家族中心のお別れ・528,000円(税込)〜",
     href: "/plan/family-funeral/",
   },

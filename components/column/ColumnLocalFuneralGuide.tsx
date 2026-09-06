@@ -19,7 +19,7 @@ const LOCAL_FACILITY_LINKS: { label: string; href: string }[] = [
 
 const LOCAL_PLAN_LINKS: LocalPlanLink[] = [
   {
-    label: "川口市の家族葬",
+    label: "家族葬プランの料金と内容",
     description: "ご家族や親しい方を中心に、ゆっくりお別れする葬儀",
     href: "/plan/family-funeral/",
   },

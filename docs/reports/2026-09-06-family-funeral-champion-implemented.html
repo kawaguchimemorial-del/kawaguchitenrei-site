@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>家族葬の主ページをトップに確定（実装）2026-09-06</title>
+<style>
+  :root{--ink:#1c1a17;--sub:#5c564e;--line:#e2ddd4;--bg:#fbfaf8;--accent:#7a5c3e;
+    --red:#a8322a;--amber:#8a6412;--green:#2f6146;--blue:#2d5573;
+    --redbg:#fdf3f2;--amberbg:#fdf9ee;--greenbg:#f1f7f3;--bluebg:#f0f4f8;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;line-height:1.9;font-size:15px}
+  .wrap{max-width:1000px;margin:0 auto;padding:44px 22px 96px}
+  header.doc{border-bottom:3px solid var(--ink);padding-bottom:18px;margin-bottom:30px}
+  .kicker{font-size:12px;letter-spacing:.14em;color:var(--sub);margin:0}
+  h1{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:25px;line-height:1.5;margin:10px 0 12px;font-weight:600}
+  .meta{font-size:13px;color:var(--sub)}
+  h2{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:20px;margin:50px 0 14px;
+    padding:8px 0 8px 14px;border-left:5px solid var(--accent);font-weight:600;background:#f6f3ee}
+  h3{font-size:16px;margin:30px 0 10px;font-weight:600;border-bottom:1px solid var(--line);padding-bottom:6px}
+  p{margin:0 0 12px}
+  table{border-collapse:collapse;width:100%;font-size:13px;margin:14px 0;background:#fff}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:right;vertical-align:top}
+  th{background:#f4f1eb;font-weight:600;text-align:center;white-space:nowrap}
+  td:first-child,th:first-child{text-align:left}
+  code{background:#f2efe9;padding:1px 5px;border-radius:3px;font-size:12px}
+  ul,ol{margin:0 0 14px;padding-left:1.4em}
+  li{margin-bottom:6px}
+  .box{border:1px solid var(--line);border-radius:6px;padding:14px 16px;margin:16px 0;background:#fff}
+  .box.red{background:var(--redbg);border-color:#e6bfbb}
+  .box.amber{background:var(--amberbg);border-color:#ead9ae}
+  .box.green{background:var(--greenbg);border-color:#c3ddcd}
+  .box.blue{background:var(--bluebg);border-color:#c3d3e0}
+  .box p:last-child{margin-bottom:0}
+  .ok{color:var(--green);font-weight:600}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="doc">
+  <p class="kicker">社内レポート（docs/reports・非公開/noindex）</p>
+  <h1>家族葬の主ページをトップページに確定（実装）</h1>
+  <p class="meta">2026-09-06 ／ 松澤承認（仕様書・Footer 変更とも承認済み）／ 仕様書：<code>docs/seo-research/2026-09-06-family-funeral-champion-spec.md</code> ／ 診断：<code>docs/reports/2026-09-06-family-funeral-champion-8expert.html</code></p>
+</header>
+
+<h2>やったこと</h2>
+<div class="box blue">
+  <p>「川口市 家族葬」「川口 家族葬」の主ページを<strong>トップページに確定</strong>し、<code>/plan/family-funeral/</code> を「家族葬プランの料金と内容」の受け皿へ役割変更した。2026-07-14 に行った反転（主ページを専用ページへ移す判断）を取り消し、2026-09-06 に Codex が入れたトップ title の変更を追認する形。</p>
+</div>
+
+<h2>1. 変更内容</h2>
+
+<h3>1-1. 専用ページの看板を外した（<code>lib/plans.ts</code>）</h3>
+<table>
+<tr><th>項目</th><th>変更前</th><th>変更後</th></tr>
+<tr><td>subtitle</td><td>川口市の家族葬</td><td>家族葬プラン</td></tr>
+<tr><td>heroTitle（h1）</td><td>川口市の家族葬プラン</td><td>家族葬プランの料金と内容</td></tr>
+<tr><td>metaTitle</td><td>川口市の家族葬｜1日1組の自社式場・費用と流れ｜川口典礼</td><td>家族葬プランの料金と内容｜10〜30名・1日1組の川口メモリアルホール｜川口典礼（40字）</td></tr>
+<tr><td>metaDescription</td><td>「川口市で家族葬をお考えの方へ」起点</td><td>「川口典礼の家族葬プラン。」起点。価格・人数・含まれる内容・別途費用の案内に</td></tr>
+<tr><td>image.alt</td><td>川口市の家族葬プランのイメージ</td><td>家族葬プランのイメージ</td></tr>
+</table>
+<p>価格（<code>member: 528000 / regular: 628000</code>）・人数・本文・FAQ・<code>conclusionBox</code> は変更していない。</p>
+
+<h3>1-2. 内部リンクのアンカーを差し替えた（42箇所＋1箇所）</h3>
+<p><code>/plan/family-funeral/</code> へ向くリンクのアンカーから「川口市の家族葬」を外した。<strong>本文の地の文と画像 alt は対象外</strong>とし、機械判定（前後の文脈に <code>family-funeral</code> があり、かつ <code>label</code> / <code>name</code> の行であること）で選別した。</p>
+<table>
+<tr><th>ファイル</th><th>件数</th><th>変更後のアンカー</th></tr>
+<tr><td>app/area/*/page.tsx（15エリア）</td><td>16</td><td>家族葬プランの料金と内容</td></tr>
+<tr><td>lib/plans.ts（relatedLinks・比較表）</td><td>6</td><td>家族葬プランの料金と内容／比較表の行名は「家族葬プラン」</td></tr>
+<tr><td>lib/columns.ts（コラム内CTA）</td><td>6</td><td>家族葬プランの料金と内容を見る</td></tr>
+<tr><td>app/saijo/*（4ページ）・app/case/page.tsx</td><td>5</td><td>家族葬プランの料金と内容</td></tr>
+<tr><td>app/plan/page.tsx</td><td>2</td><td>カード名「家族葬プラン」・alt</td></tr>
+<tr><td>components/home/PlanSection.tsx</td><td>3</td><td>name「家族葬プラン」／ctaLabel「料金と内容を見る」／alt</td></tr>
+<tr><td>components/home/AreasSection.tsx・MeguriSection.tsx</td><td>2</td><td>家族葬プランの料金と内容</td></tr>
+<tr><td>components/column/ColumnLocalFuneralGuide.tsx・plan/PlanDetailBody.tsx</td><td>2</td><td>家族葬プランの料金と内容</td></tr>
+<tr><td><strong>components/layout/Footer.tsx</strong>（§5 保護対象・松澤承認済み）</td><td>1</td><td><strong>家族葬プラン</strong></td></tr>
+</table>
+<div class="box amber">
+  <p><strong>仕様書からの意図的な逸脱が1点。</strong>Footer は仕様書で「家族葬プランの料金と内容」としていたが、<strong>「家族葬プラン」</strong>にした。フッターのプラン一覧は「直葬プラン」「花入れお別れプラン」「一日葬プラン」「市民葬プラン」が並んでおり、そこに1つだけ長い項目が入ると不自然なため。<strong>「川口市の家族葬」の看板を外すという目的は同じように達成できる。</strong>同じ理由で、トップとプラン一覧のカード名も「家族葬プラン」にした。</p>
+</div>
+<p>作業後の走査で <strong>「川口市の家族葬」で始まるアンカーは0件</strong>。残った4箇所（<code>app/saijo/page.tsx</code> の本文2件、<code>lib/columns.ts</code> の画像 alt 2件）はリンクではないため意図的に残した。</p>
+
+<h3>1-3. トップに家族葬の見出しを新設した</h3>
+<p><code>components/home/FamilyFuneralSection.tsx</code> を新規作成し、<code>app/page.tsx</code> の <code>&lt;PlanSection /&gt;</code> の直後に配置。</p>
+<ul>
+  <li>h2「<strong>川口市の家族葬は、1日1組の自社式場で。</strong>」（トップに家族葬を含む h2 が0本だった状態を解消）</li>
+  <li><strong>価格は <code>getPlan("family-funeral")</code> から取得</strong>。ハードコードしていないので §9 の正本とずれない</li>
+  <li>人数10〜30名、川口メモリアルホール1日1組、めぐりの森まで車で約5分、駐車場70台。いずれも <code>lib/halls.ts</code> の記載と一致</li>
+  <li>火葬料・お料理・返礼品・宗教者へのお礼が別途である旨を明記（§14）</li>
+  <li><strong>「通夜を行わない一日葬や、火葬を中心とした直葬もお選びいただけます」</strong>の段落を入れ、家族葬だけを推す構成にしていない（§11）</li>
+  <li>既存のトーン（セリフ体見出し・余白・白背景）を踏襲。内部リンクは <code>&lt;Link&gt;</code></li>
+</ul>
+
+<h3>1-4. CLAUDE.md に主ページを固定した</h3>
+<p>§10.3 として新設（従来の §10.3 は §10.4 に繰り下げ）。</p>
+<p>「川口市 葬儀」「川口 葬儀」「川口市 家族葬」「川口 家族葬」の主ページはトップページ。<code>/plan/family-funeral/</code> を地域検索の主ページにしない。title・h1・アンカーで同じ看板を掲げない。7/14 の反転と 9/06 の確定の経緯も1行で記載した。<strong>次に触る人（Codex を含む）が再反転させないため。</strong></p>
+
+<h2>2. 検証結果</h2>
+<table>
+<tr><th>確認項目</th><th>結果</th></tr>
+<tr><td>トップ title が変更されていない</td><td class="ok">OK（川口市の葬儀・家族葬｜自社式場・24時間365日対応｜川口典礼）</td></tr>
+<tr><td>トップに家族葬を含む h2</td><td class="ok">OK 1本（川口市の家族葬は、1日1組の自社式場で。）</td></tr>
+<tr><td>専用ページ title</td><td class="ok">OK 家族葬プランの料金と内容｜…（40字）</td></tr>
+<tr><td>専用ページ title に「川口市の家族葬」を含まない</td><td class="ok">OK</td></tr>
+<tr><td>専用ページ h1</td><td class="ok">OK 家族葬プランの料金と内容</td></tr>
+<tr><td>「川口市の家族葬」アンカーの残数</td><td class="ok">OK 0件</td></tr>
+<tr><td>価格 528,000 / 628,000 の表示</td><td class="ok">OK トップ・専用ページとも</td></tr>
+<tr><td>sitemap</td><td class="ok">OK 129 URL</td></tr>
+<tr><td>静的生成</td><td class="ok">OK 140/140</td></tr>
+<tr><td>h1 が1つでないページ</td><td class="ok">OK 0件（社内用 /post/ を除く）</td></tr>
+<tr><td>lint（新規ファイル・変更ファイル）</td><td class="ok">OK。<code>PlanSection.tsx:240</code> のエラーは変更前から同一内容で存在する既存のもので、今回は触っていない</td></tr>
+</table>
+
+<h2>3. 効果判定</h2>
+<table>
+<tr><th></th><th>内容</th></tr>
+<tr><td>判定日</td><td><strong>2026-09-20 前後</strong>（変更から2週間）</td></tr>
+<tr><td>見るもの</td><td>GSC 7日窓で「川口市 家族葬」「川口 家族葬」の平均順位と受け皿</td></tr>
+<tr><td>効果あり</td><td>「川口市 家族葬」が<strong>13位以内</strong>（8/31週 17.4位 → 1ページ目下端）。受け皿はトップのまま</td></tr>
+<tr><td>効果なし</td><td>17位前後のまま。文言で動く範囲を超えていると判断し GBP（地図枠）に集中する。<strong>専用ページ側への再反転はしない</strong></td></tr>
+<tr><td>副作用の監視</td><td>「川口市 葬儀」「川口 葬儀」が 8〜10位から落ちないこと。落ちたらトップの新規セクションの文字量を削る</td></tr>
+</table>
+<p class="meta">※ 9/06 は Codex のトップ title 変更と同日のため、今回の変更と効果が混ざる。分離はできないが、どちらも同じ方向（家族葬の主ページ＝トップ）の変更なので、合算で判定してよいと考える。</p>
+
+<h2>4. 変更ファイル</h2>
+<ul>
+  <li>新規：<code>components/home/FamilyFuneralSection.tsx</code></li>
+  <li><code>app/page.tsx</code>（セクションの追加のみ。title・description は変更なし）</li>
+  <li><code>lib/plans.ts</code>（family-funeral の看板5フィールド＋アンカー6箇所）</li>
+  <li><code>lib/columns.ts</code>（コラム内CTA 6箇所）</li>
+  <li><code>app/area/*/page.tsx</code>（15エリア・16箇所）、<code>app/saijo/*</code>（4）、<code>app/case/page.tsx</code>、<code>app/plan/page.tsx</code></li>
+  <li><code>components/home/PlanSection.tsx</code>・<code>AreasSection.tsx</code>・<code>MeguriSection.tsx</code>、<code>components/column/ColumnLocalFuneralGuide.tsx</code>、<code>components/plan/PlanDetailBody.tsx</code></li>
+  <li><code>components/layout/Footer.tsx</code>（§5 保護対象・松澤承認済み）</li>
+  <li><code>CLAUDE.md</code>（§10.3 新設）</li>
+</ul>
+<p>確認コマンド：<code>npm run dev</code> / <code>npm run build</code>　確認URL：<code>http://localhost:3000/</code>（家族葬セクション）、<code>http://localhost:3000/plan/family-funeral/</code></p>
+
+<h2>5. やらなかったこと（仕様書どおり）</h2>
+<ul>
+  <li>専用ページを地域検索の主ページにするための増強</li>
+  <li>エリアページの metaTitle 変更（地名＋家族葬のロングテールは保護）</li>
+  <li>新規ページの作成、構造化データの追加、価格・プラン名の変更</li>
+  <li><code>PlanSection.tsx:240</code> の既存 lint エラーの修正（今回の変更範囲外）</li>
+</ul>
+
+<footer class="doc" style="margin-top:60px;border-top:1px solid #e2ddd4;border-bottom:none;padding-top:14px">
+  <p class="meta">川口典礼サイト 社内レポート／作成 2026-09-06／非公開・noindex</p>
+</footer>
+</div>
+</body>
+</html>

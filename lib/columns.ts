@@ -553,7 +553,7 @@ export const columns: ColumnArticle[] = [
       },
       {
         type: "cta",
-        label: "川口市の家族葬プランを見る",
+        label: "家族葬プランの料金と内容を見る",
         href: "/plan/family-funeral/",
       },
       {
@@ -1263,7 +1263,7 @@ export const columns: ColumnArticle[] = [
       },
       {
         type: "cta",
-        label: "川口市の家族葬プランを見る",
+        label: "家族葬プランの料金と内容を見る",
         href: "/plan/family-funeral/",
       },
       {
@@ -2161,7 +2161,7 @@ export const columns: ColumnArticle[] = [
       },
       {
         type: "cta",
-        label: "川口市の家族葬プランを見る",
+        label: "家族葬プランの料金と内容を見る",
         href: "/plan/family-funeral/",
       },
       {
@@ -2772,7 +2772,7 @@ export const columns: ColumnArticle[] = [
       },
       {
         type: "cta",
-        label: "川口市の家族葬プランを見る",
+        label: "家族葬プランの料金と内容を見る",
         href: "/plan/family-funeral/",
       },
       {
@@ -3497,7 +3497,7 @@ export const columns: ColumnArticle[] = [
       { type: "p", text: "A. 故人・ご家族の意思を尊重した無宗教の葬送は広く受け入れられています。ご親族には事前説明を。" },
       { type: "h2", text: "24時間の相談窓口|川口典礼" },
       { type: "p", text: "「川口で家族葬・無宗教・宗教にこだわらない葬儀」のご相談は、地元密着の川口典礼へ。総額表示で初めての方も安心です。無宗教の家族葬(一日葬／二日葬)、直葬+後日お別れ会など柔軟に設計できます。" },
-      { type: "cta", label: "川口市の家族葬プランを見る", href: "/plan/family-funeral/" },
+      { type: "cta", label: "家族葬プランの料金と内容を見る", href: "/plan/family-funeral/" },
       { type: "cta", label: "事前相談・お問い合わせ", href: "/contact/" },
     ],
     metaDescription: "お坊さんを呼ばない家族葬(無宗教・自由葬)について、献花式の進行例、実務の流れ、費用の考え方、注意点、納骨や案内文の準備までを川口典礼が整理しました。",
@@ -6094,7 +6094,7 @@ export const columns: ColumnArticle[] = [
         type: "p",
         text: "祭壇選びに迷われた際は、事前相談で実際の式場をご覧いただきながらご提案いたします。お電話または事前相談フォームでお気軽にお問い合わせください。",
       },
-      { type: "cta", label: "川口市の家族葬プランを見る", href: "/plan/family-funeral/" },
+      { type: "cta", label: "家族葬プランの料金と内容を見る", href: "/plan/family-funeral/" },
       { type: "cta", label: "事前相談する", href: "/contact/" },
     ],
     metaDescription:

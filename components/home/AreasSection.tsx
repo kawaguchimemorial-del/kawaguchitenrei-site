@@ -62,7 +62,7 @@ export function AreasSection() {
               href="/plan/family-funeral/"
               className="font-bold text-brand hover:underline"
             >
-              川口市の家族葬
+              家族葬プランの料金と内容
             </a>
             からご覧いただくと、費用や流れが分かりやすくご確認いただけます。
           </p>

@@ -5,6 +5,7 @@ import { AreasSection } from "@/components/home/AreasSection";
 import { CasesSection } from "@/components/home/CasesSection";
 import { CostEstimateSection } from "@/components/home/CostEstimateSection";
 import { EmergencySection } from "@/components/home/EmergencySection";
+import { FamilyFuneralSection } from "@/components/home/FamilyFuneralSection";
 import { FaqSection } from "@/components/home/FaqSection";
 import { FinalCtaSection } from "@/components/home/FinalCtaSection";
 import { HallSection } from "@/components/home/HallSection";
@@ -76,6 +77,7 @@ export default function Home() {
       <EmergencySection />
       <CostEstimateSection />
       <PlanSection />
+      <FamilyFuneralSection />
       <HallSection />
       <MeguriSection />
       <CasesSection />
