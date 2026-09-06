@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>「家族葬」だけが上がらない理由・専門家8名討議 2026-09-06</title>
+<style>
+  :root{--ink:#1c1a17;--sub:#5c564e;--line:#e2ddd4;--bg:#fbfaf8;--accent:#7a5c3e;
+    --red:#a8322a;--amber:#8a6412;--green:#2f6146;--blue:#2d5573;
+    --redbg:#fdf3f2;--amberbg:#fdf9ee;--greenbg:#f1f7f3;--bluebg:#f0f4f8;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;line-height:1.9;font-size:15px}
+  .wrap{max-width:1040px;margin:0 auto;padding:44px 22px 96px}
+  header.doc{border-bottom:3px solid var(--ink);padding-bottom:18px;margin-bottom:30px}
+  .kicker{font-size:12px;letter-spacing:.14em;color:var(--sub);margin:0}
+  h1{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:25px;line-height:1.5;margin:10px 0 12px;font-weight:600}
+  .meta{font-size:13px;color:var(--sub)}
+  h2{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:20px;margin:52px 0 14px;
+    padding:8px 0 8px 14px;border-left:5px solid var(--accent);font-weight:600;background:#f6f3ee}
+  h3{font-size:16px;margin:30px 0 10px;font-weight:600;border-bottom:1px solid var(--line);padding-bottom:6px}
+  p{margin:0 0 12px}
+  table{border-collapse:collapse;width:100%;font-size:13px;margin:14px 0;background:#fff}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:right;vertical-align:top}
+  th{background:#f4f1eb;font-weight:600;text-align:center;white-space:nowrap}
+  td:first-child,th:first-child{text-align:left}
+  code{background:#f2efe9;padding:1px 5px;border-radius:3px;font-size:12px}
+  ul,ol{margin:0 0 14px;padding-left:1.4em}
+  li{margin-bottom:6px}
+  .box{border:1px solid var(--line);border-radius:6px;padding:14px 16px;margin:16px 0;background:#fff}
+  .box.red{background:var(--redbg);border-color:#e6bfbb}
+  .box.amber{background:var(--amberbg);border-color:#ead9ae}
+  .box.green{background:var(--greenbg);border-color:#c3ddcd}
+  .box.blue{background:var(--bluebg);border-color:#c3d3e0}
+  .box p:last-child{margin-bottom:0}
+  .who{font-weight:600;color:var(--blue);display:block;margin-bottom:4px;font-size:13px}
+  .good{color:var(--green);font-weight:600}.bad{color:var(--red);font-weight:600}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="doc">
+  <p class="kicker">社内レポート（docs/reports・非公開/noindex）</p>
+  <h1>「家族葬」だけが上がらない理由<br>——「川口 葬儀」は上がったのに、なぜか。専門家8名討議と修正判断</h1>
+  <p class="meta">2026-09-06 ／ 松澤指示 ／ GSC API（確定最新日 2026-09-03）・12週の週次推移・28日窓の query×page ／ 分析のみ・サイト変更なし（修正は仕様書として別途 Opus へ）</p>
+</header>
+
+<h2>結論</h2>
+<div class="box red">
+  <p><strong>1. 「家族葬」が上がらない直接の原因は、2026-07-14 に「家族葬の主ページ（champion）」をトップから <code>/plan/family-funeral/</code> へ移した判断が、Google に受け入れられなかったことです。</strong></p>
+  <p>7週間経っても、Google は「川口市 家族葬」の検索に対して<strong>トップページを出し続けています</strong>（28日窓：トップ 365表示・10.9位、専用ページ 5表示・77.8位）。ところが 7/14 以降トップの title からは「家族葬」を外していたので、<strong>トップは「家族葬」の看板を持たないまま家族葬の検索を受けていた</strong>。その結果、「葬儀」は title が合っていて 8〜9位、「家族葬」は合っていなくて 10〜17位——という差になっています。</p>
+</div>
+<div class="box amber">
+  <p><strong>2. Codex が 9/06 にトップの title へ「家族葬」を戻しています。</strong>「川口市の葬儀・家族葬｜自社式場・24時間365日対応｜川口典礼」。7/14 の判断を知らずに戻した形ですが、<strong>方向としては上記の診断と一致</strong>します。ただし専用ページの title も「川口市の家族葬｜…」のままなので、<strong>7/14 に解消したはずのカニバリがそのまま復活</strong>している状態です。ここは放置できません。</p>
+</div>
+<div class="box green">
+  <p><strong>3. 修正は必要。ただし大改修ではありません。</strong>「家族葬の主ページはトップ」と正式に決め直し、専用ページを「プランの料金・内容」の役割に分け、トップに家族葬の見出しを1つ立てる。この3点で足ります。<strong>仕様書は §6、Opus 向けに <code>docs/seo-research/2026-09-06-family-funeral-champion-spec.md</code> に切り出しました。</strong></p>
+</div>
+
+<h2>1. 実測 ── 何が起きているか</h2>
+
+<h3>1-1. 週次の平均順位（表示加重）</h3>
+<table>
+<tr><th>週</th><th>川口 家族葬</th><th>川口市 家族葬</th><th>川口 葬儀</th><th>川口市 葬儀</th><th>出来事</th></tr>
+<tr><td>6/15</td><td>22.1</td><td>20.1</td><td>11.7</td><td>9.7</td><td></td></tr>
+<tr><td>6/29</td><td>18.4</td><td>18.7</td><td>9.4</td><td>7.4</td><td>6/30 家族葬ページ強化</td></tr>
+<tr><td>7/06</td><td>20.7</td><td>20.5</td><td>11.3</td><td>6.9</td><td>7/05 トップ title に「家族葬」（champion＝トップ）</td></tr>
+<tr><td>7/13</td><td>18.4</td><td><span class="good">13.9</span></td><td>11.5</td><td>7.6</td><td><strong>7/14 champion を専用ページへ反転。トップ title から「家族葬」除去</strong></td></tr>
+<tr><td>7/20</td><td>23.9</td><td><span class="bad">32.3</span></td><td>14.3</td><td>8.4</td><td></td></tr>
+<tr><td>7/27</td><td>22.0</td><td>26.6</td><td>15.9</td><td>11.7</td><td></td></tr>
+<tr><td>8/03</td><td><span class="bad">32.8</span></td><td>25.4</td><td>15.3</td><td>16.6</td><td>（サイト全体が一時後退）</td></tr>
+<tr><td>8/10</td><td>20.3</td><td>18.0</td><td>11.7</td><td>10.6</td><td></td></tr>
+<tr><td>8/17</td><td>24.2</td><td>20.5</td><td>11.4</td><td>11.0</td><td></td></tr>
+<tr><td>8/24</td><td>20.1</td><td>16.5</td><td>10.4</td><td><span class="good">8.5</span></td><td></td></tr>
+<tr><td>8/31</td><td>27.6</td><td>17.4</td><td><span class="good">9.5</span></td><td>9.6</td><td>9/06 Codex がトップ title に「家族葬」を戻す（データ未反映）</td></tr>
+</table>
+<p><strong>「川口市 家族葬」の最良週は 7/13 の 13.9位</strong>——トップ title に「家族葬」があった唯一の週です。7/14 に外した直後、32.3位まで落ちました。その後 16〜20位の帯に戻りましたが、13.9 には一度も届いていません。</p>
+<p>一方「川口市 葬儀」は 7/14 以降もトップ title に「葬儀」が残っていたため、8月上旬の全体後退を除けば 7〜10位を維持しています。</p>
+
+<h3>1-2. 誰が受けているか（28日窓 8/07–9/03・表示10以上）</h3>
+<table>
+<tr><th>クエリ</th><th>受け皿</th><th>表示</th><th>クリック</th><th>順位</th></tr>
+<tr><td rowspan="2">川口市 家族葬</td><td><strong>/（トップ）</strong></td><td><strong>365</strong></td><td>0</td><td><strong>10.9</strong></td></tr>
+<tr><td>/area/higashikawaguchi/</td><td>69</td><td>0</td><td>51.7</td></tr>
+<tr><td>川口 家族葬</td><td><strong>/（トップ）</strong></td><td>103</td><td>0</td><td>11.6</td></tr>
+<tr><td rowspan="2">家族葬 川口市</td><td><strong>/（トップ）</strong></td><td>87</td><td>0</td><td>11.4</td></tr>
+<tr><td>/area/higashikawaguchi/</td><td>38</td><td>0</td><td>48.8</td></tr>
+<tr><td>家族葬 川口</td><td><strong>/（トップ）</strong></td><td>82</td><td>0</td><td>10.4</td></tr>
+<tr><td>川口市 葬儀</td><td><strong>/（トップ）</strong></td><td>1,381</td><td>1</td><td><strong>8.3</strong></td></tr>
+<tr><td>川口 葬儀</td><td><strong>/（トップ）</strong></td><td>574</td><td>1</td><td>9.2</td></tr>
+</table>
+<div class="box red">
+  <p><strong>専用ページ <code>/plan/family-funeral/</code> は、この表に出てきません。</strong>「川口 家族葬」で 5表示・77.8位、「家族葬 川口市」で 3表示・12.0位。7週間 champion に据えたページが、家族葬の地域検索でほぼ拾われていない。</p>
+  <p>専用ページに当たっている検索語を見ると、356表示のうち <strong>336表示が社名を含む語</strong>（「川口典礼」174、「川口市 葬儀川口典礼」56、「川口市 家族葬 人気 川口典礼」53 など）。<strong>Google はこのページを「川口典礼の家族葬プラン」とは読んでいるが、「川口市の家族葬」の答えとは読んでいない。</strong></p>
+</div>
+
+<h3>1-3. なぜ Google はトップを選び続けるのか</h3>
+<table>
+<tr><th></th><th>トップ</th><th>/plan/family-funeral/</th></tr>
+<tr><td>本文の量（タグ除去後）</td><td>25.8KB</td><td>17.1KB</td></tr>
+<tr><td>「家族葬」の出現</td><td>53回</td><td>44回</td></tr>
+<tr><td>「家族葬」を含む h2</td><td><strong>0本</strong></td><td>8本</td></tr>
+<tr><td>内部リンクの集まり方</td><td>全ページのヘッダー・フッター・パンくずから</td><td>トップから4本、他は限定的</td></tr>
+<tr><td>Google の実際の選択</td><td><strong>家族葬・葬儀ともトップ</strong></td><td>社名を含む語のみ</td></tr>
+</table>
+<p>トップは h2 に「家族葬」を1本も持っていないのに、Google は家族葬の検索でトップを出します。<strong>理由はサイト内で最も権威が集まるページだから</strong>で、title や見出しの調整で専用ページへ移し替えられるものではなかった、というのが7週間の実験結果です。</p>
+
+<h3>1-4. 検索結果の顔ぶれ（「川口市 家族葬」・2026-09-06 確認）</h3>
+<p>上位は 小さなお葬式（エリア一覧）／小さな森の家（川口市ページ）／イオンのお葬式／いい葬儀／soogi のポータル5サイトに、花ぜんセレモニー（トップ・title「川口市の葬儀・家族葬なら花ぜんセレモニー」）、あゆみ葬祭（トップ・title「川口市で葬儀・家族葬ならあゆみ葬祭へ」）、当社トップ。</p>
+<p><strong>地元3社は全員、トップページで「葬儀・家族葬」を並べて戦っています。</strong>専用ページを立てて家族葬だけを切り出している地元社はいない。当社が 7/14 以降やっていたのは、この地元の型から一人だけ外れる形でした。</p>
+
+<h2>2. 専門家8名の討議</h2>
+
+<div class="box blue"><span class="who">A：検索エンジンの仕組み（インデクシング・正規化）</span>
+<p>7/14 の判断そのものは、教科書的には正しかった。同じ語で2ページが競合するなら一本化する。ただ<strong>一本化する先を間違えた</strong>。Google がどちらを選ぶかは、こちらの title ではなく Google 側の評価で決まる。7週間、Google は一貫してトップを選んだ。<strong>Google が選んでいるページを champion にするのが一本化の正しいやり方</strong>で、選んでいないページに看板を付けても移らない。</p>
+<p>Codex の 9/06 の変更は、経緯を知らずにやったものだが、結果として正しい方向に戻している。問題は<strong>専用ページ側の title も「川口市の家族葬」のまま</strong>なので、いま両方が同じ看板を出している。これは直すべき。</p></div>
+
+<div class="box blue"><span class="who">B：ローカルSEO</span>
+<p>地元3社の型を見てください。花ぜんもあゆみも、トップで「葬儀・家族葬」を並べている。<strong>地元葬儀社のトップページは、Google にとって「その会社のローカルエンティティ」そのもの</strong>で、地域×業種の検索はここに集まる。プランページに地域検索を集めようとするのは、エンティティの中心を外に出そうとする行為で、うまくいきにくい。</p>
+<p>もう1点。「川口市 家族葬」は「川口市 葬儀」より<strong>商用性が高い語</strong>です。ポータル5社が全部いるのはそのため。同じ順位を取るのが「葬儀」より難しいのは構造で、当社の作りが悪いからではない。</p></div>
+
+<div class="box blue"><span class="who">C：情報設計・サイト構造</span>
+<p>私はもう少し慎重で、<strong>専用ページを捨てる必要はない</strong>と思います。役割を変えればいい。「川口市の家族葬」という地域の問いはトップが受ける。「家族葬プランの料金・人数・含まれるもの・別途費用」という商品の問いは専用ページが受ける。<strong>問いの種類で分ける</strong>のが自然で、今のように両方が「川口市の家族葬」を名乗る状態がいちばん悪い。</p>
+<p>トップ側には、いま <strong>「家族葬」を含む h2 が1本もない</strong>。53回も本文に出るのに見出しにない。champion にするなら、h2 を1本立てて、人数・価格・自社式場・専用ページへの導線をそこに置くべきです。</p></div>
+
+<div class="box blue"><span class="who">D：コンテンツ・ご遺族の読み方</span>
+<p>ご家族が「川口市 家族葬」と検索するとき、知りたいのは「この地域で家族葬を頼める会社はどこか、いくらか」です。トップに着地して、家族葬の見出しがすぐ見つかり、価格と式場が分かり、詳細へ進める——これで十分です。専用ページへ直接着地させることに、ご家族側のメリットはあまりない。</p>
+<p>ただし、<strong>トップの h2 に「川口市の家族葬」を立てるとき、他の形式（直葬・一日葬）との並びが崩れないように</strong>。家族葬だけを特別扱いして「押し売り」に見える構成は §11 に反します。</p></div>
+
+<div class="box blue"><span class="who">E：計測・効果判定</span>
+<p>データの読み方で注意が2つ。第一に、<strong>7/13 週の 13.9位は表示81回の1週間</strong>で、これだけで「title に家族葬があれば13位」とは言えない。ただ方向として、外した直後に 32.3 へ落ちたのは事実で、他に説明がない。</p>
+<p>第二に、Codex の変更は 9/06 で、まだデータに一切反映されていない。<strong>いま何かを重ねると、9/06 の変更の効果と混ざって判定できなくなる。</strong>専用ページの title 修正はカニバリ解消として必要だが、それ以外は 9/06 の効果を2週間見てから。</p></div>
+
+<div class="box blue"><span class="who">F：競合・市場</span>
+<p>もう一つの見方を出します。<strong>「家族葬」は当社が本当に取りたい語なのか。</strong>8月の広告レポートで、地名なしの「家族葬 プラン」が 953表示・203クリックで問い合わせ0でした。家族葬で検索する層は比較検討が長く、ポータルで相見積もりを取る。一方「川口市 葬儀」で来る層は、当社の場合、役所・病院の案内から社名を知って調べる導線と重なりやすい。</p>
+<p>だから「全部上げたい」は分かるが、<strong>優先は「葬儀」の 8〜9位を維持することで、「家族葬」は二番手</strong>という配分でよいと思います。専用ページを地域検索の champion にするために大工事をするのは、投資先として割に合わない。</p></div>
+
+<div class="box blue"><span class="who">G：運用・ガバナンス</span>
+<p>今回いちばん重いのは、順位ではなく<strong>7/14 の判断（champion 反転）が「ユーザー確認事項」のまま放置され、9/06 に Codex が別の判断で上書きしていた</strong>ことです。どちらも記録はある。しかし「いま champion はどちらか」が一箇所に書かれていない。</p>
+<p>今回の修正では、<strong>CLAUDE.md か docs に「家族葬の主ページ＝トップ」と1行で書く</strong>ことを必須にしてください。次に Codex か Claude が触るとき、また反転させないために。</p></div>
+
+<div class="box blue"><span class="who">H：総合（判断のまとめ役）</span>
+<p>整理します。7/14 の判断は「一本化」としては正しいが、一本化する先を Google の選択と逆にした。7週間で移らなかった。Codex が 9/06 に結果的に戻した。<strong>いま必要なのは、これを正式な判断として確定し、専用ページの看板を変えてカニバリを消し、トップに見出しを1本立てること。</strong>それ以上の工事は、9/06 の効果が出るまでやらない。</p>
+<p>「全部上げたい」への答えは、<strong>「葬儀」と「家族葬」は同じトップで受ける。だから片方だけ上がる状態は解消に向かう。ただし家族葬は市場が厳しいので、葬儀と同じ順位にはならない。</strong>それでも 17位から 12〜13位へ戻れば、1ページ目の下端に届きます。</p></div>
+
+<h2>3. 対立が残った点</h2>
+<table>
+<tr><th>論点</th><th>意見</th><th>反対</th><th>当方判定</th></tr>
+<tr><td>専用ページを champion に戻す努力を続けるか</td><td>C：役割を分ければ両立できる</td><td>A・B：7週間移らなかった。Google の選択に逆らわない</td><td><strong>専用ページは「プランの料金・内容」の役割に分ける。</strong>地域検索の champion はトップ</td></tr>
+<tr><td>すぐ全部やるか</td><td>C・D：見出しの追加も同時に</td><td>E：9/06 の効果と混ざる</td><td><strong>title の整理は即実施（カニバリ解消）。トップの h2 追加も同時でよい</strong>——どちらも同じ方向の変更で、分けても判定精度は上がらない</td></tr>
+<tr><td>家族葬をどこまで追うか</td><td>松澤：全部上げたい</td><td>F：家族葬層は問い合わせにつながりにくい</td><td><strong>追う。ただし目標は「葬儀」と同順位ではなく、1ページ目の下端（12〜13位）</strong></td></tr>
+</table>
+
+<h2>4. 合意点</h2>
+<ol>
+  <li><strong>「川口市 家族葬」「川口 家族葬」の主ページはトップ</strong>と正式に決める。7/14 の反転を取り消し、9/06 の Codex の変更を追認する</li>
+  <li><strong>専用ページ <code>/plan/family-funeral/</code> の title から「川口市の家族葬」の看板を外し、「家族葬プランの料金・内容」に役割を変える</strong>。ページ自体は残す（社名検索の受け皿として機能している）</li>
+  <li><strong>トップに「家族葬」を含む h2 を1本立てる</strong>。人数・会員価格と通常価格・1日1組の自社式場・専用ページへの導線を置く。他の形式との並びを崩さない</li>
+  <li><strong>「家族葬の主ページ＝トップ」を CLAUDE.md に1行で明記</strong>する。再反転を防ぐ</li>
+  <li>効果判定は <strong>9/20 前後</strong>。「川口市 家族葬」が 13位以内に戻れば効果あり</li>
+</ol>
+
+<h2>5. やらないこと</h2>
+<ul>
+  <li>専用ページを地域検索の champion にするための増強（7週間で効果なし・Google の選択と逆）</li>
+  <li>エリアページの title 変更（/area/higashikawaguchi/ の 51位は東川口の語として正常。7/05 の判断どおり触らない）</li>
+  <li>新規ページの作成（8/10 の判断どおり）</li>
+  <li>構造化データの追加（今回の論点と関係がない）</li>
+</ul>
+
+<h2>6. 修正仕様書（Opus 向け）</h2>
+<p><code>docs/seo-research/2026-09-06-family-funeral-champion-spec.md</code> に切り出した。触るファイルは3つ、変更は title 1本・description 1本・h2 セクション1本・CLAUDE.md 1行。</p>
+
+<h2>7. 今回の変更</h2>
+<p>サイト変更なし（分析と仕様書のみ）。取得スクリプトは <code>tmp/seo-2026-09-06/</code> 配下・非コミット。個人情報・秘密情報は含まない。</p>
+
+<footer class="doc" style="margin-top:60px;border-top:1px solid #e2ddd4;border-bottom:none;padding-top:14px">
+  <p class="meta">川口典礼サイト 社内レポート／作成 2026-09-06／GSC API（確定最新日 2026-09-03・12週の週次推移・28日窓 query×page）、ビルド出力の見出し走査、検索結果の顔ぶれ（2026-09-06 確認）／非公開・noindex</p>
+</footer>
+</div>
+</body>
+</html>
