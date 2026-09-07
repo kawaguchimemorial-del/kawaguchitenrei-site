@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SEO・AIO・MEO チェック 2026-09-07</title>
+<style>
+  :root{--ink:#1c1a17;--sub:#5c564e;--line:#e2ddd4;--bg:#fbfaf8;--accent:#7a5c3e;
+    --red:#a8322a;--amber:#8a6412;--green:#2f6146;--blue:#2d5573;
+    --redbg:#fdf3f2;--amberbg:#fdf9ee;--greenbg:#f1f7f3;--bluebg:#f0f4f8;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;line-height:1.9;font-size:15px}
+  .wrap{max-width:1020px;margin:0 auto;padding:44px 22px 96px}
+  header.doc{border-bottom:3px solid var(--ink);padding-bottom:18px;margin-bottom:30px}
+  .kicker{font-size:12px;letter-spacing:.14em;color:var(--sub);margin:0}
+  h1{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:25px;line-height:1.5;margin:10px 0 12px;font-weight:600}
+  .meta{font-size:13px;color:var(--sub)}
+  h2{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:20px;margin:50px 0 14px;
+    padding:8px 0 8px 14px;border-left:5px solid var(--accent);font-weight:600;background:#f6f3ee}
+  h3{font-size:16px;margin:30px 0 10px;font-weight:600;border-bottom:1px solid var(--line);padding-bottom:6px}
+  p{margin:0 0 12px}
+  table{border-collapse:collapse;width:100%;font-size:13px;margin:14px 0;background:#fff}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:right;vertical-align:top}
+  th{background:#f4f1eb;font-weight:600;text-align:center;white-space:nowrap}
+  td:first-child,th:first-child{text-align:left}
+  code{background:#f2efe9;padding:1px 5px;border-radius:3px;font-size:12px}
+  ul,ol{margin:0 0 14px;padding-left:1.4em}
+  li{margin-bottom:6px}
+  .box{border:1px solid var(--line);border-radius:6px;padding:14px 16px;margin:16px 0;background:#fff}
+  .box.red{background:var(--redbg);border-color:#e6bfbb}
+  .box.amber{background:var(--amberbg);border-color:#ead9ae}
+  .box.green{background:var(--greenbg);border-color:#c3ddcd}
+  .box.blue{background:var(--bluebg);border-color:#c3d3e0}
+  .box p:last-child{margin-bottom:0}
+  .up{color:var(--green);font-weight:600}.dn{color:var(--red);font-weight:600}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="doc">
+  <p class="kicker">社内レポート（docs/reports・非公開/noindex）</p>
+  <h1>SEO・AIO・MEO チェック（2026-09-07）</h1>
+  <p class="meta">GSC API（確定最新日 2026-09-04）／GA4（8/08–9/04）／ビルド出力132ページの全数走査／本番HTTP実測／GBP API 疎通確認 ／分析のみ・サイト変更なし</p>
+</header>
+
+<h2>結論</h2>
+<div class="box green">
+  <p><strong>SEO：3週続けて改善しています。</strong>7日窓のクリックが 76 → 83、平均順位も 11.13 → 10.46。28日窓でも順位が 11.55 → 10.95 に上がりました。<strong>「川口市 家族葬」は 19.52 → 16.85位</strong>で、9/06 の主ページ確定の効果が出るより前から改善傾向にあります。</p>
+</div>
+<div class="box amber">
+  <p><strong>AIO：土台はできていますが、流入はまだ1.0%です。</strong>28日で AI 経由は9セッション（886中）。ただし<strong>そのうち9件がキーイベント</strong>で、母数のわりに問い合わせにつながっています。llms.txt・構造化データ・FAQは整備済みで、次の一手は「増やす」より「壊さない」段階です。</p>
+</div>
+<div class="box red">
+  <p><strong>MEO：口コミ件数が実態とずれています。</strong>構造化データと表示は <strong>27件</strong>ですが、GBP の実際は <strong>28件</strong>（9/05・9/06 に Codex が実測）。3ページの <code>aggregateRating</code> に影響します。§19.2 で承認が必要な項目なので、修正せず報告します。</p>
+</div>
+
+<h2>1. SEO</h2>
+
+<h3>1-1. 全体（GSC 実測・確定最新日 9/04）</h3>
+<table>
+<tr><th>窓</th><th>期間</th><th>クリック</th><th>表示</th><th>CTR</th><th>平均順位</th></tr>
+<tr><td>28日 AFTER</td><td>8/08–9/04</td><td>356</td><td>39,904</td><td>0.89%</td><td class="up">10.95</td></tr>
+<tr><td>28日 BEFORE</td><td>7/11–8/07</td><td>381</td><td>37,373</td><td>1.02%</td><td>11.55</td></tr>
+<tr><td>7日 AFTER</td><td>8/29–9/04</td><td class="up">83</td><td>10,488</td><td>0.79%</td><td class="up">10.46</td></tr>
+<tr><td>7日 BEFORE</td><td>8/22–8/28</td><td>76</td><td>10,037</td><td>0.76%</td><td>11.13</td></tr>
+</table>
+<p>7日窓は3週連続で増加（70 → 76 → 83）。表示も増え、順位も上がっています。28日窓のクリックが微減なのは7月の高い週が BEFORE 側に残っているためで、順位は改善しています。</p>
+
+<h3>1-2. 主要キーワード（7日窓）</h3>
+<table>
+<tr><th>クエリ</th><th>表示 前→後</th><th>順位 前</th><th>順位 後</th><th>クリック</th></tr>
+<tr><td>川口市 葬儀</td><td>416 → 351</td><td>8.73</td><td>9.02</td><td>0</td></tr>
+<tr><td>川口 葬儀</td><td>120 → 155</td><td>11.07</td><td class="up">8.97</td><td>0</td></tr>
+<tr><td>川口市 家族葬</td><td>119 → 128</td><td>19.52</td><td class="up">16.85</td><td>0</td></tr>
+<tr><td>川口 家族葬</td><td>24 → 41</td><td>18.88</td><td class="dn">23.78</td><td>0</td></tr>
+<tr><td>川口市 市民葬</td><td>70 → 59</td><td>10.09</td><td>9.83</td><td>0</td></tr>
+<tr><td>川口メモリアルホール</td><td>44 → 30</td><td>2.91</td><td class="dn">5.17</td><td>0</td></tr>
+</table>
+<p><strong>9/06 の家族葬の主ページ確定は、まだこのデータに含まれていません</strong>（確定最新日が9/04のため）。判定は予定どおり 9/20 前後です。</p>
+<p>「川口メモリアルホール」が 2.91 → 5.17位、クリック 4 → 0 は要注意ですが、表示44→30と母数が小さく、1〜2日の変動で動く水準です。次回も下がっていれば追います。</p>
+
+<h3>1-3. 28日窓で伸びた語・落ちた語（表示130以上）</h3>
+<table>
+<tr><th>伸びた語</th><th>順位</th><th>表示</th><th>落ちた語</th><th>順位</th><th>表示</th></tr>
+<tr><td>神道 香典袋 書き方</td><td>29.5 → 10.2</td><td>2 → 153</td><td>五十日祭 香典</td><td>7.1 → 9.2</td><td>56 → 150</td></tr>
+<tr><td>川口市 葬式</td><td>20.8 → 11.7</td><td>140 → 138</td><td>訃報の連絡 返信 例文</td><td>8.8 → 11.0</td><td>112 → 162</td></tr>
+<tr><td>川口市 家族葬</td><td>23.4 → 18.9</td><td>319 → 445</td><td>友人葬</td><td>13.8 → 15.6</td><td>130 → 131</td></tr>
+<tr><td>川口市 葬儀社</td><td>13.0 → 9.5</td><td>119 → 165</td><td>訃報 返信 ビジネス</td><td>6.7 → 7.9</td><td>221 → 219</td></tr>
+<tr><td>創価学会 葬式</td><td>12.8 → 10.1</td><td>351 → 1,011</td><td>川口市 葬儀</td><td>9.4 → 10.1</td><td>1,267 → 1,445</td></tr>
+</table>
+<p><strong>地域キーワードが揃って改善しています</strong>（川口市 葬式・川口市 家族葬・川口市 葬儀社・川口 葬儀）。落ちた語は訃報・香典系の情報コラムで、変動幅も0.5〜2.2と小さく、対応は不要です。</p>
+
+<h3>1-4. ページ別（28日窓）</h3>
+<table>
+<tr><th>ページ</th><th>クリック 前→後</th><th>表示</th><th>順位</th></tr>
+<tr><td>/column/fuhou/</td><td>140 → 119</td><td>13,520</td><td>9.8</td></tr>
+<tr><td>/（トップ）</td><td>79 → 77</td><td>6,942</td><td>10.8</td></tr>
+<tr><td>/hall/kawaguchi-memorial-hall/</td><td class="up">38 → 43</td><td>646</td><td>5.8</td></tr>
+<tr><td>/saijo/megurinomori/</td><td class="up">4 → 9</td><td>925</td><td>11.0</td></tr>
+<tr><td>/column/kenan/</td><td class="up">0 → 6</td><td>333</td><td>8.2</td></tr>
+<tr><td>/access/</td><td class="dn">20 → 10</td><td>445</td><td>5.9</td></tr>
+</table>
+
+<h2>2. AIO（AI検索・生成AIへの露出）</h2>
+
+<h3>2-1. AI経由の流入（28日）</h3>
+<table>
+<tr><th>参照元</th><th>セッション</th><th>キーイベント</th></tr>
+<tr><td>google / organic</td><td>431</td><td>15</td></tr>
+<tr><td>yahoo / organic</td><td>191</td><td>11</td></tr>
+<tr><td>(direct) / (none)</td><td>185</td><td>26</td></tr>
+<tr><td>bing / organic</td><td>16</td><td>3</td></tr>
+<tr><td><strong>chatgpt.com / ai-assistant</strong></td><td><strong>7</strong></td><td><strong>9</strong></td></tr>
+<tr><td>openai（organic・not set）</td><td>2</td><td>0</td></tr>
+<tr><td><strong>AI経由 合計</strong></td><td><strong>9 / 886（1.0%）</strong></td><td><strong>9</strong></td></tr>
+</table>
+<div class="box blue">
+  <p><strong>セッション7に対してキーイベント9</strong>。数字としては小さいものの、<strong>AI経由で来た方は問い合わせに近い</strong>ことを示しています（1セッションで複数のキーイベントが発生している）。ChatGPT からの着地は <code>/case/</code> 2、<code>/plan/</code> 2、<code>/voice/</code> 1、トップ1 と、<strong>事例・料金・お客様の声</strong>に分散しています。AIが「実績と料金」を根拠として提示している形です。</p>
+</div>
+
+<h3>2-2. AIに引用されるための土台（実測）</h3>
+<table>
+<tr><th>項目</th><th>状態</th></tr>
+<tr><td><code>llms.txt</code></td><td>200・3,846バイト。基本情報／対応エリア／自社式場／火葬場の但し書き／プラン別料金（会員価格・通常価格の両方）／「運営者が確認した事実のみを記載」の明示あり</td></tr>
+<tr><td>構造化データ</td><td>132ページ中<strong>124ページに JSON-LD</strong>。BreadcrumbList 122／BlogPosting 44／Article 41／<strong>FAQPage 32</strong>／Review 30／FuneralHome 19／Service 8／ItemList 6 ほか</td></tr>
+<tr><td>JSON-LD が無い8ページ</td><td>/contact/・/estimate/・/privacy/・/tokushoho/・/sitemap/・/voice/survey/ の6ページ（<strong>いずれも構造化データが不要なページ</strong>）＋ローカル検証で生成された一時ファイル2件（本番には存在しない）</td></tr>
+<tr><td>JSON-LD の構文エラー</td><td><strong>0件</strong>（全ページを JSON.parse で検証）</td></tr>
+<tr><td>めぐりの森の記述</td><td>llms.txt に「川口市営・車で約5分。<strong>※川口典礼の運営施設ではありません</strong>」と明記。§19.3 に適合</td></tr>
+</table>
+<div class="box green">
+  <p><strong>AIO の土台は整っています。</strong>llms.txt・FAQPage 32ページ・料金の条件明記・火葬場の但し書きまで揃っており、この段階で追加投資しても限界効用は低いと判断します。<strong>次にやるべきは「増やす」ではなく「壊さない」ことです。</strong></p>
+</div>
+
+<h2>3. MEO（ローカル・GBP）</h2>
+
+<h3>3-1. 口コミ件数が実態とずれています</h3>
+<table>
+<tr><th></th><th>サイトの記載</th><th>GBP の実際</th></tr>
+<tr><td>件数</td><td class="dn">27件</td><td><strong>28件</strong>（★5×20・★4×6・★2×1・★1×1）</td></tr>
+<tr><td>平均評価</td><td>★4.5</td><td>★4.5（127÷28＝4.54）— <strong>一致</strong></td></tr>
+</table>
+<p>影響範囲は <code>lib/company.ts</code> の <code>reviewCount: 27</code> と <code>lib/reviews.ts</code> の Google口コミ 27件。<strong>aggregateRating を出力しているのは3ページ</strong>（トップ・<code>/company/</code>・<code>/access/</code>）です。</p>
+<div class="box red">
+  <p><strong>評価値そのものは合っているので緊急ではありませんが、実態と違う数字を構造化データで出している状態です。</strong>CLAUDE.md §19.2 で「Review / aggregateRating を含む JSON-LD」は人間承認が必要なため、<strong>今回は修正していません。</strong>27 → 28 に更新してよいかご判断ください。</p>
+  <p>あわせて、GBP の口コミは今後増えていくので、<strong>更新の運用（月1回、GBPの実数に合わせる）を決めておく</strong>ほうが、都度の判断より安全です。</p>
+</div>
+
+<h3>3-2. GBP API は依然として未承認</h3>
+<table>
+<tr><th>確認</th><th>結果</th></tr>
+<tr><td>API 疎通（<code>scripts/gbp/dump.mjs</code>）</td><td><code>429 Quota exceeded</code>＝割り当て0のまま</td></tr>
+<tr><td>Google からのメール（9/01以降）</td><td>GBP 関連は<strong>0通</strong>（届いていたのは今回の404通知・セキュリティ通知・Marketing Live の案内のみ）</td></tr>
+<tr><td>再申請からの経過</td><td>2026-08-21 から<strong>17日</strong>。前回は申請から却下まで19日</td></tr>
+</table>
+<p>予定どおり <strong>9/09 前後</strong>にもう一度確認します。前回の所要日数から見て、今週中に何らかの返答が来る可能性があります。</p>
+
+<h3>3-3. NAP は一致しています</h3>
+<table>
+<tr><th>媒体</th><th>住所</th><th>電話</th><th>郵便番号</th></tr>
+<tr><td>サイト（本番HTML）</td><td>西新井宿440-1（9箇所）</td><td>0120-963-765（14箇所）</td><td>333-0833</td></tr>
+<tr><td>llms.txt</td><td>西新井宿440-1</td><td>0120-963-765</td><td>333-0833</td></tr>
+<tr><td>GBP（Codex が 9/06 実測）</td><td>〒333-0833 埼玉県川口市西新井宿440-1</td><td>0120-963-765（副 048-281-1117）</td><td>一致</td></tr>
+</table>
+<p>表記揺れはありません。GBP の公開表示に全角数字が混じる点は Google 側の表示差で、登録値の不一致ではありません。</p>
+
+<h3>3-4. GBP 側の残作業（Codex の 9/06 実測より）</h3>
+<p>すでに差分と文面が用意され、<strong>松澤の承認待ち</strong>の状態です。</p>
+<ul>
+  <li>P1 駐車場の3属性（無料の路上・有料の路上・有料）を「いいえ」へ訂正</li>
+  <li>P2 未返信の口コミ2件（★2・★4）に返信</li>
+  <li>P3 無料相談・式場見学のサービス2件を追加</li>
+  <li>P4 事前相談の案内を1件投稿（最新投稿は 2026/07/30 で38日空き）</li>
+  <li>P5 外観写真をカバーに設定</li>
+  <li>継続確認：管理画面の説明文（493字）が公開側に反映されず、旧文面（「低価格でも」「大手には出来ない」）が表示されている</li>
+</ul>
+
+<h2>4. 今回見つかった要対応（優先順）</h2>
+<table>
+<tr><th>優先</th><th>内容</th><th>対応</th></tr>
+<tr><td>1</td><td><strong>口コミ件数 27 → 28</strong>（構造化データ3ページ）</td><td>§19.2 により承認待ち。あわせて月1更新の運用を決める</td></tr>
+<tr><td>2</td><td><strong>GBP の P1〜P5</strong>（Codex が提案済み）</td><td>承認済みとのことなので、Codex 側で反映</td></tr>
+<tr><td>3</td><td><strong>GBP 説明文の公開差</strong></td><td>公開側に当社の文言規定に合わない旧文面が出ている。審査状況の確認を Codex に依頼済み</td></tr>
+<tr><td>4</td><td>日本語URLの 500（9/07 の調査で発見）</td><td>別タスク。Vercel 側の挙動確認が必要</td></tr>
+<tr><td>5</td><td><code>/kawaguchi/kazokusou</code> の転送漏れ</td><td>優先度低。累計372表示</td></tr>
+</table>
+
+<h2>5. 次に見ること</h2>
+<ul>
+  <li><strong>9/09 前後：GBP API の承認状況</strong>（再申請から19日目にあたる）</li>
+  <li><strong>9/20 前後：家族葬の主ページ確定の効果</strong>。「川口市 家族葬」が13位以内なら効果あり（現在16.85位）</li>
+  <li>「川口メモリアルホール」2.91 → 5.17位が続くかどうか</li>
+  <li>広告LP <code>kawaguchi-memorial-hall.com</code> の noindex（8/19 の決定から19日連続で未実施）</li>
+</ul>
+
+<h2>6. 今回の変更</h2>
+<p>サイト変更なし（分析のみ）。取得スクリプトは <code>tmp/seo-2026-09-07/</code> 配下・非コミット。秘密情報・個人情報は含みません。</p>
+
+<footer class="doc" style="margin-top:60px;border-top:1px solid #e2ddd4;border-bottom:none;padding-top:14px">
+  <p class="meta">川口典礼サイト 社内レポート／作成 2026-09-07／GSC API（確定最新日 2026-09-04）＋ GA4 Data API（8/08–9/04）＋ ビルド出力132ページの JSON-LD 全数検証 ＋ 本番HTTP実測 ＋ GBP API 疎通確認 ＋ Gmail（読み取り専用）／非公開・noindex</p>
+</footer>
+</div>
+</body>
+</html>
