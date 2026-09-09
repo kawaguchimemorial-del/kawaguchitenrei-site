@@ -6,9 +6,8 @@
  *   - gpt-image-2.5-sunburst … 編集精度・指示への忠実さ重視（既定）
  *   - gpt-image-2.5-flare    … 速度重視。案を何枚も試すとき
  *
- * 2026-09-09 時点の実測: 2.5 系は組織認証が未完了のため 403。
- * platform.openai.com の Settings → Organization → Verify Organization を一度実行すれば使える。
- * それまでは --model gpt-image-2 で同じ手順が動く（実測で 200 を確認）。
+ * 2026-09-09: 組織認証（Individual）が完了し、sunburst・flare とも利用可能になった。
+ * 生成と既存画像の編集の両方を実測で確認済み。--model の指定は不要。
  *
  * 依存パッケージは追加していない。Node の標準 fetch で API を直接呼ぶ。
  * （openai パッケージの導入は package.json の変更にあたり、CLAUDE.md §5 で事前提案が必要なため）
@@ -218,9 +217,10 @@ if (!res.ok) {
   const hintMap = {
     401: "APIキーが無効です。.env.local の OPENAI_API_KEY を確認してください（値は表示しないこと）。",
     403:
-      "組織認証が未完了です。https://platform.openai.com/settings/organization/general で\n" +
-      "     「Verify Organization」を実行してください（反映に最大15分）。\n" +
-      "     済むまでの代替として --model gpt-image-2 が使えます（2026-09-09 に利用可能を確認）。",
+      "組織認証が外れている可能性があります。" +
+      "\n     https://platform.openai.com/settings/organization/general の Verifications と、" +
+      "\n     使用中のAPIキーの組織が一致しているかを確認してください" +
+      "\n     （2026-09-09 に Individual で認証済み。反映には最大15分かかります）。",
     404: `モデル名が見つかりません（${model}）。--model で正しい名前を指定してください。`,
     429: "レート制限または残高不足です。時間をおいて再実行してください。",
   };

@@ -9,17 +9,16 @@
 | 項目 | 状態 |
 |---|---|
 | `OPENAI_API_KEY` | `.env.local` に登録済み。有効（models API が 200） |
-| `gpt-image-2.5-sunburst` / `-flare` | **403。組織認証が未完了** |
-| `gpt-image-2` | **利用可能**（実際に画像生成まで確認） |
+| 組織認証 | **完了**（Individual・組織 `satorh`） |
+| `gpt-image-2.5-sunburst` | **利用可能**。生成・編集とも実測で確認 |
+| `gpt-image-2.5-flare` | **利用可能** |
 | 依存パッケージ | **追加していない**。Node 標準の `fetch` で API を直接呼ぶ |
 
-### 2.5 系を使うために必要な操作（1回だけ・松澤様）
+`--model` の指定は不要です。何も付けなければ sunburst が使われます。
 
-1. [platform.openai.com の Settings → Organization](https://platform.openai.com/settings/organization/general) を開く
-2. **「Verify Organization」** を実行する
-3. 反映に最大15分。その後は `--model` を指定しなくても 2.5 系が既定で使われる
-
-**認証が済むまでは `--model gpt-image-2` を付ければ同じ手順で動きます。**
+> 認証は組織単位です。403 が出るようになったら、
+> [Settings → Organization](https://platform.openai.com/settings/organization/general) の Verifications と、
+> 使っている API キーの組織（`org-J7yY8RAMzoqJuDi4V75usIlC`）が一致しているかを確認してください。
 
 ---
 
@@ -44,8 +43,9 @@ node --env-file=.env.local scripts/generate-image.mjs \
 # 送信せず内容だけ確認
 node --env-file=.env.local scripts/generate-image.mjs --prompt "..." --out tmp/a.webp --dry-run
 
-# 組織認証が済むまでの代替
-node --env-file=.env.local scripts/generate-image.mjs --model gpt-image-2 --prompt "..." --out tmp/a.webp
+# 生成結果を固定したい場合（日付付きスナップショット）
+node --env-file=.env.local scripts/generate-image.mjs \
+  --model gpt-image-2.5-sunburst-2026-09-08 --prompt "..." --out tmp/a.webp
 ```
 
 ### オプション
@@ -104,7 +104,14 @@ node --env-file=.env.local scripts/generate-image.mjs --model gpt-image-2 --prom
 
 ## 4. 実測メモ（2026-09-09）
 
-- `gpt-image-2` / `low` / `1024x1024` / webp → **15.0秒・446KB**
+| モデル | 条件 | 所要 | サイズ |
+|---|---|---|---|
+| sunburst | 生成・high・1024x1024・webp | 23.3秒 | 272KB |
+| sunburst | **編集**・medium・1536x1024・webp | 21.7秒 | 1,739KB |
+| gpt-image-2（旧） | 生成・low・1024x1024・webp | 15.0秒 | 446KB |
+
+- 編集モードは自社ホールの外観写真で確認した。**建物・看板の文字・構図は保たれ、空の色と全体のトーンだけが変わった。**指示への忠実さは実用水準
+- ただし編集結果は 1.7MB と大きい。サイトに載せる前に `--quality` を下げるか、圧縮すること
 - `high` や `xhigh` は時間もサイズも増えます。ページに載せる場合、**Next/Image が最適化するとはいえ元ファイルが大きすぎると容量に効く**ので、用途に対して過剰な品質を選ばないこと
 - 広告LP（`app/lp/**`）に載せる場合は、CLAUDE.md §21.2 の**転送量 50KB 以下（brotli）**に効きます。`node scripts/test-lp-output.mjs` で確認してから公開してください
 
