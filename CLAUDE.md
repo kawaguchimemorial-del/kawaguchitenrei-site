@@ -268,6 +268,7 @@ SEO/AIO の観点では、構造化データ・見出し階層・地名×サー�
 | GAS Webhook の仕様・更新手順 | `docs/operations/2026-08-27-gas-webhook-spec.md` |
 | GAS Webhook のコード（本体の写し） | `docs/operations/gas/form-webhook.gs` |
 | 電話着信の記録運用（フォーマット・集計手順） | `docs/operations/2026-09-04-call-tracking.md` |
+| 画像生成（GPT Image 2.5）の手順とルール | `docs/operations/2026-09-09-image-generation.md` |
 | 文言・コンテンツ方針 | `docs/05-content-guidelines.md` |
 | 作業用プロンプト集 | `docs/prompts/claude-code-prompts.md` |
 | SEO/AIO 評価チェックリスト | `docs/eval/seo-aio-checklist.md` |
