@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>9月速報（8/31–9/07）の分析 2026-09-09</title>
+<style>
+  :root{--ink:#1c1a17;--sub:#5c564e;--line:#e2ddd4;--bg:#fbfaf8;--accent:#7a5c3e;
+    --red:#a8322a;--amber:#8a6412;--green:#2f6146;--blue:#2d5573;
+    --redbg:#fdf3f2;--amberbg:#fdf9ee;--greenbg:#f1f7f3;--bluebg:#f0f4f8;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;line-height:1.9;font-size:15px}
+  .wrap{max-width:1020px;margin:0 auto;padding:44px 22px 96px}
+  header.doc{border-bottom:3px solid var(--ink);padding-bottom:18px;margin-bottom:30px}
+  .kicker{font-size:12px;letter-spacing:.14em;color:var(--sub);margin:0}
+  h1{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:25px;line-height:1.5;margin:10px 0 12px;font-weight:600}
+  .meta{font-size:13px;color:var(--sub)}
+  h2{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:20px;margin:50px 0 14px;
+    padding:8px 0 8px 14px;border-left:5px solid var(--accent);font-weight:600;background:#f6f3ee}
+  h3{font-size:16px;margin:30px 0 10px;font-weight:600;border-bottom:1px solid var(--line);padding-bottom:6px}
+  p{margin:0 0 12px}
+  table{border-collapse:collapse;width:100%;font-size:13px;margin:14px 0;background:#fff}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:right;vertical-align:top}
+  th{background:#f4f1eb;font-weight:600;text-align:center;white-space:nowrap}
+  td:first-child,th:first-child{text-align:left}
+  code{background:#f2efe9;padding:1px 5px;border-radius:3px;font-size:12px}
+  ul,ol{margin:0 0 14px;padding-left:1.4em}
+  li{margin-bottom:6px}
+  .box{border:1px solid var(--line);border-radius:6px;padding:14px 16px;margin:16px 0;background:#fff}
+  .box.red{background:var(--redbg);border-color:#e6bfbb}
+  .box.amber{background:var(--amberbg);border-color:#ead9ae}
+  .box.green{background:var(--greenbg);border-color:#c3ddcd}
+  .box.blue{background:var(--bluebg);border-color:#c3d3e0}
+  .box p:last-child{margin-bottom:0}
+  .gray{background:#e0ddd7}
+  .up{color:var(--green);font-weight:600}.dn{color:var(--red);font-weight:600}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="doc">
+  <p class="kicker">社内レポート（docs/reports・非公開/noindex）</p>
+  <h1>リスティング9月速報（8/31–9/07）の分析</h1>
+  <p class="meta">2026-09-09 ／ 出典：NEXT UP 提供「検索語句レポート (39)」（2026-09-08 受領・8日間分）／ 集計は当方で再計算 ／ 9/11 会議の資料更新用 ／ 広告設定の変更なし・分析のみ</p>
+</header>
+
+<h2>結論</h2>
+<div class="box green">
+  <p><strong>1. 依頼した方向に、実際に動いています。</strong>指名の検索語句は1語・¥3,921まで縮小（8月は社名クエリだけで¥101,094）、P-MAX は8日間で<strong>¥6</strong>（8月は¥99,211）。地域語への配分も費用の36%→<strong>45.6%</strong>に上がりました。</p>
+</div>
+<div class="box red">
+  <p><strong>2. ただし、同じ金額でクリックが取れなくなっています。</strong>1日あたりの費用は8%減にとどまる一方、<strong>クリックは40%減、クリック単価は¥278→¥429（+54%）</strong>。地域語のクリック単価は<strong>¥1,201</strong>で、地名なし語（¥279）の4.3倍です。</p>
+</div>
+<div class="box red">
+  <p><strong>3. コンバージョンは引き続き0。</strong>85語すべてでCV0。検索語句に紐づくCVは、8/24–30、8月の月次に続いて<strong>今回も0</strong>です。</p>
+</div>
+<div class="box amber">
+  <p><strong>4. 会議で確認したいことが2つ増えました。</strong>①P-MAX が止まっているのは意図的か ②「家族葬 相場」「葬儀社 相場」が除外されているが、8/03 に「費用・料金・相場の単体は除外しない」と決めた方針と食い違わないか。</p>
+</div>
+
+<h2>1. データの読み方（グレーアウトの確認）</h2>
+<div class="box blue">
+  <p>今回のファイルには<strong>「追加済み／除外済み」の列がありません</strong>（前回まではありました）。そのため、<strong>停止中の語はセルのグレーアウトでしか判別できません</strong>。</p>
+  <p>935セルを機械判定した結果、<strong>グレーは17語・187セル</strong>で、行単位できれいに分かれていました。以下、グレー行は「停止中」として稼働中と分けて集計しています。</p>
+</div>
+
+<h2>2. 全体（8/31–9/07・8日間）</h2>
+<table>
+<tr><th>区分</th><th>語数</th><th>表示</th><th>クリック</th><th>CTR</th><th>CPC</th><th>費用</th><th>CV</th></tr>
+<tr><td>合計</td><td>85</td><td>650</td><td>92</td><td>14.15%</td><td>¥429</td><td>¥39,508</td><td><strong>0</strong></td></tr>
+<tr><td>　稼働中</td><td>68</td><td>618</td><td>86</td><td>13.92%</td><td>¥430</td><td>¥36,996</td><td>0</td></tr>
+<tr><td>　<span class="gray">停止（グレー）</span></td><td>17</td><td>32</td><td>6</td><td>18.75%</td><td>¥419</td><td>¥2,511</td><td>0</td></tr>
+</table>
+
+<h3>キャンペーン別</h3>
+<table>
+<tr><th>キャンペーン</th><th>語数</th><th>表示</th><th>クリック</th><th>費用</th><th>CPC</th></tr>
+<tr><td>一般KW（費用、エリア）</td><td>79</td><td>620</td><td>87</td><td>¥35,580</td><td>¥409</td></tr>
+<tr><td><strong>指名</strong></td><td><strong>1</strong></td><td>18</td><td>4</td><td>¥3,921</td><td>¥980</td></tr>
+<tr><td><strong>P-MAX</strong></td><td>5</td><td>12</td><td>1</td><td><strong>¥6</strong></td><td>¥6</td></tr>
+</table>
+
+<h2>3. 前週との比較 ── 費用は減っていないのにクリックが減った</h2>
+<p>期間の長さが違う（7日と8日）ので、1日あたりに直して比べます。</p>
+<table>
+<tr><th></th><th>8/24–8/30（7日）</th><th>8/31–9/07（8日）</th><th>変化</th></tr>
+<tr><td>1日あたり表示</td><td>125.7</td><td>81.3</td><td class="dn">−35%</td></tr>
+<tr><td>1日あたりクリック</td><td>19.3</td><td>11.5</td><td class="dn">−40%</td></tr>
+<tr><td>1日あたり費用</td><td>¥5,364</td><td>¥4,939</td><td>−8%</td></tr>
+<tr><td>クリック単価</td><td>¥278</td><td>¥429</td><td class="dn">+54%</td></tr>
+<tr><td>CV</td><td>0</td><td>0</td><td>—</td></tr>
+</table>
+<div class="box amber">
+  <p><strong>読み方：</strong>使う金額はほとんど減らさずに、買えるクリックが4割減りました。地域語の比率が上がったことで、平均単価が押し上げられたと考えるのが自然です（下記 §4）。</p>
+  <p><strong>これ自体は悪いことと決まっていません。</strong>「地域語は高いが当社の見込み客に近い」という前提で配分を寄せた結果なので、狙いどおりとも読めます。ただし<strong>その前提が正しいかは、まだCVで確認できていません</strong>（4週連続でCV0）。</p>
+</div>
+
+<h2>4. 地域語と地名なし語 ── 配分は寄ったが、単価が4.3倍</h2>
+<table>
+<tr><th>区分</th><th>語数</th><th>表示</th><th>クリック</th><th>費用</th><th>費用比</th><th>CPC</th></tr>
+<tr><td>地域語（川口・鳩ヶ谷・めぐりの森 等）</td><td>33</td><td>193</td><td>15</td><td>¥18,019</td><td><strong>45.6%</strong></td><td><strong>¥1,201</strong></td></tr>
+<tr><td>地名を含まない語</td><td>52</td><td>457</td><td>77</td><td>¥21,489</td><td>54.4%</td><td>¥279</td></tr>
+</table>
+<p>前回（8/24–30）は地名あり36%・地名なし64%でした。<strong>地域語への配分は9ポイント上がっています。</strong></p>
+
+<h3>費用の大きい地域語</h3>
+<table>
+<tr><th>検索語句</th><th>表示</th><th>クリック</th><th>CPC</th><th>費用</th></tr>
+<tr><td>川口 市民葬</td><td>5</td><td>2</td><td><strong>¥2,486</strong></td><td>¥4,972</td></tr>
+<tr><td>川口市 めぐりの森</td><td>31</td><td>4</td><td>¥1,236</td><td>¥4,942</td></tr>
+<tr><td>川口典礼（指名）</td><td>18</td><td>4</td><td>¥980</td><td>¥3,921</td></tr>
+<tr><td>めぐりの森 葬儀</td><td>8</td><td>1</td><td>¥1,959</td><td>¥1,959</td></tr>
+<tr><td>川口典礼（一般KW）</td><td>6</td><td>2</td><td>¥544</td><td>¥1,089</td></tr>
+</table>
+
+<h3>グループ別</h3>
+<table>
+<tr><th>グループ</th><th>語数</th><th>表示</th><th>クリック</th><th>費用</th><th>CPC</th></tr>
+<tr><td>めぐりの森・火葬場系</td><td>20</td><td>136</td><td>7</td><td><strong>¥8,036</strong></td><td>¥1,148</td></tr>
+<tr><td>家族葬を含む語</td><td>21</td><td>293</td><td>54</td><td>¥15,465</td><td>¥286</td></tr>
+<tr><td>社名（川口典礼）</td><td>2</td><td>24</td><td>6</td><td>¥5,010</td><td>¥835</td></tr>
+<tr><td>市民葬系</td><td>2</td><td>7</td><td>2</td><td>¥4,972</td><td>¥2,486</td></tr>
+<tr><td>一日葬を含む語</td><td>5</td><td>37</td><td>4</td><td>¥512</td><td>¥128</td></tr>
+<tr><td>直葬・火葬式</td><td>5</td><td>16</td><td>2</td><td>¥361</td><td>¥181</td></tr>
+</table>
+<div class="box amber">
+  <p><strong>めぐりの森系に8日間で¥8,036（費用の20%）が出ています。</strong>クリックは7回、CPC¥1,148。</p>
+  <p>「めぐりの森」で検索する人には、<strong>火葬場の場所・予約・料金を調べている方</strong>が相当数含まれます。当社の顧客とは限らず、会葬者や手続きを調べている方も混ざります。<strong>指名広告について 9/03 に整理した「当社の顧客でない人に払っている」構造と、同じ形になっている可能性があります。</strong></p>
+  <p>ただし<strong>断定はできません。</strong>川口市の火葬は原則めぐりの森なので、ご家族が「めぐりの森で葬儀をするには」と調べている場合は本命の見込み客です。<strong>会議の論点として提示し、結論は出しません。</strong></p>
+</div>
+
+<h2>5. 構造の変化（8月比）</h2>
+<table>
+<tr><th>項目</th><th>8月（月次）</th><th>8/31–9/07（8日）</th><th>評価</th></tr>
+<tr><td>指名キャンペーンの検索語句</td><td>168表示・¥101,094</td><td>1語・18表示・<strong>¥3,921</strong></td><td class="up">依頼どおり縮小</td></tr>
+<tr><td>P-MAX</td><td>¥99,211</td><td><strong>¥6</strong></td><td>要確認（下記）</td></tr>
+<tr><td>「家族葬 プラン」のCPC</td><td>¥196</td><td><strong>¥391</strong></td><td class="dn">倍増</td></tr>
+<tr><td>「家族葬 プラン」の表示</td><td>951（7日換算）</td><td>205（8日）</td><td class="dn">大幅減</td></tr>
+</table>
+<div class="box red">
+  <p><strong>P-MAX が実質止まっています。</strong>8日間で5語・表示12・クリック1・費用<strong>¥6</strong>。8月は月¥99,211（全体の10%）でした。</p>
+  <p><strong>当社から停止を依頼した記録はありません。</strong>10月中旬の撤退判定を待つ前提で継続中だったはずです。①貴社の判断で止めた ②予算配分の変更に伴い自動的に配信されなくなった ③レポートの集計範囲の問題、のいずれかを会議で確認します。</p>
+  <p>あわせて、<strong>止まっているなら8月にP-MAXが計上していたCV13がどうなったかを確認する必要があります。</strong>非検索面のCVが実体を伴っていたのかを判定する、意図せぬ実験になっている可能性があります。</p>
+</div>
+<div class="box amber">
+  <p><strong>「家族葬 プラン」のCPCが¥196→¥391に倍増し、表示も大きく減りました。</strong>9/03 に「川口市限定配信では地名なし語も全員が市内の人。止めてはいけない主力語」と整理した語です。</p>
+  <p>入札の調整か、地域語へ予算が寄った結果の押し出しかは、この表からは判別できません。<strong>意図した変更かどうかを会議で確認します。</strong></p>
+</div>
+
+<h2>6. 停止（グレーアウト）17語の中身</h2>
+<p>停止17語のうち費用が出たのは6語・計¥2,511です。</p>
+<h3>評価できる点 ── 競合名の除外が進んでいます</h3>
+<table>
+<tr><th>停止された語</th><th>表示</th><th>クリック</th><th>費用</th></tr>
+<tr><td>山﨑典礼</td><td>10</td><td>1</td><td>¥424</td></tr>
+<tr><td>シルバー葬祭センター／葬儀ともしび／メモリードのお葬式／メモリードの家族葬／小さい森の家／三郷家族葬／さがみ典礼東川口／埼玉典礼／家族葬アークベル</td><td>各1〜4</td><td>0</td><td>¥0</td></tr>
+</table>
+<p>8/07 以降お願いしてきた競合名の除外が、着実に進んでいます。「〒334-0052 埼玉県川口市安行出羽…新隆寺法要殿」のような寺院会館の住所検索も除外されており、判断は妥当です。</p>
+
+<div class="box red">
+  <h3 style="margin-top:0">確認が必要な点 ── 「相場」系が除外されています</h3>
+  <table>
+  <tr><th>停止された語</th><th>表示</th><th>クリック</th><th>費用</th></tr>
+  <tr><td><strong>家族葬 相場</strong></td><td>2</td><td>0</td><td>¥0</td></tr>
+  <tr><td><strong>葬儀社 相場</strong></td><td>1</td><td>1</td><td>¥151</td></tr>
+  <tr><td>葬儀 安い プラン（2語）</td><td>各1</td><td>各1</td><td>¥526</td></tr>
+  <tr><td>家族葬 費用 誰が払う</td><td>1</td><td>1</td><td>¥841</td></tr>
+  <tr><td>簡単なお葬式</td><td>1</td><td>1</td><td>¥569</td></tr>
+  </table>
+  <p><strong>2026-08-03 の松澤判断では、「安い・格安・最安」等は除外する一方、「費用・料金・相場」の単体は除外しない</strong>と決めています。7月のクリックの過半がこの層だったためです。</p>
+  <p>「葬儀 安い プラン」の除外は方針どおりです。しかし<strong>「家族葬 相場」「葬儀社 相場」の除外は、方針と食い違う可能性があります。</strong></p>
+  <p>ただし<strong>断定はしません。</strong>「相場」を除外KWに追加したのか、別の除外語（例：「社」「誰が」）に巻き込まれたのかは、この表からは分かりません。<strong>除外KWリストの現物を見せていただくのが確実です。</strong></p>
+  <p class="meta">※ 稼働中には「葬儀費用内訳」「葬儀費用」「一日葬費用」「直葬費用」「家族葬費用」など費用系が多数残っており、費用系全体が除外されたわけではありません。</p>
+</div>
+
+<h2>7. マッチタイプ別（参考）</h2>
+<table>
+<tr><th>マッチタイプ</th><th>語数</th><th>表示</th><th>クリック</th><th>費用</th></tr>
+<tr><td>完全一致</td><td>8</td><td>352</td><td>29</td><td>¥18,925</td></tr>
+<tr><td>フレーズ一致（類似パターン）</td><td>43</td><td>190</td><td>37</td><td>¥14,005</td></tr>
+<tr><td>完全一致（類似パターン）</td><td>26</td><td>93</td><td>22</td><td>¥5,049</td></tr>
+<tr><td>フレーズ一致</td><td>3</td><td>3</td><td>3</td><td>¥1,522</td></tr>
+<tr><td>P-MAX</td><td>5</td><td>12</td><td>1</td><td>¥6</td></tr>
+</table>
+<p><strong>「類似パターン」（拡張マッチ）が69語・¥19,054で、費用の48%を占めます。</strong>前回（35%）より上がりました。完全一致で登録しても、Google が表記ゆれ・関連語まで広げている状態は続いています。</p>
+
+<h2>8. 9/11 会議で追加する確認事項</h2>
+<ol>
+  <li><strong>P-MAX が止まっているのは意図的か。</strong>8月¥99,211 → 8日間で¥6。当社から停止依頼は出していない</li>
+  <li><strong>「家族葬 相場」「葬儀社 相場」が除外されている理由。</strong>除外KWリストの現物を確認したい（8/03 の「相場の単体は除外しない」と食い違う可能性）</li>
+  <li><strong>「家族葬 プラン」のCPCが¥196→¥391に上がり表示が減った理由。</strong>意図した変更か</li>
+  <li><strong>めぐりの森系に費用の20%（¥8,036）が出ている件をどう考えるか。</strong>火葬場を調べている人と、めぐりの森で葬儀を考えている人が混在している</li>
+</ol>
+
+<h2>9. 今回の変更</h2>
+<p>広告設定の変更なし・サイト変更なし（分析のみ）。元データは <code>public/images/tmp/リスティング/報告/20260908/</code>。個人情報・秘密情報は含みません。</p>
+
+<footer class="doc" style="margin-top:60px;border-top:1px solid #e2ddd4;border-bottom:none;padding-top:14px">
+  <p class="meta">川口典礼サイト 社内レポート／作成 2026-09-09／出典：NEXT UP 提供「検索語句レポート (39)」（8/31–9/07・2026-09-08受領）。グレーアウト＝停止の判定、区分別合計・CTR・CPC・1日あたり換算は当方で再集計／非公開・noindex</p>
+</footer>
+</div>
+</body>
+</html>
