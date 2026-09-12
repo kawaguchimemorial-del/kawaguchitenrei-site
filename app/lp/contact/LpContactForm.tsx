@@ -71,7 +71,14 @@ export function LpContactForm() {
 
   if (state?.ok) {
     return (
-      <div className="rounded-lg border-2 border-brand bg-white p-6">
+      // id / data 属性は送信完了を外部から判定するための目印。
+      // GTM の「要素の表示」トリガー等がこの目印を参照するため、名前を変えない。
+      // 詳細: docs/ad-lp/2026-09-11-lp-event-fix.md
+      <div
+        id="lp-contact-complete"
+        data-lp-complete=""
+        className="rounded-lg border-2 border-brand bg-white p-6"
+      >
         <p className="text-xl font-black text-ink-deep">
           ご相談を受け付けました
         </p>
