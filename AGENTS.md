@@ -92,8 +92,8 @@ Next.js App Router + TypeScript + Tailwind CSS。確認時の Next.js は 16.2.6
 
 - 広告LPの現行実装は `docs/ad-lp/2026-09-06-lp-design-restore.md`、計測は `docs/ad-lp/2026-09-06-lp-measurement-runbook.md`。Codex の再設計記録 `2026-09-06-lp-redesign-and-measurement.md` は差し戻し済みの経緯として読む。広告配信先の切替は次回会議で決定するため未実施。古い外部LPの変更不可という前提を新LPへ適用しない。
 - **LPは 2026-08-27 版の構成に差し戻し済み（2026-09-06）。** `app/lp/page.tsx` と `LpPlanTable` / `LpHalls` / `LpPreneed` / `LpPhoneBox` / `LpCtaBand` / `LpTopBar` / `LpStickyCta` を Tailwind で構成する。`LpContent.tsx` と `lp.module.css` は削除済み。6プランは会員価格・通常価格を併記した表で見せる。電話相談を主導線とする点、専用フォーム `/lp/contact/` を持つ点は変わらない。
-- 変更後は `node scripts/test-lp-output.mjs` を実行する。ページ重量は**brotli 圧縮後 50KB 以下**で判定する（CLAUDE.md §21.2・2026-09-06 松澤判断）。非圧縮のバイト数は記録するだけで基準にしない。
-- LPと本サイトは同じGA4の入口セッションで分離する。`scripts/ad-lp-report.mjs` は読み取り専用。既存SEO監査のGA4全体値が自動で分離されたわけではない。`lp_*` は既存Googleタグへ直接送出するので同名のGTMタグを重ねない。`generate_lead` と `lp_generate_lead`、`click_tel` と `lp_click_tel` を合算しない。
+- 変更後は `node scripts/test-lp-output.mjs` を実行する。ページ重量は**HTML本体の brotli 圧縮後 50KB 以下**で判定する（CLAUDE.md §21.2・2026-09-06 松澤判断）。非圧縮のバイト数は記録するだけで基準にしない。**計測・広告タグの外部スクリプトは 2026-09-11 の松澤判断により別枠で許可**（非同期・`/lp/` 配下限定・計測広告目的に限る）。HTML本体の 50KB は緩めない。
+- LPと本サイトは同じGA4の入口セッションで分離する。`scripts/ad-lp-report.mjs` は読み取り専用。既存SEO監査のGA4全体値が自動で分離されたわけではない。**`lp_*` は既存Googleタグへ gtag コマンド形式で直接送出するので、同名のGTMタグを重ねない。** 2026-09-11 に data layer イベント形式へ変更しGTMに転送タグを足す方針を立てたが、**2026-09-12 の実測で誤りと判明し撤去した**（転送タグを足すと全イベントが2件ずつ記録される）。本番は一貫して gtag コマンド形式で動いており、それで GA4 に届いている。訂正の経緯は `docs/ad-lp/2026-09-11-lp-event-fix.md` 冒頭。`generate_lead` と `lp_generate_lead`、`click_tel` と `lp_click_tel` を合算しない点は変わらない。
 
 - 内部・テスト計測の除外は `docs/operations/2026-09-06-analytics-exclusion.md`。テスト時は本番URLに `?analytics=off` を付け、解除時のみ `?analytics=on` を使う。
 - 共通OG画像と実更新日の管理は `lib/seo.ts`。sitemapのlastModifiedをビルド日時へ戻さない。

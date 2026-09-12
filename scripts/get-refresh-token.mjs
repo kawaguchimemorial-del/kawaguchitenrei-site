@@ -41,9 +41,26 @@ const SCOPE_SETS = {
   // gmail … 受信メールの「読み取りのみ」。送信・削除・変更はできない権限。
   //   GBP API の承認/却下メールなど、特定の用件の確認にだけ使う。
   gmail: ["https://www.googleapis.com/auth/gmail.readonly"],
+  // gtm … Google タグマネージャー。タグ・トリガー・変数の作成と公開まで行える。
+  //   公開は本番の計測に即反映されるため、必ず --dry-run で差分を見てから実行する。
+  gtm: [
+    "https://www.googleapis.com/auth/tagmanager.readonly",
+    "https://www.googleapis.com/auth/tagmanager.edit.containers",
+    "https://www.googleapis.com/auth/tagmanager.edit.containerversions",
+    "https://www.googleapis.com/auth/tagmanager.publish",
+  ],
+  // ga4admin … GA4 の設定（キーイベント・データストリーム等）と、計測データの読み取り。
+  //   Data API の読み取りには analytics.readonly が別に必要で、edit には含まれない。
+  ga4admin: [
+    "https://www.googleapis.com/auth/analytics.edit",
+    "https://www.googleapis.com/auth/analytics.readonly",
+  ],
 };
 SCOPE_SETS.all = [...SCOPE_SETS.gsc, ...SCOPE_SETS.gbp];
 SCOPE_SETS["all+gmail"] = [...SCOPE_SETS.all, ...SCOPE_SETS.gmail];
+// 計測まわりをまとめて扱う。GTM と GA4 の両方を1本のトークンで操作する
+SCOPE_SETS.measure = [...SCOPE_SETS.gtm, ...SCOPE_SETS.ga4admin];
+SCOPE_SETS["all+gmail+measure"] = [...SCOPE_SETS["all+gmail"], ...SCOPE_SETS.measure];
 
 const scopeArg =
   process.argv.find((a) => a.startsWith("--scope="))?.split("=")[1] ?? "all";
@@ -97,6 +114,22 @@ console.log(
   `\nlocal callback サーバ起動中 (http://localhost:${PORT}/oauth-callback)`
 );
 console.log("Ctrl+C で中断できます。\n");
+
+// URL は表示しない方針のため、既定のブラウザで直接開く。
+// 開けなかった場合だけ、tmp/auth-url.txt から手動で開いてもらう。
+try {
+  const { spawn } = await import("node:child_process");
+  const opener =
+    process.platform === "win32"
+      ? ["cmd", ["/c", "start", "", authUrl.replace(/&/g, "^&")]]
+      : process.platform === "darwin"
+        ? ["open", [authUrl]]
+        : ["xdg-open", [authUrl]];
+  spawn(opener[0], opener[1], { detached: true, stdio: "ignore", windowsVerbatimArguments: true }).unref();
+  console.log("ブラウザで認証画面を開きました。承認してください。");
+} catch {
+  console.log("ブラウザを自動で開けませんでした。tmp/auth-url.txt の URL を手動で開いてください。");
+}
 
 const server = http.createServer(async (req, res) => {
   if (!req.url) {

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SEOチェック（2026-09-11）</title>
+<style>
+  :root{--ink:#23201c;--sub:#6b645c;--line:#d8d2c8;--accent:#7a5c3e;--warn:#a3402f;--good:#3d6b4a;}
+  body{margin:0;background:#fff;color:var(--ink);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;line-height:1.8;font-size:14px}
+  .wrap{max-width:960px;margin:0 auto;padding:28px 22px 60px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:21px;border-bottom:3px solid var(--accent);padding-bottom:12px}
+  h2{font-size:16px;margin:32px 0 10px;padding:7px 12px;background:#f2ece2;border-left:5px solid var(--accent)}
+  h3{font-size:14.5px;margin:20px 0 6px;color:var(--accent)}
+  .meta{color:var(--sub);font-size:12.5px}
+  table{width:100%;border-collapse:collapse;font-size:13px;margin:10px 0}
+  th,td{border:1px solid var(--line);padding:6px 9px;text-align:left;vertical-align:top}
+  th{background:#f4f1eb;white-space:nowrap}
+  td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .box{border:1px solid var(--line);border-radius:5px;padding:12px 15px;margin:12px 0;background:#fcfbf9}
+  .box.warn{background:#fdf4f2;border-color:#e3c2bb}
+  .box.good{background:#f2f7f3;border-color:#c6dccd}
+  .box p:last-child{margin-bottom:0}
+  ul,ol{padding-left:1.4em}
+  code{background:#f4f1eb;padding:1px 4px;border-radius:3px;font-size:12.5px}
+  .ok{color:var(--good);font-weight:700}
+  .ng{color:var(--warn);font-weight:700}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>SEOチェック（2026-09-11）</h1>
+<p class="meta">
+  実施：2026-09-11 ／ 川口典礼 松澤<br>
+  範囲：①ビルド出力134ページのメタ・構造化データ全件スキャン ②Search Console 実測（直近28日 2026-08-12〜09-08 vs 前28日）③GA4 ④本番ヘッダ・robots・sitemap ⑤広告LPドメインの状態<br>
+  <strong>サイトの変更は行っていません。調査のみです。</strong>
+</p>
+
+<h2>結論</h2>
+<div class="box warn">
+  <p><strong>技術面に問題はありません。むしろ順位は全体的に改善しています。</strong>それでもクリックが16%減っており、原因は<strong>ほぼ1クエリ（「川口メモリアルホール」）に集中</strong>しています。</p>
+  <p>そして、その最有力の原因は<strong>広告LPドメイン <code>kawaguchi-memorial-hall.com</code> が、いまも検索に出られる状態のまま、当社の社名とホール名で競合していること</strong>です（§3）。これは本日の定例の議題1（着地先を <code>/lp/</code> へ移す）と同じ根の問題です。</p>
+</div>
+
+<h2>1. 全体（Search Console 実測・28日比較）</h2>
+<table>
+<tr><th></th><th class="n">直近28日<br>08/12–09/08</th><th class="n">前28日<br>07/15–08/11</th><th class="n">増減</th></tr>
+<tr><td>クリック</td><td class="n">319</td><td class="n">380</td><td class="n"><span class="ng">−61（−16%）</span></td></tr>
+<tr><td>表示回数</td><td class="n">41,135</td><td class="n">36,311</td><td class="n"><span class="ok">+4,824（+13%）</span></td></tr>
+<tr><td>CTR</td><td class="n">0.78%</td><td class="n">1.05%</td><td class="n"><span class="ng">−0.27pt</span></td></tr>
+<tr><td>平均掲載順位</td><td class="n">10.73</td><td class="n">11.69</td><td class="n"><span class="ok">0.96 改善</span></td></tr>
+</table>
+<p><strong>順位も表示も良くなっているのに、クリックだけが減っています。</strong>これは「サイトが悪くなった」形ではありません。内訳を見ると理由がはっきりします。</p>
+
+<h2>2. 減少の内訳 — 2クエリで減少分の半分</h2>
+<table>
+<tr><th>クエリ</th><th class="n">クリック</th><th class="n">前期</th><th class="n">増減</th><th class="n">表示</th><th class="n">前期</th><th class="n">順位</th><th class="n">前期</th></tr>
+<tr><td><strong>川口メモリアルホール</strong></td><td class="n">15</td><td class="n">37</td><td class="n"><span class="ng">−22</span></td><td class="n">155</td><td class="n">350</td><td class="n">3.17</td><td class="n">6.04</td></tr>
+<tr><td>川口典礼</td><td class="n">44</td><td class="n">52</td><td class="n">−8</td><td class="n">161</td><td class="n">209</td><td class="n">1.00</td><td class="n">1.01</td></tr>
+<tr><td>訃報 返信</td><td class="n">15</td><td class="n">20</td><td class="n">−5</td><td class="n">3,537</td><td class="n">4,223</td><td class="n">10.5</td><td class="n">10.7</td></tr>
+<tr><td colspan="3">上位3クエリの合計</td><td class="n"><strong>−35</strong></td><td colspan="4">＝全体の減少 −61 の 57%</td></tr>
+</table>
+
+<div class="box warn">
+  <p><strong>注目すべきは「川口メモリアルホール」です。</strong>順位は 6.04位 → <strong>3.17位</strong>と大きく上がったのに、クリックは37→15と半減しました。</p>
+  <p>理由は順位でもCTRでもなく、<strong>表示回数そのものが 350 → 155 と 56% 減った</strong>ことです。<u>上位に表示されているのに、そもそも表示される機会が半分になっている。</u>これは通常、①その言葉の検索需要が減った ②同じ検索結果に別のサイトが入って枠を分け合っている、のどちらかです。</p>
+</div>
+
+<p>ページ単位でも同じです。</p>
+<table>
+<tr><th>ページ</th><th class="n">クリック</th><th class="n">前期</th><th class="n">増減</th></tr>
+<tr><td><code>/hall/kawaguchi-memorial-hall/</code></td><td class="n">29</td><td class="n">51</td><td class="n"><span class="ng">−22</span></td></tr>
+<tr><td><code>/column/fuhou/</code>（訃報メールの返信）</td><td class="n">116</td><td class="n">128</td><td class="n">−12</td></tr>
+<tr><td><code>/</code>（トップ）</td><td class="n">70</td><td class="n">78</td><td class="n">−8</td></tr>
+</table>
+
+<h2>3. 最有力の原因 — 広告LPドメインが、いまも検索に出られる</h2>
+
+<div class="box warn">
+  <p>本日 <code>https://kawaguchi-memorial-hall.com/</code> の状態を確認しました。</p>
+  <table>
+  <tr><th>項目</th><th>状態</th></tr>
+  <tr><td>robots.txt</td><td><span class="ng">404（存在しない）</span></td></tr>
+  <tr><td>meta robots（noindex）</td><td><span class="ng">なし</span></td></tr>
+  <tr><td>canonical</td><td><span class="ng">なし</span></td></tr>
+  <tr><td>title</td><td><strong>「川口典礼 | 川口市内で家族葬・市民葬をお探しなら川口典礼」</strong></td></tr>
+  <tr><td>description</td><td>「川口市内で家族葬・市民葬をお探しなら川口典礼へ。川口市で20年の実績を持ち…」</td></tr>
+  </table>
+  <p><strong>つまり、検索エンジンが自由にインデックスできる状態です。</strong>しかも、</p>
+  <ul>
+    <li><strong>ドメイン名そのものが <code>kawaguchi-memorial-hall</code></strong> ＝「川口メモリアルホール」と完全一致</li>
+    <li><strong>title に「川口典礼」が2回</strong> ＝ 社名でも競合</li>
+    <li>title・description に「川口市 家族葬」「市民葬」 ＝ 主要キーワードでも競合</li>
+  </ul>
+  <p><strong>当社の「川口メモリアルホール」の表示回数が半減したことと、非常に整合します。</strong>同じ検索結果に自社の別ドメインが出れば、表示とクリックはそこへ分かれます。</p>
+</div>
+
+<div class="box">
+  <p><strong>ただし断定はしていません。</strong>GSCは自社サイト分しか見えないため、相手ドメインが実際に表示されているかは当社のデータでは確認できません。</p>
+  <p><strong>確認方法（5分）</strong>：Googleで「川口メモリアルホール」「川口典礼」と検索し、<code>kawaguchi-memorial-hall.com</code> が結果に出ているかを目視で確認する。出ていれば確定です。</p>
+</div>
+
+<div class="box good">
+  <p><strong>対処は、すでに進行中の議題と同じです。</strong>本日の定例の議題1（広告の着地先を当社サイト内の <code>/lp/</code> へ移す）が決まれば、旧LPは役目を終えます。そのうえで旧LPに <code>noindex</code> を入れるか、サイトごと畳めば解決します。</p>
+  <p class="meta">※ 2026-08-19 の記録（旧ドメイン `kawaguchi-tenrei.com` は301化で解決済み）では、「残るは広告LPのnoindex」とされていました。<strong>その残件が、いま実際に数字に出てきている可能性があります。</strong></p>
+</div>
+
+<h2>3.5 【追記・同日】広告LPが検索結果に出ていることを確認した</h2>
+<div class="box warn">
+  <p><strong>§3 の仮説は当たっていました。</strong>「川口メモリアルホール 川口典礼 葬儀」で検索したところ、結果に次の2つが出ています。</p>
+  <table>
+  <tr><th>検索結果に出ているURL</th><th>表示されているタイトル</th><th>状態</th></tr>
+  <tr><td><code>https://kawaguchi-memorial-hall.com/</code></td><td>川口典礼 | 川口市内で家族葬・市民葬をお探しなら川口典礼</td><td><span class="ng">広告LP。生きている・インデックス可能</span></td></tr>
+  <tr><td><code>http://www.kawaguchi-tenrei.com/</code></td><td>【公式】川口メモリアルホール(川口典礼)｜家族葬なら川口市の葬儀屋さん</td><td>旧ドメイン。<strong>301は正常に動作</strong>（→ https://kawaguchitenrei.com/）。検索結果に残っているのは古いインデックス</td></tr>
+  </table>
+  <p><strong>「川口メモリアルホール」の表示回数が 350 → 155 と半減したことと整合します。</strong>同じ検索結果に自社の別ドメインが並べば、表示もクリックもそちらへ分かれます。</p>
+</div>
+
+<div class="box">
+  <p><strong>旧ドメイン（kawaguchi-tenrei.com）は技術的には解決済みです。</strong>本日あらためて確認したところ、<code>http://www.kawaguchi-tenrei.com/</code> も <code>http://kawaguchi-tenrei.com/</code> も <strong>301 → https://kawaguchitenrei.com/</strong> が正常に動いていました（2026-08-19 の対応どおり）。検索結果に古いタイトルが残っているのは、Google がまだ再処理していないだけで、放置すれば消えます。</p>
+  <p><strong>問題は広告LPのほうだけです。</strong>こちらは301も noindex も無く、いまも独立したページとして検索に出続けています。</p>
+</div>
+
+<h2>4. 良い方向に動いているもの</h2>
+
+<h3>地域キーワードの順位が、軒並み上がっています</h3>
+<table>
+<tr><th>クエリ</th><th class="n">表示</th><th class="n">順位</th><th class="n">前期順位</th><th class="n">クリック</th></tr>
+<tr><td>川口市 家族葬</td><td class="n">488</td><td class="n">18.21</td><td class="n">25.01</td><td class="n">0</td></tr>
+<tr><td>川口 家族葬</td><td class="n">132</td><td class="n">20.63</td><td class="n">25.31</td><td class="n">0</td></tr>
+<tr><td>川口市 市民葬</td><td class="n">236</td><td class="n">10.13</td><td class="n">11.80</td><td class="n">0</td></tr>
+<tr><td>川口市 葬儀</td><td class="n">1,528</td><td class="n">9.62</td><td class="n">10.34</td><td class="n">1</td></tr>
+<tr><td>川口 葬儀</td><td class="n">604</td><td class="n">10.84</td><td class="n">13.83</td><td class="n">2</td></tr>
+<tr><td>川口 一日葬</td><td class="n">28</td><td class="n">6.82</td><td class="n">8.62</td><td class="n">0</td></tr>
+<tr><td>川口市 直葬</td><td class="n">127</td><td class="n">8.80</td><td class="n">9.04</td><td class="n">0</td></tr>
+</table>
+<p><strong>すべて改善方向です。ただし、まだクリックが発生する位置には届いていません。</strong>10位前後は1ページ目の最下部〜2ページ目で、ここはCTRがほぼ立ちません。<u>逆に言えば、あと数ポジション上がれば一気にクリックが出る位置まで来ています。</u></p>
+<p class="meta">※ 2026-09-06 に確定した方針（「川口市 葬儀」「川口 家族葬」等の主ページはトップページ）は維持されており、着地ページの入れ替えは発生していません。</p>
+
+<h3>AI検索（ChatGPT）からの成果が突出しています</h3>
+<table>
+<tr><th>流入元</th><th class="n">セッション</th><th class="n">キーイベント</th><th class="n">1セッションあたり</th></tr>
+<tr><td>google / organic</td><td class="n">402</td><td class="n">11</td><td class="n">0.027</td></tr>
+<tr><td>(direct)</td><td class="n">200</td><td class="n">28</td><td class="n">0.140</td></tr>
+<tr><td>yahoo / organic</td><td class="n">178</td><td class="n">11</td><td class="n">0.062</td></tr>
+<tr><td><strong>chatgpt.com / ai-assistant</strong></td><td class="n">7</td><td class="n"><strong>9</strong></td><td class="n"><strong>1.29</strong></td></tr>
+<tr><td>google / cpc（広告）</td><td class="n">6</td><td class="n">0</td><td class="n">0.00</td></tr>
+</table>
+<div class="box good">
+  <p><strong>ChatGPT経由は7セッションで9件の成果</strong>。内訳を見ると <code>click_tel</code>（電話ボタン）が <code>/plan/</code> から<strong>8件</strong>で、これは全流入元を通じて単一の組み合わせとして最多です。</p>
+  <p>件数自体は小さいですが、<strong>1セッションあたりの成果はGoogle自然検索の約48倍</strong>。「AI検索から問い合わせが来ている」という実感は、データでも裏づけられています。<u>AIO向けの受け皿として <code>/plan/</code> が機能している</u>ことが分かったので、強化するならここです。</p>
+</div>
+
+<h2>5. 技術面のチェック結果 — 問題なし</h2>
+<table>
+<tr><th>項目</th><th>結果</th></tr>
+<tr><td>ビルド</td><td><span class="ok">成功</span>。静的生成 <strong>140/140</strong>（基準どおり）。エラー・警告なし</td></tr>
+<tr><td>sitemap.xml</td><td><span class="ok">129 URL</span>（基準どおり）。GSC側も 129 件で登録、エラー0・警告0、最終取得 2026-09-05</td></tr>
+<tr><td>title / description / canonical</td><td><span class="ok">134ページすべてに存在</span>。欠落ゼロ</td></tr>
+<tr><td>h1</td><td><span class="ok">各ページ1つ</span>。0個は <code>/post/print</code>（印刷用・noindex）のみで、SEO対象外</td></tr>
+<tr><td>og:image</td><td><span class="ok">全ページ設定済み</span></td></tr>
+<tr><td>JSON-LD</td><td><span class="ok">パースエラー0</span>。エリアページは <code>FuneralHome</code>＋<code>FAQPage</code>＋<code>BreadcrumbList</code>、事例は <code>Article</code>＋<code>BreadcrumbList</code> と、ページ性質に沿って出力</td></tr>
+<tr><td>noindex の範囲</td><td><span class="ok">設計どおり</span>：<code>/lp</code> <code>/lp/contact</code> <code>/post</code> <code>/post/print</code> <code>/voice/survey</code> のみ</td></tr>
+<tr><td>広告LP <code>/lp/</code> の扱い</td><td><span class="ok">ルールどおり</span>：noindex あり、sitemap に不掲載、robots.txt では Disallow していない（＝広告の審査クローラは通れる）</td></tr>
+<tr><td>本番配信</td><td><span class="ok">正常</span>。HTTP 200・Vercel・HSTS 有効</td></tr>
+<tr><td>robots.txt</td><td><span class="ok">正常</span>。<code>/admin/</code> <code>/post/</code> のみ Disallow、sitemap 宣言あり</td></tr>
+</table>
+
+<h3>軽微な指摘（急がないもの）</h3>
+<ul>
+  <li><strong>title が全角40字を超えるページが43件</strong>（コラム38・事例2・お客様の声3）。検索結果では途中で省略されますが、<u>順位への影響はありません</u>。コラムは既に「量産は頭打ち・既存の押し上げを優先」と整理済みのため、<strong>一括の書き換えは推奨しません。</strong>手を入れるなら、表示回数が多いコラム（<code>/column/fuhou/</code> 13,212回、<code>/column/kenshi-nagare/</code> 6,745回）に絞るのが妥当です。</li>
+  <li><code>/lp/</code> の <code>og:url</code> が <code>https://kawaguchitenrei.com/</code>（トップ）になっています。noindex ページなので検索への影響はありませんが、SNSで共有された際の表示が意図とずれます。<strong>次に <code>/lp/</code> を触るときに合わせて直すのが妥当</strong>で、単独で触る必要はありません。</li>
+  <li><code>/area/kawaguchi/</code> は表示328回・平均50.2位と、ほぼ検索に出ていません。ただし「川口市 葬儀」の主ページはトップページと確定済みのため、<strong>設計上は想定内</strong>です。エリアページ全体の設計を見直す話であり、今回の範囲では扱いません。</li>
+</ul>
+
+<h2>6. やるべきこと（優先順）</h2>
+<ol>
+  <li><strong><s>広告LPが検索結果に出ていないか確認する</s> → 完了。出ていました（§3.5）。表示半減の原因はこれで確定と見てよい</strong></li>
+  <li><strong>本日の定例で議題1（着地先を <code>/lp/</code> へ）を決める。</strong>決まれば、旧LPを noindex にするか畳めるようになり、1の問題も同時に解決します</li>
+  <li><strong>地域キーワードは、いま何も変えない。</strong>順位が改善の途中にあり、この局面で title や主ページを動かすのは最も危険です。次の28日窓（10月上旬）で再測定します</li>
+  <li><strong>AIO対応は <code>/plan/</code> に集中する。</strong>ChatGPT経由の成果が実際に出ている唯一のページです</li>
+  <li>title の長さ・<code>og:url</code>・エリアページ設計は、いずれも急ぎません</li>
+</ol>
+
+<div class="box">
+  <p class="meta"><strong>データの出所</strong>：Search Console API（読み取り専用・<code>scripts/search-console-audit.mjs</code>、権限 siteOwner、最終確定日 2026-09-08）／GA4 Data API（同スクリプト <code>--with-ga4</code>）／<code>npm run build</code> の出力 <code>.next/server/app/</code> 全HTML／本番URLへの HEAD・GET リクエスト。<br>
+  取得した生データは <code>tmp/search-console-audit-2026-09-11T02-21-39-914Z.json</code>（git管理外）。</p>
+</div>
+
+<p class="meta" style="margin-top:36px;border-top:1px solid var(--line);padding-top:12px">
+株式会社川口典礼　松澤／実施日：2026-09-11
+</p>
+
+</div>
+</body>
+</html>

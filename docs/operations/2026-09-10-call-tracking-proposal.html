@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>コールトラッキング導入の検討資料（オーナー協議用）</title>
+<style>
+  :root{--ink:#23201c;--sub:#6b645c;--line:#d8d2c8;--accent:#7a5c3e;--warn:#a3402f;--good:#3d6b4a;}
+  *{box-sizing:border-box}
+  body{margin:0;background:#fff;color:var(--ink);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;line-height:1.8;font-size:14px}
+  .wrap{max-width:940px;margin:0 auto;padding:28px 22px 60px}
+  header.doc{border-bottom:3px solid var(--accent);padding-bottom:14px;margin-bottom:22px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:22px;margin:4px 0 6px;font-weight:700}
+  .meta{color:var(--sub);font-size:12.5px}
+  h2{font-size:16px;margin:34px 0 10px;padding:7px 12px;background:#f2ece2;border-left:5px solid var(--accent)}
+  h3{font-size:14.5px;margin:22px 0 6px;color:var(--accent)}
+  table{width:100%;border-collapse:collapse;font-size:13px;margin:10px 0}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  th{background:#f4f1eb;font-weight:600}
+  td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+  p{margin:0 0 11px}
+  ul,ol{margin:0 0 12px;padding-left:1.4em}
+  li{margin-bottom:5px}
+  .box{border:1px solid var(--line);border-radius:5px;padding:12px 15px;margin:12px 0;background:#fcfbf9}
+  .box.warn{background:#fdf4f2;border-color:#e3c2bb}
+  .box.good{background:#f2f7f3;border-color:#c6dccd}
+  .box p:last-child{margin-bottom:0}
+  .tag{display:inline-block;font-size:11.5px;padding:1px 7px;border-radius:3px;background:var(--accent);color:#fff;margin-right:6px;vertical-align:2px}
+  .tag.g{background:var(--good)}
+  .tag.w{background:var(--warn)}
+  .tag.s{background:#8a8378}
+  code{background:#f4f1eb;padding:1px 4px;border-radius:3px;font-size:12.5px}
+  .sig{margin-top:40px;border-top:1px solid var(--line);padding-top:12px;font-size:12.5px;color:var(--sub)}
+  @media print{ .wrap{padding:0} body{font-size:12px} h2{background:#f2ece2!important;-webkit-print-color-adjust:exact} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <p class="meta">オーナー協議用 ／ 2026-09-11 定例とは別の資料</p>
+  <h1>広告からの電話を数えるには — コールトラッキング導入の検討</h1>
+  <p class="meta">
+    作成：2026年9月10日・川口典礼 松澤<br>
+    目的：広告の議論が毎回「電話が何件だったのか分からない」で止まるため、その解消手段と費用を比較する<br>
+    ※ 料金は各社の公開ページの記載（2026-09-10 時点・税抜）。契約前に必ず見積りで総額を確認します
+  </p>
+</header>
+
+<h2>1. 結論</h2>
+
+<div class="box good">
+  <p><strong>2段階で進めることをご提案します。合計の追加費用は、初月 約¥6,000・翌月以降 月¥3,000＋通話料です。</strong></p>
+  <ol>
+    <li><strong>第1段階（費用ゼロ）</strong>：Google広告の「通話レポート／専用転送電話番号」を有効にする。<strong>Googleが無料で提供している機能</strong>で、広告から来た方にだけ転送番号が表示され、実際の通話件数・通話時間が広告の管理画面で分かるようになります。</li>
+    <li><strong>第2段階（月¥3,000＋通話料）</strong>：広告の着地ページ <code>/lp/</code> 専用に、<strong>当社名義</strong>のフリーダイヤルを1本契約する。第1段階が代理店の管理画面の中の数字であるのに対し、こちらは<strong>当社が自分で持てる実数</strong>になります。</li>
+  </ol>
+  <p><strong>既存の 0120-963-765 は当面そのままにします。</strong>移すこと自体は技術的に可能ですが、全ての着信が新しい事業者を経由することになるため、いまリスクを取る理由がありません（詳細は §6）。</p>
+</div>
+
+<h2>1.5 「広告専用に自社の番号を持つべきか」への答え</h2>
+
+<div class="box good">
+  <p><strong>持つべきです。</strong>無料の案Aがあってなお、月¥3,000を払って自社の番号を1本持つ理由は3つあります。</p>
+</div>
+
+<h3>理由① 案Aの答えは、また代理店の画面の中にしかない</h3>
+<p>いま困っているのは「電話が何件か分からない」ことですが、その根っこは<strong>「答えが代理店の管理画面の中にしかなく、当社が自分で確かめられない」</strong>ことです。指名キャンペーンの表示30万回も、P-MAXの13件も、同じ構造です。</p>
+<p>案A（Google転送番号）は無料で優秀ですが、<strong>設定は代理店が行い、数字も広告の管理画面の中に出ます。</strong>閲覧権限をもらえば当社も見られますが、それは<u>「見せてもらう」ことに変わりはありません</u>。</p>
+<p>案Bは当社名義の契約で、当社が管理画面を持ちます。<strong>誰にも頼まずに、自分で数えられる番号を1本持つ。</strong>これが本質的な違いです。</p>
+
+<h3>理由② 案Bを持つこと自体が、案Aの数字（＝代理店の数字）の検算になる</h3>
+<div class="box">
+  <p>これが最大の理由です。</p>
+  <p>案Aと案Bは同じページでは併用できませんが、<strong>案Bを <code>/lp/</code> に、案Aを本サイトに置けば、両方を並行して回せます。</strong>そして月末に、</p>
+  <ul>
+    <li>広告が計上した「お問い合わせ57件」</li>
+    <li>案Aが示す「広告経由の通話◯件」</li>
+    <li><strong>案Bの番号に実際に鳴った件数</strong></li>
+  </ul>
+  <p>この3つを突き合わせられます。<strong>当社が独立して持つ数字が1つあるだけで、代理店から出てくる数字が正しいかどうかを、初めて自分で判断できるようになります。</strong></p>
+  <p>いまは比べる相手がないので、出てきた数字を信じるしかありません。今回の一連の議論も、結局そこで止まっています。</p>
+</div>
+
+<h3>理由③ 案Bは、配信面に関係なく必ず数えられる</h3>
+<p>案Aには「ディスプレイ広告では転送番号を使えない」という制限がヘルプに記載されています。当社は<strong>デマンドジェネレーションとP-MAXで広告費の30%</strong>を使っており、ここが計測から漏れると、いちばん怪しい部分が測れないまま残ります。</p>
+<p>案Bは、<u>広告のどの面から来た方でも、<code>/lp/</code> に着いて電話をかければ必ずその番号に鳴ります。</u>仕組みがGoogleの仕様に左右されません。</p>
+
+<h3>案Aだけを選ぶ場合の唯一の利点</h3>
+<p>公平を期すと、案Aには案Bにない利点が1つあります。<strong>キャンペーン別（指名／一般KW／DG／P-MAX）にどこからの電話かが分かる</strong>ことです。案Bの番号1本では「広告全体から何件」までしか分かりません。</p>
+<p class="meta">※ キャンペーンごとに番号を分けることも技術的には可能ですが、AdSiPの安いプラン（0120ライト）は番号を固定的に割り当てる方式で、<strong>1つのページで訪問者ごとに番号を切り替えるには上位プラン（月¥50,000）が必要</strong>です。当社の規模には見合いません。</p>
+<p><strong>ですので、キャンペーン別は無料の案Aで取り、実数の裏づけは案Bで取る、という組み合わせが最も合理的です。</strong>案Aは無料ですから、どちらか一方を選ぶ必要はありません。</p>
+
+<div class="box warn">
+  <p><strong>まとめると：</strong></p>
+  <table>
+  <tr><th></th><th>案A（無料）</th><th>案B（月¥3,000）</th></tr>
+  <tr><td>設置場所</td><td>本サイト</td><td><code>/lp/</code>（広告の着地先）</td></tr>
+  <tr><td>誰が設定するか</td><td>代理店</td><td><strong>当社</strong></td></tr>
+  <tr><td>数字は誰のものか</td><td>広告の管理画面（要・閲覧権限）</td><td><strong>当社の管理画面</strong></td></tr>
+  <tr><td>キャンペーン別</td><td><strong>分かる</strong></td><td>分からない（合計のみ）</td></tr>
+  <tr><td>ディスプレイ面</td><td>要確認</td><td><strong>関係なく数えられる</strong></td></tr>
+  <tr><td>番号の所有</td><td>Google（変更されうる）</td><td><strong>当社</strong></td></tr>
+  </table>
+  <p><strong>両方やります。</strong>案Aは無料なので当然やる。そのうえで、月¥3,000で「自分で確かめられる数字」を1つ持つ。</p>
+</div>
+
+<h2>2. なぜ必要か</h2>
+
+<table>
+<tr><th>いま分かること</th><th>いま分からないこと</th></tr>
+<tr><td>サイトの電話ボタンが押された数（8月33件）</td><td><strong>押した後、実際に通話になったか</strong></td></tr>
+<tr><td>その時間帯・見ていたページ・流入元</td><td><strong>広告からの電話が何件か</strong>（8月の広告経由タップは0件だが、これは「無い」ではなく「見えていない」）</td></tr>
+<tr><td>9月から始めた手書きの着信記録</td><td>きっかけは伺えた範囲のみ。「不明」でよい運用にしてあるため、<strong>広告の判定には使えない</strong></td></tr>
+</table>
+
+<div class="box warn">
+  <p>8月の広告費は<strong>¥959,754</strong>。広告が計上したお問い合わせは57件ですが、当社の施行は年間約260件＝月平均約21.7件です。<strong>この差が何なのかを、いまの材料では説明できません。</strong></p>
+  <p>また、内訳の説明がついていない支出が月約28万円あります（デマンドジェネレーションのURL①グループ 約¥97,700／指名キャンペーンの説明のつかない分 ¥190,546）。<strong>月28万円の判断をするために、月3,000円の計測を入れる</strong>という費用対効果の話です。</p>
+</div>
+
+<h2>3. 仕組み（どうやって「広告からの電話」が分かるのか）</h2>
+
+<p>やっていることは単純で、<strong>「どこから来たかによって、表示する電話番号を変える」</strong>だけです。</p>
+
+<table>
+<tr><th>訪問者</th><th>表示される番号</th><th>着信先</th></tr>
+<tr><td>広告をクリックして来た方</td><td>計測用の番号（例：0120-XXX-XXX）</td><td rowspan="2">どちらも<strong>当社の代表番号へ自動転送</strong>。受ける側の操作は変わりません</td></tr>
+<tr><td>検索・地図・紹介から来た方</td><td>いまの 0120-963-765</td></tr>
+</table>
+
+<p>計測用の番号に着信した＝広告から来た方、と確定します。<strong>お客様は番号の違いに気づきませんし、つながるまでの時間も変わりません。</strong></p>
+
+<p>この方式で分かるようになるのは次の4つです。</p>
+<ul>
+  <li>広告経由の<strong>実際の着信件数</strong>（タップ数ではなく、鳴った数）</li>
+  <li><strong>時間帯</strong>（深夜に本当に鳴っているのか）</li>
+  <li><strong>通話の長さ</strong> — これが重要です。<strong>10秒で切れた通話（参列者の問い合わせ・誤タップ）と、5分続いた通話（ご相談）を分けて数えられます</strong></li>
+  <li>取りこぼし（応答できなかった通話）の有無</li>
+</ul>
+
+<h2>4. 選択肢の比較</h2>
+
+<h3><span class="tag g">推奨</span>案A：Google広告の専用転送電話番号（無料）</h3>
+<table>
+<tr><th style="width:22%">費用</th><td><strong>無料。</strong>Googleが提供する機能で、番号の利用料も通話料もかかりません（Google広告ヘルプに「無料で表示することができます」と明記）</td></tr>
+<tr><th>仕組み</th><td>広告の管理画面で「通話レポート」を有効にすると、Googleが転送番号を発行。サイトに小さなスクリプトを入れると、<strong>広告から来た訪問者にだけ</strong>その番号が表示される</td></tr>
+<tr><th>分かること</th><td>通話時間・通話の開始時刻・応答の有無・15秒を超えた通話の発信者番号。<strong>どのキャンペーン・広告・キーワードからの電話かまで分かる</strong></td></tr>
+<tr><th>良い点</th><td>費用ゼロ。広告の管理画面の中で完結するので、キャンペーン別の判断にそのまま使える</td></tr>
+<tr><th class="n">注意点</th><td>
+  ① <strong>番号はGoogleのもの</strong>で、変更・再割り当てがあります。名刺・チラシ・案内には使えません（Google広告以外での掲載は禁止されています）<br>
+  ② 設定は<strong>広告アカウント側の作業＝代理店に依頼</strong>することになり、<strong>データも広告の管理画面の中</strong>にあります。当社が自分で確認するには閲覧権限が必要です<br>
+  ③ <strong>ディスプレイ広告では「電話番号アセット」に転送番号を使えない</strong>とヘルプに記載があります。当社の広告はデマンドジェネレーションとP-MAXの比重が大きいため、<u>サイト経由の通話計測がこれらのクリックでも動作するかは、代理店に確認が必要です</u><br>
+  ④ 1ページに複数の番号がある場合は追加の設定が必要
+</td></tr>
+</table>
+
+<h3><span class="tag g">推奨</span>案B：当社名義のトラッキング番号を1本（AdSiP 0120ライトプラン）</h3>
+<table>
+<tr><th style="width:22%">費用</th><td>
+  初期：初期登録料 ¥2,000／事業者ID ＋ 番号取得料 ¥1,000／番号 ＝ <strong>¥3,000</strong><br>
+  月額：システム基本料 <strong>¥0</strong> ＋ 番号使用料 <strong>¥3,000</strong>／番号 ＋ 通話料（従量）<br>
+  <span class="meta">※ すべて税抜。0120は最大5番号までこのプランで利用可</span>
+</td></tr>
+<tr><th>仕組み</th><td>当社が0120番号を1本契約し、<code>/lp/</code> にだけその番号を掲載。着信は代表番号へ転送</td></tr>
+<tr><th>良い点</th><td><strong>当社名義で契約でき、管理画面も当社が持てます。</strong>代理店を通さずに、広告経由の実着信を自分で数えられる。番号は当社のものなので、Googleのように途中で変わりません</td></tr>
+<tr><th class="n">注意点</th><td>
+  ① 番号使用料のほかに<strong>通話料が従量でかかります</strong>（0120は着信側＝当社負担。転送分も当社負担）<br>
+  ② キャンペーン単位の内訳までは分かりません（「広告全体から何件」までは分かる）<br>
+  ③ 案Aと同じページで併用はできません（Aが番号を差し替えてしまうため）。<strong><code>/lp/</code> は案B、本サイトは案A、と分けます</strong>
+</td></tr>
+</table>
+
+<h3><span class="tag s">当面見送り</span>案C：既存の 0120-963-765 も計測対象にする</h3>
+<table>
+<tr><th style="width:22%">やり方</th><td>フリーダイヤルは番号を変えずに事業者を移す「番号ポータビリティ」が可能です。既存の0120をコールトラッキング事業者へ移せば、<strong>役所・病院の案内、チラシ、紹介からの電話も含めて全部が数字になります</strong></td></tr>
+<tr><th>魅力</th><td>当社で<u>いちばん多いはずの導線</u>（役所・病院でお渡しいただく案内 → 社名を検索 → 電話）の実数が、初めて分かります</td></tr>
+<tr><th class="n">見送る理由</th><td>
+  ① <strong>すべての着信が新しい事業者を経由することになります。</strong>葬儀は1本の取りこぼしが致命的で、いまリスクを取る理由がありません<br>
+  ② 移行作業中の不通リスク<br>
+  ③ 案A・案Bで「広告からの電話」の答えが出れば、当面の目的は達成できます<br>
+  <strong>→ 案A・Bで運用が安定し、事業者の信頼性を実地で確認できてから、あらためて検討します</strong>
+</td></tr>
+</table>
+
+<h3><span class="tag w">不採用</span>案D：本サイト全体で流入元別に番号を出し分ける（動的番号挿入）</h3>
+<p>検索・地図・SNSなど流入元ごとに番号を変える方式です。以下の理由で採用しません。</p>
+<ul>
+  <li><strong>Googleマップの評価に影響しうる</strong>（サイトとマップの電話番号が食い違うと、地域検索の評価が下がる可能性がある）</li>
+  <li><strong>スクリプトで番号を書き換えるため、うまく動かないと番号が表示されない事故が起こりえます。</strong>葬儀の緊急のお電話で、そこまでのリスクを取る必要はありません</li>
+</ul>
+
+<h3><span class="tag s">比較の基準</span>案E：何もしない</h3>
+<p>手書きの着信記録だけを続ける。費用はゼロですが、<strong>「広告からの電話が何件か」は来月も再来月も分かりません。</strong>月96万円の広告費の判断を、分からないまま続けることになります。</p>
+
+<h2>5. 事業者と料金の実勢（2026-09-10 時点・税抜）</h2>
+
+<table>
+<tr><th>サービス</th><th>提供</th><th class="n">初期費用</th><th class="n">月額</th><th>備考</th></tr>
+<tr><td><strong>Google広告 専用転送電話番号</strong></td><td>Google</td><td class="n">¥0</td><td class="n"><strong>¥0</strong></td><td>広告アカウントの機能。番号はGoogleの所有</td></tr>
+<tr><td><strong>AdSiP 0120ライトプラン</strong></td><td>フリービット</td><td class="n">¥3,000<br><span class="meta">登録¥2,000＋番号¥1,000</span></td><td class="n"><strong>¥3,000</strong><br><span class="meta">＋通話料</span></td><td>基本料¥0。0120を最大5番号まで。<strong>小規模には最安水準</strong></td></tr>
+<tr><td>AdSiP 基本プラン</td><td>フリービット</td><td class="n">¥50,000</td><td class="n">¥50,000<br><span class="meta">＋番号¥950/本〜</span></td><td>番号を多数使う規模向け。当社には過剰</td></tr>
+<tr><td>CallTracker（コールトラッカー）</td><td>—</td><td class="n">要問合せ</td><td class="n">¥15,000〜<br><span class="meta">0120は¥25,000</span></td><td>050/0078/0800/0120。<strong>基本は1年契約</strong>。録音・音声のテキスト分析あり</td></tr>
+<tr><td>Call Data Bank</td><td>—</td><td class="n">¥0</td><td class="n">050 ¥10,000〜<br>0120 ¥50,000</td><td>1,500セッション単位の課金</td></tr>
+<tr><td>通信キャリア系</td><td>—</td><td class="n">—</td><td class="n">¥15,000〜</td><td>番号数は無制限だが月額が高い</td></tr>
+</table>
+
+<div class="box">
+  <p><strong>当社の規模では AdSiP 0120ライトプランが妥当です。</strong>番号は1本で足り、最低利用期間の縛りも軽い。CallTracker は機能は豊富ですが1年契約が基本で、月¥25,000（0120）は当社の用途に対して過剰です。</p>
+  <p class="meta">※ 通話料は各社とも従量です。当社の想定（広告経由の着信が月20〜40件・1件あたり数分）であれば、月あたり数百円〜数千円の範囲に収まる見込みですが、単価は見積りで確認します。</p>
+</div>
+
+<h2>6. 既存の 0120-963-765 について</h2>
+
+<div class="box">
+  <p><strong>結論：当面そのままにします。</strong></p>
+  <p>フリーダイヤルは「番号はそのままで事業者だけを移す」ことが制度上できるため、既存の0120を計測対象にすること自体は可能です。実際、複数の事業者が0120の番号ポータビリティに対応しています。</p>
+  <p>ただし移した場合、<strong>役所・病院の案内を見てかけてくださる方も、紹介の方も、すべての着信が新しい事業者の設備を経由します。</strong>当社にとって電話は事業の生命線で、深夜も含めて1本も落とせません。<u>月96万円の広告の判定をするために、全着信の経路を変えるのは、目的に対してリスクが大きすぎます。</u></p>
+  <p><strong>順序として、まず案A・案Bで「広告からの電話」を確定させます。</strong>そのうえで、事業者の転送が実際に安定していることを1本の番号で確認できてから、既存0120の扱いをあらためて検討します。急ぐ話ではありません。</p>
+</div>
+
+<h2>7. 進め方</h2>
+
+<table>
+<tr><th class="n">段階</th><th>やること</th><th>誰が</th><th class="n">費用</th></tr>
+<tr><td class="n">0</td><td><strong>広告の着地先を <code>/lp/</code> に切り替える</strong>（9/11 定例の議題1）<br><span class="meta">いまの着地先は当社が編集できないため、これが決まらないと何も始められません</span></td><td>代理店</td><td class="n">¥0</td></tr>
+<tr><td class="n">1</td><td>Google広告の「通話レポート」を有効化してもらう<br>本サイトと <code>/lp/</code> の該当箇所にスクリプトを設置<br><strong>あわせて当社に広告アカウントの閲覧権限をいただく</strong></td><td>代理店＋当社</td><td class="n">¥0</td></tr>
+<tr><td class="n">2</td><td>AdSiP 0120ライトプランを<strong>当社名義</strong>で契約。番号を1本取得し、<code>/lp/</code> に掲載。転送先を代表番号に設定</td><td>当社</td><td class="n">初期¥3,000<br>月¥3,000</td></tr>
+<tr><td class="n">3</td><td>1か月運用して、①手書きの着信記録 ②広告が計上するCV ③計測番号の実着信 の3つを突き合わせる</td><td>当社</td><td class="n">¥0</td></tr>
+<tr><td class="n">4</td><td>結果を見て、既存0120の扱い・案内やチラシへの別番号を検討</td><td>—</td><td class="n">—</td></tr>
+</table>
+
+<h2>8. 契約前に必ず確認すること</h2>
+<p>葬儀は1本の取りこぼしが致命的です。以下は見積りの段階で書面で確認します。</p>
+<ul>
+  <li><strong>転送の信頼性</strong> — 深夜・同時着信・話し中のときにどう動くか</li>
+  <li><strong>発信者番号が保持されるか</strong> — かけ直しができないと意味がありません</li>
+  <li><strong>転送の遅延と音声品質</strong></li>
+  <li><strong>通話料の単価</strong>（1分あたり・転送分の負担）</li>
+  <li><strong>最低利用期間と解約条件</strong></li>
+  <li>解約後、その番号が第三者に再利用される可能性と、その際の告知</li>
+</ul>
+
+<h2>9. 個人情報の扱い</h2>
+<div class="box warn">
+  <p><strong>通話の録音はしない案とします。</strong></p>
+  <ul>
+    <li>判断に必要なのは<strong>件数・時間帯・通話の長さ</strong>で、録音がなくても足ります</li>
+    <li>ご遺族のお電話を録音することは、当社の姿勢として避けたい</li>
+    <li>録音すると、保管・アクセス制限・保存期間の管理が新たに発生します（当社の個人情報の取り扱い方針に照らして、増やす理由がありません）</li>
+  </ul>
+  <p>計測番号から取得するのは、着信日時・通話の長さ・応答の有無までとします。発信者番号は、かけ直しのために必要な範囲でのみ扱います。</p>
+</div>
+
+<h2>10. オーナーに決めていただきたいこと</h2>
+<ol>
+  <li><strong>案A（無料）を代理店に依頼するか。</strong>あわせて、当社に広告アカウントの閲覧権限を求めるか</li>
+  <li><strong>案B（当社名義の番号1本・初期¥3,000／月¥3,000＋通話料）を契約するか。</strong>契約するなら着地先の切替と同時に進めるか</li>
+  <li><strong>録音はしない、でよいか</strong></li>
+  <li>既存0120は当面そのまま、でよいか</li>
+</ol>
+
+<div class="box good">
+  <p><strong>金額の目安をもう一度。</strong>初月 約¥6,000（初期¥3,000＋月額¥3,000）、翌月以降 月¥3,000＋通話料。<br>
+  これに対して、いま説明のついていない広告費は<strong>月約28万円</strong>です。</p>
+</div>
+
+<h2>出典</h2>
+<ul class="meta">
+  <li>Google 広告ヘルプ「Google 広告専用転送電話番号」 https://support.google.com/google-ads/answer/2382961?hl=ja</li>
+  <li>Google 広告ヘルプ「通話レポートについて」 https://support.google.com/google-ads/answer/2454052?hl=ja</li>
+  <li>Google 広告ヘルプ「通話コンバージョン トラッキングについて」 https://support.google.com/google-ads/answer/6100664?hl=ja</li>
+  <li>Google 広告ヘルプ「ウェブサイトに掲載された電話番号への問い合わせのトラッキングを設定する」 https://support.google.com/google-ads/answer/6095883?hl=ja</li>
+  <li>AdSiP（フリービット）料金ページ https://adsip.freebit.com/charge.html</li>
+  <li>コールトラッカー よくあるご質問 https://www.calltracker.jp/faq</li>
+  <li>BOXIL「コールトラッキングシステム比較9選」 https://boxil.jp/mag/a10920/</li>
+</ul>
+
+<div class="sig">
+  株式会社川口典礼　松澤<br>
+  作成日：2026年9月10日<br>
+  関連：<code>docs/operations/2026-09-04-call-tracking.md</code>（手書きの着信記録の運用）／<code>docs/operations/2026-09-11-meeting-agenda.html</code> §3-6
+</div>
+
+</div>
+</body>
+</html>

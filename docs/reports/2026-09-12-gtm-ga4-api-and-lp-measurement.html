@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="ja">
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GTM・GA4のAPI操作と、LP計測の誤診断の訂正（2026-09-12）</title>
+<style>
+ body{font-family:"Yu Gothic","Meiryo",sans-serif;margin:0;background:#f4f4f2;color:#1c1c1c;line-height:1.9}
+ .p{max-width:900px;margin:0 auto;padding:28px 18px 80px}
+ h1{font-size:22px;border-bottom:3px solid #1c3a30;padding-bottom:10px}
+ h2{font-size:17px;margin:34px 0 10px;padding:6px 0 6px 12px;border-left:5px solid #1c3a30;background:#eef3ef}
+ h3{font-size:15px;margin:22px 0 6px;color:#1c3a30}
+ table{border-collapse:collapse;width:100%;margin:12px 0;font-size:14px;background:#fff}
+ th,td{border:1px solid #ccc;padding:7px 10px;text-align:left;vertical-align:top}
+ th{background:#eef3ef}
+ code{background:#eee;padding:1px 5px;border-radius:3px;font-size:13px}
+ .bad{background:#fdecec;border-left:5px solid #c0392b;padding:12px 16px;margin:14px 0}
+ .ok{background:#eaf6ee;border-left:5px solid #2a7d4f;padding:12px 16px;margin:14px 0}
+ .warn{background:#fff8e1;border-left:5px solid #c79100;padding:12px 16px;margin:14px 0}
+ .n{font-size:13px;color:#555}
+</style>
+<div class="p">
+<h1>GTM・GA4のAPI操作と、LP計測の誤診断の訂正</h1>
+<p class="n">2026-09-12 ／ 対象：<code>GTM-TJWKD4WB</code>・GA4 <code>538451141</code>／<code>521764607</code>・<code>app/lp/**</code></p>
+
+<h2>1. できるようになったこと</h2>
+<p>GTM と GA4 を API から操作できるようにした。<code>scripts/get-refresh-token.mjs</code> に <code>gtm</code> / <code>ga4admin</code> / <code>measure</code> のスコープを追加し、Cloud プロジェクト <code>487251905710</code> で Tag Manager API と Google Analytics Admin API を有効化した。</p>
+<div class="warn"><b>途中の誤り：</b>最初に「APIは両方とも有効」と報告したが誤りだった。スコープが足りない状態では権限エラーが先に返るため、有効化の状態まで見えていなかった。スコープを通して初めて「未有効」と分かった。</div>
+
+<h3>把握できた全体像</h3>
+<table>
+<tr><th>GTMコンテナ</th><th>設置</th><th>中身</th></tr>
+<tr><td><code>GTM-TJWKD4WB</code> 川口典礼 本サイト</td><td><b>本番サイトに設置あり</b></td><td>GA4の4イベント＋Googleタグ</td></tr>
+<tr><td><code>GTM-KLK8ZP2J</code>（改名前 kawaguchitenrei.com/）</td><td><b>設置されていない</b></td><td>GMO時代の広告CV・リマケ。公開されたまま未使用</td></tr>
+<tr><td><code>GTM-N2J5GBXL</code></td><td><code>/lp/</code> のみ（未デプロイ）</td><td>代理店の広告CV・リマケ。<b>GA4タグは入っていない</b></td></tr>
+</table>
+<table>
+<tr><th>GA4プロパティ</th><th>測定ID</th><th>状態</th></tr>
+<tr><td>538451141 川口典礼_本サイト</td><td><code>G-44Z38F3J1P</code></td><td>本番で使用中</td></tr>
+<tr><td>521764607 川口典礼_LP</td><td><code>G-NGCZ8N7FMG</code></td><td><b>旧LP。当社アカウント配下で閲覧可能だった</b></td></tr>
+<tr><td>423230024 kawaguchitenrei.com</td><td><code>G-31H7JEBFPS</code></td><td>広告連携で自動生成された空のプロパティ</td></tr>
+</table>
+<p><code>GTM-KLK8ZP2J</code> は「【未使用】GMO時代（サイト未設置）」へ改名した。中身は削除していない。GMO時代から電話タップをコンバージョンにしていた記録であり、Google広告側に古いコンバージョンアクションが残っている可能性を確認するまで消さない。</p>
+
+<h2>2. 旧LPのGA4を初めて読んだ</h2>
+<div class="bad"><b>前提が誤っていた。</b>「旧LPのGA4は権限がなく当社から見られない」と4つの文書に書いていたが、プロパティは当社アカウント配下にあり、管理者として見える状態だった。docs の記述を確認せずに引き継いだのが原因で、アカウント一覧を1回見れば済む話だった。</div>
+<h3>2026年8月の実績（旧LP）</h3>
+<table>
+<tr><th>指標</th><th>値</th></tr>
+<tr><td>セッション</td><td>3,556（うち Paid Search 3,365＝94.6%、モバイル96.4%）</td></tr>
+<tr><td>エンゲージメント率 ／ 直帰率</td><td>28.3% ／ 71.7%</td></tr>
+<tr><td>平均滞在時間</td><td>54.1秒</td></tr>
+<tr><td>90%までスクロール</td><td>410（<b>11.5%</b>）</td></tr>
+<tr><td>フォーム入力開始</td><td>6</td></tr>
+<tr><td><b>フォーム送信</b></td><td><b>0</b>（直近90日でも4件）</td></tr>
+</table>
+<div class="ok"><b>広告レポートの8月CV57件に、フォーム送信は1件も含まれていない。</b>ほぼ全量が電話タップであることが、広告側とは独立した計測で裏づけられた。「電話タップが無駄に上がっている」という認識、P-MAXの13件がタップの積み上がりだったという先方の説明と一致する。AdSiP導入の根拠が固まった。</div>
+<p>登録されているキーイベント（<code>close_convert_lead</code> / <code>qualify_lead</code> / <code>purchase</code> / <code>電話CV</code> / <code>電話Cv</code>）は<b>8月に1件も発火していない</b>。前3つはGA4の初期値、後2つは大文字小文字違いの重複で設定ミスが残ったまま。旧LPのGA4はコンバージョンを1件も測っていなかった。</p>
+<p>外部リンククリック31件のうち24件が <code>kawaguchitenrei.com/</code> 宛て。<b>月24人がLPから本サイトへ会社を確かめに来ている。</b></p>
+
+<h2>3. <code>lp_*</code> の「届いていない」は誤診断だった</h2>
+<div class="bad">
+<b>9/11の結論「GA4へ届けるにはGTMに転送タグが1つ必要」は誤りだった。</b>実際に作って公開したところ、すべての <code>lp_*</code> が2件ずつ記録される二重計上になった。1回のタップで <code>lp_click_tel</code> が2件、既存の <code>click_tel</code> は1件。
+</div>
+<h3>切り分けの手順</h3>
+<table>
+<tr><th>確認</th><th>結果</th></tr>
+<tr><td>ブラウザの <code>dataLayer</code> を直接確認</td><td><code>lp_view</code> 1件・<code>lp_click_tel</code> 1件。<b>アプリは正常</b></td></tr>
+<tr><td>代理店コンテナにGA4タグがあるか</td><td>配信中の <code>gtm.js</code> を取得して確認 → <b>なし</b></td></tr>
+<tr><td>タグの発火トリガー</td><td>6タグすべて1つずつ、ブロック条件なし</td></tr>
+<tr><td><b>追加したタグを一時停止して実測</b></td><td><b><code>lp_view</code> 1件・<code>lp_click_tel</code> 1件。タグ無しで正しく届いていた</b></td></tr>
+</table>
+<p>本番JSを取得したところ <code>transport_type</code> と <code>send_to</code> が含まれていた。<b><code>lib/lp-analytics.ts</code> の書き換えはコミットもデプロイもされておらず、本番は一貫して gtag コマンド形式で動いていた。</b>gtag のコマンドは GTM の data layer 上でイベント形式に変換されるため、追加したトリガーもそれに反応してもう一度送っていた。これが二重計上の正体。</p>
+
+<h3>なぜ誤ったか</h3>
+<table>
+<tr><th>日付</th><th><code>/lp/</code> 表示</th><th><code>lp_view</code></th><th>備考</th></tr>
+<tr><td>2026-08-26</td><td>33</td><td>なし</td><td>LP公開直後</td></tr>
+<tr><td>2026-08-27</td><td>14</td><td>なし</td><td></td></tr>
+<tr><td>2026-08-28</td><td>12</td><td>なし</td><td><b><code>generate_lead</code> 8件はこの日だけ</b></td></tr>
+<tr><td>2026-09-01</td><td>2</td><td>なし</td><td></td></tr>
+<tr><td><b>2026-09-06</b></td><td>4</td><td><b>3</b></td><td><b>デザイン差し戻しの日。ここから記録され始めた</b></td></tr>
+<tr><td>2026-09-09</td><td>1</td><td>1</td><td></td></tr>
+<tr><td>2026-09-12</td><td>2</td><td>2</td><td></td></tr>
+</table>
+<p>9/11の分析が根拠にした「<code>generate_lead</code> は届くのに <code>lp_generate_lead</code> は0」という比較は、<b>すべて2026-08-28の1日分</b>だった。その時点では実際に不具合があったが、9/06の差し戻し以降は正常に動いていた。90日の合計が古い不具合に引きずられていただけで、直近を確認していれば別の結論になっていた。</p>
+<p>もう一つの見落としは母数である。<code>/lp/</code> は8/26以降の合計で<b>表示70件</b>しかない。広告はいまも旧LPに着地しているため人が来ていない。<b>この母数で「0件だから壊れている」と判断すべきではなかった。</b></p>
+<p>追加したタグ・トリガー・変数5つはすべて削除し、元の5タグ構成へ戻した（v8）。<code>CLAUDE.md</code>・<code>AGENTS.md</code>・<code>docs/ad-lp/2026-09-11-lp-event-fix.md</code> を訂正した。</p>
+
+<h2>4. プラン詳細の導線をLP内で完結させた</h2>
+<p>プランカードは <code>/plan/</code>（本サイト）へリンクしていたため、開いた人は広告の着地先から出ていた。そこからは <code>lp_*</code> も代理店のコンバージョンタグも発火しない（どちらも <code>/lp/</code> 限定）。旧LPでも8月の外部リンク31件中24件が本サイト宛てで、同じ漏れが起きていた。</p>
+<p>PCの表・モバイルのカードとも <code>&lt;details&gt;</code> でその場に開く形に変更し、葬儀の流れ・プラン説明・事前相談会員価格・電話ボタン・<code>/lp/contact/</code> への導線を中に置いた。開くボタンに <code>data-lp-event="lp_plan_open"</code> と <code>data-lp-plan</code> を付けたので、<b>定義だけあって送っていなかった <code>lp_plan_open</code> が初めて動く。</b></p>
+<table>
+<tr><th>確認項目</th><th>結果</th></tr>
+<tr><td><code>/lp/</code> 転送量（brotli）</td><td>21,913 → <b>23,147 B</b>（基準 51,200 B）</td></tr>
+<tr><td><code>/plan/</code> へのリンク</td><td><b>0件</b>（本番で確認）</td></tr>
+<tr><td>電話リンク ／ 相談リンク</td><td>8→20 ／ 4→16</td></tr>
+<tr><td>noindex ／ sitemap</td><td>維持 ／ 129 URL・<code>/lp/</code> 不在</td></tr>
+<tr><td>ビルド</td><td>静的140ページ・エラーなし</td></tr>
+</table>
+
+<h2>5. 反省</h2>
+<ul>
+<li><b>docs に書かれた前提を、確認せずに引き継いだ。</b>「旧LPのGA4は見られない」は1か月以上そのまま扱われ、代理店にも権限申請を依頼していた。</li>
+<li><b>集計期間の合計だけを見て原因を断定した。</b>日別で見れば9/06以降は正常だった。</li>
+<li><b>母数を見なかった。</b>表示70件のページで「0件」を異常と判断した。</li>
+<li><b>確かめる前に本番へ公開した。</b>転送タグは仮説の段階で公開してしまい、二重計上を起こした。切り分けのために利用者に何度もタップを依頼することになった。</li>
+</ul>
+
+<h2>6. 残っている作業</h2>
+<table>
+<tr><th>内容</th><th>状態</th></tr>
+<tr><td>代理店GTMコンテナの設置（<code>LpAdsTag.tsx</code>・<code>app/lp/layout.tsx</code>）</td><td><b>未コミット。</b>第三者の広告タグを動かし始めるため、公開の可否を確認してから</td></tr>
+<tr><td>先方のトリガーを <code>#lp-contact-complete</code> へ変更</td><td>依頼待ち</td></tr>
+<tr><td>NEXT UP への返信（再回答への対応）</td><td>未送信</td></tr>
+<tr><td>DGバナー14点の入稿</td><td>先方の確認待ち</td></tr>
+<tr><td><code>GTM-KLK8ZP2J</code> と Google広告の古いコンバージョンアクションの突き合わせ</td><td>未着手</td></tr>
+</table>
+<p class="n">コミット：<code>4a71db4</code>（プラン詳細をLP内で完結）／<code>2298f2f</code>（送信完了画面の目印）。どちらも本番反映済み。</p>
+</div>
+</html>
