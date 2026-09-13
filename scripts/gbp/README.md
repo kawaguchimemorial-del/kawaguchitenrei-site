@@ -11,17 +11,25 @@ API の割り当てが 0 のため全スクリプトが 403 で失敗する。�
 
 ### 1. Google Cloud で API を有効化
 
-**いま有効化できる 7 つ**
+**有効化する API**
+
+> ⚠ **My Business Q&A API は 2025-11-03 に廃止されました**（Google 公式の Deprecation schedule）。
+> 有効化しても `mybusinessqanda.googleapis.com` が 404 を返します。一覧から外しています。
 
 ```
 My Business Account Management API
 My Business Business Information API
-My Business Q&A API
+Business Profile Performance API      ← performance.mjs に必須
 My Business Place Actions API
 My Business Notifications API
 My Business Verifications API
 My Business Lodging API
 ```
+
+> ⚠ **`Business Profile Performance API` は名前が "My Business 〜" ではないため見落としやすい。**
+> これが無効だと `performance.mjs` が全項目 403（`SERVICE_DISABLED`）になる（2026-09-11 実測）。
+> 直リンク：
+> `https://console.developers.google.com/apis/api/businessprofileperformance.googleapis.com/overview?project=487251905710`
 
 **承認後に有効化する 1 つ**
 
@@ -76,7 +84,18 @@ node scripts/gbp/apply.mjs --confirm --only=profile
 
 # 月次計測（読み取り専用）
 node scripts/gbp/performance.mjs --from=2026-08-01 --to=2026-08-31
+
+# 口コミ一覧（読み取り専用。tmp/gbp/reviews-latest.json に保存）
+node scripts/gbp/reviews.mjs
+
+# 口コミ返信（既定は dry-run。本文は改行を含むためファイルで渡す）
+node scripts/gbp/reviews.mjs --reply=<reviewId> --text-file=返信.txt
+node scripts/gbp/reviews.mjs --reply=<reviewId> --text-file=返信.txt --confirm
 ```
+
+口コミ返信は Google My Business API v4（`mybusiness.googleapis.com/v4/.../reviews`）を使う。
+2026-09-13 に返信の送信まで動作確認済み。返信文は既存返信のトーン（ご遺族への配慮・
+個人名を出さない・CLAUDE.md §11）に合わせ、**送信前に人間が本文を確認する。**
 
 ---
 
@@ -91,6 +110,7 @@ node scripts/gbp/performance.mjs --from=2026-08-01 --to=2026-08-31
 | `diff.mjs` | 現在値 vs 期待値の差分表示（読み取り専用） |
 | `apply.mjs` | 書き込み。**既定は dry-run**、`--confirm` で実行 |
 | `performance.mjs` | パフォーマンス指標の取得（読み取り専用） |
+| `reviews.mjs` | 口コミの一覧取得・返信。**既定は dry-run**、`--confirm` で送信 |
 
 ---
 
