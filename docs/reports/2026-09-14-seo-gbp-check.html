@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SEO・GBP 定期チェック 2026-09-14｜川口典礼サイト（社内・非公開）</title>
+<style>
+  :root{--ink:#2b2b2b;--soft:#6b6b6b;--line:#e3e0da;--bg:#faf9f7;--accent:#7a6a55;--ok:#3a7a4a;--ng:#a3423a;--warn:#a0782a}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;line-height:1.8;font-size:15px}
+  .wrap{max-width:860px;margin:0 auto;padding:44px 22px 80px}
+  .kicker{font-size:12px;letter-spacing:.12em;color:var(--accent);margin:0 0 6px}
+  h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:24px;font-weight:600;margin:0 0 8px}
+  h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:19px;font-weight:600;margin:38px 0 10px;border-bottom:1px solid var(--line);padding-bottom:6px}
+  h3{font-size:15.5px;margin:22px 0 6px}
+  .meta{color:var(--soft);font-size:13px;border-bottom:2px solid var(--line);padding-bottom:14px}
+  table{border-collapse:collapse;width:100%;margin:10px 0 16px;font-size:13.5px;background:#fff}
+  th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+  th{background:#f3f1ec;font-weight:600}
+  td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .tag{display:inline-block;font-size:11.5px;padding:1px 8px;border-radius:999px;margin-right:6px;color:#fff}
+  .ok{background:var(--ok)}.ng{background:var(--ng)}.warn{background:var(--warn)}.info{background:#5a6a8a}
+  .box{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 18px;margin:12px 0}
+  code{background:#f1efe9;padding:1px 6px;border-radius:5px;font-size:12.5px;font-family:ui-monospace,Consolas,monospace}
+  .note{color:var(--soft);font-size:13px}
+  footer{margin-top:40px;border-top:1px solid var(--line);padding-top:16px;color:var(--soft);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="kicker">川口典礼サイト ＿ 社内記録</p>
+  <h1>SEO・GBP 定期チェック（2026-09-14）</h1>
+  <p class="meta">
+    作成日：2026-09-14 ／ 担当：Claude Code（松澤依頼）／ サイト変更なし・読み取りのみ<br>
+    Search Console：直近28日 2026-08-15〜09-11 vs 前28日 07-18〜08-14（最終確定日 09-11・権限 siteOwner）<br>
+    GA4：同じ28日区切り ／ GBP：Business Profile Performance API を同じ28日区切りで取得（今回から分析に組み込み）<br>
+    前回：<a href="./2026-09-11-seo-check.html">2026-09-11 SEOチェック</a>（08-12〜09-08）。3日ずれの再測定なので、大半は前回と同じ傾向の再確認になる。
+  </p>
+
+  <h2>1. サマリ</h2>
+  <div class="box">
+    <p><span class="tag ok">良い</span><strong>非指名の地域KWは順位が引き続き改善。</strong>「川口市 家族葬」はトップページで 16.4位→8.8位、「川口市 葬儀」8.0位、「川口市 火葬式」直近7日 4.4位。9/06 に確定した「主ページはトップ」方針が数字に出始めている。</p>
+    <p><span class="tag ok">良い</span><strong><code>/plan/cremation/</code> がインデックス登録された</strong>（9/05 時点は「検出・未登録」）。</p>
+    <p><span class="tag ng">注意</span><strong>クリックは 369→301（−18%）。</strong>減少の中心は前回と同じく「川口メモリアルホール」（表示 319→130、クリック 33→8）と <code>/hall/</code>（54→19）。広告LPドメイン <code>kawaguchi-memorial-hall.com</code> は本日も robots.txt 404・noindex なし・canonical なしで、インデックス可能な状態のまま。</p>
+    <p><span class="tag ng">注意</span><strong>GBP の通話は 13→4、マップ表示 597→398（−33%）。</strong>9/11 の月次ログ（7月→8月）と同じ動きが 28 日区切りでも続いている。電話はサイトより GBP（地図枠）の影響が大きい。</p>
+    <p><span class="tag warn">確認</span><strong>GA4 の (direct) キーイベント 28 件のうち、<code>/lp/</code>・<code>/lp/contact/</code> の generate_lead 8 件は 2026-08-28（LP公開直後のフォーム検証）の当社テスト送信。</strong>広告はまだ旧LPに着地しており、LP経由の実問い合わせではない。他の直接流入分も実数は GAS 側で数える。</p>
+    <p><span class="tag info">継続</span>ChatGPT 経由は 8 セッション・キーイベント 9 件（<code>/plan/</code> からの電話タップ 8 件）。前回と同じで、AIO の受け皿は <code>/plan/</code>。</p>
+  </div>
+
+  <h2>2. Search Console 全体</h2>
+  <table>
+    <tr><th>期間</th><th class="n">クリック</th><th class="n">表示</th><th class="n">CTR</th><th class="n">平均順位</th></tr>
+    <tr><td>前28日 07-18〜08-14</td><td class="n">369</td><td class="n">36,221</td><td class="n">1.02%</td><td class="n">11.73</td></tr>
+    <tr><td>直近28日 08-15〜09-11</td><td class="n">301</td><td class="n">41,751</td><td class="n">0.72%</td><td class="n">10.65</td></tr>
+    <tr><td>前7日 08-29〜09-04</td><td class="n">83</td><td class="n">10,488</td><td class="n">0.79%</td><td class="n">10.46</td></tr>
+    <tr><td>直近7日 09-05〜09-11</td><td class="n">55</td><td class="n">10,654</td><td class="n">0.52%</td><td class="n">10.31</td></tr>
+  </table>
+  <p>表示 +15%・順位改善・クリック −18%。前回（−16%）と同じ形。端末別ではモバイルのクリックが 253→181 で減少のほぼ全部を占め、PC は 112→116 で横ばい。</p>
+
+  <h3>ページ群別（クリック 前28→直近28）</h3>
+  <table>
+    <tr><th>ページ群</th><th class="n">クリック</th><th class="n">表示</th><th>読み方</th></tr>
+    <tr><td>column</td><td class="n">208 → 168</td><td class="n">40,051 → 46,944</td><td>訃報記事 <code>/column/fuhou/</code> が 105 クリックで最大。情報収集の読者で、相談導線とは別物</td></tr>
+    <tr><td>top（/）</td><td class="n">69 → 74</td><td class="n">5,166 → 7,004</td><td>唯一の増加。地域KWの受け皿として機能</td></tr>
+    <tr><td>hall</td><td class="n">54 → 19</td><td class="n">738 → 562</td><td>「川口メモリアルホール」検索の落ち込みそのもの</td></tr>
+    <tr><td>company</td><td class="n">6 → 13</td><td class="n">513 → 380</td><td>指名検索の一部が会社ページへ</td></tr>
+    <tr><td>plan</td><td class="n">14 → 8</td><td class="n">1,880 → 1,659</td><td>小さい数字。判断材料にしない</td></tr>
+    <tr><td>area</td><td class="n">1 → 2</td><td class="n">1,068 → 1,421</td><td>方針どおり（主ページはトップ）。表示は伸びている</td></tr>
+    <tr><td>saijo</td><td class="n">9 → 8</td><td class="n">1,540 → 1,787</td><td>横ばい</td></tr>
+  </table>
+
+  <h2>3. 地域×葬儀形式の12語（非指名）</h2>
+  <table>
+    <tr><th>検索語</th><th class="n">表示 前→直近</th><th class="n">クリック</th><th class="n">順位 前28</th><th class="n">直近28</th><th class="n">直近7</th></tr>
+    <tr><td>川口 葬儀</td><td class="n">385 → 615</td><td class="n">2 → 2</td><td class="n">14.2</td><td class="n">10.3</td><td class="n">10.1</td></tr>
+    <tr><td>川口市 葬儀</td><td class="n">1,123 → 1,505</td><td class="n">0 → 1</td><td class="n">10.7</td><td class="n">9.4</td><td class="n">8.4</td></tr>
+    <tr><td>川口 家族葬</td><td class="n">100 → 142</td><td class="n">0</td><td class="n">25.9</td><td class="n">19.6</td><td class="n"><strong>11.4</strong></td></tr>
+    <tr><td>川口市 家族葬</td><td class="n">303 → 523</td><td class="n">0</td><td class="n">25.3</td><td class="n">17.6</td><td class="n">15.7</td></tr>
+    <tr><td>川口 一日葬</td><td class="n">29 → 31</td><td class="n">0</td><td class="n">8.7</td><td class="n">7.0</td><td class="n">7.7</td></tr>
+    <tr><td>川口市 一日葬</td><td class="n">105 → 99</td><td class="n">0</td><td class="n">22.9</td><td class="n">9.4</td><td class="n">8.9</td></tr>
+    <tr><td>川口 直葬</td><td class="n">8 → 33</td><td class="n">0</td><td class="n">7.8</td><td class="n">7.9</td><td class="n">6.6</td></tr>
+    <tr><td>川口市 直葬</td><td class="n">102 → 118</td><td class="n">0</td><td class="n">9.0</td><td class="n">9.1</td><td class="n">10.3</td></tr>
+    <tr><td>川口 火葬式</td><td class="n">4 → 16</td><td class="n">0</td><td class="n">12.3</td><td class="n">11.4</td><td class="n">10.5</td></tr>
+    <tr><td>川口市 火葬式</td><td class="n">47 → 46</td><td class="n">0</td><td class="n">22.8</td><td class="n">13.2</td><td class="n"><strong>4.4</strong></td></tr>
+    <tr><td>川口 市民葬</td><td class="n">27 → 67</td><td class="n">0</td><td class="n">14.5</td><td class="n">11.8</td><td class="n">12.9</td></tr>
+    <tr><td>川口市 市民葬</td><td class="n">177 → 231</td><td class="n">0</td><td class="n">11.7</td><td class="n">10.1</td><td class="n">10.5</td></tr>
+    <tr><th>12語合計</th><th class="n">→ 3,426</th><th class="n">→ 3</th><th colspan="3"></th></tr>
+  </table>
+  <p>12語すべてで順位が前28日より上か同等。「川口市 家族葬」はクエリ×ページで見るとトップページが 427表示・<strong>8.8位</strong>（前28日 257表示・16.4位）で、エリアページ側は 50〜90位に沈んでいる。<strong>着地ページの取り合いは解消し、トップに集約された。</strong>ただしクリックはまだ 0〜2 件で、8〜10位帯はスマホの1画面目に入らない。次の一段（5位以内）まではページ内容よりも被リンク・GBP側の要素が効く領域。</p>
+  <p class="note">直近7日の順位は表示回数が少ないため（川口市 火葬式 4.4位は十数回の表示）、確定値ではなく方向の確認に使う。</p>
+
+  <h3>クリック0で表示の多い検索語（直近28日・上位）</h3>
+  <p>川口市 家族葬 523（17.6位）／ 葬儀 川口市 459（9.8位）／ 創価学会 葬儀 454（8.1位）／ 川口市 市民葬 231（10.1位）／ 川口市 葬儀社 171（10.1位）／ 家族葬 川口市 152（25.8位）／ 川口市 葬式 137（11.1位）。地域語で 9〜10位に固まっており、あと数ポジションでクリックが出る位置に並んでいる。</p>
+
+  <h2>4. 指名検索と広告LPドメイン</h2>
+  <table>
+    <tr><th>検索語</th><th class="n">表示 前→直近</th><th class="n">クリック 前→直近</th><th class="n">順位</th></tr>
+    <tr><td>川口典礼</td><td class="n">212 → 150</td><td class="n">53 → 41</td><td class="n">1.0</td></tr>
+    <tr><td>川口メモリアルホール</td><td class="n">319 → 130</td><td class="n">33 → 8</td><td class="n">5.7 → 3.4</td></tr>
+  </table>
+  <p>「川口メモリアルホール」は順位が上がっているのに表示が 6 割減。社名検索は当日の会葬者が主（<code>docs</code> の過去分析）なので施行件数の波も含むが、前回指摘した <code>kawaguchi-memorial-hall.com</code>（旧広告LP）は<strong>本日も robots.txt 404・meta robots なし・canonical なし・title「川口典礼 | 川口市内で家族葬・市民葬をお探しなら川口典礼」</strong>で変わっていない。GSC からは相手側の表示が見えないため断定はしないが、ドメイン名とホール名が一致する状態は続いている。着地先の <code>/lp/</code> 移行（9/11 決定）が済めば旧LPを noindex にできる。</p>
+
+  <h2>5. インデックス状況</h2>
+  <p>主要15 URL を URL Inspection API で確認：<strong>15/15 が「送信して登録されました」</strong>。9/05 時点で未登録だった <code>/plan/cremation/</code> は登録済みに変わった。sitemap は 129 URL・警告0・エラー0・最終取得 09-05。</p>
+  <p class="note">9/05 に未登録だった残り2件（<code>/column/ichinichi-sou/</code>・<code>/voice/20250912/</code>）は今回の15件に含めておらず未確認。次回 <code>--inspect-all</code> を回す際に確認する。</p>
+
+  <h2>6. GA4（流入と成果）</h2>
+  <table>
+    <tr><th>流入元</th><th class="n">セッション 前→直近</th><th class="n">キーイベント 前→直近</th><th>備考</th></tr>
+    <tr><td>google / organic</td><td class="n">436 → 378</td><td class="n">26 → 7</td><td>電話タップが / で 13→5、/hall/ で 5→1。GSC のクリック減と一致</td></tr>
+    <tr><td>yahoo / organic</td><td class="n">160 → 175</td><td class="n">3 → 11</td><td>フォーム2・電話1ほか。増加</td></tr>
+    <tr><td>(direct) / (none)</td><td class="n">127 → 217</td><td class="n">6 → 28</td><td><strong>generate_lead が /contact/ 8・/lp/ 6・/estimate/ 3・/lp/contact/ 2。</strong>/lp/ 系 8 件は 2026-08-28 の当社フォーム検証（<code>docs/ad-lp/2026-09-11-lp-event-fix.md</code> 冒頭の日別表）。LP経由の実問い合わせではない</td></tr>
+    <tr><td>chatgpt.com / ai-assistant</td><td class="n">— → 8</td><td class="n">— → 9</td><td>/plan/ からの電話タップ 8。前回と同じ</td></tr>
+    <tr><td>google / cpc</td><td class="n">1 → 6</td><td class="n">0 → 0</td><td>広告は旧LPに着地しているため本サイト側にはほぼ来ない</td></tr>
+  </table>
+  <p>直接流入のキーイベントは <code>?analytics=off</code> を付けずに行った 8/28 の検証が混ざっており、<strong>「問い合わせが増えた」とは読まない</strong>。実件数は GAS のスプレッドシート側で数える。</p>
+
+  <h2>7. GBP（今回から分析に組み込み）</h2>
+  <table>
+    <tr><th>指標</th><th class="n">前28日 07-18〜08-14</th><th class="n">直近28日 08-15〜09-11</th><th class="n">増減</th></tr>
+    <tr><td>マップ表示（PC＋スマホ）</td><td class="n">597</td><td class="n">398</td><td class="n">−33%</td></tr>
+    <tr><td>検索表示（PC＋スマホ）</td><td class="n">880</td><td class="n">846</td><td class="n">−4%</td></tr>
+    <tr><td><strong>通話</strong></td><td class="n"><strong>13</strong></td><td class="n"><strong>4</strong></td><td class="n">−69%</td></tr>
+    <tr><td>サイトクリック</td><td class="n">27</td><td class="n">35</td><td class="n">+30%</td></tr>
+    <tr><td>ルート検索</td><td class="n">63</td><td class="n">58</td><td class="n">−8%</td></tr>
+    <tr><td>口コミ</td><td colspan="3">29 件・平均 4.6（9/13 に 5★が1件追加・返信済み）。未返信 0。直近12か月の新規は 13 件（2025-11 に 5 件集中、2026 年は 4・6・8・9 月に各1件）</td></tr>
+  </table>
+  <p>9/11 の月次ログ（7月 13 件→8月 4 件）と同じ形が 28 日区切りでも出た。<strong>マップ表示の減少と通話の減少が連動する</strong>という仮説はそのまま。サイト側の「川口メモリアルホール」表示減と同時期であることも合わせて見ておく（同じ原因＝ホール名の露出分散、の可能性）。ただし通話は一桁で、お盆を含む期間でもあるため、まだ断定しない。</p>
+  <p class="note">GBP 取得は <code>scripts/gbp/performance.mjs</code>（読み取り専用）。書き込み系の <code>apply.mjs</code> は実行していない。数値は <code>docs/operations/gbp/2026-09-11-gbp-monthly-log.md</code> にも追記した。</p>
+
+  <h2>8. 今後のアクション</h2>
+  <ol>
+    <li><strong>旧広告LPドメインの扱い</strong>：<code>/lp/</code> 移行の切替日が決まったら <code>kawaguchi-memorial-hall.com</code> を noindex に。ホール名の表示減・GBP マップ表示減の両方に効く可能性がある（9/11 からの継続課題）。</li>
+    <li><strong>地域KW は今は触らない</strong>：順位改善が続いているので、内容の書き換えはしない。10月上旬に再測定。</li>
+    <li><strong>GBP を毎回の定期チェックに含める</strong>：GSC・GA4 と同じ 28 日区切りで通話・マップ表示・口コミを並べる。月次ログは月末締めで別途続ける。</li>
+    <li><strong>GA4 の直接流入テスト混入</strong>：テスト時は <code>?analytics=off</code> を徹底。問い合わせ実数は GAS 側で確認。</li>
+    <li><strong>次回 <code>--inspect-all</code></strong>：未確認2 URL の登録状態を含めて全件確認（クォータ消費のため月1回程度）。</li>
+  </ol>
+
+  <footer>
+    取得コマンド：<code>node --env-file=.env.local scripts/search-console-audit.mjs --inspect --with-ga4</code>、<code>node --env-file=.env.local scripts/gbp/performance.mjs --from=… --to=…</code>、<code>node --env-file=.env.local scripts/gbp/reviews.mjs</code>。生データは <code>tmp/</code>（git 管理外）。個人情報・口コミ本文・秘密情報は本レポートに含めていない。
+  </footer>
+</div>
+</body>
+</html>
