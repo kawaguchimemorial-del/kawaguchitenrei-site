@@ -35,6 +35,11 @@
 
   <ul class="list">
     <li>
+      <span class="date">2026-09-15</span>
+      <a href="./2026-09-15-lp-remove-exit-links.html">広告LPから本サイトへの出口リンクを撤去（🟢 /hall/・/saijo/・/voice/ への3リンクをLP内完結に）</a>
+      <span class="desc">松澤指摘：式場の詳細を押すと本サイト /hall/ に出てしまい、そこでの電話・問い合わせが広告CVにも lp_* にも載らない。9/12 のプラン詳細と同じ考え方で、LpHalls.tsx の /hall/ をページ内 #hall へ、/saijo/ を電話案内へ、page.tsx の /voice/ を削除。残る出口はフォーム同意の /privacy/ のみ。build 140/140、LP brotli 22.9KB。</span>
+    </li>
+    <li>
       <span class="date">2026-09-14</span>
       <a href="./2026-09-14-seo-gbp-check.html">SEO・GBP 定期チェック（🟢 地域KW順位が続伸・「川口市 家族葬」トップで8.8位／🟢 /plan/cremation/ 登録済みに／🔴 クリック−18%・GBP通話13→4はホール名の露出減と連動／🟡 GA4の/lp/リード8件は8/28の当社検証分）</a>
       <span class="desc">GSC 直近28日 08-15〜09-11 vs 前28日、GA4 同区切り、GBP Performance API を同区切りで取得し今回から分析に組み込み。サイト変更なし。全体：クリック369→301、表示36,221→41,751、平均順位11.73→10.65。非指名12語はすべて順位改善、川口市 家族葬はトップページ16.4→8.8位でエリアページとの取り合いは解消。川口メモリアルホールは表示319→130・クリック33→8で、旧広告LPドメインは本日もrobots 404・noindexなし。GBP：マップ表示597→398、通話13→4、サイトクリック27→35、口コミ29件4.6・未返信0。GA4 direct の/lp/系generate_lead 8件は2026-08-28のフォーム検証で、LP経由の実問い合わせではない（広告は旧LP着地のまま）。実数はGAS側で数える。次：/lp/切替後に旧LPをnoindex、地域KWは10月上旬に再測定、GBPを毎回の定期チェックに含める。</span>

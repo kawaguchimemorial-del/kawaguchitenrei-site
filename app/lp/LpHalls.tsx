@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 
 import { templeHallAreas } from "@/lib/temple-halls";
 import { PHONE_DISPLAY, PHONE_HREF } from "./lp-data";
@@ -14,7 +13,7 @@ import { PHONE_DISPLAY, PHONE_HREF } from "./lp-data";
  *    （競合 ososhiki.kinpoudou.co.jp も自社式場のみ写真2枚＋理由つき、
  *      他施設は写真1枚とグレー枠で扱いを分けている：2026-08-27 実測）
  *  ・掲載施設は当社が運営する施設ではないため、注記を必ず添える
- *  ・式場使用料は施設ごとに異なるため、他施設の金額はLPに出さない（/saijo/ へ誘導）
+ *  ・式場使用料は施設ごとに異なるため、他施設の金額はLPに出さない（電話でご案内。2026-09-15 までは /saijo/ へ誘導していた）
  *  ・自社式場の「式場使用料無料」は 2026-08-27 松澤判断で掲載。
  *    lib/plans.ts の「式場使用料（外部斎場を利用する場合）」と整合する
  */
@@ -137,12 +136,15 @@ export function LpHalls() {
                   {PHONE_DISPLAY}
                 </span>
               </a>
-              <Link
-                href="/hall/kawaguchi-memorial-hall/"
+              {/* 以前は本サイトの /hall/ へリンクしていたが、広告の着地先から出てしまい
+                  lp_* も代理店のコンバージョンタグも届かなくなるため、LP内の写真・地図へ
+                  移動させる（2026-09-15 松澤指摘。プラン詳細の 2026-09-12 対応と同じ考え方）。 */}
+              <a
+                href="#hall"
                 className="flex items-center justify-center rounded-lg border-2 border-brand bg-white px-4 py-3 text-[15px] font-bold text-brand"
               >
-                式場の詳細を見る
-              </Link>
+                式場の写真・地図を見る
+              </a>
             </div>
           </div>
         </div>
@@ -193,14 +195,21 @@ export function LpHalls() {
               </strong>
               最新の状況は川口典礼で確認のうえご案内します。
             </p>
-            <p className="mt-3 text-[14px]">
-              <Link
-                href="/saijo/"
-                className="font-bold text-brand underline underline-offset-4"
-              >
-                各式場の詳細・使用料の目安を見る
-              </Link>
+            {/* 他施設の使用料はLPに出さない方針（施設ごとに異なるため）。
+                以前は本サイトの /saijo/ へ誘導していたが、LPから出てしまうので
+                電話でのご案内に置き換えた（2026-09-15）。 */}
+            <p className="mt-3 text-[14px] font-medium leading-6 text-ink">
+              各式場の使用料の目安・空き状況は、お電話でご案内します。
             </p>
+            <a
+              href={PHONE_HREF}
+              data-lp-event="lp_click_tel"
+              data-lp-placement="hall_other"
+              className="mt-2 flex flex-col items-center rounded-lg bg-emergency px-4 py-3 text-white transition hover:bg-emergency-deep"
+            >
+              <span className="text-[11px] font-bold">24時間365日・通話無料</span>
+              <span className="text-xl font-bold tracking-wide">{PHONE_DISPLAY}</span>
+            </a>
           </div>
         </div>
       </div>

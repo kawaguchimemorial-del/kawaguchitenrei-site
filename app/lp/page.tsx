@@ -605,14 +605,8 @@ export default function LpPage() {
             </ul>
           </div>
 
-          <p className="mt-1 text-center text-sm">
-            <Link
-              href="/voice/"
-              className="text-brand underline underline-offset-4"
-            >
-              お客様の声をもっと見る
-            </Link>
-          </p>
+          {/* 「お客様の声をもっと見る」（/voice/）は、広告の着地先から出てしまい計測が
+              途切れるため外した。声はLP内の掲載分のみ（2026-09-15 松澤判断）。 */}
 
           {/* 出典別の評価。数値は lib/reviews.ts の1か所のみを参照する */}
           <div className="mt-6 overflow-hidden rounded-xl border border-brand-tint bg-white">
