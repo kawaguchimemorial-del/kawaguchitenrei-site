@@ -137,6 +137,14 @@
     <li><strong>次回 <code>--inspect-all</code></strong>：未確認2 URL の登録状態を含めて全件確認（クォータ消費のため月1回程度）。</li>
   </ol>
 
+  <h2>追記：2026-09-15 再取得（最終確定日 09-12・1日ずらし）</h2>
+  <table>
+    <tr><th>期間</th><th class="n">クリック</th><th class="n">表示</th><th class="n">CTR</th><th class="n">平均順位</th></tr>
+    <tr><td>前28日 07-19〜08-15</td><td class="n">375</td><td class="n">36,424</td><td class="n">1.03%</td><td class="n">11.70</td></tr>
+    <tr><td>直近28日 08-16〜09-12</td><td class="n">293</td><td class="n">41,732</td><td class="n">0.70%</td><td class="n">10.62</td></tr>
+  </table>
+  <p>前日と同じ傾向で、判断を変える差はない。日別では 9/11・9/12 がクリック 4 件ずつ（表示は 1,300〜1,500 で横ばい）。「川口市 葬儀」直近7日 8.2位、「川口 家族葬」11.2位、「川口市 火葬式」4.4位で継続改善。「川口メモリアルホール」は表示 316→128・クリック 34→7 のまま。GA4 の (direct) の <code>/lp/</code> generate_lead は 7 件・click_tel 5 件に増えており、9/12 のテスト送信分が加わったもの（実問い合わせではない）。GBP は前日取得のため再取得せず。</p>
+
   <footer>
     取得コマンド：<code>node --env-file=.env.local scripts/search-console-audit.mjs --inspect --with-ga4</code>、<code>node --env-file=.env.local scripts/gbp/performance.mjs --from=… --to=…</code>、<code>node --env-file=.env.local scripts/gbp/reviews.mjs</code>。生データは <code>tmp/</code>（git 管理外）。個人情報・口コミ本文・秘密情報は本レポートに含めていない。
   </footer>
