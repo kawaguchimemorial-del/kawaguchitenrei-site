@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>事前相談メール返信の標準化（2026-09-16）｜川口典礼サイト（社内・非公開）</title>
+<style>body{margin:0;background:#faf9f7;color:#2b2b2b;font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;line-height:1.8;font-size:15px}.wrap{max-width:820px;margin:0 auto;padding:44px 22px 80px}h1{font-family:"Yu Mincho",serif;font-size:22px;font-weight:600}h2{font-size:17px;border-bottom:1px solid #e3e0da;padding-bottom:6px;margin-top:30px}table{border-collapse:collapse;width:100%;font-size:13.5px;background:#fff}th,td{border:1px solid #e3e0da;padding:7px 10px;text-align:left;vertical-align:top}th{background:#f3f1ec}code{background:#f1efe9;padding:1px 6px;border-radius:5px;font-size:12.5px}</style></head>
+<body><div class="wrap">
+<h1>事前相談メール返信の標準化（2026-09-16）</h1>
+<p>作成日：2026-09-16 ／ 担当：Claude Code（松澤依頼）／ サイト変更なし。個人情報は記載しない。</p>
+<h2>サマリ</h2>
+<ul>
+<li>【完了】2026-09-14〜16 に旧広告LP経由で届いた事前相談（ご家族が入院中・20名前後・無宗教・川口市民）に、3往復の返信文案を作成した。この経験を <code>skills/consultation-reply/SKILL.md</code> に標準化</li>
+<li>【完了】問い合わせ経路の判別表（件名・差出人）、返信3段階の型、会員価格の適用ルール、市民葬の説明定型、見積の注意書き、スマホ書式を固定</li>
+<li>【完了】5ランク価格表の加算ルールを実測し、夕暮れ家族葬の5パターン（803,000／993,000／1,143,000／1,323,000）を算出</li>
+</ul>
+<h2>今回の流れ（属性のみ）</h2>
+<table>
+<tr><th>往復</th><th>先方</th><th>当社の返信</th></tr>
+<tr><td>1</td><td>旧広告LPのフォームから「予算と流れを知りたい」</td><td>6プラン一覧・共通で含まれるもの・別途・ヒアリング6項目・いざというときの流れ7ステップ。会員価格は「登録した方に適用」と明記</td></tr>
+<tr><td>2</td><td>プラン未定・親族友人含め20名・無宗教・市立医療センター・安置火葬場は希望なし・登録したい</td><td>夕暮れ家族葬か家族葬の2案提案。登録4項目をメールで依頼。見積前提（当社安置・めぐりの森）</td></tr>
+<tr><td>3</td><td>川口市民なので市民葬の内容と価格を知りたい</td><td>登録完了を報告。市民葬の制度・含まれるもの・別途・正直な評価（690,000円スタート、少人数に不向き）。3案の概算（759,940／836,940／1,158,940）と読み方の注意（安置3日前提・火葬料実費・任意加算）</td></tr>
+</table>
+<h2>決めたルール（松澤判断）</h2>
+<ul>
+<li>問い合わせだけでは会員扱いにしない。メールで4項目を受け、見積送付をもって登録完了</li>
+<li>市民葬は「入口は安いが必要なものを足すと690,000円から。20年前の制度で少人数向きでない」と正直に書く</li>
+<li>返信はスマホで読む前提の縦積み書式</li>
+</ul>
+<h2>追記：火葬場・外部式場の料金と見積ルール</h2>
+<ul>
+<li>松澤指示（2026-09-16）：めぐりの森＝火葬料実費・骨壺14,300円計上／谷塚＝火葬料・待合室実費・骨壺計上／戸田＝火葬料実費・骨壺は火葬料に含む・待合室1席990円／町屋＝火葬料・待合室・骨壺すべて実費／臨海＝火葬料・待合室実費・骨壺は火葬料に含む。外部式場（戸田・戸田サービス館・谷塚・町屋）は式場使用料実費＋外部設営費一式 最低100,000円（税抜）</li>
+<li>5火葬場の料金を<strong>運営者の公式ページ</strong>から取得し <code>skills/consultation-reply/crematorium-and-hall-fees.md</code> に保存。紹介サイトの数字は使わない（松澤指示）。戸田サービス館の式場料金は公式非公開</li>
+<li>気づき：<code>lib/saijo.ts</code> の谷塚（式場料金）と町屋（式場料金・保棺料）が公式の現行値と食い違う。サイト側の更新は別タスク</li>
+<li>祭壇シミュレーター向けの改修プロンプトを <code>docs/prompts/2026-09-16-altar-simulator-venue-selection.md</code> に保存</li>
+</ul>
+<h2>変更したファイル</h2>
+<ul><li><code>skills/consultation-reply/SKILL.md</code>・<code>crematorium-and-hall-fees.md</code>（新規）</li><li><code>docs/prompts/2026-09-16-altar-simulator-venue-selection.md</code>（新規）</li><li><code>docs/ai-workflows/skill-index.md</code>（1行追記）</li><li>本レポート・<code>docs/reports/index.html</code></li></ul>
+<h2>今後のアクション</h2>
+<ul><li>次の相談ではこのスキルを最初に読んでから文案を作る</li><li>見積の運営管理費55,000円（10名超）はサイト正本に無いため、サイトへ載せるかを別途判断</li></ul>
+</div></body></html>

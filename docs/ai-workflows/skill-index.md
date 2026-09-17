@@ -58,6 +58,7 @@ CLAUDE.md §19 の「自動 push してよい」範囲 = L1 / L3 相当、「pus
 
 | Skill | 用途 | レベル |
 |---|---|---|
+| `skills/consultation-reply/SKILL.md` | 事前相談・問い合わせへの返信メール文案（経路判別・3段階の型・会員価格・市民葬定型・スマホ書式） | L1 |
 | `skills/seo-page-improvement/SKILL.md` | SEO/AIO 向けページ改善の標準 7 ステップ | L1 / L3 |
 | `skills/search-console-log/SKILL.md` | URL 検査・公開 URL テスト後の docs 記録手順 | L3 |
 | `skills/privacy-review-jp/SKILL.md` | 日本向け個人情報保護レビュー | L0 / L2 |
