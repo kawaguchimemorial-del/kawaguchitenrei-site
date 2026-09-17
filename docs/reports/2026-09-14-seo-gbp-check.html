@@ -145,6 +145,15 @@
   </table>
   <p>前日と同じ傾向で、判断を変える差はない。日別では 9/11・9/12 がクリック 4 件ずつ（表示は 1,300〜1,500 で横ばい）。「川口市 葬儀」直近7日 8.2位、「川口 家族葬」11.2位、「川口市 火葬式」4.4位で継続改善。「川口メモリアルホール」は表示 316→128・クリック 34→7 のまま。GA4 の (direct) の <code>/lp/</code> generate_lead は 7 件・click_tel 5 件に増えており、9/12 のテスト送信分が加わったもの（実問い合わせではない）。GBP は前日取得のため再取得せず。</p>
 
+  <h2>追記：2026-09-17 再取得（最終確定日 09-14）</h2>
+  <table>
+    <tr><th>期間</th><th class="n">クリック</th><th class="n">表示</th><th class="n">CTR</th><th class="n">平均順位</th></tr>
+    <tr><td>前28日 07-21〜08-17</td><td class="n">385</td><td class="n">37,682</td><td class="n">1.02%</td><td class="n">11.64</td></tr>
+    <tr><td>直近28日 08-18〜09-14</td><td class="n">284</td><td class="n">40,697</td><td class="n">0.70%</td><td class="n">10.54</td></tr>
+    <tr><td>直近7日 09-08〜09-14</td><td class="n">57</td><td class="n">10,286</td><td class="n">0.55%</td><td class="n"><strong>9.92</strong></td></tr>
+  </table>
+  <p>傾向は変わらず。直近7日の平均順位が 9.92 と初めて10位を切った。日別は 9/13 が13件・9/14 が11件で、直近では良い2日。「川口市 葬儀」直近7日 <strong>7.7位</strong>（前28日 11.1）、「川口 葬儀」9.5位、「川口市 家族葬」14.1位、「川口 家族葬」14.2位、「川口市 火葬式」4.7位。「川口メモリアルホール」は表示 314→117・クリック 33→7 で変わらず（旧LPドメインは 9/21 の切替後に noindex 予定）。判断・アクションは変更なし。次回は 9/22 の LP 切替疎通確認とあわせて行う。</p>
+
   <footer>
     取得コマンド：<code>node --env-file=.env.local scripts/search-console-audit.mjs --inspect --with-ga4</code>、<code>node --env-file=.env.local scripts/gbp/performance.mjs --from=… --to=…</code>、<code>node --env-file=.env.local scripts/gbp/reviews.mjs</code>。生データは <code>tmp/</code>（git 管理外）。個人情報・口コミ本文・秘密情報は本レポートに含めていない。
   </footer>
