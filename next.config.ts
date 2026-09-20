@@ -1,6 +1,23 @@
 import type { NextConfig } from "next";
 import { withBotId } from "botid/next/config";
 
+// CSP は Report-Only で観察してから enforce に切り替える（docs/reports/2026-09-20-security-headers-handoff.md Step 2）。
+// 外部先の根拠: GTM/GA4/Google広告（GoogleTagManager.tsx・広告LP）、Google Maps 埋め込み（access/company/hall/saijo/home/lp）、
+// 住所API（api.zipaddress.net・geoapi.heartrails.com）、Vercel Analytics / BotID（/_vercel/* なので 'self'）。
+const cspReportOnly = [
+  "default-src 'self'",
+  "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google.com https://www.gstatic.com https://www.googleadservices.com https://googleads.g.doubleclick.net",
+  "style-src 'self' 'unsafe-inline'",
+  "font-src 'self' data:",
+  "img-src 'self' data: blob: https:",
+  "connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://www.googletagmanager.com https://www.google.com https://www.google.co.jp https://googleads.g.doubleclick.net https://api.zipaddress.net https://geoapi.heartrails.com",
+  "frame-src https://www.google.com https://www.googletagmanager.com https://td.doubleclick.net",
+  "frame-ancestors 'self'",
+  "base-uri 'self'",
+  "form-action 'self'",
+  "object-src 'none'",
+].join("; ");
+
 const nextConfig: NextConfig = {
   trailingSlash: true,
   async headers() {
@@ -15,6 +32,7 @@ const nextConfig: NextConfig = {
             key: "Permissions-Policy",
             value: "camera=(), microphone=(), geolocation=(), payment=(), usb=()",
           },
+          { key: "Content-Security-Policy-Report-Only", value: cspReportOnly },
         ],
       },
     ];
