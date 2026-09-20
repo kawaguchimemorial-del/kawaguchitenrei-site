@@ -35,6 +35,11 @@
 
   <ul class="list">
     <li>
+      <span class="date">2026-09-20</span>
+      <a href="./2026-09-20-security-headers.html">セキュリティヘッダー強化（🟢 nosniff / X-Frame-Options / Referrer-Policy / Permissions-Policy を全パスに付与／CSP は Report-Only で観察開始／🟡 ACAO: * は Vercel 静的配信由来で実害小・現状維持）</a>
+      <span class="desc">next.config.ts に headers() を追加し本番反映済み。CSP の許可先はコード実測（GTM/GA4・Google広告・Maps埋め込み・住所API）に合わせ、Google Fonts は未使用のため除外。2026-09-22 / 09-27 / 10-04 に DevTools と GA4 で弊害の有無を確認し、2週間問題なければ enforce 化。</span>
+    </li>
+    <li>
       <span class="date">2026-09-17</span>
       <a href="./2026-09-17-aio-status-and-home-faq.html">AIO の現状整理とトップ FAQ の引用向け改善（🟢 AI経由の月次集計スクリプト／手動チェック手順／トップFAQ 4問に社名・地名・価格を明記／🔴 「ChatGPT経由48倍」は1〜2セッションの事象と訂正）</a>
       <span class="desc">AI 経由参照は 6月3・7月5・8月9・9月(1〜17日)8 セッション。成果は8月の /plan/ 2セッション（電話タップ8）のみで、9月は0。scripts/ai-referral-report.mjs を追加し、docs/eval/aio-manual-check.md に固定8検索語＋4質問の手動チェック表を用意。lib/faqs.ts のトップ FAQ 4問（搬送・家族葬費用・直葬花入れ・事前相談）を単独引用できる形に書き換え。SEO スキルに「FAQ は単独引用形」「価格変更時は llms.txt 同期」を追記。外部ツールは保留。</span>
