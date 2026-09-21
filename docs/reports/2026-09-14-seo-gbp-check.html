@@ -174,6 +174,27 @@
   </table>
   <p>9/16 はクリック 7・表示 1,198 と直近では少なめ（平日中日の水準）。28日クリックは 283 で3日連続横ばい、下げ止まりは継続。「川口市 葬儀」7.8位・「川口市 火葬式」5.0位は維持、「川口 家族葬」直近7日は 20.6位（前日 14.7）で表示数が少なく振れている。「川口メモリアルホール」直近7日 9.0位・表示減は継続。判断・アクションは変更なし。9/21 の LP 切替後、9/22 に疎通確認。</p>
 
+  <h2>追記：2026-09-22 再取得（最終確定日 09-19）＋ 新LP切替後の疎通確認</h2>
+  <table>
+    <tr><th>期間</th><th class="n">クリック</th><th class="n">表示</th><th class="n">CTR</th><th class="n">平均順位</th></tr>
+    <tr><td>前28日 07-26〜08-22</td><td class="n">342</td><td class="n">37,576</td><td class="n">0.91%</td><td class="n">11.62</td></tr>
+    <tr><td>直近28日 08-23〜09-19</td><td class="n">297</td><td class="n">40,666</td><td class="n">0.73%</td><td class="n">10.34</td></tr>
+    <tr><td>前7日 09-06〜09-12</td><td class="n">54</td><td class="n">10,631</td><td class="n">0.51%</td><td class="n">10.24</td></tr>
+    <tr><td>直近7日 09-13〜09-19</td><td class="n">83</td><td class="n">9,342</td><td class="n">0.89%</td><td class="n">9.62</td></tr>
+  </table>
+  <p><span class="tag ok">良い</span>直近7日クリックは 54→83 と久しぶりに増加（9/17 18・9/19 19）。28日は 297 で横ばい継続。「川口市 葬儀」8.5位（直近7日 8.1）・「川口 葬儀」10.0位（クリック 2）・「川口市 火葬式」10.3位（直近7日 4.9）・「川口市 一日葬」9.3位。「川口 家族葬」直近7日 21.0 / 「川口市 家族葬」17.2 は表示が少なく振れ幅が大きい。「川口メモリアルホール」は表示 219→126・クリック 27→7 と減少継続、直近7日 8.8位。ページ別ではトップ 63→64 で維持、<code>/company/</code> 7→20 が増、<code>/hall/</code> 45→19・訃報コラム 123→89 が減。</p>
+  <p><span class="tag warn">注意</span>GBP（同じ28日区切り）：通話 8→7、サイトクリック 30→21、ルート検索 61→59、マップ表示（スマホ）333→253、検索表示（スマホ）657→480。表示の減少は続いているが通話は横ばい。</p>
+  <h3>新LP（/lp/）切替後の計測（9/20〜9/22 朝時点・GA4）</h3>
+  <table>
+    <tr><th>項目</th><th class="n">値</th><th>読み方</th></tr>
+    <tr><td>LP入口セッション</td><td class="n">295</td><td>Cross-network 209・Paid Search 51・Unassigned 28。広告の着地先は /lp/ に切り替わっている（9/21 の page_view 353）</td></tr>
+    <tr><td>lp_view / lp_click_tel / lp_contact_open / lp_plan_open</td><td class="n">290 / 236 / 18 / 17</td><td>lp_* は GA4 に届いている</td></tr>
+    <tr><td>lp_click_tel のうち 9/21 23時台〜9/22 0時台</td><td class="n">202</td><td>約17セッションから 2 時間で 202 タップ。実ユーザーの動きではなく、テストか機械的なアクセス。<b>この 2 時間を除いた電話タップは 34（LP入口セッションの約 11%）</b>で、こちらを実勢として読む</td></tr>
+    <tr><td>generate_lead / lp_generate_lead</td><td class="n">0 / 0</td><td>9/21 10:36 に代理店のテスト送信（GAS 通知メールは受信済み＝フォーム本体は正常）。ただしその時間帯の /lp/contact/ には page_view を含め GA4 のイベントが 1 件もなく、<b>テストに使ったブラウザから GA4 へ何も届いていない</b>（広告ブロッカー・計測除外の可能性）。発火の実績は 9/17 の当社テストで generate_lead・lp_generate_lead とも /lp/contact/ から受信済み</td></tr>
+  </table>
+  <p><span class="tag info">確認</span>lp_* イベントの約半分（lp_view 154・lp_click_tel 218）が「ランディングページなし」のセッションに計上されている（page_view と別セッションに割れる）。gtag 直接送出と GTM 経由 page_view の混在が原因とみられ、LP入口セッション単位の集計値（lp_view 136 など）は実数より小さく出る。イベント総数で見る分には影響なし。集計方法の扱いは 9/28 の初回比較までに整理する。</p>
+  <p><span class="tag ok">良い</span>CSP Report-Only の弊害確認（2 回目）：<code>/</code>・<code>/lp/</code>・<code>/lp/contact/</code>・<code>/contact/</code> で違反ログなし。GA4 のイベント受信も途切れていない。</p>
+  <p>次回：9/27（CSP 3 回目）、9/28（LP 初回比較）。必要なら、当社側で計測が有効な端末から /lp/contact/ のテスト送信を 1 件行い、generate_lead / lp_generate_lead の受信を再確認する。</p>
   <footer>
     取得コマンド：<code>node --env-file=.env.local scripts/search-console-audit.mjs --inspect --with-ga4</code>、<code>node --env-file=.env.local scripts/gbp/performance.mjs --from=… --to=…</code>、<code>node --env-file=.env.local scripts/gbp/reviews.mjs</code>。生データは <code>tmp/</code>（git 管理外）。個人情報・口コミ本文・秘密情報は本レポートに含めていない。
   </footer>
