@@ -65,7 +65,11 @@ export function LpContactForm() {
     if (state?.ok) {
       pushGenerateLead("lp_contact");
       trackLpEvent("lp_generate_lead", "contact_form");
-      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+      // 完了ブロックの位置へ移動する。/lp/ 下部に埋め込んだフォームでは最上部へ戻すと
+      // 完了表示が画面外になり、GTM の「要素の表示」トリガー（広告CV）が発火しない。
+      document
+        .getElementById("lp-contact-complete")
+        ?.scrollIntoView({ block: "start", behavior: "auto" });
     }
   }, [state?.ok]);
 
