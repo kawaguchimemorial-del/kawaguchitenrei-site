@@ -63,8 +63,8 @@ export const company: CompanyInfo = {
   annualCases: "年間約260件",
   cumulativeCases: "4,600件以上",
   satisfactionRate: "97%以上",
-  reviewRating: 4.5,
-  reviewCount: 27,
+  reviewRating: 4.6,
+  reviewCount: 29,
   citizenFuneralRegistered: true,
   trackRecord: [
     {
