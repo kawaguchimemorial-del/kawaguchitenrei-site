@@ -195,6 +195,65 @@
   <p><span class="tag info">確認</span>lp_* イベントの約半分（lp_view 154・lp_click_tel 218）が「ランディングページなし」のセッションに計上されている（page_view と別セッションに割れる）。gtag 直接送出と GTM 経由 page_view の混在が原因とみられ、LP入口セッション単位の集計値（lp_view 136 など）は実数より小さく出る。イベント総数で見る分には影響なし。集計方法の扱いは 9/28 の初回比較までに整理する。</p>
   <p><span class="tag ok">良い</span>CSP Report-Only の弊害確認（2 回目）：<code>/</code>・<code>/lp/</code>・<code>/lp/contact/</code>・<code>/contact/</code> で違反ログなし。GA4 のイベント受信も途切れていない。</p>
   <p>次回：9/27（CSP 3 回目）、9/28（LP 初回比較）。必要なら、当社側で計測が有効な端末から /lp/contact/ のテスト送信を 1 件行い、generate_lead / lp_generate_lead の受信を再確認する。</p>
+
+  <h2>追記：2026-09-23 再取得（最終確定日 09-20）＋ 新LPの電話・フォーム・離脱の分析（9/21〜9/22 の2日分）</h2>
+  <table>
+    <tr><th>期間</th><th class="n">クリック</th><th class="n">表示</th><th class="n">CTR</th><th class="n">平均順位</th></tr>
+    <tr><td>前28日 07-27〜08-23</td><td class="n">333</td><td class="n">37,374</td><td class="n">0.89%</td><td class="n">11.62</td></tr>
+    <tr><td>直近28日 08-24〜09-20</td><td class="n">303</td><td class="n">40,855</td><td class="n">0.74%</td><td class="n">10.30</td></tr>
+    <tr><td>前7日 09-07〜09-13</td><td class="n">52</td><td class="n">10,501</td><td class="n">0.50%</td><td class="n">9.96</td></tr>
+    <tr><td>直近7日 09-14〜09-20</td><td class="n">82</td><td class="n">9,476</td><td class="n">0.87%</td><td class="n">9.86</td></tr>
+  </table>
+  <p><span class="tag ok">良い</span>9/20 はクリック 12。直近7日 52→82 の回復が続き、28日も 297→303 と微増。「川口市 葬儀」8.5位（直近7日 8.4）、「川口 葬儀」10.0位、「川口市 火葬式」直近7日 4.8位、「川口市 一日葬」9.1位で、前日から変化なし。「川口典礼」は直近7日でクリック 5→14。</p>
+  <p><span class="tag warn">注意</span>「川口メモリアルホール」は28日でクリック 25→7・表示 212→134。<code>/hall/</code> も 43→20 と減っている。旧LP（kawaguchi-memorial-hall.com）の noindex は、切替が安定してから行う予定のまま。GBP（08-24〜09-20 と前28日の比較）：通話 9→5、サイトクリック 30→20、ルート検索 69→65、検索表示（スマホ）662→456、マップ表示（スマホ）327→260。表示の減少が続いている。</p>
+
+  <h3>新LP：入口と離脱（9/21・9/22）</h3>
+  <table>
+    <tr><th>項目</th><th class="n">9/21</th><th class="n">9/22</th><th>読み方</th></tr>
+    <tr><td>LP入口セッション</td><td class="n">278</td><td class="n">302</td><td>9/21 は Paid Search 264、<b>9/22 は Cross-network 207・Paid Search 59 に入れ替わった</b>。当社GTM（v9・9/17公開）とサイト側は 9/21〜22 に計測の変更なし。広告側の配信変更（P-MAX 等の着地先変更）の可能性があり、代理店への確認が必要</td></tr>
+    <tr><td>エンゲージメントのあったセッション</td><td class="n">98（35%）</td><td class="n">25（8%）</td><td>9/22 の低下は下記のセッション分割の影響が大きく、そのまま「質が落ちた」とは読まない。分割の影響がない 9/21 の Paid Search は 34%・平均 74 秒</td></tr>
+    <tr><td>ページ下部まで到達（scroll 90%）</td><td class="n">14人</td><td class="n">15人</td><td>訪問者の約 3〜5%。<b>ほとんどの人はファーストビュー〜プラン表の周辺で判断している</b>。電話ボタンがファーストビューにあることが重要</td></tr>
+    <tr><td>時間帯</td><td colspan="2" class="n">20〜23時が最多</td><td>2日合計で 20〜23時の入口が 196（全体の約 35%）。深夜〜夜の配信を止めない方針と合っている</td></tr>
+  </table>
+  <p><span class="tag warn">注意</span><b>セッション分割は 9/22 から始まっている</b>（9/21 は 0 件）。9/22 は lp_view 286 件のうち 138 件が「ランディングページなし」のセッションに入り、Unassigned として 155 セッション・エンゲージメント 0 が発生した。昨日の記録では「gtag 直接送出と GTM 経由 page_view の混在が原因」としたが、同じ仕組みの 9/21 には起きていないため、それだけでは説明できない。分割は Cross-network 経由の Android Chrome に集中している。原因は未確定で、9/28 の初回比較では<b>セッション単位の率（直帰率・エンゲージメント率）を使わず、イベントのユーザー数で比べる</b>。</p>
+
+  <h3>新LP：電話タップ</h3>
+  <table>
+    <tr><th>項目</th><th class="n">9/21</th><th class="n">9/22</th><th>読み方</th></tr>
+    <tr><td>lp_click_tel（件数）</td><td class="n">208</td><td class="n">106</td><td>件数には下記の異常値が含まれる</td></tr>
+    <tr><td>lp_click_tel（タップした人数）</td><td class="n">28</td><td class="n">31</td><td>異常な1人を除いて <b>1日あたり約 27〜30人</b>。LP入口の約 10%</td></tr>
+  </table>
+  <p><span class="tag warn">注意</span><b>異常値の正体は1台の端末</b>（Android Webview＝アプリ内ブラウザ・川口市）。9/21 23:56〜9/22 0:02 の7分間に約 225 回（1秒に1回ペース）タップしている。昨日「約17セッション」と書いたが、分単位で見るとすべて同じ1人だった。人の操作とは考えにくい。同じ端末系統（Android Webview）はプランを開く操作も 42 回・2人に偏っている。<b>GTM の「電話タップCV」は Google 広告のコンバージョンとして送られるため、広告管理画面でカウント方法が「毎回」になっていると、この 225 回がそのままCVとして入り、自動入札の学習がゆがむ。</b>代理店にカウント方法（「1回」推奨）と、9/21 夜のCV数の急増の有無を確認する。</p>
+  <p><span class="tag info">確認</span>タップ数は通話数ではない。9月の着信記録（<code>docs/operations/call-log/calls-202609.csv</code>）がまだ作られていないため、タップ人数（1日約 30人）が実際の着信にどれだけつながったかは確かめられない。旧LPの8月実績（CV 57件／月、ほぼ電話タップ）と比べると大幅に多いが、この差をそのまま成果とは読まない。9/28 の比較までに、LPからの着信を記録してもらう必要がある。</p>
+  <p><span class="tag info">確認</span>どのボタン（ファーストビュー・帯・ホール・プラン詳細）から電話されたかは、<code>cta_placement</code>・<code>plan_slug</code> を送っているが、GA4 でカスタムディメンションとして登録されていないため集計できない。GA4 管理画面での登録（イベントスコープ2件）を提案する。登録した日以降の分しか見えない。</p>
+
+  <h3>新LP：問い合わせフォーム</h3>
+  <table>
+    <tr><th>段階</th><th class="n">2日合計（人数）</th><th>読み方</th></tr>
+    <tr><td>問い合わせボタンを押す（lp_contact_open）</td><td class="n">約 21</td><td>電話タップ（約 55人）の半分以下。この層の主導線は電話</td></tr>
+    <tr><td>/lp/contact/ を表示</td><td class="n">24</td><td></td></tr>
+    <tr><td>入力を始める（lp_form_start）</td><td class="n">5</td><td>/lp/ 下部のフォームと /lp/contact/ の合計</td></tr>
+    <tr><td>送信完了（generate_lead / lp_generate_lead）</td><td class="n">1人（2件）</td><td>9/22 10:04 と 12:04。9/22 11:22 のフォーム完了後スクロール修正の前後にあたり、当社の確認送信の可能性が高い（要確認）。<b>確認送信なら、実際のお客様の送信はまだ 0 件</b></td></tr>
+  </table>
+  <p><span class="tag info">確認</span>入力開始 5人に対して完了がほぼ 0。母数が小さく、フォームのどこで止まっているかを言える段階ではない。LP の対象（ご逝去直後の方）はフォームより電話を選ぶのが自然で、フォームの件数が少ないこと自体は想定の範囲。</p>
+
+  <h3>松澤さんからの補足（2026-09-23）</h3>
+  <ul>
+    <li>「川口メモリアルホール」の検索や GBP の減少は、大型葬儀が減ったことによるものと見ている（ホール名は会葬者の検索が多い）</li>
+    <li><b>実際の着信は 1〜2件ほど</b>。タップ（1日約 30人）の大半は着信につながっていない。このため、広告の「電話タップCV」は実際の着信より大幅に多く出る</li>
+    <li>9/22 10:04・12:04 の送信は当社の実験送信。<b>お客様からのフォーム送信はまだ 0 件</b></li>
+  </ul>
+  <p>下の確認事項は今週末に松澤さんが判断する。</p>
+  <p><span class="tag ok">対応済み</span>2026-09-23、松澤さんの指示で GA4 にカスタムディメンション（イベントスコープ）を登録した：「CTA位置」（<code>cta_placement</code>）と「プラン」（<code>plan_slug</code>）。既存の接続（Admin API）で作成した。サイトのコードは変更していない。反映は登録以降のデータのみで、画面やAPIに出るまで 24〜48 時間かかる。9/28 の初回比較から、ボタン別の電話タップを見られる見込み。</p>
+
+  <h3>次のアクション</h3>
+  <ol>
+    <li>代理店（NEXTUP）に確認：9/22 からの Cross-network（P-MAX 等）の着地先変更の有無／電話タップCVのカウント方法と 9/21 夜のCV急増の有無／異常端末の配信面（アプリ）の除外</li>
+    <li>GA4 に <code>cta_placement</code>・<code>plan_slug</code> をカスタムディメンション登録（松澤承認後）</li>
+    <li>9月の着信記録 CSV を開始し、LP 経由の着信を記録してもらう</li>
+    <li>9/22 10:04・12:04 の送信が当社の確認送信かどうかを確認</li>
+    <li>次回：9/27（CSP 3 回目）、9/28（LP 初回比較。率ではなくユーザー数で比べる）</li>
+  </ol>
   <footer>
     取得コマンド：<code>node --env-file=.env.local scripts/search-console-audit.mjs --inspect --with-ga4</code>、<code>node --env-file=.env.local scripts/gbp/performance.mjs --from=… --to=…</code>、<code>node --env-file=.env.local scripts/gbp/reviews.mjs</code>。生データは <code>tmp/</code>（git 管理外）。個人情報・口コミ本文・秘密情報は本レポートに含めていない。
   </footer>
