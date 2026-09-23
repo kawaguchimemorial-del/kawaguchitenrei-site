@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import { LpAnalytics } from "./LpAnalytics";
+import { LpCallGuard } from "./LpCallGuard";
 
 // 広告LP専用（CLAUDE.md §21）。
 // 検索結果には一切出さない。sitemap.ts にも追加しない。
@@ -22,6 +23,7 @@ export default function LpLayout({
   return (
     <>
       {children}
+      <LpCallGuard />
       <LpAnalytics />
     </>
   );
