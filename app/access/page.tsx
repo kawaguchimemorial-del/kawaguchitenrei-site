@@ -1,13 +1,24 @@
 import type { Metadata } from "next";
+import { defaultOpenGraphImages } from "@/lib/seo";
 import { PageHero } from "@/components/common/PageHero";
 import { ArrowRightIcon, PhoneIcon } from "@/components/common/icons";
 import { company, getLocalBusinessJsonLd } from "@/lib/company";
 
 export const metadata: Metadata = {
-  title: "アクセス | 川口典礼",
+  title: "アクセス｜川口メモリアルホール（川口市西新井宿440-1・駐車場70台）｜川口典礼",
   description:
     "川口典礼・川口メモリアルホール(埼玉県川口市西新井宿440-1)へのアクセスをご案内します。お車・電車・タクシーでのアクセス、駐車場、川口市めぐりの森との位置関係も。事前相談・ホール見学は24時間365日受付。",
   alternates: { canonical: "/access/" },
+  openGraph: {
+    title: "アクセス｜川口メモリアルホール（川口市西新井宿440-1・駐車場70台）｜川口典礼",
+    description:
+      "川口典礼・川口メモリアルホール(埼玉県川口市西新井宿440-1)へのアクセスをご案内します。お車・電車・タクシーでのアクセス、駐車場、川口市めぐりの森との位置関係も。事前相談・ホール見学は24時間365日受付。",
+    url: "/access/",
+    type: "website",
+    siteName: "川口典礼",
+    locale: "ja_JP",
+    images: defaultOpenGraphImages,
+  },
 };
 
 const transportModes = [

@@ -1,14 +1,25 @@
 import type { Metadata } from "next";
+import { defaultOpenGraphImages } from "@/lib/seo";
 import { PageHero } from "@/components/common/PageHero";
 import { PhoneIcon } from "@/components/common/icons";
 import { UrgentCallout } from "@/components/forms/UrgentCallout";
 import { faqCategories, faqs, getFaqsByCategory } from "@/lib/faqs";
 
 export const metadata: Metadata = {
-  title: "よくある質問 | 川口典礼",
+  title: "葬儀のよくある質問（費用・搬送・市民葬・事前相談）｜川口典礼",
   description:
     "川口典礼によくいただくご質問を、急なご葬儀・費用・プラン・斎場・事前相談・対応エリア・葬儀後サポートの7カテゴリに整理しました。川口市・新井宿の地域密着葬儀社。",
   alternates: { canonical: "/faq/" },
+  openGraph: {
+    title: "葬儀のよくある質問（費用・搬送・市民葬・事前相談）｜川口典礼",
+    description:
+      "川口典礼によくいただくご質問を、急なご葬儀・費用・プラン・斎場・事前相談・対応エリア・葬儀後サポートの7カテゴリに整理しました。川口市・新井宿の地域密着葬儀社。",
+    url: "/faq/",
+    type: "website",
+    siteName: "川口典礼",
+    locale: "ja_JP",
+    images: defaultOpenGraphImages,
+  },
 };
 
 // FAQPage 構造化データを生成

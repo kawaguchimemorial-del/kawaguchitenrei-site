@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { defaultOpenGraphImages } from "@/lib/seo";
 import { PageHero } from "@/components/common/PageHero";
 import { UrgentCallout } from "@/components/forms/UrgentCallout";
 import { ContactForm } from "./ContactForm";
@@ -8,6 +9,16 @@ export const metadata: Metadata = {
   description:
     "川口典礼の事前相談・ホール見学・費用相談などのお問い合わせフォーム。24時間365日のお電話受付も可能。川口市・新井宿の地域密着葬儀社。",
   alternates: { canonical: "/contact/" },
+  openGraph: {
+    title: "事前相談・お問い合わせ | 川口典礼",
+    description:
+      "川口典礼の事前相談・ホール見学・費用相談などのお問い合わせフォーム。24時間365日のお電話受付も可能。川口市・新井宿の地域密着葬儀社。",
+    url: "/contact/",
+    type: "website",
+    siteName: "川口典礼",
+    locale: "ja_JP",
+    images: defaultOpenGraphImages,
+  },
 };
 
 const contactPoints = [

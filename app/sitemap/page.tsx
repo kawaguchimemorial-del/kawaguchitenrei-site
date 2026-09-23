@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { defaultOpenGraphImages } from "@/lib/seo";
 import { PageHero } from "@/components/common/PageHero";
 import { ChevronRightIcon } from "@/components/common/icons";
 import { plans } from "@/lib/plans";
@@ -14,6 +15,16 @@ export const metadata: Metadata = {
   description:
     "川口典礼サイト内のページ一覧です。葬儀プラン、施行事例、お客様の声、コラム、斎場・対応エリア、お問い合わせなど、目的のページを探しやすくご案内します。",
   alternates: { canonical: "/sitemap/" },
+  openGraph: {
+    title: "サイトマップ | 川口典礼",
+    description:
+      "川口典礼サイト内のページ一覧です。葬儀プラン、施行事例、お客様の声、コラム、斎場・対応エリア、お問い合わせなど、目的のページを探しやすくご案内します。",
+    url: "/sitemap/",
+    type: "website",
+    siteName: "川口典礼",
+    locale: "ja_JP",
+    images: defaultOpenGraphImages,
+  },
 };
 
 type Link = { label: string; href: string };

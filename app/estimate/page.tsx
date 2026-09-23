@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { defaultOpenGraphImages } from "@/lib/seo";
 import { PageHero } from "@/components/common/PageHero";
 import { UrgentCallout } from "@/components/forms/UrgentCallout";
 import { EstimateForm } from "./EstimateForm";
@@ -8,6 +9,16 @@ export const metadata: Metadata = {
   description:
     "川口市・新井宿の川口典礼で、葬儀費用の概算を相談いただけます。葬儀形式・人数・斎場・お料理・返礼品などをお聞きし、ご担当者より概算金額をご案内します。",
   alternates: { canonical: "/estimate/" },
+  openGraph: {
+    title: "葬儀費用の概算見積り | 川口典礼",
+    description:
+      "川口市・新井宿の川口典礼で、葬儀費用の概算を相談いただけます。葬儀形式・人数・斎場・お料理・返礼品などをお聞きし、ご担当者より概算金額をご案内します。",
+    url: "/estimate/",
+    type: "website",
+    siteName: "川口典礼",
+    locale: "ja_JP",
+    images: defaultOpenGraphImages,
+  },
 };
 
 const steps = [

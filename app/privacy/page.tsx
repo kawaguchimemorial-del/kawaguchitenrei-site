@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { defaultOpenGraphImages } from "@/lib/seo";
 import { PageHero } from "@/components/common/PageHero";
 import { company } from "@/lib/company";
 
@@ -7,6 +8,16 @@ export const metadata: Metadata = {
   description:
     "川口典礼のプライバシーポリシーです。お客様からお預かりする個人情報の取扱い方針についてご案内します。",
   alternates: { canonical: "/privacy/" },
+  openGraph: {
+    title: "プライバシーポリシー | 川口典礼",
+    description:
+      "川口典礼のプライバシーポリシーです。お客様からお預かりする個人情報の取扱い方針についてご案内します。",
+    url: "/privacy/",
+    type: "website",
+    siteName: "川口典礼",
+    locale: "ja_JP",
+    images: defaultOpenGraphImages,
+  },
 };
 
 export default function PrivacyPage() {

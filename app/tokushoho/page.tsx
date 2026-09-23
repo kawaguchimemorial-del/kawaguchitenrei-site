@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { defaultOpenGraphImages } from "@/lib/seo";
 import { PageHero } from "@/components/common/PageHero";
 import { company } from "@/lib/company";
 
@@ -7,6 +8,16 @@ export const metadata: Metadata = {
   description:
     "川口典礼の特定商取引法に基づく表記です。販売事業者、所在地、電話、サービス内容、お支払いについてご案内します。",
   alternates: { canonical: "/tokushoho/" },
+  openGraph: {
+    title: "特定商取引法に基づく表記 | 川口典礼",
+    description:
+      "川口典礼の特定商取引法に基づく表記です。販売事業者、所在地、電話、サービス内容、お支払いについてご案内します。",
+    url: "/tokushoho/",
+    type: "website",
+    siteName: "川口典礼",
+    locale: "ja_JP",
+    images: defaultOpenGraphImages,
+  },
 };
 
 type Row = { label: string; value: string };
