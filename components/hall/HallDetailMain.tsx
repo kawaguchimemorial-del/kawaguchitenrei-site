@@ -223,8 +223,13 @@ export function HallSupportedPlans({ hall }: { hall: Hall }) {
             {hall.shortName}で対応できる葬儀プラン。
           </h2>
           <p className="mt-5 text-base leading-9 text-ink-mid md:text-lg">
-            ご家族のご希望に合わせて、直葬・花入れお別れ・一日葬・家族葬・市民葬まで幅広く対応します。
+            ご家族のご希望に合わせて、直葬・花入れお別れ・一日葬・夕暮れ家族葬・家族葬・市民葬まで幅広く対応します。
           </p>
+          {hall.supportedPlansNote && (
+            <p className="mt-3 text-sm leading-7 text-ink-mid md:text-base md:leading-8">
+              {hall.supportedPlansNote}
+            </p>
+          )}
         </div>
 
         <ul className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">

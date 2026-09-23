@@ -17,7 +17,7 @@ import { hallKawaguchi } from "@/lib/halls";
 const SITE_URL = "https://kawaguchitenrei.com";
 const pageUrl = `${SITE_URL}/hall/${hallKawaguchi.slug}/`;
 const imageUrl = `${SITE_URL}/images/home/hall/hall-exterior.jpg`;
-const pageTitle = `${hallKawaguchi.name} | 川口典礼の自社ホール`;
+const pageTitle = `【公式】${hallKawaguchi.name}｜川口市西新井宿の葬儀式場・駐車場70台｜川口典礼`;
 
 export const metadata: Metadata = {
   title: pageTitle,
@@ -42,10 +42,12 @@ export const metadata: Metadata = {
 const funeralHomeJsonLd = {
   "@context": "https://schema.org",
   "@type": "FuneralHome",
+  "@id": `${pageUrl}#hall`,
   name: "川口メモリアルホール",
   url: pageUrl,
   image: imageUrl,
-  telephone: "0120-963-765",
+  telephone: "+81-120-963-765",
+  parentOrganization: { "@id": `${SITE_URL}/#organization` },
   address: {
     "@type": "PostalAddress",
     postalCode: "333-0833",

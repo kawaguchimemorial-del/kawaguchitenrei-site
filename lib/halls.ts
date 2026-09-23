@@ -10,6 +10,7 @@ export type Hall = {
   gallery: { label: string; description: string; src: string; alt: string }[];
   equipment: { label: string; value: string }[];
   supportedPlans: string[];
+  supportedPlansNote?: string;
   access: {
     stations: string[];
     car: string;
@@ -78,9 +79,12 @@ export const hallKawaguchi: Hall = {
     "direct-funeral",
     "hanaire-owakare",
     "oneday-funeral",
+    "yugure-kazokuso",
     "family-funeral",
     "kawaguchi-shimin",
   ],
+  supportedPlansNote:
+    "当ホールで行う一日葬・夕暮れ家族葬・家族葬は、式場使用料がプラン料金に含まれます（市民葬は式場使用料が別途かかります）。",
   access: {
     stations: [
       "埼玉高速鉄道「新井宿」駅　徒歩約10分",

@@ -59,7 +59,7 @@ function buildOffers(plan: Plan) {
         "@type": "Offer",
         priceCurrency: "JPY",
         price: plan.pricing.member,
-        description: `事前相談会員価格 ${plan.pricing.member.toLocaleString("ja-JP")}円(税込)から。通常価格 ${plan.pricing.regular.toLocaleString("ja-JP")}円(税込)。別途、火葬料・式場使用料・宗教者へのお礼などが必要になる場合があります。`,
+        description: `事前相談会員価格 ${plan.pricing.member.toLocaleString("ja-JP")}円(税込)から。通常価格 ${plan.pricing.regular.toLocaleString("ja-JP")}円(税込)。別途、火葬料・式場使用料（川口メモリアルホール以外の式場を利用する場合）・宗教者へのお礼などが必要になる場合があります。`,
         availability: "https://schema.org/InStock",
       },
     ];
