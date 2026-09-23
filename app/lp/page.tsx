@@ -434,7 +434,7 @@ export default function LpPage() {
             <span className="text-xs font-bold">
               24時間365日・年中無休／通話無料
             </span>
-            <span className="mt-0.5 text-[32px] font-bold leading-none tracking-wider">
+            <span className="mt-0.5 whitespace-nowrap text-[28px] font-bold leading-none tracking-wider min-[380px]:text-[32px]">
               {PHONE_DISPLAY}
             </span>
           </a>
@@ -500,9 +500,7 @@ export default function LpPage() {
         </div>
       </section>
 
-      <LpHalls />
-
-      {/* 費用 */}
+      {/* 費用（2026-09-23：式場一覧より前へ。下まで読む人が3〜5%のため、料金を先に見せる） */}
       <section id="price" className="scroll-mt-24 bg-white px-5 py-10">
         {/* 表を組むPCだけ広げる（列が狭いとプラン名が1文字ずつ折り返す） */}
         <div className="mx-auto max-w-2xl md:max-w-5xl">
@@ -547,6 +545,8 @@ export default function LpPage() {
           </div>
         </div>
       </section>
+
+      <LpHalls />
 
       <LpPreneed />
 
@@ -826,7 +826,7 @@ export default function LpPage() {
             className="mx-auto mt-4 flex max-w-sm flex-col items-center rounded-xl bg-emergency px-4 py-3.5 text-white shadow-lg transition hover:bg-emergency-deep"
           >
             <span className="text-xs font-bold">24時間365日・通話無料</span>
-            <span className="mt-0.5 text-[30px] font-bold leading-none tracking-wider">
+            <span className="mt-0.5 whitespace-nowrap text-[27px] font-bold leading-none tracking-wider min-[380px]:text-[30px]">
               {PHONE_DISPLAY}
             </span>
           </a>

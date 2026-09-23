@@ -25,7 +25,7 @@ export function LpCtaBand({
           <span className="text-xs font-bold tracking-wide">
             24時間365日・年中無休
           </span>
-          <span className="mt-0.5 text-3xl font-bold tracking-wider md:text-4xl">
+          <span className="mt-0.5 whitespace-nowrap text-[27px] font-bold tracking-wider min-[380px]:text-3xl md:text-4xl">
             {PHONE_DISPLAY}
           </span>
           <span className="mt-0.5 text-[13px]">タップで発信できます</span>

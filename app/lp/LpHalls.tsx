@@ -149,11 +149,21 @@ export function LpHalls() {
           </div>
         </div>
 
-        {/* 寺院会館・民営式場 */}
-        <div className="mt-9">
-          <h3 className="text-[19px] font-black text-ink-deep md:text-2xl">
-            川口市内の寺院会館・民営式場（{totalHalls}会場）
-          </h3>
+        {/* 寺院会館・民営式場
+            2026-09-23：一覧が約5画面分あり、電話するかどうかの判断には不要なため、
+            既定では閉じておく（開けば従来どおりの一覧）。 */}
+        <details className="group mt-9">
+          <summary className="flex cursor-pointer list-none items-center justify-between gap-3 rounded-lg border-2 border-brand bg-white px-4 py-3">
+            <span className="text-[17px] font-black text-ink-deep md:text-2xl">
+              川口市内の寺院会館・民営式場（{totalHalls}会場）
+            </span>
+            <span
+              aria-hidden
+              className="shrink-0 text-sm font-bold text-brand group-open:rotate-180"
+            >
+              ▼
+            </span>
+          </summary>
           <p className="mt-1.5 text-[14px] font-medium leading-6 text-ink-mid">
             菩提寺とのお付き合いを大切にされたい方、ご自宅や参列者が集まりやすい地域でお別れをご希望の方の選択肢です。
           </p>
@@ -211,7 +221,7 @@ export function LpHalls() {
               <span className="text-xl font-bold tracking-wide">{PHONE_DISPLAY}</span>
             </a>
           </div>
-        </div>
+        </details>
       </div>
     </section>
   );
