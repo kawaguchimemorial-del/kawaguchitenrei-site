@@ -35,6 +35,11 @@
 
   <ul class="list">
     <li>
+      <span class="date">2026-09-23</span>
+      <a href="./2026-09-23-plan-before-request-checklist.html">/plan/ に「依頼の前に、確認したい5つのこと。」を追加（相談件数の最新値・5つの質問・広告の見方・行政処分の例4件／社名・リンクなし）</a>
+      <span class="desc">A4チラシ裏面の内容をサイト向けに整理。新規ページは作らず料金一覧に1区画を追加。架空広告の画像は不使用。build 140/140。</span>
+    </li>
+    <li>
       <span class="date">2026-09-20</span>
       <a href="./2026-09-20-security-headers.html">セキュリティヘッダー強化（🟢 nosniff / X-Frame-Options / Referrer-Policy / Permissions-Policy を全パスに付与／CSP は Report-Only で観察開始／🟡 ACAO: * は Vercel 静的配信由来で実害小・現状維持）</a>
       <span class="desc">next.config.ts に headers() を追加し本番反映済み。CSP の許可先はコード実測（GTM/GA4・Google広告・Maps埋め込み・住所API）に合わせ、Google Fonts は未使用のため除外。2026-09-22 / 09-27 / 10-04 に DevTools と GA4 で弊害の有無を確認し、2週間問題なければ enforce 化。</span>

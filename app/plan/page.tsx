@@ -157,6 +157,59 @@ const guideItems = [
   },
 ];
 
+// 依頼前の確認事項。事例は社名を出さず、リンクも付けない（消費者庁の公表資料より、とだけ記す）。
+const checkQuestions = [
+  {
+    q: "その価格で、通夜・告別式は行えますか？",
+    a: "広告で大きく示された価格が、式場を使わない直葬（火葬式）の料金であることがあります。家族葬・一日葬の価格かどうかを確かめてください。",
+  },
+  {
+    q: "火葬料金は含まれていますか？",
+    a: "火葬料金は火葬場や住所地によって変わるため、プラン料金に含まれないことが多い項目です。川口典礼のプランも火葬料金は別途で、上の表に火葬場ごとの目安を載せています。",
+  },
+  {
+    q: "安置が1日延びたら、いくら増えますか？",
+    a: "火葬場の予約状況や友引によって、ご安置の日数が延びることがあります。ドライアイスや安置の費用が1日ごとにいくらかを、先に聞いておくと安心です。",
+  },
+  {
+    q: "当日、実際に担当するのはどこの会社ですか？",
+    a: "比較・紹介サイトから申し込んだ場合、実際に葬儀を行うのは提携先の別の会社ということがあります。",
+  },
+  {
+    q: "含まれるもの・含まれないものを、書面でもらえますか？",
+    a: "口頭の説明だけでは、あとで食い違いが起きやすくなります。見積書で項目ごとに確かめてください。",
+  },
+];
+
+const adCheckPoints = [
+  "大きく書かれた価格の近くに「〜」や「※」があれば、その条件を探してください。",
+  "「追加料金不要」「すべて込み」の条件が、別のページや小さな文字で書かれていることがあります。",
+  "ドライアイス・安置日数・火葬料金・搬送距離は、ご家族が選べない事情で費用が増えやすい項目です。",
+];
+
+const enforcementCases = [
+  {
+    date: "2017年12月",
+    ad: "新聞広告で「追加料金不要」と表示",
+    fact: "条件によっては、表示価格のほかに追加料金が発生していた（措置命令）",
+  },
+  {
+    date: "2019年6月",
+    ad: "「全てセットの定額」「必要なものが全てコミコミ」と表示",
+    fact: "安置日数によるドライアイスや火葬場の使用料などで追加料金が発生していた（措置命令）",
+  },
+  {
+    date: "2021年7月",
+    ad: "追加料金などが発生しない旨を表示",
+    fact: "一定の条件で追加料金が設定されていた（課徴金納付命令・約1億円）",
+  },
+  {
+    date: "2026年9月",
+    ad: "テレビCMで「1日1組 貸切ホール」に続けて「家族葬 10.45万円〜」と表示",
+    fact: "ホールを使う葬儀の最低価格は308,000円で、約10万円のプランは通夜・告別式を行わない直葬だった（措置命令）",
+  },
+];
+
 export const metadata: Metadata = {
   title: "葬儀プラン一覧 | 川口典礼",
   description:
@@ -606,6 +659,118 @@ export default function PlanIndexPage() {
           </div>
           <div className="mt-8">
             <CostBreakdownTable />
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="before-request"
+        className="scroll-mt-24 bg-paper py-16 md:py-24"
+      >
+        <div className="mx-auto max-w-4xl px-5 md:px-8">
+          <p className="text-sm font-semibold tracking-[0.18em] text-brand uppercase">
+            Check
+          </p>
+          <p className="mt-2 text-sm font-semibold text-ink-mid">
+            葬儀社に依頼する前に
+          </p>
+          <h2 className="font-serif-jp mt-4 text-3xl font-medium leading-[1.4] text-ink-deep md:text-[2.2rem]">
+            依頼の前に、確認したい5つのこと。
+          </h2>
+          <p className="mt-5 text-base leading-9 text-ink-mid md:text-lg">
+            全国の消費生活センターなどに寄せられた葬儀サービスの相談は、2025年度に1,007件となり、記録が残る2016年度以降で最も多くなりました。そのうち費用に関する相談の割合は52.3%で、過去最高です（
+            <a
+              href="https://news.ntv.co.jp/category/society/a0b2f921734340f39586921d2b502b20"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-brand underline underline-offset-4 hover:text-brand-deep"
+            >
+              日テレNEWS NNN・2026年7月24日
+            </a>
+            ）。国民生活センターは、事前に情報を集めること、打ち合わせは複数人で行うことを呼びかけています（
+            <a
+              href="https://www.fnn.jp/articles/-/1080242"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-brand underline underline-offset-4 hover:text-brand-deep"
+            >
+              FNNプライムオンライン・2026年7月23日
+            </a>
+            ）。
+          </p>
+
+          <ol className="mt-10 space-y-4">
+            {checkQuestions.map((item, i) => (
+              <li
+                key={item.q}
+                className="flex gap-4 rounded-lg border border-line bg-white p-5 shadow-sm md:p-6"
+              >
+                <span
+                  aria-hidden="true"
+                  className="font-serif-jp flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand text-base font-bold text-white"
+                >
+                  {i + 1}
+                </span>
+                <div>
+                  <p className="font-serif-jp text-lg font-medium leading-8 text-ink-deep md:text-xl">
+                    {item.q}
+                  </p>
+                  <p className="mt-2 text-sm leading-7 text-ink-mid md:text-base md:leading-8">
+                    {item.a}
+                  </p>
+                </div>
+              </li>
+            ))}
+          </ol>
+
+          <div className="mt-12">
+            <h3 className="font-serif-jp text-xl font-medium text-ink-deep md:text-2xl">
+              広告の価格を見るときは
+            </h3>
+            <ul className="mt-5 space-y-3">
+              {adCheckPoints.map((point) => (
+                <li
+                  key={point}
+                  className="relative pl-5 text-sm leading-7 text-ink-mid before:absolute before:left-0 before:top-[0.8em] before:h-1.5 before:w-1.5 before:rounded-full before:bg-brand md:text-base md:leading-8"
+                >
+                  {point}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="mt-12">
+            <h3 className="font-serif-jp text-xl font-medium text-ink-deep md:text-2xl">
+              葬儀の広告表示をめぐる行政処分の例
+            </h3>
+            <p className="mt-3 text-sm leading-7 text-ink-mid md:text-base md:leading-8">
+              いずれも消費者庁による景品表示法に基づく処分です。事業者名は伏せて記載しています（消費者庁の公表資料より）。
+            </p>
+            <ul className="mt-6 divide-y divide-line-soft overflow-hidden rounded-lg border border-line bg-white shadow-sm">
+              {enforcementCases.map((item) => (
+                <li key={item.date} className="p-5 md:p-6">
+                  <p className="text-sm font-bold text-brand">{item.date}</p>
+                  <p className="mt-1 text-base font-bold leading-7 text-ink-deep">
+                    {item.ad}
+                  </p>
+                  <p className="mt-1 text-sm leading-7 text-ink-mid md:text-base md:leading-8">
+                    {item.fact}
+                  </p>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-5 text-sm leading-7 text-ink-mid md:text-base md:leading-8">
+              困ったときは、消費者ホットライン「188」で最寄りの消費生活センターにつながります。
+            </p>
+          </div>
+
+          <div className="mt-12 rounded-lg border border-brand bg-white p-6 md:p-8">
+            <p className="font-serif-jp text-xl font-medium leading-9 text-ink-deep md:text-2xl">
+              この5つは、川口典礼にもそのままお尋ねください。
+            </p>
+            <p className="mt-3 text-sm leading-7 text-ink-mid md:text-base md:leading-8">
+              ご契約の前に、プランに含まれるもの・含まれないものをご説明します。事前相談・お見積りは無料です。
+            </p>
           </div>
         </div>
       </section>
