@@ -4,7 +4,7 @@
  *
  *   node scripts/gbp/apply.mjs                      # dry-run（送信内容を表示するだけ）
  *   node scripts/gbp/apply.mjs --confirm            # 基本情報・サービスを書き込む
- *   node scripts/gbp/apply.mjs --confirm --qanda    # Q&A も投稿する
+ *   （--qanda は廃止。My Business Q&A API は 2025-11-03 に終了しました）
  *   node scripts/gbp/apply.mjs --confirm --only=profile   # 項目を絞る
  *
  * 【安全設計】
@@ -36,14 +36,25 @@ const ONLY = argv.find((a) => a.startsWith("--only="))?.split("=")[1];
 
 async function resolveCategoryIds(info) {
   try {
-    const res = await info.categories.list({
-      regionCode: "JP",
-      languageCode: "ja",
-      view: "BASIC",
-      filter: "displayName=葬儀",
-      pageSize: 50,
-    });
-    const cats = res.data.categories ?? [];
+    // ⚠ 2026-09-11 修正：categories.list の filter="displayName=葬儀" は効かず、
+    //    鍼師・空港・牛丼屋など無関係なカテゴリが返ってくる（実測）。
+    //    そのせいでカテゴリが常に「解決できませんでした」になっていたため、全件取得して自前で突き合わせる。
+    //    日本のカテゴリは全4,053件（100件×41ページ）。
+    const cats = [];
+    let pageToken;
+    let pages = 0;
+    do {
+      const res = await info.categories.list({
+        regionCode: "JP",
+        languageCode: "ja",
+        view: "BASIC",
+        pageSize: 100,
+        pageToken,
+      });
+      cats.push(...(res.data.categories ?? []));
+      pageToken = res.data.nextPageToken;
+      pages += 1;
+    } while (pageToken && pages < 60);
     const find = (label) =>
       cats.find((c) => (c.displayName ?? "").trim() === label.trim())?.name ?? null;
 
@@ -130,8 +141,14 @@ async function main() {
       console.log("  ✅ 基本情報・サービスを書き込みました");
     }
 
-    // Q&A は別 API。--qanda を付けたときだけ扱う
+    // Q&A は別 API。ただし My Business Q&A API は 2025-11-03 に廃止済みで、
+    // mybusinessqanda.googleapis.com は 404 を返す。--qanda を付けても実行しない。
     if (WITH_QANDA) {
+      console.log(
+        "  Q&A: 実行しません。My Business Q&A API は 2025-11-03 に廃止されました。\n" +
+        "       Q&A の内容はサイトの /faq/ とエリアページの FAQPage 構造化データ側で持ちます。"
+      );
+    } else if (false) {
       const existing = await qanda.locations.questions
         .list({ parent: loc.name, pageSize: 50, answersPerQuestion: 1 })
         .then((r) => (r.data.questions ?? []).map((q) => (q.text ?? "").trim()))
@@ -157,7 +174,7 @@ async function main() {
         console.log(`  ✅ Q&A追加: ${q.question}`);
       }
     } else {
-      console.log("  Q&A: スキップ（--qanda を付けると対象になります）");
+      console.log("  Q&A: 対象外（API 廃止済み 2025-11-03）");
     }
     console.log("");
   }
@@ -168,7 +185,7 @@ async function main() {
     console.log("差し戻しが必要な場合は tmp/gbp/backup-before-apply.json の値を使ってください。");
   } else {
     console.log("dry-run のため何も送信していません。");
-    console.log("内容に問題がなければ: node scripts/gbp/apply.mjs --confirm --qanda");
+    console.log("内容に問題がなければ: node scripts/gbp/apply.mjs --confirm");
   }
   console.log("\n※写真・投稿（最新情報）・口コミ返信は本スクリプトの対象外です。");
   console.log("　これらは旧 v4 系エンドポイントで、対応可否を承認後に確認します。");

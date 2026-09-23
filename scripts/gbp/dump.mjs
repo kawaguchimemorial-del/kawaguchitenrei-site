@@ -69,11 +69,27 @@ async function main() {
       const price = s.price ? `${Number(s.price.units ?? 0).toLocaleString("ja-JP")}円` : "価格なし";
       console.log(`    - ${label} / ${price}`);
     }
+    // 属性は Location のフィールドではないため、専用エンドポイントで取得する
+    try {
+      const aRes = await info.locations.getAttributes({ name: `${loc.name}/attributes` });
+      loc.attributes = aRes.data.attributes ?? [];
+    } catch (e) {
+      loc.attributes = [];
+      console.log(`  属性           : 取得失敗（${e?.response?.status ?? "?"}）`);
+    }
     console.log(`  属性           : ${(loc.attributes ?? []).length} 件`);
+    for (const a of loc.attributes ?? []) {
+      const v = a.values ?? a.repeatedEnumValue ?? a.uriValues ?? null;
+      console.log(`    - ${a.name}  ${v === null ? "" : JSON.stringify(v)}`);
+    }
     const periods = loc.regularHours?.periods ?? [];
     console.log(`  営業時間       : ${periods.length ? `${periods.length} 期間の設定あり` : "未設定"}`);
 
     // 3. Q&A
+    // ⚠ My Business Q&A API は 2025-11-03 に廃止済み（Google 公式の Deprecation schedule）。
+    //    mybusinessqanda.googleapis.com は discovery ごと 404 を返す＝当社の設定の問題ではない。
+    //    GBP の「質問と回答」機能自体も 2025-12 から段階的に終了している。
+    //    ここは常に失敗するので、失敗しても異常ではない。Q&A の内容はサイトの /faq/ 側で持つ。
     try {
       const qRes = await qanda.locations.questions.list({
         parent: loc.name,
@@ -87,7 +103,13 @@ async function main() {
         console.log(`    Q: ${(q.text ?? "").slice(0, 40)}  （回答 ${q.totalAnswerCount ?? 0} 件）`);
       }
     } catch (e) {
-      console.log(`  Q&A            : 取得失敗（${e?.response?.status ?? "?"}）`);
+      const st = e?.response?.status ?? "?";
+      console.log(
+        st === 404
+          ? "  Q&A            : ― （API廃止済み 2025-11-03。異常ではない）"
+          : `  Q&A            : 取得失敗（${st}）`
+      );
+      out.qanda[loc.name] = [];
     }
   }
 

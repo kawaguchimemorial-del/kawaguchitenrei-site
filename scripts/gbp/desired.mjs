@@ -9,7 +9,11 @@
  */
 
 export const NAP = {
-  title: "川口典礼",
+  // ⚠ 2026-09-11 修正：以前は "川口典礼" だった。
+  //    GBP の現在の名称は「株式会社川口典礼 川口メモリアルホール」＝登記名＋看板名で正しく、
+  //    変更しないと決めてある（docs/operations/gbp/2026-09-11-gbp-api-approved.md）。
+  //    旧値のまま apply すると名称が書き換わるため、現行値に合わせた。
+  title: "株式会社川口典礼 川口メモリアルホール",
   postalCode: "333-0833",
   addressLines: ["西新井宿440-1"],
   locality: "川口市",
@@ -24,11 +28,30 @@ export const NAP = {
  * 実際に有効な ID は categories.list で取得して確定させる（dump.mjs が候補を出す）。
  * ここでは「探すべき表示名」を持っておき、ID は実行時に解決する。
  */
+/**
+ * ⚠ 2026-09-11 修正：以前は primary: "葬儀店" / additional: ["葬儀場", "葬祭業"] だったが、
+ *    **この3つは Google の日本のカテゴリに存在しない**（全4,053件を取得して確認）。
+ *    実在する葬祭関連カテゴリは次のとおり。
+ *
+ *      葬儀屋            categories/gcid:funeral_director        ← 現在のメイン。これが最適
+ *      斎場              categories/gcid:funeral_home            ← 現在の追加
+ *      葬儀サービス      categories/gcid:funeral_celebrant_service ← 現在の追加
+ *      火葬業            categories/gcid:cremation_service        ← 使わない（下記）
+ *      墓地              categories/gcid:cemetery                 ← 使わない
+ *      ペット葬儀サービス categories/gcid:pet_funeral_services     ← 使わない
+ *      ペット霊園        categories/gcid:pet_cemetery             ← 使わない
+ *      仏壇販売店        categories/gcid:butsudan_store
+ *
+ *    現在の設定（葬儀屋／斎場・葬儀サービス）が実在カテゴリの中で最適なため、期待値を現状に合わせた。
+ */
 export const CATEGORY_INTENT = {
-  primary: "葬儀店",
-  additional: ["葬儀場", "葬祭業"],
+  primary: "葬儀屋",
+  additional: ["斎場", "葬儀サービス"],
   // 絶対に選ばない（guard.mjs でも二重に止める）
-  forbidden: ["火葬場", "墓地"],
+  //   火葬場・火葬業 : 川口市めぐりの森は市営。当社は火葬場を運営していない（CLAUDE.md の停止条件）
+  //   墓地           : 事業内容と異なる
+  //   ペット系       : ペット葬儀への導線は文脈上ふさわしくない（CLAUDE.md §11）
+  forbidden: ["火葬場", "火葬業", "墓地", "霊園", "ペット"],
 };
 
 export const DESCRIPTION = `埼玉県川口市西新井宿の葬儀社、川口典礼です。2006年の創業から20年、川口市・新井宿・鳩ヶ谷を中心に、年間約260件のご葬儀をお手伝いしてきました。累計の施行実績は4,600件以上になります。
@@ -37,12 +60,19 @@ export const DESCRIPTION = `埼玉県川口市西新井宿の葬儀社、川口�
 
 直葬・火葬式、花入れお別れ、一日葬、夕暮れ家族葬、家族葬、川口市の市民葬まで、ご希望とご予算に合わせてお選びいただけます。「夕暮れ家族葬」は、告別式を夕方から夜にかけて行い、翌日に火葬場へお集まりいただく当社オリジナルのプランです。日中はお仕事やご都合で集まりにくいご家族・ご親族にも、お別れのお時間をお取りいただけます。
 
-ご相談・お見積りは無料です。事前のご相談も、お急ぎのご連絡も、24時間365日承っています。まだ何も決まっていない段階でも、お気軽にお声がけください。
-
-電話：0120-963-765 ／ 048-281-1117`;
+ご相談・お見積りは無料です。事前のご相談も、お急ぎのご連絡も、24時間365日承っています。まだ何も決まっていない段階でも、お気軽にお声がけください。`;
+// ⚠ 2026-09-11 修正：末尾にあった「電話：0120-963-765 ／ 048-281-1117」の行を削除した（493字 → 461字）。
+//    493字版は 2026-09-09 に GBP 側で保存できず、電話行を削除した461字で保存に成功した経緯がある
+//    （docs/operations/gbp/2026-09-09-gbp-description-and-post-saved.md）。
+//    電話番号は NAP.primaryPhone / additionalPhones で別途設定されるため、説明文に重ねる必要もない。
 
 const PRICE_NOTE =
   "※表示は事前相談会員価格（税込）です。火葬料、式場使用料、お料理、返礼品、宗教者へのお礼などが別途必要になる場合があります。総額は無料のお見積りでご案内します。";
+
+// ⚠ 2026-09-11 追加：市民葬は「川口市民 葬祭事業価格」であって事前相談会員価格ではない。
+//    PRICE_NOTE をそのまま付けると誤った価格表示になる（CLAUDE.md §14）。
+const SHIMIN_PRICE_NOTE =
+  "※表示は川口市民の葬祭事業価格（税込）です。ご利用には川口市の定める条件があります。火葬料、式場使用料、お料理、返礼品、宗教者へのお礼などが別途必要になる場合があります。総額は無料のお見積りでご案内します。";
 
 /** サービス（商品）8件。並び順もプレイブックどおり。 */
 export const SERVICES = [
@@ -82,21 +112,38 @@ export const SERVICES = [
     description:
       "川口市の葬祭事業（市民葬）に対応したプランです。ご利用には条件がありますので、まずはご相談ください。川口市民 葬祭事業価格（税込）。",
   },
+  // ⚠ 2026-09-11 修正：無料の2件は 2026-09 にブラウザから手作業で入れた現行の文言をそのまま採用する
+  //    （API で取得した実値と一致）。無料サービスに価格の注記を付けるのは不自然なため、
+  //    PRICE_NOTE は有料プランにのみ付ける（下の .map を参照）。
   {
     name: "事前相談・お見積り",
     priceJpy: null,
     description:
-      "ご葬儀の流れ、費用の目安、式場のご見学まで無料で承ります。まだ何も決まっていない段階でもご相談いただけます。24時間365日受付。",
+      "ご葬儀の流れ、費用の目安、プランに含まれる内容と別途必要な費用をご案内します。ご相談・お見積りは無料です。まだ何も決まっていない段階でもご相談いただけます。お電話でのご相談は24時間365日受け付けています。",
   },
   {
     name: "川口メモリアルホール見学",
     priceJpy: null,
     description:
-      "川口市西新井宿の自社式場をご見学いただけます。駐車場70台・個室面会室あり。お電話または事前相談フォームよりお申し込みください。",
+      "川口市西新井宿の自社式場をご見学いただけます。見学は無料・事前予約制です。敷地内に70台分の無料駐車場があり、個室面会室もご用意しています。お電話または当社サイトの事前相談フォームからお申し込みください。",
   },
-].map((s) => ({ ...s, description: `${s.description}\n${PRICE_NOTE}` }));
+].map((s) => {
+  if (s.priceJpy === null) return s; // 無料のサービスに価格の注記は付けない
+  const note = s.name === "川口市民葬プラン" ? SHIMIN_PRICE_NOTE : PRICE_NOTE;
+  // GBP のサービス説明文は改行・連続空白を受け付けない
+  // （API: "Strings must not contain leading/trailing or contiguous whitespace." 2026-09-11 実測）。
+  // 注記は改行ではなく半角スペース1つでつなぐ。
+  return { ...s, description: `${s.description} ${note}`.replace(/\s+/g, " ").trim() };
+});
 
-/** Q&A 10問。オーナー投稿→自己回答。 */
+/**
+ * Q&A 10問。
+ *
+ * ⚠ 2026-09-11 追記：My Business Q&A API は 2025-11-03 に廃止され、GBP の「質問と回答」機能自体も
+ *    2025-12 から段階的に終了しています。**この配列は GBP へは適用できません。**
+ *    内容は消さずに残していますが、用途は「サイトの /faq/ とエリアページの FAQPage 構造化データの原稿」です。
+ *    AI 検索（Ask Maps / AI Overviews）時代の受け皿はサイト側にある、という整理です。
+ */
 export const QANDA = [
   {
     question: "夜間や早朝でも対応してもらえますか？",
@@ -170,8 +217,11 @@ export function buildPatch({ categoryIds } = {}) {
         })
       ),
     },
+    // ⚠ 2026-09-11 修正：既存の実データはすべて freeFormServiceItem.category を持っている。
+    //    付けないと未分類になるため、メインカテゴリ（葬儀屋）に紐付ける。
     serviceItems: SERVICES.map((s) => ({
       freeFormServiceItem: {
+        ...(categoryIds?.primary ? { category: categoryIds.primary } : {}),
         label: { displayName: s.name, description: s.description },
       },
       ...(s.priceJpy != null

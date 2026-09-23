@@ -82,9 +82,12 @@ function main() {
 
     console.log("\n【営業時間】");
     const periods = loc.regularHours?.periods ?? [];
+    // ⚠ 2026-09-11 修正：API は 0 時を `openTime: {}`（既定値のため省略）で返す。
+    //    以前は `p.openTime?.hours === 0` で判定していたため、既に24時間営業でも
+    //    「→ 変更」と誤検出していた。省略＝0 として扱う。
     const allDay =
       periods.length === 7 &&
-      periods.every((p) => p.openTime?.hours === 0 && (p.closeTime?.hours ?? 0) >= 24);
+      periods.every((p) => (p.openTime?.hours ?? 0) === 0 && (p.closeTime?.hours ?? 0) >= 24);
     console.log(allDay ? "    一致  24時間営業（7日）" : `  → 変更  24時間営業（7日）に設定（現在 ${periods.length} 期間）`);
 
     console.log("\n【サービス】");
@@ -100,7 +103,7 @@ function main() {
     const extra = curServices.filter((c) => !SERVICES.some((s) => s.name === c));
     for (const e of extra) console.log(`  ⚠ 期待値に無いサービス「${e}」が登録されています（要確認）`);
 
-    console.log("\n【Q&A】");
+    console.log("\n【Q&A】⚠ API は 2025-11-03 に廃止済み。以下は適用できません（サイトの /faq/ 側で持つ）");
     const curQ = (dump.qanda?.[loc.name] ?? []).map((q) => (q.text ?? "").trim());
     console.log(`  現在 ${curQ.length} 件 → 期待 ${QANDA.length} 件`);
     for (const q of QANDA) {

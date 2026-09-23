@@ -82,11 +82,13 @@ export const READ_MASK = [
   "websiteUri",
   "serviceItems",
   "serviceArea",
-  "attributes",
   "labels",
   "openInfo",
   "latlng",
   "metadata",
+  // 注意: "attributes" はここに入れない。Location リソースのフィールドではないため
+  // locations.list の readMask に含めると 400 Invalid argument になる（2026-09-11 実測）。
+  // 属性は info.locations.getAttributes({ name: "<location>/attributes" }) で別途取得する。
 ].join(",");
 
 /**

@@ -25,7 +25,8 @@ export const BANNED_PHRASES = [
   "唯一", "他社にはない", "後悔しない", "格安",
 ];
 
-// 名称は登記・看板どおりのみ（キーワード詰め込みはガイドライン違反）
+// 名称を「変更する」場合に許可する値。登記・看板どおりのみ（キーワード詰め込みはガイドライン違反）。
+// 現在値と同じ（＝変更なし）のときは、このリストに無くても通す（checkPatch を参照）。
 export const ALLOWED_TITLES = ["川口典礼", "株式会社川口典礼", "株式会社 川口典礼"];
 
 // 自社運営ではない施設。カテゴリとして名乗ってはいけない
@@ -44,7 +45,13 @@ export function checkPatch({ current, patch }) {
   const warnings = [];
 
   // 1. 名称
-  if (patch.title !== undefined && !ALLOWED_TITLES.includes(patch.title.trim())) {
+  // このチェックの目的は「名称を勝手に詰め込んだ名前へ変更してしまう」ことを止めること。
+  // 現在の名称と同じ＝変更なしの場合は、止める理由がないので通す。
+  // 現在の GBP 名称「株式会社川口典礼 川口メモリアルホール」は登記名＋看板名で正しく、
+  // 変更しないと決めてある（docs/operations/gbp/2026-09-11-gbp-api-approved.md）。
+  const currentTitle = (current?.title ?? "").trim();
+  const nextTitle = patch.title === undefined ? undefined : patch.title.trim();
+  if (nextTitle !== undefined && nextTitle !== currentTitle && !ALLOWED_TITLES.includes(nextTitle)) {
     violations.push(
       `名称を「${patch.title}」に変更しようとしています。許可されるのは ${ALLOWED_TITLES.join(" / ")} のみです（キーワード詰め込みはガイドライン違反）。`
     );
