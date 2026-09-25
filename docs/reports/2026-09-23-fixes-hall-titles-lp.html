@@ -38,6 +38,14 @@
 <li>止めるのは ①電話ボタンで発信を始めてから10秒以内の再タップ ②0.6秒以上の長押し ③複数の場所に同時に触れたタッチ の3つだけ。止めたタップは GA4・広告の電話タップCVにも数えない（window のキャプチャ段階で伝播を止める）</li>
 <li>確認：Chrome DevTools Protocol で 360×740・タッチを再現。普通のタップ＝通過、10秒以内の2回目＝停止、900ms長押し＝停止、2本指＝停止、10秒後の2回目＝通過。build 140/140、LP テスト合格</li>
 </ul>
+<h2>追記：LPの区画ごとの到達計測（2026-09-25）</h2>
+<ul>
+<li>新イベント <code>lp_section_view</code>（<code>lib/lp-analytics.ts</code> の許可リストに追加）。区画名は <code>cta_placement</code> に入れる</li>
+<li>12区画に <code>data-lp-section</code> を付与：hero → phone_box → urgent → reasons → price → halls → preneed → voice → hall_map → flow → faq → contact</li>
+<li>判定：区画が画面の縦中央の線にかかったら、ページ表示ごとに1回（IntersectionObserver・rootMargin）。面積比の判定では縦に長い料金区画が記録されなかったため変更</li>
+<li>確認：360×740で最上部から最下部までスクロールし、12区画が順に1回ずつ記録されることを確認。build 140/140、<code>test-lp-analytics.mjs</code>・<code>test-lp-output.mjs</code> 合格（brotli 23,382B）</li>
+<li>日次集計 <code>scripts/lp-daily-check.mjs</code> に区画別の到達人数（sectionReachUsers）を追加</li>
+</ul>
 <h2>今後</h2>
 <ul><li>9/28：LP初回比較で、アプリ内ブラウザの1人あたりタップ回数と cta_placement 別の変化を確認</li>
 <li>10/21：/hall/ の「川口メモリアルホール」CTR（前28日 11.8% の水準に戻るか）、トップ title【公式】の判断</li></ul>
