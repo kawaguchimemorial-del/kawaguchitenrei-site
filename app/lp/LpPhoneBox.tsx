@@ -37,7 +37,10 @@ export function LpPhoneBox({
 }) {
   const dark = tone === "dark";
   return (
-    <section className={dark ? "bg-brand-deep px-4 py-8" : "bg-white px-4 py-8"}>
+    <section
+      data-lp-section="phone_box"
+      className={dark ? "bg-brand-deep px-4 py-8" : "bg-white px-4 py-8"}
+    >
       <div
         className={`mx-auto max-w-2xl rounded-2xl border-2 p-5 text-center shadow-md ${
           dark ? "border-white/30 bg-white/5" : "border-emergency/30 bg-paper"

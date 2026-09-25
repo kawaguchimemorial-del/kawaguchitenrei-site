@@ -182,7 +182,7 @@ export default function LpPage() {
           ・上段：明るい背景に特大の見出し
           ・下段：式場の実写を全幅に敷き、左に円形バッジ、右にスタッフ。余白を作らない
           ・本サイトのセリフ体基調（§3）はLPには適用しない（§21） */}
-      <section className="relative flex min-h-[calc(100svh-84px)] flex-col overflow-hidden md:min-h-[580px] md:justify-center">
+      <section data-lp-section="hero" className="relative flex min-h-[calc(100svh-84px)] flex-col overflow-hidden md:min-h-[580px] md:justify-center">
         {/* 背景はCSSのグラデーションで作る。
             以前は背景写真の四隅に柄を描き込んでいたが、object-cover で
             画面比率に応じて柄が切り落とされ、単色の余白に見えていた。
@@ -380,6 +380,7 @@ export default function LpPage() {
       {/* お急ぎの方へ */}
       <section
         id="urgent"
+        data-lp-section="urgent"
         className="scroll-mt-24 border-y-4 border-emergency bg-white px-5 py-9"
       >
         <div className="mx-auto max-w-2xl">
@@ -442,7 +443,7 @@ export default function LpPage() {
       </section>
 
       {/* 選ばれる理由 */}
-      <section className="px-5 py-10">
+      <section data-lp-section="reasons" className="px-5 py-10">
         <div className="mx-auto max-w-2xl">
           <p className="text-center text-xs tracking-[0.16em] text-brand-soft">
             REASON
@@ -501,7 +502,7 @@ export default function LpPage() {
       </section>
 
       {/* 費用（2026-09-23：式場一覧より前へ。下まで読む人が3〜5%のため、料金を先に見せる） */}
-      <section id="price" className="scroll-mt-24 bg-white px-5 py-10">
+      <section id="price" data-lp-section="price" className="scroll-mt-24 bg-white px-5 py-10">
         {/* 表を組むPCだけ広げる（列が狭いとプラン名が1文字ずつ折り返す） */}
         <div className="mx-auto max-w-2xl md:max-w-5xl">
           <p className="text-center text-xs tracking-[0.16em] text-brand-soft">
@@ -551,7 +552,7 @@ export default function LpPage() {
       <LpPreneed />
 
       {/* お客様の声（手書きアンケート） */}
-      <section className="px-5 py-10">
+      <section data-lp-section="voice" className="px-5 py-10">
         <div className="mx-auto max-w-2xl">
           <p className="text-center text-xs tracking-[0.16em] text-brand-soft">
             VOICE
@@ -653,7 +654,7 @@ export default function LpPage() {
       </section>
 
       {/* 式場（ご会葬の方の着地点も兼ねる） */}
-      <section id="hall" className="scroll-mt-24 bg-white px-5 py-10">
+      <section id="hall" data-lp-section="hall_map" className="scroll-mt-24 bg-white px-5 py-10">
         <div className="mx-auto max-w-2xl">
           <p className="text-center text-xs tracking-[0.16em] text-brand-soft">
             HALL
@@ -734,7 +735,7 @@ export default function LpPage() {
       </section>
 
       {/* 流れ */}
-      <section className="px-5 py-10">
+      <section data-lp-section="flow" className="px-5 py-10">
         <div className="mx-auto max-w-2xl">
           <p className="text-center text-xs tracking-[0.16em] text-brand-soft">
             FLOW
@@ -781,7 +782,7 @@ export default function LpPage() {
       </section>
 
       {/* FAQ */}
-      <section className="bg-white px-5 py-10">
+      <section data-lp-section="faq" className="bg-white px-5 py-10">
         <div className="mx-auto max-w-2xl">
           <p className="text-center text-xs tracking-[0.16em] text-brand-soft">
             FAQ
@@ -806,7 +807,7 @@ export default function LpPage() {
       </section>
 
       {/* ページ内フォーム（ティアの型） */}
-      <section id="contact" className="scroll-mt-24 bg-brand-deep px-5 py-10">
+      <section id="contact" data-lp-section="contact" className="scroll-mt-24 bg-brand-deep px-5 py-10">
         <div className="mx-auto max-w-2xl">
           <p className="text-center text-xs tracking-[0.16em] text-gold">
             PRE-CONSULTATION

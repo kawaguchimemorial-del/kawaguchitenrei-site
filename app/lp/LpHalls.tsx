@@ -32,7 +32,7 @@ export function LpHalls() {
   );
 
   return (
-    <section id="halls" className="scroll-mt-24 bg-paper px-5 py-10">
+    <section id="halls" data-lp-section="halls" className="scroll-mt-24 bg-paper px-5 py-10">
       <div className="mx-auto max-w-2xl md:max-w-5xl">
         <p className="text-center text-xs tracking-[0.16em] text-brand-soft">
           HALL

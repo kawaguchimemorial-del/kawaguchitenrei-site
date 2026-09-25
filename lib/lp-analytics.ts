@@ -9,6 +9,8 @@ export const LP_EVENTS = [
   "lp_form_start",
   "lp_generate_lead",
   "lp_directions",
+  // 区画ごとの到達（2026-09-25）。cta_placement に区画名を入れて送る
+  "lp_section_view",
 ] as const;
 export type LpEvent = (typeof LP_EVENTS)[number];
 

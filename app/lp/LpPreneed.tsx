@@ -30,7 +30,7 @@ const PRENEED_POINTS = [
 
 export function LpPreneed() {
   return (
-    <section id="preneed" className="scroll-mt-24 bg-white px-5 py-10">
+    <section id="preneed" data-lp-section="preneed" className="scroll-mt-24 bg-white px-5 py-10">
       <div className="mx-auto max-w-2xl md:max-w-4xl">
         <p className="text-center text-xs tracking-[0.16em] text-brand-soft">
           PRE-CONSULTATION
