@@ -70,23 +70,23 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
-      <Hero />
-      <ReviewBadge />
-      <AdvanceConsultSection />
-      <ThreeStrengthsSection />
-      <EmergencySection />
-      <CostEstimateSection />
-      <PlanSection />
-      <FamilyFuneralSection />
-      <HallSection />
-      <MeguriSection />
-      <CasesSection />
-      <VoicesSection />
-      <MediaLinksSection />
-      <FaqSection />
-      <AreasSection />
-      <AccessSection />
-      <FinalCtaSection />
+      <div data-section="home_hero"><Hero /></div>
+      <div data-section="home_review"><ReviewBadge /></div>
+      <div data-section="home_advance"><AdvanceConsultSection /></div>
+      <div data-section="home_strengths"><ThreeStrengthsSection /></div>
+      <div data-section="home_emergency"><EmergencySection /></div>
+      <div data-section="home_cost"><CostEstimateSection /></div>
+      <div data-section="home_plans"><PlanSection /></div>
+      <div data-section="home_family"><FamilyFuneralSection /></div>
+      <div data-section="home_hall"><HallSection /></div>
+      <div data-section="home_meguri"><MeguriSection /></div>
+      <div data-section="home_cases"><CasesSection /></div>
+      <div data-section="home_voices"><VoicesSection /></div>
+      <div data-section="home_media"><MediaLinksSection /></div>
+      <div data-section="home_faq"><FaqSection /></div>
+      <div data-section="home_areas"><AreasSection /></div>
+      <div data-section="home_access"><AccessSection /></div>
+      <div data-section="home_final_cta"><FinalCtaSection /></div>
     </>
   );
 }

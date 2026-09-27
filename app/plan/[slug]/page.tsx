@@ -212,35 +212,35 @@ export default async function PlanDetailPage({ params }: Props) {
         />
       )}
 
-      <PlanDetailIntro plan={plan} />
+      <div data-section="plan_intro"><PlanDetailIntro plan={plan} /></div>
       {plan.slug === "cremation" && <CremationPlanGuide />}
       {plan.yugureInfo ? (
         <>
-          <PlanYugureBody plan={plan} />
-          <PlanFaq plan={plan} />
+          <div data-section="plan_yugure_body"><PlanYugureBody plan={plan} /></div>
+          <div data-section="plan_faq"><PlanFaq plan={plan} /></div>
           <YugureComparison plan={plan} />
-          <YugureCta plan={plan} />
-          <PlanRelated plan={plan} />
+          <div data-section="plan_cta"><YugureCta plan={plan} /></div>
+          <div data-section="plan_related"><PlanRelated plan={plan} /></div>
         </>
       ) : plan.nonReligiousInfo ? (
-        <PlanNonReligiousBody plan={plan} />
+        <div data-section="plan_nonreligious_body"><PlanNonReligiousBody plan={plan} /></div>
       ) : plan.citizenFuneralInfo ? (
-        <PlanCitizenFuneralBody plan={plan} />
+        <div data-section="plan_citizen_body"><PlanCitizenFuneralBody plan={plan} /></div>
       ) : (
         <>
-          <PlanConclusionBox plan={plan} />
-          <PlanFormatGuide plan={plan} />
-          <PlanInclusions plan={plan} />
-          <PlanSimpleAlternative plan={plan} />
-          <PlanFlow plan={plan} />
-          <PlanAdditional plan={plan} />
-          <PlanCostGuide plan={plan} />
-          <PlanCompatibleHalls plan={plan} />
-          <PlanFaq plan={plan} />
-          <PlanRelated plan={plan} />
+          <div data-section="plan_conclusion"><PlanConclusionBox plan={plan} /></div>
+          <div data-section="plan_format"><PlanFormatGuide plan={plan} /></div>
+          <div data-section="plan_inclusions"><PlanInclusions plan={plan} /></div>
+          <div data-section="plan_simple_alt"><PlanSimpleAlternative plan={plan} /></div>
+          <div data-section="plan_flow"><PlanFlow plan={plan} /></div>
+          <div data-section="plan_additional"><PlanAdditional plan={plan} /></div>
+          <div data-section="plan_cost"><PlanCostGuide plan={plan} /></div>
+          <div data-section="plan_halls"><PlanCompatibleHalls plan={plan} /></div>
+          <div data-section="plan_faq"><PlanFaq plan={plan} /></div>
+          <div data-section="plan_related"><PlanRelated plan={plan} /></div>
         </>
       )}
-      {!plan.yugureInfo && <PlanCta plan={plan} />}
+      {!plan.yugureInfo && <div data-section="plan_cta"><PlanCta plan={plan} /></div>}
     </>
   );
 }

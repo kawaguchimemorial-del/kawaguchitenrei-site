@@ -1,3 +1,4 @@
+import { SiteSectionTracker } from "@/components/analytics/SiteSectionTracker";
 import type { Metadata } from "next";
 import Script from "next/script";
 import { analyticsPolicyScript } from "@/lib/analytics-policy";
@@ -57,6 +58,7 @@ export default function RootLayout({
       <body className="min-h-full bg-paper pb-[calc(6rem+env(safe-area-inset-bottom))] text-ink md:pb-0">
         <Script id="analytics-policy" strategy="beforeInteractive">{analyticsPolicyScript}</Script>
         <GoogleTagManager />
+        <SiteSectionTracker />
         <HeaderSlot />
         <main>{children}</main>
         <FooterSlot />

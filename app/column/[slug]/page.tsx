@@ -225,15 +225,24 @@ export default async function ColumnDetailPage({ params }: Props) {
                 </div>
               )}
 
-              <div className="mt-10 md:mt-12">
+              <div
+                data-section="column_body_start"
+                data-section-progress="column_body"
+                className="relative mt-10 md:mt-12"
+              >
                 <ColumnBody body={article.body} />
               </div>
 
               {/* 地域密着・川口市の葬儀（形式別）導線。全コラム共通で表示 */}
-              <ColumnLocalFuneralGuide />
+              <div data-section="column_local_guide">
+                <ColumnLocalFuneralGuide />
+              </div>
 
               {/* 記事下のCTA + 戻り導線 */}
-              <div className="mt-14 rounded-lg border border-line bg-paper px-6 py-8 text-center md:px-8 md:py-10">
+              <div
+                data-section="column_cta"
+                className="mt-14 rounded-lg border border-line bg-paper px-6 py-8 text-center md:px-8 md:py-10"
+              >
                 <p className="text-sm font-semibold tracking-[0.18em] text-brand uppercase">
                   Contact
                 </p>

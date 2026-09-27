@@ -113,15 +113,15 @@ export default function KawaguchiMemorialHallPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
-      <HallDetailIntro hall={hallKawaguchi} />
-      <HallFeatures hall={hallKawaguchi} />
-      <HallGallery hall={hallKawaguchi} />
-      <HallVisitationRoom />
-      <HallEquipment hall={hallKawaguchi} />
-      <HallSupportedPlans hall={hallKawaguchi} />
-      <HallAccess hall={hallKawaguchi} />
-      <HallFaq hall={hallKawaguchi} />
-      <HallCta hall={hallKawaguchi} />
+      <div data-section="hall_intro"><HallDetailIntro hall={hallKawaguchi} /></div>
+      <div data-section="hall_features"><HallFeatures hall={hallKawaguchi} /></div>
+      <div data-section="hall_gallery"><HallGallery hall={hallKawaguchi} /></div>
+      <div data-section="hall_visitation"><HallVisitationRoom /></div>
+      <div data-section="hall_equipment"><HallEquipment hall={hallKawaguchi} /></div>
+      <div data-section="hall_plans"><HallSupportedPlans hall={hallKawaguchi} /></div>
+      <div data-section="hall_access"><HallAccess hall={hallKawaguchi} /></div>
+      <div data-section="hall_faq"><HallFaq hall={hallKawaguchi} /></div>
+      <div data-section="hall_cta"><HallCta hall={hallKawaguchi} /></div>
     </>
   );
 }

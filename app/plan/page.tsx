@@ -373,6 +373,7 @@ export default function PlanIndexPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
       />
 
+      <div data-section="plan_list_hero">
       <PageHero
         eyebrow="Plan"
         subLabel="葬儀プラン一覧"
@@ -393,8 +394,9 @@ export default function PlanIndexPage() {
           { label: "葬儀プラン" },
         ]}
       />
+      </div>
 
-      <section className="bg-white py-16 md:py-24">
+      <section data-section="plan_list_compare" className="bg-white py-16 md:py-24">
         <div className="mx-auto max-w-6xl px-5 md:px-8">
           <div className="max-w-3xl">
             <p className="text-sm font-semibold tracking-[0.18em] text-brand uppercase">
@@ -454,7 +456,7 @@ export default function PlanIndexPage() {
         </div>
       </section>
 
-      <section className="bg-paper py-16 md:py-24">
+      <section data-section="plan_list_cards" className="bg-paper py-16 md:py-24">
         <div className="mx-auto max-w-6xl px-5 md:px-8">
           <div className="max-w-3xl">
             <p className="text-sm font-semibold tracking-[0.18em] text-brand uppercase">
@@ -541,7 +543,7 @@ export default function PlanIndexPage() {
         </div>
       </section>
 
-      <section className="bg-cool py-16 md:py-24">
+      <section data-section="plan_list_guide" className="bg-cool py-16 md:py-24">
         <div className="mx-auto max-w-6xl px-5 md:px-8">
           <div className="max-w-3xl">
             <p className="text-sm font-semibold tracking-[0.18em] text-brand uppercase">
@@ -590,7 +592,7 @@ export default function PlanIndexPage() {
         </div>
       </section>
 
-      <section className="bg-white py-12 md:py-16">
+      <section data-section="plan_list_saijo" className="bg-white py-12 md:py-16">
         <div className="mx-auto max-w-4xl px-5 md:px-8">
           <div className="rounded-lg border border-line bg-paper p-6 shadow-sm md:p-8">
             <p className="text-xs font-bold uppercase tracking-[0.18em] text-brand">
@@ -615,7 +617,7 @@ export default function PlanIndexPage() {
         </div>
       </section>
 
-      <section className="bg-paper py-12 md:py-16">
+      <section data-section="plan_list_nonreligious" className="bg-paper py-12 md:py-16">
         <div className="mx-auto max-w-4xl px-5 md:px-8">
           <div className="rounded-lg border border-line bg-white p-6 shadow-sm md:p-8">
             <p className="text-xs font-bold uppercase tracking-[0.18em] text-brand">
@@ -641,7 +643,7 @@ export default function PlanIndexPage() {
       </section>
 
       {/* 費用の内訳の目安（AIに引用されやすい表形式） */}
-      <section className="bg-white py-16 md:py-24">
+      <section data-section="plan_list_cost" className="bg-white py-16 md:py-24">
         <div className="mx-auto max-w-6xl px-5 md:px-8">
           <div className="max-w-3xl">
             <p className="text-sm font-semibold tracking-[0.18em] text-brand uppercase">
@@ -663,7 +665,7 @@ export default function PlanIndexPage() {
         </div>
       </section>
 
-      <section
+      <section data-section="plan_list_before_request"
         id="before-request"
         className="scroll-mt-24 bg-paper py-16 md:py-24"
       >
@@ -775,7 +777,7 @@ export default function PlanIndexPage() {
         </div>
       </section>
 
-      <section
+      <section data-section="plan_list_contact"
         id="consultation"
         className="scroll-mt-24 bg-deep py-16 text-white md:py-24"
       >
