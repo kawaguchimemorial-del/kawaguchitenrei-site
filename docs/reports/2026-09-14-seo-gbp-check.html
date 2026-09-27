@@ -254,6 +254,18 @@
     <li>9/22 10:04・12:04 の送信が当社の確認送信かどうかを確認</li>
     <li>次回：9/27（CSP 3 回目）、9/28（LP 初回比較。率ではなくユーザー数で比べる）</li>
   </ol>
+
+  <h2>追記：2026-09-28 再取得（最終確定日 09-25）</h2>
+  <table>
+    <tr><th>期間</th><th class="n">クリック</th><th class="n">表示</th><th class="n">CTR</th><th class="n">平均順位</th></tr>
+    <tr><td>前28日 08-01〜08-28</td><td class="n">333</td><td class="n">37,980</td><td class="n">0.88%</td><td class="n">11.44</td></tr>
+    <tr><td>直近28日 08-29〜09-25</td><td class="n">328</td><td class="n">40,584</td><td class="n">0.81%</td><td class="n">10.08</td></tr>
+    <tr><td>前7日 09-12〜09-18</td><td class="n">68</td><td class="n">9,405</td><td class="n">0.72%</td><td class="n">9.58</td></tr>
+    <tr><td>直近7日 09-19〜09-25</td><td class="n">122</td><td class="n">10,037</td><td class="n">1.22%</td><td class="n">9.90</td></tr>
+  </table>
+  <p><span class="tag ok">良い</span>直近7日のクリックは 68→122（+79%）。日別は 9/21 以降 15・16・24・24・12。ページ別（7日）：トップ 10→30、ホール 4→14、検視コラム 2→15、友人葬コラム 9→16。「川口典礼」11→14クリック。「川口メモリアルホール」は 2→7クリック・表示 22→62 で、9/23 の旧LP 301 と /hall/【公式】の効果とみられる。</p>
+  <p><span class="tag warn">注意</span>「川口市 葬儀」は直近7日 7.8→11.5位（28日では 11.2→9.1位で改善）。週次で振れているため 10/5 に再確認。「川口市 家族葬」13.2位・「川口 家族葬」13.4位と上向き。</p>
+  <p><span class="tag info">確認</span>GBP（確定済みの 14 日同士：08-31〜09-13 → 09-14〜09-27）：検索表示（スマホ）300→280、マップ表示（スマホ）132→133、PC の表示は減少（検索 121→83・マップ 88→47）、<b>サイトクリック 10→18</b>、ルート検索 30→33、通話 3→1。直近数日は未確定の可能性あり。</p>
   <footer>
     取得コマンド：<code>node --env-file=.env.local scripts/search-console-audit.mjs --inspect --with-ga4</code>、<code>node --env-file=.env.local scripts/gbp/performance.mjs --from=… --to=…</code>、<code>node --env-file=.env.local scripts/gbp/reviews.mjs</code>。生データは <code>tmp/</code>（git 管理外）。個人情報・口コミ本文・秘密情報は本レポートに含めていない。
   </footer>
