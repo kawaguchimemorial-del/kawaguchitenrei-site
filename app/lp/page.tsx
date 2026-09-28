@@ -8,6 +8,7 @@ import { voices } from "@/lib/voices";
 import { LpContactForm } from "./contact/LpContactForm";
 import { LpHalls } from "./LpHalls";
 import { LpPhoneBox } from "./LpPhoneBox";
+import { LpQuickFacts } from "./LpQuickFacts";
 import { LpPreneed } from "./LpPreneed";
 import { LpPlanTable } from "./LpPlanTable";
 import { LpStars } from "./LpStars";
@@ -20,13 +21,6 @@ import { PHONE_DISPLAY, PHONE_HREF } from "./lp-data";
 // 競合7社のフルページ実測（docs/ad-lp/competitor-captures/・Git管理外）を踏まえた構成。
 // 取り入れた型：ヘッダー常設電話／ヒーロー直下の電話ボックス／入口分岐（お急ぎ・ご会葬）／
 // バッジによる実績提示／プランカード／手書きアンケートによる社会的証明／ページ内フォーム。
-
-// ヒーローの特徴チップ。数値の根拠は lib/company.ts / lib/halls.ts に一致させる。
-const HERO_POINTS = [
-  "めぐりの森まで車5分",
-  "駐車場70台",
-  "創業20年・累計4,600件超",
-];
 
 const URGENT_STEPS = [
   {
@@ -182,7 +176,9 @@ export default function LpPage() {
           ・上段：明るい背景に特大の見出し
           ・下段：式場の実写を全幅に敷き、左に円形バッジ、右にスタッフ。余白を作らない
           ・本サイトのセリフ体基調（§3）はLPには適用しない（§21） */}
-      <section data-lp-section="hero" className="relative flex min-h-[calc(100svh-84px)] flex-col overflow-hidden md:min-h-[580px] md:justify-center">
+      {/* 2026-09-28：スマホでは画面いっぱいの高さ固定をやめ、見出し・3行・電話ボタンを
+          最初の画面に収める（最初の画面で約8割が離れていたため。docs/ad-lp/daily）。 */}
+      <section data-lp-section="hero" className="relative flex flex-col overflow-hidden md:min-h-[580px] md:justify-center">
         {/* 背景はCSSのグラデーションで作る。
             以前は背景写真の四隅に柄を描き込んでいたが、object-cover で
             画面比率に応じて柄が切り落とされ、単色の余白に見えていた。
@@ -235,31 +231,35 @@ export default function LpPage() {
               </p>
             </div>
 
-            <h1 className="mt-2.5 text-[29px] font-black leading-[1.3] tracking-tighter text-brand-deep md:mt-3 md:text-[31px] md:tracking-tight lg:text-[40px] xl:text-[46px]">
+            <h1 className="mt-2.5 text-[26px] font-black leading-[1.3] tracking-tighter min-[380px]:text-[29px] text-brand-deep md:mt-3 md:text-[31px] md:tracking-tight lg:text-[40px] xl:text-[46px]">
               <span className="text-emergency">川口市</span>の家族葬・直葬なら
               <br />
               自社式場の<span className="text-emergency">川口典礼</span>へ。
             </h1>
 
-            <p className="mt-2.5 text-[16px] font-bold leading-[1.7] text-ink md:mt-3 md:text-base lg:mt-4 lg:text-xl">
+            <p className="mt-2 text-[16px] font-bold leading-[1.6] text-ink md:mt-3 md:text-base lg:mt-4 lg:text-xl">
               まだ何も決まっていなくて、大丈夫です。
-              <br />
-              24時間365日、いまお電話がつながります。
             </p>
 
-            {/* 特徴チップ。上段の余白を埋めつつ、当社の差別化を短く出す */}
-            <ul className="mt-3 flex flex-wrap gap-1.5 md:mt-4 md:gap-2">
-              {HERO_POINTS.map((point) => (
-                <li
-                  key={point}
-                  className="rounded-full border border-brand-tint bg-white/90 px-2.5 py-1 text-[12px] font-bold text-brand-deep shadow-sm md:px-2.5 md:py-1 md:text-[12px] lg:px-3 lg:py-1.5 lg:text-sm"
-                >
-                  {point}
-                </li>
-              ))}
-            </ul>
+            {/* お迎え・費用・場所の3行（LpQuickFacts）と、最初の画面の電話ボタン */}
+            <div className="mt-2.5 md:mt-4">
+              <LpQuickFacts />
+            </div>
+            <a
+              href={PHONE_HREF}
+              data-lp-event="lp_click_tel"
+              data-lp-placement="hero_top"
+              className="mt-2.5 flex flex-col items-center rounded-xl bg-emergency px-4 py-2.5 text-white shadow-md transition hover:bg-emergency-deep md:mt-4"
+            >
+              <span className="text-[12px] font-bold tracking-wide">
+                24時間365日・通話無料
+              </span>
+              <span className="whitespace-nowrap text-[28px] font-bold leading-tight tracking-wider min-[380px]:text-[30px]">
+                {PHONE_DISPLAY}
+              </span>
+            </a>
 
-            <div className="mt-2.5 inline-flex items-center gap-1.5 whitespace-nowrap rounded-lg border border-line bg-white/90 px-2.5 py-1.5 shadow-sm md:mt-4 md:gap-2 md:px-3 md:py-2">
+            <div className="mt-2.5 inline-flex flex-wrap items-center gap-1.5 rounded-lg border border-line bg-white/90 px-2.5 py-1.5 shadow-sm md:mt-4 md:gap-2 md:px-3 md:py-2">
               <LpStars rating={googleReview.rating} className="text-sm md:text-base" />
               <span className="text-base font-bold leading-none text-ink-deep md:text-lg">
                 {googleReview.rating}
@@ -270,12 +270,15 @@ export default function LpPage() {
               <span className="text-[10px] leading-none text-ink-soft md:text-[12px]">
                 {reviewSummary.asOf}
               </span>
+              <span className="text-[12px] font-bold leading-none text-brand-deep md:text-xs">
+                ／ 創業20年・累計4,600件超
+              </span>
             </div>
           </div>
         </div>
 
         {/* 下段：式場の実写を全幅に敷き、左に円形バッジ、右にスタッフ。左右に余白を作らない */}
-        <div className="relative mt-auto h-[42vh] min-h-[250px] w-full md:absolute md:inset-y-0 md:right-0 md:mt-0 md:h-auto md:w-[46%]">
+        <div className="relative mt-3 h-[150px] w-full md:absolute md:inset-y-0 md:right-0 md:mt-0 md:h-auto md:w-[46%]">
           <Image
             src="/images/home/hero/hall-exterior-hero.jpg"
             alt="川口メモリアルホールの外観"
@@ -288,7 +291,7 @@ export default function LpPage() {
           <div className="absolute inset-0 hidden bg-gradient-to-r from-paper via-transparent to-transparent md:block md:rounded-l-[2.5rem]" />
 
           {/* 円形バッジ（左） */}
-          <div className="absolute bottom-[86px] left-3 z-10 flex h-[108px] w-[108px] items-center justify-center md:bottom-8 md:left-8 md:h-[140px] md:w-[140px]">
+          <div className="absolute bottom-2 left-3 z-10 flex h-[84px] w-[84px] items-center justify-center md:bottom-8 md:left-8 md:h-[140px] md:w-[140px]">
             <Image
               src="/images/lp/badge-circle.webp"
               alt=""
@@ -299,18 +302,19 @@ export default function LpPage() {
               className="object-contain drop-shadow"
             />
             <div className="relative px-2 text-center leading-none">
-              <p className="text-[10px] font-bold text-ink-mid md:text-[11px]">
+              <p className="text-[8px] font-bold text-ink-mid md:text-[11px]">
                 アンケート満足度
               </p>
               <p className="mt-0.5 text-brand-deep">
-                <span className="text-[30px] font-black md:text-[34px]">97</span>
-                <span className="text-[15px] font-black">%超</span>
+                <span className="text-[23px] font-black md:text-[34px]">97</span>
+                <span className="text-[12px] font-black md:text-[15px]">%超</span>
               </p>
             </div>
           </div>
 
           {/* スタッフ（イメージ） */}
-          <div className="pointer-events-none absolute bottom-0 right-0 h-full w-[62%] md:h-[94%] md:w-[72%]">
+          {/* スマホでは写真の高さを抑えたため、スタッフの画像はPCのみ表示 */}
+          <div className="pointer-events-none absolute bottom-0 right-0 hidden h-full w-[62%] md:block md:h-[94%] md:w-[72%]">
             <Image
               src="/images/lp/staff-hero.webp"
               alt="黒いフォーマルスーツで対応する葬祭スタッフ（イメージ）"
