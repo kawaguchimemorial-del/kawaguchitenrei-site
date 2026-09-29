@@ -64,7 +64,7 @@ export const company: CompanyInfo = {
   cumulativeCases: "4,600件以上",
   satisfactionRate: "97%以上",
   reviewRating: 4.6,
-  reviewCount: 29,
+  reviewCount: 31,
   citizenFuneralRegistered: true,
   trackRecord: [
     {

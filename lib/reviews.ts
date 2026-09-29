@@ -2,11 +2,11 @@
  * 口コミ・アンケートの集計（実データ）。更新はこのファイル1か所で行う。
  *
  * 内訳（Google口コミは2026年9月、その他は2026年7月に集計）：
- *  - Google口コミ            : 29件 / ★4.6（2026-09-23 GBP API で確認）
+ *  - Google口コミ            : 31件 / ★4.6（2026-09-29 GBP API で確認）
  *  - 葬儀口コミサイトA（名称非公開）: 96件 / ★4.6
  *  - 葬儀口コミサイトB（名称非公開）: 198件 / ★4.7
  *  - ご利用後アンケート（自社）   : 250件 / ★4.8
- *  - 総合（全573件の加重平均）   : ★約4.7
+ *  - 総合（全575件の加重平均）   : ★約4.7
  *
  * 表示ルール（CLAUDE.md §11 / §15）：
  *  - 「最安」「100%」など断定・誇張は使わない（★平均で語る）
@@ -15,10 +15,10 @@
  */
 export const reviewSummary = {
   asOf: "2026年9月集計",
-  total: { rating: 4.7, count: 573 },
+  total: { rating: 4.7, count: 575 },
   basis: "Google・各種葬儀口コミサイト・ご利用後アンケートの合計",
   highlights: [
-    { label: "Google口コミ", rating: 4.6, count: 29 },
+    { label: "Google口コミ", rating: 4.6, count: 31 },
     { label: "ご利用後アンケート", rating: 4.8, count: 250 },
   ],
   /**
@@ -27,7 +27,7 @@ export const reviewSummary = {
    * 「各種葬儀口コミサイト」として合算（294件・加重平均★4.7）で持つ。
    */
   sources: [
-    { label: "Googleクチコミ", rating: 4.6, count: 29, showCount: false },
+    { label: "Googleクチコミ", rating: 4.6, count: 31, showCount: false },
     { label: "各種葬儀口コミサイト", rating: 4.7, count: 294, showCount: true },
     { label: "ご利用後アンケート", rating: 4.8, count: 250, showCount: true },
   ],
