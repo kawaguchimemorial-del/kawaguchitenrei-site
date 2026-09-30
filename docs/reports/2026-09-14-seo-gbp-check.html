@@ -290,7 +290,7 @@
   <p><span class="tag ok">良い</span>直近7日 82→131（+60%）、CTR 1.27%。9/27（日）は25クリックで直近の最多。ページ（7日）：トップ 14→34（6.8位）、ホール 7→15（4.1位）、検視コラム 4→14、会社概要 8→11（2.4位）。「川口メモリアルホール」3→9クリック・11.7→4.0位、「川口典礼」14→18クリック。</p>
   <p><span class="tag warn">注意</span>「川口市 葬儀」は直近7日 8.4→11.2位（3週続けて11位台、28日では 10.7→9.2位）。表示 290 で横ばい。10/5 の確認で続けば、トップの内容・内部リンクの点検に入る。「川口市 家族葬」17.4→13.2位・「川口 家族葬」20.9→13.8位は上向き、「川口 市民葬」15.2→8.4位。</p>
   <p><span class="tag ok">良い</span>GBP（09-01〜09-14 → 09-15〜09-29、末尾は未確定の可能性あり）：通話 3→7、サイトクリック 10→19、検索表示（スマホ）300→317、マップ表示（スマホ）133→141、マップ表示（PC）87→48、ルート検索 31→28。口コミ 31件・★4.6、取得できた30件はすべて返信済み。</p>
-  <p><span class="tag info">確認</span>AI 経由（GA4）：9月は 16 セッション（8月 9）・キーイベント 0。着地は訃報・香典相場コラムなど。月末の手動チェック（<code>docs/eval/aio-manual-check.md</code> の B・C）は未実施。</p>
+  <p><span class="tag info">確認</span>AI 経由（GA4）：9月は 16 セッション（8月 9）・キーイベント 0。着地は訃報・香典相場コラムなど。月末チェック（<code>docs/eval/aio-manual-check.md</code>）：ChatGPT は8問中7問で当社を名指し（「夜中に亡くなった」の質問だけ外れた）。Google AI Overviews は自動取得が CAPTCHA で止まるため手動待ち、Gemini は未実施。</p>
   <footer>
     取得コマンド：<code>node --env-file=.env.local scripts/search-console-audit.mjs --inspect --with-ga4</code>、<code>node --env-file=.env.local scripts/gbp/performance.mjs --from=… --to=…</code>、<code>node --env-file=.env.local scripts/gbp/reviews.mjs</code>。生データは <code>tmp/</code>（git 管理外）。個人情報・口コミ本文・秘密情報は本レポートに含めていない。
   </footer>
