@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>プランの含まれるもの修正（ご安置1日分・骨壺は別料金）｜川口典礼サイト（社内・非公開）</title>
+<style>
+body{margin:0;background:#faf9f7;color:#2b2b2b;font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;line-height:1.8;font-size:15px}
+.wrap{max-width:900px;margin:0 auto;padding:44px 22px 80px}
+h1{font-family:"Yu Mincho",serif;font-size:23px;font-weight:600;margin:0 0 6px}
+h2{font-size:18px;border-left:4px solid #2f4a3a;padding-left:10px;margin:40px 0 12px}
+table{border-collapse:collapse;width:100%;margin:10px 0 16px;font-size:13.5px;background:#fff}
+th,td{border:1px solid #d9d2c3;padding:6px 9px;vertical-align:top}
+th{background:#f1ede4;text-align:left}
+.note{color:#666;font-size:13px}
+.tag{display:inline-block;font-size:12px;border-radius:3px;padding:0 6px;margin-right:6px;color:#fff;background:#2f4a3a}
+.tag.g{background:#777}
+code{background:#f1efe9;padding:1px 6px;border-radius:5px;font-size:12.5px}
+</style></head>
+<body><div class="wrap">
+<h1>プランの含まれるもの修正（ご安置1日分・骨壺は別料金）</h1>
+<p>作成日：2026-10-12 ／ 担当：Claude Code（松澤依頼）</p>
+
+<h2>1. サマリ</h2>
+<ul>
+<li><span class="tag">完了</span>家族葬・一日葬・直葬・花入れお別れ・火葬式の「ご安置（ドライアイス含む）」を <b>1日分</b> に統一（家族葬は「2日分」、他は「必要日数分」と誤記）</li>
+<li><span class="tag">完了</span>夕暮れ家族葬は「式当日・翌日分」のまま（CLAUDE.md §9 どおり。松澤確認）</li>
+<li><span class="tag">完了</span>骨壺・骨箱を「含まれるもの」から外し、「別途必要になる場合があるもの」に「骨壺（川口市めぐりの森では別料金）」を追加</li>
+<li><span class="tag">完了</span>直葬・花入れお別れの「仏衣一式」は含むままで正しい（松澤確認）</li>
+<li><span class="tag g">据え置き</span>川口市民葬は市の葬祭事業の仕様（骨箱及び骨つぼ）に沿った記載のため変更していない</li>
+<li><span class="tag g">据え置き</span>延長時の1日あたりの金額はサイトに出さない（松澤判断）</li>
+</ul>
+
+<h2>2. 背景</h2>
+<p>事前相談の提案資料を社内の祭壇シミュレーター（見積もり用）と照合した際、サイトの「含まれるもの」とシミュレーターの基本セットが食い違っていた。松澤に確認し、次のとおりサイト側が誤りと判明した。</p>
+<ul>
+<li>ご安置・ドライアイスは、夕暮れ家族葬を除く全プランでセットに1日分のみ</li>
+<li>川口市めぐりの森では骨壺は別料金</li>
+</ul>
+
+<h2>3. 変更内容</h2>
+<table>
+<tr><th style="width:24%">ファイル</th><th>変更</th></tr>
+<tr><td><code>lib/plans.ts</code></td><td>各プランの inclusions：ご安置を1日分に、「棺・骨壺・白木位牌」→「棺・白木位牌」、直葬「棺・骨壺」→「棺」、夕暮れ家族葬「白木位牌・骨壺・骨箱」→「白木位牌」、夕暮れ家族葬 inclusionsAll から「骨壺・骨箱」を削除。additional に骨壺を追加（家族葬・一日葬・夕暮れ家族葬・火葬式・直葬・花入れお別れ）。家族葬 FAQ「528,000円には何が含まれますか」と夕暮れ家族葬 FAQ「プラン料金に含まれないもの」を同じ内容に修正</td></tr>
+<tr><td><code>lib/faqs.ts</code></td><td>「家族葬の費用はいくらですか？」の回答から骨壺を含まれるものから外し、別途に追加</td></tr>
+<tr><td><code>lib/cases.ts</code></td><td>施行事例の共通リスト（一日葬・家族葬）：骨壺を外して別途へ、家族葬の「ご安置(2日)」→「ご安置(1日)」</td></tr>
+</table>
+<p class="note">料金（§9）は変更していない。</p>
+
+<h2>4. 確認結果</h2>
+<ul>
+<li><code>npm run build</code> 成功・静的生成 140/140（減少なし）</li>
+</ul>
+
+<h2>5. 今後のアクション</h2>
+<ul>
+<li>commit・push は松澤の指示待ち</li>
+<li>反映後、/plan/family-funeral/・/plan/oneday-funeral/・/plan/direct-funeral/・/plan/hanaire-owakare/・/plan/yugure-kazokuso/ の表示を確認</li>
+<li>Google の商品・価格情報や外部掲載に「骨壺込み」「2日分」の記載があれば、別途確認</li>
+</ul>
+</div></body></html>

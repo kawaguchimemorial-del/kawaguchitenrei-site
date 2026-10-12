@@ -28,7 +28,7 @@ export type CaseRecord = {
 const ONEDAY_INCLUDED = [
   "ご搬送",
   "ご安置",
-  "棺・骨壺・白木位牌",
+  "棺・白木位牌",
   "告別式のお手伝い",
   "仏衣一式",
   "霊柩車",
@@ -37,6 +37,7 @@ const ONEDAY_INCLUDED = [
 
 const ONEDAY_EXTRA = [
   "火葬料金",
+  "骨壺(めぐりの森では別料金)",
   "宗教者へのお礼",
   "お料理",
   "返礼品",
@@ -44,8 +45,8 @@ const ONEDAY_EXTRA = [
 
 const FAMILY_INCLUDED = [
   "ご搬送",
-  "ご安置(2日)",
-  "棺・骨壺・白木位牌",
+  "ご安置(1日)",
+  "棺・白木位牌",
   "祭壇の基本設え",
   "通夜・告別式のお手伝い",
   "仏衣一式",
@@ -55,6 +56,7 @@ const FAMILY_INCLUDED = [
 
 const FAMILY_EXTRA = [
   "火葬料金",
+  "骨壺(めぐりの森では別料金)",
   "宗教者へのお礼",
   "お料理(通夜振る舞い・精進落とし)",
   "返礼品",
